@@ -1,6 +1,6 @@
 {
-  "name": "ohiocms/base",
-  "description": "Base package for all other Ohio CMS packages.",
+  "name": "ohiocms/content",
+  "description": "Content package for all other Ohio CMS packages.",
   "authors": [
     {
       "name": "Matt Crowe",
@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ohio\\Base\\": "src/"
+      "Ohio\\Content\\": "src/"
     }
   },
   "require-dev": {

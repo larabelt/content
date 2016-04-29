@@ -1,6 +1,6 @@
 <?php
 
-namespace Ohio\Base;
+namespace Ohio\Content;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
