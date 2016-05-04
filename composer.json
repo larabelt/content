@@ -15,7 +15,6 @@
   "require": {
     "php": ">=5.5.9",
     "laravel/framework": ">=5.2.31",
-    "raveren/kint": "0.9.*@dev"
   },
   "autoload": {
     "psr-4": {
