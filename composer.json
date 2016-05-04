@@ -13,15 +13,11 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": ">=5.5.9",
-    "laravel/framework": ">=5.2.31"
+    "ohiocms/base": "dev-master"
   },
   "autoload": {
     "psr-4": {
       "Ohio\\Content\\": "src/"
     }
-  },
-  "require-dev": {
-    "raveren/kint": "0.9.*@dev"
   }
 }
