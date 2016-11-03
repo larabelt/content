@@ -1,10 +1,10 @@
 {
   "name": "ohiocms/content",
-  "description": "Content package for all other Ohio CMS packages.",
+  "description": "Content package for OhioCMS.",
   "authors": [
     {
       "name": "Matt Crowe",
-      "email": "matt@zym.me"
+      "email": "github.mpc@zym.me"
     },
     {
       "name": "Rob LaSota",
@@ -17,7 +17,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Ohio\\Content\\": "src/"
+      "Ohio\\Content\\Base\\": "src/base/",
+      "Ohio\\Content\\Page\\": "src/page/",
     }
   }
 }
