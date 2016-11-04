@@ -7,7 +7,7 @@ composer dumpautoload
 
 # migrate & seed
 php artisan migrate
-php artisan db:seed
+php artisan db:seed --class=OhioContentSeeder
 
 # compile assets
 gulp
