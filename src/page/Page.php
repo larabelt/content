@@ -2,11 +2,13 @@
 namespace Ohio\Content\Page;
 
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Core\Base\Behaviors\Sluggable\SluggableTrait;
+use Ohio\Content\Base\Behaviors\SeoTrait;
+use Ohio\Core\Base\Behaviors\SluggableTrait;
 
 class Page extends Model
 {
     use SluggableTrait;
+    use SeoTrait;
 
     protected $morphClass = 'content/page';
 
@@ -16,7 +18,7 @@ class Page extends Model
 
     public function __toString()
     {
-        return $this->title;
+        return $this->name;
     }
 
     public function setIsActiveAttribute($value)
@@ -24,19 +26,9 @@ class Page extends Model
         $this->attributes['is_active'] = boolval($value);
     }
 
-    public function setTitleAttribute($value)
-    {
-        $this->attributes['title'] = trim($value);
-    }
-
-    public function setSlugAttribute($value)
-    {
-        $this->attributes['slug'] = str_slug($value);
-    }
-
     public function setTemplateAttribute($value)
     {
-        $this->attributes['template'] = trim($value);
+        $this->attributes['template'] = trim(strtolower($value));
     }
 
     public function setIntroAttribute($value)
@@ -52,21 +44,6 @@ class Page extends Model
     public function setExtraAttribute($value)
     {
         $this->attributes['extra'] = trim($value);
-    }
-
-    public function setMetaTitleAttribute($value)
-    {
-        $this->attributes['meta_title'] = trim($value);
-    }
-
-    public function setMetaKeywordsAttribute($value)
-    {
-        $this->attributes['meta_keywords'] = trim($value);
-    }
-
-    public function setMetaDescriptionAttribute($value)
-    {
-        $this->attributes['meta_description'] = trim($value);
     }
 
 }

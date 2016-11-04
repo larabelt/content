@@ -9,7 +9,7 @@ class CreateRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'name' => 'required',
             'body' => 'required',
         ];
     }

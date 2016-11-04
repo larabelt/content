@@ -16,7 +16,7 @@ class OhioCreatePagesTable extends Migration
             $table->increments('id');
             $table->boolean('is_active')->default(0);
             $table->string('template')->default('default');
-            $table->string('title');
+            $table->string('name');
             $table->string('slug')->index();
             $table->text('body');
             $table->string('meta_title')->nullable();

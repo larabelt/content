@@ -3,7 +3,6 @@
 namespace Ohio\Content\Base;
 
 use Ohio\Content;
-use Ohio\Content\Role;
 use Illuminate\Routing\Router;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Support\ServiceProvider;
