@@ -18,7 +18,7 @@ Route::group([
 ],
     function () {
         Route::get('{a?}/{b?}/{c?}', function () {
-            return view('ohio-core::layouts.admin.dashboard');
+            return view('ohio-content::base.admin.dashboard');
         });
     }
 );
