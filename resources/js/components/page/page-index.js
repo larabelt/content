@@ -1,13 +1,13 @@
-// import columnSorter from '../../../../core/js/components/column-sorter';
-// import pagination from '../../../../core/js/components/pagination';
+import columnSorter from 'ohio/core/js/components/column-sorter';
+import pagination from 'ohio/core/js/components/pagination';
 import template from './templates/index';
 
 export default {
 
-    // components: {
-    //     'column-sorter': columnSorter,
-    //     'pagination': pagination
-    // },
+    components: {
+        'column-sorter': columnSorter,
+        'pagination': pagination
+    },
 
     template: template,
 
