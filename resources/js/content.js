@@ -8,7 +8,7 @@ export default class OhioContent {
 
             const router = new VueRouter({
                 routes: [
-                    {path: '/pages', component: PageIndex, canReuse: false},
+                    {path: '/pages', component: PageIndex, canReuse: false, name: 'pageIndex'},
                 ],
                 mode: 'history',
                 base: '/admin/ohio/content'

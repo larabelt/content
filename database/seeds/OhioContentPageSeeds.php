@@ -13,6 +13,6 @@ class OhioContentPageSeeds extends Seeder
      */
     public function run()
     {
-        factory(Page\Page::class, 5)->create();
+        factory(Page\Page::class, 120)->create();
     }
 }

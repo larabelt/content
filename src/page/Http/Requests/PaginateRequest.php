@@ -5,7 +5,7 @@ use Ohio\Core\Base\Http\Requests\BasePaginateRequest;
 
 class PaginateRequest extends BasePaginateRequest
 {
-    public $perPage = 20;
+    public $perPage = 10;
 
     public $orderBy = 'pages.id';
 

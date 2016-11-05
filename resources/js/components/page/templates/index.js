@@ -8,8 +8,14 @@ export default `
             
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
+                        <th>
+                            ID
+                            <column-sorter :routename="'pageIndex'" :order-by="'pages.id'"></column-sorter>
+                        </th>
+                        <th>
+                            Name
+                            <column-sorter :routename="'pageIndex'" :order-by="'pages.name'"></column-sorter>
+                        </th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
@@ -43,7 +49,7 @@ export default `
                     </div>
                 </div>
                 <div class="col-xs-7">
-                    
+                    <pagination :routename="'pageIndex'"></pagination>
                 </div>
             </div>
         </div>
