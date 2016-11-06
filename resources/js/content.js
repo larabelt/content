@@ -1,4 +1,5 @@
 import PageIndex from './components/page/page-index';
+import PageEdit  from './components/page/page-edit';
 
 export default class OhioContent {
 
@@ -9,6 +10,7 @@ export default class OhioContent {
             const router = new VueRouter({
                 routes: [
                     {path: '/pages', component: PageIndex, canReuse: false, name: 'pageIndex'},
+                    {path: '/pages/edit/:id', component: PageEdit, name: 'pageEdit'},
                 ],
                 mode: 'history',
                 base: '/admin/ohio/content'
