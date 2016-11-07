@@ -2,11 +2,13 @@
 namespace Ohio\Content\Page;
 
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Content\Base\Behaviors\SeoTrait;
 use Ohio\Core\Base\Behaviors\SluggableTrait;
+use Ohio\Content\Base\Behaviors\SeoTrait;
+use Ohio\Content\Base\Behaviors\HandleableTrait;
 
 class Page extends Model
 {
+    use HandleableTrait;
     use SluggableTrait;
     use SeoTrait;
 

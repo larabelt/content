@@ -3,8 +3,10 @@
 namespace Ohio\Content\Base;
 
 use Ohio\Content;
-use Illuminate\Routing\Router;
+
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class OhioContentServiceProvider extends ServiceProvider
@@ -25,6 +27,7 @@ class OhioContentServiceProvider extends ServiceProvider
     public function register()
     {
         include __DIR__ . '/Http/routes.php';
+        include __DIR__ . '/../handle/Http/routes.php';
         include __DIR__ . '/../page/Http/routes.php';
     }
 
@@ -42,8 +45,15 @@ class OhioContentServiceProvider extends ServiceProvider
         // set backup view paths
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'ohio-content');
 
+        // policies
         $this->registerPolicies($gate);
 
+        // morphMap
+        Relation::morphMap([
+            'content/page' => Content\Page\Page::class,
+        ]);
+
+        // commands
         $this->commands(Content\Base\Commands\PublishCommand::class);
     }
 

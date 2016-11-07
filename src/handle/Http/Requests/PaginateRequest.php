@@ -2,20 +2,39 @@
 namespace Ohio\Content\Handle\Http\Requests;
 
 use Ohio\Core\Base\Http\Requests\BasePaginateRequest;
+use Illuminate\Database\Eloquent\Builder;
 
 class PaginateRequest extends BasePaginateRequest
 {
-    public $perHandle = 10;
+    public $perPage = 10;
 
     public $orderBy = 'handles.id';
 
     public $sortable = [
         'handles.id',
-        'handles.name',
+        'handles.url',
+        'handles.delta',
     ];
 
     public $searchable = [
-        'handles.name',
+        'handles.url',
     ];
+
+    public function modifyQuery(Builder $query)
+    {
+        if ($this->get('delta')) {
+            $query->where('delta', $this->get('delta'));
+        }
+
+        if ($this->get('handleable_id')) {
+            $query->where('handleable_id', $this->get('handleable_id'));
+        }
+
+        if ($this->get('handleable_type')) {
+            $query->where('handleable_type', $this->get('handleable_type'));
+        }
+
+        return $query;
+    }
 
 }

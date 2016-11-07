@@ -1,10 +1,12 @@
-import form from './form';
 import heading from 'ohio/core/js/components/base/heading';
+import pageForm from './form';
+import handleIndex from '../handle/handle-index.js';
 
 export default {
     components: {
-        'form-page': form,
         'heading': heading,
+        'page-form': pageForm,
+        'handle-index': handleIndex,
     },
     data() {
         return {
@@ -25,11 +27,16 @@ export default {
                         <div class="box-header with-border">
                             <h3 class="box-title">Edit Page {{ msg }}</h3>
                         </div>
-                        <form-page></form-page>
+                        <page-form></page-form>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    
+                <div class="col-md-9">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Handles</h3>
+                        </div>
+                        <handle-index></handle-index>
+                    </div>
                 </div>
             </div>
         </div>

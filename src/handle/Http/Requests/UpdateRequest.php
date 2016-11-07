@@ -9,8 +9,7 @@ class UpdateRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'name' => 'sometimes|required',
-            'body' => 'sometimes|required',
+            'url' => 'sometimes|required',
         ];
     }
 

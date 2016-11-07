@@ -1,36 +1,38 @@
 <?php
 
 use Ohio\Core\Base\Testing\OhioTestCase;
+use Ohio\Content\Page\Page;
 use Ohio\Content\Handle\Handle;
 
 class HandleTest extends OhioTestCase
 {
     /**
      * @covers \Ohio\Content\Handle\Handle::__toString
-     * @covers \Ohio\Content\Handle\Handle::setIsActiveAttribute
-     * @covers \Ohio\Content\Handle\Handle::setTemplateAttribute
-     * @covers \Ohio\Content\Handle\Handle::setIntroAttribute
-     * @covers \Ohio\Content\Handle\Handle::setBodyAttribute
-     * @covers \Ohio\Content\Handle\Handle::setExtraAttribute
+     * @covers \Ohio\Content\Handle\Handle::setUrlAttribute
+     * @covers \Ohio\Content\Handle\Handle::handleable
      */
     public function test()
     {
+
+        $page = factory(Page::class)->make();
         $handle = factory(Handle::class)->make();
-        $handle->is_active = 1;
-        $handle->name = ' Test ';
-        $handle->template = ' TEST ';
-        $handle->intro = ' Test ';
-        $handle->body = ' Test ';
-        $handle->extra = ' Test ';
 
+        Handle::unguard();
 
+        $handle->handleable_id = 1;
+        $handle->handleable_type = $page->getMorphClass();
+        $handle->url = ' Test ';
+        $handle->delta = 1;
 
-        $this->assertTrue($handle->is_active);
-        $this->assertEquals($handle->name, $handle->__toString());
-        $this->assertEquals('test', $handle->template);
-        $this->assertEquals('Test', $handle->intro);
-        $this->assertEquals('Test', $handle->body);
-        $this->assertEquals('Test', $handle->extra);
+        $attributes = $handle->getAttributes();
+
+        # handleable relationship
+        $this->assertInstanceOf(Page::class, $handle->handleable);
+
+        # setters
+        $this->assertEquals('test', $handle->__toString());
+        $this->assertEquals('test', $attributes['url']);
+        $this->assertEquals('content/page', $attributes['handleable_type']);
     }
 
 }

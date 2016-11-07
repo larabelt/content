@@ -51,7 +51,7 @@ class ApiControllerTest extends Testing\OhioTestCase
 
         # get existing handle
         $handle = $controller->get(1);
-        $this->assertEquals($handle1->name, $handle->name);
+        $this->assertEquals($handle1->url, $handle->url);
 
         # get handle that doesn't exist
         try {
@@ -64,7 +64,7 @@ class ApiControllerTest extends Testing\OhioTestCase
         $response = $controller->show(1);
         $this->assertInstanceOf(JsonResponse::class, $response);
         $data = $response->getData();
-        $this->assertEquals($handle1->name, $data->name);
+        $this->assertEquals($handle1->url, $data->url);
 
         # destroy handle
         $response = $controller->destroy(1);
@@ -82,7 +82,7 @@ class ApiControllerTest extends Testing\OhioTestCase
         # index
         $response = $controller->index(new Request());
         $this->assertInstanceOf(JsonResponse::class, $response);
-        $this->assertEquals($handle1->name, $response->getData()->data[0]->name);
+        $this->assertEquals($handle1->url, $response->getData()->data[0]->url);
 
     }
 

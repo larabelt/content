@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-use Ohio\Content\Page;
+use Ohio\Content\Page\Page;
+use Ohio\Content\Handle\Handle;
 
 class OhioContentPageSeeds extends Seeder
 {
@@ -13,6 +14,11 @@ class OhioContentPageSeeds extends Seeder
      */
     public function run()
     {
-        factory(Page\Page::class, 120)->create();
+        factory(Page::class, 120)
+            ->create()
+            ->each(function ($page) {
+                $page->handles()->save(factory(Handle::class)->make());
+            });
+        ;
     }
 }
