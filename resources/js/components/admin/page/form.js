@@ -2,20 +2,24 @@ export default {
     data() {
         return {
             page: {},
+            saving: false,
+            saved: false,
             errors: {}
         }
     },
     methods: {
         submit(event) {
             event.preventDefault();
-            return this.put(this.page);
+            this.saving = true;
+            this.saved = false;
+            if (this.$parent.id) {
+                return this.put(this.page);
+            }
+            return this.post(this.page);
         },
-        // hasError(key) {
-        //     return key in this.errors;
-        // },
         get() {
             this.$http.get('/api/v1/pages/' + this.$parent.id).then((response) => {
-                this.page = response.data;
+                this.page = this.$parent.page = response.data;
             }, (response) => {
 
             });
@@ -23,16 +27,32 @@ export default {
         put(params) {
             this.errors = {};
             this.$http.put('/api/v1/pages/' + params.id, params).then((response) => {
-                this.page = response.data;
+                this.page = this.$parent.page = response.data;
+                this.saved = true;
+                this.$parent.msg = 'saved'; //test
             }, (response) => {
                 if (response.status == 422) {
                     this.errors = response.data.message;
                 }
             });
+            this.saving = false;
+        },
+        post(params) {
+            this.errors = {};
+            this.$http.post('/api/v1/pages', params ).then((response) => {
+                this.$router.push({ name: 'pageEdit', params: { id: response.data.id }})
+            }, (response) => {
+                if (response.status == 422) {
+                    this.errors = response.data.message;
+                }
+            });
+            this.saving = false;
         }
     },
     mounted() {
-        this.get();
+        if (this.$parent.id) {
+            this.get();
+        }
     },
     template: `
         <form role="form">
@@ -59,7 +79,9 @@ export default {
             </div>
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary" v-on:click="submit($event)">Save</button>
+                <span v-show="saving">saving <i class="fa fa-spinner fa-spin" /></span>
+                <span v-show="saved">saved <i class="fa fa-floppy-o" /></span>
             </div>
         </form>
-    `
+`
 };

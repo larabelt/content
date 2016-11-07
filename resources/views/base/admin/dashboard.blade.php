@@ -1,8 +1,4 @@
-@extends('ohio-core::layouts.admin.main')
-
-@section('heading-title', 'tmp')
-@section('heading-subtitle', 'tmp')
-@section('heading-active', 'tmp')
+@extends('ohio-core::layouts.admin.main2')
 
 @section('scripts-body-close')
     @parent

@@ -1,5 +1,9 @@
 export default `
-    <div class="box box-primary">
+    <div>
+        <section class="content-header">
+            <h1>Page Manager <small></small></h1>
+        </section>
+        <div class="box box-primary">
         <div class="box-body">
             <div class="btn-group">
                 <router-link to="/pages/create" v-bind:class="'btn btn-primary'">add page</router-link>
@@ -53,5 +57,6 @@ export default `
                 </div>
             </div>
         </div>
+    </div>
     </div>
 `;

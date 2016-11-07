@@ -1,5 +1,5 @@
-import columnSorter from 'ohio/core/js/components/column-sorter';
-import pagination from 'ohio/core/js/components/pagination';
+import columnSorter from 'ohio/core/js/components/base/column-sorter';
+import pagination from 'ohio/core/js/components/base/pagination';
 import template from './templates/index';
 
 export default {
@@ -22,13 +22,13 @@ export default {
     },
 
     mounted() {
-        this.getItems();
-        console.log('pages');
+        this.index();
         Vue.hello();
     },
 
     methods: {
-        getItems() {
+        index() {
+
             let params = {};
             _(this.$route.query).forEach((value, key) => {
                 params[key] = value;
@@ -46,7 +46,7 @@ export default {
         destroy(id) {
             this.$http.delete('/api/v1/pages/' + id).then(function(response){
                 if( response.status == 204 ) {
-                    this.getItems();
+                    this.index();
                 }
             });
         }
@@ -54,7 +54,7 @@ export default {
 
     watch: {
         '$route' (to, from) {
-            this.getItems();
+            this.index();
         }
     }
 }
