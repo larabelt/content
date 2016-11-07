@@ -18,6 +18,7 @@
   "autoload": {
     "psr-4": {
       "Ohio\\Content\\Base\\": "src/base/",
+      "Ohio\\Content\\Handle\\": "src/handle/",
       "Ohio\\Content\\Page\\": "src/page/"
     }
   }
