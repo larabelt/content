@@ -1,53 +1,12 @@
-export default {
-    data() {
-        return {
-            page: {},
-            saving: false,
-            saved: false,
-            errors: {}
-        }
-    },
-    methods: {
-        submit(event) {
-            event.preventDefault();
-            this.saving = true;
-            this.saved = false;
-            if (this.$parent.id) {
-                return this.put(this.page);
-            }
-            return this.post(this.page);
-        },
-        get() {
-            this.$http.get('/api/v1/pages/' + this.$parent.id).then((response) => {
-                this.page = this.$parent.page = response.data;
-            }, (response) => {
+import form from 'ohio/core/js/mixins/base/forms';
+import service from './service';
 
-            });
-        },
-        put(params) {
-            this.errors = {};
-            this.$http.put('/api/v1/pages/' + params.id, params).then((response) => {
-                this.page = this.$parent.page = response.data;
-                this.saved = true;
-                this.$parent.msg = 'saved'; //test
-            }, (response) => {
-                if (response.status == 422) {
-                    this.errors = response.data.message;
-                }
-            });
-            this.saving = false;
-        },
-        post(params) {
-            this.errors = {};
-            this.$http.post('/api/v1/pages', params ).then((response) => {
-                this.$router.push({ name: 'pageEdit', params: { id: response.data.id }})
-            }, (response) => {
-                if (response.status == 422) {
-                    this.errors = response.data.message;
-                }
-            });
-            this.saving = false;
-        }
+export default {
+
+    mixins: [form, service],
+
+    methods: {
+
     },
     mounted() {
         if (this.$parent.id) {

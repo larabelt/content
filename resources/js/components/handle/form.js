@@ -1,4 +1,9 @@
+import service from './service';
+
 export default {
+
+    mixins: [service],
+
     data() {
         return {
             handle: {},
@@ -17,37 +22,7 @@ export default {
             }
             return this.post(this.handle);
         },
-        get() {
-            this.$http.get('/api/v1/handles/' + this.$parent.id).then((response) => {
-                this.handle = this.$parent.handle = response.data;
-            }, (response) => {
 
-            });
-        },
-        put(params) {
-            this.errors = {};
-            this.$http.put('/api/v1/handles/' + params.id, params).then((response) => {
-                this.handle = this.$parent.handle = response.data;
-                this.saved = true;
-                this.$parent.msg = 'saved'; //test
-            }, (response) => {
-                if (response.status == 422) {
-                    this.errors = response.data.message;
-                }
-            });
-            this.saving = false;
-        },
-        post(params) {
-            this.errors = {};
-            this.$http.post('/api/v1/handles', params ).then((response) => {
-                this.$router.push({ name: 'handleEdit', params: { id: response.data.id }})
-            }, (response) => {
-                if (response.status == 422) {
-                    this.errors = response.data.message;
-                }
-            });
-            this.saving = false;
-        }
     },
     mounted() {
         if (this.$parent.id) {
@@ -69,5 +44,5 @@ export default {
                 <span v-show="saved">saved <i class="fa fa-floppy-o" /></span>
             </div>
         </form>
-`
+        `
 };

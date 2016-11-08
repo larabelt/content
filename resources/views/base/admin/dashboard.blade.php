@@ -2,12 +2,12 @@
 
 @section('scripts-body-close')
     @parent
-    <script src="/js/ohio.js"></script>
+    <script src="/js/ohio-content.js"></script>
 @endsection
 
 @section('main')
 
-    <div id="content-vue">
+    <div id="ohio-content">
         <router-view></router-view>
     </div>
 
