@@ -1,40 +1,40 @@
-import columnSorter from 'ohio/core/js/components/base/column-sorter';
-import pagination from 'ohio/core/js/components/base/pagination';
-import template from './templates/index';
-import service from './service';
+import headingTemplate from 'ohio/core/js/templates/base/heading';
+import pageService from './service';
+import pageIndexTemplate from './templates/index';
 
 export default {
 
-    mixins: [service],
-
     components: {
-        'column-sorter': columnSorter,
-        'pagination': pagination
+        'heading': {
+            data() {
+                return {
+                    title: 'Page Manager',
+                    subtitle: '',
+                    crumbs: [],
+                }
+            },
+            'template': headingTemplate
+        },
+        'page-index': {
+            mixins: [pageService],
+            template: pageIndexTemplate,
+            mounted() {
+                this.index();
+            },
+            watch: {
+                '$route' (to, from) {
+                    this.index();
+                }
+            },
+        },
     },
 
-    template: template,
-
-    data() {
-        return {
-            items: {
-                uri: '/admin/ohio/content/pages',
-                slug: 'pages',
-                data: []
-            }
-        }
-    },
-
-    mounted() {
-        this.index();
-    },
-
-    methods: {
-
-    },
-
-    watch: {
-        '$route' (to, from) {
-            this.index();
-        }
-    }
+    template: `
+        <div>
+            <heading></heading>
+            <section class="content">
+                <page-index></page-index>
+            </section>
+        </div>
+        `
 }

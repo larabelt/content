@@ -1,44 +1,75 @@
-import heading from 'ohio/core/js/components/base/heading';
-import pageForm from './form';
-import handleIndex from '../handle/handle-index.js';
+import headingTemplate from 'ohio/core/js/templates/base/heading';
+import pageService from './service';
+import pageFormTemplate from './templates/form';
+import handleService from '../handle/service';
+import handleIndexTemplate from '../handle/templates/owned-index';
 
 export default {
     components: {
-        'heading': heading,
-        'page-form': pageForm,
-        'handle-index': handleIndex,
+        'heading': {
+            data() {
+                return {
+                    title: 'Page Editor',
+                    subtitle: '',
+                    crumbs: [
+                        {url: '/admin/ohio/content/pages', text: 'Manager'}
+                    ],
+                }
+            },
+            'template': headingTemplate
+        },
+        'page-form': {
+            mixins: [pageService],
+            template: pageFormTemplate,
+            mounted() {
+                this.id = this.$route.params.id;
+                this.get();
+            },
+        },
+        'handle-index': {
+            mixins: [handleService],
+            template: handleIndexTemplate,
+            mounted() {
+                this.index();
+            },
+            methods: {
+                getParams() {
+                    let params = this.getUrlParams();
+                    params.handleable_id = this.$route.params.id;
+                    params.handleable_type = 'content/page';
+                    return params;
+                },
+            },
+        },
     },
     data() {
         return {
-            id: this.$route.params.id,
-            page: {},
-            msg: '',
+            id: this.$route.params.id
         }
     },
     template: `
         <div>
-            <heading 
-                title="Page Editor" 
-                :subtitle=page.name 
-                ></heading>
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Edit Page {{ msg }}</h3>
+            <heading></heading>
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Edit Page</h3>
+                            </div>
+                            <page-form></page-form>
                         </div>
-                        <page-form></page-form>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Handles</h3>
+                            </div>
+                            <handle-index></handle-index>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-9">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Handles</h3>
-                        </div>
-                        <handle-index></handle-index>
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
-    `
+        `
 }

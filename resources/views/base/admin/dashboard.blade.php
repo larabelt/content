@@ -1,4 +1,4 @@
-@extends('ohio-core::layouts.admin.main2')
+@extends('ohio-core::layouts.admin.main')
 
 @section('scripts-body-close')
     @parent

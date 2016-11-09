@@ -1,32 +1,39 @@
+window.$ = window.jQuery = require('jquery');
+global._ = require('lodash');
+
+import form from 'ohio/core/js/mixins/base/forms';
+
 export default {
+
+    mixins: [form],
+
     methods: {
+        baseUrl() {
+            return '/api/v1/handles/';
+        },
         index() {
 
-            let params = {};
-            _(this.$route.query).forEach((value, key) => {
-                params[key] = value;
-            });
+            let params = this.getParams();
 
-            let url = '/api/v1/handles?' + $.param(params);
+            let url = this.baseUrl() + '?' + $.param(params);
 
             this.$http.get(url).then(function (response) {
-                this.items.data = response.data;
-
+                this.items = response.data;
             }, function (response) {
-                console.log('Error');
+                console.log('error');
             });
         },
         get() {
-            this.$http.get('/api/v1/handles/' + this.$parent.id).then((response) => {
-                this.handle = this.$parent.handle = response.data;
+            this.$http.get(this.baseUrl() + this.$parent.id).then((response) => {
+                this.item = response.data;
             }, (response) => {
 
             });
         },
         put(params) {
             this.errors = {};
-            this.$http.put('/api/v1/handles/' + params.id, params).then((response) => {
-                this.handle = this.$parent.handle = response.data;
+            this.$http.put(this.baseUrl() + params.id, params).then((response) => {
+                this.item = response.data;
                 this.saved = true;
                 this.$parent.msg = 'saved'; //test
             }, (response) => {
@@ -38,8 +45,12 @@ export default {
         },
         post(params) {
             this.errors = {};
-            this.$http.post('/api/v1/handles', params).then((response) => {
-                this.$router.push({name: 'handleEdit', params: {id: response.data.id}})
+
+            let merged = _.merge(this.getParams(), params);
+
+            this.$http.post(this.baseUrl(), merged).then((response) => {
+                //this.$router.push({name: 'handleEdit', params: {id: response.data.id}})
+                this.index()
             }, (response) => {
                 if (response.status == 422) {
                     this.errors = response.data.message;
@@ -48,7 +59,7 @@ export default {
             this.saving = false;
         },
         destroy(id) {
-            this.$http.delete('/api/v1/handles/' + id).then(function (response) {
+            this.$http.delete(this.baseUrl() + id).then(function (response) {
                 if (response.status == 204) {
                     this.index();
                 }

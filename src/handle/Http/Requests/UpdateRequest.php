@@ -10,6 +10,8 @@ class UpdateRequest extends BaseFormRequest
     {
         return [
             'url' => 'sometimes|required',
+            'handleable_id' => 'sometimes|required',
+            'handleable_type' => 'sometimes|required',
         ];
     }
 

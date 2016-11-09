@@ -10,6 +10,8 @@ class CreateRequest extends BaseFormRequest
     {
         return [
             'url' => 'required',
+            'handleable_id' => 'required',
+            'handleable_type' => 'required',
         ];
     }
 

@@ -1,34 +1,36 @@
+window.$ = window.jQuery = require('jquery');
+
+import form from 'ohio/core/js/mixins/base/forms';
+
 export default {
+
+    mixins: [form],
+
     methods: {
         index() {
 
-            let params = {};
-            _(this.$route.query).forEach((value, key) => {
-                params[key] = value;
-            });
+            let params = this.getParams();
 
             let url = '/api/v1/pages?' + $.param(params);
 
             this.$http.get(url).then(function (response) {
-                this.items.data = response.data;
-
+                this.items = response.data;
             }, function (response) {
-                console.log('Error');
+                console.log('error');
             });
         },
         get() {
-            this.$http.get('/api/v1/pages/' + this.$parent.id).then((response) => {
-                this.page = this.$parent.page = response.data;
+            this.$http.get('/api/v1/pages/' + this.id).then((response) => {
+                this.item = response.data;
             }, (response) => {
 
             });
         },
         put(params) {
             this.errors = {};
-            this.$http.put('/api/v1/pages/' + params.id, params).then((response) => {
-                this.page = this.$parent.page = response.data;
+            this.$http.put('/api/v1/pages/' + this.id, params).then((response) => {
+                this.item = response.data;
                 this.saved = true;
-                this.$parent.msg = 'saved'; //test
             }, (response) => {
                 if (response.status == 422) {
                     this.errors = response.data.message;

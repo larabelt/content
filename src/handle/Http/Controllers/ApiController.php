@@ -56,7 +56,9 @@ class ApiController extends BaseApiController
     public function store(Requests\CreateRequest $request)
     {
 
-        $handle = $this->handle->create($request->all());
+        $handle = $this->handle->create($request->only([
+            'handleable_id', 'handleable_type', 'url'
+        ]));
 
         return response()->json($handle);
     }
