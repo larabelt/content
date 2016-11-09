@@ -22,6 +22,7 @@ class PublishCommand extends Command
     protected $description = 'publish assets for ohio content';
 
     protected $dirs = [
+        'vendor/ohiocms/content/config' => 'config/ohio',
         'vendor/ohiocms/content/resources' => 'resources/ohio/content',
         'vendor/ohiocms/content/database/factories' => 'database/factories',
         'vendor/ohiocms/content/database/migrations' => 'database/migrations',
