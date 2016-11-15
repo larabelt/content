@@ -2,6 +2,8 @@
 
 namespace Ohio\Content\Base;
 
+use Validator;
+
 use Ohio\Content;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
@@ -55,6 +57,8 @@ class OhioContentServiceProvider extends ServiceProvider
 
         // commands
         $this->commands(Content\Base\Commands\PublishCommand::class);
+
+        Validator::extend('unique_route', \Ohio\Content\Base\Validators\RouteValidator::class . '@routeIsUnique');
     }
 
     /**

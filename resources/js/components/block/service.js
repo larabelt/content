@@ -1,5 +1,4 @@
 window.$ = window.jQuery = require('jquery');
-global._ = require('lodash');
 
 import form from 'ohio/core/js/mixins/base/forms';
 
@@ -8,14 +7,11 @@ export default {
     mixins: [form],
 
     methods: {
-        baseUrl() {
-            return '/api/v1/handles/';
-        },
         index() {
 
             let params = this.getParams();
 
-            let url = this.baseUrl() + '?' + $.param(params);
+            let url = '/api/v1/blocks?' + $.param(params);
 
             this.$http.get(url).then(function (response) {
                 this.items = response.data;
@@ -24,7 +20,7 @@ export default {
             });
         },
         get() {
-            this.$http.get(this.baseUrl() + this.$parent.id).then((response) => {
+            this.$http.get('/api/v1/blocks/' + this.id).then((response) => {
                 this.item = response.data;
             }, (response) => {
 
@@ -32,10 +28,9 @@ export default {
         },
         put(params) {
             this.errors = {};
-            this.$http.put(this.baseUrl() + params.id, params).then((response) => {
+            this.$http.put('/api/v1/blocks/' + this.id, params).then((response) => {
                 this.item = response.data;
                 this.saved = true;
-                this.$parent.msg = 'saved'; //test
             }, (response) => {
                 if (response.status == 422) {
                     this.errors = response.data.message;
@@ -45,13 +40,8 @@ export default {
         },
         post(params) {
             this.errors = {};
-
-            let merged = _.merge(this.getParams(), params);
-
-            this.$http.post(this.baseUrl(), merged).then((response) => {
-                //this.$router.push({name: 'handleEdit', params: {id: response.data.id}})
-                this.item = {};
-                this.index()
+            this.$http.post('/api/v1/blocks', params ).then((response) => {
+                this.$router.push({ name: 'blockEdit', params: { id: response.data.id }})
             }, (response) => {
                 if (response.status == 422) {
                     this.errors = response.data.message;
@@ -60,8 +50,8 @@ export default {
             this.saving = false;
         },
         destroy(id) {
-            this.$http.delete(this.baseUrl() + id).then(function (response) {
-                if (response.status == 204) {
+            this.$http.delete('/api/v1/blocks/' + id).then(function(response){
+                if( response.status == 204 ) {
                     this.index();
                 }
             });

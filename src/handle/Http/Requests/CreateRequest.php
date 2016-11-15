@@ -9,7 +9,7 @@ class CreateRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'url' => 'required',
+            'url' => 'required|unique:handles|unique_route',
             'handleable_id' => 'required',
             'handleable_type' => 'required',
         ];

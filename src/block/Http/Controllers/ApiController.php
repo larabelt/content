@@ -1,12 +1,11 @@
 <?php
 
-namespace Ohio\Content\Handle\Http\Controllers;
+namespace Ohio\Content\Block\Http\Controllers;
 
-use Route;
 use Ohio\Core\Base\Http\Controllers\BaseApiController;
 
-use Ohio\Content\Handle;
-use Ohio\Content\Handle\Http\Requests;
+use Ohio\Content\Block;
+use Ohio\Content\Block\Http\Requests;
 
 use Illuminate\Http\Request;
 
@@ -14,22 +13,22 @@ class ApiController extends BaseApiController
 {
 
     /**
-     * @var Handle\Handle
+     * @var Block\Block
      */
-    public $handle;
+    public $block;
 
     /**
      * ApiController constructor.
-     * @param Handle\Handle $handle
+     * @param Block\Block $block
      */
-    public function __construct(Handle\Handle $handle)
+    public function __construct(Block\Block $block)
     {
-        $this->handle = $handle;
+        $this->block = $block;
     }
 
     public function get($id)
     {
-        return $this->handle->find($id) ?: $this->abort(404);
+        return $this->block->find($id) ?: $this->abort(404);
     }
 
     /**
@@ -42,7 +41,7 @@ class ApiController extends BaseApiController
     {
         $request = $this->getPaginateRequest(Requests\PaginateRequest::class, $request->query());
 
-        $paginator = $this->getPaginator($this->handle->query(), $request);
+        $paginator = $this->getPaginator($this->block->query(), $request);
 
         return response()->json($paginator->toArray());
     }
@@ -57,11 +56,9 @@ class ApiController extends BaseApiController
     public function store(Requests\CreateRequest $request)
     {
 
-        $handle = $this->handle->create($request->only([
-            'handleable_id', 'handleable_type', 'url'
-        ]));
+        $block = $this->block->create($request->all());
 
-        return response()->json($handle);
+        return response()->json($block);
     }
 
     /**
@@ -73,9 +70,9 @@ class ApiController extends BaseApiController
      */
     public function show($id)
     {
-        $handle = $this->get($id);
+        $block = $this->get($id);
 
-        return response()->json($handle);
+        return response()->json($block);
     }
 
     /**
@@ -88,11 +85,11 @@ class ApiController extends BaseApiController
      */
     public function update(Requests\UpdateRequest $request, $id)
     {
-        $handle = $this->get($id);
+        $block = $this->get($id);
 
-        $handle->update($request->all());
+        $block->update($request->all());
 
-        return response()->json($handle);
+        return response()->json($block);
     }
 
 
@@ -105,9 +102,9 @@ class ApiController extends BaseApiController
      */
     public function destroy($id)
     {
-        $handle = $this->get($id);
+        $block = $this->get($id);
 
-        $handle->delete();
+        $block->delete();
 
         return response()->json(null, 204);
     }

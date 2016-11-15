@@ -2,7 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
-class OhioContentSeeder extends Seeder
+use Ohio\Content\Block\Block;
+use Ohio\Content\Handle\Handle;
+
+class OhioContentBlockSeeds extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +14,6 @@ class OhioContentSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(OhioContentPageSeeds::class);
-        $this->call(OhioContentBlockSeeds::class);
+        factory(Block::class, 25)->create();
     }
 }
