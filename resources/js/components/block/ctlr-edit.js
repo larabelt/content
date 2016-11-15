@@ -60,14 +60,6 @@ export default {
                             <block-form></block-form>
                         </div>
                     </div>
-                    <div class="col-md-9">
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Handles</h3>
-                            </div>
-                            <handle-index></handle-index>
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>
