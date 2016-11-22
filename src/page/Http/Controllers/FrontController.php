@@ -27,7 +27,7 @@ class FrontController extends BaseController
     {
         $key = is_numeric($id) ? 'id' : 'slug';
 
-        return $this->page->where($key, $id)->first() ?: $this->abort(404);
+        return $this->page->where($key, $id)->first() ?: abort(404);
     }
 
     /**
@@ -35,7 +35,7 @@ class FrontController extends BaseController
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
