@@ -32,6 +32,7 @@ class OhioContentServiceProvider extends ServiceProvider
         include __DIR__ . '/../block/Http/routes.php';
         include __DIR__ . '/../handle/Http/routes.php';
         include __DIR__ . '/../page/Http/routes.php';
+        include __DIR__ . '/../tag/Http/routes.php';
     }
 
     /**

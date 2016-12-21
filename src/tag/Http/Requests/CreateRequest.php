@@ -10,7 +10,6 @@ class CreateRequest extends BaseFormRequest
     {
         return [
             'name' => 'required',
-            'body' => 'required',
         ];
     }
 

@@ -10,7 +10,6 @@ class UpdateRequest extends BaseFormRequest
     {
         return [
             'name' => 'sometimes|required',
-            'body' => 'sometimes|required',
         ];
     }
 

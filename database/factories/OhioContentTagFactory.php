@@ -13,6 +13,6 @@
 
 $factory->define(Ohio\Content\Tag\Tag::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->words(3, true),
+        'name' => $faker->words(random_int(1, 2), true),
     ];
 });

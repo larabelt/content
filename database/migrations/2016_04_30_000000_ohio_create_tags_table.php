@@ -16,7 +16,7 @@ class OhioCreateTagsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug')->index();
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

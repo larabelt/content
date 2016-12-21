@@ -17,10 +17,3 @@ Route::group([
         Route::post('/tags', Tag\Http\Controllers\ApiController::class . '@store');
     }
 );
-
-/**
- * Front
- */
-Route::group(['middleware' => ['web']], function () {
-    Route::get('tag/{slug}', Tag\Http\Controllers\FrontController::class . '@show');
-});
