@@ -2,17 +2,16 @@
 namespace Ohio\Content\Page;
 
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Core\Base\Behaviors\SluggableTrait;
-use Ohio\Content\Base\Behaviors\SeoTrait;
-use Ohio\Content\Base\Behaviors\HandleableTrait;
+use Ohio\Core;
+use Ohio\Content;
 
 class Page extends Model
 {
-    use HandleableTrait;
-    use SluggableTrait;
-    use SeoTrait;
+    use Core\Base\Behaviors\SluggableTrait;
+    use Content\Base\Behaviors\HandleableTrait;
+    use Content\Base\Behaviors\TaggableTrait;
 
-    protected $morphClass = 'content/page';
+    protected $morphClass = 'pages';
 
     protected $table = 'pages';
 

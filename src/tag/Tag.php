@@ -19,14 +19,48 @@ class Tag extends Model
         return $this->name;
     }
 
-    public function setTemplateAttribute($value)
-    {
-        $this->attributes['template'] = trim(strtolower($value));
-    }
-
     public function setBodyAttribute($value)
     {
         $this->attributes['body'] = trim($value);
+    }
+
+    /**
+     * Return tags associated with taggable
+     *
+     * @param $query
+     * @param $taggable_type
+     * @param $taggable_id
+     * @return mixed
+     */
+    public function scopeTagged($query, $taggable_type, $taggable_id)
+    {
+        $query->select(['tags.*']);
+        $query->join('taggables', 'taggables.tag_id', '=', 'tags.id');
+        $query->where('taggables.taggable_id', $taggable_id);
+        $query->where('taggables.taggable_type', $taggable_type);
+
+        return $query;
+    }
+
+    /**
+     * Return tags not associated with taggable
+     *
+     * @param $query
+     * @param $taggable_type
+     * @param $taggable_id
+     * @return mixed
+     */
+    public function scopeNotTagged($query, $taggable_type, $taggable_id)
+    {
+        $query->select(['tags.*']);
+        $query->leftJoin('taggables', function ($subQB) use ($taggable_type, $taggable_id) {
+            $subQB->on('taggables.tag_id', '=', 'tags.id');
+            $subQB->where('taggables.taggable_id', $taggable_id);
+            $subQB->where('taggables.taggable_type', $taggable_type);
+        });
+        $query->whereNull('taggables.id');
+
+        return $query;
     }
 
 }

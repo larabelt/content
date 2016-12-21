@@ -54,7 +54,10 @@ class OhioContentServiceProvider extends ServiceProvider
 
         // morphMap
         Relation::morphMap([
-            'content/page' => Content\Page\Page::class,
+            'content/block' => Content\Block\Block::class,
+            'content/handle' => Content\Handle\Handle::class,
+            'pages' => Content\Page\Page::class,
+            'content/tag' => Content\Tag\Tag::class,
         ]);
 
         // commands

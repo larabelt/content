@@ -1,6 +1,6 @@
 <?php
 
-namespace Ohio\Content\Page\Http\Controllers;
+namespace Ohio\Content\Page\Http\Controllers\Api;
 
 use Ohio\Core\Base\Http\Controllers\BaseApiController;
 
@@ -9,7 +9,7 @@ use Ohio\Content\Page\Http\Requests;
 
 use Illuminate\Http\Request;
 
-class ApiController extends BaseApiController
+class PagesController extends BaseApiController
 {
 
     /**

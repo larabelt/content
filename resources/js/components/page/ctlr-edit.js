@@ -3,6 +3,8 @@ import pageService from './service';
 import pageFormTemplate from './templates/form';
 import handleService from '../handle/service';
 import handleIndexTemplate from '../handle/templates/owned-index';
+import tagService from '../tag/service';
+import tagIndexTemplate from '../tag/templates/owned-index';
 
 export default {
     components: {
@@ -41,6 +43,21 @@ export default {
                 },
             },
         },
+        'tag-index': {
+            mixins: [tagService],
+            template: tagIndexTemplate,
+            mounted() {
+                this.index();
+            },
+            methods: {
+                getParams() {
+                    let params = this.getUrlParams();
+                    params.tagable_id = this.$route.params.id;
+                    params.tagable_type = 'content/page';
+                    return params;
+                },
+            },
+        },
     },
     data() {
         return {
@@ -52,7 +69,7 @@ export default {
             <heading></heading>
             <section class="content">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-9 hide">
                         <div class="box box-primary">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Edit Page</h3>
@@ -60,12 +77,20 @@ export default {
                             <page-form></page-form>
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 hide">
                         <div class="box">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Handles</h3>
                             </div>
                             <handle-index></handle-index>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Tags</h3>
+                            </div>
+                            <tag-index></tag-index>
                         </div>
                     </div>
                 </div>
