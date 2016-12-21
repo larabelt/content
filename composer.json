@@ -20,7 +20,8 @@
       "Ohio\\Content\\Base\\": "src/base/",
       "Ohio\\Content\\Block\\": "src/block/",
       "Ohio\\Content\\Handle\\": "src/handle/",
-      "Ohio\\Content\\Page\\": "src/page/"
+      "Ohio\\Content\\Page\\": "src/page/",
+      "Ohio\\Content\\Tag\\": "src/block/"
     }
   }
 }
