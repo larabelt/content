@@ -1,6 +1,6 @@
 import headingTemplate from 'ohio/core/js/templates/base/heading';
-import tagService from './service';
-import tagIndexTemplate from './templates/index';
+import pageService from './service';
+import pageIndexTemplate from './templates/index';
 
 export default {
 
@@ -8,22 +8,22 @@ export default {
         'heading': {
             data() {
                 return {
-                    title: 'Tag Manager',
+                    title: 'Page Manager',
                     subtitle: '',
                     crumbs: [],
                 }
             },
             'template': headingTemplate
         },
-        'tag-index': {
-            mixins: [tagService],
-            template: tagIndexTemplate,
+        'page-index': {
+            mixins: [pageService],
+            template: pageIndexTemplate,
             mounted() {
-                this.paginateTags();
+                this.index();
             },
             watch: {
                 '$route' (to, from) {
-                    this.paginateTags();
+                    this.index();
                 }
             },
         },
@@ -33,7 +33,7 @@ export default {
         <div>
             <heading></heading>
             <section class="content">
-                <tag-index></tag-index>
+                <page-index></page-index>
             </section>
         </div>
         `

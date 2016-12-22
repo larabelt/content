@@ -3,32 +3,29 @@
 namespace Ohio\Content\Block\Http\Controllers\Api;
 
 use Ohio\Core\Base\Http\Controllers\ApiController;
-
-use Ohio\Content\Block;
+use Ohio\Content\Block\Block;
 use Ohio\Content\Block\Http\Requests;
-
-use Illuminate\Http\Request;
 
 class BlocksController extends ApiController
 {
 
     /**
-     * @var Block\Block
+     * @var Block
      */
     public $block;
 
     /**
      * ApiController constructor.
-     * @param Block\Block $block
+     * @param Block $block
      */
-    public function __construct(Block\Block $block)
+    public function __construct(Block $block)
     {
-        $this->block = $block;
+        $this->blocks = $block;
     }
 
     public function get($id)
     {
-        return $this->block->find($id) ?: $this->abort(404);
+        return $this->blocks->find($id) ?: $this->abort(404);
     }
 
     /**
@@ -40,9 +37,7 @@ class BlocksController extends ApiController
     public function index(Requests\PaginateBlocks $request)
     {
 
-        $request->reCapture();
-
-        $paginator = $this->paginator($this->block->query(), $request);
+        $paginator = $this->paginator($this->blocks->query(), $request->reCapture());
 
         return response()->json($paginator->toArray());
     }
@@ -57,7 +52,20 @@ class BlocksController extends ApiController
     public function store(Requests\StoreBlock $request)
     {
 
-        $block = $this->block->create($request->all());
+        $input = $request->all();
+
+        $block = $this->blocks->create([
+            'name' => $input['name'],
+            'body' => $input['body'],
+        ]);
+
+        $this->set($block, $input, [
+            'template',
+            'slug',
+            'body',
+        ]);
+
+        $block->save();
 
         return response()->json($block);
     }
@@ -88,7 +96,16 @@ class BlocksController extends ApiController
     {
         $block = $this->get($id);
 
-        $block->update($request->all());
+        $input = $request->all();
+
+        $this->set($block, $input, [
+            'template',
+            'name',
+            'slug',
+            'body',
+        ]);
+
+        $block->save();
 
         return response()->json($block);
     }

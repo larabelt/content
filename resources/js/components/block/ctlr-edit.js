@@ -20,15 +20,10 @@ export default {
             mixins: [blockService],
             template: blockFormTemplate,
             mounted() {
-                this.id = this.$route.params.id;
-                this.get();
+                this.blocks.block.id = this.$route.params.id;
+                this.getBlock();
             },
         },
-    },
-    data() {
-        return {
-            id: this.$route.params.id
-        }
     },
     template: `
         <div>

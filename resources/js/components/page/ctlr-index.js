@@ -19,11 +19,11 @@ export default {
             mixins: [pageService],
             template: pageIndexTemplate,
             mounted() {
-                this.index();
+                this.paginatePages();
             },
             watch: {
                 '$route' (to, from) {
-                    this.index();
+                    this.paginatePages();
                 }
             },
         },

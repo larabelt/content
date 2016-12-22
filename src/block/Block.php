@@ -12,7 +12,7 @@ class Block extends Model
 
     protected $table = 'blocks';
 
-    protected $guarded = ['id'];
+    protected $fillable = ['name', 'body'];
 
     public function __toString()
     {

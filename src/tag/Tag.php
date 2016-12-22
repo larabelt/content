@@ -12,7 +12,7 @@ class Tag extends Model
 
     protected $table = 'tags';
 
-    protected $guarded = ['id'];
+    protected $fillable = ['name'];
 
     public function __toString()
     {

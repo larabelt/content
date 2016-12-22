@@ -3,32 +3,29 @@
 namespace Ohio\Content\Page\Http\Controllers\Api;
 
 use Ohio\Core\Base\Http\Controllers\ApiController;
-
-use Ohio\Content\Page;
+use Ohio\Content\Page\Page;
 use Ohio\Content\Page\Http\Requests;
-
-use Illuminate\Http\Request;
 
 class PagesController extends ApiController
 {
 
     /**
-     * @var Page\Page
+     * @var Page
      */
     public $page;
 
     /**
      * ApiController constructor.
-     * @param Page\Page $page
+     * @param Page $page
      */
-    public function __construct(Page\Page $page)
+    public function __construct(Page $page)
     {
-        $this->page = $page;
+        $this->pages = $page;
     }
 
     public function get($id)
     {
-        return $this->page->find($id) ?: $this->abort(404);
+        return $this->pages->find($id) ?: $this->abort(404);
     }
 
     /**
@@ -39,9 +36,7 @@ class PagesController extends ApiController
      */
     public function index(Requests\PaginatePages $request)
     {
-        $request->reCapture();
-
-        $paginator = $this->paginator($this->page->query(), $request);
+        $paginator = $this->paginator($this->pages->query(), $request->reCapture());
 
         return response()->json($paginator->toArray());
     }
@@ -56,7 +51,21 @@ class PagesController extends ApiController
     public function store(Requests\StorePage $request)
     {
 
-        $page = $this->page->create($request->all());
+        $input = $request->all();
+
+        $page = $this->pages->create([
+            'name' => $input['name'],
+            'body' => $input['body'],
+        ]);
+
+        $this->set($page, $input, [
+            'is_active',
+            'template',
+            'slug',
+            'meta_title',
+            'meta_keywords',
+            'meta_description',
+        ]);
 
         return response()->json($page);
     }
@@ -87,7 +96,20 @@ class PagesController extends ApiController
     {
         $page = $this->get($id);
 
-        $page->update($request->all());
+        $input = $request->all();
+
+        $this->set($page, $input, [
+            'is_active',
+            'template',
+            'name',
+            'slug',
+            'body',
+            'meta_title',
+            'meta_keywords',
+            'meta_description',
+        ]);
+
+        $page->save();
 
         return response()->json($page);
     }

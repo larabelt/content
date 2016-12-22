@@ -7,7 +7,7 @@ export default {
         'heading': {
             data() {
                 return {
-                    title: 'Tag Editor',
+                    title: 'Tag Creator',
                     subtitle: '',
                     crumbs: [
                         {url: '/admin/ohio/content/tags', text: 'Manager'}
@@ -19,10 +19,6 @@ export default {
         'tag-form': {
             mixins: [tagService],
             template: tagFormTemplate,
-            mounted() {
-                this.tags.tag.id = this.$route.params.id;
-                this.getTag();
-            },
         },
     },
     template: `
@@ -33,7 +29,7 @@ export default {
                     <div class="col-md-9">
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Edit Tag</h3>
+                                <h3 class="box-title">Create Tag</h3>
                             </div>
                             <tag-form></tag-form>
                         </div>

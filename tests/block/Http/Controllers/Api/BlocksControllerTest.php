@@ -24,6 +24,7 @@ class BlocksControllerTest extends Testing\OhioTestCase
     }
 
     /**
+     * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::__construct
      * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::get
      * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::show
      * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::destroy
@@ -46,7 +47,7 @@ class BlocksControllerTest extends Testing\OhioTestCase
 
         # construct
         $controller = new BlocksController($blockRepository);
-        $this->assertEquals($blockRepository, $controller->block);
+        $this->assertEquals($blockRepository, $controller->blocks);
 
         # get existing block
         $block = $controller->get(1);
@@ -75,7 +76,7 @@ class BlocksControllerTest extends Testing\OhioTestCase
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # create block
-        $response = $controller->store(new StoreBlock());
+        $response = $controller->store(new StoreBlock(['name' => 'test']));
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # index

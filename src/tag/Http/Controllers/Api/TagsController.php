@@ -3,32 +3,29 @@
 namespace Ohio\Content\Tag\Http\Controllers\Api;
 
 use Ohio\Core\Base\Http\Controllers\ApiController;
-
-use Ohio\Content\Tag;
+use Ohio\Content\Tag\Tag;
 use Ohio\Content\Tag\Http\Requests;
-
-use Illuminate\Http\Request;
 
 class TagsController extends ApiController
 {
 
     /**
-     * @var Tag\Tag
+     * @var Tag
      */
-    public $tag;
+    public $tags;
 
     /**
      * ApiController constructor.
-     * @param Tag\Tag $tag
+     * @param Tag $tag
      */
-    public function __construct(Tag\Tag $tag)
+    public function __construct(Tag $tag)
     {
-        $this->tag = $tag;
+        $this->tags = $tag;
     }
 
     public function get($id)
     {
-        return $this->tag->find($id) ?: $this->abort(404);
+        return $this->tags->find($id) ?: $this->abort(404);
     }
 
     /**
@@ -39,9 +36,7 @@ class TagsController extends ApiController
      */
     public function index(Requests\PaginateTags $request)
     {
-        $request->reCapture();
-
-        $paginator = $this->paginator($this->tag->query(), $request);
+        $paginator = $this->paginator($this->tags->query(), $request->reCapture());
 
         return response()->json($paginator->toArray());
     }
@@ -56,7 +51,18 @@ class TagsController extends ApiController
     public function store(Requests\StoreTag $request)
     {
 
-        $tag = $this->tag->create($request->all());
+        $input = $request->all();
+
+        $tag = $this->tags->create([
+            'name' => $input['name'],
+        ]);
+
+        $this->set($tag, $input, [
+            'slug',
+            'body',
+        ]);
+
+        $tag->save();
 
         return response()->json($tag);
     }
@@ -87,7 +93,15 @@ class TagsController extends ApiController
     {
         $tag = $this->get($id);
 
-        $tag->update($request->all());
+        $input = $request->all();
+
+        $this->set($tag, $input, [
+            'name',
+            'slug',
+            'body',
+        ]);
+
+        $tag->save();
 
         return response()->json($tag);
     }

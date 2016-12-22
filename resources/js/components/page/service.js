@@ -6,53 +6,72 @@ export default {
 
     mixins: [form],
 
+    data() {
+        return {
+            pages: {
+                url: '/api/v1/pages/',
+                saving: false,
+                saved: false,
+                errors: {},
+                params: {},
+                page: {},
+                pages: [],
+            }
+        }
+    },
+
     methods: {
-        index() {
-
-            let params = this.getParams();
-
-            let url = '/api/v1/pages?' + $.param(params);
-
+        submitPage(event) {
+            event.preventDefault();
+            this.pages.saving = true;
+            this.pages.saved = false;
+            if (this.pages.page.id) {
+                return this.updatePage(this.pages.page);
+            }
+            return this.storePage(this.pages.page);
+        },
+        paginatePages() {
+            let url = this.pages.url + '?' + $.param(this.getUrlParams());
             this.$http.get(url).then(function (response) {
-                this.items = response.data;
+                this.pages.pages = response.data.data;
             }, function (response) {
                 console.log('error');
             });
         },
-        get() {
-            this.$http.get('/api/v1/pages/' + this.id).then((response) => {
-                this.item = response.data;
+        getPage() {
+            this.$http.get(this.pages.url + this.pages.page.id).then((response) => {
+                this.pages.page = response.data;
             }, (response) => {
 
             });
         },
-        put(params) {
-            this.errors = {};
-            this.$http.put('/api/v1/pages/' + this.id, params).then((response) => {
-                this.item = response.data;
-                this.saved = true;
+        updatePage(params) {
+            this.pages.errors = {};
+            this.$http.put(this.pages.url + this.pages.page.id, params).then((response) => {
+                this.pages.page = response.data;
+                this.pages.saved = true;
             }, (response) => {
                 if (response.status == 422) {
-                    this.errors = response.data.message;
+                    this.pages.errors = response.data.message;
                 }
             });
-            this.saving = false;
+            this.pages.saving = false;
         },
-        post(params) {
-            this.errors = {};
-            this.$http.post('/api/v1/pages', params ).then((response) => {
+        storePage(params) {
+            this.pages.errors = {};
+            this.$http.post(this.pages.url, params ).then((response) => {
                 this.$router.push({ name: 'pageEdit', params: { id: response.data.id }})
             }, (response) => {
                 if (response.status == 422) {
-                    this.errors = response.data.message;
+                    this.pages.errors = response.data.message;
                 }
             });
-            this.saving = false;
+            this.pages.saving = false;
         },
-        destroy(id) {
-            this.$http.delete('/api/v1/pages/' + id).then(function(response){
+        destroyPage(id) {
+            this.$http.delete(this.pages.url + id).then(function(response){
                 if( response.status == 204 ) {
-                    this.index();
+                    this.paginatePages();
                 }
             });
         }

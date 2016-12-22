@@ -1,28 +1,24 @@
 import headingTemplate from 'ohio/core/js/templates/base/heading';
-import tagService from './service';
-import tagFormTemplate from './templates/form';
+import pageService from './service';
+import pageFormTemplate from './templates/form';
 
 export default {
     components: {
         'heading': {
             data() {
                 return {
-                    title: 'Tag Editor',
+                    title: 'Page Creator',
                     subtitle: '',
                     crumbs: [
-                        {url: '/admin/ohio/content/tags', text: 'Manager'}
+                        {url: '/admin/ohio/content/pages', text: 'Manager'}
                     ],
                 }
             },
             'template': headingTemplate
         },
-        'tag-form': {
-            mixins: [tagService],
-            template: tagFormTemplate,
-            mounted() {
-                this.tags.tag.id = this.$route.params.id;
-                this.getTag();
-            },
+        'page-form': {
+            mixins: [pageService],
+            template: pageFormTemplate,
         },
     },
     template: `
@@ -33,9 +29,9 @@ export default {
                     <div class="col-md-9">
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Edit Tag</h3>
+                                <h3 class="box-title">Create Page</h3>
                             </div>
-                            <tag-form></tag-form>
+                            <page-form></page-form>
                         </div>
                     </div>
                 </div>

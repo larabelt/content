@@ -1,6 +1,8 @@
 import headingTemplate from 'ohio/core/js/templates/base/heading';
 import tagService from './service';
 import tagFormTemplate from './templates/form';
+import handleService from '../handle/service';
+import handleIndexTemplate from '../handle/templates/owned-index';
 
 export default {
     components: {
@@ -20,10 +22,15 @@ export default {
             mixins: [tagService],
             template: tagFormTemplate,
             mounted() {
-                this.tags.tag.id = this.$route.params.id;
-                this.getTag();
+                this.id = this.$route.params.id;
+                this.get();
             },
         },
+    },
+    data() {
+        return {
+            id: this.$route.params.id
+        }
     },
     template: `
         <div>

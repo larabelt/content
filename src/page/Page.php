@@ -15,7 +15,7 @@ class Page extends Model
 
     protected $table = 'pages';
 
-    protected $guarded = ['id'];
+    protected $fillable = ['name', 'body'];
 
     public function __toString()
     {

@@ -19,11 +19,11 @@ export default {
             mixins: [blockService],
             template: blockIndexTemplate,
             mounted() {
-                this.index();
+                this.paginateBlocks();
             },
             watch: {
                 '$route' (to, from) {
-                    this.index();
+                    this.paginateBlocks();
                 }
             },
         },

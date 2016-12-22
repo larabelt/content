@@ -19,18 +19,17 @@ export default `
                     </tr>
                 </thead>
                 <tbody>                
-                    <tr v-for="item in items.data">
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.name }}</td>
+                    <tr v-for="page in pages.pages">
+                        <td>{{ page.id }}</td>
+                        <td>{{ page.name }}</td>
                         <td class="text-right">
-                            <router-link :to="{ name: 'pageEdit', params: { id: item.id } }" v-bind:class="'btn btn-xs btn-warning'">
+                            <router-link :to="{ name: 'pageEdit', params: { id: page.id } }" v-bind:class="'btn btn-xs btn-warning'">
                                 <i class="fa fa-edit"></i>
                             </router-link>
-                            <a class="btn btn-xs btn-danger" v-on:click="destroy(item.id)"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-xs btn-danger" v-on:click="destroyPage(page.id)"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 </tbody>
-    
                 <tfoot>
                     <tr>
                         <th>ID</th>
@@ -38,7 +37,6 @@ export default `
                         <th class="text-right">Actions</th>
                     </tr>
                 </tfoot>
-                
             </table>
             <pagination :routename="'pageIndex'"></pagination>
         </div>

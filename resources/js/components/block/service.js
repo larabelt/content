@@ -6,53 +6,72 @@ export default {
 
     mixins: [form],
 
+    data() {
+        return {
+            blocks: {
+                url: '/api/v1/blocks/',
+                saving: false,
+                saved: false,
+                errors: {},
+                params: {},
+                block: {},
+                blocks: [],
+            }
+        }
+    },
+
     methods: {
-        index() {
-
-            let params = this.getParams();
-
-            let url = '/api/v1/blocks?' + $.param(params);
-
+        submitBlock(event) {
+            event.preventDefault();
+            this.blocks.saving = true;
+            this.blocks.saved = false;
+            if (this.blocks.block.id) {
+                return this.updateBlock(this.blocks.block);
+            }
+            return this.storeBlock(this.blocks.block);
+        },
+        paginateBlocks() {
+            let url = this.blocks.url + '?' + $.param(this.getUrlParams());
             this.$http.get(url).then(function (response) {
-                this.items = response.data;
+                this.blocks.blocks = response.data.data;
             }, function (response) {
                 console.log('error');
             });
         },
-        get() {
-            this.$http.get('/api/v1/blocks/' + this.id).then((response) => {
-                this.item = response.data;
+        getBlock() {
+            this.$http.get(this.blocks.url + this.blocks.block.id).then((response) => {
+                this.blocks.block = response.data;
             }, (response) => {
 
             });
         },
-        put(params) {
-            this.errors = {};
-            this.$http.put('/api/v1/blocks/' + this.id, params).then((response) => {
-                this.item = response.data;
-                this.saved = true;
+        updateBlock(params) {
+            this.blocks.errors = {};
+            this.$http.put(this.blocks.url + this.blocks.block.id, params).then((response) => {
+                this.blocks.block = response.data;
+                this.blocks.saved = true;
             }, (response) => {
                 if (response.status == 422) {
-                    this.errors = response.data.message;
+                    this.blocks.errors = response.data.message;
                 }
             });
-            this.saving = false;
+            this.blocks.saving = false;
         },
-        post(params) {
-            this.errors = {};
-            this.$http.post('/api/v1/blocks', params ).then((response) => {
+        storeBlock(params) {
+            this.blocks.errors = {};
+            this.$http.post(this.blocks.url, params ).then((response) => {
                 this.$router.push({ name: 'blockEdit', params: { id: response.data.id }})
             }, (response) => {
                 if (response.status == 422) {
-                    this.errors = response.data.message;
+                    this.blocks.errors = response.data.message;
                 }
             });
-            this.saving = false;
+            this.blocks.saving = false;
         },
-        destroy(id) {
-            this.$http.delete('/api/v1/blocks/' + id).then(function(response){
+        destroyBlock(id) {
+            this.$http.delete(this.blocks.url + id).then(function(response){
                 if( response.status == 204 ) {
-                    this.index();
+                    this.paginateBlocks();
                 }
             });
         }

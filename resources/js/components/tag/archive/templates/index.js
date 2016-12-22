@@ -2,34 +2,35 @@ export default `
     <div class="box box-primary">
         <div class="box-body">
             <div class="btn-group">
-                <router-link to="/blocks/create" v-bind:class="'btn btn-primary'">add block</router-link>
+                <router-link to="/tags/create" v-bind:class="'btn btn-primary'">add tag</router-link>
             </div>
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>
                             ID
-                            <column-sorter :routename="'blockIndex'" :order-by="'blocks.id'"></column-sorter>
+                            <column-sorter :routename="'tagIndex'" :order-by="'tags.id'"></column-sorter>
                         </th>
                         <th>
                             Name
-                            <column-sorter :routename="'blockIndex'" :order-by="'blocks.name'"></column-sorter>
+                            <column-sorter :routename="'tagIndex'" :order-by="'tags.name'"></column-sorter>
                         </th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>                
-                    <tr v-for="block in blocks.blocks">
-                        <td>{{ block.id }}</td>
-                        <td>{{ block.name }}</td>
+                    <tr v-for="item in items.data">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
                         <td class="text-right">
-                            <router-link :to="{ name: 'blockEdit', params: { id: block.id } }" v-bind:class="'btn btn-xs btn-warning'">
+                            <router-link :to="{ name: 'tagEdit', params: { id: item.id } }" v-bind:class="'btn btn-xs btn-warning'">
                                 <i class="fa fa-edit"></i>
                             </router-link>
-                            <a class="btn btn-xs btn-danger" v-on:click="destroyBlock(block.id)"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-xs btn-danger" v-on:click="destroy(item.id)"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 </tbody>
+    
                 <tfoot>
                     <tr>
                         <th>ID</th>
@@ -37,8 +38,9 @@ export default `
                         <th class="text-right">Actions</th>
                     </tr>
                 </tfoot>
+                
             </table>
-            <pagination :routename="'blockIndex'"></pagination>
+            <pagination :routename="'tagIndex'"></pagination>
         </div>
     </div>
 `;

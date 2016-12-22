@@ -9,7 +9,7 @@ class StoreBlock extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:blocks,name',
             'body' => 'required',
         ];
     }
