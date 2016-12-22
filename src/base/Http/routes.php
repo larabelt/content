@@ -4,7 +4,7 @@
  * Front
  */
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/pages', function () {
+    Route::get('pages', function () {
         return view('ohio-core::base.front.home');
     });
 });

@@ -14,29 +14,47 @@ export default `
                 </div>
             </form>
             
-            <table class="table table-bordered table-hover">
-            
-                <thead>
-                    <tr>
-                        <th>
-                            Name
-                            <column-sorter :routeurl="'tagIndex'" :order-by="'tags.name'"></column-sorter>
-                        </th>
-                        <th class="text-right">Actions</th>
-                    </tr>
-                </thead>
-    
-                <tbody>                
-                    <tr v-for="item in items.data">
-                        <td>{{ item.name }}</td>
-                        <td class="text-right">
-                            <a class="btn btn-xs btn-danger" v-on:click="destroy(item.id)"><i class="fa fa-trash"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-    
-            </table>
-            <pagination :routeurl="'tagIndex'"></pagination>
+            <div class="row">
+                <div class="col-md-5">
+                    <form role="form" class="form-inline">
+                        <div class="form-group">
+                            <input type="text" class="form-control" v-model.trim="pageTags.params.q" v-on:keyup="searchPageTags($event)" placeholder="search">
+                        </div>
+                    </form>
+                    <table v-if="pageTags.detached" class="table table-striped table-condensed table-hover">
+                        <tbody>                
+                            <tr v-for="tag in pageTags.detached">
+                                <td>{{ tag.name }}</td>
+                                <td class="text-right">
+                                    <a class="btn btn-xs btn-primary" v-on:click="attachPageTag(tag.id)"><i class="fa fa-link"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-7">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                    <column-sorter :routeurl="'tagIndex'" :order-by="'tags.name'"></column-sorter>
+                                </th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>                
+                            <tr v-for="tag in pageTags.attached">
+                                <td>{{ tag.id }} {{ tag.name }}</td>
+                                <td class="text-right">
+                                    <a class="btn btn-xs btn-danger" v-on:click="detachPageTag(tag.id)"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination :routeurl="'tagIndex'"></pagination>
+                </div>
+            </div>
         </div>
     </div>
 `;

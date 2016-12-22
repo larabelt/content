@@ -1,12 +1,12 @@
 <?php
 
-namespace Ohio\Content\Page\Http\Controllers;
+namespace Ohio\Content\Page\Http\Controllers\Front;
 
 use Ohio\Core\Base\Http\Controllers\BaseController;
 
 use Ohio\Content\Page;
 
-class FrontController extends BaseController
+class PagesController extends BaseController
 {
 
     /**

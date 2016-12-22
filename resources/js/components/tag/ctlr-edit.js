@@ -26,21 +26,6 @@ export default {
                 this.get();
             },
         },
-        'handle-index': {
-            mixins: [handleService],
-            template: handleIndexTemplate,
-            mounted() {
-                this.index();
-            },
-            methods: {
-                getParams() {
-                    let params = this.getUrlParams();
-                    params.handleable_id = this.$route.params.id;
-                    params.handleable_type = 'content/tag';
-                    return params;
-                },
-            },
-        },
     },
     data() {
         return {

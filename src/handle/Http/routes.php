@@ -10,10 +10,10 @@ Route::group([
     'middleware' => ['api']
 ],
     function () {
-        Route::get('/handles/{id}', Handle\Http\Controllers\ApiController::class . '@show');
-        Route::put('/handles/{id}', Handle\Http\Controllers\ApiController::class . '@update');
-        Route::delete('/handles/{id}', Handle\Http\Controllers\ApiController::class . '@destroy');
-        Route::get('/handles', Handle\Http\Controllers\ApiController::class . '@index');
-        Route::post('/handles', Handle\Http\Controllers\ApiController::class . '@store');
+        Route::get('handles/{id}', Handle\Http\Controllers\Api\HandlesController::class . '@show');
+        Route::put('handles/{id}', Handle\Http\Controllers\Api\HandlesController::class . '@update');
+        Route::delete('handles/{id}', Handle\Http\Controllers\Api\HandlesController::class . '@destroy');
+        Route::get('handles', Handle\Http\Controllers\Api\HandlesController::class . '@index');
+        Route::post('handles', Handle\Http\Controllers\Api\HandlesController::class . '@store');
     }
 );

@@ -7,7 +7,7 @@ use Ohio\Content\Page\Page;
 use Ohio\Content\Page\Http\Requests\CreateRequest;
 use Ohio\Content\Page\Http\Requests\PaginateRequest;
 use Ohio\Content\Page\Http\Requests\UpdateRequest;
-use Ohio\Content\Page\Http\Controllers\ApiController;
+use Ohio\Content\Page\Http\Controllers\Api\HandlesController;
 use Ohio\Core\Base\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 class ApiControllerTest extends Testing\OhioTestCase
 {
 
-    use Testing\TestPaginateTrait;
+    use Testing\CommonMocks;
 
     public function tearDown()
     {
@@ -46,7 +46,7 @@ class ApiControllerTest extends Testing\OhioTestCase
         $pageRepository->shouldReceive('query')->andReturn($qbMock);
 
         # construct
-        $controller = new ApiController($pageRepository);
+        $controller = new HandlesController($pageRepository);
         $this->assertEquals($pageRepository, $controller->page);
 
         # get existing page

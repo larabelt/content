@@ -1,8 +1,6 @@
 import headingTemplate from 'ohio/core/js/templates/base/heading';
 import blockService from './service';
 import blockFormTemplate from './templates/form';
-import handleService from '../handle/service';
-import handleIndexTemplate from '../handle/templates/owned-index';
 
 export default {
     components: {
@@ -24,21 +22,6 @@ export default {
             mounted() {
                 this.id = this.$route.params.id;
                 this.get();
-            },
-        },
-        'handle-index': {
-            mixins: [handleService],
-            template: handleIndexTemplate,
-            mounted() {
-                this.index();
-            },
-            methods: {
-                getParams() {
-                    let params = this.getUrlParams();
-                    params.handleable_id = this.$route.params.id;
-                    params.handleable_type = 'content/block';
-                    return params;
-                },
             },
         },
     },

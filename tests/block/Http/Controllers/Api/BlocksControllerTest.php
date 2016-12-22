@@ -7,16 +7,16 @@ use Ohio\Content\Block\Block;
 use Ohio\Content\Block\Http\Requests\CreateRequest;
 use Ohio\Content\Block\Http\Requests\PaginateRequest;
 use Ohio\Content\Block\Http\Requests\UpdateRequest;
-use Ohio\Content\Block\Http\Controllers\ApiController;
+use Ohio\Content\Block\Http\Controllers\Api\BlocksController;
 use Ohio\Core\Base\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ApiControllerTest extends Testing\OhioTestCase
+class BlocksControllerTest extends Testing\OhioTestCase
 {
 
-    use Testing\TestPaginateTrait;
+    use Testing\CommonMocks;
 
     public function tearDown()
     {
@@ -24,13 +24,13 @@ class ApiControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Block\Http\Controllers\ApiController::__construct
-     * @covers \Ohio\Content\Block\Http\Controllers\ApiController::get
-     * @covers \Ohio\Content\Block\Http\Controllers\ApiController::show
-     * @covers \Ohio\Content\Block\Http\Controllers\ApiController::destroy
-     * @covers \Ohio\Content\Block\Http\Controllers\ApiController::update
-     * @covers \Ohio\Content\Block\Http\Controllers\ApiController::store
-     * @covers \Ohio\Content\Block\Http\Controllers\ApiController::index
+     * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::__construct
+     * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::get
+     * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::show
+     * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::destroy
+     * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::update
+     * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::store
+     * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::index
      */
     public function test()
     {
@@ -46,7 +46,7 @@ class ApiControllerTest extends Testing\OhioTestCase
         $blockRepository->shouldReceive('query')->andReturn($qbMock);
 
         # construct
-        $controller = new ApiController($blockRepository);
+        $controller = new BlocksController($blockRepository);
         $this->assertEquals($blockRepository, $controller->block);
 
         # get existing block

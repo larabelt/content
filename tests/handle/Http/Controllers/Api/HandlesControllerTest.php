@@ -7,16 +7,16 @@ use Ohio\Content\Handle\Handle;
 use Ohio\Content\Handle\Http\Requests\CreateRequest;
 use Ohio\Content\Handle\Http\Requests\PaginateRequest;
 use Ohio\Content\Handle\Http\Requests\UpdateRequest;
-use Ohio\Content\Handle\Http\Controllers\ApiController;
+use Ohio\Content\Handle\Http\Controllers\Api\HandlesController;
 use Ohio\Core\Base\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ApiControllerTest extends Testing\OhioTestCase
+class HandlesControllerTest extends Testing\OhioTestCase
 {
 
-    use Testing\TestPaginateTrait;
+    use Testing\CommonMocks;
 
     public function tearDown()
     {
@@ -24,13 +24,13 @@ class ApiControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Handle\Http\Controllers\ApiController::__construct
-     * @covers \Ohio\Content\Handle\Http\Controllers\ApiController::get
-     * @covers \Ohio\Content\Handle\Http\Controllers\ApiController::show
-     * @covers \Ohio\Content\Handle\Http\Controllers\ApiController::destroy
-     * @covers \Ohio\Content\Handle\Http\Controllers\ApiController::update
-     * @covers \Ohio\Content\Handle\Http\Controllers\ApiController::store
-     * @covers \Ohio\Content\Handle\Http\Controllers\ApiController::index
+     * @covers \Ohio\Content\Handle\Http\Controllers\Api\HandlesController::__construct
+     * @covers \Ohio\Content\Handle\Http\Controllers\Api\HandlesController::get
+     * @covers \Ohio\Content\Handle\Http\Controllers\Api\HandlesController::show
+     * @covers \Ohio\Content\Handle\Http\Controllers\Api\HandlesController::destroy
+     * @covers \Ohio\Content\Handle\Http\Controllers\Api\HandlesController::update
+     * @covers \Ohio\Content\Handle\Http\Controllers\Api\HandlesController::store
+     * @covers \Ohio\Content\Handle\Http\Controllers\Api\HandlesController::index
      */
     public function test()
     {
@@ -46,7 +46,7 @@ class ApiControllerTest extends Testing\OhioTestCase
         $handleRepository->shouldReceive('query')->andReturn($qbMock);
 
         # construct
-        $controller = new ApiController($handleRepository);
+        $controller = new HandlesController($handleRepository);
         $this->assertEquals($handleRepository, $controller->handle);
 
         # get existing handle

@@ -30,5 +30,5 @@ Route::group([
  * Front
  */
 Route::group(['middleware' => ['web']], function () {
-    Route::get('page/{slug}', Page\Http\Controllers\FrontController::class . '@show');
+    Route::get('page/{slug}', Page\Http\Controllers\Front\PagesController::class . '@show');
 });

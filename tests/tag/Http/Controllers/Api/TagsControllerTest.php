@@ -13,10 +13,10 @@ use Ohio\Core\Base\Http\Exceptions\ApiNotFoundHttpException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ApiControllerTest extends Testing\OhioTestCase
+class TagsControllerTest extends Testing\OhioTestCase
 {
 
-    use Testing\TestPaginateTrait;
+    use Testing\CommonMocks;
 
     public function tearDown()
     {

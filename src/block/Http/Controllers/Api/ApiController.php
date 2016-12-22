@@ -1,6 +1,6 @@
 <?php
 
-namespace Ohio\Content\Block\Http\Controllers;
+namespace Ohio\Content\Block\Http\Controllers\Api;
 
 use Ohio\Core\Base\Http\Controllers\BaseApiController;
 
@@ -9,7 +9,7 @@ use Ohio\Content\Block\Http\Requests;
 
 use Illuminate\Http\Request;
 
-class ApiController extends BaseApiController
+class BlocksController extends BaseApiController
 {
 
     /**
@@ -37,11 +37,12 @@ class ApiController extends BaseApiController
      * @param $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Requests\PaginateRequest $request)
     {
-        $request = $this->getPaginateRequest(Requests\PaginateRequest::class, $request->query());
 
-        $paginator = $this->getPaginator($this->block->query(), $request);
+        $request->reCapture();
+
+        $paginator = $this->paginator($this->block->query(), $request);
 
         return response()->json($paginator->toArray());
     }

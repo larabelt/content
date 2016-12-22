@@ -36,8 +36,8 @@ class Tag extends Model
     {
         $query->select(['tags.*']);
         $query->join('taggables', 'taggables.tag_id', '=', 'tags.id');
-        $query->where('taggables.taggable_id', $taggable_id);
         $query->where('taggables.taggable_type', $taggable_type);
+        $query->where('taggables.taggable_id', $taggable_id);
 
         return $query;
     }

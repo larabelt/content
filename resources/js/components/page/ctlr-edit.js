@@ -3,7 +3,7 @@ import pageService from './service';
 import pageFormTemplate from './templates/form';
 import handleService from '../handle/service';
 import handleIndexTemplate from '../handle/templates/owned-index';
-import tagService from '../tag/service';
+import tagService from './tag/service';
 import tagIndexTemplate from '../tag/templates/owned-index';
 
 export default {
@@ -46,16 +46,13 @@ export default {
         'tag-index': {
             mixins: [tagService],
             template: tagIndexTemplate,
-            mounted() {
-                this.index();
+            data() {
+                return {
+                    url: '/api/v1/pages/' + this.$route.params.id + '/tags/',
+                }
             },
-            methods: {
-                getParams() {
-                    let params = this.getUrlParams();
-                    params.tagable_id = this.$route.params.id;
-                    params.tagable_type = 'content/page';
-                    return params;
-                },
+            mounted() {
+                this.listAttachedPageTags();
             },
         },
     },

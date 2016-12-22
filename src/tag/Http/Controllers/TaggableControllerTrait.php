@@ -58,8 +58,9 @@ trait TaggableControllerTrait
      * @param $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $taggable_id)
+    public function index(Requests\PaginateRequest $request, $taggable_id)
     {
+        $request->reCapture();
 
         $taggable = $this->getTaggable($taggable_id);
 
@@ -68,9 +69,7 @@ trait TaggableControllerTrait
             'taggable_type' => $taggable->getMorphClass()
         ]);
 
-        $request = $this->getPaginateRequest(Requests\TaggablePaginateRequest::class, $request->query());
-
-        $paginator = $this->getPaginator($this->tagRepo()->query(), $request);
+        $paginator = $this->paginator($this->tagRepo()->query(), $request);
 
         return response()->json($paginator->toArray());
     }

@@ -37,11 +37,11 @@ class ApiController extends BaseApiController
      * @param $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Requests\PaginateRequest $request)
     {
-        $request = $this->getPaginateRequest(Requests\PaginateRequest::class, $request->query());
+        $request->reCapture();
 
-        $paginator = $this->getPaginator($this->tag->query(), $request);
+        $paginator = $this->paginator($this->tag->query(), $request);
 
         return response()->json($paginator->toArray());
     }
