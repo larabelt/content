@@ -76,7 +76,7 @@ class BlocksControllerTest extends Testing\OhioTestCase
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # create block
-        $response = $controller->store(new StoreBlock(['name' => 'test']));
+        $response = $controller->store(new StoreBlock(['name' => 'test', 'body' => 'test']));
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # index

@@ -47,7 +47,7 @@ class TagsControllerTest extends Testing\OhioTestCase
 
         # construct
         $controller = new TagsController($tagRepository);
-        $this->assertEquals($tagRepository, $controller->tag);
+        $this->assertEquals($tagRepository, $controller->tags);
 
         # get existing tag
         $tag = $controller->get(1);
@@ -76,7 +76,7 @@ class TagsControllerTest extends Testing\OhioTestCase
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # create tag
-        $response = $controller->store(new StoreTag());
+        $response = $controller->store(new StoreTag(['name' => 'test']));
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # index

@@ -9,11 +9,11 @@ export default `
                     <tr>
                         <th>
                             ID
-                            <column-sorter :routename="'tagIndex'" :order-by="'tags.id'"></column-sorter>
+                            <column-sorter :route="'tagIndex'" :paginator="tags.paginator" :order-by="'tags.id'"></column-sorter>
                         </th>
                         <th>
                             Name
-                            <column-sorter :routename="'tagIndex'" :order-by="'tags.name'"></column-sorter>
+                            <column-sorter :route="'tagIndex'" :paginator="tags.paginator" :order-by="'tags.name'"></column-sorter>
                         </th>
                         <th class="text-right">Actions</th>
                     </tr>
@@ -38,7 +38,7 @@ export default `
                     </tr>
                 </tfoot>
             </table>
-            <pagination :routename="'tagIndex'"></pagination>
+            <pagination :route="'tagIndex'" :paginator="tags.paginator"></pagination>
         </div>
     </div>
 `;

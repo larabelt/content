@@ -9,13 +9,14 @@ export default {
     data() {
         return {
             tags: {
-                url: '/api/v1/tags/',
-                saving: false,
-                saved: false,
-                errors: {},
-                params: {},
                 tag: {},
                 tags: [],
+                url: '/api/v1/tags/',
+                errors: {},
+                paginator: {},
+                params: {},
+                saved: false,
+                saving: false,
             }
         }
     },
@@ -34,6 +35,7 @@ export default {
             let url = this.tags.url + '?' + $.param(this.getUrlParams());
             this.$http.get(url).then(function (response) {
                 this.tags.tags = response.data.data;
+                this.tags.paginator = this.getPaginatorData(response);
             }, function (response) {
                 console.log('error');
             });

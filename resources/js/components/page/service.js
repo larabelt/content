@@ -9,13 +9,14 @@ export default {
     data() {
         return {
             pages: {
-                url: '/api/v1/pages/',
-                saving: false,
-                saved: false,
-                errors: {},
-                params: {},
                 page: {},
                 pages: [],
+                url: '/api/v1/pages/',
+                errors: {},
+                paginator: {},
+                params: {},
+                saved: false,
+                saving: false,
             }
         }
     },
@@ -34,6 +35,7 @@ export default {
             let url = this.pages.url + '?' + $.param(this.getUrlParams());
             this.$http.get(url).then(function (response) {
                 this.pages.pages = response.data.data;
+                this.pages.paginator = this.getPaginatorData(response);
             }, function (response) {
                 console.log('error');
             });

@@ -9,13 +9,14 @@ export default {
     data() {
         return {
             blocks: {
-                url: '/api/v1/blocks/',
-                saving: false,
-                saved: false,
-                errors: {},
-                params: {},
                 block: {},
                 blocks: [],
+                url: '/api/v1/blocks/',
+                errors: {},
+                paginator: {},
+                params: {},
+                saved: false,
+                saving: false,
             }
         }
     },
@@ -34,6 +35,7 @@ export default {
             let url = this.blocks.url + '?' + $.param(this.getUrlParams());
             this.$http.get(url).then(function (response) {
                 this.blocks.blocks = response.data.data;
+                this.blocks.paginator = this.getPaginatorData(response);
             }, function (response) {
                 console.log('error');
             });

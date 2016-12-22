@@ -1,35 +1,40 @@
 <?php
 
-namespace Ohio\Content\Tag\Http\Controllers;
+namespace Ohio\Content\Tag\Http\Controllers\Api;
 
-use Illuminate\Database\Eloquent\Model;
-use Validator;
+use Ohio\Core\Base\Http\Controllers\ApiController;
 use Ohio\Content\Tag\Tag;
 use Ohio\Content\Tag\Http\Requests;
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Relations\Relation;
+use Ohio\Core\Base\Helper\MorphHelper;
+use Illuminate\Database\Eloquent\Model;
 
-trait TaggableControllerTrait
+class TaggablesController extends ApiController
 {
 
     /**
      * @var Tag
      */
-    public $tagRepo;
+    public $tags;
 
     /**
      * @var Model
      */
     public $taggable;
 
-    public function tagRepo()
+    /**
+     * @var MorphHelper
+     */
+    public $morphHelper;
+
+    public function __construct(Tag $tag, MorphHelper $morphHelper)
     {
-        return $this->tagRepo ?: $this->tagRepo = new Tag();
+        $this->tags = $tag;
+        $this->morphHelper = $morphHelper;
     }
 
-    public function getTag($id, $taggable = null)
+    public function tag($id, $taggable = null)
     {
-        $qb = $this->tagRepo()->query();
+        $qb = $this->tags->query();
 
         if ($taggable) {
             $qb->tagged($taggable->getMorphClass(), $taggable->id);
@@ -40,16 +45,11 @@ trait TaggableControllerTrait
         return $tag ?: $this->abort(404);
     }
 
-    public function getTaggable($taggable_id)
+    public function taggable($taggable_type, $taggable_id)
     {
+        $taggable = $this->morphHelper->morph($taggable_type, $taggable_id);
 
-        if ($this->taggable) {
-            return $this->taggable;
-        }
-
-        $taggable = (new $this->taggable_class)->find($taggable_id);
-
-        return $taggable ? $this->taggable = $taggable : $this->abort(404);
+        return $taggable ?: $this->abort(404);
     }
 
     /**
@@ -58,18 +58,19 @@ trait TaggableControllerTrait
      * @param $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateTags $request, $taggable_id)
+    public function index(Requests\PaginateTaggables $request, $taggable_type, $taggable_id)
     {
+
         $request->reCapture();
 
-        $taggable = $this->getTaggable($taggable_id);
+        $taggable = $this->taggable($taggable_type, $taggable_id);
 
         $request->merge([
             'taggable_id' => $taggable->id,
             'taggable_type' => $taggable->getMorphClass()
         ]);
 
-        $paginator = $this->paginator($this->tagRepo()->query(), $request);
+        $paginator = $this->paginator($this->tags->query(), $request);
 
         return response()->json($paginator->toArray());
     }
@@ -81,9 +82,9 @@ trait TaggableControllerTrait
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\AttachTag $request, $taggable_id)
+    public function store(Requests\AttachTag $request, $taggable_type, $taggable_id)
     {
-        $taggable = $this->getTaggable($taggable_id);
+        $taggable = $this->taggable($taggable_type, $taggable_id);
 
         $id = $request->get('id');
 
@@ -93,7 +94,7 @@ trait TaggableControllerTrait
 
         $taggable->tags()->attach($id);
 
-        return response()->json($this->getTag($id), 201);
+        return response()->json($this->tag($id), 201);
     }
 
     /**
@@ -103,11 +104,11 @@ trait TaggableControllerTrait
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($taggable_id, $id)
+    public function show($taggable_type, $taggable_id, $id)
     {
-        $taggable = $this->getTaggable($taggable_id);
+        $taggable = $this->taggable($taggable_type, $taggable_id);
 
-        $tag = $this->getTag($id, $taggable);
+        $tag = $this->tag($id, $taggable);
 
         return response()->json($tag);
     }
@@ -119,9 +120,9 @@ trait TaggableControllerTrait
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($taggable_id, $id)
+    public function destroy($taggable_type, $taggable_id, $id)
     {
-        $taggable = $this->getTaggable($taggable_id);
+        $taggable = $this->taggable($taggable_type, $taggable_id);
 
         if (!$taggable->tags->contains($id)) {
             $this->abort(422, ['id' => ['tag not attached']]);

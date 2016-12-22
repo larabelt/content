@@ -9,11 +9,11 @@ export default `
                     <tr>
                         <th>
                             ID
-                            <column-sorter :routename="'pageIndex'" :order-by="'pages.id'"></column-sorter>
+                            <column-sorter :route="'pageIndex'" :order-by="'pages.id'"></column-sorter>
                         </th>
                         <th>
                             Name
-                            <column-sorter :routename="'pageIndex'" :order-by="'pages.name'"></column-sorter>
+                            <column-sorter :route="'pageIndex'" :order-by="'pages.name'"></column-sorter>
                         </th>
                         <th class="text-right">Actions</th>
                     </tr>

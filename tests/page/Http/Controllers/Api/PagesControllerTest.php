@@ -13,7 +13,7 @@ use Ohio\Core\Base\Http\Exceptions\ApiNotFoundHttpException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ApiControllerTest extends Testing\OhioTestCase
+class PagesControllerTest extends Testing\OhioTestCase
 {
 
     use Testing\CommonMocks;
@@ -47,7 +47,7 @@ class ApiControllerTest extends Testing\OhioTestCase
 
         # construct
         $controller = new PagesController($pageRepository);
-        $this->assertEquals($pageRepository, $controller->page);
+        $this->assertEquals($pageRepository, $controller->pages);
 
         # get existing page
         $page = $controller->get(1);
@@ -76,7 +76,7 @@ class ApiControllerTest extends Testing\OhioTestCase
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # create page
-        $response = $controller->store(new StorePage());
+        $response = $controller->store(new StorePage(['name' => 'test', 'body' => 'test']));
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # index

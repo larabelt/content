@@ -9,11 +9,11 @@ export default `
                     <tr>
                         <th>
                             ID
-                            <column-sorter :routename="'pageIndex'" :order-by="'pages.id'"></column-sorter>
+                            <column-sorter :route="'pageIndex'" :paginator="pages.paginator" :order-by="'pages.id'"></column-sorter>
                         </th>
                         <th>
                             Name
-                            <column-sorter :routename="'pageIndex'" :order-by="'pages.name'"></column-sorter>
+                            <column-sorter :route="'pageIndex'" :paginator="pages.paginator" :order-by="'pages.name'"></column-sorter>
                         </th>
                         <th class="text-right">Actions</th>
                     </tr>
@@ -38,7 +38,7 @@ export default `
                     </tr>
                 </tfoot>
             </table>
-            <pagination :routename="'pageIndex'"></pagination>
+            <pagination :route="'pageIndex'" :paginator="pages.paginator"></pagination>
         </div>
     </div>
 `;
