@@ -4,7 +4,7 @@ namespace Ohio\Content\Tag\Http\Requests;
 use Ohio\Content\Tag\Tag;
 use Illuminate\Database\Eloquent\Builder;
 
-class TaggablePaginateRequest extends PaginateRequest
+class PaginateTaggables extends PaginateTags
 {
     /**
      * @var Tag

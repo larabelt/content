@@ -4,7 +4,7 @@ use Mockery as m;
 use Ohio\Core\Base\Testing;
 
 use Ohio\Content\Page\Page;
-use Ohio\Content\Page\Http\Controllers\FrontController;
+use Ohio\Content\Page\Http\Controllers\Front\PagesController;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -21,9 +21,9 @@ class FrontControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Page\Http\Controllers\FrontController::__construct
-     * @covers \Ohio\Content\Page\Http\Controllers\FrontController::get
-     * @covers \Ohio\Content\Page\Http\Controllers\FrontController::show
+     * @covers \Ohio\Content\Page\Http\Controllers\Front\PagesController::__construct
+     * @covers \Ohio\Content\Page\Http\Controllers\Front\PagesController::get
+     * @covers \Ohio\Content\Page\Http\Controllers\Front\PagesController::show
      */
     public function test()
     {
@@ -44,7 +44,7 @@ class FrontControllerTest extends Testing\OhioTestCase
         $pageRepository->shouldReceive('where')->with('id', 999)->andReturn($pageNullQBMock);
 
         # construct
-        $controller = new FrontController($pageRepository);
+        $controller = new PagesController($pageRepository);
         $this->assertEquals($pageRepository, $controller->page);
 
         # get existing page

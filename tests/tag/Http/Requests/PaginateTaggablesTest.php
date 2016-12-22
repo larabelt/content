@@ -4,11 +4,11 @@ use Ohio\Core\Base\Testing;
 
 use Ohio\Content\Page\Page;
 use Ohio\Content\Tag\Tag;
-use Ohio\Content\Tag\Http\Requests\TaggablePaginateRequest;
+use Ohio\Content\Tag\Http\Requests\PaginateTaggables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
-class TaggablePaginateRequestTest extends Testing\OhioTestCase
+class PaginateTaggablesTest extends Testing\OhioTestCase
 {
 
     use Testing\CommonMocks;
@@ -19,9 +19,9 @@ class TaggablePaginateRequestTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Tag\Http\Requests\TaggablePaginateRequest::modifyQuery
-     * @covers \Ohio\Content\Tag\Http\Requests\TaggablePaginateRequest::tags
-     * @covers \Ohio\Content\Tag\Http\Requests\TaggablePaginateRequest::items
+     * @covers \Ohio\Content\Tag\Http\Requests\PaginateTaggables::modifyQuery
+     * @covers \Ohio\Content\Tag\Http\Requests\PaginateTaggables::tags
+     * @covers \Ohio\Content\Tag\Http\Requests\PaginateTaggables::items
      */
     public function test()
     {
@@ -39,7 +39,7 @@ class TaggablePaginateRequestTest extends Testing\OhioTestCase
         $qbMock->shouldReceive('get')->once()->andReturn(new Collection([$tag1]));
 
         # modifyQuery
-        $paginateRequest = new TaggablePaginateRequest(['taggable_id' => 1, 'taggable_type' => 'pages']);
+        $paginateRequest = new PaginateTaggables(['taggable_id' => 1, 'taggable_type' => 'pages']);
         $paginateRequest->modifyQuery($qbMock);
         $paginateRequest->merge(['not' => true]);
         $paginateRequest->modifyQuery($qbMock);

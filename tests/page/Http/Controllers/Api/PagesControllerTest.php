@@ -4,10 +4,10 @@ use Mockery as m;
 use Ohio\Core\Base\Testing;
 
 use Ohio\Content\Page\Page;
-use Ohio\Content\Page\Http\Requests\CreateRequest;
-use Ohio\Content\Page\Http\Requests\PaginateRequest;
-use Ohio\Content\Page\Http\Requests\UpdateRequest;
-use Ohio\Content\Page\Http\Controllers\Api\HandlesController;
+use Ohio\Content\Page\Http\Requests\StorePage;
+use Ohio\Content\Page\Http\Requests\PaginatePages;
+use Ohio\Content\Page\Http\Requests\UpdatePage;
+use Ohio\Content\Page\Http\Controllers\Api\PagesController;
 use Ohio\Core\Base\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
@@ -24,20 +24,20 @@ class ApiControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Page\Http\Controllers\ApiController::__construct
-     * @covers \Ohio\Content\Page\Http\Controllers\ApiController::get
-     * @covers \Ohio\Content\Page\Http\Controllers\ApiController::show
-     * @covers \Ohio\Content\Page\Http\Controllers\ApiController::destroy
-     * @covers \Ohio\Content\Page\Http\Controllers\ApiController::update
-     * @covers \Ohio\Content\Page\Http\Controllers\ApiController::store
-     * @covers \Ohio\Content\Page\Http\Controllers\ApiController::index
+     * @covers \Ohio\Content\Page\Http\Controllers\Api\PagesController::__construct
+     * @covers \Ohio\Content\Page\Http\Controllers\Api\PagesController::get
+     * @covers \Ohio\Content\Page\Http\Controllers\Api\PagesController::show
+     * @covers \Ohio\Content\Page\Http\Controllers\Api\PagesController::destroy
+     * @covers \Ohio\Content\Page\Http\Controllers\Api\PagesController::update
+     * @covers \Ohio\Content\Page\Http\Controllers\Api\PagesController::store
+     * @covers \Ohio\Content\Page\Http\Controllers\Api\PagesController::index
      */
     public function test()
     {
 
         $page1 = factory(Page::class)->make();
 
-        $qbMock = $this->getPaginateQBMock(new PaginateRequest(), [$page1]);
+        $qbMock = $this->getPaginateQBMock(new PaginatePages(), [$page1]);
 
         $pageRepository = m::mock(Page::class);
         $pageRepository->shouldReceive('find')->with(1)->andReturn($page1);
@@ -46,7 +46,7 @@ class ApiControllerTest extends Testing\OhioTestCase
         $pageRepository->shouldReceive('query')->andReturn($qbMock);
 
         # construct
-        $controller = new HandlesController($pageRepository);
+        $controller = new PagesController($pageRepository);
         $this->assertEquals($pageRepository, $controller->page);
 
         # get existing page
@@ -72,15 +72,15 @@ class ApiControllerTest extends Testing\OhioTestCase
         $this->assertEquals(204, $response->getStatusCode());
 
         # update page
-        $response = $controller->update(new UpdateRequest(), 1);
+        $response = $controller->update(new UpdatePage(), 1);
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # create page
-        $response = $controller->store(new CreateRequest());
+        $response = $controller->store(new StorePage());
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # index
-        $response = $controller->index(new Request());
+        $response = $controller->index(new PaginatePages());
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals($page1->name, $response->getData()->data[0]->name);
 

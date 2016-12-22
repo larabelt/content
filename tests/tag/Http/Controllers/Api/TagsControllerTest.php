@@ -4,10 +4,10 @@ use Mockery as m;
 use Ohio\Core\Base\Testing;
 
 use Ohio\Content\Tag\Tag;
-use Ohio\Content\Tag\Http\Requests\CreateRequest;
-use Ohio\Content\Tag\Http\Requests\PaginateRequest;
-use Ohio\Content\Tag\Http\Requests\UpdateRequest;
-use Ohio\Content\Tag\Http\Controllers\ApiController;
+use Ohio\Content\Tag\Http\Requests\StoreTag;
+use Ohio\Content\Tag\Http\Requests\PaginateTags;
+use Ohio\Content\Tag\Http\Requests\UpdateTag;
+use Ohio\Content\Tag\Http\Controllers\Api\TagsController;
 use Ohio\Core\Base\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
@@ -24,20 +24,20 @@ class TagsControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Tag\Http\Controllers\ApiController::__construct
-     * @covers \Ohio\Content\Tag\Http\Controllers\ApiController::get
-     * @covers \Ohio\Content\Tag\Http\Controllers\ApiController::show
-     * @covers \Ohio\Content\Tag\Http\Controllers\ApiController::destroy
-     * @covers \Ohio\Content\Tag\Http\Controllers\ApiController::update
-     * @covers \Ohio\Content\Tag\Http\Controllers\ApiController::store
-     * @covers \Ohio\Content\Tag\Http\Controllers\ApiController::index
+     * @covers \Ohio\Content\Tag\Http\Controllers\Api\TagsController::__construct
+     * @covers \Ohio\Content\Tag\Http\Controllers\Api\TagsController::get
+     * @covers \Ohio\Content\Tag\Http\Controllers\Api\TagsController::show
+     * @covers \Ohio\Content\Tag\Http\Controllers\Api\TagsController::destroy
+     * @covers \Ohio\Content\Tag\Http\Controllers\Api\TagsController::update
+     * @covers \Ohio\Content\Tag\Http\Controllers\Api\TagsController::store
+     * @covers \Ohio\Content\Tag\Http\Controllers\Api\TagsController::index
      */
     public function test()
     {
 
         $tag1 = factory(Tag::class)->make();
 
-        $qbMock = $this->getPaginateQBMock(new PaginateRequest(), [$tag1]);
+        $qbMock = $this->getPaginateQBMock(new PaginateTags(), [$tag1]);
 
         $tagRepository = m::mock(Tag::class);
         $tagRepository->shouldReceive('find')->with(1)->andReturn($tag1);
@@ -46,7 +46,7 @@ class TagsControllerTest extends Testing\OhioTestCase
         $tagRepository->shouldReceive('query')->andReturn($qbMock);
 
         # construct
-        $controller = new ApiController($tagRepository);
+        $controller = new TagsController($tagRepository);
         $this->assertEquals($tagRepository, $controller->tag);
 
         # get existing tag
@@ -72,15 +72,15 @@ class TagsControllerTest extends Testing\OhioTestCase
         $this->assertEquals(204, $response->getStatusCode());
 
         # update tag
-        $response = $controller->update(new UpdateRequest(), 1);
+        $response = $controller->update(new UpdateTag(), 1);
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # create tag
-        $response = $controller->store(new CreateRequest());
+        $response = $controller->store(new StoreTag());
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # index
-        $response = $controller->index(new Request());
+        $response = $controller->index(new PaginateTags());
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals($tag1->name, $response->getData()->data[0]->name);
 

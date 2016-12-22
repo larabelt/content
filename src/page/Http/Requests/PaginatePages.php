@@ -1,9 +1,9 @@
 <?php
 namespace Ohio\Content\Page\Http\Requests;
 
-use Ohio\Core\Base\Http\Requests\BasePaginateRequest;
+use Ohio\Core\Base\Http\Requests\PaginateRequest;
 
-class PaginateRequest extends BasePaginateRequest
+class PaginatePages extends PaginateRequest
 {
     public $perPage = 10;
 

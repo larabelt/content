@@ -3,14 +3,14 @@
 namespace Ohio\Content\Handle\Http\Controllers\Api;
 
 use Route;
-use Ohio\Core\Base\Http\Controllers\BaseApiController;
+use Ohio\Core\Base\Http\Controllers\ApiController;
 
 use Ohio\Content\Handle;
 use Ohio\Content\Handle\Http\Requests;
 
 use Illuminate\Http\Request;
 
-class HandlesController extends BaseApiController
+class HandlesController extends ApiController
 {
 
     /**
@@ -38,7 +38,7 @@ class HandlesController extends BaseApiController
      * @param $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateRequest $request)
+    public function index(Requests\PaginateHandles $request)
     {
         $request->reCapture();
 
@@ -50,11 +50,11 @@ class HandlesController extends BaseApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Requests\CreateRequest $request
+     * @param  Requests\StoreHandle $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\CreateRequest $request)
+    public function store(Requests\StoreHandle $request)
     {
 
         $handle = $this->handle->create($request->only([
@@ -81,12 +81,12 @@ class HandlesController extends BaseApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  Requests\UpdateRequest $request
+     * @param  Requests\UpdateHandle $request
      * @param  string $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\UpdateRequest $request, $id)
+    public function update(Requests\UpdateHandle $request, $id)
     {
         $handle = $this->get($id);
 

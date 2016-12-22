@@ -4,9 +4,9 @@ use Mockery as m;
 use Ohio\Core\Base\Testing;
 
 use Ohio\Content\Block\Block;
-use Ohio\Content\Block\Http\Requests\CreateRequest;
-use Ohio\Content\Block\Http\Requests\PaginateRequest;
-use Ohio\Content\Block\Http\Requests\UpdateRequest;
+use Ohio\Content\Block\Http\Requests\StoreBlock;
+use Ohio\Content\Block\Http\Requests\PaginateBlocks;
+use Ohio\Content\Block\Http\Requests\UpdateBlock;
 use Ohio\Content\Block\Http\Controllers\Api\BlocksController;
 use Ohio\Core\Base\Http\Exceptions\ApiNotFoundHttpException;
 
@@ -24,7 +24,6 @@ class BlocksControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::__construct
      * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::get
      * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::show
      * @covers \Ohio\Content\Block\Http\Controllers\Api\BlocksController::destroy
@@ -37,7 +36,7 @@ class BlocksControllerTest extends Testing\OhioTestCase
 
         $block1 = factory(Block::class)->make();
 
-        $qbMock = $this->getPaginateQBMock(new PaginateRequest(), [$block1]);
+        $qbMock = $this->getPaginateQBMock(new PaginateBlocks(), [$block1]);
 
         $blockRepository = m::mock(Block::class);
         $blockRepository->shouldReceive('find')->with(1)->andReturn($block1);
@@ -72,15 +71,15 @@ class BlocksControllerTest extends Testing\OhioTestCase
         $this->assertEquals(204, $response->getStatusCode());
 
         # update block
-        $response = $controller->update(new UpdateRequest(), 1);
+        $response = $controller->update(new UpdateBlock(), 1);
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # create block
-        $response = $controller->store(new CreateRequest());
+        $response = $controller->store(new StoreBlock());
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # index
-        $response = $controller->index(new Request());
+        $response = $controller->index(new PaginateBlocks());
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals($block1->name, $response->getData()->data[0]->name);
 

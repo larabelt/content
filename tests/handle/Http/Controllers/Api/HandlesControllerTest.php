@@ -4,9 +4,9 @@ use Mockery as m;
 use Ohio\Core\Base\Testing;
 
 use Ohio\Content\Handle\Handle;
-use Ohio\Content\Handle\Http\Requests\CreateRequest;
-use Ohio\Content\Handle\Http\Requests\PaginateRequest;
-use Ohio\Content\Handle\Http\Requests\UpdateRequest;
+use Ohio\Content\Handle\Http\Requests\StoreHandle;
+use Ohio\Content\Handle\Http\Requests\PaginateHandles;
+use Ohio\Content\Handle\Http\Requests\UpdateHandle;
 use Ohio\Content\Handle\Http\Controllers\Api\HandlesController;
 use Ohio\Core\Base\Http\Exceptions\ApiNotFoundHttpException;
 
@@ -37,7 +37,7 @@ class HandlesControllerTest extends Testing\OhioTestCase
 
         $handle1 = factory(Handle::class)->make();
 
-        $qbMock = $this->getPaginateQBMock(new PaginateRequest(), [$handle1]);
+        $qbMock = $this->getPaginateQBMock(new PaginateHandles(), [$handle1]);
 
         $handleRepository = m::mock(Handle::class);
         $handleRepository->shouldReceive('find')->with(1)->andReturn($handle1);
@@ -72,15 +72,15 @@ class HandlesControllerTest extends Testing\OhioTestCase
         $this->assertEquals(204, $response->getStatusCode());
 
         # update handle
-        $response = $controller->update(new UpdateRequest(), 1);
+        $response = $controller->update(new UpdateHandle(), 1);
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # create handle
-        $response = $controller->store(new CreateRequest());
+        $response = $controller->store(new StoreHandle());
         $this->assertInstanceOf(JsonResponse::class, $response);
 
         # index
-        $response = $controller->index(new Request());
+        $response = $controller->index(new PaginateHandles());
         $this->assertInstanceOf(JsonResponse::class, $response);
         $this->assertEquals($handle1->url, $response->getData()->data[0]->url);
 

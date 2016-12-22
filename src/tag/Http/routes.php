@@ -10,10 +10,10 @@ Route::group([
     'middleware' => ['api']
 ],
     function () {
-        Route::get('tags/{id}', Tag\Http\Controllers\ApiController::class . '@show');
-        Route::put('tags/{id}', Tag\Http\Controllers\ApiController::class . '@update');
-        Route::delete('tags/{id}', Tag\Http\Controllers\ApiController::class . '@destroy');
-        Route::get('tags', Tag\Http\Controllers\ApiController::class . '@index');
-        Route::post('tags', Tag\Http\Controllers\ApiController::class . '@store');
+        Route::get('tags/{id}', Tag\Http\Controllers\Api\TagsController::class . '@show');
+        Route::put('tags/{id}', Tag\Http\Controllers\Api\TagsController::class . '@update');
+        Route::delete('tags/{id}', Tag\Http\Controllers\Api\TagsController::class . '@destroy');
+        Route::get('tags', Tag\Http\Controllers\Api\TagsController::class . '@index');
+        Route::post('tags', Tag\Http\Controllers\Api\TagsController::class . '@store');
     }
 );

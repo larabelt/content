@@ -2,14 +2,14 @@
 
 namespace Ohio\Content\Page\Http\Controllers\Api;
 
-use Ohio\Core\Base\Http\Controllers\BaseApiController;
+use Ohio\Core\Base\Http\Controllers\ApiController;
 
 use Ohio\Content\Page;
 use Ohio\Content\Page\Http\Requests;
 
 use Illuminate\Http\Request;
 
-class PagesController extends BaseApiController
+class PagesController extends ApiController
 {
 
     /**
@@ -37,7 +37,7 @@ class PagesController extends BaseApiController
      * @param $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateRequest $request)
+    public function index(Requests\PaginatePages $request)
     {
         $request->reCapture();
 
@@ -49,11 +49,11 @@ class PagesController extends BaseApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Requests\CreateRequest $request
+     * @param  Requests\StorePage $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\CreateRequest $request)
+    public function store(Requests\StorePage $request)
     {
 
         $page = $this->page->create($request->all());
@@ -78,12 +78,12 @@ class PagesController extends BaseApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  Requests\UpdateRequest $request
+     * @param  Requests\UpdatePage $request
      * @param  string $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\UpdateRequest $request, $id)
+    public function update(Requests\UpdatePage $request, $id)
     {
         $page = $this->get($id);
 

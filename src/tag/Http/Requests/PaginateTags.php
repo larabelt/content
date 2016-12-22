@@ -1,9 +1,9 @@
 <?php
 namespace Ohio\Content\Tag\Http\Requests;
 
-use Ohio\Core\Base\Http\Requests\BasePaginateRequest;
+use Ohio\Core\Base\Http\Requests\PaginateRequest;
 
-class PaginateRequest extends BasePaginateRequest
+class PaginateTags extends PaginateRequest
 {
     public $perTag = 10;
 

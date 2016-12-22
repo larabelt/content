@@ -2,14 +2,14 @@
 
 namespace Ohio\Content\Block\Http\Controllers\Api;
 
-use Ohio\Core\Base\Http\Controllers\BaseApiController;
+use Ohio\Core\Base\Http\Controllers\ApiController;
 
 use Ohio\Content\Block;
 use Ohio\Content\Block\Http\Requests;
 
 use Illuminate\Http\Request;
 
-class BlocksController extends BaseApiController
+class BlocksController extends ApiController
 {
 
     /**
@@ -37,7 +37,7 @@ class BlocksController extends BaseApiController
      * @param $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateRequest $request)
+    public function index(Requests\PaginateBlocks $request)
     {
 
         $request->reCapture();
@@ -50,11 +50,11 @@ class BlocksController extends BaseApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Requests\CreateRequest $request
+     * @param  Requests\StoreBlock $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\CreateRequest $request)
+    public function store(Requests\StoreBlock $request)
     {
 
         $block = $this->block->create($request->all());
@@ -79,12 +79,12 @@ class BlocksController extends BaseApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  Requests\UpdateRequest $request
+     * @param  Requests\UpdateBlock $request
      * @param  string $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\UpdateRequest $request, $id)
+    public function update(Requests\UpdateBlock $request, $id)
     {
         $block = $this->get($id);
 

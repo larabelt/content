@@ -39,7 +39,7 @@ class HandleTest extends OhioTestCase
         # setters
         $this->assertEquals('test/test-it-all', $handle->__toString());
         $this->assertEquals('test/test-it-all', $attributes['url']);
-        $this->assertEquals('content/page', $attributes['handleable_type']);
+        $this->assertEquals('pages', $attributes['handleable_type']);
     }
 
 }

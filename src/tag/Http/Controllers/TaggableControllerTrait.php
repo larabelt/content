@@ -58,7 +58,7 @@ trait TaggableControllerTrait
      * @param $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateRequest $request, $taggable_id)
+    public function index(Requests\PaginateTags $request, $taggable_id)
     {
         $request->reCapture();
 
@@ -77,11 +77,11 @@ trait TaggableControllerTrait
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Requests\AttachRequest $request
+     * @param  Requests\AttachTag $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\AttachRequest $request, $taggable_id)
+    public function store(Requests\AttachTag $request, $taggable_id)
     {
         $taggable = $this->getTaggable($taggable_id);
 

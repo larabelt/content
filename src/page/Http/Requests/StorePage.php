@@ -1,9 +1,9 @@
 <?php
-namespace Ohio\Content\Block\Http\Requests;
+namespace Ohio\Content\Page\Http\Requests;
 
-use Ohio\Core\Base\Http\Requests\BaseFormRequest;
+use Ohio\Core\Base\Http\Requests\FormRequest;
 
-class CreateRequest extends BaseFormRequest
+class StorePage extends FormRequest
 {
 
     public function rules()

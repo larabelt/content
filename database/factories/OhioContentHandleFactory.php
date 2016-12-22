@@ -13,7 +13,7 @@
 
 $factory->define(Ohio\Content\Handle\Handle::class, function (Faker\Generator $faker) {
 
-    $types = ['content/page'];
+    $types = ['pages'];
 
     return [
         'handleable_id' => $faker->randomDigit,

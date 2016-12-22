@@ -1,15 +1,15 @@
 <?php
 
-namespace Ohio\Content\Tag\Http\Controllers;
+namespace Ohio\Content\Tag\Http\Controllers\Api;
 
-use Ohio\Core\Base\Http\Controllers\BaseApiController;
+use Ohio\Core\Base\Http\Controllers\ApiController;
 
 use Ohio\Content\Tag;
 use Ohio\Content\Tag\Http\Requests;
 
 use Illuminate\Http\Request;
 
-class ApiController extends BaseApiController
+class TagsController extends ApiController
 {
 
     /**
@@ -37,7 +37,7 @@ class ApiController extends BaseApiController
      * @param $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateRequest $request)
+    public function index(Requests\PaginateTags $request)
     {
         $request->reCapture();
 
@@ -49,11 +49,11 @@ class ApiController extends BaseApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Requests\CreateRequest $request
+     * @param  Requests\StoreTag $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\CreateRequest $request)
+    public function store(Requests\StoreTag $request)
     {
 
         $tag = $this->tag->create($request->all());
@@ -78,12 +78,12 @@ class ApiController extends BaseApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  Requests\UpdateRequest $request
+     * @param  Requests\UpdateTag $request
      * @param  string $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\UpdateRequest $request, $id)
+    public function update(Requests\UpdateTag $request, $id)
     {
         $tag = $this->get($id);
 
