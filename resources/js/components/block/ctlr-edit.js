@@ -20,8 +20,8 @@ export default {
             mixins: [blockService],
             template: blockFormTemplate,
             mounted() {
-                this.blocks.block.id = this.$route.params.id;
-                this.getBlock();
+                this.item.id = this.$route.params.id;
+                this.get();
             },
         },
     },

@@ -8,72 +8,55 @@ export default {
 
     data() {
         return {
-            blocks: {
-                block: {},
-                blocks: [],
-                url: '/api/v1/blocks/',
-                errors: {},
-                paginator: {},
-                params: {},
-                saved: false,
-                saving: false,
-            }
+            url: '/api/v1/blocks/',
         }
     },
 
     methods: {
-        submitBlock(event) {
-            event.preventDefault();
-            this.blocks.saving = true;
-            this.blocks.saved = false;
-            if (this.blocks.block.id) {
-                return this.updateBlock(this.blocks.block);
-            }
-            return this.storeBlock(this.blocks.block);
-        },
-        paginateBlocks() {
-            let url = this.blocks.url + '?' + $.param(this.getUrlParams());
+        paginate(query) {
+            query = _.merge(this.query, query);
+            let url = this.url + '?' + $.param(query);
             this.$http.get(url).then(function (response) {
-                this.blocks.blocks = response.data.data;
-                this.blocks.paginator = this.getPaginatorData(response);
+                this.items = response.data.data;
+                this.paginator = this.setPaginator(response);
             }, function (response) {
                 console.log('error');
             });
         },
-        getBlock() {
-            this.$http.get(this.blocks.url + this.blocks.block.id).then((response) => {
-                this.blocks.block = response.data;
+        get() {
+            this.$http.get(this.url + this.item.id).then((response) => {
+                this.item = response.data;
             }, (response) => {
 
             });
         },
-        updateBlock(params) {
-            this.blocks.errors = {};
-            this.$http.put(this.blocks.url + this.blocks.block.id, params).then((response) => {
-                this.blocks.block = response.data;
-                this.blocks.saved = true;
+        update(params) {
+            this.errors = {};
+            this.$http.put(this.url + this.item.id, params).then((response) => {
+                this.item = response.data;
+                this.saved = true;
             }, (response) => {
                 if (response.status == 422) {
-                    this.blocks.errors = response.data.message;
+                    this.errors = response.data.message;
                 }
             });
-            this.blocks.saving = false;
+            this.saving = false;
         },
-        storeBlock(params) {
-            this.blocks.errors = {};
-            this.$http.post(this.blocks.url, params ).then((response) => {
-                this.$router.push({ name: 'blockEdit', params: { id: response.data.id }})
+        store(params) {
+            this.errors = {};
+            this.$http.post(this.url, params).then((response) => {
+                this.$router.push({name: 'blockEdit', params: {id: response.data.id}})
             }, (response) => {
                 if (response.status == 422) {
-                    this.blocks.errors = response.data.message;
+                    this.errors = response.data.message;
                 }
             });
-            this.blocks.saving = false;
+            this.saving = false;
         },
-        destroyBlock(id) {
-            this.$http.delete(this.blocks.url + id).then(function(response){
-                if( response.status == 204 ) {
-                    this.paginateBlocks();
+        destroy(id) {
+            this.$http.delete(this.url + id).then(function (response) {
+                if (response.status == 204) {
+                    this.paginate();
                 }
             });
         }

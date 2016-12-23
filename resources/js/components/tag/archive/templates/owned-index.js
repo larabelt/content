@@ -18,15 +18,15 @@ export default `
                 <div class="col-md-5">
                     <form role="form" class="form-inline">
                         <div class="form-group">
-                            <input type="text" class="form-control" v-model.trim="pageTags.params.q" v-on:keyup="searchPageTags($event)" placeholder="search">
+                            <input type="text" class="form-control" v-model.trim="tagTags.params.q" v-on:keyup="searchTagTags($event)" placeholder="search">
                         </div>
                     </form>
-                    <table v-if="pageTags.detached" class="table table-striped table-condensed table-hover">
+                    <table v-if="tagTags.detached" class="table table-striped table-condensed table-hover">
                         <tbody>                
-                            <tr v-for="tag in pageTags.detached">
+                            <tr v-for="tag in tagTags.detached">
                                 <td>{{ tag.name }}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" v-on:click="attachPageTag(tag.id)"><i class="fa fa-link"></i></a>
+                                    <a class="btn btn-xs btn-primary" v-on:click="attachTagTag(tag.id)"><i class="fa fa-link"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -44,10 +44,10 @@ export default `
                             </tr>
                         </thead>
                         <tbody>                
-                            <tr v-for="tag in pageTags.attached">
+                            <tr v-for="tag in tagTags.attached">
                                 <td>{{ tag.id }} {{ tag.name }}</td>
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-danger" v-on:click="detachPageTag(tag.id)"><i class="fa fa-trash"></i></a>
+                                    <a class="btn btn-xs btn-danger" v-on:click="detachTagTag(tag.id)"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         </tbody>

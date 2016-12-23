@@ -9,24 +9,24 @@ export default `
                     <tr>
                         <th>
                             ID
-                            <column-sorter :route="'tagIndex'" :paginator="tags.paginator" :order-by="'tags.id'"></column-sorter>
+                            <column-sorter :route="'tagIndex'" :column="'tags.id'"></column-sorter>
                         </th>
                         <th>
                             Name
-                            <column-sorter :route="'tagIndex'" :paginator="tags.paginator" :order-by="'tags.name'"></column-sorter>
+                            <column-sorter :route="'tagIndex'" :column="'tags.name'"></column-sorter>
                         </th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>                
-                    <tr v-for="tag in tags.tags">
-                        <td>{{ tag.id }}</td>
-                        <td>{{ tag.name }}</td>
+                    <tr v-for="item in items">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
                         <td class="text-right">
-                            <router-link :to="{ name: 'tagEdit', params: { id: tag.id } }" v-bind:class="'btn btn-xs btn-warning'">
+                            <router-link :to="{ name: 'tagEdit', params: { id: item.id } }" v-bind:class="'btn btn-xs btn-warning'">
                                 <i class="fa fa-edit"></i>
                             </router-link>
-                            <a class="btn btn-xs btn-danger" v-on:click="destroyTag(tag.id)"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-xs btn-danger" v-on:click="destroy(item.id)"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -38,7 +38,7 @@ export default `
                     </tr>
                 </tfoot>
             </table>
-            <pagination :route="'tagIndex'" :paginator="tags.paginator"></pagination>
+            <pagination :route="'tagIndex'"></pagination>
         </div>
     </div>
 `;

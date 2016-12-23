@@ -8,72 +8,55 @@ export default {
 
     data() {
         return {
-            pages: {
-                page: {},
-                pages: [],
-                url: '/api/v1/pages/',
-                errors: {},
-                paginator: {},
-                params: {},
-                saved: false,
-                saving: false,
-            }
+            url: '/api/v1/pages/',
         }
     },
 
     methods: {
-        submitPage(event) {
-            event.preventDefault();
-            this.pages.saving = true;
-            this.pages.saved = false;
-            if (this.pages.page.id) {
-                return this.updatePage(this.pages.page);
-            }
-            return this.storePage(this.pages.page);
-        },
-        paginatePages() {
-            let url = this.pages.url + '?' + $.param(this.getUrlParams());
+        paginate(query) {
+            query = _.merge(this.query, query);
+            let url = this.url + '?' + $.param(query);
             this.$http.get(url).then(function (response) {
-                this.pages.pages = response.data.data;
-                this.pages.paginator = this.getPaginatorData(response);
+                this.items = response.data.data;
+                this.paginator = this.setPaginator(response);
             }, function (response) {
                 console.log('error');
             });
         },
-        getPage() {
-            this.$http.get(this.pages.url + this.pages.page.id).then((response) => {
-                this.pages.page = response.data;
+        get() {
+            this.$http.get(this.url + this.item.id).then((response) => {
+                this.item = response.data;
             }, (response) => {
 
             });
         },
-        updatePage(params) {
-            this.pages.errors = {};
-            this.$http.put(this.pages.url + this.pages.page.id, params).then((response) => {
-                this.pages.page = response.data;
-                this.pages.saved = true;
+        update(params) {
+            this.errors = {};
+            this.$http.put(this.url + this.item.id, params).then((response) => {
+                this.item = response.data;
+                this.saved = true;
             }, (response) => {
                 if (response.status == 422) {
-                    this.pages.errors = response.data.message;
+                    this.errors = response.data.message;
                 }
             });
-            this.pages.saving = false;
+            this.saving = false;
         },
-        storePage(params) {
-            this.pages.errors = {};
-            this.$http.post(this.pages.url, params ).then((response) => {
-                this.$router.push({ name: 'pageEdit', params: { id: response.data.id }})
+        store(params) {
+            this.errors = {};
+            this.$http.post(this.url, params).then((response) => {
+                this.$router.push({name: 'pageEdit', params: {id: response.data.id}})
             }, (response) => {
                 if (response.status == 422) {
-                    this.pages.errors = response.data.message;
+                    this.errors = response.data.message;
                 }
             });
-            this.pages.saving = false;
+            this.saving = false;
         },
-        destroyPage(id) {
-            this.$http.delete(this.pages.url + id).then(function(response){
-                if( response.status == 204 ) {
-                    this.paginatePages();
+        destroy(id) {
+            this.$http.delete(this.url + id).then(function (response) {
+                if (response.status == 204) {
+                    this.paginate();
                 }
             });
         }

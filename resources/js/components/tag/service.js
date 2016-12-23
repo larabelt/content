@@ -8,72 +8,55 @@ export default {
 
     data() {
         return {
-            tags: {
-                tag: {},
-                tags: [],
-                url: '/api/v1/tags/',
-                errors: {},
-                paginator: {},
-                params: {},
-                saved: false,
-                saving: false,
-            }
+            url: '/api/v1/tags/',
         }
     },
 
     methods: {
-        submitTag(event) {
-            event.preventDefault();
-            this.tags.saving = true;
-            this.tags.saved = false;
-            if (this.tags.tag.id) {
-                return this.updateTag(this.tags.tag);
-            }
-            return this.storeTag(this.tags.tag);
-        },
-        paginateTags() {
-            let url = this.tags.url + '?' + $.param(this.getUrlParams());
+        paginate(query) {
+            query = _.merge(this.query, query);
+            let url = this.url + '?' + $.param(query);
             this.$http.get(url).then(function (response) {
-                this.tags.tags = response.data.data;
-                this.tags.paginator = this.getPaginatorData(response);
+                this.items = response.data.data;
+                this.paginator = this.setPaginator(response);
             }, function (response) {
                 console.log('error');
             });
         },
-        getTag() {
-            this.$http.get(this.tags.url + this.tags.tag.id).then((response) => {
-                this.tags.tag = response.data;
+        get() {
+            this.$http.get(this.url + this.item.id).then((response) => {
+                this.item = response.data;
             }, (response) => {
 
             });
         },
-        updateTag(params) {
-            this.tags.errors = {};
-            this.$http.put(this.tags.url + this.tags.tag.id, params).then((response) => {
-                this.tags.tag = response.data;
-                this.tags.saved = true;
+        update(params) {
+            this.errors = {};
+            this.$http.put(this.url + this.item.id, params).then((response) => {
+                this.item = response.data;
+                this.saved = true;
             }, (response) => {
                 if (response.status == 422) {
-                    this.tags.errors = response.data.message;
+                    this.errors = response.data.message;
                 }
             });
-            this.tags.saving = false;
+            this.saving = false;
         },
-        storeTag(params) {
-            this.tags.errors = {};
-            this.$http.post(this.tags.url, params ).then((response) => {
-                this.$router.push({ name: 'tagEdit', params: { id: response.data.id }})
+        store(params) {
+            this.errors = {};
+            this.$http.post(this.url, params).then((response) => {
+                this.$router.push({name: 'tagEdit', params: {id: response.data.id}})
             }, (response) => {
                 if (response.status == 422) {
-                    this.tags.errors = response.data.message;
+                    this.errors = response.data.message;
                 }
             });
-            this.tags.saving = false;
+            this.saving = false;
         },
-        destroyTag(id) {
-            this.$http.delete(this.tags.url + id).then(function(response){
-                if( response.status == 204 ) {
-                    this.paginateTags();
+        destroy(id) {
+            this.$http.delete(this.url + id).then(function (response) {
+                if (response.status == 204) {
+                    this.paginate();
                 }
             });
         }

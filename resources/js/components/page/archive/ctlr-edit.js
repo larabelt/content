@@ -36,7 +36,7 @@ export default {
             },
             methods: {
                 getParams() {
-                    let params = this.getUrlParams();
+                    let params = this.getUrlQuery();
                     params.handleable_id = this.$route.params.id;
                     params.handleable_type = 'content/page';
                     return params;

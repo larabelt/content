@@ -20,8 +20,8 @@ export default {
             mixins: [tagService],
             template: tagFormTemplate,
             mounted() {
-                this.tags.tag.id = this.$route.params.id;
-                this.getTag();
+                this.item.id = this.$route.params.id;
+                this.get();
             },
         },
     },

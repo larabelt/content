@@ -9,24 +9,24 @@ export default `
                     <tr>
                         <th>
                             ID
-                            <column-sorter :route="'blockIndex'" :paginator="blocks.paginator" :order-by="'blocks.id'"></column-sorter>
+                            <column-sorter :route="'blockIndex'" :column="'blocks.id'"></column-sorter>
                         </th>
                         <th>
                             Name
-                            <column-sorter :route="'blockIndex'" :paginator="blocks.paginator" :order-by="'blocks.name'"></column-sorter>
+                            <column-sorter :route="'blockIndex'" :column="'blocks.name'"></column-sorter>
                         </th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>                
-                    <tr v-for="block in blocks.blocks">
-                        <td>{{ block.id }}</td>
-                        <td>{{ block.name }}</td>
+                    <tr v-for="item in items">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
                         <td class="text-right">
-                            <router-link :to="{ name: 'blockEdit', params: { id: block.id } }" v-bind:class="'btn btn-xs btn-warning'">
+                            <router-link :to="{ name: 'blockEdit', params: { id: item.id } }" v-bind:class="'btn btn-xs btn-warning'">
                                 <i class="fa fa-edit"></i>
                             </router-link>
-                            <a class="btn btn-xs btn-danger" v-on:click="destroyBlock(block.id)"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-xs btn-danger" v-on:click="destroy(item.id)"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -38,7 +38,7 @@ export default `
                     </tr>
                 </tfoot>
             </table>
-            <pagination :route="'blockIndex'" :paginator="blocks.paginator"></pagination>
+            <pagination :route="'blockIndex'"></pagination>
         </div>
     </div>
 `;

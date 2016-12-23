@@ -20,8 +20,8 @@ export default {
             mixins: [pageService],
             template: pageFormTemplate,
             mounted() {
-                this.pages.page.id = this.$route.params.id;
-                this.getPage();
+                this.item.id = this.$route.params.id;
+                this.get();
             },
         },
     },

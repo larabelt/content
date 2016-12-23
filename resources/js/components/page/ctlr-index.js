@@ -19,12 +19,8 @@ export default {
             mixins: [pageService],
             template: pageIndexTemplate,
             mounted() {
-                this.paginatePages();
-            },
-            watch: {
-                '$route' (to, from) {
-                    this.paginatePages();
-                }
+                this.query = this.getUrlQuery();
+                this.paginate();
             },
         },
     },
