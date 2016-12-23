@@ -1,5 +1,4 @@
 window.$ = window.jQuery = require('jquery');
-global._ = require('lodash');
 
 import form from 'ohio/core/js/mixins/base/forms';
 
@@ -7,51 +6,37 @@ export default {
 
     mixins: [form],
 
+    data() {
+        return {
+            url: '/api/v1/handles/',
+            handleable_type: '',
+            handleable_id: null,
+        }
+    },
     methods: {
-        baseUrl() {
-            return '/api/v1/handles/';
-        },
-        index() {
-
-            let params = this.getParams();
-
-            let url = this.baseUrl() + '?' + $.param(params);
-
+        paginate(query) {
+            this.query = _.merge(this.query, query);
+            this.query = _.merge(this.query, {
+                handleable_type: this.handleable_type,
+                handleable_id: this.handleable_id,
+            });
+            let url = this.url + '?' + $.param(this.query);
             this.$http.get(url).then(function (response) {
-                this.items = response.data;
+                this.items = response.data.data;
+                this.paginator = this.setPaginator(response);
             }, function (response) {
                 console.log('error');
             });
         },
-        get() {
-            this.$http.get(this.baseUrl() + this.$parent.id).then((response) => {
-                this.item = response.data;
-            }, (response) => {
-
-            });
-        },
-        put(params) {
+        store(params) {
             this.errors = {};
-            this.$http.put(this.baseUrl() + params.id, params).then((response) => {
-                this.item = response.data;
-                this.saved = true;
-                this.$parent.msg = 'saved'; //test
-            }, (response) => {
-                if (response.status == 422) {
-                    this.errors = response.data.message;
-                }
+            params = _.merge(params, {
+                handleable_type: this.handleable_type,
+                handleable_id: this.handleable_id,
             });
-            this.saving = false;
-        },
-        post(params) {
-            this.errors = {};
-
-            let merged = _.merge(this.getParams(), params);
-
-            this.$http.post(this.baseUrl(), merged).then((response) => {
-                //this.$router.push({name: 'handleEdit', params: {id: response.data.id}})
+            this.$http.post(this.url, params).then((response) => {
                 this.item = {};
-                this.index()
+                this.paginate();
             }, (response) => {
                 if (response.status == 422) {
                     this.errors = response.data.message;
@@ -60,9 +45,9 @@ export default {
             this.saving = false;
         },
         destroy(id) {
-            this.$http.delete(this.baseUrl() + id).then(function (response) {
+            this.$http.delete(this.url + id).then(function (response) {
                 if (response.status == 204) {
-                    this.index();
+                    this.paginate();
                 }
             });
         }

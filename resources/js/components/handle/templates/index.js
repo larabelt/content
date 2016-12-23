@@ -1,7 +1,6 @@
 export default `
-    <div class="box box-primary">
-        <div class="box-body">
-            
+    <div class="row">
+        <div class="col-md-12">
             <form role="form" class="form-inline">
                 <div class="box-body">
                     <div class="form-group" v-bind:class="{ 'has-error': errors.url }">
@@ -13,30 +12,28 @@ export default `
                     <span v-show="saved">saved <i class="fa fa-floppy-o" /></span>
                 </div>
             </form>
-            
-            <table class="table table-bordered table-hover">
-            
+        </div>
+        <div class="col-md-12">
+           <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>
                             Url
-                            <column-sorter :routeurl="'handleIndex'" :order-by="'handles.url'"></column-sorter>
+                            <column-sorter :column="'handles.url'"></column-sorter>
                         </th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
-    
                 <tbody>                
-                    <tr v-for="item in items.data">
-                        <td>{{ item.url }}</td>
+                    <tr v-for="handle in items">
+                        <td>{{ handle.url }}</td>
                         <td class="text-right">
-                            <a class="btn btn-xs btn-danger" v-on:click="destroy(item.id)"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-xs btn-danger" v-on:click="destroy(handle.id)"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 </tbody>
-    
             </table>
-            <pagination :routeurl="'handleIndex'"></pagination>
+            <pagination></pagination>
         </div>
     </div>
 `;

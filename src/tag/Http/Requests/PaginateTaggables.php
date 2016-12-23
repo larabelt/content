@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PaginateTaggables extends PaginateTags
 {
+    public $perPage = 5;
     /**
      * @var Tag
      */
