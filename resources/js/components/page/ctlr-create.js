@@ -10,7 +10,7 @@ export default {
                     title: 'Page Creator',
                     subtitle: '',
                     crumbs: [
-                        {url: '/admin/ohio/content/pages', text: 'Manager'}
+                        {route: 'pageIndex', text: 'Manager'}
                     ],
                 }
             },

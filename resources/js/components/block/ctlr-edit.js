@@ -10,7 +10,7 @@ export default {
                     title: 'Block Editor',
                     subtitle: '',
                     crumbs: [
-                        {url: '/admin/ohio/content/blocks', text: 'Manager'}
+                        {route: 'blockIndex', text: 'Manager'}
                     ],
                 }
             },

@@ -10,7 +10,7 @@ export default {
                     title: 'Tag Editor',
                     subtitle: '',
                     crumbs: [
-                        {url: '/admin/ohio/content/tags', text: 'Manager'}
+                        {route: 'tagIndex', text: 'Manager'}
                     ],
                 }
             },

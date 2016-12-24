@@ -18,7 +18,7 @@ export default {
                     title: 'Page Editor',
                     subtitle: '',
                     crumbs: [
-                        {url: '/admin/ohio/content/pages', text: 'Manager'}
+                        {route: 'pageIndex', text: 'Manager'}
                     ],
                 }
             },
