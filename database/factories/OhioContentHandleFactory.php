@@ -17,7 +17,7 @@ $factory->define(Ohio\Content\Handle\Handle::class, function (Faker\Generator $f
 
     return [
         'handleable_id' => $faker->randomDigit,
-        'handleable_type' => $faker->shuffleArray($types),
+        'handleable_type' => $faker->randomElement($types),
         'url' => sprintf('/%s', $faker->slug),
         'delta' => 1,
     ];

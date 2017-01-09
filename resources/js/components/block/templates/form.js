@@ -1,5 +1,5 @@
 export default `
-    <form block="form">
+    <form role="form">
         <div class="box-body">
             <div class="form-group" v-bind:class="{ 'has-error': errors.name }">
                 <label for="name">Name</label>
