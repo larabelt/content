@@ -1,12 +1,15 @@
 <?php
 namespace Ohio\Content\Block;
 
+use Ohio\Core;
+use Ohio\Content;
+
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Core\Base\Behaviors\SluggableTrait;
 
 class Block extends Model
 {
-    use SluggableTrait;
+    use Core\Base\Behaviors\SluggableTrait;
+    use Content\Base\Behaviors\ContentTrait;
 
     protected $morphClass = 'content/block';
 
@@ -14,19 +17,9 @@ class Block extends Model
 
     protected $fillable = ['name', 'body'];
 
-    public function __toString()
-    {
-        return $this->name;
-    }
-
     public function setTemplateAttribute($value)
     {
         $this->attributes['template'] = trim(strtolower($value));
-    }
-
-    public function setBodyAttribute($value)
-    {
-        $this->attributes['body'] = trim($value);
     }
 
 }

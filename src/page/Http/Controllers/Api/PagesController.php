@@ -53,15 +53,13 @@ class PagesController extends ApiController
 
         $input = $request->all();
 
-        $page = $this->pages->create([
-            'name' => $input['name'],
-            'body' => $input['body'],
-        ]);
+        $page = $this->pages->create(['name' => $input['name']]);
 
         $this->set($page, $input, [
             'is_active',
             'template',
             'slug',
+            'body',
             'meta_title',
             'meta_keywords',
             'meta_description',

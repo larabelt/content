@@ -1,28 +1,21 @@
 <?php
 namespace Ohio\Content\Tag;
 
+use Ohio\Core;
+use Ohio\Content;
+
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Core\Base\Behaviors\SluggableTrait;
 
 class Tag extends Model
 {
-    use SluggableTrait;
+    use Core\Base\Behaviors\SluggableTrait;
+    use Content\Base\Behaviors\ContentTrait;
 
     protected $morphClass = 'content/tag';
 
     protected $table = 'tags';
 
     protected $fillable = ['name'];
-
-    public function __toString()
-    {
-        return $this->name;
-    }
-
-    public function setBodyAttribute($value)
-    {
-        $this->attributes['body'] = trim($value);
-    }
 
     /**
      * Return tags associated with taggable
