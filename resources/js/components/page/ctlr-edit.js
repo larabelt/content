@@ -40,7 +40,7 @@ export default {
             <heading></heading>
             <section class="content">
                 <div class="row">
-                    <div class="col-md-9 hide">
+                    <div class="col-md-9">
                         <div class="box box-primary">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Edit Page</h3>
@@ -51,7 +51,7 @@ export default {
                     <div class="col-md-9">
                         <handleable></handleable>
                     </div>
-                    <div class="col-md-9 hide">
+                    <div class="col-md-9">
                         <taggable></taggable>
                     </div>
                 </div>
