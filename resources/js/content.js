@@ -7,6 +7,7 @@ import pageEdit  from './components/page/ctlr-edit';
 import tagIndex from './components/tag/ctlr-index';
 import tagCreate from './components/tag/ctlr-create';
 import tagEdit  from './components/tag/ctlr-edit';
+import store from 'ohio/core/js/store/index';
 
 export default class OhioContent {
 
@@ -30,7 +31,7 @@ export default class OhioContent {
                 ]
             });
 
-            const app = new Vue({router}).$mount('#ohio-content');
+            const app = new Vue({router, store}).$mount('#ohio-content');
         }
     }
 
