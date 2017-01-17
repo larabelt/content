@@ -3,6 +3,7 @@ import pageService from './service';
 import pageFormTemplate from './templates/form';
 import handleable from '../handle/ctlr-edit';
 import taggable from '../tag/taggable/ctlr-edit';
+import fileable from 'ohio/storage/js/components/fileable/fileable';
 
 export default {
     data() {
@@ -34,6 +35,7 @@ export default {
         },
         handleable,
         taggable,
+        fileable,
     },
     template: `
         <div>
@@ -47,6 +49,9 @@ export default {
                             </div>
                             <page-form></page-form>
                         </div>
+                    </div>
+                    <div class="col-md-12">
+                        <fileable uploader_path="pages"></fileable>
                     </div>
                     <div class="col-md-9">
                         <handleable></handleable>
