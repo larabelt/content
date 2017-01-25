@@ -7,7 +7,7 @@ use Ohio\Content\Handle;
  */
 Route::group([
     'prefix' => 'api/v1',
-    'middleware' => ['api']
+    'middleware' => ['ohio.api.admin']
 ],
     function () {
         Route::get('handles/{id}', Handle\Http\Controllers\Api\HandlesController::class . '@show');

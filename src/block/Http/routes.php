@@ -7,7 +7,7 @@ use Ohio\Content\Block;
  */
 Route::group([
     'prefix' => 'api/v1',
-    'middleware' => ['api']
+    'middleware' => ['ohio.api.admin']
 ],
     function () {
         Route::get('blocks/{id}', Block\Http\Controllers\Api\BlocksController::class . '@show');

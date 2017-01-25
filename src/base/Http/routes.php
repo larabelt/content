@@ -3,7 +3,7 @@
 /**
  * Front
  */
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['ohio.web']], function () {
     Route::get('pages', function () {
         return view('ohio-core::base.front.home');
     });
@@ -14,11 +14,11 @@ Route::group(['middleware' => ['web']], function () {
  */
 Route::group([
     'prefix' => 'admin/ohio/content',
-    'middleware' => ['web', 'ohio.admin']
+    'middleware' => ['ohio.admin']
 ],
     function () {
-        Route::get('{a?}/{b?}/{c?}', function () {
+        Route::get('{any?}', function () {
             return view('ohio-content::base.admin.dashboard');
-        });
+        })->where('any', '(.*)');
     }
 );
