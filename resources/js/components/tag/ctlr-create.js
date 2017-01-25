@@ -10,7 +10,7 @@ export default {
                     title: 'Tag Creator',
                     subtitle: '',
                     crumbs: [
-                        {route: 'tagIndex', text: 'Manager'}
+                        {route: 'tagIndex', text: 'Tags'}
                     ],
                 }
             },
@@ -25,14 +25,9 @@ export default {
         <div>
             <heading></heading>
             <section class="content">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Create Tag</h3>
-                            </div>
-                            <tag-form></tag-form>
-                        </div>
+                <div class="box">
+                    <div class="box-body">
+                        <tag-form></tag-form>
                     </div>
                 </div>
             </section>

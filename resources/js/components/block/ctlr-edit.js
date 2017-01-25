@@ -10,7 +10,7 @@ export default {
                     title: 'Block Editor',
                     subtitle: '',
                     crumbs: [
-                        {route: 'blockIndex', text: 'Manager'}
+                        {route: 'blockIndex', text: 'Blocks'}
                     ],
                 }
             },
@@ -29,17 +29,17 @@ export default {
         <div>
             <heading></heading>
             <section class="content">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Edit Block</h3>
-                            </div>
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="active"><a href="#tab_1-1" data-toggle="tab" aria-expanded="false">Main</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1-1">
                             <block-form></block-form>
                         </div>
                     </div>
                 </div>
             </section>
-        </div>
+        </div>      
         `
 }

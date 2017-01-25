@@ -25,16 +25,7 @@ export default {
     },
     template: `
         <div>
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Handles</h3>
-                </div>
-                <div class="box box-primary">
-                    <div class="box-body">
-                        <handleable-index></handleable-index>
-                    </div>
-                </div>
-            </div>
+            <handleable-index></handleable-index>
         </div>
         `
 }

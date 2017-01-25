@@ -10,7 +10,7 @@ export default {
                     title: 'Page Creator',
                     subtitle: '',
                     crumbs: [
-                        {route: 'pageIndex', text: 'Manager'}
+                        {route: 'pageIndex', text: 'Pages'}
                     ],
                 }
             },
@@ -25,14 +25,9 @@ export default {
         <div>
             <heading></heading>
             <section class="content">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Create Page</h3>
-                            </div>
-                            <page-form></page-form>
-                        </div>
+                <div class="box">
+                    <div class="box-body">
+                        <page-form></page-form>
                     </div>
                 </div>
             </section>

@@ -25,16 +25,7 @@ export default {
     },
     template: `
         <div>
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Tags</h3>
-                </div>
-                <div class="box box-primary">
-                    <div class="box-body">
-                        <taggable-index></taggable-index>
-                    </div>
-                </div>
-            </div>
+            <taggable-index></taggable-index>
         </div>
         `
 }

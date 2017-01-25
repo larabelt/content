@@ -10,7 +10,7 @@ export default {
                     title: 'Block Creator',
                     subtitle: '',
                     crumbs: [
-                        {route: 'blockIndex', text: 'Manager'}
+                        {route: 'blockIndex', text: 'Blocks'}
                     ],
                 }
             },
@@ -25,14 +25,9 @@ export default {
         <div>
             <heading></heading>
             <section class="content">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Create Block</h3>
-                            </div>
-                            <block-form></block-form>
-                        </div>
+                <div class="box">
+                    <div class="box-body">
+                        <block-form></block-form>
                     </div>
                 </div>
             </section>

@@ -2,15 +2,13 @@ export default `
     <div class="row">
         <div class="col-md-12">
             <form role="form" class="form-inline">
-                <div class="box-body">
-                    <div class="form-group" v-bind:class="{ 'has-error': errors.url }">
-                        <input type="url" class="form-control" v-model.trim="item.url"  placeholder="url">
-                        <span class="help-block" v-show="errors.url">{{ errors.url }}</span>
-                    </div>
-                    <button type="submit" class="btn btn-primary" v-on:click="submit($event)">Add Handle</button>
-                    <span v-show="saving">saving <i class="fa fa-spinner fa-spin" /></span>
-                    <span v-show="saved">saved <i class="fa fa-floppy-o" /></span>
+                <div class="form-group" v-bind:class="{ 'has-error': errors.url }">
+                    <input type="url" class="form-control" v-model.trim="item.url"  placeholder="url">
+                    <span class="help-block" v-show="errors.url">{{ errors.url }}</span>
                 </div>
+                <button type="submit" class="btn btn-primary" v-on:click="submit($event)">Add Handle</button>
+                <span v-show="saving">saving <i class="fa fa-spinner fa-spin" /></span>
+                <span v-show="saved">saved <i class="fa fa-floppy-o" /></span>
             </form>
         </div>
         <div class="col-md-12">

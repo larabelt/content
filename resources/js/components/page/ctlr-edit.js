@@ -19,7 +19,7 @@ export default {
                     title: 'Page Editor',
                     subtitle: '',
                     crumbs: [
-                        {route: 'pageIndex', text: 'Manager'}
+                        {route: 'pageIndex', text: 'Pages'}
                     ],
                 }
             },
@@ -41,26 +41,29 @@ export default {
         <div>
             <heading></heading>
             <section class="content">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Edit Page</h3>
-                            </div>
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="active"><a href="#tab_1-1" data-toggle="tab" aria-expanded="false">Main</a></li>
+                        <li class=""><a href="#tab_2-2" data-toggle="tab" aria-expanded="false">Files</a></li>
+                        <li class=""><a href="#tab_3-3" data-toggle="tab" aria-expanded="false">Handles</a></li>
+                        <li class=""><a href="#tab_4-4" data-toggle="tab" aria-expanded="false">Tags</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1-1">
                             <page-form></page-form>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <fileable uploader_path="pages"></fileable>
-                    </div>
-                    <div class="col-md-9">
-                        <handleable></handleable>
-                    </div>
-                    <div class="col-md-9">
-                        <taggable></taggable>
+                        <div class="tab-pane" id="tab_2-2">
+                            <fileable uploader_path="pages"></fileable>
+                        </div>
+                        <div class="tab-pane" id="tab_3-3">
+                            <handleable></handleable>
+                        </div>
+                        <div class="tab-pane" id="tab_4-4">
+                            <taggable></taggable>
+                        </div>
                     </div>
                 </div>
             </section>
-        </div>
+        </div>        
         `
 }
