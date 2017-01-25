@@ -25,9 +25,11 @@ export default `
             <span class="help-block" v-show="errors.body">{{ errors.body }}</span>
         </div>
         <div class="text-right">
-            <button type="submit" class="btn btn-primary" v-on:click="submit($event)">Save</button>
-            <span v-show="saving">saving <i class="fa fa-spinner fa-spin" /></span>
-            <span v-show="saved">saved <i class="fa fa-floppy-o" /></span>
+            <button type="submit" class="btn btn-primary btn-saveable" v-on:click="submit($event)" :class="{ saving: saving, saved: saved }">
+                <span v-show="!saving && !saved">Save</span>
+                <i v-show="saving" class="fa fa-spinner fa-pulse"></i>
+                <i v-show="saved" class="fa fa-check"></i>
+            </button>
         </div>
     </form>
 `

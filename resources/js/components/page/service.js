@@ -35,6 +35,10 @@ export default {
             this.$http.put(this.url + this.item.id, params).then((response) => {
                 this.item = response.data;
                 this.saved = true;
+
+                setTimeout(() => {
+                    this.saved = false;
+                }, 2000);
             }, (response) => {
                 if (response.status == 422) {
                     this.errors = response.data.message;
