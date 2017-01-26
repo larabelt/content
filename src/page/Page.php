@@ -20,6 +20,13 @@ class Page extends Model
 
     protected $fillable = ['name'];
 
+    public static $presets = [
+        [100, 100, 'fit'],
+        [200, 200, 'fit'],
+        [300, 300, 'fit'],
+        [500, 500, 'fit'],
+    ];
+
     public function setTemplateAttribute($value)
     {
         $this->attributes['template'] = trim(strtolower($value));
