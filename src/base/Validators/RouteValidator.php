@@ -11,9 +11,8 @@ class RouteValidator
 
     public function routeIsUnique($attribute, $value, $parameters, Validator $validator)
     {
-
         $validator->setFallbackMessages(
-            array_merge($validator->getFallbackMessages(), [
+            array_merge($validator->fallbackMessages, [
                     'unique_route' => 'this route already exists'
             ])
         );
