@@ -17,11 +17,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ohio\\Content\\Base\\": "src/base/",
-      "Ohio\\Content\\Block\\": "src/block/",
-      "Ohio\\Content\\Handle\\": "src/handle/",
-      "Ohio\\Content\\Page\\": "src/page/",
-      "Ohio\\Content\\Tag\\": "src/tag/"
+      "Ohio\\Content\\Base\\": "src/"
     }
   }
 }
