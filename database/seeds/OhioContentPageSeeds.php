@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-use Ohio\Content\Page\Page;
-use Ohio\Content\Handle\Handle;
+use Ohio\Content\Page;
+use Ohio\Content\Handle;
 
 class OhioContentPageSeeds extends Seeder
 {

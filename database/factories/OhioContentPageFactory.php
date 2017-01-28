@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(Ohio\Content\Page\Page::class, function (Faker\Generator $faker) {
+$factory->define(Ohio\Content\Page::class, function (Faker\Generator $faker) {
     return [
         'is_active' => $faker->boolean(),
         'name' => $faker->words(3, true),

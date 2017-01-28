@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use Ohio\Content\Tag\Tag;
+use Ohio\Content\Tag;
 
 class OhioContentTagSeeds extends Seeder
 {

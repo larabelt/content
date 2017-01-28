@@ -16,7 +16,7 @@ use Ohio\Content;
 Route::group(['middleware' => ['web']], function () {
 
     # pages
-    Route::get('page/{slug}', Content\Page\Http\Controllers\Front\PagesController::class . '@show');
+    Route::get('page/{slug}', Content\Http\Controllers\Front\PagesController::class . '@show');
     Route::get('pages', function () {
         return view('ohio-core::base.front.home');
     });

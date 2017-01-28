@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-use Ohio\Content\Block\Block;
-use Ohio\Content\Handle\Handle;
+use Ohio\Content\Block;
+use Ohio\Content\Handle;
 
 class OhioContentBlockSeeds extends Seeder
 {

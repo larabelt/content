@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(Ohio\Content\Handle\Handle::class, function (Faker\Generator $faker) {
+$factory->define(Ohio\Content\Handle::class, function (Faker\Generator $faker) {
 
     $types = ['pages'];
 
