@@ -36,6 +36,8 @@ class PagesController extends ApiController
      */
     public function index(Requests\PaginatePages $request)
     {
+        $this->authorize('index', Page::class);
+
         $paginator = $this->paginator($this->pages->query(), $request->reCapture());
 
         return response()->json($paginator->toArray());
@@ -50,6 +52,7 @@ class PagesController extends ApiController
      */
     public function store(Requests\StorePage $request)
     {
+        $this->authorize('create', Page::class);
 
         $input = $request->all();
 
@@ -79,6 +82,8 @@ class PagesController extends ApiController
     {
         $page = $this->get($id);
 
+        $this->authorize('view', $page);
+
         return response()->json($page);
     }
 
@@ -93,6 +98,8 @@ class PagesController extends ApiController
     public function update(Requests\UpdatePage $request, $id)
     {
         $page = $this->get($id);
+
+        $this->authorize('update', $page);
 
         $input = $request->all();
 
@@ -123,6 +130,8 @@ class PagesController extends ApiController
     public function destroy($id)
     {
         $page = $this->get($id);
+
+        $this->authorize('delete', $page);
 
         $page->delete();
 

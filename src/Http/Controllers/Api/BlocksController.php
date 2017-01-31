@@ -36,6 +36,7 @@ class BlocksController extends ApiController
      */
     public function index(Requests\PaginateBlocks $request)
     {
+        $this->authorize('index', Block::class);
 
         $paginator = $this->paginator($this->blocks->query(), $request->reCapture());
 
@@ -51,6 +52,7 @@ class BlocksController extends ApiController
      */
     public function store(Requests\StoreBlock $request)
     {
+        $this->authorize('create', Block::class);
 
         $input = $request->all();
 
@@ -81,6 +83,8 @@ class BlocksController extends ApiController
     {
         $block = $this->get($id);
 
+        $this->authorize('create', $block);
+
         return response()->json($block);
     }
 
@@ -95,6 +99,8 @@ class BlocksController extends ApiController
     public function update(Requests\UpdateBlock $request, $id)
     {
         $block = $this->get($id);
+
+        $this->authorize('update', $block);
 
         $input = $request->all();
 
@@ -121,6 +127,8 @@ class BlocksController extends ApiController
     public function destroy($id)
     {
         $block = $this->get($id);
+
+        $this->authorize('delete', $block);
 
         $block->delete();
 

@@ -2,10 +2,7 @@
 
 namespace Ohio\Content;
 
-use Validator;
-
-use Ohio\Content;
-
+use Ohio, Validator;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Routing\Router;
@@ -19,7 +16,12 @@ class OhioContentServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $policies = [];
+    protected $policies = [
+        Ohio\Content\Block::class => Ohio\Content\Policies\BlockPolicy::class,
+        Ohio\Content\Handle::class => Ohio\Content\Policies\HandlePolicy::class,
+        Ohio\Content\Page::class => Ohio\Content\Policies\PagePolicy::class,
+        Ohio\Content\Tag::class => Ohio\Content\Policies\TagPolicy::class,
+    ];
 
     /**
      * Register the application services.
@@ -52,16 +54,16 @@ class OhioContentServiceProvider extends ServiceProvider
 
         // morphMap
         Relation::morphMap([
-            'blocks' => Content\Block::class,
-            'handles' => Content\Handle::class,
-            'pages' => Content\Page::class,
-            'tags' => Content\Tag::class,
+            'blocks' => Ohio\Content\Block::class,
+            'handles' => Ohio\Content\Handle::class,
+            'pages' => Ohio\Content\Page::class,
+            'tags' => Ohio\Content\Tag::class,
         ]);
 
         // commands
-        $this->commands(Content\Commands\PublishCommand::class);
+        $this->commands(Ohio\Content\Commands\PublishCommand::class);
 
-        Validator::extend('unique_route', \Ohio\Content\Validators\RouteValidator::class . '@routeIsUnique');
+        Validator::extend('unique_route', Ohio\Content\Validators\RouteValidator::class . '@routeIsUnique');
     }
 
     /**
@@ -72,15 +74,9 @@ class OhioContentServiceProvider extends ServiceProvider
      */
     public function registerPolicies(GateContract $gate)
     {
-//        $gate->before(function ($user, $ability) {
-//            if ($user->hasRole('SUPER')) {
-//                return true;
-//            }
-//        });
-//
-//        foreach ($this->policies as $key => $value) {
-//            $gate->policy($key, $value);
-//        }
+        foreach ($this->policies as $key => $value) {
+            $gate->policy($key, $value);
+        }
     }
 
 }

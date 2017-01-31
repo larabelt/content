@@ -65,6 +65,8 @@ class TaggablesController extends ApiController
 
         $taggable = $this->taggable($taggable_type, $taggable_id);
 
+        $this->authorize('view', $taggable);
+
         $request->merge([
             'taggable_id' => $taggable->id,
             'taggable_type' => $taggable->getMorphClass()
@@ -85,6 +87,8 @@ class TaggablesController extends ApiController
     public function store(Requests\AttachTag $request, $taggable_type, $taggable_id)
     {
         $taggable = $this->taggable($taggable_type, $taggable_id);
+
+        $this->authorize('update', $taggable);
 
         $id = $request->get('id');
 
@@ -108,6 +112,8 @@ class TaggablesController extends ApiController
     {
         $taggable = $this->taggable($taggable_type, $taggable_id);
 
+        $this->authorize('view', $taggable);
+
         $tag = $this->tag($id, $taggable);
 
         return response()->json($tag);
@@ -123,6 +129,8 @@ class TaggablesController extends ApiController
     public function destroy($taggable_type, $taggable_id, $id)
     {
         $taggable = $this->taggable($taggable_type, $taggable_id);
+
+        $this->authorize('update', $taggable);
 
         if (!$taggable->tags->contains($id)) {
             $this->abort(422, ['id' => ['tag not attached']]);

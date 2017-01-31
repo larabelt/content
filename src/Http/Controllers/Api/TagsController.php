@@ -36,6 +36,9 @@ class TagsController extends ApiController
      */
     public function index(Requests\PaginateTags $request)
     {
+
+        $this->authorize('index', Tag::class);
+
         $paginator = $this->paginator($this->tags->query(), $request->reCapture());
 
         return response()->json($paginator->toArray());
@@ -50,6 +53,7 @@ class TagsController extends ApiController
      */
     public function store(Requests\StoreTag $request)
     {
+        $this->authorize('create', Tag::class);
 
         $input = $request->all();
 
@@ -78,6 +82,8 @@ class TagsController extends ApiController
     {
         $tag = $this->get($id);
 
+        $this->authorize('index', $tag);
+
         return response()->json($tag);
     }
 
@@ -92,6 +98,8 @@ class TagsController extends ApiController
     public function update(Requests\UpdateTag $request, $id)
     {
         $tag = $this->get($id);
+
+        $this->authorize('update', $tag);
 
         $input = $request->all();
 
@@ -117,6 +125,8 @@ class TagsController extends ApiController
     public function destroy($id)
     {
         $tag = $this->get($id);
+
+        $this->authorize('delete', $tag);
 
         $tag->delete();
 

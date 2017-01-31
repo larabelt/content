@@ -38,6 +38,8 @@ class HandlesController extends ApiController
      */
     public function index(Requests\PaginateHandles $request)
     {
+        $this->authorize('index', Handle::class);
+
         $request->reCapture();
 
         $paginator = $this->paginator($this->handle->query(), $request);
@@ -54,6 +56,7 @@ class HandlesController extends ApiController
      */
     public function store(Requests\StoreHandle $request)
     {
+        $this->authorize('create', Handle::class);
 
         $handle = $this->handle->create($request->only([
             'handleable_id', 'handleable_type', 'url'
@@ -73,6 +76,8 @@ class HandlesController extends ApiController
     {
         $handle = $this->get($id);
 
+        $this->authorize('view', $handle);
+
         return response()->json($handle);
     }
 
@@ -87,6 +92,8 @@ class HandlesController extends ApiController
     public function update(Requests\UpdateHandle $request, $id)
     {
         $handle = $this->get($id);
+
+        $this->authorize('update', $handle);
 
         $handle->update($request->all());
 
@@ -104,6 +111,8 @@ class HandlesController extends ApiController
     public function destroy($id)
     {
         $handle = $this->get($id);
+
+        $this->authorize('delete', $handle);
 
         $handle->delete();
 
