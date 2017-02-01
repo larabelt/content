@@ -10,19 +10,18 @@
 | database. Just tell the factory how a default model should look.
 |
 */
-use Ohio\Storage\File;
+use Ohio\Content\Page;
 
-$factory->define(Ohio\Content\Tout::class, function (Faker\Generator $faker) {
+$factory->define(Ohio\Content\Section::class, function (Faker\Generator $faker) {
 
-    $file = factory(File::class)->create();
+    $page = Page::inRandomOrder()->first(['pages.id']);
 
     return [
-        'file_id' => $file ? $file->id : null,
-        'name' => $faker->words(3, true),
+        'page_id' => $page ? $page->id : null,
         'template' => 'default',
-        'heading' => $faker->words(random_int(1, 5), true),
+        'class' => $faker->words(random_int(1, 5), true),
+        'header' => $faker->paragraphs(3, true),
         'body' => $faker->paragraphs(3, true),
-        'btn_text' => $faker->randomElement(['click here', 'click', 'learn more']),
-        'btn_url' => $faker->url,
+        'footer' => $faker->paragraphs(3, true),
     ];
 });

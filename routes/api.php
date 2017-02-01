@@ -40,6 +40,13 @@ Route::group([
         Route::get('pages', Content\Http\Controllers\Api\PagesController::class . '@index');
         Route::post('pages', Content\Http\Controllers\Api\PagesController::class . '@store');
 
+        # sections
+        Route::get('sections/{id}', Content\Http\Controllers\Api\SectionsController::class . '@show');
+        Route::put('sections/{id}', Content\Http\Controllers\Api\SectionsController::class . '@update');
+        Route::delete('sections/{id}', Content\Http\Controllers\Api\SectionsController::class . '@destroy');
+        Route::get('sections', Content\Http\Controllers\Api\SectionsController::class . '@index');
+        Route::post('sections', Content\Http\Controllers\Api\SectionsController::class . '@store');
+
         # tags
         Route::get('tags/{id}', Content\Http\Controllers\Api\TagsController::class . '@show');
         Route::put('tags/{id}', Content\Http\Controllers\Api\TagsController::class . '@update');
