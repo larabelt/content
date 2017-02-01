@@ -1,4 +1,4 @@
-import headingTemplate from 'ohio/core/js/templates/base/heading';
+import headingTemplate from 'ohio/core/js/templates/base/heading.html';
 import pageService from './service';
 import pageIndexTemplate from './templates/index';
 
