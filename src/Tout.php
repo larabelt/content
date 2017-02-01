@@ -6,14 +6,14 @@ use Ohio\Content;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Block extends Model
+class Tout extends Model
 {
     use Core\Behaviors\SluggableTrait;
     use Content\Behaviors\ContentTrait;
 
-    protected $morphClass = 'blocks';
+    protected $morphClass = 'touts';
 
-    protected $table = 'blocks';
+    protected $table = 'touts';
 
     protected $fillable = ['name', 'body'];
 

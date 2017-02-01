@@ -54,5 +54,12 @@ Route::group([
             Route::get('', Content\Http\Controllers\Api\TaggablesController::class . '@index');
             Route::post('', Content\Http\Controllers\Api\TaggablesController::class . '@store');
         });
+
+        # touts
+        Route::get('touts/{id}', Content\Http\Controllers\Api\ToutsController::class . '@show');
+        Route::put('touts/{id}', Content\Http\Controllers\Api\ToutsController::class . '@update');
+        Route::delete('touts/{id}', Content\Http\Controllers\Api\ToutsController::class . '@destroy');
+        Route::get('touts', Content\Http\Controllers\Api\ToutsController::class . '@index');
+        Route::post('touts', Content\Http\Controllers\Api\ToutsController::class . '@store');
     }
 );

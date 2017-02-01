@@ -21,6 +21,7 @@ class OhioContentServiceProvider extends ServiceProvider
         Ohio\Content\Handle::class => Ohio\Content\Policies\HandlePolicy::class,
         Ohio\Content\Page::class => Ohio\Content\Policies\PagePolicy::class,
         Ohio\Content\Tag::class => Ohio\Content\Policies\TagPolicy::class,
+        Ohio\Content\Tout::class => Ohio\Content\Policies\ToutPolicy::class,
     ];
 
     /**
@@ -58,6 +59,7 @@ class OhioContentServiceProvider extends ServiceProvider
             'handles' => Ohio\Content\Handle::class,
             'pages' => Ohio\Content\Page::class,
             'tags' => Ohio\Content\Tag::class,
+            'touts' => Ohio\Content\Tout::class,
         ]);
 
         // commands

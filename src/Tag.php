@@ -11,7 +11,7 @@ class Tag extends Model
     use Core\Behaviors\SluggableTrait;
     use Content\Behaviors\ContentTrait;
 
-    protected $morphClass = 'content/tag';
+    protected $morphClass = 'tags';
 
     protected $table = 'tags';
 

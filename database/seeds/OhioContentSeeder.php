@@ -14,5 +14,6 @@ class OhioContentSeeder extends Seeder
         $this->call(OhioContentPageSeeds::class);
         $this->call(OhioContentBlockSeeds::class);
         $this->call(OhioContentTagSeeds::class);
+        $this->call(OhioContentToutSeeds::class);
     }
 }

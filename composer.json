@@ -13,7 +13,8 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "ohiocms/core": "dev-master"
+    "ohiocms/core": "dev-master",
+    "ohiocms/storage": "dev-master"
   },
   "autoload": {
     "psr-4": {
