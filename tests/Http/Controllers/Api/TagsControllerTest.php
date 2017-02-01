@@ -35,6 +35,8 @@ class TagsControllerTest extends Testing\OhioTestCase
     public function test()
     {
 
+        $this->actAsSuper();
+
         $tag1 = factory(Tag::class)->make();
 
         $qbMock = $this->getPaginateQBMock(new PaginateTags(), [$tag1]);

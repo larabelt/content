@@ -31,6 +31,9 @@ class TaggablesControllerTest extends Testing\OhioTestCase
      */
     public function test()
     {
+
+        $this->actAsSuper();
+
         // mock page
         Page::unguard();
         $page1 = new Page();

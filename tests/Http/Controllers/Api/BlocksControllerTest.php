@@ -34,6 +34,7 @@ class BlocksControllerTest extends Testing\OhioTestCase
      */
     public function test()
     {
+        $this->actAsSuper();
 
         $block1 = factory(Block::class)->make();
 

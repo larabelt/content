@@ -34,6 +34,7 @@ class HandlesControllerTest extends Testing\OhioTestCase
      */
     public function test()
     {
+        $this->actAsSuper();
 
         $handle1 = factory(Handle::class)->make();
 

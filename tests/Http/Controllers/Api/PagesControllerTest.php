@@ -34,6 +34,7 @@ class PagesControllerTest extends Testing\OhioTestCase
      */
     public function test()
     {
+        $this->actAsSuper();
 
         $page1 = factory(Page::class)->make();
 
