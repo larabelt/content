@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Kalnoy\Nestedset\NestedSet;
 
 class OhioCreateSectionsTable extends Migration
 {
@@ -14,13 +15,15 @@ class OhioCreateSectionsTable extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('page_id');
+            $table->integer('page_id')->nullable();
+            $table->integer('sectionable_id')->nullable();
+            $table->string('sectionable_type')->nullable();
+            NestedSet::columns($table);
             $table->string('template')->default('default');
-            $table->string('class')->nullable();
             $table->text('header')->nullable();
             $table->text('body')->nullable();
             $table->text('footer')->nullable();
-            $table->integer('position')->nullable()->default(1);
+            $table->text('params')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

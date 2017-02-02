@@ -3,11 +3,13 @@ namespace Ohio\Content;
 
 use Ohio;
 use Illuminate\Database\Eloquent\Model;
-use Rutorika\Sortable\SortableTrait;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Kalnoy\Nestedset\NodeTrait;
 
-class Section extends Model
-{
-    use SortableTrait;
+class Section extends Model {
+
+    use NodeTrait;
+    use Ohio\Core\Behaviors\ParamsTrait;
     use Ohio\Content\Behaviors\ContentTrait;
 
     protected $morphClass = 'sections';
@@ -21,6 +23,21 @@ class Section extends Model
     public function setTemplateAttribute($value)
     {
         $this->attributes['template'] = trim(strtolower($value));
+    }
+
+    /**
+     * The Associated owning model
+     *
+     * @return MorphTo|Model
+     */
+    public function sectionable()
+    {
+        return $this->morphTo();
+    }
+
+    public function getIsContainerAttribute()
+    {
+        return $this->page_id;
     }
 
 }

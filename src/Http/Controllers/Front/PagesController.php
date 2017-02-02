@@ -2,6 +2,7 @@
 
 namespace Ohio\Content\Http\Controllers\Front;
 
+use Illuminate\Http\Request;
 use Ohio\Core\Http\Controllers\BaseController;
 use Ohio\Content\Page;
 
@@ -36,11 +37,13 @@ class PagesController extends BaseController
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $page = $this->get($id);
 
-        return view('ohio-content::page.front.show', compact('page'));
+        $template = $request->get('preview') ? 'preview' : 'show';
+
+        return view("ohio-content::page.front.$template", compact('page'));
     }
 
 }

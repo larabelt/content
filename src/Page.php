@@ -1,18 +1,18 @@
 <?php
 namespace Ohio\Content;
 
+use Ohio;
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Core;
-use Ohio\Content;
-use Ohio\Storage;
 
 class Page extends Model
+    //implements Ohio\Content\Behaviors\IncludeInterface
 {
-    use Core\Behaviors\SluggableTrait;
-    use Content\Behaviors\ContentTrait;
-    use Content\Behaviors\HandleableTrait;
-    use Content\Behaviors\TaggableTrait;
-    use Storage\Behaviors\FileableTrait;
+    use Ohio\Core\Behaviors\SluggableTrait;
+    use Ohio\Content\Behaviors\ContentTrait;
+    use Ohio\Content\Behaviors\HandleableTrait;
+    use Ohio\Content\Behaviors\IncludeTrait;
+    use Ohio\Content\Behaviors\TaggableTrait;
+    use Ohio\Storage\Behaviors\FileableTrait;
 
     protected $morphClass = 'pages';
 
@@ -26,6 +26,11 @@ class Page extends Model
         [300, 300, 'fit'],
         [500, 500, 'fit'],
     ];
+
+    public function sections()
+    {
+        return $this->hasMany(Section::class);
+    }
 
     public function setTemplateAttribute($value)
     {

@@ -21,7 +21,7 @@ $factory->define(Ohio\Content\Tout::class, function (Faker\Generator $faker) {
         'name' => $faker->words(3, true),
         'template' => 'default',
         'heading' => $faker->words(random_int(1, 5), true),
-        'body' => $faker->paragraphs(3, true),
+        'body' => $faker->words(random_int(5, 20), true),
         'btn_text' => $faker->randomElement(['click here', 'click', 'learn more']),
         'btn_url' => $faker->url,
     ];

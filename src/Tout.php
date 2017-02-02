@@ -5,6 +5,7 @@ use Ohio\Core;
 use Ohio\Content;
 
 use Illuminate\Database\Eloquent\Model;
+use Ohio\Storage\File;
 
 class Tout extends Model
 {
@@ -20,6 +21,11 @@ class Tout extends Model
     public function setTemplateAttribute($value)
     {
         $this->attributes['template'] = trim(strtolower($value));
+    }
+
+    public function image()
+    {
+        return $this->belongsTo(File::class, 'file_id');
     }
 
 }

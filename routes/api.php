@@ -15,7 +15,7 @@ use Ohio\Content;
 
 Route::group([
     'prefix' => 'api/v1',
-    'middleware' => ['web', 'auth', 'api']
+    'middleware' => ['web', 'auth.basic', 'api']
 ],
     function () {
 

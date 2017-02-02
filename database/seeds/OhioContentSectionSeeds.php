@@ -14,6 +14,6 @@ class OhioContentSectionSeeds extends Seeder
      */
     public function run()
     {
-        factory(Section::class, 25)->create();
+        //factory(Section::class, 25)->create();
     }
 }

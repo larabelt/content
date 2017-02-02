@@ -14,6 +14,6 @@ class OhioContentToutSeeds extends Seeder
      */
     public function run()
     {
-        factory(Tout::class, 25)->create();
+        factory(Tout::class, 5)->create();
     }
 }

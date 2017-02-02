@@ -18,11 +18,11 @@ class OhioCreatePagesTable extends Migration
             $table->string('template')->default('default');
             $table->string('name');
             $table->string('slug')->index();
-            $table->text('body');
-            $table->text('compiled')->nullable();
+            $table->text('body')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->text('meta_keywords')->nullable();
+            $table->text('compiled')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
