@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Section extends Model {
+class Section extends Model
+    implements Ohio\Core\Behaviors\ParamableInterface,
+    Ohio\Content\Behaviors\TemplateInterface
+{
 
     use NodeTrait;
-    use Ohio\Core\Behaviors\ParamsTrait;
+    use Ohio\Core\Behaviors\ParamableTrait;
     use Ohio\Content\Behaviors\ContentTrait;
+    use Ohio\Content\Behaviors\TemplateTrait;
 
     protected $morphClass = 'sections';
 
@@ -19,11 +23,6 @@ class Section extends Model {
     protected $fillable = ['name', 'body'];
 
     protected static $sortableGroupField = 'page_id';
-
-    public function setTemplateAttribute($value)
-    {
-        $this->attributes['template'] = trim(strtolower($value));
-    }
 
     /**
      * The Associated owning model
@@ -35,9 +34,12 @@ class Section extends Model {
         return $this->morphTo();
     }
 
-    public function getIsContainerAttribute()
+    public function getSectionViewAttribute()
     {
-        return $this->page_id;
+
+        $key = sprintf('ohio.content.sections.%s', $this->sectionable_type);
+
+        return config("$key.$this->template.view") ?: config("$key.default.view");
     }
 
 }

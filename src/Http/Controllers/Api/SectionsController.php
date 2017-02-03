@@ -57,14 +57,17 @@ class SectionsController extends ApiController
         $input = $request->all();
 
         $section = $this->sections->create([
-            'name' => $input['name'],
-            'body' => $input['body'],
+            'sectionable_id' => $input['sectionable_id'],
+            'sectionable_type' => $input['sectionable_type'],
         ]);
 
         $this->set($section, $input, [
+            'page_id',
+            'parent_id',
             'template',
-            'slug',
+            'header',
             'body',
+            'footer',
         ]);
 
         $section->save();

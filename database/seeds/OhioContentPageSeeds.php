@@ -1,5 +1,6 @@
 <?php
 
+use Ohio\Core\Param;
 use Ohio\Content\Block;
 use Ohio\Content\Page;
 use Ohio\Content\Handle;
@@ -36,11 +37,11 @@ class OhioContentPageSeeds extends Seeder
         # section w/embed
         $section = $this->section($page);
         $this->block($section, [], ['class' => 'col-md-6']);
-        $this->embed($section, ['template' => 'ohio-core::contact.sections.default'], ['class' => 'col-md-6']);
+        $this->embed($section, ['template' => 'contact'], ['class' => 'col-md-6']);
 
         # section w/block
         $block = factory(Block::class)->create();
-        $this->section($page, $block, ['template' => 'ohio-content::block.sections.default']);
+        $this->section($page, $block, []);
 
         # section w/file
         $section = $this->section($page);
@@ -69,31 +70,42 @@ class OhioContentPageSeeds extends Seeder
             });;
     }
 
-    public function section($owner, $sectionable = null, $options = [], $params = [])
+    public function section($owner, $sectionable = 'sections', $options = [], $params = [])
     {
 
         $page = $owner instanceof Page ? $owner : null;
 
         $parent = $owner instanceof Section ? $owner : null;
 
+        $sectionable_id = null;
+        $sectionable_type = $sectionable;
+        if ($sectionable && is_object($sectionable)) {
+            $sectionable_id = $sectionable->id;
+            $sectionable_type = $sectionable->getMorphClass();
+        }
+
         $section = factory(Section::class)->create([
-            'template' => array_get($options, 'template', 'ohio-content::section.sections.default'),
+            'template' => array_get($options, 'template', 'default'),
             'parent_id' => $parent ? $parent->id : null,
             'page_id' => $page ? $page->id : null,
-            'sectionable_id' => $sectionable ? $sectionable->id : null,
-            'sectionable_type' => $sectionable ? $sectionable->getMorphClass() : null,
-            'params' => $params,
+            'sectionable_id' => $sectionable_id,
+            'sectionable_type' => $sectionable_type,
+            //'params' => $params,
             'header' => array_get($options, 'header', null),
             'body' => array_get($options, 'body', null),
             'footer' => array_get($options, 'footer', null),
         ]);
+
+        foreach ($params as $key => $value) {
+            $section->saveParam($key, $value);
+        }
 
         return $section;
     }
 
     public function block($parent, $options = [], $params = [])
     {
-        $options = array_merge(['template' => 'ohio-content::block.sections.default'], $options);
+        $options = array_merge(['template' => 'default'], $options);
 
         $params = array_merge(['class' => 'col-md-4'], $params);
 
@@ -106,12 +118,12 @@ class OhioContentPageSeeds extends Seeder
     {
         $params = array_merge(['class' => 'col-md-12'], $params);
 
-        $this->section($parent, null, $options, $params);
+        $this->section($parent, 'embeds', $options, $params);
     }
 
     public function file($parent, $options = [], $params = [])
     {
-        $options = array_merge(['template' => 'ohio-storage::file.sections.default'], $options);
+        $options = array_merge(['template' => 'default'], $options);
 
         $params = array_merge(['class' => 'col-md-12'], $params);
 
@@ -122,7 +134,7 @@ class OhioContentPageSeeds extends Seeder
 
     public function tout($parent, $options = [], $params = [])
     {
-        $options = array_merge(['template' => 'ohio-content::tout.sections.default'], $options);
+        $options = array_merge(['template' => 'default'], $options);
 
         $params = array_merge(['class' => 'col-md-4'], $params);
 

@@ -2,18 +2,16 @@
 
 use Mockery as m;
 use Ohio\Core\Testing;
-
+use Ohio\Content\Http\Controllers\Web\PagesController;
 use Ohio\Content\Page;
-use Ohio\Content\Http\Controllers\Front\PagesController;
-
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Ohio\Content\Services\CompileService;
 use Illuminate\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class FrontControllerTest extends Testing\OhioTestCase
+class WebControllerTest extends Testing\OhioTestCase
 {
+    use Testing\CommonMocks;
 
     public function tearDown()
     {
@@ -21,9 +19,10 @@ class FrontControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Http\Controllers\Front\PagesController::__construct
-     * @covers \Ohio\Content\Http\Controllers\Front\PagesController::get
-     * @covers \Ohio\Content\Http\Controllers\Front\PagesController::show
+     * @covers \Ohio\Content\Http\Controllers\Web\PagesController::__construct
+     * @covers \Ohio\Content\Http\Controllers\Web\PagesController::get
+     * @covers \Ohio\Content\Http\Controllers\Web\PagesController::show
+     * @covers \Ohio\Content\Http\Controllers\Web\PagesController::preview
      */
     public function test()
     {
@@ -43,8 +42,13 @@ class FrontControllerTest extends Testing\OhioTestCase
         $pageRepository->shouldReceive('where')->with('slug', $page1->slug)->andReturn($page1QBMock);
         $pageRepository->shouldReceive('where')->with('id', 999)->andReturn($pageNullQBMock);
 
+        $service = m::mock(CompileService::class);
+        $service->shouldReceive('cache')->once()->with($page1)->andReturn('compiled');
+        $service->shouldReceive('compile')->once()->with($page1)->andReturn('compiled');
+
         # construct
         $controller = new PagesController($pageRepository);
+        $controller->service = $service;
         $this->assertEquals($pageRepository, $controller->page);
 
         # get existing page
@@ -62,6 +66,12 @@ class FrontControllerTest extends Testing\OhioTestCase
 
         # show page
         $response = $controller->show(1);
+        $this->assertInstanceOf(View::class, $response);
+        $this->assertEquals($page1->name, array_get($response->getData(), 'page.name'));
+
+        # preview
+        $this->actAsSuper();
+        $response = $controller->preview(1);
         $this->assertInstanceOf(View::class, $response);
         $this->assertEquals($page1->name, array_get($response->getData(), 'page.name'));
 

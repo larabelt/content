@@ -9,8 +9,11 @@ class StoreSection extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:sections,name',
-            'body' => 'required',
+            'page_id' => 'required',
+            'parent_id' => 'required',
+            'sectionable_id' => 'required',
+            'sectionable_type' => 'required',
+            'template' => 'required',
         ];
     }
 

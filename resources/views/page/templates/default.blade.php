@@ -7,7 +7,7 @@
     @endif
 
     @foreach($page->sections as $section)
-        @include($section->template, ['section' => $section])
+        @include($section->section_view, ['section' => $section])
     @endforeach
 
 </div>

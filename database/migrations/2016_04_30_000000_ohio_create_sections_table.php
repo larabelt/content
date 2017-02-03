@@ -23,7 +23,6 @@ class OhioCreateSectionsTable extends Migration
             $table->text('header')->nullable();
             $table->text('body')->nullable();
             $table->text('footer')->nullable();
-            $table->text('params')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

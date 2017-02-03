@@ -1,27 +1,49 @@
 <?php
 namespace Ohio\Content\Services;
 
-use Ohio, View;
+use Ohio, Cache;
 use Ohio\Content\Page;
-use Ohio\Content\Section;
-use Illuminate\Database\Eloquent\Model;
 
 class CompileService
 {
 
-    //config for template/view-paths
-    //how to share above
-    //move template to TemplateTrait
     //sectionable: menu, breadcrumbs
+
+    public function __construct()
+    {
+        $this->pages = new Page();
+    }
 
     public function pages()
     {
-        $pages = Page::where('id', 1)->get();
-        foreach ($pages as $page) {
-            $html = view("ohio-content::page.templates.default", compact('page'));
-            $page->compiled = $html;
-            $page->save();
+        $qb = $this->pages->query();
+        $qb->where('slug', 'sectioned');
+
+        foreach ($qb->get() as $page) {
+            $this->cache($page, true);
         }
+    }
+
+    public function compile($page)
+    {
+        return view($page->template, compact('page'))->render();
+    }
+
+    public function cache($page, $force = false)
+    {
+        $compiled = Cache::get('pages:' . $page->id) ?: $this->compile($page);
+
+        if (!$compiled || $force) {
+            $compiled = $this->compile($page);
+        }
+
+        if ($force) {
+            Cache::put('pages:' . $page->id, $compiled, 3600);
+        } else {
+            Cache::add('pages:' . $page->id, $compiled, 3600);
+        }
+
+        return $compiled;
     }
 
 }

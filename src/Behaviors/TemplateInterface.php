@@ -1,7 +1,7 @@
 <?php
 namespace Ohio\Content\Behaviors;
 
-trait SectionableTrait
+interface TemplateInterface
 {
 
 

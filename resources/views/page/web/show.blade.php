@@ -7,7 +7,7 @@
 @section('main')
 
     <div class="container">
-        {!! $page->compiled  !!}
+        {!! $compiled !!}
     </div>
 
 @endsection

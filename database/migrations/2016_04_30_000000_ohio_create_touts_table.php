@@ -15,7 +15,6 @@ class OhioCreateToutsTable extends Migration
         Schema::create('touts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('file_id')->nullable();
-            $table->string('template')->default('default');
             $table->string('name');
             $table->string('slug')->index();
             $table->string('heading')->nullable();
