@@ -21,7 +21,7 @@ export default `
         </div>
         <div class="form-group" v-bind:class="{ 'has-error': errors.body }">
             <label for="body">Body</label>
-            <textarea class="form-control" rows="10" v-model="item.body"></textarea>
+            <textarea class="form-control" rows="10" v-model="item.body" v-tinymce="'body'"></textarea>
             <span class="help-block" v-show="errors.body">{{ errors.body }}</span>
         </div>
         <div class="text-right">
