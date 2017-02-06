@@ -19,7 +19,6 @@
     }
   ],
   "require": {
-    "lavary/laravel-menu": "dev-ohiocms",
     "ohiocms/core": "dev-master",
     "ohiocms/storage": "dev-master"
   },
