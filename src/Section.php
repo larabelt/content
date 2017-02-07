@@ -34,10 +34,10 @@ class Section extends Model
         return $this->morphTo();
     }
 
-    public function getSectionViewAttribute()
+    public function getTemplateViewAttribute()
     {
 
-        $key = sprintf('ohio.content.sections.%s', $this->sectionable_type);
+        $key = sprintf('ohio.content.templates.%s', $this->sectionable_type);
 
         return config("$key.$this->template.view") ?: config("$key.default.view");
     }

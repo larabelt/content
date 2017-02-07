@@ -26,7 +26,7 @@ class CompileService
 
     public function compile($page)
     {
-        return view($page->template, compact('page'))->render();
+        return view($page->template_view, compact('page'))->render();
     }
 
     public function cache($page, $force = false)

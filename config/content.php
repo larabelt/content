@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'sections' => [
+    'templates' => [
         'blocks' => [
             'default' => [
                 'label' => 'Default Block',
@@ -30,6 +30,12 @@ return [
                 'view' => 'ohio-menu::menu.sections.default'
             ],
         ],
+        'pages' => [
+            'default' => [
+                'label' => 'Default Page',
+                'view' => 'ohio-content::page.templates.default'
+            ]
+        ],
         'sections' => [
             'default' => [
                 'label' => 'Default Tout',
@@ -42,5 +48,8 @@ return [
                 'view' => 'ohio-content::tout.sections.default'
             ],
         ],
+    ],
+    'sections' => [
+
     ]
 ];

@@ -10,7 +10,6 @@ class StorePage extends FormRequest
     {
         return [
             'name' => 'required',
-            'body' => 'required',
         ];
     }
 

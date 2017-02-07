@@ -27,7 +27,7 @@ class OhioContentPageSeeds extends Seeder
         $page = Page::first();
         Section::where('page_id', $page->id)->delete();
         $data = factory(Page::class)->make([
-            'template' => 'ohio-content::page.templates.default',
+            'template' => 'default',
             'is_active' => true,
             'slug' => 'sectioned',
             'body' => null

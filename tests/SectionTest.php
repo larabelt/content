@@ -8,7 +8,7 @@ class SectionTest extends OhioTestCase
 {
     /**
      * @covers \Ohio\Content\Section::sectionable
-     * @covers \Ohio\Content\Section::getSectionViewAttribute
+     * @covers \Ohio\Content\Section::getTemplateViewAttribute
      */
     public function test()
     {
@@ -29,9 +29,9 @@ class SectionTest extends OhioTestCase
             ],
         ]);
         $section->template = 'missing';
-        $this->assertEquals('ohio-content::section.sections.default', $section->section_view);
+        $this->assertEquals('ohio-content::section.sections.default', $section->template_view);
         $section->template = 'SectionTest';
-        $this->assertEquals('ohio-content::section.sections.test', $section->section_view);
+        $this->assertEquals('ohio-content::section.sections.test', $section->template_view);
     }
 
 }
