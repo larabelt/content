@@ -9,6 +9,10 @@ return [
             ],
         ],
         'embeds' => [
+            'breadcrumbs' => [
+                'label' => 'Breadcrumbs',
+                'view' => 'ohio-menu::menu.sections.breadcrumbs'
+            ],
             'contact' => [
                 'label' => 'Contact Form',
                 'view' => 'ohio-core::contact.sections.default'
@@ -18,6 +22,12 @@ return [
             'default' => [
                 'label' => 'Default File',
                 'view' => 'ohio-storage::file.sections.default'
+            ],
+        ],
+        'menus' => [
+            'default' => [
+                'label' => 'Example Menu',
+                'view' => 'ohio-menu::menu.sections.default'
             ],
         ],
         'sections' => [

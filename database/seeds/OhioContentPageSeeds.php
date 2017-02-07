@@ -34,6 +34,21 @@ class OhioContentPageSeeds extends Seeder
         ]);
         $page->update($data->toArray());
 
+        # section w/breadcrumbs
+        $section = $this->section($page);
+        $this->embed($section, ['template' => 'breadcrumbs'], [
+            'menu' => 'example',
+            'active' => '/products/tools/weird'
+        ]);
+
+        # section w/menus
+        $section = $this->section($page);
+        $this->menu($section, ['template' => 'example'], [
+            'menu' => 'example',
+            'active' => '/products/tools/weird'
+        ]);
+        $this->block($section, [], ['class' => 'col-md-9']);
+
         # section w/embed
         $section = $this->section($page);
         $this->block($section, [], ['class' => 'col-md-6']);
@@ -130,6 +145,13 @@ class OhioContentPageSeeds extends Seeder
         $file = factory(File::class)->create();
 
         $this->section($parent, $file, $options, $params);
+    }
+
+    public function menu($parent, $options = [], $params = [])
+    {
+        $params = array_merge(['class' => 'col-md-3'], $params);
+
+        $this->section($parent, 'menus', $options, $params);
     }
 
     public function tout($parent, $options = [], $params = [])
