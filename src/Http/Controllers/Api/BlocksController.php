@@ -83,7 +83,7 @@ class BlocksController extends ApiController
     {
         $block = $this->get($id);
 
-        $this->authorize('create', $block);
+        $this->authorize('view', $block);
 
         return response()->json($block);
     }

@@ -18,6 +18,7 @@ class OhioContentServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Ohio\Content\Block::class => Ohio\Content\Policies\BlockPolicy::class,
+        Ohio\Content\Category::class => Ohio\Content\Policies\CategoryPolicy::class,
         Ohio\Content\Handle::class => Ohio\Content\Policies\HandlePolicy::class,
         Ohio\Content\Page::class => Ohio\Content\Policies\PagePolicy::class,
         Ohio\Content\Section::class => Ohio\Content\Policies\SectionPolicy::class,
@@ -68,6 +69,10 @@ class OhioContentServiceProvider extends ServiceProvider
         $this->commands(Ohio\Content\Commands\CompileCommand::class);
         $this->commands(Ohio\Content\Commands\PublishCommand::class);
 
+        // routes
+        $router->model('category', Ohio\Content\Category::class);
+
+        // validators
         Validator::extend('unique_route', Ohio\Content\Validators\RouteValidator::class . '@routeIsUnique');
     }
 

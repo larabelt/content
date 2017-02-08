@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 
 use Ohio\Content\Section;
-use Ohio\Content\Handle;
 
 class OhioContentSectionSeeds extends Seeder
 {

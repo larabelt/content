@@ -18,7 +18,7 @@ class SectionTest extends OhioTestCase
         $this->assertInstanceOf(MorphTo::class, $section->sectionable());
 
         # getSectionViewAttribute
-        app()['config']->set('ohio.content.sections.sections', [
+        app()['config']->set('ohio.content.templates.sections', [
             'default' => [
                 'label' => 'Default Tout',
                 'view' => 'ohio-content::section.sections.default'

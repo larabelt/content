@@ -83,7 +83,7 @@ class ToutsController extends ApiController
     {
         $tout = $this->get($id);
 
-        $this->authorize('create', $tout);
+        $this->authorize('view', $tout);
 
         return response()->json($tout);
     }

@@ -86,7 +86,7 @@ class SectionsController extends ApiController
     {
         $section = $this->get($id);
 
-        $this->authorize('create', $section);
+        $this->authorize('view', $section);
 
         return response()->json($section);
     }

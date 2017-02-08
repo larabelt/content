@@ -1,26 +1,38 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
-use Ohio\Content\Behaviors\TemplateTrait;
+use Ohio\Core\Testing;
+use Ohio\Content\Page;
 
-class TemplateTraitTest extends \PHPUnit_Framework_TestCase
+class TemplateTraitTest extends Testing\OhioTestCase
 {
 
     /**
      * @covers \Ohio\Content\Behaviors\TemplateTrait::setTemplateAttribute
+     * @covers \Ohio\Content\Behaviors\TemplateTrait::getTemplateViewAttribute
      */
     public function test()
     {
-        $templateStub = new TemplateTraitTestStub();
+        $templateStub = new Page();
 
         # template
         $templateStub->setTemplateAttribute(' Test ');
         $this->assertEquals('test', $templateStub->template);
+
+        # template_view
+        app()['config']->set('ohio.content.templates.pages', [
+            'default' => [
+                'label' => 'Default Page',
+                'view' => 'ohio-content::page.sections.default'
+            ],
+            'pagetest' => [
+                'label' => 'Test Page',
+                'view' => 'ohio-content::page.sections.test'
+            ],
+        ]);
+        $templateStub->template = 'missing';
+        $this->assertEquals('ohio-content::page.sections.default', $templateStub->template_view);
+        $templateStub->template = 'PageTest';
+        $this->assertEquals('ohio-content::page.sections.test', $templateStub->template_view);
     }
 
-}
-
-class TemplateTraitTestStub extends Model
-{
-    use TemplateTrait;
 }
