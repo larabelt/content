@@ -72,7 +72,7 @@ class SectionsController extends ApiController
 
         $section->save();
 
-        return response()->json($section);
+        return response()->json($section, 201);
     }
 
     /**

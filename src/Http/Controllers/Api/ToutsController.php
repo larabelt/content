@@ -69,7 +69,7 @@ class ToutsController extends ApiController
 
         $tout->save();
 
-        return response()->json($tout);
+        return response()->json($tout, 201);
     }
 
     /**

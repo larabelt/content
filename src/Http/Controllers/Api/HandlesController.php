@@ -62,7 +62,7 @@ class HandlesController extends ApiController
             'handleable_id', 'handleable_type', 'url'
         ]));
 
-        return response()->json($handle);
+        return response()->json($handle, 201);
     }
 
     /**

@@ -69,7 +69,7 @@ class BlocksController extends ApiController
 
         $block->save();
 
-        return response()->json($block);
+        return response()->json($block, 201);
     }
 
     /**

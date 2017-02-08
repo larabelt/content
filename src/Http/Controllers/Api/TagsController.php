@@ -68,7 +68,7 @@ class TagsController extends ApiController
 
         $tag->save();
 
-        return response()->json($tag);
+        return response()->json($tag, 201);
     }
 
     /**
