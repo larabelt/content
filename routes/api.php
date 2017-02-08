@@ -33,6 +33,18 @@ Route::group([
         Route::get('categories', Api\CategoriesController::class . '@index');
         Route::post('categories', Api\CategoriesController::class . '@store');
 
+        # categorizables
+        Route::group([
+            'prefix' => '{categorizable_type}/{categorizable_id}/categories',
+            'middleware' => 'request.injections:categorizable_type,categorizable_id'
+        ], function () {
+            Route::get('{id}', Api\CategorizablesController::class . '@show');
+            Route::put('{id}', Api\CategorizablesController::class . '@update');
+            Route::delete('{id}', Api\CategorizablesController::class . '@destroy');
+            Route::get('', Api\CategorizablesController::class . '@index');
+            Route::post('', Api\CategorizablesController::class . '@store');
+        });
+
         # handles
         Route::get('handles/{id}', Api\HandlesController::class . '@show');
         Route::put('handles/{id}', Api\HandlesController::class . '@update');
