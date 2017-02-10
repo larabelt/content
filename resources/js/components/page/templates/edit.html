@@ -1,0 +1,26 @@
+<div>
+    <heading>
+        <span slot="title">Page Editor</span>
+        <li><router-link :to="{ name: 'pageIndex' }">Pages</router-link></li>
+    </heading>
+    <section class="content">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs pull-right">
+                <li :class="{active: tabs.show('main')}"><a href="" data-toggle="tab" aria-expanded="false" @click="tabs.set('main')">Main</a></li>
+                <li :class="{active: tabs.show('handles')}"><a href="" data-toggle="tab" aria-expanded="false" @click="tabs.set('handles')">Handles</a></li>
+                <li :class="{active: tabs.show('tags')}"><a href="" data-toggle="tab" aria-expanded="false" @click="tabs.set('tags')">Tags</a></li>
+            </ul>
+            <div class="tab-content">
+                <div v-show="tabs.show('main')" class="tab-pane active">
+                    <page-form></page-form>
+                </div>
+                <div v-show="tabs.show('handles')" class="tab-pane active">
+                    <handleable></handleable>
+                </div>
+                <div v-show="tabs.show('tags')" class="tab-pane active">
+                    <taggable></taggable>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

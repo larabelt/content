@@ -1,36 +1,19 @@
-import headingTemplate from 'ohio/core/js/templates/base/heading.html';
-import pageService from './service';
-import pageFormTemplate from './templates/form';
+import headingTemplate from 'ohio/core/js/templates/heading2.html';
+import createTemplate from './templates/create.html';
+import formTemplate from './templates/form.html';
+import PageForm from './form';
 
 export default {
     components: {
-        'heading': {
+        heading: { template: headingTemplate },
+        pageForm: {
             data() {
                 return {
-                    title: 'Page Creator',
-                    subtitle: '',
-                    crumbs: [
-                        {route: 'pageIndex', text: 'Pages'}
-                    ],
+                    form: new PageForm({router: this.$router}),
                 }
             },
-            'template': headingTemplate
-        },
-        'page-form': {
-            mixins: [pageService],
-            template: pageFormTemplate,
+            template: formTemplate,
         },
     },
-    template: `
-        <div>
-            <heading></heading>
-            <section class="content">
-                <div class="box">
-                    <div class="box-body">
-                        <page-form></page-form>
-                    </div>
-                </div>
-            </section>
-        </div>
-        `
+    template: createTemplate
 }

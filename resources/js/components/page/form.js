@@ -1,20 +1,15 @@
 import BaseForm from 'ohio/core/js/helpers/form';
 import BaseService from 'ohio/core/js/helpers/service';
 
-class CategoryForm extends BaseForm {
+class PageForm extends BaseForm {
 
-
-    /**
-     * Create a new Form instance.
-     *
-     * @param {object} options
-     */
     constructor(options = {}) {
         super(options);
-        this.service = new BaseService({baseUrl: '/api/v1/categories/'});
-        this.routeEditName = 'categoryEdit';
+        this.service = new BaseService({baseUrl: '/api/v1/pages/'});
+        this.routeEditName = 'pageEdit';
         this.setData({
             id: '',
+            is_active: 0,
             name: '',
             slug: '',
             body: '',
@@ -23,4 +18,4 @@ class CategoryForm extends BaseForm {
 
 }
 
-export default CategoryForm;
+export default PageForm;
