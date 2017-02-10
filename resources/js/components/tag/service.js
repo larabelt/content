@@ -18,7 +18,7 @@ export default {
                 this.items = response.data.data;
                 this.paginator = this.setPaginator(response);
             }, function (response) {
-                console.log('error');
+
             });
         },
         get() {

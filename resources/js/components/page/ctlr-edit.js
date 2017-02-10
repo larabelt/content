@@ -1,10 +1,17 @@
+
+// helpers
 import Tabs from 'ohio/core/js/helpers/tabs';
-import headingTemplate from 'ohio/core/js/templates/heading2.html';
-import editTemplate from './templates/edit.html';
-import formTemplate from './templates/form.html';
 import Form from './form';
-import handleable from '../handle/ctlr-edit';
-import taggable from '../tag/taggable/ctlr-edit';
+
+// components
+import categories from '../categorizable/ctlr-edit';
+import handles from '../handle/ctlr-edit';
+import tags from '../tag/taggable/ctlr-edit';
+
+// templates
+import heading_html from 'ohio/core/js/templates/heading2.html';
+import edit_html from './templates/edit.html';
+import form_html from './templates/form.html';
 
 export default {
     data() {
@@ -15,22 +22,21 @@ export default {
         }
     },
     components: {
-        heading: {template: headingTemplate},
-        pageForm: {
+        heading: {template: heading_html},
+        edit: {
             data() {
                 return {
                     form: new Form(),
                 }
             },
             mounted() {
-                //this.$route.push({hash: 'foo'});
-                //this.$router.push({hash: 'foo'});
                 this.form.show(this.$route.params.id);
             },
-            template: formTemplate,
+            template: form_html,
         },
-        handleable,
-        taggable,
+        categories,
+        handles,
+        tags,
     },
-    template: editTemplate,
+    template: edit_html,
 }

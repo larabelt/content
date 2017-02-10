@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PaginateCategorizables extends PaginateCategories
 {
-    public $perPage = 5;
+    public $perPage = 10;
 
-    public $orderBy = 'categorizables.position';
+    public $orderBy = 'categories._lft';
 
     /**
      * @inheritdoc

@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Category extends Model {
+class Category extends Model
+{
 
     use NodeTrait;
     use Ohio\Core\Behaviors\SluggableTrait;
@@ -17,6 +18,21 @@ class Category extends Model {
     protected $table = 'categories';
 
     protected $fillable = ['name', 'body'];
+
+    protected $appends = ['full_name'];
+
+    public function getFullName($glue = ' > ')
+    {
+        $names = $this->getAncestors()->pluck('name')->all();
+        $names[] = $this->name;
+
+        return implode($glue, $names);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->getFullName();
+    }
 
     /**
      * Return categories associated with categorizable

@@ -29,7 +29,7 @@ export default {
                 this.attached = response.data.data;
                 this.paginator = this.setPaginator(response);
             }, function (response) {
-                console.log('error');
+
             });
         },
         paginateNot(query) {
@@ -45,7 +45,7 @@ export default {
             this.$http.get(url).then(function (response) {
                 this.detached = response.data.data;
             }, function (response) {
-                console.log('error');
+
             });
         },
         attach(id) {
