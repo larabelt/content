@@ -11,24 +11,24 @@
                     <tr>
                         <th>
                             ID
-<!--                            <column-sorter :route="'categoryIndex'" :column="'categories.id'"></column-sorter>-->
+                            <column-sorter2 :column="'categories.id'"></column-sorter2>
                         </th>
                         <th>
                             Name
-                            <column-sorter :route="'categoryIndex'" :column="'categories.name'"></column-sorter>
+                            <column-sorter2 :column="'categories.name'"></column-sorter2>
                         </th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in paginator.items">
+                    <tr v-for="item in table.items">
                         <td>{{ item.id }}</td>
                         <td>{{ item.name }}</td>
                         <td class="text-right">
                             <router-link :to="{ name: 'categoryEdit', params: { id: item.id } }" :class="'btn btn-xs btn-warning'">
                                 <i class="fa fa-edit"></i>
                             </router-link>
-                            <a class="btn btn-xs btn-danger" @click="paginator.destroy(item.id)"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-xs btn-danger" @click="table.destroy(item.id)"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -41,6 +41,6 @@
                 </tfoot>
             </table>
         </div>
-<!--        <pagination :route="'categoryIndex'"></pagination>-->
+        <pagination2></pagination2>
     </div>
 </div>

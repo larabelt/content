@@ -9,14 +9,12 @@ export default {
         categoryIndex: {
             data() {
                 return {
-                    //table: new CategoryTable(),
-                    paginator: new CategoryTable(),
+                    table: new CategoryTable({router: this.$router}),
                 }
             },
             mounted() {
-                //this.table.index();
-                this.paginator.paginate();
-                //this.paginator = this.table;
+                this.table.updateQueryFromRouter();
+                this.table.index();
             },
             template: indexTemplate,
         },

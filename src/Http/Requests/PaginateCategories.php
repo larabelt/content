@@ -5,7 +5,7 @@ use Ohio\Core\Http\Requests\PaginateRequest;
 
 class PaginateCategories extends PaginateRequest
 {
-    public $perCategory = 10;
+    public $perPage = 10;
 
     public $orderBy = 'categories.id';
 
