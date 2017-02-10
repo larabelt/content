@@ -1,33 +1,32 @@
-import headingTemplate from 'ohio/core/js/templates/base/heading.html';
-import categoryService from './service0';
-import categoryIndexTemplate from './templates/index.html';
+import headingTemplate from 'ohio/core/js/templates/heading2.html';
+import indexTemplate from './templates/index.html';
+import CategoryTable from './table';
 
 export default {
 
     components: {
-        'heading': {
+        heading: {template: headingTemplate},
+        categoryIndex: {
             data() {
                 return {
-                    title: 'Category Manager',
-                    subtitle: '',
-                    crumbs: []
+                    //table: new CategoryTable(),
+                    paginator: new CategoryTable(),
                 }
             },
-            template: headingTemplate
-        },
-        'category-index': {
-            mixins: [categoryService],
-            template: categoryIndexTemplate,
             mounted() {
-                this.query = this.getUrlQuery();
-                this.paginate();
+                //this.table.index();
+                this.paginator.paginate();
+                //this.paginator = this.table;
             },
+            template: indexTemplate,
         },
     },
 
     template: `
         <div>
-            <heading></heading>
+            <heading>
+                <span slot="title">Category Manager</span>
+            </heading>
             <section class="content">
                 <category-index></category-index>
             </section>

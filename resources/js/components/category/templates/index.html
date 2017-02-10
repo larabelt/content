@@ -11,7 +11,7 @@
                     <tr>
                         <th>
                             ID
-                            <column-sorter :route="'categoryIndex'" :column="'categories.id'"></column-sorter>
+<!--                            <column-sorter :route="'categoryIndex'" :column="'categories.id'"></column-sorter>-->
                         </th>
                         <th>
                             Name
@@ -21,14 +21,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in items">
+                    <tr v-for="item in paginator.items">
                         <td>{{ item.id }}</td>
                         <td>{{ item.name }}</td>
                         <td class="text-right">
-                            <router-link :to="{ name: 'categoryEdit', params: { id: item.id } }" v-bind:class="'btn btn-xs btn-warning'">
+                            <router-link :to="{ name: 'categoryEdit', params: { id: item.id } }" :class="'btn btn-xs btn-warning'">
                                 <i class="fa fa-edit"></i>
                             </router-link>
-                            <a class="btn btn-xs btn-danger" @click="destroy(item.id)"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-xs btn-danger" @click="paginator.destroy(item.id)"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -41,6 +41,6 @@
                 </tfoot>
             </table>
         </div>
-        <pagination :route="'categoryIndex'"></pagination>
+<!--        <pagination :route="'categoryIndex'"></pagination>-->
     </div>
 </div>
