@@ -1,4 +1,5 @@
 import BaseForm from 'ohio/core/js/helpers/form';
+import BaseService from 'ohio/core/js/helpers/service';
 import CategoryService from './service';
 
 class CategoryForm extends BaseForm {
@@ -10,7 +11,8 @@ class CategoryForm extends BaseForm {
      */
     constructor(options = {}) {
         super(options);
-        this.service = new CategoryService();
+        //this.service = new CategoryService();
+        this.service = new BaseService({baseUrl: '/api/v1/categories/'});
         this.routeEditName = 'categoryEdit';
         this.setData({
             id: '',
