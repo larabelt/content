@@ -3,7 +3,7 @@ namespace Ohio\Content\Behaviors;
 
 use Ohio\Content\Tag;
 
-trait TaggableTrait
+trait Taggable
 {
 
     public function tags()

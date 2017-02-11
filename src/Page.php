@@ -13,7 +13,7 @@ class Page extends Model
     use Ohio\Content\Behaviors\ContentTrait;
     use Ohio\Content\Behaviors\Handleable;
     use Ohio\Content\Behaviors\TemplateTrait;
-    use Ohio\Content\Behaviors\TaggableTrait;
+    use Ohio\Content\Behaviors\Taggable;
 
     protected $morphClass = 'pages';
 

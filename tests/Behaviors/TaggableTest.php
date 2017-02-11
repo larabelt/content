@@ -3,13 +3,13 @@
 use Mockery as m;
 
 use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Behaviors\TaggableTrait;
+use Ohio\Content\Behaviors\Taggable;
 use Ohio\Content\Tag;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
-class TaggableTraitTest extends OhioTestCase
+class TaggableTest extends OhioTestCase
 {
 
     public function tearDown()
@@ -18,14 +18,14 @@ class TaggableTraitTest extends OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Behaviors\TaggableTrait::tags
+     * @covers \Ohio\Content\Behaviors\Taggable::tags
      */
     public function test()
     {
         # tags
         $morphMany = m::mock(Relation::class);
         $morphMany->shouldReceive('orderby')->withArgs(['delta']);
-        $pageMock = m::mock(TaggableTraitTestStub::class . '[morphMany]');
+        $pageMock = m::mock(TaggableTestStub::class . '[morphMany]');
         $pageMock->shouldReceive('morphMany')->withArgs([Tag::class, 'taggable'])->andReturn($morphMany);
         $pageMock->shouldReceive('tags');
         $pageMock->tags();
@@ -33,7 +33,7 @@ class TaggableTraitTest extends OhioTestCase
 
 }
 
-class TaggableTraitTestStub extends Model
+class TaggableTestStub extends Model
 {
-    use TaggableTrait;
+    use Taggable;
 }
