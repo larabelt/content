@@ -22,17 +22,17 @@ class TemplateTraitTest extends Testing\OhioTestCase
         app()['config']->set('ohio.content.templates.pages', [
             'default' => [
                 'label' => 'Default Page',
-                'view' => 'ohio-content::page.sections.default'
+                'view' => 'ohio-content::pages.sections.default'
             ],
             'pagetest' => [
                 'label' => 'Test Page',
-                'view' => 'ohio-content::page.sections.test'
+                'view' => 'ohio-content::pages.sections.test'
             ],
         ]);
         $templateStub->template = 'missing';
-        $this->assertEquals('ohio-content::page.sections.default', $templateStub->template_view);
+        $this->assertEquals('ohio-content::pages.sections.default', $templateStub->template_view);
         $templateStub->template = 'PageTest';
-        $this->assertEquals('ohio-content::page.sections.test', $templateStub->template_view);
+        $this->assertEquals('ohio-content::pages.sections.test', $templateStub->template_view);
     }
 
 }

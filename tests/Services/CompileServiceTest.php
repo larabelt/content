@@ -27,7 +27,7 @@ class CompileServiceTest extends OhioTestCase
 
 
         $page = factory(Page::class)->make();
-        $page->template = 'ohio-content::page.templates.default';
+        $page->template = 'ohio-content::pages.templates.default';
 
         # compile
         $response = $service->compile($page);
@@ -65,7 +65,7 @@ class CompileServiceTest extends OhioTestCase
 
         # cache (unforced)
         $page = factory(Page::class)->make();
-        $page->template = 'ohio-content::page.templates.default';
+        $page->template = 'ohio-content::pages.templates.default';
         $cacheKey = 'pages:' . $page->id;
         Cache::shouldReceive('get')->once()->with($cacheKey)->andReturn('compiled');
         Cache::shouldReceive('add')->once()->with($cacheKey, 'compiled', 3600);
@@ -74,7 +74,7 @@ class CompileServiceTest extends OhioTestCase
 
         # cache (forced)
         $page = factory(Page::class)->make();
-        $page->template = 'ohio-content::page.templates.default';
+        $page->template = 'ohio-content::pages.templates.default';
         $cacheKey = 'pages:' . $page->id;
         Cache::shouldReceive('get')->once()->with($cacheKey)->andReturn('compiled');
         Cache::shouldReceive('put')->once()->with($cacheKey, 'compiled', 3600);

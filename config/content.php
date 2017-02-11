@@ -5,13 +5,13 @@ return [
         'blocks' => [
             'default' => [
                 'label' => 'Default Block',
-                'view' => 'ohio-content::block.sections.default'
+                'view' => 'ohio-content::blocks.sections.default'
             ],
         ],
         'embeds' => [
             'breadcrumbs' => [
                 'label' => 'Breadcrumbs',
-                'view' => 'ohio-menu::menu.sections.breadcrumbs'
+                'view' => 'ohio-menu::menus.sections.breadcrumbs'
             ],
             'contact' => [
                 'label' => 'Contact Form',
@@ -21,19 +21,19 @@ return [
         'files' => [
             'default' => [
                 'label' => 'Default File',
-                'view' => 'ohio-storage::file.sections.default'
+                'view' => 'ohio-storage::files.sections.default'
             ],
         ],
         'menus' => [
             'default' => [
                 'label' => 'Example Menu',
-                'view' => 'ohio-menu::menu.sections.default'
+                'view' => 'ohio-menu::menus.sections.default'
             ],
         ],
         'pages' => [
             'default' => [
                 'label' => 'Default Page',
-                'view' => 'ohio-content::page.templates.default'
+                'view' => 'ohio-content::pages.templates.default'
             ]
         ],
         'sections' => [
@@ -45,7 +45,7 @@ return [
         'touts' => [
             'default' => [
                 'label' => 'Default Tout',
-                'view' => 'ohio-content::tout.sections.default'
+                'view' => 'ohio-content::touts.sections.default'
             ],
         ],
     ],
