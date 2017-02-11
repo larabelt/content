@@ -3,12 +3,12 @@
 use Ohio\Core\Testing;
 use Ohio\Content\Page;
 
-class TemplateTraitTest extends Testing\OhioTestCase
+class IncludesTemplateTest extends Testing\OhioTestCase
 {
 
     /**
-     * @covers \Ohio\Content\Behaviors\TemplateTrait::setTemplateAttribute
-     * @covers \Ohio\Content\Behaviors\TemplateTrait::getTemplateViewAttribute
+     * @covers \Ohio\Content\Behaviors\IncludesTemplate::setTemplateAttribute
+     * @covers \Ohio\Content\Behaviors\IncludesTemplate::getTemplateViewAttribute
      */
     public function test()
     {

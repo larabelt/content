@@ -9,13 +9,13 @@ use Kalnoy\Nestedset\NodeTrait;
 class Section extends Model implements
     Ohio\Core\Behaviors\ParamableInterface,
     Ohio\Content\Behaviors\IncludesContentInterface,
-    Ohio\Content\Behaviors\TemplateInterface
+    Ohio\Content\Behaviors\IncludesTemplateInterface
 {
 
     use NodeTrait;
     use Ohio\Core\Behaviors\Paramable;
     use Ohio\Content\Behaviors\IncludesContent;
-    use Ohio\Content\Behaviors\TemplateTrait;
+    use Ohio\Content\Behaviors\IncludesTemplate;
 
     protected $morphClass = 'sections';
 

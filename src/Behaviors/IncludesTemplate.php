@@ -1,7 +1,7 @@
 <?php
 namespace Ohio\Content\Behaviors;
 
-trait TemplateTrait
+trait IncludesTemplate
 {
 
     public function setTemplateAttribute($value)

@@ -1,7 +1,7 @@
 <?php
 namespace Ohio\Content\Behaviors;
 
-interface TemplateInterface
+interface IncludesTemplateInterface
 {
 
     public function setTemplateAttribute($value);
