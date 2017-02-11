@@ -1,7 +1,7 @@
 <?php
 namespace Ohio\Content\Behaviors;
 
-trait SectionableTrait
+trait Sectionable
 {
 
 
