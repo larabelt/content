@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tout extends Model
 {
-    use Ohio\Core\Behaviors\SluggableTrait;
+    use Ohio\Core\Behaviors\Sluggable;
     use Ohio\Content\Behaviors\ContentTrait;
 
     protected $morphClass = 'touts';

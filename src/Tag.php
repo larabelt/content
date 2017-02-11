@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    use Core\Behaviors\SluggableTrait;
+    use Core\Behaviors\Sluggable;
     use Content\Behaviors\ContentTrait;
 
     protected $morphClass = 'tags';

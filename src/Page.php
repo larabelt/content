@@ -8,7 +8,7 @@ class Page extends Model
     implements Ohio\Content\Behaviors\CategorizableInterface,
     Ohio\Content\Behaviors\TemplateInterface
 {
-    use Ohio\Core\Behaviors\SluggableTrait;
+    use Ohio\Core\Behaviors\Sluggable;
     use Ohio\Content\Behaviors\Categorizable;
     use Ohio\Content\Behaviors\ContentTrait;
     use Ohio\Content\Behaviors\HandleableTrait;

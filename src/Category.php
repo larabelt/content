@@ -10,7 +10,7 @@ class Category extends Model
 {
 
     use NodeTrait;
-    use Ohio\Core\Behaviors\SluggableTrait;
+    use Ohio\Core\Behaviors\Sluggable;
     use Ohio\Content\Behaviors\ContentTrait;
 
     protected $morphClass = 'categories';
