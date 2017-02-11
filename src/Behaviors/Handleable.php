@@ -3,7 +3,7 @@ namespace Ohio\Content\Behaviors;
 
 use Ohio\Content\Handle;
 
-trait HandleableTrait
+trait Handleable
 {
 
     public function handle()

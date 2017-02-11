@@ -3,13 +3,13 @@
 use Mockery as m;
 
 use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Behaviors\HandleableTrait;
+use Ohio\Content\Behaviors\Handleable;
 use Ohio\Content\Handle;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
-class HandleableTraitTest extends OhioTestCase
+class HandleableTest extends OhioTestCase
 {
 
     public function tearDown()
@@ -18,15 +18,15 @@ class HandleableTraitTest extends OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Behaviors\HandleableTrait::handle
-     * @covers \Ohio\Content\Behaviors\HandleableTrait::handles
+     * @covers \Ohio\Content\Behaviors\Handleable::handle
+     * @covers \Ohio\Content\Behaviors\Handleable::handles
      */
     public function test()
     {
         # handle
         $morphOne = m::mock(Relation::class);
         $morphOne->shouldReceive('where')->withArgs(['delta', 1.00]);
-        $pageMock = m::mock(HandleableTraitTestStub::class . '[morphOne]');
+        $pageMock = m::mock(HandleableTestStub::class . '[morphOne]');
         $pageMock->shouldReceive('morphOne')->withArgs([Handle::class, 'handleable'])->andReturn($morphOne);
         $pageMock->shouldReceive('handle');
         $pageMock->handle();
@@ -34,7 +34,7 @@ class HandleableTraitTest extends OhioTestCase
         # handles
         $morphMany = m::mock(Relation::class);
         $morphMany->shouldReceive('orderby')->withArgs(['delta']);
-        $pageMock = m::mock(HandleableTraitTestStub::class . '[morphMany]');
+        $pageMock = m::mock(HandleableTestStub::class . '[morphMany]');
         $pageMock->shouldReceive('morphMany')->withArgs([Handle::class, 'handleable'])->andReturn($morphMany);
         $pageMock->shouldReceive('handles');
         $pageMock->handles();
@@ -42,7 +42,7 @@ class HandleableTraitTest extends OhioTestCase
 
 }
 
-class HandleableTraitTestStub extends Model
+class HandleableTestStub extends Model
 {
-    use HandleableTrait;
+    use Handleable;
 }

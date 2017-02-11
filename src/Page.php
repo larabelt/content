@@ -11,7 +11,7 @@ class Page extends Model
     use Ohio\Core\Behaviors\Sluggable;
     use Ohio\Content\Behaviors\Categorizable;
     use Ohio\Content\Behaviors\ContentTrait;
-    use Ohio\Content\Behaviors\HandleableTrait;
+    use Ohio\Content\Behaviors\Handleable;
     use Ohio\Content\Behaviors\TemplateTrait;
     use Ohio\Content\Behaviors\TaggableTrait;
 
