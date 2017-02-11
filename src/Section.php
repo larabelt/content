@@ -12,7 +12,7 @@ class Section extends Model
 {
 
     use NodeTrait;
-    use Ohio\Core\Behaviors\ParamableTrait;
+    use Ohio\Core\Behaviors\Paramable;
     use Ohio\Content\Behaviors\ContentTrait;
     use Ohio\Content\Behaviors\TemplateTrait;
 
