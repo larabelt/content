@@ -3,10 +3,10 @@ namespace Ohio\Content;
 
 use Ohio;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Category extends Model
+class Category extends Model implements
+    Ohio\Core\Behaviors\SluggableInterface
 {
 
     use NodeTrait;

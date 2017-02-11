@@ -4,8 +4,9 @@ namespace Ohio\Content;
 use Ohio;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
-    implements Ohio\Content\Behaviors\CategorizableInterface,
+class Page extends Model implements
+    Ohio\Core\Behaviors\SluggableInterface,
+    Ohio\Content\Behaviors\CategorizableInterface,
     Ohio\Content\Behaviors\TemplateInterface
 {
     use Ohio\Core\Behaviors\Sluggable;

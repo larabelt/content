@@ -6,6 +6,7 @@ use Ohio\Storage\File;
 use Illuminate\Database\Eloquent\Model;
 
 class Tout extends Model
+    implements Ohio\Core\Behaviors\SluggableInterface
 {
     use Ohio\Core\Behaviors\Sluggable;
     use Ohio\Content\Behaviors\ContentTrait;
