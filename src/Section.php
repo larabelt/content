@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Section extends Model
-    implements Ohio\Core\Behaviors\ParamableInterface,
+class Section extends Model implements
+    Ohio\Core\Behaviors\ParamableInterface,
+    Ohio\Content\Behaviors\IncludesContentInterface,
     Ohio\Content\Behaviors\TemplateInterface
 {
 
     use NodeTrait;
     use Ohio\Core\Behaviors\Paramable;
-    use Ohio\Content\Behaviors\ContentTrait;
+    use Ohio\Content\Behaviors\IncludesContent;
     use Ohio\Content\Behaviors\TemplateTrait;
 
     protected $morphClass = 'sections';

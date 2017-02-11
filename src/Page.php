@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Page extends Model implements
     Ohio\Core\Behaviors\SluggableInterface,
     Ohio\Content\Behaviors\CategorizableInterface,
+    Ohio\Content\Behaviors\IncludesContentInterface,
     Ohio\Content\Behaviors\HandleableInterface,
     Ohio\Content\Behaviors\TaggableInterface,
     Ohio\Content\Behaviors\TemplateInterface
 {
     use Ohio\Core\Behaviors\Sluggable;
     use Ohio\Content\Behaviors\Categorizable;
-    use Ohio\Content\Behaviors\ContentTrait;
+    use Ohio\Content\Behaviors\IncludesContent;
     use Ohio\Content\Behaviors\Handleable;
     use Ohio\Content\Behaviors\TemplateTrait;
     use Ohio\Content\Behaviors\Taggable;

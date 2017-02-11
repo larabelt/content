@@ -1,7 +1,7 @@
 <?php
 namespace Ohio\Content\Behaviors;
 
-trait ContentTrait
+trait IncludesContent
 {
     public function setIsActiveAttribute($value)
     {

@@ -1,19 +1,19 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Content\Behaviors\ContentTrait;
+use Ohio\Content\Behaviors\IncludesContent;
 
-class ContentTraitTest extends \PHPUnit_Framework_TestCase
+class IncludesContentTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers \Ohio\Content\Behaviors\ContentTrait::setIsActiveAttribute
-     * @covers \Ohio\Content\Behaviors\ContentTrait::setIntroAttribute
-     * @covers \Ohio\Content\Behaviors\ContentTrait::setBodyAttribute
+     * @covers \Ohio\Content\Behaviors\IncludesContent::setIsActiveAttribute
+     * @covers \Ohio\Content\Behaviors\IncludesContent::setIntroAttribute
+     * @covers \Ohio\Content\Behaviors\IncludesContent::setBodyAttribute
      */
     public function test()
     {
-        $contentStub = new ContentTraitTestStub();
+        $contentStub = new IncludesContentTestStub();
 
         # is active
         $contentStub->is_active = ' true!!! ';
@@ -30,7 +30,7 @@ class ContentTraitTest extends \PHPUnit_Framework_TestCase
 
 }
 
-class ContentTraitTestStub extends Model
+class IncludesContentTestStub extends Model
 {
-    use ContentTrait;
+    use IncludesContent;
 }
