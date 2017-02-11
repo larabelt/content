@@ -3,7 +3,7 @@
 namespace Ohio\Content\Http\Controllers\Api;
 
 use Ohio\Core\Http\Controllers\ApiController;
-use Ohio\Core\Http\Controllers\Behaviors\PositionableControllerTrait;
+use Ohio\Core\Http\Controllers\Behaviors\Positionable;
 use Ohio\Content\Category;
 use Ohio\Content\Http\Requests;
 use Ohio\Core\Helpers\MorphHelper;
@@ -11,7 +11,7 @@ use Ohio\Core\Helpers\MorphHelper;
 class CategorizablesController extends ApiController
 {
 
-    use PositionableControllerTrait;
+    use Positionable;
 
     /**
      * @var Category
