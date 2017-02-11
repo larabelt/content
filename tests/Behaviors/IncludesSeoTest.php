@@ -1,20 +1,20 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Content\Behaviors\SeoTrait;
+use Ohio\Content\Behaviors\IncludesSeo;
 
-class SeoTraitTest extends \PHPUnit_Framework_TestCase
+class IncludesSeoTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers \Ohio\Content\Behaviors\SeoTrait::setMetaTitleAttribute
-     * @covers \Ohio\Content\Behaviors\SeoTrait::setMetaKeywordsAttribute
-     * @covers \Ohio\Content\Behaviors\SeoTrait::setMetaDescriptionAttribute
-     * @covers \Ohio\Content\Behaviors\SeoTrait::getMetaTitleAttribute
+     * @covers \Ohio\Content\Behaviors\IncludesSeo::setMetaTitleAttribute
+     * @covers \Ohio\Content\Behaviors\IncludesSeo::setMetaKeywordsAttribute
+     * @covers \Ohio\Content\Behaviors\IncludesSeo::setMetaDescriptionAttribute
+     * @covers \Ohio\Content\Behaviors\IncludesSeo::getMetaTitleAttribute
      */
     public function test()
     {
-        $seoStub = new SeoTraitTestStub();
+        $seoStub = new IncludesSeoTestStub();
 
         # meta title
         $seoStub->setAttribute('name', 'Test');
@@ -33,7 +33,7 @@ class SeoTraitTest extends \PHPUnit_Framework_TestCase
 
 }
 
-class SeoTraitTestStub extends Model
+class IncludesSeoTestStub extends Model
 {
-    use SeoTrait;
+    use IncludesSeo;
 }

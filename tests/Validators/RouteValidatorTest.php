@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Content\Behaviors\SeoTrait;
+use Ohio\Content\Behaviors\IncludesSeo;
 use Ohio\Content\Validators\RouteValidator;
 
 use Ohio\Core\Testing\OhioTestCase;

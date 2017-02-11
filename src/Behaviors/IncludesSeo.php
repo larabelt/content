@@ -1,7 +1,7 @@
 <?php
 namespace Ohio\Content\Behaviors;
 
-trait SeoTrait
+trait IncludesSeo
 {
 
     public function setMetaTitleAttribute($value)
