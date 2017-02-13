@@ -12,43 +12,27 @@ class PagesController extends BaseController
 {
 
     /**
-     * @var Page
-     */
-    public $page;
-
-    /**
      * @var CompileService
      */
     public $service;
 
     /**
      * ApiController constructor.
-     * @param Page $page
      */
-    public function __construct(Page $page)
+    public function __construct()
     {
-        $this->page = $page;
-
         $this->service = new CompileService();
-    }
-
-    public function get($id)
-    {
-        $key = is_numeric($id) ? 'id' : 'slug';
-
-        return $this->page->where($key, $id)->first() ?: abort(404);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  Page $page
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(Page $page)
     {
-        $page = $this->get($id);
 
         $compiled = $this->service->cache($page);
 
@@ -58,14 +42,12 @@ class PagesController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  Page $page
      *
      * @return \Illuminate\View\View
      */
-    public function preview($id)
+    public function preview(Page $page)
     {
-        $page = $this->get($id);
-
         $this->authorize('update', $page);
 
         $compiled = $this->service->compile($page);

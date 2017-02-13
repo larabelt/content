@@ -35,6 +35,7 @@ class OhioContentServiceProvider extends ServiceProvider
     {
         include __DIR__ . '/../routes/admin.php';
         include __DIR__ . '/../routes/api.php';
+        include __DIR__ . '/../routes/handleables.php';
         include __DIR__ . '/../routes/web.php';
     }
 
@@ -69,8 +70,12 @@ class OhioContentServiceProvider extends ServiceProvider
         $this->commands(Ohio\Content\Commands\CompileCommand::class);
         $this->commands(Ohio\Content\Commands\PublishCommand::class);
 
-        // routes
+        // route model binding
         $router->model('category', Ohio\Content\Category::class);
+        $router->bind('page', function ($value) {
+            $column = is_numeric($value) ? 'id' : 'slug';
+            return Ohio\Content\Page::where($column, $value)->first();
+        });
 
         // validators
         Validator::extend('unique_route', Ohio\Content\Validators\RouteValidator::class . '@routeIsUnique');

@@ -1,6 +1,6 @@
 <?php
 
-use Ohio\Content;
+use Ohio\Content\Http\Controllers\Web;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +16,10 @@ use Ohio\Content;
 Route::group(['middleware' => ['web']], function () {
 
     # pages
-    Route::get('page/{slug}/preview', Content\Http\Controllers\Web\PagesController::class . '@preview');
-    Route::get('page/{slug}', Content\Http\Controllers\Web\PagesController::class . '@show');
+    Route::get('page/{page}/preview', Web\PagesController::class . '@preview');
+    Route::get('page/{page}', Web\PagesController::class . '@show');
     Route::get('pages', function () {
         return view('ohio-core::base.web.home');
     });
+
 });
