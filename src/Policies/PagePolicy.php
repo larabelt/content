@@ -30,4 +30,5 @@ class PagePolicy extends BaseAdminPolicy
     {
         return true;
     }
+
 }
