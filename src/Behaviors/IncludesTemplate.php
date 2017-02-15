@@ -9,13 +9,22 @@ trait IncludesTemplate
         $this->attributes['template'] = trim(strtolower($value));
     }
 
+    public function getTemplateGroup()
+    {
+        return $this->getMorphClass();
+    }
+
     public function getTemplateViewAttribute()
     {
-        $bits = explode("\\", get_class($this));
+        $key = sprintf('ohio.templates.%s', $this->getTemplateGroup());
 
-        $key = sprintf('ohio.%s.templates.%s', strtolower($bits[1]), $this->getMorphClass());
+        $config = config("$key.$this->template") ?: config("$key.default");
 
-        return config("$key.$this->template.view") ?: config("$key.default.view");
+        if (!$config) {
+            throw new \Exception('missing template view');
+        }
+
+        return is_array($config) ? $config[0] : $config;
     }
 
 }
