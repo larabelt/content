@@ -18,15 +18,9 @@ class SectionTest extends BeltTestCase
         $this->assertInstanceOf(MorphTo::class, $section->sectionable());
 
         # getSectionViewAttribute
-        app()['config']->set('belt.content.templates.sections', [
-            'default' => [
-                'label' => 'Default Tout',
-                'view' => 'belt-content::sections.sections.default'
-            ],
-            'sectiontest' => [
-                'label' => 'Default Tout',
-                'view' => 'belt-content::sections.sections.test'
-            ],
+        app()['config']->set('belt.templates.sections', [
+            'default' => ['belt-content::sections.sections.default'],
+            'sectiontest' => 'belt-content::sections.sections.test',
         ]);
         $section->template = 'missing';
         $this->assertEquals('belt-content::sections.sections.default', $section->template_view);

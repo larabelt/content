@@ -19,15 +19,9 @@ class IncludesTemplateTest extends Testing\BeltTestCase
         $this->assertEquals('test', $templateStub->template);
 
         # template_view
-        app()['config']->set('belt.content.templates.pages', [
-            'default' => [
-                'label' => 'Default Page',
-                'view' => 'belt-content::pages.sections.default'
-            ],
-            'pagetest' => [
-                'label' => 'Test Page',
-                'view' => 'belt-content::pages.sections.test'
-            ],
+        app()['config']->set('belt.templates.pages', [
+            'default' => ['belt-content::pages.sections.default'],
+            'pagetest' => 'belt-content::pages.sections.test',
         ]);
         $templateStub->template = 'missing';
         $this->assertEquals('belt-content::pages.sections.default', $templateStub->template_view);
