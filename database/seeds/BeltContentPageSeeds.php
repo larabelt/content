@@ -6,7 +6,7 @@ use Belt\Content\Page;
 use Belt\Content\Handle;
 use Belt\Content\Section;
 use Belt\Content\Tout;
-use Belt\Clip\File;
+use Belt\Clip\Attachment;
 use Illuminate\Database\Seeder;
 
 class BeltContentPageSeeds extends Seeder
@@ -142,7 +142,7 @@ class BeltContentPageSeeds extends Seeder
 
         $params = array_merge(['class' => 'col-md-12'], $params);
 
-        $file = factory(File::class)->create();
+        $file = factory(Attachment::class)->create();
 
         $this->section($parent, $file, $options, $params);
     }

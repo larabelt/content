@@ -14,7 +14,7 @@ class BeltCreateToutsTable extends Migration
     {
         Schema::create('touts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('file_id')->nullable();
+            $table->integer('attachment_id')->nullable();
             $table->string('name');
             $table->string('slug')->index();
             $table->string('heading')->nullable();

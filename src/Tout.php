@@ -2,7 +2,7 @@
 namespace Belt\Content;
 
 use Belt;
-use Belt\Clip\File;
+use Belt\Clip\Attachment;
 use Illuminate\Database\Eloquent\Model;
 
 class Tout extends Model implements
@@ -20,7 +20,7 @@ class Tout extends Model implements
 
     public function image()
     {
-        return $this->belongsTo(File::class, 'file_id');
+        return $this->belongsTo(Attachment::class, 'attachment_id');
     }
 
 }

@@ -18,7 +18,7 @@ class ToutTest extends BeltTestCase
      */
     public function test()
     {
-        $tout = factory(Tout::class)->make();
+        $tout = new Tout();
 
         # image
         $this->assertInstanceOf(BelongsTo::class, $tout->image());
