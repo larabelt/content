@@ -2,7 +2,7 @@
 namespace Belt\Content;
 
 use Belt;
-use Belt\Storage\File;
+use Belt\Clip\File;
 use Illuminate\Database\Eloquent\Model;
 
 class Tout extends Model implements

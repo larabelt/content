@@ -6,7 +6,7 @@ use Belt\Content\Page;
 use Belt\Content\Handle;
 use Belt\Content\Section;
 use Belt\Content\Tout;
-use Belt\Storage\File;
+use Belt\Clip\File;
 use Illuminate\Database\Seeder;
 
 class BeltContentPageSeeds extends Seeder

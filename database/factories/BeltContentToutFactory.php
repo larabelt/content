@@ -10,7 +10,7 @@
 | database. Just tell the factory how a default model should look.
 |
 */
-use Belt\Storage\File;
+use Belt\Clip\File;
 
 $factory->define(Belt\Content\Tout::class, function (Faker\Generator $faker) {
 
