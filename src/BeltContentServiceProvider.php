@@ -18,11 +18,9 @@ class BeltContentServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Belt\Content\Block::class => Belt\Content\Policies\BlockPolicy::class,
-        Belt\Content\Category::class => Belt\Content\Policies\CategoryPolicy::class,
         Belt\Content\Handle::class => Belt\Content\Policies\HandlePolicy::class,
         Belt\Content\Page::class => Belt\Content\Policies\PagePolicy::class,
         Belt\Content\Section::class => Belt\Content\Policies\SectionPolicy::class,
-        Belt\Content\Tag::class => Belt\Content\Policies\TagPolicy::class,
         Belt\Content\Tout::class => Belt\Content\Policies\ToutPolicy::class,
     ];
 
@@ -62,7 +60,6 @@ class BeltContentServiceProvider extends ServiceProvider
             'handles' => Belt\Content\Handle::class,
             'pages' => Belt\Content\Page::class,
             'sections' => Belt\Content\Section::class,
-            'tags' => Belt\Content\Tag::class,
             'touts' => Belt\Content\Tout::class,
         ]);
 
@@ -71,7 +68,6 @@ class BeltContentServiceProvider extends ServiceProvider
         $this->commands(Belt\Content\Commands\PublishCommand::class);
 
         // route model binding
-        $router->model('category', Belt\Content\Category::class);
         $router->bind('page', function ($value) {
             $column = is_numeric($value) ? 'id' : 'slug';
             return Belt\Content\Page::where($column, $value)->first();

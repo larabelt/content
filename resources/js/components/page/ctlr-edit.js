@@ -4,9 +4,9 @@ import Tabs from 'belt/core/js/helpers/tabs';
 import Form from './form';
 
 // components
-import categories from '../categorizable/ctlr-edit';
+import categories from 'belt/glue/js/components/categorizable/ctlr-edit';
 import handles from '../handle/ctlr-edit';
-import tags from '../tag/taggable/ctlr-edit';
+import tags from 'belt/glue/js/components/tag/taggable/ctlr-edit';
 
 // templates
 import heading_html from 'belt/core/js/templates/heading2.html';

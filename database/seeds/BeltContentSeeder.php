@@ -13,9 +13,7 @@ class BeltContentSeeder extends Seeder
     {
         $this->call(BeltContentPageSeeds::class);
         $this->call(BeltContentBlockSeeds::class);
-        $this->call(BeltContentCategorySeeds::class);
         $this->call(BeltContentSectionSeeds::class);
-        $this->call(BeltContentTagSeeds::class);
         $this->call(BeltContentToutSeeds::class);
     }
 }
