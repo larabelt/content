@@ -8,8 +8,8 @@ return [
         'breadcrumbs' => ['menus.sections.breadcrumbs'],
         'contact' => ['contact.sections.default'],
     ],
-    'files' => [
-        'default' => ['files.sections.default'],
+    'attachments' => [
+        'default' => ['attachments.sections.default'],
     ],
     'menus' => [
         'default' => ['menus.sections.default'],

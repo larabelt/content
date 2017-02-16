@@ -21,7 +21,7 @@ trait IncludesTemplate
         $config = config("$key.$this->template") ?: config("$key.default");
 
         if (!$config) {
-            throw new \Exception('missing template view');
+            throw new \Exception("missing template view: $key.$this->template");
         }
 
         return is_array($config) ? $config[0] : $config;
