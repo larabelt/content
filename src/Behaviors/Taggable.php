@@ -1,7 +1,7 @@
 <?php
-namespace Ohio\Content\Behaviors;
+namespace Belt\Content\Behaviors;
 
-use Ohio\Content\Tag;
+use Belt\Content\Tag;
 
 trait Taggable
 {

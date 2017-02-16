@@ -2,9 +2,8 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Kalnoy\Nestedset\NestedSet;
 
-class OhioCreateCategoriesTable extends Migration
+class BeltCreateBlocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +12,12 @@ class OhioCreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('blocks', function (Blueprint $table) {
             $table->increments('id');
-            NestedSet::columns($table);
+            $table->string('template')->default('default');
             $table->string('name');
             $table->string('slug')->index();
-            $table->text('body')->nullable();
-            $table->string('meta_title')->nullable();
-            $table->text('meta_description')->nullable();
-            $table->text('meta_keywords')->nullable();
+            $table->text('body');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +30,6 @@ class OhioCreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categories');
+        Schema::drop('blocks');
     }
 }

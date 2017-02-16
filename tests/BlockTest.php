@@ -1,14 +1,14 @@
 <?php
 
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Block;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Block;
 
-class BlockTest extends OhioTestCase
+class BlockTest extends BeltTestCase
 {
     /**
-     * @covers \Ohio\Content\Block::__toString
-     * @covers \Ohio\Content\Block::setTemplateAttribute
-     * @covers \Ohio\Content\Block::setBodyAttribute
+     * @covers \Belt\Content\Block::__toString
+     * @covers \Belt\Content\Block::setTemplateAttribute
+     * @covers \Belt\Content\Block::setBodyAttribute
      */
     public function test()
     {

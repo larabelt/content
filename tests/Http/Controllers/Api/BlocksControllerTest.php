@@ -1,19 +1,19 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing;
+use Belt\Core\Testing;
 
-use Ohio\Content\Block;
-use Ohio\Content\Http\Requests\StoreBlock;
-use Ohio\Content\Http\Requests\PaginateBlocks;
-use Ohio\Content\Http\Requests\UpdateBlock;
-use Ohio\Content\Http\Controllers\Api\BlocksController;
-use Ohio\Core\Http\Exceptions\ApiNotFoundHttpException;
+use Belt\Content\Block;
+use Belt\Content\Http\Requests\StoreBlock;
+use Belt\Content\Http\Requests\PaginateBlocks;
+use Belt\Content\Http\Requests\UpdateBlock;
+use Belt\Content\Http\Controllers\Api\BlocksController;
+use Belt\Core\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class BlocksControllerTest extends Testing\OhioTestCase
+class BlocksControllerTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
@@ -24,13 +24,13 @@ class BlocksControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Http\Controllers\Api\BlocksController::__construct
-     * @covers \Ohio\Content\Http\Controllers\Api\BlocksController::get
-     * @covers \Ohio\Content\Http\Controllers\Api\BlocksController::show
-     * @covers \Ohio\Content\Http\Controllers\Api\BlocksController::destroy
-     * @covers \Ohio\Content\Http\Controllers\Api\BlocksController::update
-     * @covers \Ohio\Content\Http\Controllers\Api\BlocksController::store
-     * @covers \Ohio\Content\Http\Controllers\Api\BlocksController::index
+     * @covers \Belt\Content\Http\Controllers\Api\BlocksController::__construct
+     * @covers \Belt\Content\Http\Controllers\Api\BlocksController::get
+     * @covers \Belt\Content\Http\Controllers\Api\BlocksController::show
+     * @covers \Belt\Content\Http\Controllers\Api\BlocksController::destroy
+     * @covers \Belt\Content\Http\Controllers\Api\BlocksController::update
+     * @covers \Belt\Content\Http\Controllers\Api\BlocksController::store
+     * @covers \Belt\Content\Http\Controllers\Api\BlocksController::index
      */
     public function test()
     {

@@ -1,12 +1,12 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Category;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Category;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class CategoryTest extends OhioTestCase
+class CategoryTest extends BeltTestCase
 {
     public function tearDown()
     {
@@ -14,8 +14,8 @@ class CategoryTest extends OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Category::scopeCategoried
-     * @covers \Ohio\Content\Category::scopeNotCategoried
+     * @covers \Belt\Content\Category::scopeCategoried
+     * @covers \Belt\Content\Category::scopeNotCategoried
      */
     public function test()
     {

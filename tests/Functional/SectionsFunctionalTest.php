@@ -1,8 +1,8 @@
 <?php
 
-use Ohio\Core\Testing;
+use Belt\Core\Testing;
 
-class SectionsFunctionalTest extends Testing\OhioTestCase
+class SectionsFunctionalTest extends Testing\BeltTestCase
 {
 
     public function test()

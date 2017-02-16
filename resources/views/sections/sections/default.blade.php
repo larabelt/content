@@ -1,12 +1,12 @@
 <div class="section section-default row">
 
-    @include('ohio-content::section.sections._header')
-    @include('ohio-content::section.sections._body')
+    @include('belt-content::sections.sections._header')
+    @include('belt-content::sections.sections._body')
 
     @foreach($section->children as $child)
         @include($child->template_view, ['section' => $child])
     @endforeach
 
-    @include('ohio-content::section.sections._footer')
+    @include('belt-content::sections.sections._footer')
 
 </div>

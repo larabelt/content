@@ -10,18 +10,17 @@
 | database. Just tell the factory how a default model should look.
 |
 */
-use Ohio\Content\Page;
 
-$factory->define(Ohio\Content\Section::class, function (Faker\Generator $faker) {
+use Illuminate\Support\Str;
 
-    //$page = Page::inRandomOrder()->first(['pages.id']);
-
+$factory->define(Belt\Content\Page::class, function (Faker\Generator $faker) {
     return [
-        //'page_id' => $page ? $page->id : null,
+        'is_active' => $faker->boolean(),
+        'name' => Str::title($faker->words(3, true)),
         'template' => 'default',
-        //'class' => $faker->words(random_int(1, 5), true),
-//        'header' => $faker->paragraphs(3, true),
-//        'body' => $faker->paragraphs(3, true),
-//        'footer' => $faker->paragraphs(3, true),
+        'body' => $faker->paragraphs(3, true),
+        'meta_title' => $faker->words(3, true),
+        'meta_description' => $faker->paragraphs(1, true),
+        'meta_keywords' => $faker->words(12, true),
     ];
 });

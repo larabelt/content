@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Content\Behaviors\IncludesSeo;
+use Belt\Content\Behaviors\IncludesSeo;
 
 class IncludesSeoTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers \Ohio\Content\Behaviors\IncludesSeo::setMetaTitleAttribute
-     * @covers \Ohio\Content\Behaviors\IncludesSeo::setMetaKeywordsAttribute
-     * @covers \Ohio\Content\Behaviors\IncludesSeo::setMetaDescriptionAttribute
-     * @covers \Ohio\Content\Behaviors\IncludesSeo::getMetaTitleAttribute
+     * @covers \Belt\Content\Behaviors\IncludesSeo::setMetaTitleAttribute
+     * @covers \Belt\Content\Behaviors\IncludesSeo::setMetaKeywordsAttribute
+     * @covers \Belt\Content\Behaviors\IncludesSeo::setMetaDescriptionAttribute
+     * @covers \Belt\Content\Behaviors\IncludesSeo::getMetaTitleAttribute
      */
     public function test()
     {

@@ -1,13 +1,13 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Page;
-use Ohio\Content\Services\CompileService;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Page;
+use Belt\Content\Services\CompileService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
 
-class CompileServiceTest extends OhioTestCase
+class CompileServiceTest extends BeltTestCase
 {
     public function tearDown()
     {
@@ -15,8 +15,8 @@ class CompileServiceTest extends OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Services\CompileService::__construct
-     * @covers \Ohio\Content\Services\CompileService::compile
+     * @covers \Belt\Content\Services\CompileService::__construct
+     * @covers \Belt\Content\Services\CompileService::compile
      */
     public function test()
     {
@@ -27,7 +27,7 @@ class CompileServiceTest extends OhioTestCase
 
 
         $page = factory(Page::class)->make();
-        $page->template = 'ohio-content::pages.templates.default';
+        $page->template = 'belt-content::pages.templates.default';
 
         # compile
         $response = $service->compile($page);
@@ -35,7 +35,7 @@ class CompileServiceTest extends OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Services\CompileService::pages
+     * @covers \Belt\Content\Services\CompileService::pages
      */
     public function testPages()
     {
@@ -56,7 +56,7 @@ class CompileServiceTest extends OhioTestCase
 
 
     /**
-     * @covers \Ohio\Content\Services\CompileService::cache
+     * @covers \Belt\Content\Services\CompileService::cache
      */
     public function testCache()
     {
@@ -65,7 +65,7 @@ class CompileServiceTest extends OhioTestCase
 
         # cache (unforced)
         $page = factory(Page::class)->make();
-        $page->template = 'ohio-content::pages.templates.default';
+        $page->template = 'belt-content::pages.templates.default';
         $cacheKey = 'pages:' . $page->id;
         Cache::shouldReceive('get')->once()->with($cacheKey)->andReturn('compiled');
         Cache::shouldReceive('add')->once()->with($cacheKey, 'compiled', 3600);
@@ -74,7 +74,7 @@ class CompileServiceTest extends OhioTestCase
 
         # cache (forced)
         $page = factory(Page::class)->make();
-        $page->template = 'ohio-content::pages.templates.default';
+        $page->template = 'belt-content::pages.templates.default';
         $cacheKey = 'pages:' . $page->id;
         Cache::shouldReceive('get')->once()->with($cacheKey)->andReturn('compiled');
         Cache::shouldReceive('put')->once()->with($cacheKey, 'compiled', 3600);

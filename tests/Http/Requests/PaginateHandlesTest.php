@@ -1,13 +1,13 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing;
+use Belt\Core\Testing;
 
-use Ohio\Content\Handle;
-use Ohio\Content\Http\Requests\PaginateHandles;
-use Ohio\Core\Pagination\BaseLengthAwarePaginator;
+use Belt\Content\Handle;
+use Belt\Content\Http\Requests\PaginateHandles;
+use Belt\Core\Pagination\BaseLengthAwarePaginator;
 
-class PaginateHandlesTest extends Testing\OhioTestCase
+class PaginateHandlesTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
@@ -18,7 +18,7 @@ class PaginateHandlesTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Http\Requests\PaginateHandles::modifyQuery
+     * @covers \Belt\Content\Http\Requests\PaginateHandles::modifyQuery
      */
     public function test()
     {

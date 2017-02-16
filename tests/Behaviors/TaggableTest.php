@@ -2,14 +2,14 @@
 
 use Mockery as m;
 
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Behaviors\Taggable;
-use Ohio\Content\Tag;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Behaviors\Taggable;
+use Belt\Content\Tag;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
-class TaggableTest extends OhioTestCase
+class TaggableTest extends BeltTestCase
 {
 
     public function tearDown()
@@ -18,7 +18,7 @@ class TaggableTest extends OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Behaviors\Taggable::tags
+     * @covers \Belt\Content\Behaviors\Taggable::tags
      */
     public function test()
     {

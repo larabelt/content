@@ -1,5 +1,5 @@
 <?php
-namespace Ohio\Content\Behaviors;
+namespace Belt\Content\Behaviors;
 
 trait IncludesTemplate
 {
@@ -16,7 +16,7 @@ trait IncludesTemplate
 
     public function getTemplateViewAttribute()
     {
-        $key = sprintf('ohio.templates.%s', $this->getTemplateGroup());
+        $key = sprintf('belt.templates.%s', $this->getTemplateGroup());
 
         $config = config("$key.$this->template") ?: config("$key.default");
 

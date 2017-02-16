@@ -1,12 +1,12 @@
 <?php
 
-use Ohio\Content\Http\Requests\UpdateSection;
+use Belt\Content\Http\Requests\UpdateSection;
 
 class UpdateSectionTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers \Ohio\Content\Http\Requests\UpdateSection::rules
+     * @covers \Belt\Content\Http\Requests\UpdateSection::rules
      */
     public function test()
     {

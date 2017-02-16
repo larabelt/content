@@ -1,7 +1,7 @@
 <?php
-namespace Ohio\Content\Behaviors;
+namespace Belt\Content\Behaviors;
 
-use Ohio\Content\Category;
+use Belt\Content\Category;
 use Rutorika\Sortable\MorphToSortedManyTrait;
 
 interface CategorizableInterface

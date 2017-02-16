@@ -1,6 +1,6 @@
 <?php
 
-use Ohio\Content\Http\Controllers\Web;
+use Belt\Content\Http\Controllers\Web;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('page/{page}/preview', Web\PagesController::class . '@preview');
     Route::get('page/{page}', Web\PagesController::class . '@show');
     Route::get('pages', function () {
-        return view('ohio-core::base.web.home');
+        return view('belt-core::base.web.home');
     });
 
 });

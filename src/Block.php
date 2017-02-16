@@ -1,15 +1,15 @@
 <?php
-namespace Ohio\Content;
+namespace Belt\Content;
 
-use Ohio;
+use Belt;
 use Illuminate\Database\Eloquent\Model;
 
 class Block extends Model implements
-    Ohio\Core\Behaviors\SluggableInterface,
-    Ohio\Content\Behaviors\IncludesContentInterface
+    Belt\Core\Behaviors\SluggableInterface,
+    Belt\Content\Behaviors\IncludesContentInterface
 {
-    use Ohio\Core\Behaviors\Sluggable;
-    use Ohio\Content\Behaviors\IncludesContent;
+    use Belt\Core\Behaviors\Sluggable;
+    use Belt\Content\Behaviors\IncludesContent;
 
     protected $morphClass = 'blocks';
 

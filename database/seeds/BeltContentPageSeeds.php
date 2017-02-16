@@ -1,15 +1,15 @@
 <?php
 
-use Ohio\Core\Param;
-use Ohio\Content\Block;
-use Ohio\Content\Page;
-use Ohio\Content\Handle;
-use Ohio\Content\Section;
-use Ohio\Content\Tout;
-use Ohio\Storage\File;
+use Belt\Core\Param;
+use Belt\Content\Block;
+use Belt\Content\Page;
+use Belt\Content\Handle;
+use Belt\Content\Section;
+use Belt\Content\Tout;
+use Belt\Storage\File;
 use Illuminate\Database\Seeder;
 
-class OhioContentPageSeeds extends Seeder
+class BeltContentPageSeeds extends Seeder
 {
     /**
      * Run the database seeds.

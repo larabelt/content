@@ -1,10 +1,10 @@
 <?php
 
-namespace Ohio\Content\Policies;
+namespace Belt\Content\Policies;
 
-use Ohio\Core\User;
-use Ohio\Core\Policies\BaseAdminPolicy;
-use Ohio\Content\Section;
+use Belt\Core\User;
+use Belt\Core\Policies\BaseAdminPolicy;
+use Belt\Content\Section;
 
 class SectionPolicy extends BaseAdminPolicy
 {

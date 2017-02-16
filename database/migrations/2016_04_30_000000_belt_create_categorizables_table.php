@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class OhioCreateTaggablesTable extends Migration
+class BeltCreateCategorizablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class OhioCreateTaggablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('taggables', function (Blueprint $table) {
+        Schema::create('categorizables', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tag_id')->index();
-            $table->morphs('taggable');
+            $table->integer('category_id')->index();
+            $table->morphs('categorizable');
+            $table->integer('position')->nullable()->default(1);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class OhioCreateTaggablesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('taggables');
+        Schema::drop('categorizables');
     }
 }

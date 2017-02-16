@@ -1,16 +1,16 @@
 <?php
 
-use Ohio\Core\Testing;
-use Ohio\Content\Policies\PagePolicy;
+use Belt\Core\Testing;
+use Belt\Content\Policies\PagePolicy;
 
-class PagePolicyTest extends Testing\OhioTestCase
+class PagePolicyTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
 
     /**
-     * @covers \Ohio\Content\Policies\PagePolicy::index
-     * @covers \Ohio\Content\Policies\PagePolicy::view
+     * @covers \Belt\Content\Policies\PagePolicy::index
+     * @covers \Belt\Content\Policies\PagePolicy::view
      */
     public function test()
     {

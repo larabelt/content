@@ -1,14 +1,14 @@
 <?php
 use Mockery as m;
-use Ohio\Core\Testing;
+use Belt\Core\Testing;
 
-use Ohio\Content\Page;
-use Ohio\Content\Tag;
-use Ohio\Content\Http\Requests\PaginateTaggables;
+use Belt\Content\Page;
+use Belt\Content\Tag;
+use Belt\Content\Http\Requests\PaginateTaggables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
-class PaginateTaggablesTest extends Testing\OhioTestCase
+class PaginateTaggablesTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
@@ -19,9 +19,9 @@ class PaginateTaggablesTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Http\Requests\PaginateTaggables::modifyQuery
-     * @covers \Ohio\Content\Http\Requests\PaginateTaggables::tags
-     * @covers \Ohio\Content\Http\Requests\PaginateTaggables::items
+     * @covers \Belt\Content\Http\Requests\PaginateTaggables::modifyQuery
+     * @covers \Belt\Content\Http\Requests\PaginateTaggables::tags
+     * @covers \Belt\Content\Http\Requests\PaginateTaggables::items
      */
     public function test()
     {

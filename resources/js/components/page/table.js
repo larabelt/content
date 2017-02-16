@@ -1,5 +1,5 @@
-import BaseTable from 'ohio/core/js/helpers/table';
-import BaseService from 'ohio/core/js/helpers/service';
+import BaseTable from 'belt/core/js/helpers/table';
+import BaseService from 'belt/core/js/helpers/service';
 
 class PageTable extends BaseTable {
 

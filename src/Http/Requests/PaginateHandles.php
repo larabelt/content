@@ -1,7 +1,7 @@
 <?php
-namespace Ohio\Content\Http\Requests;
+namespace Belt\Content\Http\Requests;
 
-use Ohio\Core\Http\Requests\PaginateRequest;
+use Belt\Core\Http\Requests\PaginateRequest;
 use Illuminate\Database\Eloquent\Builder;
 
 class PaginateHandles extends PaginateRequest

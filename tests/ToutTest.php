@@ -1,12 +1,12 @@
 <?php
 use Mockery as m;
 
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Tout;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Tout;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ToutTest extends OhioTestCase
+class ToutTest extends BeltTestCase
 {
     public function tearDown()
     {
@@ -14,7 +14,7 @@ class ToutTest extends OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Tout::image
+     * @covers \Belt\Content\Tout::image
      */
     public function test()
     {

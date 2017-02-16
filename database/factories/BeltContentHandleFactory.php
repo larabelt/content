@@ -10,15 +10,15 @@
 | database. Just tell the factory how a default model should look.
 |
 */
-use Illuminate\Support\Str;
 
-$factory->define(Ohio\Content\Category::class, function (Faker\Generator $faker) {
+$factory->define(Belt\Content\Handle::class, function (Faker\Generator $faker) {
+
+    $types = ['pages'];
 
     return [
-        'name' => Str::title($faker->words(3, true)),
-        'body' => $faker->paragraphs(3, true),
-        'meta_title' => $faker->words(3, true),
-        'meta_description' => $faker->paragraphs(1, true),
-        'meta_keywords' => $faker->words(12, true),
+        'handleable_id' => $faker->randomDigit,
+        'handleable_type' => $faker->randomElement($types),
+        'url' => sprintf('/%s', $faker->slug),
+        'delta' => 1,
     ];
 });

@@ -1,6 +1,6 @@
 <?php
 
-use Ohio\Content\Http\Controllers\Api;
+use Belt\Content\Http\Controllers\Api;
 
 /*
 |--------------------------------------------------------------------------

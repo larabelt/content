@@ -1,10 +1,10 @@
 <?php
 
-namespace Ohio\Content\Http\Controllers\Api;
+namespace Belt\Content\Http\Controllers\Api;
 
-use Ohio\Core\Http\Controllers\ApiController;
-use Ohio\Content\Block;
-use Ohio\Content\Http\Requests;
+use Belt\Core\Http\Controllers\ApiController;
+use Belt\Content\Block;
+use Belt\Content\Http\Requests;
 
 class BlocksController extends ApiController
 {

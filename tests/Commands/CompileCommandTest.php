@@ -1,11 +1,11 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Commands\CompileCommand;
-use Ohio\Content\Services\CompileService;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Commands\CompileCommand;
+use Belt\Content\Services\CompileService;
 
-class CompileCommandTest extends OhioTestCase
+class CompileCommandTest extends BeltTestCase
 {
     public function tearDown()
     {
@@ -13,8 +13,8 @@ class CompileCommandTest extends OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Commands\CompileCommand::service
-     * @covers \Ohio\Content\Commands\CompileCommand::handle
+     * @covers \Belt\Content\Commands\CompileCommand::service
+     * @covers \Belt\Content\Commands\CompileCommand::handle
      */
     public function testHandle()
     {

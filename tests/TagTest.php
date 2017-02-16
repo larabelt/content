@@ -1,11 +1,11 @@
 <?php
 use Mockery as m;
 
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Tag;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Tag;
 use Illuminate\Database\Eloquent\Builder;
 
-class TagTest extends OhioTestCase
+class TagTest extends BeltTestCase
 {
     public function tearDown()
     {
@@ -13,10 +13,10 @@ class TagTest extends OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Tag::__toString
-     * @covers \Ohio\Content\Tag::setBodyAttribute
-     * @covers \Ohio\Content\Tag::scopeTagged
-     * @covers \Ohio\Content\Tag::scopeNotTagged
+     * @covers \Belt\Content\Tag::__toString
+     * @covers \Belt\Content\Tag::setBodyAttribute
+     * @covers \Belt\Content\Tag::scopeTagged
+     * @covers \Belt\Content\Tag::scopeNotTagged
      */
     public function test()
     {

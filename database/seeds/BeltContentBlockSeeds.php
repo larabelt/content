@@ -2,9 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
-use Ohio\Content\Section;
+use Belt\Content\Block;
+use Belt\Content\Handle;
 
-class OhioContentSectionSeeds extends Seeder
+class BeltContentBlockSeeds extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +14,6 @@ class OhioContentSectionSeeds extends Seeder
      */
     public function run()
     {
-        //factory(Section::class, 25)->create();
+        factory(Block::class, 25)->create();
     }
 }

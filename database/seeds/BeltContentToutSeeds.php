@@ -2,9 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
-use Ohio\Content\Tag;
+use Belt\Content\Tout;
+use Belt\Content\Handle;
 
-class OhioContentTagSeeds extends Seeder
+class BeltContentToutSeeds extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +14,6 @@ class OhioContentTagSeeds extends Seeder
      */
     public function run()
     {
-        factory(Tag::class, 25)->create();
+        factory(Tout::class, 5)->create();
     }
 }

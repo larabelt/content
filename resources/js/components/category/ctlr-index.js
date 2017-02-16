@@ -1,4 +1,4 @@
-import headingTemplate from 'ohio/core/js/templates/heading2.html';
+import headingTemplate from 'belt/core/js/templates/heading2.html';
 import indexTemplate from './templates/index.html';
 import CategoryTable from './table';
 

@@ -1,14 +1,14 @@
 <?php
 
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Section;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Section;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class SectionTest extends OhioTestCase
+class SectionTest extends BeltTestCase
 {
     /**
-     * @covers \Ohio\Content\Section::sectionable
-     * @covers \Ohio\Content\Section::getTemplateViewAttribute
+     * @covers \Belt\Content\Section::sectionable
+     * @covers \Belt\Content\Section::getTemplateViewAttribute
      */
     public function test()
     {
@@ -18,20 +18,20 @@ class SectionTest extends OhioTestCase
         $this->assertInstanceOf(MorphTo::class, $section->sectionable());
 
         # getSectionViewAttribute
-        app()['config']->set('ohio.content.templates.sections', [
+        app()['config']->set('belt.content.templates.sections', [
             'default' => [
                 'label' => 'Default Tout',
-                'view' => 'ohio-content::section.sections.default'
+                'view' => 'belt-content::sections.sections.default'
             ],
             'sectiontest' => [
                 'label' => 'Default Tout',
-                'view' => 'ohio-content::section.sections.test'
+                'view' => 'belt-content::sections.sections.test'
             ],
         ]);
         $section->template = 'missing';
-        $this->assertEquals('ohio-content::section.sections.default', $section->template_view);
+        $this->assertEquals('belt-content::sections.sections.default', $section->template_view);
         $section->template = 'SectionTest';
-        $this->assertEquals('ohio-content::section.sections.test', $section->template_view);
+        $this->assertEquals('belt-content::sections.sections.test', $section->template_view);
     }
 
 }

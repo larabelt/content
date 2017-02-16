@@ -2,14 +2,14 @@
 
 use Mockery as m;
 
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Behaviors\Handleable;
-use Ohio\Content\Handle;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Behaviors\Handleable;
+use Belt\Content\Handle;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
-class HandleableTest extends OhioTestCase
+class HandleableTest extends BeltTestCase
 {
 
     public function tearDown()
@@ -18,8 +18,8 @@ class HandleableTest extends OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Behaviors\Handleable::handle
-     * @covers \Ohio\Content\Behaviors\Handleable::handles
+     * @covers \Belt\Content\Behaviors\Handleable::handle
+     * @covers \Belt\Content\Behaviors\Handleable::handles
      */
     public function test()
     {

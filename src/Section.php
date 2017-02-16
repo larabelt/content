@@ -1,21 +1,21 @@
 <?php
-namespace Ohio\Content;
+namespace Belt\Content;
 
-use Ohio;
+use Belt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Kalnoy\Nestedset\NodeTrait;
 
 class Section extends Model implements
-    Ohio\Core\Behaviors\ParamableInterface,
-    Ohio\Content\Behaviors\IncludesContentInterface,
-    Ohio\Content\Behaviors\IncludesTemplateInterface
+    Belt\Core\Behaviors\ParamableInterface,
+    Belt\Content\Behaviors\IncludesContentInterface,
+    Belt\Content\Behaviors\IncludesTemplateInterface
 {
 
     use NodeTrait;
-    use Ohio\Core\Behaviors\Paramable;
-    use Ohio\Content\Behaviors\IncludesContent;
-    use Ohio\Content\Behaviors\IncludesTemplate;
+    use Belt\Core\Behaviors\Paramable;
+    use Belt\Content\Behaviors\IncludesContent;
+    use Belt\Content\Behaviors\IncludesTemplate;
 
     protected $morphClass = 'sections';
 

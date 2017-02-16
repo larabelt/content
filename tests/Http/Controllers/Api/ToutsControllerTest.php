@@ -1,19 +1,19 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing;
+use Belt\Core\Testing;
 
-use Ohio\Content\Tout;
-use Ohio\Content\Http\Requests\StoreTout;
-use Ohio\Content\Http\Requests\PaginateTouts;
-use Ohio\Content\Http\Requests\UpdateTout;
-use Ohio\Content\Http\Controllers\Api\ToutsController;
-use Ohio\Core\Http\Exceptions\ApiNotFoundHttpException;
+use Belt\Content\Tout;
+use Belt\Content\Http\Requests\StoreTout;
+use Belt\Content\Http\Requests\PaginateTouts;
+use Belt\Content\Http\Requests\UpdateTout;
+use Belt\Content\Http\Controllers\Api\ToutsController;
+use Belt\Core\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ToutsControllerTest extends Testing\OhioTestCase
+class ToutsControllerTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
@@ -24,13 +24,13 @@ class ToutsControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Http\Controllers\Api\ToutsController::__construct
-     * @covers \Ohio\Content\Http\Controllers\Api\ToutsController::get
-     * @covers \Ohio\Content\Http\Controllers\Api\ToutsController::show
-     * @covers \Ohio\Content\Http\Controllers\Api\ToutsController::destroy
-     * @covers \Ohio\Content\Http\Controllers\Api\ToutsController::update
-     * @covers \Ohio\Content\Http\Controllers\Api\ToutsController::store
-     * @covers \Ohio\Content\Http\Controllers\Api\ToutsController::index
+     * @covers \Belt\Content\Http\Controllers\Api\ToutsController::__construct
+     * @covers \Belt\Content\Http\Controllers\Api\ToutsController::get
+     * @covers \Belt\Content\Http\Controllers\Api\ToutsController::show
+     * @covers \Belt\Content\Http\Controllers\Api\ToutsController::destroy
+     * @covers \Belt\Content\Http\Controllers\Api\ToutsController::update
+     * @covers \Belt\Content\Http\Controllers\Api\ToutsController::store
+     * @covers \Belt\Content\Http\Controllers\Api\ToutsController::index
      */
     public function test()
     {

@@ -1,6 +1,6 @@
 {
-  "name": "ohiocms/content",
-  "description": "Content package for OhioCMS.",
+  "name": "larabelt/content",
+  "description": "Content package for LaraBelt.",
   "authors": [
     {
       "name": "Matt Crowe",
@@ -13,12 +13,12 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "ohiocms/core": "dev-master",
-    "ohiocms/storage": "dev-master"
+    "larabelt/core": "dev-master",
+    "larabelt/storage": "dev-master"
   },
   "autoload": {
     "psr-4": {
-      "Ohio\\Content\\": "src/"
+      "Belt\\Content\\": "src/"
     }
   }
 }

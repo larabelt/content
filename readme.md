@@ -2,12 +2,12 @@
 
 ```
 # install assets & migrate
-php artisan ohio-content:publish
+php artisan belt-content:publish
 composer dumpautoload
 
 # migrate & seed
 php artisan migrate
-php artisan db:seed --class=OhioContentSeeder
+php artisan db:seed --class=BeltContentSeeder
 
 # compile assets
 gulp

@@ -1,16 +1,16 @@
 <?php
 
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Page;
-use Ohio\Content\Handle;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Page;
+use Belt\Content\Handle;
 
-class HandleTest extends OhioTestCase
+class HandleTest extends BeltTestCase
 {
     /**
-     * @covers \Ohio\Content\Handle::__toString
-     * @covers \Ohio\Content\Handle::setUrlAttribute
-     * @covers \Ohio\Content\Handle::handleable
-     * @covers \Ohio\Content\Handle::normalizeUrl
+     * @covers \Belt\Content\Handle::__toString
+     * @covers \Belt\Content\Handle::setUrlAttribute
+     * @covers \Belt\Content\Handle::handleable
+     * @covers \Belt\Content\Handle::normalizeUrl
      */
     public function test()
     {

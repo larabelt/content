@@ -1,5 +1,5 @@
 <?php
-namespace Ohio\Content\Behaviors;
+namespace Belt\Content\Behaviors;
 
 trait Sectionable
 {

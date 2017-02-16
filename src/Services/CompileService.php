@@ -1,8 +1,8 @@
 <?php
-namespace Ohio\Content\Services;
+namespace Belt\Content\Services;
 
-use Ohio, Cache;
-use Ohio\Content\Page;
+use Belt, Cache;
+use Belt\Content\Page;
 
 class CompileService
 {

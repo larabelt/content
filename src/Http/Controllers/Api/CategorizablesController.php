@@ -1,12 +1,12 @@
 <?php
 
-namespace Ohio\Content\Http\Controllers\Api;
+namespace Belt\Content\Http\Controllers\Api;
 
-use Ohio\Core\Http\Controllers\ApiController;
-use Ohio\Core\Http\Controllers\Behaviors\Positionable;
-use Ohio\Content\Category;
-use Ohio\Content\Http\Requests;
-use Ohio\Core\Helpers\MorphHelper;
+use Belt\Core\Http\Controllers\ApiController;
+use Belt\Core\Http\Controllers\Behaviors\Positionable;
+use Belt\Content\Category;
+use Belt\Content\Http\Requests;
+use Belt\Core\Helpers\MorphHelper;
 
 class CategorizablesController extends ApiController
 {

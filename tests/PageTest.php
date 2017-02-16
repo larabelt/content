@@ -1,13 +1,13 @@
 <?php
 
-use Ohio\Core\Testing\OhioTestCase;
-use Ohio\Content\Page;
+use Belt\Core\Testing\BeltTestCase;
+use Belt\Content\Page;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class PageTest extends OhioTestCase
+class PageTest extends BeltTestCase
 {
     /**
-     * @covers \Ohio\Content\Page::sections
+     * @covers \Belt\Content\Page::sections
      */
     public function test()
     {

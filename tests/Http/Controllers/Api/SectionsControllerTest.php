@@ -1,19 +1,19 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing;
+use Belt\Core\Testing;
 
-use Ohio\Content\Section;
-use Ohio\Content\Http\Requests\StoreSection;
-use Ohio\Content\Http\Requests\PaginateSections;
-use Ohio\Content\Http\Requests\UpdateSection;
-use Ohio\Content\Http\Controllers\Api\SectionsController;
-use Ohio\Core\Http\Exceptions\ApiNotFoundHttpException;
+use Belt\Content\Section;
+use Belt\Content\Http\Requests\StoreSection;
+use Belt\Content\Http\Requests\PaginateSections;
+use Belt\Content\Http\Requests\UpdateSection;
+use Belt\Content\Http\Controllers\Api\SectionsController;
+use Belt\Core\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class SectionsControllerTest extends Testing\OhioTestCase
+class SectionsControllerTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
@@ -24,13 +24,13 @@ class SectionsControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Http\Controllers\Api\SectionsController::__construct
-     * @covers \Ohio\Content\Http\Controllers\Api\SectionsController::get
-     * @covers \Ohio\Content\Http\Controllers\Api\SectionsController::show
-     * @covers \Ohio\Content\Http\Controllers\Api\SectionsController::destroy
-     * @covers \Ohio\Content\Http\Controllers\Api\SectionsController::update
-     * @covers \Ohio\Content\Http\Controllers\Api\SectionsController::store
-     * @covers \Ohio\Content\Http\Controllers\Api\SectionsController::index
+     * @covers \Belt\Content\Http\Controllers\Api\SectionsController::__construct
+     * @covers \Belt\Content\Http\Controllers\Api\SectionsController::get
+     * @covers \Belt\Content\Http\Controllers\Api\SectionsController::show
+     * @covers \Belt\Content\Http\Controllers\Api\SectionsController::destroy
+     * @covers \Belt\Content\Http\Controllers\Api\SectionsController::update
+     * @covers \Belt\Content\Http\Controllers\Api\SectionsController::store
+     * @covers \Belt\Content\Http\Controllers\Api\SectionsController::index
      */
     public function test()
     {

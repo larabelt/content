@@ -1,14 +1,14 @@
 <?php
 
 Route::group([
-    'prefix' => 'admin/ohio/content',
+    'prefix' => 'admin/belt/content',
     'middleware' => ['web', 'auth']
 ],
     function () {
 
-        # admin/ohio/content home
+        # admin/belt/content home
         Route::get('{any?}', function () {
-            return view('ohio-content::base.admin.dashboard');
+            return view('belt-content::base.admin.dashboard');
         })->where('any', '(.*)');
 
     }

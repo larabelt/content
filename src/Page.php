@@ -1,25 +1,25 @@
 <?php
-namespace Ohio\Content;
+namespace Belt\Content;
 
-use Ohio;
+use Belt;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model implements
-    Ohio\Core\Behaviors\SluggableInterface,
-    Ohio\Content\Behaviors\CategorizableInterface,
-    Ohio\Content\Behaviors\HandleableInterface,
-    Ohio\Content\Behaviors\IncludesContentInterface,
-    Ohio\Content\Behaviors\IncludesSeoInterface,
-    Ohio\Content\Behaviors\IncludesTemplateInterface,
-    Ohio\Content\Behaviors\TaggableInterface
+    Belt\Core\Behaviors\SluggableInterface,
+    Belt\Content\Behaviors\CategorizableInterface,
+    Belt\Content\Behaviors\HandleableInterface,
+    Belt\Content\Behaviors\IncludesContentInterface,
+    Belt\Content\Behaviors\IncludesSeoInterface,
+    Belt\Content\Behaviors\IncludesTemplateInterface,
+    Belt\Content\Behaviors\TaggableInterface
 {
-    use Ohio\Core\Behaviors\Sluggable;
-    use Ohio\Content\Behaviors\Categorizable;
-    use Ohio\Content\Behaviors\IncludesSeo;
-    use Ohio\Content\Behaviors\IncludesContent;
-    use Ohio\Content\Behaviors\Handleable;
-    use Ohio\Content\Behaviors\IncludesTemplate;
-    use Ohio\Content\Behaviors\Taggable;
+    use Belt\Core\Behaviors\Sluggable;
+    use Belt\Content\Behaviors\Categorizable;
+    use Belt\Content\Behaviors\IncludesSeo;
+    use Belt\Content\Behaviors\IncludesContent;
+    use Belt\Content\Behaviors\Handleable;
+    use Belt\Content\Behaviors\IncludesTemplate;
+    use Belt\Content\Behaviors\Taggable;
 
     protected $morphClass = 'pages';
 

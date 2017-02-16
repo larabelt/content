@@ -1,7 +1,7 @@
 <?php
-namespace Ohio\Content\Http\Requests;
+namespace Belt\Content\Http\Requests;
 
-use Ohio\Content\Category;
+use Belt\Content\Category;
 use Illuminate\Database\Eloquent\Builder;
 
 class PaginateCategorizables extends PaginateCategories

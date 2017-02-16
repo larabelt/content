@@ -1,19 +1,19 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing;
+use Belt\Core\Testing;
 
-use Ohio\Content\Tag;
-use Ohio\Content\Http\Requests\StoreTag;
-use Ohio\Content\Http\Requests\PaginateTags;
-use Ohio\Content\Http\Requests\UpdateTag;
-use Ohio\Content\Http\Controllers\Api\TagsController;
-use Ohio\Core\Http\Exceptions\ApiNotFoundHttpException;
+use Belt\Content\Tag;
+use Belt\Content\Http\Requests\StoreTag;
+use Belt\Content\Http\Requests\PaginateTags;
+use Belt\Content\Http\Requests\UpdateTag;
+use Belt\Content\Http\Controllers\Api\TagsController;
+use Belt\Core\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class TagsControllerTest extends Testing\OhioTestCase
+class TagsControllerTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
@@ -24,13 +24,13 @@ class TagsControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Http\Controllers\Api\TagsController::__construct
-     * @covers \Ohio\Content\Http\Controllers\Api\TagsController::get
-     * @covers \Ohio\Content\Http\Controllers\Api\TagsController::show
-     * @covers \Ohio\Content\Http\Controllers\Api\TagsController::destroy
-     * @covers \Ohio\Content\Http\Controllers\Api\TagsController::update
-     * @covers \Ohio\Content\Http\Controllers\Api\TagsController::store
-     * @covers \Ohio\Content\Http\Controllers\Api\TagsController::index
+     * @covers \Belt\Content\Http\Controllers\Api\TagsController::__construct
+     * @covers \Belt\Content\Http\Controllers\Api\TagsController::get
+     * @covers \Belt\Content\Http\Controllers\Api\TagsController::show
+     * @covers \Belt\Content\Http\Controllers\Api\TagsController::destroy
+     * @covers \Belt\Content\Http\Controllers\Api\TagsController::update
+     * @covers \Belt\Content\Http\Controllers\Api\TagsController::store
+     * @covers \Belt\Content\Http\Controllers\Api\TagsController::index
      */
     public function test()
     {

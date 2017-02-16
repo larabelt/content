@@ -1,6 +1,6 @@
 
 // helpers
-import Tabs from 'ohio/core/js/helpers/tabs';
+import Tabs from 'belt/core/js/helpers/tabs';
 import Form from './form';
 
 // components
@@ -9,7 +9,7 @@ import handles from '../handle/ctlr-edit';
 import tags from '../tag/taggable/ctlr-edit';
 
 // templates
-import heading_html from 'ohio/core/js/templates/heading2.html';
+import heading_html from 'belt/core/js/templates/heading2.html';
 import edit_html from './templates/edit.html';
 import form_html from './templates/form.html';
 

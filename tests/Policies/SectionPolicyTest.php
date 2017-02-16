@@ -1,15 +1,15 @@
 <?php
 
-use Ohio\Core\Testing;
-use Ohio\Content\Policies\SectionPolicy;
+use Belt\Core\Testing;
+use Belt\Content\Policies\SectionPolicy;
 
-class SectionPolicyTest extends Testing\OhioTestCase
+class SectionPolicyTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
 
     /**
-     * @covers \Ohio\Content\Policies\SectionPolicy::view
+     * @covers \Belt\Content\Policies\SectionPolicy::view
      */
     public function test()
     {

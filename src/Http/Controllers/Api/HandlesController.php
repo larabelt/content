@@ -1,11 +1,11 @@
 <?php
 
-namespace Ohio\Content\Http\Controllers\Api;
+namespace Belt\Content\Http\Controllers\Api;
 
 use Route;
-use Ohio\Core\Http\Controllers\ApiController;
-use Ohio\Content\Handle;
-use Ohio\Content\Http\Requests;
+use Belt\Core\Http\Controllers\ApiController;
+use Belt\Content\Handle;
+use Belt\Content\Http\Requests;
 use Illuminate\Http\Request;
 
 class HandlesController extends ApiController

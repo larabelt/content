@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Content\Behaviors\IncludesSeo;
-use Ohio\Content\Validators\RouteValidator;
+use Belt\Content\Behaviors\IncludesSeo;
+use Belt\Content\Validators\RouteValidator;
 
-use Ohio\Core\Testing\OhioTestCase;
+use Belt\Core\Testing\BeltTestCase;
 
-class RouteValidatorTest extends OhioTestCase
+class RouteValidatorTest extends BeltTestCase
 {
 
     /**
-     * @covers \Ohio\Content\Validators\RouteValidator::routeIsUnique
+     * @covers \Belt\Content\Validators\RouteValidator::routeIsUnique
      */
     public function test()
     {

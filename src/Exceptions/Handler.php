@@ -1,10 +1,10 @@
 <?php
 
-namespace Ohio\Content\Exceptions;
+namespace Belt\Content\Exceptions;
 
 use Exception, Illuminate, Symfony;
-use Ohio\Core\Exceptions\Handler as BaseHandler;
-use Ohio\Content\Handle;
+use Belt\Core\Exceptions\Handler as BaseHandler;
+use Belt\Content\Handle;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends BaseHandler

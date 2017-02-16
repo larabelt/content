@@ -1,19 +1,19 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing;
+use Belt\Core\Testing;
 
-use Ohio\Content\Page;
-use Ohio\Content\Http\Requests\StorePage;
-use Ohio\Content\Http\Requests\PaginatePages;
-use Ohio\Content\Http\Requests\UpdatePage;
-use Ohio\Content\Http\Controllers\Api\PagesController;
-use Ohio\Core\Http\Exceptions\ApiNotFoundHttpException;
+use Belt\Content\Page;
+use Belt\Content\Http\Requests\StorePage;
+use Belt\Content\Http\Requests\PaginatePages;
+use Belt\Content\Http\Requests\UpdatePage;
+use Belt\Content\Http\Controllers\Api\PagesController;
+use Belt\Core\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class PagesControllerTest extends Testing\OhioTestCase
+class PagesControllerTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
@@ -24,13 +24,13 @@ class PagesControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Http\Controllers\Api\PagesController::__construct
-     * @covers \Ohio\Content\Http\Controllers\Api\PagesController::get
-     * @covers \Ohio\Content\Http\Controllers\Api\PagesController::show
-     * @covers \Ohio\Content\Http\Controllers\Api\PagesController::destroy
-     * @covers \Ohio\Content\Http\Controllers\Api\PagesController::update
-     * @covers \Ohio\Content\Http\Controllers\Api\PagesController::store
-     * @covers \Ohio\Content\Http\Controllers\Api\PagesController::index
+     * @covers \Belt\Content\Http\Controllers\Api\PagesController::__construct
+     * @covers \Belt\Content\Http\Controllers\Api\PagesController::get
+     * @covers \Belt\Content\Http\Controllers\Api\PagesController::show
+     * @covers \Belt\Content\Http\Controllers\Api\PagesController::destroy
+     * @covers \Belt\Content\Http\Controllers\Api\PagesController::update
+     * @covers \Belt\Content\Http\Controllers\Api\PagesController::store
+     * @covers \Belt\Content\Http\Controllers\Api\PagesController::index
      */
     public function test()
     {

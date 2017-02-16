@@ -1,7 +1,7 @@
 <?php
-namespace Ohio\Content\Http\Requests;
+namespace Belt\Content\Http\Requests;
 
-use Ohio\Content\Tag;
+use Belt\Content\Tag;
 use Illuminate\Database\Eloquent\Builder;
 
 class PaginateTaggables extends PaginateTags

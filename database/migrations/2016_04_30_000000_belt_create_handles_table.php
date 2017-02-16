@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class OhioCreateBlocksTable extends Migration
+class BeltCreateHandlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class OhioCreateBlocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('blocks', function (Blueprint $table) {
+        Schema::create('handles', function ($table) {
             $table->increments('id');
-            $table->string('template')->default('default');
-            $table->string('name');
-            $table->string('slug')->index();
-            $table->text('body');
+            $table->string('url', 255)->index();
+            $table->integer('handleable_id');
+            $table->string('handleable_type', 100);
+            $table->float('delta')->default(1)->index();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class OhioCreateBlocksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('blocks');
+        Schema::drop('handles');
     }
 }

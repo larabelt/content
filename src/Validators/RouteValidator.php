@@ -1,8 +1,8 @@
 <?php
 
-namespace Ohio\Content\Validators;
+namespace Belt\Content\Validators;
 
-use Ohio\Content\Handle;
+use Belt\Content\Handle;
 use Request, Route;
 use Illuminate\Validation\Validator;
 

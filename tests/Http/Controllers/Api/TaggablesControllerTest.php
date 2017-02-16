@@ -1,16 +1,16 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing;
-use Ohio\Core\Http\Exceptions\ApiException;
-use Ohio\Content\Page;
-use Ohio\Content\Tag;
-use Ohio\Content\Http\Requests\AttachTag;
-use Ohio\Content\Http\Requests\PaginateTaggables;
-use Ohio\Content\Http\Controllers\Api\TaggablesController;
-use Ohio\Core\Helpers\MorphHelper;
+use Belt\Core\Testing;
+use Belt\Core\Http\Exceptions\ApiException;
+use Belt\Content\Page;
+use Belt\Content\Tag;
+use Belt\Content\Http\Requests\AttachTag;
+use Belt\Content\Http\Requests\PaginateTaggables;
+use Belt\Content\Http\Controllers\Api\TaggablesController;
+use Belt\Core\Helpers\MorphHelper;
 
-class TaggablesControllerTest extends Testing\OhioTestCase
+class TaggablesControllerTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
@@ -21,13 +21,13 @@ class TaggablesControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Http\Controllers\Api\TaggablesController::__construct
-     * @covers \Ohio\Content\Http\Controllers\Api\TaggablesController::tag
-     * @covers \Ohio\Content\Http\Controllers\Api\TaggablesController::taggable
-     * @covers \Ohio\Content\Http\Controllers\Api\TaggablesController::show
-     * @covers \Ohio\Content\Http\Controllers\Api\TaggablesController::destroy
-     * @covers \Ohio\Content\Http\Controllers\Api\TaggablesController::store
-     * @covers \Ohio\Content\Http\Controllers\Api\TaggablesController::index
+     * @covers \Belt\Content\Http\Controllers\Api\TaggablesController::__construct
+     * @covers \Belt\Content\Http\Controllers\Api\TaggablesController::tag
+     * @covers \Belt\Content\Http\Controllers\Api\TaggablesController::taggable
+     * @covers \Belt\Content\Http\Controllers\Api\TaggablesController::show
+     * @covers \Belt\Content\Http\Controllers\Api\TaggablesController::destroy
+     * @covers \Belt\Content\Http\Controllers\Api\TaggablesController::store
+     * @covers \Belt\Content\Http\Controllers\Api\TaggablesController::index
      */
     public function test()
     {

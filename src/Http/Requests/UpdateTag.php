@@ -1,7 +1,7 @@
 <?php
-namespace Ohio\Content\Http\Requests;
+namespace Belt\Content\Http\Requests;
 
-use Ohio\Core\Http\Requests\FormRequest;
+use Belt\Core\Http\Requests\FormRequest;
 
 class UpdateTag extends FormRequest
 {

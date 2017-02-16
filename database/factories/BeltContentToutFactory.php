@@ -10,9 +10,9 @@
 | database. Just tell the factory how a default model should look.
 |
 */
-use Ohio\Storage\File;
+use Belt\Storage\File;
 
-$factory->define(Ohio\Content\Tout::class, function (Faker\Generator $faker) {
+$factory->define(Belt\Content\Tout::class, function (Faker\Generator $faker) {
 
     $file = factory(File::class)->create();
 

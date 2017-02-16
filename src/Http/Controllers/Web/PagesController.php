@@ -1,11 +1,11 @@
 <?php
 
-namespace Ohio\Content\Http\Controllers\Web;
+namespace Belt\Content\Http\Controllers\Web;
 
 use Auth;
-use Ohio\Content\Services\CompileService;
-use Ohio\Core\Http\Controllers\BaseController;
-use Ohio\Content\Page;
+use Belt\Content\Services\CompileService;
+use Belt\Core\Http\Controllers\BaseController;
+use Belt\Content\Page;
 use Illuminate\Http\Request;
 
 class PagesController extends BaseController

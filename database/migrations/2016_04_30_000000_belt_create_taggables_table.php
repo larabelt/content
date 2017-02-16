@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class OhioCreateHandlesTable extends Migration
+class BeltCreateTaggablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,10 @@ class OhioCreateHandlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('handles', function ($table) {
+        Schema::create('taggables', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url', 255)->index();
-            $table->integer('handleable_id');
-            $table->string('handleable_type', 100);
-            $table->float('delta')->default(1)->index();
-            $table->softDeletes();
+            $table->integer('tag_id')->index();
+            $table->morphs('taggable');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class OhioCreateHandlesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('handles');
+        Schema::drop('taggables');
     }
 }

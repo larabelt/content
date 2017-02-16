@@ -1,19 +1,19 @@
 <?php
 
 use Mockery as m;
-use Ohio\Core\Testing;
+use Belt\Core\Testing;
 
-use Ohio\Content\Handle;
-use Ohio\Content\Http\Requests\StoreHandle;
-use Ohio\Content\Http\Requests\PaginateHandles;
-use Ohio\Content\Http\Requests\UpdateHandle;
-use Ohio\Content\Http\Controllers\Api\HandlesController;
-use Ohio\Core\Http\Exceptions\ApiNotFoundHttpException;
+use Belt\Content\Handle;
+use Belt\Content\Http\Requests\StoreHandle;
+use Belt\Content\Http\Requests\PaginateHandles;
+use Belt\Content\Http\Requests\UpdateHandle;
+use Belt\Content\Http\Controllers\Api\HandlesController;
+use Belt\Core\Http\Exceptions\ApiNotFoundHttpException;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class HandlesControllerTest extends Testing\OhioTestCase
+class HandlesControllerTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
@@ -24,13 +24,13 @@ class HandlesControllerTest extends Testing\OhioTestCase
     }
 
     /**
-     * @covers \Ohio\Content\Http\Controllers\Api\HandlesController::__construct
-     * @covers \Ohio\Content\Http\Controllers\Api\HandlesController::get
-     * @covers \Ohio\Content\Http\Controllers\Api\HandlesController::show
-     * @covers \Ohio\Content\Http\Controllers\Api\HandlesController::destroy
-     * @covers \Ohio\Content\Http\Controllers\Api\HandlesController::update
-     * @covers \Ohio\Content\Http\Controllers\Api\HandlesController::store
-     * @covers \Ohio\Content\Http\Controllers\Api\HandlesController::index
+     * @covers \Belt\Content\Http\Controllers\Api\HandlesController::__construct
+     * @covers \Belt\Content\Http\Controllers\Api\HandlesController::get
+     * @covers \Belt\Content\Http\Controllers\Api\HandlesController::show
+     * @covers \Belt\Content\Http\Controllers\Api\HandlesController::destroy
+     * @covers \Belt\Content\Http\Controllers\Api\HandlesController::update
+     * @covers \Belt\Content\Http\Controllers\Api\HandlesController::store
+     * @covers \Belt\Content\Http\Controllers\Api\HandlesController::index
      */
     public function test()
     {

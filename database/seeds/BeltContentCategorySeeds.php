@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
-use Ohio\Content\Category;
+use Belt\Content\Category;
 
-class OhioContentCategorySeeds extends Seeder
+class BeltContentCategorySeeds extends Seeder
 {
     /**
      * Run the database seeds.

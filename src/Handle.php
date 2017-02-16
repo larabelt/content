@@ -1,5 +1,5 @@
 <?php
-namespace Ohio\Content;
+namespace Belt\Content;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;

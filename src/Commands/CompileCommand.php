@@ -1,8 +1,8 @@
 <?php
 
-namespace Ohio\Content\Commands;
+namespace Belt\Content\Commands;
 
-use Ohio\Content\Services\CompileService;
+use Belt\Content\Services\CompileService;
 use Illuminate\Console\Command;
 
 class CompileCommand extends Command
@@ -13,7 +13,7 @@ class CompileCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'ohio-content:compile';
+    protected $signature = 'belt-content:compile';
 
     /**
      * The console command description.

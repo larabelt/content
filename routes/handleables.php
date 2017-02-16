@@ -1,6 +1,6 @@
 <?php
 
-use Ohio\Content\Http\Controllers\Web;
+use Belt\Content\Http\Controllers\Web;
 
 # pages
 Response::macro('pages', function ($page) {

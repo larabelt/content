@@ -3,9 +3,9 @@
         <i class="fa fa-file-o"></i> <span>Content Admin</span> <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
-        <li><a href="/admin/ohio/content/blocks"><i class="fa fa-code"></i> <span>Blocks</span></a></li>
-        <li><a href="/admin/ohio/content/categories"><i class="fa fa-sitemap"></i> <span>Categories</span></a></li>
-        <li><a href="/admin/ohio/content/pages"><i class="fa fa-files-o"></i> <span>Pages</span></a></li>
-        <li><a href="/admin/ohio/content/tags"><i class="fa fa-tags"></i> <span>Tags</span></a></li>
+        <li><a href="/admin/belt/content/blocks"><i class="fa fa-code"></i> <span>Blocks</span></a></li>
+        <li><a href="/admin/belt/content/categories"><i class="fa fa-sitemap"></i> <span>Categories</span></a></li>
+        <li><a href="/admin/belt/content/pages"><i class="fa fa-files-o"></i> <span>Pages</span></a></li>
+        <li><a href="/admin/belt/content/tags"><i class="fa fa-tags"></i> <span>Tags</span></a></li>
     </ul>
 </li>

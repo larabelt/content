@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class OhioCreateToutsTable extends Migration
+class BeltCreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,11 @@ class OhioCreateToutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('touts', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('file_id')->nullable();
             $table->string('name');
             $table->string('slug')->index();
-            $table->string('heading')->nullable();
             $table->text('body')->nullable();
-            $table->string('btn_text')->nullable();
-            $table->string('btn_url')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +29,6 @@ class OhioCreateToutsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('touts');
+        Schema::drop('tags');
     }
 }

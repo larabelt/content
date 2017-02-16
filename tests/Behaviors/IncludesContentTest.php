@@ -1,15 +1,15 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
-use Ohio\Content\Behaviors\IncludesContent;
+use Belt\Content\Behaviors\IncludesContent;
 
 class IncludesContentTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers \Ohio\Content\Behaviors\IncludesContent::setIsActiveAttribute
-     * @covers \Ohio\Content\Behaviors\IncludesContent::setIntroAttribute
-     * @covers \Ohio\Content\Behaviors\IncludesContent::setBodyAttribute
+     * @covers \Belt\Content\Behaviors\IncludesContent::setIsActiveAttribute
+     * @covers \Belt\Content\Behaviors\IncludesContent::setIntroAttribute
+     * @covers \Belt\Content\Behaviors\IncludesContent::setBodyAttribute
      */
     public function test()
     {
