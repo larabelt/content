@@ -14,7 +14,7 @@
   "minimum-stability": "dev",
   "require": {
     "larabelt/core": "dev-master",
-    "larabelt/storage": "dev-master"
+    "larabelt/clip": "dev-master"
   },
   "autoload": {
     "psr-4": {
