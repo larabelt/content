@@ -2,25 +2,25 @@
 
 return [
     'blocks' => [
-        'default' => ['blocks.sections.default'],
+        'default' => ['belt-content::blocks.sections.default'],
     ],
     'embeds' => [
-        'breadcrumbs' => ['menus.sections.breadcrumbs'],
-        'contact' => ['contact.sections.default'],
+        'breadcrumbs' => ['belt-menu::menus.sections.breadcrumbs'],
+        'contact' => ['belt-core::contact.sections.default'],
     ],
     'attachments' => [
-        'default' => ['attachments.sections.default'],
+        'default' => ['belt-clip::attachments.sections.default'],
     ],
     'menus' => [
-        'default' => ['menus.sections.default'],
+        'default' => ['belt-menu::menus.sections.default'],
     ],
     'pages' => [
-        'default' => ['pages.templates.default'],
+        'default' => ['belt-content::pages.templates.default'],
     ],
     'sections' => [
-        'default' => ['sections.sections.default'],
+        'default' => ['belt-content::sections.sections.default'],
     ],
     'touts' => [
-        'default' => ['touts.sections.default'],
+        'default' => ['belt-content::touts.sections.default'],
     ],
 ];

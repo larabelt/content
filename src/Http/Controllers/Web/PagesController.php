@@ -36,7 +36,7 @@ class PagesController extends BaseController
 
         $compiled = $this->service->cache($page);
 
-        return view('pages.web.show', compact('page', 'compiled'));
+        return view('belt-content::pages.web.show', compact('page', 'compiled'));
     }
 
     /**
@@ -55,7 +55,7 @@ class PagesController extends BaseController
 
         $compiled = $this->service->compile($page);
 
-        return view('pages.web.show', compact('page', 'compiled'));
+        return view('belt-content::pages.web.show', compact('page', 'compiled'));
     }
 
 }

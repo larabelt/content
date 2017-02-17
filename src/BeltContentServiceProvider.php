@@ -46,10 +46,10 @@ class BeltContentServiceProvider extends ServiceProvider
     {
 
         // set view paths
-        $this->loadViewsFrom(resource_path('belt/content/views'), 'belt-content');
+        // $this->loadViewsFrom(resource_path('belt/content/views'), 'belt-content');
 
         // set backup view paths
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'belt-content');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belt-content');
 
         // policies
         $this->registerPolicies($gate);
