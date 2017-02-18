@@ -12,7 +12,7 @@ class BeltCreateHandlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('handles', function ($table) {
+        Schema::create('handles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url', 255)->index();
             $table->integer('handleable_id');

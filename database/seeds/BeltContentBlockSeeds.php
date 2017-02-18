@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 
 use Belt\Content\Block;
-use Belt\Content\Handle;
 
 class BeltContentBlockSeeds extends Seeder
 {

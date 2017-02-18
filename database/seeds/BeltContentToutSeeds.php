@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 
 use Belt\Content\Tout;
-use Belt\Content\Handle;
 
 class BeltContentToutSeeds extends Seeder
 {

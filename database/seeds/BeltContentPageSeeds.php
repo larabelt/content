@@ -1,6 +1,5 @@
 <?php
 
-use Belt\Core\Param;
 use Belt\Content\Block;
 use Belt\Content\Page;
 use Belt\Content\Handle;
