@@ -6,6 +6,10 @@ use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Block;
 use Belt\Content\Http\Requests;
 
+/**
+ * Class BlocksController
+ * @package Belt\Content\Http\Controllers\Api
+ */
 class BlocksController extends ApiController
 {
 
@@ -23,6 +27,9 @@ class BlocksController extends ApiController
         $this->blocks = $block;
     }
 
+    /**
+     * @param $id
+     */
     public function get($id)
     {
         return $this->blocks->find($id) ?: $this->abort(404);

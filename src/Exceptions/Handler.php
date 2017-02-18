@@ -7,6 +7,10 @@ use Belt\Core\Exceptions\Handler as BaseHandler;
 use Belt\Content\Handle;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class Handler
+ * @package Belt\Content\Exceptions
+ */
 class Handler extends BaseHandler
 {
     /**

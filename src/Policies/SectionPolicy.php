@@ -6,6 +6,10 @@ use Belt\Core\User;
 use Belt\Core\Policies\BaseAdminPolicy;
 use Belt\Content\Section;
 
+/**
+ * Class SectionPolicy
+ * @package Belt\Content\Policies
+ */
 class SectionPolicy extends BaseAdminPolicy
 {
     /**

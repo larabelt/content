@@ -6,6 +6,10 @@ use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Page;
 use Belt\Content\Http\Requests;
 
+/**
+ * Class PagesController
+ * @package Belt\Content\Http\Controllers\Api
+ */
 class PagesController extends ApiController
 {
 
@@ -23,6 +27,9 @@ class PagesController extends ApiController
         $this->pages = $page;
     }
 
+    /**
+     * @param $id
+     */
     public function get($id)
     {
         return $this->pages->find($id) ?: $this->abort(404);

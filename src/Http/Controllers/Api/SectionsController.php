@@ -6,6 +6,10 @@ use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Section;
 use Belt\Content\Http\Requests;
 
+/**
+ * Class SectionsController
+ * @package Belt\Content\Http\Controllers\Api
+ */
 class SectionsController extends ApiController
 {
 
@@ -23,6 +27,9 @@ class SectionsController extends ApiController
         $this->sections = $section;
     }
 
+    /**
+     * @param $id
+     */
     public function get($id)
     {
         return $this->sections->find($id) ?: $this->abort(404);

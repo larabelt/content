@@ -4,16 +4,24 @@ namespace Belt\Content\Services;
 use Belt, Cache;
 use Belt\Content\Page;
 
+/**
+ * Class CompileService
+ * @package Belt\Content\Services
+ */
 class CompileService
 {
 
-    //sectionable: menu, breadcrumbs
-
+    /**
+     * CompileService constructor.
+     */
     public function __construct()
     {
         $this->pages = new Page();
     }
 
+    /**
+     *
+     */
     public function pages()
     {
         $qb = $this->pages->query();
@@ -24,11 +32,20 @@ class CompileService
         }
     }
 
+    /**
+     * @param $page
+     * @return string
+     */
     public function compile($page)
     {
         return view($page->template_view, compact('page'))->render();
     }
 
+    /**
+     * @param $page
+     * @param bool $force
+     * @return string
+     */
     public function cache($page, $force = false)
     {
         $compiled = Cache::get('pages:' . $page->id) ?: $this->compile($page);

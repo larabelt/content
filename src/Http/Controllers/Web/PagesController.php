@@ -8,6 +8,10 @@ use Belt\Core\Http\Controllers\BaseController;
 use Belt\Content\Page;
 use Illuminate\Http\Request;
 
+/**
+ * Class PagesController
+ * @package Belt\Content\Http\Controllers\Web
+ */
 class PagesController extends BaseController
 {
 

@@ -5,6 +5,10 @@ namespace Belt\Content\Commands;
 use Belt\Content\Services\CompileService;
 use Illuminate\Console\Command;
 
+/**
+ * Class CompileCommand
+ * @package Belt\Content\Commands
+ */
 class CompileCommand extends Command
 {
 

@@ -5,10 +5,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
+/**
+ * Class Handle
+ * @package Belt\Content
+ */
 class Handle extends Model
 {
+    /**
+     * @var string
+     */
     protected $table = 'handles';
 
+    /**
+     * @var array
+     */
     protected $guarded = ['id'];
 
     /**
@@ -21,16 +31,26 @@ class Handle extends Model
         return $this->morphTo();
     }
 
+    /**
+     * @return mixed
+     */
     public function __toString()
     {
         return $this->url;
     }
 
+    /**
+     * @param $value
+     */
     public function setUrlAttribute($value)
     {
         $this->attributes['url'] = $this->normalizeUrl($value);
     }
 
+    /**
+     * @param $value
+     * @return mixed|string
+     */
     public static function normalizeUrl($value)
     {
 

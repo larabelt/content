@@ -4,6 +4,10 @@ namespace Belt\Content\Commands;
 
 use Belt\Core\Commands\PublishCommand as Command;
 
+/**
+ * Class PublishCommand
+ * @package Belt\Content\Commands
+ */
 class PublishCommand extends Command
 {
 
@@ -21,6 +25,9 @@ class PublishCommand extends Command
      */
     protected $description = 'publish assets for belt content';
 
+    /**
+     * @var array
+     */
     protected $dirs = [
         'vendor/larabelt/content/config' => 'config/belt',
         'vendor/larabelt/content/resources/js' => 'resources/belt/content/js',

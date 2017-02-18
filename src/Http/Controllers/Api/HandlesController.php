@@ -8,6 +8,10 @@ use Belt\Content\Handle;
 use Belt\Content\Http\Requests;
 use Illuminate\Http\Request;
 
+/**
+ * Class HandlesController
+ * @package Belt\Content\Http\Controllers\Api
+ */
 class HandlesController extends ApiController
 {
 
@@ -25,6 +29,9 @@ class HandlesController extends ApiController
         $this->handle = $handle;
     }
 
+    /**
+     * @param $id
+     */
     public function get($id)
     {
         return $this->handle->find($id) ?: $this->abort(404);

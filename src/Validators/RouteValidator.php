@@ -6,9 +6,20 @@ use Belt\Content\Handle;
 use Request, Route;
 use Illuminate\Validation\Validator;
 
+/**
+ * Class RouteValidator
+ * @package Belt\Content\Validators
+ */
 class RouteValidator
 {
 
+    /**
+     * @param $attribute
+     * @param $value
+     * @param $parameters
+     * @param Validator $validator
+     * @return bool
+     */
     public function routeIsUnique($attribute, $value, $parameters, Validator $validator)
     {
         $validator->setFallbackMessages(

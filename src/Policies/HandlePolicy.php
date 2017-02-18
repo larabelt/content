@@ -6,6 +6,10 @@ use Belt\Core\User;
 use Belt\Core\Policies\BaseAdminPolicy;
 use Belt\Content\Handle;
 
+/**
+ * Class HandlePolicy
+ * @package Belt\Content\Policies
+ */
 class HandlePolicy extends BaseAdminPolicy
 {
 

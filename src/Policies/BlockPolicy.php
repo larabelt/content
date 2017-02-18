@@ -6,6 +6,10 @@ use Belt\Core\User;
 use Belt\Core\Policies\BaseAdminPolicy;
 use Belt\Content\Block;
 
+/**
+ * Class BlockPolicy
+ * @package Belt\Content\Policies
+ */
 class BlockPolicy extends BaseAdminPolicy
 {
     /**

@@ -4,6 +4,10 @@ namespace Belt\Content;
 use Belt;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Page
+ * @package Belt\Content
+ */
 class Page extends Model implements
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Glue\Behaviors\CategorizableInterface,
@@ -21,12 +25,24 @@ class Page extends Model implements
     use Belt\Content\Behaviors\IncludesTemplate;
     use Belt\Glue\Behaviors\Taggable;
 
+    /**
+     * @var string
+     */
     protected $morphClass = 'pages';
 
+    /**
+     * @var string
+     */
     protected $table = 'pages';
 
+    /**
+     * @var array
+     */
     protected $fillable = ['name'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function sections()
     {
         return $this->hasMany(Section::class);

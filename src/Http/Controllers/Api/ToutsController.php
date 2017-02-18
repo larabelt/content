@@ -6,6 +6,10 @@ use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Tout;
 use Belt\Content\Http\Requests;
 
+/**
+ * Class ToutsController
+ * @package Belt\Content\Http\Controllers\Api
+ */
 class ToutsController extends ApiController
 {
 
@@ -23,6 +27,9 @@ class ToutsController extends ApiController
         $this->touts = $tout;
     }
 
+    /**
+     * @param $id
+     */
     public function get($id)
     {
         return $this->touts->find($id) ?: $this->abort(404);
