@@ -79,6 +79,10 @@ class BeltContentServiceProvider extends ServiceProvider
 
         // validators
         Validator::extend('unique_route', Belt\Content\Validators\RouteValidator::class . '@routeIsUnique');
+
+        # beltable values for global belt command
+        $this->app['belt']->publish('belt-content:publish');
+        $this->app['belt']->seeders('BeltContentSeeder');
     }
 
     /**
