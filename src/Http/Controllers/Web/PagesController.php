@@ -53,9 +53,7 @@ class PagesController extends BaseController
     public function preview(Page $page)
     {
 
-        if (env('APP_ENV') == 'production') {
-            $this->authorize('update', $page);
-        }
+        $this->authorize('update', $page);
 
         $compiled = $this->service->compile($page);
 

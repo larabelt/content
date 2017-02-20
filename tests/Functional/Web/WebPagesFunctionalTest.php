@@ -8,6 +8,7 @@ class WebPagesFunctionalTest extends Testing\BeltTestCase
     public function test()
     {
         $this->refreshDB();
+        $this->actAsSuper();
 
         # index
         $response = $this->json('GET', '/page/1');
