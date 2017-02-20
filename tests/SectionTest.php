@@ -8,7 +8,7 @@ class SectionTest extends BeltTestCase
 {
     /**
      * @covers \Belt\Content\Section::sectionable
-     * @covers \Belt\Content\Section::getTemplateViewAttribute
+     * @covers \Belt\Content\Section::getTemplateGroup
      */
     public function test()
     {
@@ -17,15 +17,10 @@ class SectionTest extends BeltTestCase
         # sectionable
         $this->assertInstanceOf(MorphTo::class, $section->sectionable());
 
-        # getSectionViewAttribute
-        app()['config']->set('belt.templates.sections', [
-            'default' => ['belt-content::sections.sections.default'],
-            'sectiontest' => 'belt-content::sections.sections.test',
-        ]);
-        $section->template = 'missing';
-        $this->assertEquals('belt-content::sections.sections.default', $section->template_view);
-        $section->template = 'SectionTest';
-        $this->assertEquals('belt-content::sections.sections.test', $section->template_view);
+        # getTemplateGroup
+        $section->sectionable_type = 'test';
+        $this->assertEquals('test', $section->getTemplateGroup());
+
     }
 
 }
