@@ -1,22 +1,25 @@
-import headingTemplate from 'belt/core/js/templates/heading2.html';
-import indexTemplate from './templates/index.html';
-import PageTable from './table';
+// helpers
+import Table from '../table';
+
+// templates make a change
+import heading_html from 'belt/core/js/templates/heading.html';
+import index_html from '../templates/index.html';
 
 export default {
 
     components: {
-        heading: {template: headingTemplate},
-        pageIndex: {
+        heading: {template: heading_html},
+        index: {
             data() {
                 return {
-                    table: new PageTable({router: this.$router}),
+                    table: new Table({router: this.$router}),
                 }
             },
             mounted() {
                 this.table.updateQueryFromRouter();
                 this.table.index();
             },
-            template: indexTemplate,
+            template: index_html,
         },
     },
 
@@ -26,7 +29,7 @@ export default {
                 <span slot="title">Page Manager</span>
             </heading>
             <section class="content">
-                <page-index></page-index>
+                <index></index>
             </section>
         </div>
         `

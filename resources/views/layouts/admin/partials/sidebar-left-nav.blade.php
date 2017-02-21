@@ -4,8 +4,7 @@
     </a>
     <ul class="treeview-menu">
         <li><a href="/admin/belt/content/blocks"><i class="fa fa-code"></i> <span>Blocks</span></a></li>
-        <li><a href="/admin/belt/glue/categories"><i class="fa fa-sitemap"></i> <span>Categories</span></a></li>
         <li><a href="/admin/belt/content/pages"><i class="fa fa-files-o"></i> <span>Pages</span></a></li>
-        <li><a href="/admin/belt/glue/tags"><i class="fa fa-tags"></i> <span>Tags</span></a></li>
+        <li><a href="/admin/belt/content/touts"><i class="fa fa-files-o"></i> <span>Touts</span></a></li>
     </ul>
 </li>

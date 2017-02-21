@@ -70,4 +70,21 @@ class Handle extends Model
         return $value;
     }
 
+    /**
+     * Return handles associated with handleable
+     *
+     * @param $query
+     * @param $handleable_type
+     * @param $handleable_id
+     * @return mixed
+     */
+    public function scopeHandled($query, $handleable_type, $handleable_id)
+    {
+        $query->select(['handles.*']);
+        $query->where('handles.handleable_type', $handleable_type);
+        $query->where('handles.handleable_id', $handleable_id);
+
+        return $query;
+    }
+
 }

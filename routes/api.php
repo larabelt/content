@@ -15,12 +15,23 @@ Route::group([
         Route::get('blocks', Api\BlocksController::class . '@index');
         Route::post('blocks', Api\BlocksController::class . '@store');
 
+//        # handles
+//        Route::get('handles/{id}', Api\Handles0Controller::class . '@show');
+//        Route::put('handles/{id}', Api\Handles0Controller::class . '@update');
+//        Route::delete('handles/{id}', Api\Handles0Controller::class . '@destroy');
+//        Route::get('handles', Api\Handles0Controller::class . '@index');
+//        Route::post('handles', Api\Handles0Controller::class . '@store');
+
         # handles
-        Route::get('handles/{id}', Api\HandlesController::class . '@show');
-        Route::put('handles/{id}', Api\HandlesController::class . '@update');
-        Route::delete('handles/{id}', Api\HandlesController::class . '@destroy');
-        Route::get('handles', Api\HandlesController::class . '@index');
-        Route::post('handles', Api\HandlesController::class . '@store');
+        Route::group([
+            'prefix' => '{handleable_type}/{handleable_id}/handles',
+            'middleware' => 'request.injections:handleable_type,handleable_id'
+        ], function () {
+            Route::get('{id}', Api\HandlesController::class . '@show');
+            Route::delete('{id}', Api\HandlesController::class . '@destroy');
+            Route::get('', Api\HandlesController::class . '@index');
+            Route::post('', Api\HandlesController::class . '@store');
+        });
 
         # pages
         Route::get('pages/{id}', Api\PagesController::class . '@show');

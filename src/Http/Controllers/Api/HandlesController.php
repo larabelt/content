@@ -2,39 +2,51 @@
 
 namespace Belt\Content\Http\Controllers\Api;
 
-use Route;
 use Belt\Core\Http\Controllers\ApiController;
+use Belt\Core\Http\Controllers\Behaviors\Positionable;
+use Belt\Core\Helpers\MorphHelper;
 use Belt\Content\Handle;
 use Belt\Content\Http\Requests;
-use Illuminate\Http\Request;
 
-/**
- * Class HandlesController
- * @package Belt\Content\Http\Controllers\Api
- */
 class HandlesController extends ApiController
 {
+
+    use Positionable;
 
     /**
      * @var Handle
      */
-    public $handle;
+    public $handles;
 
     /**
-     * ApiController constructor.
-     * @param Handle $handle
+     * @var MorphHelper
      */
-    public function __construct(Handle $handle)
+    public $morphHelper;
+
+    public function __construct(Handle $handle, MorphHelper $morphHelper)
     {
-        $this->handle = $handle;
+        $this->handles = $handle;
+        $this->morphHelper = $morphHelper;
     }
 
-    /**
-     * @param $id
-     */
-    public function get($id)
+    public function handle($id, $handleable = null)
     {
-        return $this->handle->find($id) ?: $this->abort(404);
+        $qb = $this->handles->query();
+
+        if ($handleable) {
+            $qb->handled($handleable->getMorphClass(), $handleable->id);
+        }
+
+        $handle = $qb->where('handles.id', $id)->first();
+
+        return $handle ?: $this->abort(404);
+    }
+
+    public function handleable($handleable_type, $handleable_id)
+    {
+        $handleable = $this->morphHelper->morph($handleable_type, $handleable_id);
+
+        return $handleable ?: $this->abort(404);
     }
 
     /**
@@ -43,29 +55,39 @@ class HandlesController extends ApiController
      * @param $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateHandles $request)
+    public function index(Requests\PaginateHandles $request, $handleable_type, $handleable_id)
     {
-        $this->authorize('index', Handle::class);
 
         $request->reCapture();
 
-        $paginator = $this->paginator($this->handle->query(), $request);
+        $owner = $this->handleable($handleable_type, $handleable_id);
+
+        $this->authorize('view', $owner);
+
+        $request->merge([
+            'handleable_id' => $owner->id,
+            'handleable_type' => $owner->getMorphClass()
+        ]);
+
+        $paginator = $this->paginator($this->handles->query(), $request);
 
         return response()->json($paginator->toArray());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in glue.
      *
      * @param  Requests\StoreHandle $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\StoreHandle $request)
+    public function store(Requests\StoreHandle $request, $handleable_type, $handleable_id)
     {
-        $this->authorize('create', Handle::class);
+        $owner = $this->handleable($handleable_type, $handleable_id);
 
-        $handle = $this->handle->create($request->only([
+        $this->authorize('update', $owner);
+
+        $handle = $this->handles->create($request->only([
             'handleable_id', 'handleable_type', 'url'
         ]));
 
@@ -79,47 +101,31 @@ class HandlesController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($handleable_type, $handleable_id, $id)
     {
-        $handle = $this->get($id);
+        $owner = $this->handleable($handleable_type, $handleable_id);
 
-        $this->authorize('view', $handle);
+        $this->authorize('view', $owner);
+
+        $handle = $this->handle($id, $owner);
 
         return response()->json($handle);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  Requests\UpdateHandle $request
-     * @param  string $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Requests\UpdateHandle $request, $id)
-    {
-        $handle = $this->get($id);
-
-        $this->authorize('update', $handle);
-
-        $handle->update($request->all());
-
-        return response()->json($handle);
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from glue.
      *
      * @param  int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($handleable_type, $handleable_id, $id)
     {
-        $handle = $this->get($id);
+        $owner = $this->handleable($handleable_type, $handleable_id);
 
-        $this->authorize('delete', $handle);
+        $this->authorize('update', $owner);
+
+        $handle = $this->handle($id, $owner);
 
         $handle->delete();
 
