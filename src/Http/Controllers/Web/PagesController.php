@@ -6,7 +6,6 @@ use Auth;
 use Belt\Content\Services\CompileService;
 use Belt\Core\Http\Controllers\BaseController;
 use Belt\Content\Page;
-use Illuminate\Http\Request;
 
 /**
  * Class PagesController
@@ -26,6 +25,8 @@ class PagesController extends BaseController
     public function __construct()
     {
         $this->service = new CompileService();
+
+        $this->middleware('web');
     }
 
     /**
@@ -38,7 +39,21 @@ class PagesController extends BaseController
     public function show(Page $page)
     {
 
-        $compiled = $this->service->cache($page);
+        $method = $this->env('APP_DEBUG') ? 'compile' : 'cache';
+
+        /**
+         * @todo below does not work on "handled" routes
+         */
+        if ($method == 'cache' && Auth::user()) {
+            try {
+                $this->authorize('update', $page);
+                $method = 'compile';
+            } catch (\Exception $e) {
+
+            }
+        }
+
+        $compiled = $this->service->$method($page);
 
         return view('belt-content::pages.web.show', compact('page', 'compiled'));
     }
