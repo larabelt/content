@@ -1,6 +1,5 @@
-
 // components
-import tags from 'belt/glue/js/components/taggables/ctlr-edit';
+import sections from 'belt/content/js/components/sectionables/ctlr/index';
 
 // templates
 import heading_html from 'belt/core/js/templates/heading.html';
@@ -17,7 +16,7 @@ export default {
     components: {
         heading: {template: heading_html},
         tabs: {template: tabs_html},
-        tab: tags,
+        tab: sections,
     },
     template: edit_html,
 }

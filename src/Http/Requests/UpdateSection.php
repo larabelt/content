@@ -16,8 +16,8 @@ class UpdateSection extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'sometimes|required',
-            'body' => 'sometimes|required',
+            //'name' => 'sometimes|required',
+            //'body' => 'sometimes|required',
         ];
     }
 

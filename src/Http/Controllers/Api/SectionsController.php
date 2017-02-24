@@ -115,10 +115,11 @@ class SectionsController extends ApiController
         $input = $request->all();
 
         $this->set($section, $input, [
+            'parent_id',
             'template',
-            'name',
-            'slug',
+            'header',
             'body',
+            'footer',
         ]);
 
         $section->save();

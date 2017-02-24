@@ -18,7 +18,7 @@ export default {
     components: {
         heading: {template: heading_html},
         tabs: {template: tabs_html},
-        edit: {
+        tab: {
             data() {
                 return {
                     form: new Form(),

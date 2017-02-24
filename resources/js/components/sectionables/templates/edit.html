@@ -1,0 +1,39 @@
+<div>
+    <div class="box box-danger">
+        <div class="box-header">
+            <div class="pull-left">
+                <h3 class="box-title">{{ section.name }}</h3>
+            </div>
+            <div class="pull-right">
+                <div class="btn-group" role="group" aria-label="...">
+                    <a class="btn btn-default btn-sm" :class="{ 'btn-primary': tabs.show('tree') }" @click="tabs.set('tree')" title="tree">
+                        list
+                    </a>
+                    <a class="btn btn-default btn-sm" :class="{ 'btn-primary': tabs.show('default') }" @click="tabs.set('default')" title="default">
+                        contents
+                    </a>
+                    <a class="btn btn-default btn-sm" :class="{ 'btn-primary': tabs.show('text') }" @click="tabs.set('text')" title="text">
+                        text
+                    </a>
+                    <a class="btn btn-default btn-sm" :class="{ 'btn-primary': tabs.show('params') }" @click="tabs.set('params')" title="params">
+                        params
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div v-show="tabs.tab" class="box-body">
+            <div v-show="tabs.show('tree')">
+                <edit-tree :section="section"></edit-tree>
+            </div>
+            <div v-show="tabs.show('default')">
+                <edit-default :section="section"></edit-default>
+            </div>
+            <div v-show="tabs.show('text')">
+                <edit-text :section="section"></edit-text>
+            </div>
+            <div v-show="tabs.show('params')">
+                <edit-params :section="section"></edit-params>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,6 +4,7 @@ namespace Belt\Content;
 use Belt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Str;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -34,12 +35,35 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $fillable = ['name', 'body'];
+    protected $fillable = [];
+
+    /**
+     * @var array
+     */
+    protected $appends = ['name'];
 
     /**
      * @var string
      */
     protected static $sortableGroupField = 'page_id';
+
+    public function getNameAttribute()
+    {
+        $name = ucfirst(Str::singular($this->sectionable_type));
+
+        if ($this->sectionable) {
+            $name .= ': ' . $this->sectionable->slug;
+        } else {
+            $name .= ': ' . $this->template;
+        }
+
+        return $name;
+    }
+
+    public function getChildrenAttribute()
+    {
+        return $this->children();
+    }
 
     /**
      * The Associated owning model

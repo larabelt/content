@@ -1,7 +1,7 @@
 import BaseTable from 'belt/core/js/helpers/table';
 import BaseService from 'belt/core/js/helpers/service';
 
-class CategoryTable extends BaseTable {
+class HandleTable extends BaseTable {
 
     constructor(options = {}) {
         super(options);
@@ -11,4 +11,4 @@ class CategoryTable extends BaseTable {
 
 }
 
-export default CategoryTable;
+export default HandleTable;

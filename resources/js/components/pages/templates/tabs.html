@@ -11,4 +11,7 @@
     <li :class="{active: $router.currentRoute.name == 'pages.tags'}">
         <router-link :to="{ name: 'pages.tags', params: {id: $route.params.id}}">Tags</router-link>
     </li>
+    <li :class="{active: $router.currentRoute.name == 'pages.sections'}">
+        <router-link :to="{ name: 'pages.sections', params: {id: $route.params.id}}">Sections</router-link>
+    </li>
 </ul>
