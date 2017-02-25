@@ -20,6 +20,11 @@ export default {
     beforeCreate: function () {
         this.$options.components.panelList = self
     },
+    mounted() {
+        if (!this.panel.active) {
+            this.panel.active = this.section.id;
+        }
+    },
     methods: {
         setActive() {
             this.panel.active = this.section.id;

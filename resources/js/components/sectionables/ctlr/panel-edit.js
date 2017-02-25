@@ -3,7 +3,7 @@ import self from './panel-edit';
 
 // components (tabs)
 import editItem from './edit-item';
-import editContents from './edit-contents';
+import editContent from './edit-content';
 import editParams from './edit-params';
 
 import panelEdit_html from '../templates/panel-edit.html';
@@ -27,7 +27,7 @@ export default {
         this.$options.components.panelEdit = self
     },
     components: {
-        editContents,
+        editContent,
         editItem,
         editParams,
     },

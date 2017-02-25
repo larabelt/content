@@ -1,5 +1,17 @@
 <div>
-    <div v-for="section, i in table.items">
-        <panel :i="i" :section="section"></panel>
+    <div class="col-md-3 section-tree">
+        <div v-for="section in table.items">
+            <ul class="">
+                <panel-list :section="section"></panel-list>
+            </ul>
+        </div>
     </div>
+    <div class="col-md-9">
+        <div v-for="section in table.items">
+            <panel-edit :section="section"></panel-edit>
+        </div>
+    </div>
+    <!--    <div v-for="section in table.items">-->
+    <!--        <panel :section="section"></panel>-->
+    <!--    </div>-->
 </div>

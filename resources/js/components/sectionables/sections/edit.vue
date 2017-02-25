@@ -4,7 +4,7 @@
             <div class="form-group" :class="{ 'has-error': form.error('template') }">
                 <label for="template">Template</label>
                 <input type="text" class="form-control" v-model="form.template" placeholder="template">
-                <span v-for="error in form.error('template')" class="contents-danger">{{ error }}</span>
+                <span v-for="error in form.error('template')" class="content-danger">{{ error }}</span>
             </div>
             <div class="pull-right">
                 <button type="submit" class="btn btn-primary" :disabled="form.errors.any()">

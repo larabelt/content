@@ -14,22 +14,27 @@
         </form>
     </div>
     <div class="col-md-12">
-       <table class="table table-bordered table-hover">
-            <thead>
+        <div v-if="table.items.length">
+            <table class="table table-bordered table-hover">
+                <thead>
                 <tr>
                     <th>Name</th>
                     <th class="text-right">Actions</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr v-for="handle in table.items">
                     <td>{{ handle.url }}</td>
                     <td class="text-right">
                         <a class="btn btn-xs btn-danger" @click="table.destroy(handle.id)"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
-            </tbody>
-        </table>
-        <pagination></pagination>
+                </tbody>
+            </table>
+            <pagination></pagination>
+        </div>
+        <div v-else>
+            <p>There are no handles for this item.</p>
+        </div>
     </div>
 </div>
