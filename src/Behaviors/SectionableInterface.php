@@ -7,5 +7,5 @@ namespace Belt\Content\Behaviors;
  */
 interface SectionableInterface
 {
-
+    public function getSectionName();
 }

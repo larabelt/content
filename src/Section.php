@@ -4,7 +4,6 @@ namespace Belt\Content;
 use Belt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Support\Str;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -14,13 +13,15 @@ use Kalnoy\Nestedset\NodeTrait;
 class Section extends Model implements
     Belt\Core\Behaviors\ParamableInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
-    Belt\Content\Behaviors\IncludesTemplateInterface
+    Belt\Content\Behaviors\IncludesTemplateInterface,
+    Belt\Content\Behaviors\SectionableInterface
 {
 
     use NodeTrait;
     use Belt\Core\Behaviors\Paramable;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\IncludesTemplate;
+    use Belt\Content\Behaviors\Sectionable;
 
     /**
      * @var string
@@ -47,22 +48,33 @@ class Section extends Model implements
      */
     protected static $sortableGroupField = 'page_id';
 
+    /**
+     * @return string
+     */
     public function getNameAttribute()
     {
-        $name = ucfirst(Str::singular($this->sectionable_type));
+        return ucfirst(str_singular($this->sectionable_type));
 
-        if ($this->sectionable) {
-            $name .= ': ' . $this->sectionable->slug;
-        } else {
-            $name .= ': ' . $this->template;
-        }
-
-        return $name;
+//        $name = sprintf('%s:%s', str_singular($this->sectionable_type), $this->template);
+//
+//        $sectionable = $this->sectionable;
+//        if ($sectionable && $sectionable instanceof Belt\Content\Behaviors\SectionableInterface) {
+//            $name = $sectionable->getSectionName();
+//        }
+//
+//        return $name . $this->id;
     }
 
-    public function getChildrenAttribute()
+    /**
+     * @return array
+     */
+    public function toArray()
     {
-        return $this->children();
+        $data = parent::toArray();
+
+        $data['children'] = $this->children->toArray();
+
+        return $data;
     }
 
     /**

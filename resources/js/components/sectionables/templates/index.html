@@ -1,5 +1,5 @@
 <div>
-    <div v-for="section in table.items">
-        <page-section :section="section"></page-section>
+    <div v-for="section, i in table.items">
+        <panel :i="i" :section="section"></panel>
     </div>
 </div>

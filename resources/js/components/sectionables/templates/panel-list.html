@@ -1,0 +1,7 @@
+<li><span @click.prevent="setActive(section.id)" :class="{active: isActive}">{{ section.name }}</span>
+    <ul v-if="section.children.length">
+        <template v-for="child in section.children">
+            <panel-list :section="child"></panel-list>
+        </template>
+    </ul>
+</li>

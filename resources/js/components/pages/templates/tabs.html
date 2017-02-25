@@ -2,6 +2,9 @@
     <li :class="{active: $router.currentRoute.name == 'pages.edit'}">
         <router-link :to="{ name: 'pages.edit', params: {id: $route.params.id}}">Main</router-link>
     </li>
+    <li :class="{active: $router.currentRoute.name == 'pages.sections'}">
+        <router-link :to="{ name: 'pages.sections', params: {id: $route.params.id}}">Sections</router-link>
+    </li>
     <li :class="{active: $router.currentRoute.name == 'pages.handles'}">
         <router-link :to="{ name: 'pages.handles', params: {id: $route.params.id}}">Handles</router-link>
     </li>
@@ -10,8 +13,5 @@
     </li>
     <li :class="{active: $router.currentRoute.name == 'pages.tags'}">
         <router-link :to="{ name: 'pages.tags', params: {id: $route.params.id}}">Tags</router-link>
-    </li>
-    <li :class="{active: $router.currentRoute.name == 'pages.sections'}">
-        <router-link :to="{ name: 'pages.sections', params: {id: $route.params.id}}">Sections</router-link>
     </li>
 </ul>

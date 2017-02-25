@@ -1,5 +1,5 @@
 // components
-import edit from './edit';
+import panel from './panel';
 
 // helpers
 import Form from '../form';
@@ -22,7 +22,7 @@ export default {
         }
     },
     components: {
-        pageSection: edit,
+        panel: panel,
     },
     created() {
         this.table.index();

@@ -1,0 +1,32 @@
+<div>
+    <div v-if="isActive">
+        <div class="clearfix">
+            <div class="btn-group pull-right" role="group" aria-label="...">
+                <a class="btn btn-default btn-sm" :class="{ 'btn-primary': tabs.show('item') }" @click="tabs.set('item')" title="default">
+                    item
+                </a>
+                <a class="btn btn-default btn-sm" :class="{ 'btn-primary': tabs.show('contents') }" @click="tabs.set('contents')"
+                   title="contents">
+                    contents
+                </a>
+                <a class="btn btn-default btn-sm" :class="{ 'btn-primary': tabs.show('params') }" @click="tabs.set('params')" title="params">
+                    params
+                </a>
+            </div>
+        </div>
+        <div v-show="tabs.show('item')">
+            <edit-item :section="section"></edit-item>
+        </div>
+        <div v-show="tabs.show('contents')">
+            <edit-contents :section="section"></edit-contents>
+        </div>
+        <div v-show="tabs.show('params')">
+            <edit-params :section="section"></edit-params>
+        </div>
+    </div>
+    <template v-if="section.children.length">
+        <template v-for="child in section.children">
+            <panel-edit :section="child"></panel-edit>
+        </template>
+    </template>
+</div>

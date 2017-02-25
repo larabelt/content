@@ -2,7 +2,7 @@
 import Form from '../form';
 
 // templates
-import editText_html from '../templates/edit-text.html';
+import editContents_html from '../templates/edit-contents.html';
 
 export default {
     props: {
@@ -15,5 +15,5 @@ export default {
             form: form
         }
     },
-    template: editText_html
+    template: editContents_html
 }

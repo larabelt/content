@@ -115,6 +115,7 @@ class SectionsController extends ApiController
         $input = $request->all();
 
         $this->set($section, $input, [
+            'template',
             'parent_id',
             'template',
             'header',

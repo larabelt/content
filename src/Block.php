@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Block extends Model implements
     Belt\Core\Behaviors\SluggableInterface,
-    Belt\Content\Behaviors\IncludesContentInterface
+    Belt\Content\Behaviors\IncludesContentInterface,
+    Belt\Content\Behaviors\SectionableInterface
 {
     use Belt\Core\Behaviors\Sluggable;
     use Belt\Content\Behaviors\IncludesContent;
+    use Belt\Content\Behaviors\Sectionable;
 
     /**
      * @var string
