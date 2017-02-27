@@ -36,7 +36,7 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['sectionable_id', 'sectionable_type'];
 
     /**
      * @var array
@@ -53,16 +53,9 @@ class Section extends Model implements
      */
     public function getNameAttribute()
     {
-        return ucfirst(str_singular($this->sectionable_type));
+        $type = $this->sectionable_type == 'sections' ? 'boxes' : $this->sectionable_type;
 
-//        $name = sprintf('%s:%s', str_singular($this->sectionable_type), $this->template);
-//
-//        $sectionable = $this->sectionable;
-//        if ($sectionable && $sectionable instanceof Belt\Content\Behaviors\SectionableInterface) {
-//            $name = $sectionable->getSectionName();
-//        }
-//
-//        return $name . $this->id;
+        return ucfirst(str_singular($type));
     }
 
     /**

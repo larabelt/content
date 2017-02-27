@@ -16,7 +16,8 @@ export default {
             form: form,
             preview: {
                 html: ''
-            }
+            },
+            preview_url: '/sections/' + this.section.id + '/preview'
         }
     },
     mounted() {

@@ -77,6 +77,9 @@ class BeltContentServiceProvider extends ServiceProvider
             $column = is_numeric($value) ? 'id' : 'slug';
             return Belt\Content\Page::where($column, $value)->first();
         });
+        $router->bind('section', function ($value) {
+            return Belt\Content\Section::find($value);
+        });
 
         // validators
         Validator::extend('unique_route', Belt\Content\Validators\RouteValidator::class . '@routeIsUnique');

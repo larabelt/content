@@ -11,4 +11,7 @@ Route::group(['middleware' => ['web']], function () {
         return view('belt-core::base.web.home');
     });
 
+    # sections
+    Route::get('sections/{section}/preview', Web\SectionsController::class . '@preview');
+
 });

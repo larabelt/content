@@ -1,7 +1,8 @@
 // components
-import panel from './panel';
+//import panel from './panel';
 import panelList from './panel-list';
 import panelEdit from './panel-edit';
+import create from './create';
 
 // helpers
 import Form from '../form';
@@ -12,16 +13,18 @@ import Config from '../config';
 // templates
 import index_html from '../templates/index.html';
 
-// 6. universal template first...
-
+// before:
 // customized item edit/add -> _blank links
-// 5. customized item switch
-// 3. customized item preview/show
+// customized item switch
+// refactors
 
-// 4. add section
+// after:
+// universal template first...
 // move section
 
+// refactors:
 // embed to custom?
+// owner_id / owner_type... (all get page_id...)
 // section: header->heading?
 // body: -> before & after?
 
@@ -29,6 +32,8 @@ export default {
     data() {
         return {
             config: new Config(),
+            morphable_type: this.$parent.morphable_type,
+            morphable_id: this.$parent.morphable_id,
             dragAndDrop: {
                 active: false,
                 trashing: false,
@@ -51,9 +56,9 @@ export default {
         }
     },
     components: {
-        panel,
         panelList,
         panelEdit,
+        create,
     },
     created() {
         this.table.index();

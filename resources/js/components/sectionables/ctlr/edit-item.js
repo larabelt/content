@@ -17,7 +17,8 @@ export default {
         form.setData(this.section);
         return {
             config: this.$parent.config,
-            form: form
+            form: form,
+            table: this.$parent.table,
         }
     },
     components: {

@@ -17,8 +17,6 @@ class StoreSection extends FormRequest
     {
         return [
             'page_id' => 'required',
-            'parent_id' => 'required',
-            'sectionable_id' => 'required',
             'sectionable_type' => 'required',
             'template' => 'required',
         ];

@@ -22,6 +22,7 @@ export default {
         return {
             config: this.$parent.config,
             panel: this.$parent.panel,
+            table: this.$parent.table,
             tabs: this.$parent.tabs,
         }
     },

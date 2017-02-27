@@ -64,7 +64,7 @@ class SectionsController extends ApiController
         $input = $request->all();
 
         $section = $this->sections->create([
-            'sectionable_id' => $input['sectionable_id'],
+            'sectionable_id' => array_get($input, 'sectionable_id'),
             'sectionable_type' => $input['sectionable_type'],
         ]);
 

@@ -19,6 +19,7 @@ class Form extends BaseForm {
         this.setData({
             id: '',
             page_id: '',
+            parent_id: '',
             sectionable_id: '',
             sectionable_type: '',
             template: '',
