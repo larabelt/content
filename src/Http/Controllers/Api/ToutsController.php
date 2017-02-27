@@ -72,6 +72,9 @@ class ToutsController extends ApiController
             'template',
             'slug',
             'body',
+            'heading',
+            'btn_text',
+            'btn_url',
         ]);
 
         $tout->save();
@@ -116,6 +119,9 @@ class ToutsController extends ApiController
             'name',
             'slug',
             'body',
+            'heading',
+            'btn_text',
+            'btn_url',
         ]);
 
         $tout->save();
