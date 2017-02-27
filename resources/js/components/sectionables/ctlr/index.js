@@ -14,19 +14,18 @@ import Config from '../config';
 import index_html from '../templates/index.html';
 
 // before:
+// refactor
+// universal template first...
 // customized item edit/add -> _blank links
 // customized item switch
-// refactors
 
 // after:
-// universal template first...
 // move section
 
-// refactors:
-// embed to custom?
+// refactor:
 // owner_id / owner_type... (all get page_id...)
-// section: header->heading?
-// body: -> before & after?
+// embed -> custom
+// body/footer -> before/after
 
 export default {
     data() {

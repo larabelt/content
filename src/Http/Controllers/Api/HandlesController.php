@@ -88,7 +88,9 @@ class HandlesController extends ApiController
         $this->authorize('update', $owner);
 
         $handle = $this->handles->create($request->only([
-            'handleable_id', 'handleable_type', 'url'
+            'handleable_id',
+            'handleable_type',
+            'url'
         ]));
 
         return response()->json($handle, 201);
@@ -108,6 +110,34 @@ class HandlesController extends ApiController
         $this->authorize('view', $owner);
 
         $handle = $this->handle($id, $owner);
+
+        return response()->json($handle);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  Requests\UpdateHandle $request
+     * @param  string $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Requests\UpdateHandle $request, $handleable_type, $handleable_id, $id)
+    {
+
+        $owner = $this->handleable($handleable_type, $handleable_id);
+
+        $this->authorize('update', $owner);
+
+        $handle = $this->handle($id, $owner);
+
+        $input = $request->all();
+
+        $this->set($handle, $input, [
+            'url',
+        ]);
+
+        $handle->save();
 
         return response()->json($handle);
     }

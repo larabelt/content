@@ -25,6 +25,7 @@ Route::group([
             'middleware' => 'request.injections:handleable_type,handleable_id'
         ], function () {
             Route::get('{id}', Api\HandlesController::class . '@show');
+            Route::put('{id}', Api\HandlesController::class . '@update');
             Route::delete('{id}', Api\HandlesController::class . '@destroy');
             Route::get('', Api\HandlesController::class . '@index');
             Route::post('', Api\HandlesController::class . '@store');
