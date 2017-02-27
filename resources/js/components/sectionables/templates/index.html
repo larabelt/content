@@ -5,13 +5,20 @@
                 <panel-list :section="section"></panel-list>
             </ul>
         </div>
+
+        <div
+                class="label label-default"
+                :class="{'label-danger': dragAndDrop.trashing}"
+                @dragover.prevent
+                @drop="drop"
+                @dragover="dragAndDrop.trashing = true"
+                @dragleave="dragAndDrop.trashing = ''"
+        ><span>Trash <i class="fa fa-trash" aria-hidden="true"></i></span>
+        </div>
     </div>
     <div class="col-md-9">
         <div v-for="section in table.items">
             <panel-edit :section="section"></panel-edit>
         </div>
     </div>
-    <!--    <div v-for="section in table.items">-->
-    <!--        <panel :section="section"></panel>-->
-    <!--    </div>-->
 </div>

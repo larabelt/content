@@ -3,6 +3,7 @@ import self from './panel-edit';
 
 // components (tabs)
 import editItem from './edit-item';
+import editPreview from './edit-preview';
 import editContent from './edit-content';
 import editParams from './edit-params';
 
@@ -19,6 +20,7 @@ export default {
     },
     data() {
         return {
+            config: this.$parent.config,
             panel: this.$parent.panel,
             tabs: this.$parent.tabs,
         }
@@ -30,6 +32,7 @@ export default {
         editContent,
         editItem,
         editParams,
+        editPreview,
     },
     template: panelEdit_html
 }

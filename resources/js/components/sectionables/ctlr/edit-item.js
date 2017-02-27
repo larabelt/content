@@ -16,6 +16,7 @@ export default {
         let form = new Form();
         form.setData(this.section);
         return {
+            config: this.$parent.config,
             form: form
         }
     },

@@ -8,6 +8,7 @@
     li {
       span {
         cursor: pointer;
+        font-weight: 700;
         &.active {
           text-decoration: underline;
         }

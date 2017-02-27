@@ -14,6 +14,8 @@ export default {
     },
     data() {
         return {
+            dragAndDrop: this.$parent.dragAndDrop,
+            config: this.$parent.config,
             panel: this.$parent.panel,
         }
     },
@@ -28,7 +30,10 @@ export default {
     methods: {
         setActive() {
             this.panel.active = this.section.id;
-        }
+        },
+        drag(e) {
+            this.dragAndDrop.active = e.target.getAttribute('data-index');
+        },
     },
     template: panelList_html
 }

@@ -5,13 +5,16 @@
             <ul class="nav nav-tabs pull-right">
                 <li :class="{ active: tabs.show('params') }"><a @click="tabs.set('params')" data-toggle="tab">Params</a></li>
                 <li :class="{ active: tabs.show('content') }"><a @click="tabs.set('content')" data-toggle="tab">Content</a></li>
+                <li :class="{ active: tabs.show('preview') }"><a @click="tabs.set('preview')" data-toggle="tab">Preview</a></li>
                 <li :class="{ active: tabs.show('item') }"><a @click="tabs.set('item')" data-toggle="tab">{{ section.name }}</a></li>
-<!--                <li class="pull-left header">{{ section.name }}</li>-->
             </ul>
         </div>
 
         <div v-show="tabs.show('item')">
             <edit-item :section="section"></edit-item>
+        </div>
+        <div v-show="tabs.show('preview')">
+            <edit-preview :section="section"></edit-preview>
         </div>
         <div v-show="tabs.show('content')">
             <edit-content :section="section"></edit-content>

@@ -3,7 +3,11 @@
         <form role="form" @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
             <div class="form-group" :class="{ 'has-error': form.error('template') }">
                 <label for="template">Template</label>
-                <input type="text" class="form-control" v-model="form.template" placeholder="template">
+                <select v-model="form.template" class="form-control">
+                    <template v-for="label, value in dropdown">
+                        <option :value="value">{{ label }}</option>
+                    </template>
+                </select>
                 <span v-for="error in form.error('template')" class="contents-danger">{{ error }}</span>
             </div>
             <div class="form-group" :class="{ 'has-error': form.error('sectionable_id') }">
@@ -23,7 +27,7 @@
 
 <script>
 // helpers
-import Form from '../form';
+import Form from 'belt/content/js/components/sectionables/form';
 
 export default {
     props: {
@@ -32,16 +36,21 @@ export default {
     computed: {
         isType() {
             return this.section.sectionable_type == 'blocks';
+        },
+        dropdown() {
+            return this.config.dropdown(this.section.sectionable_type);
         }
     },
     data() {
         let form = new Form();
         form.setData(this.section);
         return {
-            form: form
+            config: this.$parent.config,
+            form: form,
         }
     },
+    mounted() {
+
+    }
 }
-
-
 </script>

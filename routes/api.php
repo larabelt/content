@@ -1,5 +1,6 @@
 <?php
 
+use Belt\Core\Http\Controllers\Api\ConfigController;
 use Belt\Content\Http\Controllers\Api;
 
 Route::group([
@@ -15,12 +16,8 @@ Route::group([
         Route::get('blocks', Api\BlocksController::class . '@index');
         Route::post('blocks', Api\BlocksController::class . '@store');
 
-//        # handles
-//        Route::get('handles/{id}', Api\Handles0Controller::class . '@show');
-//        Route::put('handles/{id}', Api\Handles0Controller::class . '@update');
-//        Route::delete('handles/{id}', Api\Handles0Controller::class . '@destroy');
-//        Route::get('handles', Api\Handles0Controller::class . '@index');
-//        Route::post('handles', Api\Handles0Controller::class . '@store');
+        # config
+        Route::get('config/belt.templates/{key?}', ConfigController::class . '@show');
 
         # handles
         Route::group([
@@ -41,6 +38,7 @@ Route::group([
         Route::post('pages', Api\PagesController::class . '@store');
 
         # sections
+        Route::get('sections/{id}/preview', Api\SectionsController::class . '@preview');
         Route::get('sections/{id}', Api\SectionsController::class . '@show');
         Route::put('sections/{id}', Api\SectionsController::class . '@update');
         Route::delete('sections/{id}', Api\SectionsController::class . '@destroy');

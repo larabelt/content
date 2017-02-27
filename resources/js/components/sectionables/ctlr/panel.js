@@ -8,20 +8,6 @@ import panelEdit from './panel-edit';
 // templates
 import panel_html from '../templates/panel.html';
 
-// 1. config api / template drop-down
-
-// customized item edit/add -> _blank links
-// 5. customized item switch
-// 3. customized item preview/show
-
-// 2. delete section
-// 4. add section
-// move section
-
-// embed to custom?
-// section: header->heading?
-// body: -> pre-item? and post-item (or similar)?
-
 export default {
     props: {
         section: {},
