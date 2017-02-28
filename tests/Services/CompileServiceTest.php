@@ -5,6 +5,7 @@ use Belt\Core\Testing\BeltTestCase;
 use Belt\Content\Page;
 use Belt\Content\Services\CompileService;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 
 class CompileServiceTest extends BeltTestCase
@@ -25,8 +26,8 @@ class CompileServiceTest extends BeltTestCase
         # construct / config
         $this->assertInstanceOf(Page::class, $service->pages);
 
-
         $page = factory(Page::class)->make();
+        $page->sections = new Collection();
         $page->template = 'belt-content::pages.templates.default';
 
         # compile

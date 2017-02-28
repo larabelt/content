@@ -69,12 +69,11 @@ class SectionsController extends ApiController
         ]);
 
         $this->set($section, $input, [
-            'page_id',
             'parent_id',
             'template',
-            'header',
-            'body',
-            'footer',
+            'heading',
+            'before',
+            'after',
         ]);
 
         $section->save();
@@ -134,9 +133,9 @@ class SectionsController extends ApiController
             'template',
             'parent_id',
             'template',
-            'header',
-            'body',
-            'footer',
+            'heading',
+            'before',
+            'after',
         ]);
 
         $section->save();

@@ -38,13 +38,26 @@ Route::group([
         Route::get('pages', Api\PagesController::class . '@index');
         Route::post('pages', Api\PagesController::class . '@store');
 
+//        # sections
+//        Route::get('sections/{id}/preview', Api\SectionsController::class . '@preview');
+//        Route::get('sections/{id}', Api\SectionsController::class . '@show');
+//        Route::put('sections/{id}', Api\SectionsController::class . '@update');
+//        Route::delete('sections/{id}', Api\SectionsController::class . '@destroy');
+//        Route::get('sections', Api\SectionsController::class . '@index');
+//        Route::post('sections', Api\SectionsController::class . '@store');
+
         # sections
-        Route::get('sections/{id}/preview', Api\SectionsController::class . '@preview');
-        Route::get('sections/{id}', Api\SectionsController::class . '@show');
-        Route::put('sections/{id}', Api\SectionsController::class . '@update');
-        Route::delete('sections/{id}', Api\SectionsController::class . '@destroy');
-        Route::get('sections', Api\SectionsController::class . '@index');
-        Route::post('sections', Api\SectionsController::class . '@store');
+        Route::group([
+            'prefix' => '{owner_type}/{owner_id}/sections',
+            'middleware' => 'request.injections:owner_type,owner_id'
+        ], function () {
+            Route::get('{id}/preview', Api\SectionablesController::class . '@preview');
+            Route::get('{id}', Api\SectionablesController::class . '@show');
+            Route::put('{id}', Api\SectionablesController::class . '@update');
+            Route::delete('{id}', Api\SectionablesController::class . '@destroy');
+            Route::get('', Api\SectionablesController::class . '@index');
+            Route::post('', Api\SectionablesController::class . '@store');
+        });
 
         # touts
         Route::get('touts/{id}', Api\ToutsController::class . '@show');

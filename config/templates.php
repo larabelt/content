@@ -4,7 +4,7 @@ return [
     'blocks' => [
         'default' => ['belt-content::blocks.sections.default'],
     ],
-    'embeds' => [
+    'custom' => [
         'breadcrumbs' => ['belt-menu::menus.sections.breadcrumbs'],
         'contact' => ['belt-core::contact.sections.default'],
     ],

@@ -2,7 +2,7 @@
 
 use Belt\Core\Testing\BeltTestCase;
 use Belt\Content\Page;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class PageTest extends BeltTestCase
 {
@@ -13,7 +13,7 @@ class PageTest extends BeltTestCase
     {
         $page = factory(Page::class)->make();
 
-        $this->assertInstanceOf(HasMany::class, $page->sections());
+        $this->assertInstanceOf(MorphMany::class, $page->sections());
     }
 
 }

@@ -1,3 +1,5 @@
+import shared from './shared';
+
 // helpers
 import Form from '../form';
 
@@ -5,15 +7,11 @@ import Form from '../form';
 import create_html from '../templates/create.html';
 
 export default {
-    props: {
-        section: {}
-    },
+    mixins: [shared],
     data() {
         return {
-            config: this.$parent.config,
-            form: new Form(),
             show: false,
-            table: this.$parent.table,
+            form: new Form({shared: this.$parent.shared}),
         }
     },
     mounted() {
@@ -28,9 +26,11 @@ export default {
             form.reset();
             if (this.section) {
                 form.parent_id = this.section.id;
-                form.page_id = this.section.page_id;
+                form.owner_id = this.section.owner_id;
+                form.owner_type = this.section.owner_type;
             } else {
-                form.page_id = this.$parent.morphable_id;
+                form.owner_id = this.morphable_id;
+                form.owner_type = this.morphable_type;
             }
 
             form.template = 'default';
@@ -39,7 +39,7 @@ export default {
         {
             let self = this;
             let form = this.form;
-            let table = this.table;
+            let table = this.shared.table;
 
             self.reset();
 

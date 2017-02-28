@@ -1,0 +1,25 @@
+<div>
+    <form role="form" @submit.prevent="panel.form.submit()" @keydown="panel.form.errors.clear($event.target.name)">
+        <div class="form-group" :class="{ 'has-error': panel.form.error('heading') }">
+            <label for="heading">Heading</label>
+            <input type="text" class="form-control" v-model="panel.form.heading" placeholder="heading">
+            <span v-for="error in panel.form.error('heading')" class="content-danger">{{ error }}</span>
+        </div>
+        <div class="form-group" :class="{ 'has-error': panel.form.error('before') }">
+            <label for="before">Before</label>
+            <textarea class="form-control" rows="10" v-model="panel.form.before" tinymce="'before'"></textarea>
+            <span v-for="error in panel.form.error('before')" class="content-danger">{{ error }}</span>
+        </div>
+        <div class="form-group" :class="{ 'has-error': panel.form.error('after') }">
+            <label for="after">After</label>
+            <textarea class="form-control" rows="10" v-model="panel.form.after" tinymce="'before'"></textarea>
+            <span v-for="error in panel.form.error('after')" class="content-danger">{{ error }}</span>
+        </div>
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary" :disabled="panel.form.errors.any()">
+                <span v-if="panel.form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                <span v-else>Save</span>
+            </button>
+        </div>
+    </form>
+</div>

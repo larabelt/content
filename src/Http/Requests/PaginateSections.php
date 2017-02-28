@@ -21,9 +21,7 @@ class PaginateSections extends PaginateRequest
 
     public function modifyQuery(Builder $query)
     {
-        if ($this->get('page_id')) {
-            $query->where('page_id', $this->get('page_id'));
-        }
+        $query->whereNull('parent_id');
 
         return $query;
     }

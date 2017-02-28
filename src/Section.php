@@ -36,17 +36,12 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $fillable = ['sectionable_id', 'sectionable_type'];
+    protected $fillable = ['owner_id', 'owner_type', 'sectionable_type', 'parent_id'];
 
     /**
      * @var array
      */
     protected $appends = ['name'];
-
-    /**
-     * @var string
-     */
-    protected static $sortableGroupField = 'page_id';
 
     /**
      * @return string
@@ -86,6 +81,23 @@ class Section extends Model implements
     public function getTemplateGroup()
     {
         return $this->sectionable_type;
+    }
+
+    /**
+     * Return sections associated with owner
+     *
+     * @param $query
+     * @param $owner_type
+     * @param $owner_id
+     * @return mixed
+     */
+    public function scopeOwned($query, $owner_type, $owner_id)
+    {
+        $query->select(['sections.*']);
+        $query->where('sections.owner_type', $owner_type);
+        $query->where('sections.owner_id', $owner_id);
+
+        return $query;
     }
 
 }

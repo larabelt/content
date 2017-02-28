@@ -1,7 +1,6 @@
 // components
-//import panel from './panel';
-import panelList from './panel-list';
-import panelEdit from './panel-edit';
+import list from './list';
+import panels from './panels';
 import create from './create';
 
 // helpers
@@ -13,23 +12,10 @@ import Config from '../config';
 // templates
 import index_html from '../templates/index.html';
 
-// before:
-// refactor
-// universal template first...
-// customized item edit/add -> _blank links
-// customized item switch
-
-// after:
-// move section
-
-// refactor:
-// owner_id / owner_type... (all get page_id...)
-// embed -> custom
-// body/footer -> before/after
-
 export default {
     data() {
-        return {
+
+        let shared = {
             config: new Config(),
             morphable_type: this.$parent.morphable_type,
             morphable_id: this.$parent.morphable_id,
@@ -52,24 +38,32 @@ export default {
                 router: this.$router,
                 toggleable: true,
             }),
+        };
+
+        return {
+            shared: shared,
+            form: new Form({
+                morphable_type: shared.morphable_type,
+                morphable_id: shared.morphable_id,
+            }),
         }
     },
     components: {
-        panelList,
-        panelEdit,
+        list,
+        panels,
         create,
     },
     created() {
-        this.table.index();
-        this.config.load();
+        this.shared.table.index();
+        this.shared.config.load();
     },
     mounted() {
-        this.tabs.tab = 'item';
+        this.shared.tabs.tab = 'item';
     },
     methods: {
         drop(e) {
-            let table = this.table;
-            let dragAndDrop = this.dragAndDrop;
+            let table = this.shared.table;
+            let dragAndDrop = this.shared.dragAndDrop;
             if (dragAndDrop.active) {
                 this.form.destroy(dragAndDrop.active)
                     .then(function () {

@@ -11,22 +11,30 @@ class Form extends BaseForm {
     constructor(options = {}) {
         super(options);
 
-        //let baseUrl = `/api/v1/${this.morphable_type}/${this.morphable_id}/sections/`;
-        //let baseUrl = `/api/v1/sections/?page_id=${this.morphable_id}`;
-        let baseUrl = `/api/v1/sections/`;
-
+        // service
+        if (options.shared) {
+            this.morphable_id = options.shared.morphable_id;
+            this.morphable_type = options.shared.morphable_type;
+        }
+        let baseUrl = `/api/v1/${this.morphable_type}/${this.morphable_id}/sections/`;
         this.service = new BaseService({baseUrl: baseUrl});
+
+        // data
         this.setData({
             id: '',
-            page_id: '',
+            owner_id: '',
+            owner_type: '',
             parent_id: '',
             sectionable_id: '',
             sectionable_type: '',
             template: '',
-            header: '',
-            body: '',
-            footer: '',
+            heading: '',
+            before: '',
+            after: '',
         });
+        if (options.section) {
+            this.setData(options.section);
+        }
     }
 
 }

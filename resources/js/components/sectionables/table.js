@@ -6,11 +6,8 @@ class SectionTable extends BaseTable {
 
     constructor(options = {}) {
         super(options);
-        //let baseUrl = `/api/v1/${this.morphable_type}/${this.morphable_id}/sections/`;
-        //let baseUrl = `/api/v1/sections/?page_id=${this.morphable_id}`;
-        let baseUrl = `/api/v1/sections/`;
+        let baseUrl = `/api/v1/${this.morphable_type}/${this.morphable_id}/sections/`;
         this.service = new BaseService({baseUrl: baseUrl});
-        this.query.page_id = this.morphable_id;
     }
 
 }

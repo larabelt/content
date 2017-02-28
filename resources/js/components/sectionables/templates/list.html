@@ -1,14 +1,14 @@
 <li><span
             draggable="true"
-            :class="{active: isActive}"
+            :class="{active: isActivePanel}"
             :data-index="section.id"
-            @click.prevent="setActive(section.id)"
+            @click.prevent="setActivePanel(section.id)"
             @drag="drag"
-            @mouseout="dragAndDrop.active = ''"
+            @mouseout="shared.dragAndDrop.active = ''"
     >{{ section.name }}</span>
     <ul v-if="section.children.length">
         <template v-for="child in section.children">
-            <panel-list :section="child"></panel-list>
+            <list :section="child"></list>
         </template>
     </ul>
 </li>

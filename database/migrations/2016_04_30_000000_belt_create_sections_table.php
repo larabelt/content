@@ -15,14 +15,14 @@ class BeltCreateSectionsTable extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('page_id')->nullable();
+            $table->morphs('owner');
             $table->integer('sectionable_id')->nullable();
             $table->string('sectionable_type')->nullable();
             NestedSet::columns($table);
             $table->string('template')->default('default');
-            $table->text('header')->nullable();
-            $table->text('body')->nullable();
-            $table->text('footer')->nullable();
+            $table->text('heading')->nullable();
+            $table->text('before')->nullable();
+            $table->text('after')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

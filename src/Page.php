@@ -12,6 +12,7 @@ class Page extends Model implements
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Glue\Behaviors\CategorizableInterface,
     Belt\Content\Behaviors\HandleableInterface,
+    Belt\Content\Behaviors\HasSectionsInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\IncludesSeoInterface,
     Belt\Content\Behaviors\IncludesTemplateInterface,
@@ -22,6 +23,7 @@ class Page extends Model implements
     use Belt\Content\Behaviors\IncludesSeo;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\Handleable;
+    use Belt\Content\Behaviors\HasSections;
     use Belt\Content\Behaviors\IncludesTemplate;
     use Belt\Glue\Behaviors\Taggable;
 
@@ -39,13 +41,5 @@ class Page extends Model implements
      * @var array
      */
     protected $fillable = ['name'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function sections()
-    {
-        return $this->hasMany(Section::class);
-    }
 
 }

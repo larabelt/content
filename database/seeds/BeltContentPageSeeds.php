@@ -24,7 +24,7 @@ class BeltContentPageSeeds extends Seeder
 
         # make sectioned example page
         $page = Page::first();
-        Section::where('page_id', $page->id)->delete();
+        Section::where('owner_id', $page->id)->where('owner_type', 'pages')->delete();
         $data = factory(Page::class)->make([
             'template' => 'default',
             'is_active' => true,
@@ -35,7 +35,7 @@ class BeltContentPageSeeds extends Seeder
 
         # section w/breadcrumbs
         $section = $this->section($page);
-        $this->embed($section, ['template' => 'breadcrumbs'], [
+        $this->custom($section, ['template' => 'breadcrumbs'], [
             'menu' => 'example',
             'active' => '/products/tools/weird'
         ]);
@@ -48,10 +48,10 @@ class BeltContentPageSeeds extends Seeder
         ]);
         $this->block($section, [], ['class' => 'col-md-9']);
 
-        # section w/embed
+        # section w/custom
         $section = $this->section($page);
         $this->block($section, [], ['class' => 'col-md-6']);
-        $this->embed($section, ['template' => 'contact'], ['class' => 'col-md-6']);
+        $this->custom($section, ['template' => 'contact'], ['class' => 'col-md-6']);
 
         # section w/block
         $block = factory(Block::class)->create();
@@ -59,7 +59,7 @@ class BeltContentPageSeeds extends Seeder
 
         # section w/file
         $section = $this->section($page);
-        $this->file($section, ['header' => $faker->words(random_int(3, 7), true)], ['class' => 'col-md-12']);
+        $this->file($section, ['heading' => $faker->words(random_int(3, 7), true)], ['class' => 'col-md-12']);
 
         # section w/blocks
         $section = $this->section($page);
@@ -101,13 +101,13 @@ class BeltContentPageSeeds extends Seeder
         $section = factory(Section::class)->create([
             'template' => array_get($options, 'template', 'default'),
             'parent_id' => $parent ? $parent->id : null,
-            'page_id' => $page ? $page->id : null,
+            'owner_id' => $page ? $page->id : $parent->owner_id,
+            'owner_type' => 'pages',
             'sectionable_id' => $sectionable_id,
             'sectionable_type' => $sectionable_type,
-            //'params' => $params,
-            'header' => array_get($options, 'header', null),
-            'body' => array_get($options, 'body', null),
-            'footer' => array_get($options, 'footer', null),
+            'heading' => array_get($options, 'heading', null),
+            'before' => array_get($options, 'before', null),
+            'after' => array_get($options, 'after', null),
         ]);
 
         foreach ($params as $key => $value) {
@@ -128,11 +128,11 @@ class BeltContentPageSeeds extends Seeder
         $this->section($parent, $block, $options, $params);
     }
 
-    public function embed($parent, $options = [], $params = [])
+    public function custom($parent, $options = [], $params = [])
     {
         $params = array_merge(['class' => 'col-md-12'], $params);
 
-        $this->section($parent, 'embeds', $options, $params);
+        $this->section($parent, 'custom', $options, $params);
     }
 
     public function file($parent, $options = [], $params = [])
