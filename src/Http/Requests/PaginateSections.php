@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PaginateSections extends PaginateRequest
 {
-    public $perSection = 10;
+    public $perPage = 100;
 
     public $orderBy = 'sections.id';
 
@@ -22,6 +22,14 @@ class PaginateSections extends PaginateRequest
     public function modifyQuery(Builder $query)
     {
         $query->whereNull('parent_id');
+
+        if ($this->get('owner_id')) {
+            $query->where('owner_id', $this->get('owner_id'));
+        }
+
+        if ($this->get('owner_type')) {
+            $query->where('owner_type', $this->get('owner_type'));
+        }
 
         return $query;
     }
