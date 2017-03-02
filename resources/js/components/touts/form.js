@@ -8,6 +8,7 @@ class ToutForm extends BaseForm {
         this.service = new BaseService({baseUrl: '/api/v1/touts/'});
         this.routeEditName = 'touts.edit';
         this.setData({
+            attachment: null,
             id: '',
             is_active: 0,
             name: '',

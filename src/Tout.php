@@ -41,4 +41,11 @@ class Tout extends Model implements
         return $this->belongsTo(Attachment::class, 'attachment_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function attachment()
+    {
+        return $this->belongsTo(Attachment::class, 'attachment_id');
+    }
 }

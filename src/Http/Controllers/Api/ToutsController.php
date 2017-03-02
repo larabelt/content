@@ -32,7 +32,7 @@ class ToutsController extends ApiController
      */
     public function get($id)
     {
-        return $this->touts->find($id) ?: $this->abort(404);
+        return $this->touts->with('attachment')->find($id) ?: $this->abort(404);
     }
 
     /**
