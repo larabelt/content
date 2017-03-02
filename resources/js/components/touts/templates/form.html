@@ -20,13 +20,13 @@
     </div>
     <div class="form-group" :class="{ 'has-error': form.error('body') }">
         <label for="body">Body</label>
-        <textarea class="form-control" rows="10" v-model="form.body" tinymce="'body'"></textarea>
+        <textarea class="form-control" rows="10" v-model="form.body" v-tinymce="'body'"></textarea>
         <span v-for="error in form.error('body')" class="text-danger">{{ error }}</span>
     </div>
 
     <div class="form-group" :class="{ 'has-error': form.error('heading') }">
         <label for="heading">Heading</label>
-        <textarea class="form-control" rows="10" v-model="form.heading" tinymce="'heading'"></textarea>
+        <textarea class="form-control" rows="10" v-model="form.heading" v-tinymce="'heading'"></textarea>
         <span v-for="error in form.error('heading')" class="text-danger">{{ error }}</span>
     </div>
 
