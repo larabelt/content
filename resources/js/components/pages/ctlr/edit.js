@@ -11,6 +11,7 @@ import form_html from '../templates/form.html';
 export default {
     data() {
         return {
+            form: new Form(),
             morphable_type: 'pages',
             morphable_id: this.$route.params.id,
         }
@@ -21,7 +22,7 @@ export default {
         tab: {
             data() {
                 return {
-                    form: new Form(),
+                    form: this.$parent.form,
                 }
             },
             mounted() {
