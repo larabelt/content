@@ -28,6 +28,23 @@ trait IncludesTemplate
      * @return mixed
      * @throws \Exception
      */
+    public function getTemplateConfig($key = null, $default = null)
+    {
+        $key = sprintf('belt.templates.%s', $this->getTemplateGroup());
+
+        $config = config("$key.$this->template") ?: config("$key.default");
+
+        if (!$config) {
+            throw new \Exception("missing template config: $key.$this->template");
+        }
+
+        return $config;
+    }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
     public function getTemplateViewAttribute()
     {
         $key = sprintf('belt.templates.%s', $this->getTemplateGroup());

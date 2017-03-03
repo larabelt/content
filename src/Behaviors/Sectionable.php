@@ -12,7 +12,9 @@ trait Sectionable
      */
     public function getSectionName()
     {
-        return sprintf('%s: %s', str_singular($this->morphClass), $this->slug);
+        $type = str_singular($this->getMorphClass());
+
+        return sprintf('%s: %s', $type, $this->name);
     }
 
 }

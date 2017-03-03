@@ -48,9 +48,28 @@ class Section extends Model implements
      */
     public function getNameAttribute()
     {
-        $type = $this->sectionable_type == 'sections' ? 'boxes' : $this->sectionable_type;
+        $type = $name = $this->sectionable_type;
 
-        return ucfirst(str_singular($type));
+        $sectionable = $this->sectionable;
+
+        $name = $type == 'sections' ? 'boxes' : $name;
+        $name = $type == 'custom' ? sprintf('[%s]', $this->template) : $name;
+        $name = $type == 'menus' ? sprintf('Menu: %s', $this->template) : $name;
+        $name = $sectionable ? $sectionable->getSectionName() : $name;
+
+        $name = title_case(str_singular($name));
+
+        $name = strlen($name) < 25 ? $name : sprintf('%s...', substr($name, 0, 22));
+
+        return ucfirst(str_singular($name));
+    }
+
+    /**
+     * @return string
+     */
+    public function getSectionName()
+    {
+        return 'box';
     }
 
     /**
