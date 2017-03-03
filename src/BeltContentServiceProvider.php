@@ -61,7 +61,6 @@ class BeltContentServiceProvider extends ServiceProvider
         // morphMap
         Relation::morphMap([
             'blocks' => Belt\Content\Block::class,
-            'custom' => Belt\Content\Section::class,
             'handles' => Belt\Content\Handle::class,
             'pages' => Belt\Content\Page::class,
             'sections' => Belt\Content\Section::class,
