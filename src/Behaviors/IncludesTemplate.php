@@ -38,7 +38,7 @@ trait IncludesTemplate
             throw new \Exception("missing template view: $key.$this->template");
         }
 
-        return is_array($config) ? $config[0] : $config;
+        return is_array($config) ? array_get($config, 'path', array_get($config, 0)) : $config;
     }
 
 }
