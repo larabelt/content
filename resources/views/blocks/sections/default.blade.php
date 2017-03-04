@@ -9,4 +9,6 @@
         @include('belt-content::blocks.web.show')
         @include('belt-content::sections.sections._after')
     </div>
+@else
+    <p>section with empty block</p>
 @endif
