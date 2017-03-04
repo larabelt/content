@@ -54,7 +54,7 @@ class Section extends Model implements
         $sectionable = $this->sectionable;
 
         $name = $type == 'sections' ? 'boxes' : $name;
-        $name = $type == 'custom' ? sprintf('[%s]', $this->template) : $name;
+        $name = $type == 'custom' ? sprintf('%s', $this->template) : $name;
         $name = $type == 'menus' ? sprintf('Menu: %s', $this->template) : $name;
         $name = $sectionable ? $sectionable->getSectionName() : $name;
 
