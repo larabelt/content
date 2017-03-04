@@ -92,22 +92,7 @@ class Section extends Model implements
      */
     public function sectionable()
     {
-//        if ($this->sectionable_type != 'custom') {
-//            return $this->morphTo();
-//        }
-
-        /**
-         * @todo make this not error on 'type' that isn't a model
-         */
-        $name = $this->guessBelongsToRelation();
-
-        list($type, $id) = $this->getMorphs(
-            Str::snake($name), null, null
-        );
-
-        return empty($class = $this->{$type})
-            ? $this->morphEagerTo($name, $type, $id)
-            : $this->morphInstanceTo($class, $name, $type, $id);
+        return $this->morphTo();
     }
 
     /**
