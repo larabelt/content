@@ -65,6 +65,8 @@ class BeltContentServiceProvider extends ServiceProvider
             'pages' => Belt\Content\Page::class,
             'sections' => Belt\Content\Section::class,
             'touts' => Belt\Content\Tout::class,
+
+            'custom' => Belt\Content\Section::class,
         ]);
 
         // commands

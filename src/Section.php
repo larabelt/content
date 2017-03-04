@@ -5,6 +5,7 @@ use Belt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Kalnoy\Nestedset\NodeTrait;
+use Illuminate\Support\Str;
 
 /**
  * Class Section
@@ -91,7 +92,22 @@ class Section extends Model implements
      */
     public function sectionable()
     {
-        return $this->morphTo();
+//        if ($this->sectionable_type != 'custom') {
+//            return $this->morphTo();
+//        }
+
+        /**
+         * @todo make this not error on 'type' that isn't a model
+         */
+        $name = $this->guessBelongsToRelation();
+
+        list($type, $id) = $this->getMorphs(
+            Str::snake($name), null, null
+        );
+
+        return empty($class = $this->{$type})
+            ? $this->morphEagerTo($name, $type, $id)
+            : $this->morphInstanceTo($class, $name, $type, $id);
     }
 
     /**
