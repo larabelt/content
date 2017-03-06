@@ -2,11 +2,13 @@
     <div class="row">
         <div class="col-md-3">
             <div class="section-tree">
-                <div v-for="section in shared.table.items">
+                <template v-if="shared.table.items.length">
                     <ul class="">
-                        <list :section="section"></list>
+                        <template v-for="section in shared.table.items">
+                            <list :section="section"></list>
+                        </template>
                     </ul>
-                </div>
+                </template>
             </div>
         </div>
         <div class="col-md-9">
@@ -16,10 +18,9 @@
         </div>
     </div>
     <div class="row alt-box-footer">
-
         <div class="col-md-12">
             <div
-                    v-show="shared.table.items.length"
+                    v-if="shared.table.items.length"
                     class="btn"
                     :class="{'btn-danger': shared.dragAndDrop.trashing}"
                     @dragover.prevent

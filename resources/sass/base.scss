@@ -4,13 +4,35 @@
   ul {
     list-style: none;
     padding-left: 0;
-
     li {
+
       span {
         cursor: pointer;
         font-weight: 700;
-        &.active {
-          text-decoration: underline;
+        display: block;
+        height: 20px;
+        line-height: 20px;
+        vertical-align: middle;
+        width: 100%;
+        &.dropzone-before {
+          height: 2px;
+        }
+        &.dropzone-after {
+          height: 2px;
+        }
+      }
+      &.active > span {
+        text-decoration: underline;
+      }
+      &.dropping {
+        &.dropping-before > span.dropzone-before {
+          background-color: #e7e7e7;
+        }
+        &.dropping-in > span.dropzone-in {
+          background-color: #e7e7e7;
+        }
+        &.dropping-after > span.dropzone-after {
+          background-color: #e7e7e7;
         }
       }
     }

@@ -20,13 +20,18 @@ export default {
             morphable_type: this.$parent.morphable_type,
             morphable_id: this.$parent.morphable_id,
             dragAndDrop: {
-                active: false,
-                trashing: false,
+                active: '',
+                position: '',
+                trashing: '',
+                dragging: {
+                    id: '',
+                    type: '',
+                },
+                dropping: {
+                    id: '',
+                    position: '',
+                },
             },
-            form: new Form({
-                morphable_type: this.$parent.morphable_type,
-                morphable_id: this.$parent.morphable_id,
-            }),
             panel: {
                 active: '',
             },
@@ -64,11 +69,11 @@ export default {
         drop(e) {
             let table = this.shared.table;
             let dragAndDrop = this.shared.dragAndDrop;
-            if (dragAndDrop.active) {
-                this.form.destroy(dragAndDrop.active)
+            if (dragAndDrop.dragging.id) {
+                this.form.destroy(dragAndDrop.dragging.id)
                     .then(function () {
                         table.index();
-                        dragAndDrop.active = false;
+                        dragAndDrop.dragging.id = false;
                         dragAndDrop.trashing = false;
                     });
             }

@@ -8,7 +8,7 @@ class PaginateSections extends PaginateRequest
 {
     public $perPage = 100;
 
-    public $orderBy = 'sections.id';
+    public $orderBy = 'sections._lft';
 
     public $sortable = [
         'sections.id',

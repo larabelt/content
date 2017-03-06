@@ -1,16 +1,13 @@
-// helpers
-import Form from '../form';
 
 export default {
     props: {
         section: {},
     },
     data() {
-        let shared = this.$parent.shared;
         return {
-            shared: shared,
-            morphable_id: shared.morphable_id,
-            morphable_type: shared.morphable_type,
+            shared: this.$parent.shared,
+            morphable_id: this.$parent.shared.morphable_id,
+            morphable_type: this.$parent.shared.morphable_type,
         }
     },
     computed: {
@@ -28,5 +25,20 @@ export default {
             }
             return false;
         },
+        mouseout(e) {
+            this.shared.dragAndDrop = {
+                active: '',
+                position: '',
+                trashing: '',
+                dragging: {
+                    id: '',
+                    type: '',
+                },
+                dropping: {
+                    id: '',
+                    position: '',
+                },
+            };
+        }
     },
 }
