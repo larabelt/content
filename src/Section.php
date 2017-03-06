@@ -4,7 +4,7 @@ namespace Belt\Content;
 use Belt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Kalnoy\Nestedset\NodeTrait;
+//use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Support\Str;
 
 /**
@@ -12,13 +12,15 @@ use Illuminate\Support\Str;
  * @package Belt\Content
  */
 class Section extends Model implements
+    Belt\Core\Behaviors\NodeInterface,
     Belt\Core\Behaviors\ParamableInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\IncludesTemplateInterface,
     Belt\Content\Behaviors\SectionableInterface
 {
 
-    use NodeTrait;
+    //use NodeTrait;
+    use Belt\Core\Behaviors\NodeTrait;
     use Belt\Core\Behaviors\Paramable;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\IncludesTemplate;
