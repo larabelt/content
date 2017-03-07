@@ -87,7 +87,7 @@ class BeltContentServiceProvider extends ServiceProvider
         });
 
         // add includes behavior
-        $this->app['events']->listen('eloquent.saving*', function ($eventName, array $data) {
+        $this->app['events']->listen('eloquent.saved*', function ($eventName, array $data) {
             foreach ($data as $model) {
                 if ($model instanceof Belt\Content\Behaviors\IncludesTemplateInterface) {
                     $model->reconcileTemplateParams();
