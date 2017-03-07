@@ -66,12 +66,16 @@ class BeltContentServiceProvider extends ServiceProvider
             'sections' => Belt\Content\Section::class,
             'touts' => Belt\Content\Tout::class,
 
+            /**
+             * @todo find why to get this out of here
+             */
             'custom' => Belt\Content\Section::class,
         ]);
 
         // commands
         $this->commands(Belt\Content\Commands\CompileCommand::class);
         $this->commands(Belt\Content\Commands\PublishCommand::class);
+        $this->commands(Belt\Content\Commands\TemplateCommand::class);
 
         // route model binding
         $router->bind('page', function ($value) {
@@ -80,6 +84,15 @@ class BeltContentServiceProvider extends ServiceProvider
         });
         $router->bind('section', function ($value) {
             return Belt\Content\Section::find($value);
+        });
+
+        // add includes behavior
+        $this->app['events']->listen('eloquent.saving*', function ($eventName, array $data) {
+            foreach ($data as $model) {
+                if ($model instanceof Belt\Content\Behaviors\IncludesTemplateInterface) {
+                    $model->reconcileTemplateParams();
+                }
+            }
         });
 
         // validators
