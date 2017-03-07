@@ -20,7 +20,6 @@ class Section extends Model implements
 {
 
     use NodeTrait;
-    //use Belt\Core\Behaviors\NodeTrait;
     use Belt\Core\Behaviors\Paramable;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\IncludesTemplate;
@@ -82,7 +81,7 @@ class Section extends Model implements
     {
         $data = parent::toArray();
 
-        $data['children'] = $this->children->toArray();
+        $data['children'] = $this->descendants->toTree($this)->toArray();
 
         return $data;
     }
