@@ -86,6 +86,11 @@ class Section extends Model implements
         return $data;
     }
 
+    public function owner()
+    {
+        return $this->morphTo();
+    }
+
     /**
      * The Associated owning model
      *
