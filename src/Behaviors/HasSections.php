@@ -11,7 +11,7 @@ trait HasSections
      */
     public function sections()
     {
-        return $this->morphMany(Section::class, 'owner')->whereNull('parent_id');
+        return $this->morphMany(Section::class, 'owner')->whereNull('parent_id')->orderBy('_lft');
     }
 
 }
