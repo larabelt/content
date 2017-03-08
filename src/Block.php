@@ -3,6 +3,7 @@ namespace Belt\Content;
 
 use Belt;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Block
@@ -20,6 +21,7 @@ class Block extends Model implements
     use Belt\Content\Behaviors\Sectionable;
     use Belt\Glue\Behaviors\Categorizable;
     use Belt\Glue\Behaviors\Taggable;
+    use SoftDeletes;
 
     /**
      * @var string

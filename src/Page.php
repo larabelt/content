@@ -3,6 +3,7 @@ namespace Belt\Content;
 
 use Belt;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Page
@@ -26,6 +27,7 @@ class Page extends Model implements
     use Belt\Content\Behaviors\IncludesTemplate;
     use Belt\Glue\Behaviors\Categorizable;
     use Belt\Glue\Behaviors\Taggable;
+    use SoftDeletes;
 
     /**
      * @var string
