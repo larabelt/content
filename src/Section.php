@@ -80,8 +80,7 @@ class Section extends Model implements
     public function toArray()
     {
         $data = parent::toArray();
-
-        $data['children'] = $this->descendants->toTree($this)->toArray();
+        $data['children'] = $this->children()->orderBy('_lft')->get()->toArray();
 
         return $data;
     }

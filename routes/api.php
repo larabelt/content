@@ -9,6 +9,8 @@ Route::group([
 ],
     function () {
 
+
+
         # blocks
         Route::get('blocks/{id}', Api\BlocksController::class . '@show');
         Route::put('blocks/{id}', Api\BlocksController::class . '@update');
@@ -65,5 +67,13 @@ Route::group([
         Route::delete('touts/{id}', Api\ToutsController::class . '@destroy');
         Route::get('touts', Api\ToutsController::class . '@index');
         Route::post('touts', Api\ToutsController::class . '@store');
+
+        # tree
+        Route::group([
+            'prefix' => '{node_type}/{node_id}/tree',
+            'middleware' => 'request.injections:node_type,node_id',
+        ], function () {
+            Route::post('', Api\TreeController::class . '@store');
+        });
     }
 );

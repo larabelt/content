@@ -1,17 +1,28 @@
 <?php
 
+use Mockery as m;
 use Belt\Core\Testing;
-use Belt\Content\Page;
+use Belt\Core\Behaviors\Paramable;
+use Belt\Core\Behaviors\ParamableInterface;
+use Belt\Core\Param;
 use Belt\Content\Behaviors\IncludesTemplate;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class IncludesTemplateTest extends Testing\BeltTestCase
 {
 
+    public function tearDown()
+    {
+        m::close();
+    }
+
     /**
      * @covers \Belt\Content\Behaviors\IncludesTemplate::setTemplateAttribute
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateConfig
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateGroup
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateViewAttribute
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::reconcileTemplateParams
      */
     public function test()
     {
@@ -26,7 +37,23 @@ class IncludesTemplateTest extends Testing\BeltTestCase
 
         # template_view
         app()['config']->set('belt.templates.pages', [
-            'default' => ['belt-content::pages.sections.default'],
+            'default' => [
+                'path' => 'belt-content::pages.sections.default',
+                'params' => [
+                    'class' => [
+                        'col-md-3' => 'default',
+                        'col-md-12' => 'wide',
+                    ],
+                    'icon' => [
+                        'default' => 'default',
+                        'special' => 'special',
+                    ],
+                    'foo' => [
+                        'bar' => 'default',
+                        'other' => 'other',
+                    ],
+                ]
+            ],
             'pagetest' => 'belt-content::pages.sections.test',
         ]);
         $templateStub->template = 'missing';
@@ -35,13 +62,28 @@ class IncludesTemplateTest extends Testing\BeltTestCase
         $this->assertEquals('belt-content::pages.sections.test', $templateStub->template_view);
 
         # template_view (exception due to missing config)
-        $templateStub = new IncludesTemplateTest2Stub();
+        $missingStub = new IncludesTemplateTest2Stub();
         try {
-            $templateStub->template_view;
+            $missingStub->template_view;
             $this->exceptionNotThrown();
         } catch (\Exception $e) {
 
         }
+
+        # reconcileTemplateParams where not paramable
+        $notParamableStub = new IncludesTemplateTest2Stub();
+        $notParamableStub->reconcileTemplateParams();
+
+        /**
+         * reconcileTemplateParams where paramable
+         *
+         * class param will remain unchanged
+         * icon param value will be overwritten b/c current value is not in config
+         * foo will be added as a new param with default value
+         */
+        $templateStub = new IncludesTemplateTest3Stub();
+        $templateStub->reconcileTemplateParams();
+
     }
 
 }
@@ -63,5 +105,43 @@ class IncludesTemplateTest2Stub extends Model
     public function getMorphClass()
     {
         return 'something-else-that-is-missing-a-config-file';
+    }
+}
+
+class IncludesTemplateTest3Stub extends Model implements ParamableInterface
+{
+    use IncludesTemplate;
+    use Paramable;
+
+    public function getMorphClass()
+    {
+        return 'pages';
+    }
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->params = new Collection();
+        $this->params->add($this->mockParam('class', 'default'));
+        $this->params->add($this->mockParam('icon', 'missing'));
+    }
+
+    public function mockParam($key, $value)
+    {
+        $param = m::mock(Param::class . '[getAttribute,update]');
+        $param->shouldReceive('getAttribute')->with('key')->andReturn($key);
+        $param->shouldReceive('getAttribute')->with('value')->andReturn($value);
+        $param->shouldReceive('update')->andReturnSelf();
+
+        return $param;
+    }
+
+    public function params()
+    {
+        $builder = m::mock(Param::class);
+        $builder->shouldReceive('create')->andReturn($this->mockParam('foo', 'value'));
+
+        return $builder;
     }
 }

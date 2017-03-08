@@ -1,7 +1,7 @@
 <?php
 namespace Belt\Content\Behaviors;
 
-use Belt\Core\Param;
+use Belt\Core\Behaviors\ParamableInterface;
 
 /**
  * Class IncludesTemplate
@@ -30,7 +30,7 @@ trait IncludesTemplate
      * @return mixed
      * @throws \Exception
      */
-    public function getTemplateConfig($key = null, $default = null)
+    public function getTemplateConfig()
     {
         $key = sprintf('belt.templates.%s', $this->getTemplateGroup());
 
@@ -49,13 +49,7 @@ trait IncludesTemplate
      */
     public function getTemplateViewAttribute()
     {
-        $key = sprintf('belt.templates.%s', $this->getTemplateGroup());
-
-        $config = config("$key.$this->template") ?: config("$key.default");
-
-        if (!$config) {
-            throw new \Exception("missing template view: $key.$this->template");
-        }
+        $config = $this->getTemplateConfig();
 
         return is_array($config) ? array_get($config, 'path', array_get($config, 0)) : $config;
     }
@@ -65,21 +59,17 @@ trait IncludesTemplate
      */
     public function reconcileTemplateParams()
     {
+        if (!$this instanceof ParamableInterface) {
+            return;
+        }
+
         $config = $this->getTemplateConfig();
 
-        $options = array_get($config, 'params', []);
-
-        Param::unguard();
-
-        foreach ($options as $key => $values) {
+        foreach (array_get($config, 'params', []) as $key => $values) {
 
             $values = array_keys($values);
 
-            $param = Param::firstOrCreate([
-                'paramable_type' => $this->getMorphClass(),
-                'paramable_id' => $this->id,
-                'key' => $key,
-            ]);
+            $param = $this->params->where('key', $key)->first() ?: $this->params()->create(['key' => $key]);
 
             if (!$param->value || !in_array($param->value, $values)) {
                 $param->update(['value' => $values[0]]);

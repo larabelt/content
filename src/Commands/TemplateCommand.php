@@ -28,6 +28,19 @@ class TemplateCommand extends Command
     protected $description = '';
 
     /**
+     * @var MorphHelper
+     */
+    public $helper;
+
+    /**
+     * @return MorphHelper
+     */
+    public function helper()
+    {
+        return $this->helper = $this->helper ?: new MorphHelper();
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -38,13 +51,11 @@ class TemplateCommand extends Command
 
         if ($action == 'reconcile-params') {
 
-            $helper = new MorphHelper();
-
             $classes = explode(',', $this->option('class'));
 
             foreach ($classes as $class) {
                 if (!class_exists($class)) {
-                    $class = $helper->type2Class($class);
+                    $class = $this->helper()->type2Class($class);
                 }
                 if (in_array(IncludesTemplateInterface::class, class_implements($class))) {
                     $items = $class::all();

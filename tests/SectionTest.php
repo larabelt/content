@@ -9,6 +9,8 @@ class SectionTest extends BeltTestCase
     /**
      * @covers \Belt\Content\Section::sectionable
      * @covers \Belt\Content\Section::getTemplateGroup
+     * @covers \Belt\Content\Section::getSectionName
+     * @covers \Belt\Content\Section::getNameAttribute
      */
     public function test()
     {
@@ -20,6 +22,9 @@ class SectionTest extends BeltTestCase
         # getTemplateGroup
         $section->sectionable_type = 'test';
         $this->assertEquals('test', $section->getTemplateGroup());
+
+        # getSectionName
+        $this->assertNotEmpty($section->getSectionName());
 
     }
 
