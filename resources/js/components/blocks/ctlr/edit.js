@@ -1,26 +1,17 @@
+import shared from './edit-shared';
 
-// helpers
-import Form from '../form';
-
-// templates make a change
-import heading_html from 'belt/core/js/templates/heading.html';
-import edit_html from '../templates/edit.html';
 import form_html from '../templates/form.html';
 
 export default {
+    mixins: [shared],
     components: {
-        heading: {template: heading_html},
-        edit: {
+        tab: {
             data() {
                 return {
-                    form: new Form(),
+                    form: this.$parent.form,
                 }
-            },
-            mounted() {
-                this.form.show(this.$route.params.id);
             },
             template: form_html,
         },
     },
-    template: edit_html,
 }

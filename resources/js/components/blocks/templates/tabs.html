@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs pull-right">
+    <li :class="{active: $router.currentRoute.name == 'blocks.edit'}">
+        <router-link :to="{ name: 'blocks.edit', params: {id: $route.params.id}}">Main</router-link>
+    </li>
+    <li :class="{active: $router.currentRoute.name == 'blocks.categories'}">
+        <router-link :to="{ name: 'blocks.categories', params: {id: $route.params.id}}">Categories</router-link>
+    </li>
+    <li :class="{active: $router.currentRoute.name == 'blocks.tags'}">
+        <router-link :to="{ name: 'blocks.tags', params: {id: $route.params.id}}">Tags</router-link>
+    </li>
+</ul>

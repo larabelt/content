@@ -11,11 +11,15 @@ use Illuminate\Database\Eloquent\Model;
 class Block extends Model implements
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
-    Belt\Content\Behaviors\SectionableInterface
+    Belt\Content\Behaviors\SectionableInterface,
+    Belt\Glue\Behaviors\CategorizableInterface,
+    Belt\Glue\Behaviors\TaggableInterface
 {
     use Belt\Core\Behaviors\Sluggable;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\Sectionable;
+    use Belt\Glue\Behaviors\Categorizable;
+    use Belt\Glue\Behaviors\Taggable;
 
     /**
      * @var string
