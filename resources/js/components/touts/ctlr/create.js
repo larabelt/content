@@ -12,7 +12,7 @@ export default {
         create: {
             data() {
                 return {
-                    form: new Form({router: this.$router}),
+                    tout: new Form({router: this.$router}),
                 }
             },
             template: form_html,
