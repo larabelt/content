@@ -26,7 +26,7 @@
                 &.dropzone-in {
                     background: #f4f4f4;
                     border: 1px solid #ddd;
-                    border-radius: 5px;
+                    border-radius: 2px;
                     padding: 0 3px;
                 }
 
@@ -42,19 +42,19 @@
                 &.dropping-before > span.dropzone-before {
                     //background-color: #e7e7e7;
                     border: 1px dashed #333;
-                    border-radius: 5px;
+                    border-radius: 2px;
                     height: 20px;
                 }
                 &.dropping-in > span.dropzone-in {
                     //background-color: #e7e7e7;
                     border: 1px dashed #333;
-                    border-radius: 5px;
+                    border-radius: 2px;
                     height: 20px;
                 }
                 &.dropping-after > span.dropzone-after {
                     //background-color: #e7e7e7;
                     border: 1px dashed #333;
-                    border-radius: 5px;
+                    border-radius: 2px;
                     height: 20px;
                 }
             }
@@ -81,4 +81,11 @@
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.section-sub-item {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border:1px dashed #ccc;
+    margin-bottom: 20px;
 }

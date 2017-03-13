@@ -3,39 +3,17 @@
 
         <div class="row">
             <div class="col-md-4">
-                <div class="form-group" :class="{ 'has-error': panel.form.error('template') }">
-                    <label for="template">Template</label>
-                    <select v-model="panel.form.template" name="template" class="form-control">
-                        <template v-for="label, value in dropdown">
-                            <option :value="value">{{ label }}</option>
-                        </template>
-                    </select>
-                    <span v-for="error in panel.form.error('template')" class="contents-danger">{{ error }}</span>
-                </div>
-                <div class="row alt-box-footer">
-                    <div class="col-md-12">
-                        <div class="pull-right">
-                            <button type="submit" class="btn btn-primary" :disabled="panel.form.errors.any()">
-                                <span v-if="panel.form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-                                <span v-else>Save</span>
-                            </button>
-                        </div>
+                <div class="form-group" :class="{ 'has-error': panel.form.error('sectionable_id') }">
+                    <div class="input-group">
+                        <input
+                                type="text"
+                                class="form-control"
+                                v-model="table.query.q"
+                                placeholder="Search"
+                                @keydown="table.index()"
+                        >
+                        <span class="input-group-addon"><icon class="fa fa-search"></icon></span>
                     </div>
-                </div>
-                <div class="form-group" :class="{ 'has-error': panel.form.error('sectionable_id') }">
-                    <label for="sectionable_id">Tout</label>
-                    <input type="text" class="form-control" v-model="panel.form.sectionable_id" placeholder="tout id" readonly>
-                    <span v-for="error in panel.form.error('sectionable_id')" class="contents-danger">{{ error }}</span>
-                </div>
-                <div class="form-group" :class="{ 'has-error': panel.form.error('sectionable_id') }">
-                    <label for="sectionable_id">Search</label>
-                    <input
-                            type="text"
-                            class="form-control"
-                            v-model="table.query.q"
-                            placeholder="search"
-                            @keydown="table.index()"
-                    >
                     <span v-for="error in panel.form.error('sectionable_id')" class="contents-danger">{{ error }}</span>
                 </div>
             </div>
@@ -48,12 +26,11 @@
                         </a>
                     </div>
                 </div>
-                <p><strong>name</strong></p>
-                <p>{{ tout.name }}</p>
-                <p><strong>slug</strong></p>
-                <p>{{ tout.slug }}</p>
-                <p><strong>body</strong></p>
-                <p>{{ tout.body }}</p>
+                <template v-if="tout.id">
+                    <p>{{ tout.id }}. {{ tout.name }}</p>
+                    <p><strong>tout body</strong></p>
+                    <p>{{ tout.body }}</p>
+                </template>
             </div>
         </div>
 

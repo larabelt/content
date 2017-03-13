@@ -63,7 +63,7 @@ export default {
         this.shared.config.load();
     },
     mounted() {
-        this.shared.tabs.tab = 'item';
+        this.shared.tabs.tab = 'content';
     },
     methods: {
         drop(e) {

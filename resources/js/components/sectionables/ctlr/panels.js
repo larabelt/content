@@ -7,10 +7,8 @@ import Form from '../form';
 import self from './panels';
 
 // components (tabs)
-import panelItem from './panel-item';
 import panelPreview from './panel-preview';
 import panelContent from './panel-content';
-import panelParams from './panel-params';
 
 import panels_html from '../templates/panels.html';
 
@@ -30,8 +28,6 @@ export default {
     },
     components: {
         panelContent,
-        panelItem,
-        panelParams,
         panelPreview,
     },
     computed: {

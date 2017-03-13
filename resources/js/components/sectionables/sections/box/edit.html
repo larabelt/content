@@ -1,19 +1,5 @@
 <div>
     <form role="form" @submit.prevent="panel.form.submit()" @keydown="panel.form.errors.clear($event.target.name)">
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group" :class="{ 'has-error': panel.form.error('template') }">
-                    <label for="template">Template</label>
-                    <select v-model="panel.form.template" name="template" class="form-control">
-                        <template v-for="label, value in dropdown">
-                            <option :value="value">{{ label }}</option>
-                        </template>
-                    </select>
-                    <span v-for="error in panel.form.error('template')" class="contents-danger">{{ error }}</span>
-                </div>
-            </div>
-        </div>
         <div class="row alt-box-footer">
             <div class="col-md-12">
                 <div class="pull-left">
@@ -21,15 +7,7 @@
                         <create :section="section"></create>
                     </div>
                 </div>
-                <div class="pull-right">
-                    <button type="submit" class="btn btn-primary" :disabled="panel.form.errors.any()">
-                        <span v-if="panel.form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-                        <span v-else>Save</span>
-                    </button>
-                </div>
             </div>
         </div>
-
     </form>
-
 </div>
