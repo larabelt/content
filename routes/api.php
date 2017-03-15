@@ -9,8 +9,6 @@ Route::group([
 ],
     function () {
 
-
-
         # blocks
         Route::get('blocks/{id}', Api\BlocksController::class . '@show');
         Route::put('blocks/{id}', Api\BlocksController::class . '@update');
