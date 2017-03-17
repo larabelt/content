@@ -69,6 +69,7 @@ class ToutsController extends ApiController
         ]);
 
         $this->set($tout, $input, [
+            'attachment_id',
             'template',
             'slug',
             'body',
@@ -115,6 +116,7 @@ class ToutsController extends ApiController
         $input = $request->all();
 
         $this->set($tout, $input, [
+            'attachment_id',
             'template',
             'name',
             'slug',
