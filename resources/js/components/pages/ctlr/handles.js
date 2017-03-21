@@ -1,4 +1,4 @@
-import shared from './edit-shared';
+import shared from './shared';
 
 // components
 import handles from 'belt/content/js/components/handleables/ctlr/index';

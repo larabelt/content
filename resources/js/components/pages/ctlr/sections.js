@@ -1,4 +1,4 @@
-import shared from './edit-shared';
+import shared from './shared';
 
 // components
 import sections from 'belt/content/js/components/sectionables/ctlr/index';

@@ -1,4 +1,4 @@
-import shared from './edit-shared';
+import shared from './shared';
 
 import form_html from '../templates/form.html';
 
