@@ -30,7 +30,7 @@ export default {
         let template = this.section.template;
         let key = this.param.key;
 
-        this.dropdown = _.get(this.shared.config.data, `${type}.${template}.params.${key}`);
+        this.dropdown = _.get(this.configs.data, `${type}.${template}.params.${key}`);
 
     },
     template: html,

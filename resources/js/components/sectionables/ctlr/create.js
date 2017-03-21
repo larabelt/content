@@ -11,7 +11,10 @@ export default {
     data() {
         return {
             show: false,
-            form: new Form({shared: this.$parent.shared}),
+            form: new Form({
+                morphable_id: this.$parent.morphable_id,
+                morphable_type: this.$parent.morphable_type,
+            }),
         }
     },
     mounted() {
@@ -39,7 +42,7 @@ export default {
         {
             let self = this;
             let form = this.form;
-            let table = this.shared.table;
+            let table = this.table;
 
             self.reset();
 

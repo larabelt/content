@@ -37,7 +37,7 @@ export default {
         this.params.index();
 
         let configKey = `${this.section.sectionable_type}.${this.section.template}`;
-        this.config = _.get(this.shared.config.data, configKey);
+        this.config = _.get(this.configs.data, configKey);
     },
     template: panelContent_html
 }

@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-md-3">
             <div class="section-tree">
-                <template v-if="shared.table.items.length">
+                <template v-if="table.items.length">
                     <ul class="">
-                        <template v-for="section in shared.table.items">
+                        <template v-for="section in table.items">
                             <list :section="section"></list>
                         </template>
                     </ul>
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div v-for="section in shared.table.items">
+            <div v-for="section in table.items">
                 <panels :section="section"></panels>
             </div>
         </div>
@@ -20,13 +20,13 @@
     <div class="row alt-box-footer">
         <div class="col-md-12">
             <div
-                    v-if="shared.table.items.length"
+                    v-if="table.items.length"
                     class="btn"
-                    :class="{'btn-danger': shared.dragAndDrop.trashing}"
+                    :class="{'btn-danger': dragAndDrop.trashing}"
                     @dragover.prevent
                     @drop="drop"
-                    @dragover="shared.dragAndDrop.trashing = true"
-                    @dragleave="shared.dragAndDrop.trashing = ''"
+                    @dragover="dragAndDrop.trashing = true"
+                    @dragleave="dragAndDrop.trashing = ''"
             ><span>Trash <i class="fa fa-trash" aria-hidden="true"></i></span>
             </div>
             <create></create>

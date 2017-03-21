@@ -8,6 +8,6 @@ export default {
             panel: panel,
         }
     },
-    computed: {},
-    methods: {},
+    // computed: {},
+    // methods: {},
 }

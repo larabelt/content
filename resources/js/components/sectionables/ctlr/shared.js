@@ -5,15 +5,19 @@ export default {
     },
     data() {
         return {
-            shared: this.$parent.shared,
-            morphable_id: this.$parent.shared.morphable_id,
-            morphable_type: this.$parent.shared.morphable_type,
+            morphable_id: this.$parent.morphable_id,
+            morphable_type: this.$parent.morphable_type,
+            configs: this.$parent.configs,
+            dragAndDrop: this.$parent.dragAndDrop,
+            panels: this.$parent.panels,
+            table: this.$parent.table,
+            tabs: this.$parent.tabs,
         }
     },
     computed: {
         dropdown() {
             if (this.section) {
-                return this.shared.config.dropdown(this.section.sectionable_type);
+                return this.configs.dropdown(this.section.sectionable_type);
             }
             return [];
         },
@@ -26,7 +30,7 @@ export default {
             return false;
         },
         mouseout(e) {
-            this.shared.dragAndDrop = {
+            this.dragAndDrop = {
                 active: '',
                 position: '',
                 trashing: '',

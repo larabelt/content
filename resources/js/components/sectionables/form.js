@@ -12,9 +12,9 @@ class Form extends BaseForm {
         super(options);
 
         // service
-        if (options.shared) {
-            this.morphable_id = options.shared.morphable_id;
-            this.morphable_type = options.shared.morphable_type;
+        if (options.morphable_id) {
+            this.morphable_id = options.morphable_id;
+            this.morphable_type = options.morphable_type;
         }
         let baseUrl = `/api/v1/${this.morphable_type}/${this.morphable_id}/sections/`;
         this.service = new BaseService({baseUrl: baseUrl});

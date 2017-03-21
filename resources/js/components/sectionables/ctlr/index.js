@@ -16,7 +16,19 @@ export default {
     data() {
 
         let shared = {
-            config: new Config(),
+
+        };
+
+        return {
+            //shared: shared,
+
+
+            form: new Form({
+                morphable_type: this.$parent.morphable_type,
+                morphable_id: this.$parent.morphable_id,
+            }),
+
+            configs: new Config(),
             morphable_type: this.$parent.morphable_type,
             morphable_id: this.$parent.morphable_id,
             dragAndDrop: {
@@ -32,7 +44,7 @@ export default {
                     position: '',
                 },
             },
-            panel: {
+            panels: {
                 active: '',
             },
             table: new Table({
@@ -43,14 +55,6 @@ export default {
                 router: this.$router,
                 toggleable: true,
             }),
-        };
-
-        return {
-            shared: shared,
-            form: new Form({
-                morphable_type: shared.morphable_type,
-                morphable_id: shared.morphable_id,
-            }),
         }
     },
     components: {
@@ -59,16 +63,16 @@ export default {
         create,
     },
     created() {
-        this.shared.table.index();
-        this.shared.config.load();
+        this.table.index();
+        this.configs.load();
     },
     mounted() {
-        this.shared.tabs.tab = 'content';
+        this.tabs.tab = 'content';
     },
     methods: {
         drop(e) {
-            let table = this.shared.table;
-            let dragAndDrop = this.shared.dragAndDrop;
+            let table = this.table;
+            let dragAndDrop = this.dragAndDrop;
             if (dragAndDrop.dragging.id) {
                 this.form.destroy(dragAndDrop.dragging.id)
                     .then(function () {

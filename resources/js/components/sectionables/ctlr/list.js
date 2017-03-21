@@ -17,40 +17,40 @@ export default {
         this.$options.components.list = self
     },
     mounted() {
-        if (!this.shared.panel.active) {
-            this.shared.panel.active = this.section.id;
+        if (!this.panels.active) {
+            this.panels.active = this.section.id;
         }
     },
     computed: {
         isActivePanel() {
-            return this.shared.panel.active == this.section.id;
+            return this.panels.active == this.section.id;
         },
         dropClasses() {
             let classes = ['item-' + this.section.sectionable_type];
-            if (this.shared.panel.active == this.section.id) {
+            if (this.panels.active == this.section.id) {
                 classes.push('active');
             }
-            if (this.shared.dragAndDrop.dropping.id == this.section.id) {
+            if (this.dragAndDrop.dropping.id == this.section.id) {
                 classes.push('dropping');
-                classes.push('dropping-' + this.shared.dragAndDrop.dropping.position);
+                classes.push('dropping-' + this.dragAndDrop.dropping.position);
             }
             return classes.join(' ');
         }
     },
     methods: {
         setActivePanel() {
-            this.shared.panel.active = this.section.id;
+            this.panels.active = this.section.id;
         },
         drag(e) {
-            this.shared.dragAndDrop.active = e.target.getAttribute('data-id');
-            this.shared.dragAndDrop.dragging.id = e.target.getAttribute('data-id');
-            this.shared.dragAndDrop.dragging.type = e.target.getAttribute('data-type');
+            this.dragAndDrop.active = e.target.getAttribute('data-id');
+            this.dragAndDrop.dragging.id = e.target.getAttribute('data-id');
+            this.dragAndDrop.dragging.type = e.target.getAttribute('data-type');
         },
         drop(e) {
 
-            let table = this.shared.table;
+            let table = this.table;
             let tree = this.tree;
-            let dragAndDrop = this.shared.dragAndDrop;
+            let dragAndDrop = this.dragAndDrop;
 
             if (dragAndDrop.dropping.id == this.section.id) {
                 tree.service.baseUrl = `/api/v1/sections/${dragAndDrop.dragging.id}/tree/`;
@@ -68,28 +68,28 @@ export default {
 
             let dropping_id = e.target.getAttribute('data-id');
 
-            if (dropping_id == this.shared.dragAndDrop.active) {
+            if (dropping_id == this.dragAndDrop.active) {
                 return;
             }
 
-            this.shared.dragAndDrop.dropping.id = dropping_id;
+            this.dragAndDrop.dropping.id = dropping_id;
 
             let dropping_type = e.target.getAttribute('data-type');
 
             if (dropping_type == 'after') {
-                this.shared.dragAndDrop.dropping.position = 'after';
+                this.dragAndDrop.dropping.position = 'after';
             } else if ((e.offsetY / e.target.clientHeight) < .5) {
-                this.shared.dragAndDrop.dropping.position = 'before';
+                this.dragAndDrop.dropping.position = 'before';
             } else if (dropping_type == 'sections') {
-                this.shared.dragAndDrop.dropping.position = 'in';
+                this.dragAndDrop.dropping.position = 'in';
             } else {
-                this.shared.dragAndDrop.dropping.position = 'after';
+                this.dragAndDrop.dropping.position = 'after';
             }
         },
         dragleave(e) {
-            this.shared.dragAndDrop.dropping.id = '';
-            this.shared.dragAndDrop.dropping.position = '';
-            this.shared.dragAndDrop.dragging.type = '';
+            this.dragAndDrop.dropping.id = '';
+            this.dragAndDrop.dropping.position = '';
+            this.dragAndDrop.dragging.type = '';
         },
     },
     template: list_html

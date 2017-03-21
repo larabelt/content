@@ -15,12 +15,15 @@ import panels_html from '../templates/panels.html';
 export default {
     mixins: [shared],
     data() {
-        let panel = {
-            section: this.section,
-            form: new Form({shared: this.$parent.shared, section: this.section}),
-        };
         return {
-            panel: panel,
+            panel: {
+                section: this.section,
+                form: new Form({
+                    section: this.section,
+                    morphable_id: this.$parent.morphable_id,
+                    morphable_type: this.$parent.morphable_type,
+                }),
+            },
         }
     },
     beforeCreate: function () {
@@ -32,12 +35,12 @@ export default {
     },
     computed: {
         isActivePanel() {
-            return this.section.id == this.shared.panel.active;
+            return this.section.id == this.panels.active;
         },
     },
     methods: {
         setActivePanel() {
-            this.shared.panel.active = this.section.id;
+            this.panels.active = this.section.id;
         },
     },
     template: panels_html
