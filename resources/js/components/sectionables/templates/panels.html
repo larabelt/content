@@ -4,7 +4,9 @@
             <ul class="nav nav-tabs pull-right">
                 <li :class="{ active: tabs.show('preview') }"><a @click="tabs.set('preview')" data-toggle="tab">Preview</a></li>
                 <li :class="{ active: tabs.show('content') }"><a @click="tabs.set('content')" data-toggle="tab">Section</a></li>
-                <li class="header pull-left"><i class="fa fa-th-large"></i> {{ section.name }}</li>
+                <li class="header pull-left"><i class="fa fa-th-large"></i> {{ section.name }}
+
+                </li>
             </ul>
         </div>
         <div v-show="tabs.show('preview')">

@@ -19,16 +19,6 @@
     </div>
     <div class="row alt-box-footer">
         <div class="col-md-12">
-            <div
-                    v-if="table.items.length"
-                    class="btn"
-                    :class="{'btn-danger': dragAndDrop.trashing}"
-                    @dragover.prevent
-                    @drop="drop"
-                    @dragover="dragAndDrop.trashing = true"
-                    @dragleave="dragAndDrop.trashing = ''"
-            ><span>Trash <i class="fa fa-trash" aria-hidden="true"></i></span>
-            </div>
             <create></create>
         </div>
     </div>

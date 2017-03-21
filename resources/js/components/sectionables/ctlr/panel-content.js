@@ -39,5 +39,15 @@ export default {
         let configKey = `${this.section.sectionable_type}.${this.section.template}`;
         this.config = _.get(this.configs.data, configKey);
     },
+    methods: {
+        destroy(id) {
+            let form = this.panel.form;
+            let table = this.table;
+            form.destroy(id)
+                .then(function () {
+                    table.index();
+                });
+        }
+    },
     template: panelContent_html
 }

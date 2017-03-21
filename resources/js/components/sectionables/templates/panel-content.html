@@ -58,6 +58,9 @@
         </div>
     </form>
     <div class="alt-box-footer text-right">
+        <span class="pull-left">
+            <modal-delete :item-id="section.id"></modal-delete>
+        </span>
         <button type="submit" class="btn btn-primary" :disabled="panel.form.errors.any()" @click="panel.form.submit()">
             <span v-if="panel.form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
             <span v-else>Save</span>
