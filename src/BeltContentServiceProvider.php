@@ -6,6 +6,7 @@ use Belt, Validator, View;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -101,6 +102,28 @@ class BeltContentServiceProvider extends ServiceProvider
         # beltable values for global belt command
         $this->app['belt']->publish('belt-content:publish');
         $this->app['belt']->seeders('BeltContentSeeder');
+
+        //Blade directives
+        Blade::directive('block', function ($expression) {
+            $params = explode(',', $expression);
+
+            $slug = str_replace( ["'", '"'], '', trim($params[0]) );
+
+            $block = Block::where('slug', $slug)->first();
+
+            if($block->count()) {
+
+                if( count($params) > 1 ) {
+                    $field = str_replace( ["'", '"'], '', trim($params[1]) );
+
+                    return $block[$field];
+                }
+
+                return $block->body;
+            }
+
+            return '';
+        });
     }
 
     /**
