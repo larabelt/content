@@ -105,24 +105,9 @@ class BeltContentServiceProvider extends ServiceProvider
 
         //Blade directives
         Blade::directive('block', function ($expression) {
-            $params = explode(',', $expression);
-
-            $slug = str_replace( ["'", '"'], '', trim($params[0]) );
-
+            list($slug, $field) = Belt\Core\Helpers\StrHelper::strToArguments($expression, 2);
             $block = Block::where('slug', $slug)->first();
-
-            if($block->count()) {
-
-                if( count($params) > 1 ) {
-                    $field = str_replace( ["'", '"'], '', trim($params[1]) );
-
-                    return $block[$field];
-                }
-
-                return $block->body;
-            }
-
-            return '';
+            return $block ? ($field ? $block->$field : $block->body) : '';
         });
     }
 
