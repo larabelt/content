@@ -16,6 +16,7 @@ class Block extends Model implements
     Belt\Glue\Behaviors\CategorizableInterface,
     Belt\Glue\Behaviors\TaggableInterface
 {
+    use Belt\Core\Behaviors\HasSortableTrait;
     use Belt\Core\Behaviors\Sluggable;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\Sectionable;
