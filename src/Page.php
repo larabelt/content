@@ -17,7 +17,8 @@ class Page extends Model implements
     Belt\Content\Behaviors\IncludesSeoInterface,
     Belt\Content\Behaviors\IncludesTemplateInterface,
     Belt\Glue\Behaviors\CategorizableInterface,
-    Belt\Glue\Behaviors\TaggableInterface
+    Belt\Glue\Behaviors\TaggableInterface,
+    Belt\Clip\Behaviors\ClippableInterface
 {
     use Belt\Core\Behaviors\HasSortableTrait;
     use Belt\Core\Behaviors\Sluggable;
@@ -29,6 +30,7 @@ class Page extends Model implements
     use Belt\Glue\Behaviors\Categorizable;
     use Belt\Glue\Behaviors\Taggable;
     use SoftDeletes;
+    use Belt\Clip\Behaviors\Clippable;
 
     /**
      * @var string
