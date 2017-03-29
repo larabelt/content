@@ -1,3 +1,7 @@
+@php
+    $page = $page ?? $owner ?? new \Belt\Content\Page();
+@endphp
+
 <div class="page">
 
     @if($page->body)

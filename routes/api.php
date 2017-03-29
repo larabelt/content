@@ -38,14 +38,6 @@ Route::group([
         Route::get('pages', Api\PagesController::class . '@index');
         Route::post('pages', Api\PagesController::class . '@store');
 
-//        # sections
-//        Route::get('sections/{id}/preview', Api\SectionsController::class . '@preview');
-//        Route::get('sections/{id}', Api\SectionsController::class . '@show');
-//        Route::put('sections/{id}', Api\SectionsController::class . '@update');
-//        Route::delete('sections/{id}', Api\SectionsController::class . '@destroy');
-//        Route::get('sections', Api\SectionsController::class . '@index');
-//        Route::post('sections', Api\SectionsController::class . '@store');
-
         # sections
         Route::group([
             'prefix' => '{owner_type}/{owner_id}/sections',

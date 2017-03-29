@@ -1,8 +1,10 @@
 <?php
+
 namespace Belt\Content\Services;
 
 use Belt, Cache;
 use Belt\Content\Page;
+use Belt\Content\Behaviors\HasSectionsInterface;
 
 /**
  * Class CompileService
@@ -27,37 +29,40 @@ class CompileService
         $qb = $this->pages->query();
         $qb->where('slug', 'sectioned');
 
-        foreach ($qb->get() as $page) {
-            $this->cache($page, true);
+        foreach ($qb->get() as $owner) {
+            $this->cache($owner, true);
         }
     }
 
     /**
-     * @param $page
+     * @param $owner
      * @return string
      */
-    public function compile($page)
+    public function compile(HasSectionsInterface $owner)
     {
-        return view($page->template_view, compact('page'))->render();
+        return view($owner->template_view, ['owner' => $owner])->render();
     }
 
     /**
-     * @param $page
+     * @param $owner
      * @param bool $force
      * @return string
      */
-    public function cache($page, $force = false)
+    public function cache(HasSectionsInterface $owner, $force = false)
     {
-        $compiled = Cache::get('pages:' . $page->id) ?: $this->compile($page);
+
+        $key = sprintf('compiled-%s-%s', $owner->getMorphClass(), $owner->id);
+
+        $compiled = Cache::get($key) ?: $this->compile($owner);
 
         if (!$compiled || $force) {
-            $compiled = $this->compile($page);
+            $compiled = $this->compile($owner);
         }
 
         if ($force) {
-            Cache::put('pages:' . $page->id, $compiled, 3600);
+            Cache::put($key, $compiled, 3600);
         } else {
-            Cache::add('pages:' . $page->id, $compiled, 3600);
+            Cache::add($key, $compiled, 3600);
         }
 
         return $compiled;

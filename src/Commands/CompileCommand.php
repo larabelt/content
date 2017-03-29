@@ -26,7 +26,6 @@ class CompileCommand extends Command
      */
     protected $description = 'compile pages';
 
-
     /**
      * @var CompileService
      */
