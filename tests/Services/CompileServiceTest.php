@@ -61,13 +61,16 @@ class CompileServiceTest extends BeltTestCase
      */
     public function testCache()
     {
+        Page::unguard();
+
         $service = m::mock(CompileService::class . '[compile]');
         $service->shouldReceive('compile')->andReturn('compiled');
 
         # cache (unforced)
         $page = factory(Page::class)->make();
+        $page->id = 1;
         $page->template = 'belt-content::pages.templates.default';
-        $cacheKey = 'pages:' . $page->id;
+        $cacheKey = sprintf('compiled-%s-%s', $page->getMorphClass(), $page->id);
         Cache::shouldReceive('get')->once()->with($cacheKey)->andReturn('compiled');
         Cache::shouldReceive('add')->once()->with($cacheKey, 'compiled', 3600);
         $result = $service->cache($page);
@@ -75,8 +78,9 @@ class CompileServiceTest extends BeltTestCase
 
         # cache (forced)
         $page = factory(Page::class)->make();
+        $page->id = 1;
         $page->template = 'belt-content::pages.templates.default';
-        $cacheKey = 'pages:' . $page->id;
+        $cacheKey = sprintf('compiled-%s-%s', $page->getMorphClass(), $page->id);
         Cache::shouldReceive('get')->once()->with($cacheKey)->andReturn('compiled');
         Cache::shouldReceive('put')->once()->with($cacheKey, 'compiled', 3600);
         $result = $service->cache($page, true);
