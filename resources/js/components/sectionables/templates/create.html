@@ -2,6 +2,7 @@
     <button type="button" class="btn btn-default" @click="toggleShow">New <i class="fa fa-plus" aria-hidden="true"></i></button>
     <span v-show="show">
         <button type="submit" class="btn btn-primary" @click="create('sections')">Box</button>
+        <button type="submit" class="btn btn-primary" @click="create('albums')">Album</button>
         <button type="submit" class="btn btn-primary" @click="create('attachments')">Attachment</button>
         <button type="submit" class="btn btn-primary" @click="create('blocks')">Block</button>
         <button type="submit" class="btn btn-primary" @click="create('custom')">Custom</button>

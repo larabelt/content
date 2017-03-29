@@ -42,6 +42,7 @@
                 </template>
             </div>
         </div>
+        <item-album v-if="isType('albums')" :section="section"></item-album>
         <item-attachment v-if="isType('attachments')" :section="section"></item-attachment>
         <item-box v-if="isType('sections')" item-section :section="section"></item-box>
         <item-block v-if="isType('blocks')" :section="section"></item-block>

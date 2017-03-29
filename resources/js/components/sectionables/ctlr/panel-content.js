@@ -6,6 +6,7 @@ import ParamTable from '../params/table';
 import panelContent_html from '../templates/panel-content.html';
 
 // section items
+import itemAlbum from 'belt/clip/js/components/albums/sections/edit';
 import itemAttachment from 'belt/clip/js/components/attachments/sections/edit';
 import itemBlock from 'belt/content/js/components/blocks/sections/edit';
 import itemBox from '../sections/box/edit';
@@ -24,6 +25,7 @@ export default {
         }
     },
     components: {
+        itemAlbum,
         itemAttachment,
         itemBlock,
         itemBox,
