@@ -5,6 +5,7 @@ namespace Belt\Content\Services;
 use Belt, Cache;
 use Belt\Content\Page;
 use Belt\Content\Behaviors\HasSectionsInterface;
+use Html2Text\Html2Text;
 
 /**
  * Class CompileService
@@ -14,33 +15,16 @@ class CompileService
 {
 
     /**
-     * CompileService constructor.
-     */
-    public function __construct()
-    {
-        $this->pages = new Page();
-    }
-
-    /**
-     *
-     */
-    public function pages()
-    {
-        $qb = $this->pages->query();
-        $qb->where('slug', 'sectioned');
-
-        foreach ($qb->get() as $owner) {
-            $this->cache($owner, true);
-        }
-    }
-
-    /**
      * @param $owner
      * @return string
      */
     public function compile(HasSectionsInterface $owner)
     {
-        return view($owner->template_view, ['owner' => $owner])->render();
+        $compiled = view($owner->template_view, ['owner' => $owner])->render();
+
+        $this->searchable($owner, $compiled);
+
+        return $compiled;
     }
 
     /**
@@ -66,6 +50,24 @@ class CompileService
         }
 
         return $compiled;
+    }
+
+    /**
+     * @param HasSectionsInterface $owner
+     * @param $compiled
+     */
+    public function searchable(HasSectionsInterface $owner, $compiled)
+    {
+        $searchable = strip_tags($compiled);
+
+        try {
+            $searchable = Html2Text::convert($searchable);
+        } catch (\Exception $e) {
+
+        }
+
+        $owner->searchable = $searchable;
+        $owner->save();
     }
 
 }

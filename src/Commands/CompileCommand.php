@@ -48,7 +48,9 @@ class CompileCommand extends Command
     {
         $service = $this->service();
 
-        $service->pages();
+        /**
+         * @todo add arguments to instantiate object based on class and/or ids...
+         */
     }
 
 }
