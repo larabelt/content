@@ -1,25 +1,16 @@
 <div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="section-tree">
-                <template v-if="table.items.length">
-                    <ul class="">
-                        <template v-for="section in table.items">
-                            <list :section="section"></list>
-                        </template>
-                    </ul>
-                </template>
+    <create v-if="mode == 'create'"></create>
+    <edit v-if="mode == 'edit'" :section="active"></edit>
+    <template v-if="mode == 'index' && sections.items.length">
+        <div class="sections-index">
+            <template v-for="section in sections.items">
+                <div class="row">
+                    <panel :section="section"></panel>
+                </div>
+            </template>
+            <div class="box-actions">
+                <button class="btn btn-xs btn-info btn-block" @click.prevent="insert(0)"><i class="fa fa-plus"></i></button>
             </div>
         </div>
-        <div class="col-md-9">
-            <div v-for="section in table.items">
-                <panels :section="section"></panels>
-            </div>
-        </div>
-    </div>
-    <div class="row alt-box-footer">
-        <div class="col-md-12">
-            <create></create>
-        </div>
-    </div>
+    </template>
 </div>

@@ -1,0 +1,13 @@
+<div>
+    <form role="form" @submit.prevent="panels.form.submit()" @keydown="panels.form.errors.clear($event.target.name)">
+        <div class="row alt-box-footer">
+            <div class="col-md-12">
+                <div class="pull-left">
+                    <div class="btn-group">
+                        <create :section="section"></create>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

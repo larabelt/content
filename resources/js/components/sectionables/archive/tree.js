@@ -1,7 +1,7 @@
 import BaseForm from 'belt/core/js/helpers/form';
 import BaseService from 'belt/core/js/helpers/service';
 
-class Form extends BaseForm {
+class TreeForm extends BaseForm {
 
     /**
      * Create a new Form instance.
@@ -11,17 +11,18 @@ class Form extends BaseForm {
     constructor(options = {}) {
         super(options);
 
-        let baseUrl = `/api/v1/sections/${options.section.id}/params/`;
+        let section_id = options.section.id;
 
+        let baseUrl = `/api/v1/sections/${section_id}/tree/`;
         this.service = new BaseService({baseUrl: baseUrl});
+
+        // data
         this.setData({
-            paramable_id: '',
-            paramable_type: '',
-            key: '',
-            value: '',
+            neighbor_id: '',
+            move: '',
         });
     }
 
 }
 
-export default Form;
+export default TreeForm;

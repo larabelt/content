@@ -1,5 +1,6 @@
 import BaseTable from 'belt/core/js/helpers/table';
 import BaseService from 'belt/core/js/helpers/service';
+import Form from './form';
 
 class SectionTable extends BaseTable {
 

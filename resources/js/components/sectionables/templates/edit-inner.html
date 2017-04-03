@@ -1,0 +1,34 @@
+<div>
+    <div class="section-sub-item">
+        <div class="row">
+            <div class="col-md-6">
+                <form role="form" @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" :class="{ 'has-error': active.error('template') }">
+                                <label for="template">Template</label>
+                                <select @change="active.submit()" v-model="active.template" name="template" class="form-control">
+                                    <template v-for="label, value in dropdown">
+                                        <option :value="value">{{ label }}</option>
+                                    </template>
+                                </select>
+                                <span v-for="error in active.error('template')" class="contents-danger">{{ error }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <params v-if="config" :section="section"></params>
+            </div>
+        </div>
+        <br/>
+        <item-album v-if="isType('albums')" :section="section"></item-album>
+        <item-attachment v-if="isType('attachments')" :section="section"></item-attachment>
+        <item-box v-if="isType('sections')" item-section :section="section"></item-box>
+        <item-block v-if="isType('blocks')" :section="section"></item-block>
+        <item-custom v-if="isType('custom')" :section="section"></item-custom>
+        <item-menu v-if="isType('menus')" :section="section"></item-menu>
+        <item-tout v-if="isType('touts')" item-tout :section="section"></item-tout>
+    </div>
+</div>

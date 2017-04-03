@@ -1,4 +1,5 @@
 <?php
+
 namespace Belt\Content;
 
 use Belt;
@@ -54,7 +55,7 @@ class Section extends Model implements
 
         $sectionable = $this->sectionable;
 
-        $name = $type == 'sections' ? 'boxes' : $name;
+        $name = $type == 'sections' ? 'html container' : $name;
         $name = $type == 'custom' ? sprintf('%s', $this->template) : $name;
         $name = $type == 'menus' ? sprintf('Menu: %s', $this->template) : $name;
         $name = $sectionable ? $sectionable->getSectionName() : $name;
@@ -105,7 +106,7 @@ class Section extends Model implements
      */
     public function getTemplateGroup()
     {
-        return $this->sectionable_type;
+        return $this->sectionable_type ?: 'sections';
     }
 
     /**
@@ -124,5 +125,16 @@ class Section extends Model implements
 
         return $query;
     }
+//
+//    public function getConfigAttribute()
+//    {
+//        $defaults = [
+//            'width' => 12,
+//        ];
+//
+//        $config = $this->getTemplateConfig();
+//
+//        return array_merge($defaults, $config);
+//    }
 
 }

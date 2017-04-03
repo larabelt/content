@@ -1,13 +1,12 @@
 // components
-import list from './list';
-import panels from './panels';
 import create from './create';
+import edit from './edit';
+import panel from './panel';
 
 // helpers
+import Config from '../config';
 import Form from '../form';
 import Table from '../table';
-import Tabs from 'belt/core/js/helpers/tabs';
-import Config from '../config';
 
 // templates
 import index_html from '../templates/index.html';
@@ -15,50 +14,61 @@ import index_html from '../templates/index.html';
 export default {
     data() {
         return {
-            form: new Form({
+            active: new Form({
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
-            configs: new Config(),
+            creating: {
+                show: false,
+                neighbor_id: null,
+                position: null,
+            },
+            moving: new Form({
+                morphable_type: this.$parent.morphable_type,
+                morphable_id: this.$parent.morphable_id,
+            }),
+            configurator: new Config(),
+            configs: {},
+            first: {id: null},
             morphable_type: this.$parent.morphable_type,
             morphable_id: this.$parent.morphable_id,
-            dragAndDrop: {
-                active: '',
-                position: '',
-                trashing: '',
-                dragging: {
-                    id: '',
-                    type: '',
-                },
-                dropping: {
-                    id: '',
-                    position: '',
-                },
-            },
-            panels: {
-                active: '',
-            },
-            table: new Table({
+            sections: new Table({
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
-            tabs: new Tabs({
-                router: this.$router,
-                toggleable: true,
-            }),
+            scroll: {x: 0, y: 0},
         }
     },
-    components: {
-        list,
-        panels,
-        create,
-    },
     created() {
-        this.table.index();
-        this.configs.load();
+        let self = this;
+        this.configurator.load()
+            .then(function (response) {
+                self.configs = response;
+                self.sections.index();
+            });
     },
     mounted() {
-        this.tabs.tab = 'content';
+        let section_id = this.$route.params.section;
+        if (section_id) {
+            this.active.show(section_id);
+        }
+    },
+    components: {create, edit, panel},
+    computed: {
+        mode() {
+            if (this.active.id) {
+                return 'edit';
+            }
+            if (this.creating.show == true) {
+                return 'create';
+            }
+            return 'index';
+        }
+    },
+    methods: {
+        insert() {
+            this.creating.show = true;
+        },
     },
     template: index_html
 }

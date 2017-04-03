@@ -43,7 +43,7 @@ export default {
     },
     methods: {
         destroy(id) {
-            let form = this.panel.form;
+            let form = this.active;
             let table = this.table;
             form.destroy(id)
                 .then(function () {

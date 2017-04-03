@@ -42,11 +42,13 @@ class BeltContentPageSeeds extends Seeder
 
         # section w/menus
         $section = $this->section($page);
-        $this->menu($section, ['template' => 'example'], [
+        $leftSection = $this->section($section, 'sections', ['template' => 'width-3']);
+        $this->menu($leftSection, ['template' => 'example'], [
             'menu' => 'example',
             'active' => '/products/tools/weird'
         ]);
-        $this->block($section, [], ['class' => 'col-md-9']);
+        $rightSection = $this->section($section, 'sections', ['template' => 'width-9']);
+        $this->block($rightSection, [], []);
 
         # section w/custom
         $section = $this->section($page);
@@ -121,7 +123,7 @@ class BeltContentPageSeeds extends Seeder
     {
         $options = array_merge(['template' => 'default'], $options);
 
-        $params = array_merge(['class' => 'col-md-4'], $params);
+        $params = array_merge(['class' => 'col-md-12'], $params);
 
         $block = factory(Block::class)->create();
 

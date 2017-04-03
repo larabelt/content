@@ -1,0 +1,25 @@
+<div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="section-tree">
+                <template v-if="table.items.length">
+                    <ul>
+                        <template v-for="section in table.items">
+                            <list :section="section"></list>
+                        </template>
+                    </ul>
+                </template>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div v-for="section in table.items">
+                <panels :section="section"></panels>
+            </div>
+        </div>
+    </div>
+    <div class="row alt-box-footer">
+        <div class="col-md-12">
+            <create></create>
+        </div>
+    </div>
+</div>
