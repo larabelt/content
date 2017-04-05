@@ -1,3 +1,5 @@
+import tags from 'belt/glue/js/components/taggables/filter';
+
 // helpers
 import Table from '../table';
 
@@ -6,7 +8,12 @@ import heading_html from 'belt/core/js/templates/heading.html';
 import index_html from '../templates/index.html';
 
 export default {
-
+    data() {
+        return {
+            morphable_type: 'places',
+            morphable_id: null,
+        }
+    },
     components: {
         heading: {template: heading_html},
         index: {
@@ -19,6 +26,7 @@ export default {
                 this.table.updateQueryFromRouter();
                 this.table.index();
             },
+            components: {tags},
             template: index_html,
         },
     },

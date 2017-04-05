@@ -1,7 +1,10 @@
 <?php
+
 namespace Belt\Content\Http\Requests;
 
 use Belt\Core\Http\Requests\PaginateRequest;
+use Belt\Glue\Http\Requests\PaginateTaggables;
+use Illuminate\Database\Eloquent\Builder;
 
 class PaginatePages extends PaginateRequest
 {
@@ -17,5 +20,13 @@ class PaginatePages extends PaginateRequest
     public $searchable = [
         'pages.name',
     ];
+
+    public function modifyQuery(Builder $query)
+    {
+
+        $query = PaginateTaggables::scopeHasTag($this, $query);
+
+        return $query;
+    }
 
 }
