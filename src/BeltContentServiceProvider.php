@@ -49,6 +49,8 @@ class BeltContentServiceProvider extends ServiceProvider
      */
     public function boot(GateContract $gate, Router $router)
     {
+        //observers
+        Section::observe(Belt\Content\Observers\SectionObserver::class);
 
         // set view paths
         // $this->loadViewsFrom(resource_path('belt/content/views'), 'belt-content');
