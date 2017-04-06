@@ -2,7 +2,7 @@
 
 namespace Belt\Content\Services;
 
-use Belt, Cache;
+use Belt, Cache, View;
 use Belt\Content\Page;
 use Belt\Content\Behaviors\HasSectionsInterface;
 use Html2Text\Html2Text;
@@ -20,9 +20,13 @@ class CompileService
      */
     public function compile(HasSectionsInterface $owner)
     {
-        $compiled = view($owner->template_view, ['owner' => $owner])->render();
+        //$compiled = view($owner->template_view, ['owner' => $owner])->render();
+        $compiled = View::make($owner->template_view, ['owner' => $owner])->render();
 
-        $this->searchable($owner, $compiled);
+        $searchable = $this->searchable($owner, $compiled);
+
+        $owner->searchable = $searchable;
+        $owner->save();
 
         return $compiled;
     }
@@ -55,6 +59,8 @@ class CompileService
     /**
      * @param HasSectionsInterface $owner
      * @param $compiled
+     *
+     * @return string
      */
     public function searchable(HasSectionsInterface $owner, $compiled)
     {
@@ -66,8 +72,7 @@ class CompileService
 
         }
 
-        $owner->searchable = $searchable;
-        $owner->save();
+        return $searchable;
     }
 
 }

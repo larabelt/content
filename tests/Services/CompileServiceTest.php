@@ -7,6 +7,7 @@ use Belt\Content\Services\CompileService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\View;
 
 class CompileServiceTest extends BeltTestCase
 {
@@ -16,45 +17,33 @@ class CompileServiceTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Content\Services\CompileService::__construct
      * @covers \Belt\Content\Services\CompileService::compile
+     * @covers \Belt\Content\Services\CompileService::searchable
      */
     public function test()
     {
-        $service = new CompileService();
-
-        # construct / config
-        $this->assertInstanceOf(Page::class, $service->pages);
-
-        $page = factory(Page::class)->make();
-        $page->sections = new Collection();
-        $page->template = 'belt-content::pages.templates.default';
+        View::shouldReceive('make')->andReturnSelf();
+        View::shouldReceive('render')->andReturn('<div>hello</div>');
 
         # compile
+        $page = m::mock(Page::class . '[save,setAttribute,getTemplateViewAttribute]');
+        $page->shouldReceive('getTemplateViewAttribute')->andReturn('default');
+        $page->shouldReceive('setAttribute')->andReturnSelf();
+        $page->shouldReceive('save')->once()->andReturnSelf();
+        $page->sections = new Collection();
+
+        $service = m::mock(CompileService::class . '[searchable]');
+        $service->shouldReceive('searchable')->once()->andReturnSelf();
         $response = $service->compile($page);
         $this->assertTrue(is_string($response));
+
+        # searchable
+        $page = m::mock(Page::class);
+        $service = new CompileService();
+        $result = $service->searchable($page, '<div>test</div>');
+        $this->assertEquals('test', $result);
+        $result = $service->searchable($page, '""""><><><><><>"""\\\\\\\\');
     }
-
-    /**
-     * @covers \Belt\Content\Services\CompileService::pages
-     */
-    public function testPages()
-    {
-        $pages = factory(Page::class, 2)->make();
-
-        $pagesRepo = m::mock(Builder::class);
-        $pagesRepo->shouldReceive('where')->andReturnSelf();
-        $pagesRepo->shouldReceive('query')->andReturnSelf();
-        $pagesRepo->shouldReceive('get')->andReturn($pages);
-
-        $service = m::mock(CompileService::class . '[cache]');
-        $service->pages = $pagesRepo;
-        $service->shouldReceive('cache')->with($pages->offsetGet(0), true);
-        $service->shouldReceive('cache')->with($pages->offsetGet(1), true);
-
-        $service->pages();
-    }
-
 
     /**
      * @covers \Belt\Content\Services\CompileService::cache
