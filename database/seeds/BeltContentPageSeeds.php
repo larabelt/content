@@ -31,7 +31,10 @@ class BeltContentPageSeeds extends Seeder
             'slug' => 'sectioned',
             'body' => null
         ]);
-        $page->update($data->toArray());
+
+        $update = $data->toArray();
+        array_forget($update, ['image', 'attachments']);
+        $page->update($update);
 
         # section w/breadcrumbs
         $section = $this->section($page);
