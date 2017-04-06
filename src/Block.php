@@ -40,6 +40,11 @@ class Block extends Model implements
     protected $fillable = ['name', 'body'];
 
     /**
+     * @var array
+     */
+    protected $appends = ['image'];
+
+    /**
      * @param $value
      */
     public function setTemplateAttribute($value)

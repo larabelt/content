@@ -47,4 +47,9 @@ class Page extends Model implements
      */
     protected $fillable = ['name'];
 
+    /**
+     * @var array
+     */
+    protected $appends = ['image'];
+
 }
