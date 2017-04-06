@@ -26,7 +26,7 @@
                 <tr v-for="handle in table.items">
                     <td>{{ handle.url }}</td>
                     <td class="text-right">
-                        <a class="btn btn-xs btn-danger" @click="table.destroy(handle.id)"><i class="fa fa-trash"></i></a>
+                        <modal-delete :item-id="handle.id" _class="''" :callingObject="table"></modal-delete>
                     </td>
                 </tr>
                 </tbody>
