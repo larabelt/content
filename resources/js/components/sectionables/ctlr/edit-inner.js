@@ -8,6 +8,7 @@ import itemAttachment from 'belt/clip/js/components/attachments/sections/edit';
 import itemBlock from 'belt/content/js/components/blocks/sections/edit';
 import itemBox from '../sections/box/edit';
 import itemCustom from '../sections/custom/edit';
+import itemItinerary from 'belt/spot/js/components/itineraries/sections/edit';
 import itemMenu from 'belt/menu/js/components/menus/sections/edit';
 import itemTout from 'belt/content/js/components/touts/sections/edit';
 
@@ -23,6 +24,7 @@ export default {
         itemBlock,
         itemBox,
         itemCustom,
+        itemItinerary,
         itemMenu,
         itemTout,
     },

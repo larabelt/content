@@ -34,11 +34,6 @@ class Tout extends Model implements
     protected $fillable = ['name', 'body'];
 
     /**
-     * @var array
-     */
-    protected $appends = ['image'];
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function image()
