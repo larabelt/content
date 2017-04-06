@@ -42,7 +42,15 @@ class CompileServiceTest extends BeltTestCase
         $service = new CompileService();
         $result = $service->searchable($page, '<div>test</div>');
         $this->assertEquals('test', $result);
-        $result = $service->searchable($page, '""""><><><><><>"""\\\\\\\\');
+
+        # searchable (exception)
+        try {
+            $service->searchable($page, '!@#$%^&*()_');
+            $this->exceptionNotThrown();
+        } catch (\Exception $e) {
+
+        }
+
     }
 
     /**
