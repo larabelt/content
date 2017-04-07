@@ -60,6 +60,6 @@ class Page extends Model implements
             return $this->handle->url;
         }
 
-        return '/pages/' . $this->id . '/' . $this->slug;
+        return 'pages/' . $this->id . '/' . $this->slug;
     }
 }
