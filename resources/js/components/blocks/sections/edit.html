@@ -27,6 +27,10 @@
                 </div>
                 <template v-if="block.id">
                     <p>{{ block.id }}. {{ block.name }}</p>
+                    <template v-if="block.heading">
+                        <p><strong>block heading</strong></p>
+                        <p>{{ block.heading }}</p>
+                    </template>
                     <p><strong>block body</strong></p>
                     <p>{{ block.body }}</p>
                 </template>

@@ -12,6 +12,7 @@ class BlockForm extends BaseForm {
             is_active: 0,
             name: '',
             slug: '',
+            heading: '',
             body: '',
         })
     }

@@ -71,6 +71,7 @@ class BlocksController extends ApiController
         $this->set($block, $input, [
             'template',
             'slug',
+            'heading',
             'body',
         ]);
 
@@ -115,6 +116,7 @@ class BlocksController extends ApiController
             'template',
             'name',
             'slug',
+            'heading',
             'body',
         ]);
 
