@@ -53,14 +53,4 @@ class Page extends Model implements
      * @var array
      */
     protected $appends = ['image', 'type', 'default_url'];
-
-
-    public function getDefaultUrlAttribute()
-    {
-        if( $this->handle ) {
-            return $this->handle->url;
-        }
-
-        return 'pages/' . $this->id . '/' . $this->slug;
-    }
 }

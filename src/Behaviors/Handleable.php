@@ -26,4 +26,12 @@ trait Handleable
         return $this->morphMany(Handle::class, 'handleable')->orderby('delta');
     }
 
+    public function getDefaultUrlAttribute()
+    {
+        if( $this->handle ) {
+            return $this->handle->url;
+        }
+
+        return sprintf('%s/%s/%s', $this->getMorphClass(), $this->id, $this->slug);
+    }
 }
