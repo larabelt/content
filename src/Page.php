@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Page extends Model implements
     Belt\Core\Behaviors\SluggableInterface,
+    Belt\Core\Behaviors\TypeInterface,
     Belt\Content\Behaviors\HandleableInterface,
     Belt\Content\Behaviors\HasSectionsInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
@@ -22,6 +23,7 @@ class Page extends Model implements
 {
     use Belt\Core\Behaviors\HasSortableTrait;
     use Belt\Core\Behaviors\Sluggable;
+    use Belt\Core\Behaviors\TypeTrait;
     use Belt\Clip\Behaviors\Clippable;
     use Belt\Content\Behaviors\IncludesSeo;
     use Belt\Content\Behaviors\IncludesContent;
@@ -50,6 +52,6 @@ class Page extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['image'];
+    protected $appends = ['image', 'type'];
 
 }
