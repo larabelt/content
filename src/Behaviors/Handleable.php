@@ -1,4 +1,5 @@
 <?php
+
 namespace Belt\Content\Behaviors;
 
 use Belt\Content\Handle;
@@ -26,9 +27,12 @@ trait Handleable
         return $this->morphMany(Handle::class, 'handleable')->orderby('delta');
     }
 
+    /**
+     * @return string
+     */
     public function getDefaultUrlAttribute()
     {
-        if( $this->handle ) {
+        if ($this->handle) {
             return $this->handle->url;
         }
 
