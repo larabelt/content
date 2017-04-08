@@ -75,6 +75,8 @@ class PagesController extends ApiController
             'meta_description',
         ]);
 
+        $page->save();
+
         return response()->json($page, 201);
     }
 

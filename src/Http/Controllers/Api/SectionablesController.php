@@ -101,6 +101,8 @@ class SectionablesController extends ApiController
             'after',
         ]);
 
+        $section->save();
+
         return response()->json($section, 201);
     }
 

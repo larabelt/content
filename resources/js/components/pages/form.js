@@ -13,6 +13,9 @@ class PageForm extends BaseForm {
             name: '',
             slug: '',
             body: '',
+            meta_title: '',
+            meta_description: '',
+            meta_keywords: '',
         })
     }
 
