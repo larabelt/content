@@ -65,6 +65,7 @@ class BeltContentServiceProvider extends ServiceProvider
         Relation::morphMap([
             'blocks' => Belt\Content\Block::class,
             'handles' => Belt\Content\Handle::class,
+            'favorites' => Belt\Content\Favorite::class,
             'pages' => Belt\Content\Page::class,
             'sections' => Belt\Content\Section::class,
             'touts' => Belt\Content\Tout::class,
@@ -81,6 +82,7 @@ class BeltContentServiceProvider extends ServiceProvider
         $this->commands(Belt\Content\Commands\TemplateCommand::class);
 
         // route model binding
+        $router->model('favorite', Belt\Content\Favorite::class);
         $router->bind('page', function ($value) {
             $column = is_numeric($value) ? 'id' : 'slug';
             return Belt\Content\Page::where($column, $value)->first();

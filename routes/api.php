@@ -65,5 +65,22 @@ Route::group([
         ], function () {
             Route::post('', Api\TreeController::class . '@store');
         });
+
+        /**
+         * route injection then rules?
+         * save guid instead?
+         * read with guid instead?
+         * tests
+         */
+
+        # user / favorites
+        Route::group([
+            'prefix' => 'users/{code}/favorites',
+        ], function () {
+            Route::get('{id}', Api\UserFavoritesController::class . '@show');
+            Route::delete('{id}', Api\UserFavoritesController::class . '@destroy');
+            Route::get('', Api\UserFavoritesController::class . '@index');
+            Route::post('', Api\UserFavoritesController::class . '@store');
+        });
     }
 );

@@ -14,5 +14,6 @@ class BeltContentSeeder extends Seeder
         $this->call(BeltContentPageSeeds::class);
         $this->call(BeltContentBlockSeeds::class);
         $this->call(BeltContentToutSeeds::class);
+        $this->call(BeltContentFavoriteSeeds::class);
     }
 }
