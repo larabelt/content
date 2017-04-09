@@ -38,6 +38,9 @@ Route::group([
         Route::get('pages', Api\PagesController::class . '@index');
         Route::post('pages', Api\PagesController::class . '@store');
 
+        # search
+        Route::get('search', Api\SearchController::class . '@index');
+
         # sections
         Route::group([
             'prefix' => '{owner_type}/{owner_id}/sections',

@@ -3,6 +3,7 @@
 namespace Belt\Content\Commands;
 
 use Belt\Content\Services\CompileService;
+use Belt\Core\Helpers\MorphHelper;
 use Illuminate\Console\Command;
 
 /**
@@ -17,7 +18,7 @@ class CompileCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'belt-content:compile';
+    protected $signature = 'belt-content:compile {classes} {--ids=}';
 
     /**
      * The console command description.
@@ -48,9 +49,27 @@ class CompileCommand extends Command
     {
         $service = $this->service();
 
-        /**
-         * @todo add arguments to instantiate object based on class and/or ids...
-         */
+        $classes = $this->argument('classes');
+
+        $ids = $this->option('ids');
+
+        foreach (explode(',', $classes) as $class) {
+            $object = (new MorphHelper())->type2Class($class    );
+
+            $qb = $object::query();
+
+            if ($ids) {
+                $qb->whereIn('id', explode(',', $ids));
+            }
+
+            $items = $qb->get();
+
+            foreach ($items as $item) {
+                $service->compile($item);
+            }
+        }
+
+
     }
 
 }
