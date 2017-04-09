@@ -47,11 +47,12 @@ class SearchController extends BaseController
             $builder = new BaseLengthAwarePaginator($modelClass::query(), new $paginateClass($request->all()));
             if ($builder && $builder->paginator) {
                 foreach ($builder->paginator->items() as $item) {
-                    $items->push([
-                        'type'=>$item->type,
-                        'id'=>$item->id,
-                        'name' => $item->name
-                    ]);
+//                    $items->push([
+//                        'type'=>$item->type,
+//                        'id'=>$item->id,
+//                        'name' => $item->name
+//                    ]);
+                    $items->push($item);
                 }
                 if (!$pager || $builder->paginator->lastPage() > $pager->lastPage()) {
                     $pager = $builder->paginator;
