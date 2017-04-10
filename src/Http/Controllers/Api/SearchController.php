@@ -27,6 +27,11 @@ class SearchController extends BaseController
 
         $request->reCapture();
 
+        $request->merge([
+           'is_active' => true,
+           'is_searchable' => true,
+        ]);
+
         $classes = config('belt.search.classes');
 
         $include = $request->get('include') ? explode(',', $request->get('include')) : [];

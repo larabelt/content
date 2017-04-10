@@ -28,6 +28,10 @@ class PaginatePages extends PaginateRequest
         $query = PaginateCategorizables::scopeHasCategory($this, $query);
         $query = PaginateTaggables::scopeHasTag($this, $query);
 
+        if ($is_active = $this->get('is_active')) {
+            $query->where('is_active', $is_active);
+        }
+
         return $query;
     }
 
