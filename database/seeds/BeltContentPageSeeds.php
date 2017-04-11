@@ -80,6 +80,9 @@ class BeltContentPageSeeds extends Seeder
         $this->tout($section);
         $this->tout($section);
 
+        factory(Page::class)->create(['template' => 'no-cache']);
+
+
         factory(Page::class, 25)
             ->create()
             ->each(function ($page) {

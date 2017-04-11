@@ -41,6 +41,11 @@ class PagesController extends BaseController
 
         $method = $this->env('APP_DEBUG') ? 'compile' : 'cache';
 
+        $force_compile = array_get($page->getTemplateConfig(), 'force_compile', false);
+        if ($force_compile) {
+            $method = 'compile';
+        }
+
         /**
          * @todo below does not work on "handled" routes
          */
