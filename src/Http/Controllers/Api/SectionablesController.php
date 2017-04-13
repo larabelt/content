@@ -4,8 +4,10 @@ namespace Belt\Content\Http\Controllers\Api;
 
 use Belt\Core\Http\Controllers\ApiController;
 use Belt\Core\Helpers\MorphHelper;
-use Belt\Content\Section;
+use Belt\Content\Behaviors\HasSectionsInterface;
 use Belt\Content\Http\Requests;
+use Belt\Content\Section;
+use Belt\Content\Services\CompileService;
 
 class SectionablesController extends ApiController
 {
@@ -19,6 +21,11 @@ class SectionablesController extends ApiController
      * @var MorphHelper
      */
     public $morphHelper;
+
+    /**
+     * @var CompileService
+     */
+    public $service;
 
     public function __construct(Section $section, MorphHelper $morphHelper)
     {
@@ -44,6 +51,26 @@ class SectionablesController extends ApiController
         $owner = $this->morphHelper->morph($owner_type, $owner_id);
 
         return $owner ?: $this->abort(404);
+    }
+
+    /**
+     * @return CompileService
+     */
+    public function service()
+    {
+        return $this->service = $this->service ?: new CompileService();
+    }
+
+    /**
+     * Cache sections
+     *
+     * @param $owner
+     */
+    public function cache($owner)
+    {
+        if ($owner instanceof HasSectionsInterface) {
+            $this->service()->cache($owner, true);
+        }
     }
 
     /**
@@ -103,6 +130,8 @@ class SectionablesController extends ApiController
 
         $section->save();
 
+        $this->cache($owner);
+
         return response()->json($section, 201);
     }
 
@@ -155,6 +184,8 @@ class SectionablesController extends ApiController
 
         $section->save();
 
+        $this->cache($owner);
+
         return response()->json($section);
     }
 
@@ -190,6 +221,8 @@ class SectionablesController extends ApiController
         $section = $this->section($id, $owner);
 
         $section->delete();
+
+        $this->cache($owner);
 
         return response()->json(null, 204);
     }
