@@ -25,6 +25,7 @@ class BeltContentServiceProvider extends ServiceProvider
         Belt\Content\Block::class => Belt\Content\Policies\BlockPolicy::class,
         Belt\Content\Handle::class => Belt\Content\Policies\HandlePolicy::class,
         Belt\Content\Page::class => Belt\Content\Policies\PagePolicy::class,
+        Belt\Content\Post::class => Belt\Content\Policies\PostPolicy::class,
         Belt\Content\Section::class => Belt\Content\Policies\SectionPolicy::class,
         Belt\Content\Tout::class => Belt\Content\Policies\ToutPolicy::class,
     ];
@@ -67,6 +68,7 @@ class BeltContentServiceProvider extends ServiceProvider
             'handles' => Belt\Content\Handle::class,
             'favorites' => Belt\Content\Favorite::class,
             'pages' => Belt\Content\Page::class,
+            'posts' => Belt\Content\Post::class,
             'sections' => Belt\Content\Section::class,
             'touts' => Belt\Content\Tout::class,
 
@@ -86,6 +88,10 @@ class BeltContentServiceProvider extends ServiceProvider
         $router->bind('page', function ($value) {
             $column = is_numeric($value) ? 'id' : 'slug';
             return Belt\Content\Page::where($column, $value)->first();
+        });
+        $router->bind('post', function ($value) {
+            $column = is_numeric($value) ? 'id' : 'slug';
+            return Belt\Content\Post::where($column, $value)->first();
         });
         $router->bind('section', function ($value) {
             return Belt\Content\Section::find($value);

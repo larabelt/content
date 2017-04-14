@@ -38,6 +38,13 @@ Route::group([
         Route::get('pages', Api\PagesController::class . '@index');
         Route::post('pages', Api\PagesController::class . '@store');
 
+        # posts
+        Route::get('posts/{post}', Api\PostsController::class . '@show');
+        Route::put('posts/{post}', Api\PostsController::class . '@update');
+        Route::delete('posts/{post}', Api\PostsController::class . '@destroy');
+        Route::get('posts', Api\PostsController::class . '@index');
+        Route::post('posts', Api\PostsController::class . '@store');
+
         # search
         Route::get('search', Api\SearchController::class . '@index');
 

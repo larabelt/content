@@ -10,3 +10,12 @@ Response::macro('pages', function ($page) {
 
     return Response::make($response);
 });
+
+# posts
+Response::macro('posts', function ($post) {
+
+    $controller = app()->make(Web\PostsController::class);
+    $response = $controller->callAction('show', ['post' => $post]);
+
+    return Response::make($response);
+});
