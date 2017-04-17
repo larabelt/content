@@ -4,6 +4,7 @@ namespace Belt\Content\Http\Controllers\Api;
 
 use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Post;
+use Belt\Content\Http\Controllers\Compiler;
 use Belt\Content\Http\Requests;
 
 /**
@@ -12,6 +13,7 @@ use Belt\Content\Http\Requests;
  */
 class PostsController extends ApiController
 {
+    use Compiler;
 
     /**
      * @var Post
@@ -35,8 +37,6 @@ class PostsController extends ApiController
      */
     public function index(Requests\PaginatePosts $request)
     {
-        $this->authorize('index', Post::class);
-
         $paginator = $this->paginator($this->posts->query(), $request->reCapture());
 
         return response()->json($paginator->toArray());
@@ -82,7 +82,8 @@ class PostsController extends ApiController
      */
     public function show(Post $post)
     {
-        $this->authorize('view', $post);
+        $post->compiled = $this->compiler()->compile($post);
+        $post->sections;
 
         return response()->json($post);
     }
