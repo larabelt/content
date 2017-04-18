@@ -12,6 +12,7 @@ class PaginateTouts extends PaginateRequest
     public $sortable = [
         'touts.id',
         'touts.name',
+        'touts.heading',
     ];
 
     public $searchable = [

@@ -30,6 +30,11 @@
                             Name
                             <column-sorter :column="'touts.name'"></column-sorter>
                         </th>
+                        <th>
+                            Heading
+                            <column-sorter :column="'touts.heading'"></column-sorter>
+                        </th>
+                        <th>Image</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
@@ -37,6 +42,12 @@
                     <tr v-for="item in table.items">
                         <td>{{ item.id }}</td>
                         <td>{{ item.name }}</td>
+                        <td>{{ item.heading }}</td>
+                        <td>
+                            <template v-if="item.attachment">
+                                <img class="img-thumbnail" :src="item.attachment.src" style="max-height: 100px;"/>
+                            </template>
+                        </td>
                         <td class="text-right">
                             <router-link :to="{ name: 'touts.edit', params: { id: item.id } }" :class="'btn btn-xs btn-warning'">
                                 <i class="fa fa-edit"></i>
@@ -49,6 +60,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Heading</th>
+                        <th>Image</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </tfoot>

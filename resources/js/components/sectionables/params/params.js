@@ -12,7 +12,12 @@ export default {
     data() {
         let params = {};
         for(let key in this.$parent.config.params) {
-            params[key] = new Form({section: this.section});
+            let form = new Form({section: this.section});
+            form.setData({
+                key: key,
+                value: '',
+            });
+            params[key] = form;
         }
         return {
             table: new Table({section: this.section}),

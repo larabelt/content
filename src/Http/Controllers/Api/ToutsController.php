@@ -45,7 +45,7 @@ class ToutsController extends ApiController
     {
         $this->authorize('index', Tout::class);
 
-        $paginator = $this->paginator($this->touts->query(), $request->reCapture());
+        $paginator = $this->paginator($this->touts->with('attachment'), $request->reCapture());
 
         return response()->json($paginator->toArray());
     }
