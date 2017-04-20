@@ -115,6 +115,7 @@ class CompileService
         $new[] = $item->getAttribute('meta_title');
         $new[] = $item->getAttribute('meta_keywords');
         $new[] = $item->getAttribute('meta_description');
+
         $new = preg_replace('/\s+/', ' ', implode(' ', $new));
 
         $searchable .= strip_tags($new);

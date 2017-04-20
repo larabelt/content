@@ -5,6 +5,7 @@ namespace Belt\Content\Http\Controllers\Web;
 use Belt\Core\Http\Requests\PaginateRequest;
 use Belt\Core\Http\Controllers\BaseController;
 use Belt\Core\Pagination\BaseLengthAwarePaginator;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
@@ -18,13 +19,13 @@ class SearchController extends BaseController
     /**
      * Show search results
      *
-     * @param PaginateRequest $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(PaginateRequest $request)
+    public function index(Request $request)
     {
 
-        $request->reCapture();
+        $request = PaginateRequest::extend($request);
 
         $classes = config('belt.search.classes');
 

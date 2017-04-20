@@ -3,8 +3,9 @@
 use Mockery as m;
 use Belt\Core\Testing\BeltTestCase;
 use Belt\Content\Page;
+use Belt\Content\Section;
+use Belt\Content\Tout;
 use Belt\Content\Services\CompileService;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
@@ -17,8 +18,10 @@ class CompileServiceTest extends BeltTestCase
     }
 
     /**
+     * @covers \Belt\Content\Services\CompileService::crawl
+     * @covers \Belt\Content\Services\CompileService::__crawl
      * @covers \Belt\Content\Services\CompileService::compile
-     * @covers \Belt\Content\Services\CompileService::searchable
+     * @covers \Belt\Content\Services\CompileService::getSearchable
      */
     public function test()
     {
@@ -32,20 +35,40 @@ class CompileServiceTest extends BeltTestCase
         $page->shouldReceive('save')->once()->andReturnSelf();
         $page->sections = new Collection();
 
-        $service = m::mock(CompileService::class . '[searchable]');
-        $service->shouldReceive('searchable')->once()->andReturnSelf();
+        $service = m::mock(CompileService::class . '[crawl]');
+        $service->shouldReceive('crawl')->once()->andReturnSelf();
         $response = $service->compile($page);
         $this->assertTrue(is_string($response));
 
-        # searchable
-        $page = m::mock(Page::class);
-        $service = new CompileService();
-        $result = $service->searchable($page, '<div>test</div>');
-        $this->assertEquals('test', $result);
+        # crawl
+        Page::unguard();
+        Section::unguard();
+        Tout::unguard();
 
-        # searchable (exception)
+        $page = new Page();
+        $page->sections = new Collection();
+
+        $section1 = new Section(['heading' => 'foo']);
+        $section1->sectionable = new Tout(['heading' => 'tout']);
+        $section2 = new Section(['heading' => 'bar']);
+        $section2->children = new Collection([new Section(['heading' => 'child'])]);
+
+        $page->sections->push($section1);
+        $page->sections->push($section2);
+
+        $service = new CompileService();
+        $result = $service->crawl($page);
+
+        $this->assertContains('foo', $result);
+        $this->assertContains('bar', $result);
+        $this->assertContains('child', $result);
+        $this->assertContains('tout', $result);
+
+        # crawl (exception)
         try {
-            $service->searchable($page, '!@#$%^&*()_');
+            $section1->before = '!@#$%^&*()_';
+            //$service->crawl($page, '!@#$%^&*()_');
+            $service->crawl($page);
             $this->exceptionNotThrown();
         } catch (\Exception $e) {
 

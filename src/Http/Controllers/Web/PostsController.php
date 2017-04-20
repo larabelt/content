@@ -2,8 +2,7 @@
 
 namespace Belt\Content\Http\Controllers\Web;
 
-use Auth;
-use Belt\Content\Services\CompileService;
+use Belt\Content\Http\Controllers\Compiler;
 use Belt\Core\Http\Controllers\BaseController;
 use Belt\Content\Post;
 
@@ -14,18 +13,13 @@ use Belt\Content\Post;
 class PostsController extends BaseController
 {
 
-    /**
-     * @var CompileService
-     */
-    public $service;
+    use Compiler;
 
     /**
      * ApiController constructor.
      */
     public function __construct()
     {
-        $this->service = new CompileService();
-
         $this->middleware('web');
     }
 
@@ -39,26 +33,7 @@ class PostsController extends BaseController
     public function show(Post $post)
     {
 
-        $method = $this->env('APP_DEBUG') ? 'compile' : 'cache';
-
-        $force_compile = array_get($post->getTemplateConfig(), 'force_compile', false);
-        if ($force_compile) {
-            $method = 'compile';
-        }
-
-        /**
-         * @todo below does not work on "handled" routes
-         */
-        if ($method == 'cache' && Auth::user()) {
-            try {
-                $this->authorize('update', $post);
-                $method = 'compile';
-            } catch (\Exception $e) {
-
-            }
-        }
-
-        $compiled = $this->service->$method($post);
+        $compiled = $this->compile($post);
 
         return view('belt-content::posts.web.show', compact('post', 'compiled'));
     }

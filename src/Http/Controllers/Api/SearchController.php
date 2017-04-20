@@ -5,7 +5,7 @@ namespace Belt\Content\Http\Controllers\Api;
 use Belt\Core\Http\Requests\PaginateRequest;
 use Belt\Core\Http\Controllers\BaseController;
 use Belt\Core\Pagination\BaseLengthAwarePaginator;
-use Belt\Core\Helpers\MorphHelper;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
@@ -19,13 +19,12 @@ class SearchController extends BaseController
     /**
      * Show search results
      *
-     * @param PaginateRequest $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(PaginateRequest $request)
+    public function index(Request $request)
     {
-
-        $request->reCapture();
+        $request = PaginateRequest::extend($request);
 
         $request->merge([
            'is_active' => true,

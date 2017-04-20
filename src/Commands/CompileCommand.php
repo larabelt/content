@@ -5,6 +5,7 @@ namespace Belt\Content\Commands;
 use Belt\Content\Services\CompileService;
 use Belt\Core\Helpers\MorphHelper;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class CompileCommand
@@ -41,6 +42,16 @@ class CompileCommand extends Command
     }
 
     /**
+     * @return Builder
+     */
+    public function qb($morphClass)
+    {
+        $object = (new MorphHelper())->type2Class($morphClass);
+
+        return $object::query();
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -53,10 +64,9 @@ class CompileCommand extends Command
 
         $ids = $this->option('ids');
 
-        foreach (explode(',', $classes) as $class) {
-            $object = (new MorphHelper())->type2Class($class    );
+        foreach (explode(',', $classes) as $morphClass) {
 
-            $qb = $object::query();
+            $qb = $this->qb($morphClass);
 
             if ($ids) {
                 $qb->whereIn('id', explode(',', $ids));
