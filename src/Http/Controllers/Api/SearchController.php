@@ -66,7 +66,7 @@ class SearchController extends BaseController
 
         $paginator = new LengthAwarePaginator(
             $items->toArray(),
-            $pager->count(),
+            $pager->total(),
             $pager->perPage(),
             $pager->currentPage()
         );
