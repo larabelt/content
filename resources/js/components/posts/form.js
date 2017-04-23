@@ -20,6 +20,7 @@ class PostForm extends BaseForm {
             post_at: '',
             post_at_date: '',
             post_at_time: '',
+            source_url: '',
         })
     }
 

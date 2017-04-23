@@ -17,6 +17,7 @@ class UpdatePost extends FormRequest
     {
         return [
             'name' => 'sometimes|required',
+            'source_url' => $this->get('source_url') ? 'url' : '',
         ];
     }
 

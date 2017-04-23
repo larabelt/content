@@ -66,6 +66,7 @@ class PostsController extends ApiController
             'meta_keywords',
             'meta_description',
             'post_at',
+            'source_url',
         ]);
 
         $post->save();
@@ -112,6 +113,7 @@ class PostsController extends ApiController
             'meta_keywords',
             'meta_description',
             'post_at',
+            'source_url',
         ]);
 
         $post->save();

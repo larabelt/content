@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class BeltUpdateBlocks1Table extends Migration
+class BeltUpdatePosts1Table extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class BeltUpdateBlocks1Table extends Migration
      */
     public function up()
     {
-        Schema::table('blocks', function (Blueprint $table) {
-            $table->string('heading')->nullable();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('source_url')->nullable();
         });
     }
 
@@ -24,8 +24,8 @@ class BeltUpdateBlocks1Table extends Migration
      */
     public function down()
     {
-        Schema::table('blocks', function (Blueprint $table) {
-            $table->dropColumn('heading');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('source_url');
         });
     }
 }

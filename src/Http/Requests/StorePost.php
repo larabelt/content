@@ -17,6 +17,7 @@ class StorePost extends FormRequest
     {
         return [
             'name' => 'required',
+            'source_url' => $this->get('source_url') ? 'url' : '',
         ];
     }
 
