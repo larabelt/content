@@ -1,0 +1,110 @@
+<div class="box box-primary">
+    <div class="box-body">
+        <div class="clearfix">
+            <div class="pull-left">
+                <div class="form-group">
+                    <input
+                            type="text"
+                            class="form-control"
+                            v-model="table.query.q"
+                            placeholder="filter"
+                            @keyup="table.index()"
+                    >
+                </div>
+            </div>
+            <div class="pull-left">
+                <div class="form-group">
+                    <select
+                            class="form-control"
+                            v-model="table.query.is_active"
+                            @change="table.index()"
+                    >
+                        <option :value="null">Status?</option>
+                        <option value="0">Action Required</option>
+                        <option value="1">OK</option>
+                    </select>
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="btn-group">
+                    <router-link :to="{ name: 'handles.create' }" :class="'btn btn-primary'">add handle</router-link>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        ID
+                        <column-sorter :column="'handles.id'"></column-sorter>
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Type
+                        <column-sorter :column="'handles.config_name'"></column-sorter>
+                    </th>
+                    <th>
+                        Url
+                        <column-sorter :column="'handles.name'"></column-sorter>
+                    </th>
+                    <th>
+                        Target
+                        <column-sorter :column="'handles.target'"></column-sorter>
+                    </th>
+                    <th>
+                        Hits
+                        <column-sorter :column="'handles.hits'"></column-sorter>
+                    </th>
+                    <th>
+                        Updated
+                        <column-sorter :column="'handles.updated_at'"></column-sorter>
+                    </th>
+                    <th class="text-right">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in table.items">
+                    <td>{{ item.id }}</td>
+                    <td @click.prevent="toggleActive(item)">
+                        <span v-if="!item.is_active" class="badge bg-yellow-active">NOK</span>
+                        <span v-else class="badge">OK</span>
+                    </td>
+                    <td>{{ item.config_name }}</td>
+                    <td><a :href="item.url" target="_blank">{{ item.url }}</a>
+                        <p v-if="item.handleable" style="margin-top: 10px;">
+                            <strong>Associated:</strong> {{ item.handleable_type }} #{{ item.handleable_id }}
+                            - <a :href="item.handleable.default_url" target="_blank">{{ item.handleable.name }}</a>
+                        </p>
+                    </td>
+                    <td>{{ item.target }}</td>
+                    <td>{{ item.hits }}</td>
+                    <td>{{ item.updated_at }}</td>
+                    <td class="text-right">
+                        <router-link :to="{ name: 'handles.edit', params: { id: item.id } }" :class="'btn btn-xs btn-warning'">
+                            <i class="fa fa-edit"></i>
+                        </router-link>
+                        <modal-delete :item-id="item.id" _class="''" :callingObject="table"></modal-delete>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Status</th>
+                    <th>Url</th>
+                    <th>Target</th>
+                    <th>Hits</th>
+                    <th>Updated</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <pagination></pagination>
+
+    </div>
+</div>

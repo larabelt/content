@@ -1,0 +1,29 @@
+<tr>
+    <td>{{ handle.url }}</td>
+    <td>
+        <template v-if="handle.is_active">
+            <i class="fa fa-check"></i>
+        </template>
+    </td>
+    <td>{{ handle.config_name }}</td>
+    <td>
+        <template v-if="handle.is_active && handle.config.show_default">
+            <template v-if="handle.is_default">
+                <button class="btn btn-xs btn-primary">
+                    <i class="fa fa-check-square-o"></i>
+                </button>
+            </template>
+            <template v-else>
+                <button class="btn btn-xs btn-default"
+                        @click.prevent="makeDefault()"
+                ><i class="fa fa-square-o"></i></button>
+            </template>
+        </template>
+    </td>
+    <td class="text-right">
+        <router-link :to="{ name: 'handles.edit', params: { id: handle.id } }" :class="'btn btn-xs btn-warning'">
+            <i class="fa fa-edit"></i>
+        </router-link>
+        <modal-delete :item-id="handle.id" _class="''" :callingObject="table"></modal-delete>
+    </td>
+</tr>

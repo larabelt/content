@@ -16,8 +16,8 @@ class HandleTest extends BeltTestCase
     {
 
         # normalizeUrl
-        $this->assertEquals('one', Handle::normalizeUrl('One'));
-        $this->assertEquals('one/123/what-just-happened', Handle::normalizeUrl("One/123!!!/What Just Happened?"));
+        $this->assertEquals('/one', Handle::normalizeUrl('one'));
+        $this->assertEquals('/one/123/what-just-happened', Handle::normalizeUrl("One/123!!!/What Just Happened?"));
 
         Page::unguard();
         $page = factory(Page::class)->make();
@@ -27,7 +27,7 @@ class HandleTest extends BeltTestCase
         $handle = factory(Handle::class)->make();
         $handle->handleable_id = 1;
         $handle->handleable_type = $page->getMorphClass();
-        $handle->url = ' /Test/test it all ';
+        $handle->url = ' Test/test it all ';
         $handle->delta = 1;
         $handle->handleable()->add($page);
 
@@ -37,8 +37,8 @@ class HandleTest extends BeltTestCase
         //$this->assertInstanceOf(Page::class, $handle->handleable);
 
         # setters
-        $this->assertEquals('test/test-it-all', $handle->__toString());
-        $this->assertEquals('test/test-it-all', $attributes['url']);
+        $this->assertEquals('/test/test-it-all', $handle->__toString());
+        $this->assertEquals('/test/test-it-all', $attributes['url']);
         $this->assertEquals('pages', $attributes['handleable_type']);
     }
 

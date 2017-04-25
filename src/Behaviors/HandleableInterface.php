@@ -8,10 +8,15 @@ namespace Belt\Content\Behaviors;
 interface HandleableInterface
 {
 
+//    /**
+//     * @return mixed
+//     */
+//    public function handle();
+
     /**
      * @return mixed
      */
-    public function handle();
+    public function getHandleAttribute();
 
     /**
      * @return mixed

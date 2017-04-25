@@ -1,0 +1,84 @@
+<form role="form" @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
+    <div class="radio">
+        <label>
+            <input type="radio" name="is_active" value="1" v-model="form.is_active" />
+            Is active <small>no action is required</small>
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="is_active" value="0" v-model="form.is_active" />
+            Is not active
+        </label>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" :class="{ 'has-error': form.error('config_name') }">
+                <label for="template">Response Type</label>
+                <select v-model="form.config_name" name="template" class="form-control">
+                    <template v-for="config, key in configs">
+                        <option :value="key">{{ config.label ? config.label : key }}</option>
+                    </template>
+                </select>
+                <span v-for="error in form.error('config_name')" class="contents-danger">{{ error }}</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <template v-if="config.show_default" >
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="is_default" value="0" v-model="form.is_default" />
+                        This is <strong>not</strong> the default handle for the associated item
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="is_default" value="1" v-model="form.is_default" />
+                        This is the default handle for the associated item
+                    </label>
+                </div>
+            </template>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" :class="{ 'has-error': form.error('url') }">
+                <label for="url">Url</label>
+                <input type="text" class="form-control" v-model="form.url" placeholder="url">
+                <span v-for="error in form.error('url')" class="text-danger">{{ error }}</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div v-if="config.show_target" class="form-group" :class="{ 'has-error': form.error('target') }">
+                <label for="target">Redirect Target</label>
+                <input type="text" class="form-control" v-model="form.target" placeholder="target">
+                <span v-for="error in form.error('target')" class="text-danger">{{ error }}</span>
+            </div>
+        </div>
+    </div>
+
+    <template v-if="config.show_handleable">
+
+        <div class="form-group">
+            <label>Associated Item</label>
+            <searchables></searchables>
+        </div>
+
+<!--        <div class="form-group" :class="{ 'has-error': form.error('handleable_id') }">-->
+<!--            <label for="handleable_id">Associated Item</label>-->
+<!--            <input type="text" class="form-control" v-model="form.handleable_id" placeholder="handleable id">-->
+<!--            <span v-for="error in form.error('handleable_id')" class="text-danger">{{ error }}</span>-->
+<!--        </div>-->
+<!--        <div class="form-group" :class="{ 'has-error': form.error('handleable_type') }">-->
+<!--            <input type="text" class="form-control" v-model="form.handleable_type" placeholder="handleable type">-->
+<!--            <span v-for="error in form.error('handleable_type')" class="text-danger">{{ error }}</span>-->
+<!--        </div>-->
+    </template>
+
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary" :disabled="form.errors.any()">
+            <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+            <span v-else>Save</span>
+        </button>
+    </div>
+</form>

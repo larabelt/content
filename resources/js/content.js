@@ -1,4 +1,5 @@
 import blocks  from './components/blocks/routes';
+import handles  from './components/handles/routes';
 import pages  from './components/pages/routes';
 import posts  from './components/posts/routes';
 import store from 'belt/core/js/store/index';
@@ -17,6 +18,7 @@ export default class BeltContent {
             });
 
             router.addRoutes(blocks);
+            router.addRoutes(handles);
             router.addRoutes(pages);
             router.addRoutes(posts);
             router.addRoutes(touts);

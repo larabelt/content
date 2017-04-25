@@ -85,6 +85,7 @@ class BeltContentServiceProvider extends ServiceProvider
 
         // route model binding
         $router->model('favorite', Belt\Content\Favorite::class);
+        $router->model('handle', Belt\Content\Handle::class);
         $router->bind('page', function ($value) {
             $column = is_numeric($value) ? 'id' : 'slug';
             return Belt\Content\Page::where($column, $value)->first();

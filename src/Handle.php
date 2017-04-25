@@ -1,6 +1,8 @@
 <?php
+
 namespace Belt\Content;
 
+use Belt\Core\Helpers\ConfigHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
@@ -19,7 +21,12 @@ class Handle extends Model
     /**
      * @var array
      */
-    protected $guarded = ['id'];
+    protected $fillable = ['url'];
+
+    /**
+     * @var array
+     */
+    protected $appends = ['config'];
 
     /**
      * The Associated owning model
@@ -56,8 +63,6 @@ class Handle extends Model
 
         $value = ltrim(trim($value), '/');
 
-        $value = Str::ascii($value);
-
         // Convert all dashes/underscores into separator
         $value = preg_replace('![_]+!u', '-', $value);
 
@@ -67,7 +72,7 @@ class Handle extends Model
         // Replace all separator characters and whitespace by a single separator
         $value = preg_replace('![-\s]+!u', '-', $value);
 
-        return $value;
+        return '/' . $value;
     }
 
     /**
@@ -85,6 +90,66 @@ class Handle extends Model
         $query->where('handles.handleable_id', $handleable_id);
 
         return $query;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfigAttribute()
+    {
+        return $this->config();
+    }
+
+    /**
+     * @param null $key
+     * @param null $default
+     * @return mixed
+     */
+    public function config($key = null, $default = null)
+    {
+        $config = ConfigHelper::config('belt.content.handles.responses', $this->config_name) ?: [];
+
+        if (!$key) {
+            return $config;
+        }
+
+        return array_get($config, $key, $default);
+    }
+
+    /**
+     * Ensure is_default is correctly handled
+     */
+    public function syncDefault()
+    {
+        if (!$this->handleable) {
+            return;
+        }
+
+        if (!$this->config('show_default', false)) {
+            return;
+        }
+
+        $count = $this->handled($this->handleable_type, $this->handleable_id)
+            ->where('is_default', true)
+            ->count();
+
+        /**
+         * There should only be one default, so if there is zero (or somehow more than one)
+         * then this lucky duck becomes the default.
+         */
+        if ($this->is_default || $count != 1) {
+            $this->is_default = true;
+            $this->target = null;
+            $this->save();
+
+            /**
+             * Ensure the rest have is_default=0
+             */
+            $this->handled($this->handleable_type, $this->handleable_id)
+                ->where('id', '!=', $this->id)
+                ->update(['is_default' => false]);
+        }
+
     }
 
 }

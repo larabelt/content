@@ -19,16 +19,16 @@
                 <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Active</th>
+                    <th>Type</th>
+                    <th>Is Default</th>
                     <th class="text-right">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="handle in table.items">
-                    <td>{{ handle.url }}</td>
-                    <td class="text-right">
-                        <modal-delete :item-id="handle.id" _class="''" :callingObject="table"></modal-delete>
-                    </td>
-                </tr>
+                <template v-for="handle in table.items">
+                    <edit :handle="handle"></edit>
+                </template>
                 </tbody>
             </table>
             <pagination></pagination>

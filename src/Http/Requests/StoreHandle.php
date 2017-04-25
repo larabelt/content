@@ -1,13 +1,12 @@
 <?php
-namespace Belt\Content\Http\Requests;
 
-use Belt\Core\Http\Requests\FormRequest;
+namespace Belt\Content\Http\Requests;
 
 /**
  * Class StoreHandle
  * @package Belt\Content\Http\Requests
  */
-class StoreHandle extends FormRequest
+class StoreHandle extends HandleFormRequest
 {
 
     /**
@@ -15,11 +14,23 @@ class StoreHandle extends FormRequest
      */
     public function rules()
     {
-        return [
-            'url' => 'required|unique:handles|unique_route',
-            'handleable_id' => 'required',
-            'handleable_type' => 'required',
+        $rules = [
+            'config_name' => 'sometimes|in:' . implode(',', array_keys($this->configs())),
+            'url' => [
+                'required',
+                'unique_route',
+                'unique:handles,url',
+                'unique:handles,target',
+            ],
+            'handleable_id' => $this->config('show_handlable', false) ? 'required' : '',
+            'handleable_type' => $this->config('show_handlable', false) ? 'required' : '',
         ];
+
+        if ($this->config('show_target', false)) {
+            $rules['target'] = 'required|unique:handles,url';
+        }
+
+        return $rules;
     }
 
 }

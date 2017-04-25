@@ -17,18 +17,26 @@ Route::group([
         Route::post('blocks', Api\BlocksController::class . '@store');
 
         # config
+        Route::get('config/belt.content.handles.responses/', ConfigController::class . '@show');
         Route::get('config/belt.templates/{key?}', ConfigController::class . '@show');
 
         # handles
+        Route::get('handles/{handle}', Api\HandlesController::class . '@show');
+        Route::put('handles/{handle}', Api\HandlesController::class . '@update');
+        Route::delete('handles/{handle}', Api\HandlesController::class . '@destroy');
+        Route::get('handles', Api\HandlesController::class . '@index');
+        Route::post('handles', Api\HandlesController::class . '@store');
+
+        # handleables
         Route::group([
             'prefix' => '{handleable_type}/{handleable_id}/handles',
             'middleware' => 'request.injections:handleable_type,handleable_id'
         ], function () {
-            Route::get('{id}', Api\HandlesController::class . '@show');
-            Route::put('{id}', Api\HandlesController::class . '@update');
-            Route::delete('{id}', Api\HandlesController::class . '@destroy');
-            Route::get('', Api\HandlesController::class . '@index');
-            Route::post('', Api\HandlesController::class . '@store');
+            Route::get('{handle}', Api\HandleablesController::class . '@show');
+            Route::put('{handle}', Api\HandleablesController::class . '@update');
+            Route::delete('{handle}', Api\HandleablesController::class . '@destroy');
+            Route::get('', Api\HandleablesController::class . '@index');
+            Route::post('', Api\HandleablesController::class . '@store');
         });
 
         # pages

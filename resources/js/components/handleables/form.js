@@ -16,6 +16,9 @@ class Form extends BaseForm {
         this.service = new BaseService({baseUrl: baseUrl});
         this.setData({
             url: '',
+            is_active: 1,
+            is_default: 0,
+            target: '',
         });
     }
 

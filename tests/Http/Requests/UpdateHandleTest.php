@@ -1,17 +1,35 @@
 <?php
 
+use Mockery as m;
+use Belt\Core\Testing;
+use Belt\Content\Handle;
 use Belt\Content\Http\Requests\UpdateHandle;
 
-class UpdateHandleTest extends \PHPUnit_Framework_TestCase
+class UpdateHandleTest extends Testing\BeltTestCase
 {
+
+    public function tearDown()
+    {
+        m::close();
+    }
 
     /**
      * @covers \Belt\Content\Http\Requests\UpdateHandle::rules
      */
     public function test()
     {
+        app()['config']->set('belt.content.handles.responses', [
+            'default' => [
+                'show_target' => true,
+            ],
+        ]);
 
-        $request = new UpdateHandle();
+        Handle::unguard();
+        $handle = new Handle(['id' => 1]);
+
+        $request = m::mock(UpdateHandle::class . '[get, route]');
+        $request->shouldReceive('get')->withArgs(['config_name', 'default'])->andReturn('default');
+        $request->shouldReceive('route')->with('handle')->andReturn($handle);
 
         $this->assertNotEmpty($request->rules());
     }

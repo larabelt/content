@@ -7,6 +7,8 @@ class HandleTable extends BaseTable {
         super(options);
         let baseUrl = `/api/v1/${this.morphable_type}/${this.morphable_id}/handles/`;
         this.service = new BaseService({baseUrl: baseUrl});
+        this.query.orderBy = '-handles.is_default';
+        this.query.sortBy = null;
     }
 
 }

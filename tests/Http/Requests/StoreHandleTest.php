@@ -1,8 +1,9 @@
 <?php
 
+use Belt\Core\Testing;
 use Belt\Content\Http\Requests\StoreHandle;
 
-class StoreHandleTest extends \PHPUnit_Framework_TestCase
+class StoreHandleTest extends Testing\BeltTestCase
 {
 
     /**
@@ -11,7 +12,13 @@ class StoreHandleTest extends \PHPUnit_Framework_TestCase
     public function test()
     {
 
-        $request = new StoreHandle();
+        app()['config']->set('belt.content.handles.responses', [
+            'default' => [
+                'show_target' => true,
+            ],
+        ]);
+
+        $request = new StoreHandle(['config_name' => 'default']);
 
         $this->assertNotEmpty($request->rules());
     }
