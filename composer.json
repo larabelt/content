@@ -13,8 +13,6 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "larabelt/core": "dev-handles",
-    "larabelt/clip": "dev-handles",
     "soundasleep/html2text": "^0.3.4"
   },
   "autoload": {
