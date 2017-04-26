@@ -17,7 +17,6 @@ class UpdateTout extends FormRequest
     {
         return [
             'name' => 'sometimes|required',
-            'body' => 'sometimes|required',
         ];
     }
 

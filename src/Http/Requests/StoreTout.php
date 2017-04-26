@@ -17,7 +17,6 @@ class StoreTout extends FormRequest
     {
         return [
             'name' => 'required|unique:touts,name',
-            'body' => 'required',
         ];
     }
 
