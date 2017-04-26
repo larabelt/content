@@ -27,7 +27,7 @@ trait Handleable
         $handle = $this->handles->where('is_default', true)->first();
 
         return $handle ?: new Handle([
-            'url' => sprintf('%s/%s/%s', $this->getMorphClass(), $this->id, $this->slug),
+            'url' => sprintf('/%s/%s/%s', $this->getMorphClass(), $this->id, $this->slug),
         ]);
     }
 
