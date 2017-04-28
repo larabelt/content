@@ -6,21 +6,22 @@ use Belt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Kalnoy\Nestedset\NodeTrait;
-use Illuminate\Support\Str;
 
 /**
  * Class Section
  * @package Belt\Content
  */
 class Section extends Model implements
-    Belt\Core\Behaviors\NodeInterface,
+    Belt\Core\Behaviors\NestedSetInterface,
     Belt\Core\Behaviors\ParamableInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\IncludesTemplateInterface,
     Belt\Content\Behaviors\SectionableInterface
 {
 
-    use NodeTrait;
+    use NodeTrait {
+        children as nodeChildren;
+    }
     use Belt\Core\Behaviors\Paramable;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\IncludesTemplate;
@@ -110,6 +111,16 @@ class Section extends Model implements
     }
 
     /**
+     * Child sections
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children()
+    {
+        return $this->nodeChildren()->orderBy('_lft');
+    }
+
+    /**
      * Return sections associated with owner
      *
      * @param $query
@@ -125,16 +136,5 @@ class Section extends Model implements
 
         return $query;
     }
-//
-//    public function getConfigAttribute()
-//    {
-//        $defaults = [
-//            'width' => 12,
-//        ];
-//
-//        $config = $this->getTemplateConfig();
-//
-//        return array_merge($defaults, $config);
-//    }
 
 }

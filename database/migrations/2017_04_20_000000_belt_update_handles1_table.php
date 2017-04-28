@@ -37,9 +37,6 @@ class BeltUpdateHandles1Table extends Migration
             $table->integer('hits')->default(0)->index();
         });
 
-        DB::table('handles')->whereNotNull('handleable_id')->update(['is_active' => 1, 'is_default' => 1, 'config_name' => 'alias']);
-        DB::table('handles')->update(['url' => DB::raw("CONCAT('/', url)")]);
-        DB::table('handles')->update(['url' => DB::raw("REPLACE(url, '//', '/')")]);
     }
 
     /**
