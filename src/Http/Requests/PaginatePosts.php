@@ -15,6 +15,7 @@ class PaginatePosts extends PaginateRequest
     public $sortable = [
         'posts.id',
         'posts.name',
+        'posts.post_at',
     ];
 
     public $searchable = [
