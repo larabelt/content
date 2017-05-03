@@ -1,3 +1,5 @@
+import debounce from 'debounce';
+
 import tags from 'belt/glue/js/components/taggables/filter';
 
 // helpers
@@ -26,11 +28,15 @@ export default {
                 this.table.updateQueryFromRouter();
                 this.table.index();
             },
+            methods: {
+                filter: debounce(function () {
+                    this.table.index();
+                }),
+            },
             components: {tags},
             template: index_html,
         },
     },
-
     template: `
         <div>
             <heading>
