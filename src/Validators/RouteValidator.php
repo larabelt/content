@@ -24,7 +24,7 @@ class RouteValidator
     {
         $validator->setFallbackMessages(
             array_merge($validator->fallbackMessages, [
-                    'unique_route' => 'this route already exists'
+                'unique_route' => 'this route already exists'
             ])
         );
 
@@ -35,8 +35,16 @@ class RouteValidator
         try {
             $routes = Route::getRoutes();
             $request = Request::create($value);
-            $routes->match($request);
-            // route exists
+            $route = $routes->match($request);
+
+            /**
+             * If we make it this far, the route exists. However, ignore
+             * catch-all routes.
+             */
+            if ($route->uri() == '{any?}') {
+                $validates = true;
+            }
+
         } catch (\Exception $e) {
             // route doesn't exist
             $validates = true;

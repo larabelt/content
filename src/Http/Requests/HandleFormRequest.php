@@ -62,7 +62,9 @@ class HandleFormRequest extends FormRequest
     {
         $all = parent::all();
 
-        $all['url'] = Handle::normalizeUrl($all['url']);
+        if (array_has($all, 'all')) {
+            $all['url'] = Handle::normalizeUrl($all['url']);
+        }
 
         return $all;
     }
