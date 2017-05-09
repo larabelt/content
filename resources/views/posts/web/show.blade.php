@@ -7,7 +7,7 @@
 @section('main')
 
     <div class="container">
-        {!! $compiled !!}
+        @include($post->template_view)
     </div>
 
 @endsection
