@@ -35,7 +35,9 @@ class PostsController extends BaseController
 
         $compiled = $this->compile($post);
 
-        return view('belt-content::posts.web.show', compact('post', 'compiled'));
+        $owner = $post;
+
+        return view('belt-content::posts.web.show', compact('owner', 'post', 'compiled'));
     }
 
 }
