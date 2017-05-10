@@ -63,7 +63,7 @@ class Section extends Model implements
 
         $name = title_case(str_singular($name));
 
-        $name = strlen($name) < 25 ? $name : sprintf('%s...', substr($name, 0, 22));
+        //$name = strlen($name) < 25 ? $name : sprintf('%s...', substr($name, 0, 22));
 
         return ucfirst(str_singular($name));
     }
