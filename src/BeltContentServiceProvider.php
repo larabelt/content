@@ -2,7 +2,7 @@
 
 namespace Belt\Content;
 
-use Belt, Validator, View;
+use Belt, Elasticsearch, Laravel, Validator, View;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Routing\Router;
@@ -80,6 +80,7 @@ class BeltContentServiceProvider extends ServiceProvider
 
         // commands
         $this->commands(Belt\Content\Commands\CompileCommand::class);
+        $this->commands(Belt\Content\Commands\ElasticCommand::class);
         $this->commands(Belt\Content\Commands\PublishCommand::class);
         $this->commands(Belt\Content\Commands\TemplateCommand::class);
 
@@ -114,12 +115,24 @@ class BeltContentServiceProvider extends ServiceProvider
         $this->app['belt']->publish('belt-content:publish');
         $this->app['belt']->seeders('BeltContentSeeder');
 
-        //Blade directives
+        # blade directives
         Blade::directive('block', function ($expression) {
             list($slug, $field) = Belt\Core\Helpers\StrHelper::strToArguments($expression, 2);
             $block = Block::where('slug', $slug)->first();
             return $block ? ($field ? $block->$field : $block->body) : '';
         });
+
+        # engines
+        $this->app->register(Laravel\Scout\ScoutServiceProvider::class);
+        if (config('belt.elastic.index.name') && config('belt.elastic.index.hosts')) {
+            app(Laravel\Scout\EngineManager::class)->extend('elastic', function ($app) {
+                return new Belt\Content\SearchEngines\ElasticEngine(Elasticsearch\ClientBuilder::create()
+                    ->setHosts(config('belt.elastic.index.hosts'))
+                    ->build(),
+                    config('belt.elastic.index.name')
+                );
+            });
+        }
     }
 
     /**
