@@ -13,6 +13,10 @@ class SearchFunctionalTest extends Testing\BeltTestCase
         # index
         $response = $this->json('GET', '/api/v1/search?include=pages');
         $response->assertStatus(200);
+
+        # index (invalid engine)
+        $response = $this->json('GET', '/api/v1/search?engine=invalid');
+        $response->assertStatus(404);
     }
 
 }

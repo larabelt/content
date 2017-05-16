@@ -297,11 +297,14 @@ class ElasticEngine extends Engine
      */
     public function paginate(Builder $builder, $perPage, $page)
     {
-        $result = $this->performSearch($builder, [
+        $result = $this->performSearch(array_filter([
             'numericFilters' => $this->filters($builder),
             'from' => (($page * $perPage) - $perPage),
-            'size' => $perPage,
-        ]);
+            'size' => $builder->limit,
+            'needle' => $builder->query,
+            'types' => [$builder->model->searchableAs()],
+            'sort' => $this->sort($builder),
+        ]));
 
         $result['nbPages'] = $result['hits']['total'] / $perPage;
 
@@ -314,7 +317,7 @@ class ElasticEngine extends Engine
      * @param  Builder $builder
      * @return array
      */
-    protected function filters(Builder $builder)
+    public function filters(Builder $builder)
     {
         return collect($builder->wheres)->map(function ($value, $key) {
             return ['match_phrase' => [$key => $value]];
@@ -329,7 +332,7 @@ class ElasticEngine extends Engine
      */
     public function mapIds($results)
     {
-        return collect($results['hits']['hits'])->pluck('_id')->values();
+        return collect(array_get($results, 'hits.hits'))->pluck('_id')->values();
     }
 
     /**
@@ -341,20 +344,15 @@ class ElasticEngine extends Engine
      */
     public function map($results, $model)
     {
-        if (count($results['hits']['total']) === 0) {
-            return Collection::make();
+        if (count(array_get($results, 'hits.total')) === 0) {
+            return new Collection();
         }
 
-        $keys = collect($results['hits']['hits'])
-            ->pluck('_id')->values()->all();
+        $keys = $this->mapIds($results)->all();
 
-        $models = $model->whereIn(
-            $model->getKeyName(), $keys
-        )->get()->keyBy($model->getKeyName());
+        $models = $model->whereIn($model->getKeyName(), $keys)->get()->keyBy($model->getKeyName());
 
-        return collect($results['hits']['hits'])->map(function ($hit) use ($model, $models) {
-            return isset($models[$hit['_id']]) ? $models[$hit['_id']] : null;
-        })->filter();
+        return $models;
     }
 
     /**
@@ -374,7 +372,7 @@ class ElasticEngine extends Engine
      * @param  Builder $builder
      * @return array|null
      */
-    protected function sort($builder)
+    public function sort($builder)
     {
         if (count($builder->orders) == 0) {
             return null;

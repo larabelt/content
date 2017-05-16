@@ -190,22 +190,6 @@ class SectionablesController extends ApiController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function preview($id)
-    {
-        $section = $this->get($id);
-
-        $this->authorize('view', $section);
-
-        return view($section->template_view, ['section' => $section]);
-    }
-
-    /**
      * Remove the specified resource from glue.
      *
      * @param  int $id
