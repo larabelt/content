@@ -36,6 +36,11 @@ class ElasticService
     public $index;
 
     /**
+     * @var \Elasticsearch\Namespaces\IndicesNamespace
+     */
+    public $indices;
+
+    /**
      * @var MorphHelper
      */
     public $morphHelper;
@@ -67,7 +72,7 @@ class ElasticService
      */
     public function indices()
     {
-        return $this->elastic()->indices();
+        return $this->indices ?: $this->elastic()->indices();
     }
 
     /**
