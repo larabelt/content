@@ -137,4 +137,34 @@ class Section extends Model implements
         return $query;
     }
 
+    /**
+     * @param $section
+     * @param array $options
+     * @return Model
+     */
+    public static function copy($section, $options = [])
+    {
+        $section = $section instanceof Section ? $section : self::find($section)->first();
+
+        $section->load('params');
+
+        $clone = $section->replicate(['_lft', '_rgt']);
+        $clone->owner_id = array_get($options, 'owner_id');
+        $clone->parent_id = array_get($options, 'parent_id');
+        $clone->push();
+
+        foreach ($section->params as $param) {
+            Belt\Core\Param::copy($param, ['paramable_id' => $clone->id]);
+        }
+
+        foreach ($section->children as $child) {
+            static::copy($child, [
+                'owner_id' => array_get($options, 'owner_id'),
+                'parent_id' => $clone->id,
+            ]);
+        }
+
+        return $clone;
+    }
+
 }

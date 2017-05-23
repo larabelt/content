@@ -28,14 +28,6 @@ class PagesController extends ApiController
     }
 
     /**
-     * @param $id
-     */
-    public function get($id)
-    {
-        return $this->pages->find($id) ?: $this->abort(404);
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @param $request
@@ -63,6 +55,10 @@ class PagesController extends ApiController
 
         $input = $request->all();
 
+        if ($source = $request->get('source')) {
+            return response()->json($this->pages->copy($source), 201);
+        }
+
         $page = $this->pages->create(['name' => $input['name']]);
 
         $this->set($page, $input, [
@@ -83,14 +79,12 @@ class PagesController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param Page $page
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Page $page)
     {
-        $page = $this->get($id);
-
         $this->authorize('view', $page);
 
         return response()->json($page);
@@ -100,14 +94,12 @@ class PagesController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  Requests\UpdatePage $request
-     * @param  string $id
+     * @param Page $page
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\UpdatePage $request, $id)
+    public function update(Requests\UpdatePage $request, Page $page)
     {
-        $page = $this->get($id);
-
         $this->authorize('update', $page);
 
         $input = $request->all();
@@ -128,22 +120,20 @@ class PagesController extends ApiController
         return response()->json($page);
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param Page $page
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Page $page)
     {
-        $page = $this->get($id);
-
         $this->authorize('delete', $page);
 
         $page->delete();
 
         return response()->json(null, 204);
     }
+
 }

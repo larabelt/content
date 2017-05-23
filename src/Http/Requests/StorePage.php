@@ -1,6 +1,8 @@
 <?php
+
 namespace Belt\Content\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Belt\Core\Http\Requests\FormRequest;
 
 /**
@@ -15,6 +17,12 @@ class StorePage extends FormRequest
      */
     public function rules()
     {
+        if ($this->get('source')) {
+            return [
+                'source' => 'exists:pages,id',
+            ];
+        }
+
         return [
             'name' => 'required',
         ];

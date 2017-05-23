@@ -1,4 +1,5 @@
 <?php
+
 namespace Belt\Content;
 
 use Belt;
@@ -55,4 +56,41 @@ class Page extends Model implements
      * @var array
      */
     protected $appends = ['image', 'type', 'default_url', 'morph_class'];
+
+    /**
+     * @param $page
+     * @return Model
+     */
+    public static function copy($page)
+    {
+        $page = $page instanceof Page ? $page : self::sluggish($page)->first();
+
+        $clone = $page->replicate();
+        $clone->slug .= '-' . strtotime('now');
+        $clone->push();
+
+        foreach ($page->sections as $section) {
+            Section::copy($section, ['owner_id' => $clone->id]);
+        }
+
+        foreach ($page->attachments as $attachment) {
+            $clone->attachments()->attach($attachment);
+        }
+
+        foreach ($page->categories as $category) {
+            $clone->categories()->attach($category);
+        }
+
+        foreach ($page->handles as $handle) {
+            Handle::copy($handle, ['handleable_id' => $clone->id]);
+        }
+
+        foreach ($page->tags as $tag) {
+            $clone->tags()->attach($tag);
+        }
+
+        return $clone;
+    }
+
+
 }

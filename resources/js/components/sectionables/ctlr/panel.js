@@ -32,9 +32,6 @@ export default {
     },
     methods: {
         destroy(id) {
-
-            console.log(id);
-
             let self = this;
             this.form.destroy(id)
                 .then(function () {

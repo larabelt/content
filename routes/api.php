@@ -40,9 +40,9 @@ Route::group([
         });
 
         # pages
-        Route::get('pages/{id}', Api\PagesController::class . '@show');
-        Route::put('pages/{id}', Api\PagesController::class . '@update');
-        Route::delete('pages/{id}', Api\PagesController::class . '@destroy');
+        Route::get('pages/{page}', Api\PagesController::class . '@show');
+        Route::put('pages/{page}', Api\PagesController::class . '@update');
+        Route::delete('pages/{page}', Api\PagesController::class . '@destroy');
         Route::get('pages', Api\PagesController::class . '@index');
         Route::post('pages', Api\PagesController::class . '@store');
 

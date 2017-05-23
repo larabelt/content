@@ -3,6 +3,7 @@ import debounce from 'debounce';
 import tags from 'belt/glue/js/components/taggables/filter';
 
 // helpers
+import Form from '../form';
 import Table from '../table';
 
 // templates make a change
@@ -32,6 +33,12 @@ export default {
                 filter: debounce(function () {
                     this.table.index();
                 }),
+                copy(id) {
+                    let form = new Form();
+                    form.service.baseUrl = '/api/v1/pages/?source=' + id;
+                    form.router = this.$router;
+                    form.submit();
+                }
             },
             components: {tags},
             template: index_html,

@@ -152,4 +152,21 @@ class Handle extends Model
 
     }
 
+    /**
+     * @param $handle
+     * @param array $options
+     * @return Model
+     */
+    public static function copy($handle, $options = [])
+    {
+        $handle = $handle instanceof Handle ? $handle : self::find($handle)->first();
+
+        $clone = $handle->replicate();
+        $clone->handleable_id = array_get($options, 'handleable_id');
+        $clone->url .= '-' . strtotime('now');
+        $clone->push();
+
+        return $clone;
+    }
+
 }
