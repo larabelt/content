@@ -103,6 +103,23 @@ class Section extends Model implements
     }
 
     /**
+     * Get a relationship value from a method.
+     *
+     * @param  string  $method
+     * @return mixed
+     *
+     * @throws \LogicException
+     */
+    protected function getRelationshipFromMethod($method)
+    {
+        if ($method == 'sectionable' && !$this->sectionable_id) {
+            return null;
+        }
+
+        return parent::getRelationshipFromMethod($method);
+    }
+
+    /**
      * @return mixed
      */
     public function getTemplateGroup()
