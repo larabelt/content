@@ -20,6 +20,7 @@ export default {
             params[key] = form;
         }
         return {
+            saving: false,
             table: new Table({section: this.section}),
             params: params,
         }
@@ -34,6 +35,17 @@ export default {
                     }
                 }
             });
+    },
+    methods: {
+        update(key) {
+            if (!this.saving) {
+                this.saving = true;
+                this.params[key].submit()
+                    .then(() => {
+                        this.saving = false;
+                    });
+            }
+        },
     },
     template: params_html,
 }
