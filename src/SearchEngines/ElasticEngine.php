@@ -281,7 +281,9 @@ class ElasticEngine extends Engine
             $id = array_get($result, '_id');
             $type = array_get($result, '_type');
             $item = $this->morphHelper->morph($type, $id);
-            $items->push($item);
+            if ($item) {
+                $items->push($item);
+            }
         }
 
         return $items;
