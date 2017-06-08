@@ -1,6 +1,7 @@
 <?php
 
 use Belt\Core\Testing;
+use Belt\Content\Handle;
 
 class HandlesFunctionalTest extends Testing\BeltTestCase
 {
@@ -30,6 +31,12 @@ class HandlesFunctionalTest extends Testing\BeltTestCase
         $this->json('PUT', "/api/v1/handles/$handleID", ['url' => 'updated']);
         $response = $this->json('GET', "/api/v1/handles/$handleID");
         $response->assertJson(['url' => '/updated']);
+
+        # copy
+        $old = Handle::find($handleID);
+        $new = Handle::copy($old, ['handleable_id' => 2]);
+        $response = $this->json('GET', "/api/v1/handles/$new->id");
+        $response->assertStatus(200);
 
         # delete
         $response = $this->json('DELETE', "/api/v1/handles/$handleID");

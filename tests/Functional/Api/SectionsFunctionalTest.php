@@ -1,6 +1,7 @@
 <?php
 
 use Belt\Core\Testing;
+use Belt\Content\Section;
 
 class SectionsFunctionalTest extends Testing\BeltTestCase
 {
@@ -34,6 +35,15 @@ class SectionsFunctionalTest extends Testing\BeltTestCase
         ]);
         $response = $this->json('GET', "/api/v1/pages/1/sections/$sectionID");
         $response->assertJson(['heading' => 'updated']);
+
+        # copy
+        Section::unguard();
+        $old = Section::find($sectionID);
+        $old->saveParam('foo', 'bar');
+        $old->children()->create(['owner_id' => 1, 'owner_type' => 'pages', 'sectionable_type' => 'sections']);
+        $new = Section::copy($old, ['owner_id' => 2]);
+        $response = $this->json('GET', "/api/v1/pages/2/sections/$new->id");
+        $response->assertStatus(200);
 
         # delete
         $response = $this->json('DELETE', "/api/v1/pages/1/sections/$sectionID");

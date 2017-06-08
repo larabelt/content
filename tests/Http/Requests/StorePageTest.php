@@ -12,8 +12,10 @@ class StorePageTest extends \PHPUnit_Framework_TestCase
     {
 
         $request = new StorePage();
-
         $this->assertNotEmpty($request->rules());
+
+        $request = new StorePage(['source' => 1]);
+        $this->assertArrayHasKey('source', $request->rules());
     }
 
 }
