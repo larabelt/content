@@ -182,9 +182,8 @@ class ElasticService
         $types = is_array($types) ? $types : explode(',', $types);
 
         foreach ($types as $type) {
-            $modelClass = $this->morphHelper->type2Class($type);
-            $items = $modelClass::all();
-            $this->engine()->update($items);
+            $qb = $this->morphHelper->type2QB($type);
+            $this->engine()->update($qb->get());
         }
 
     }

@@ -114,6 +114,15 @@ class ElasticServiceTest extends BeltTestCase
         $service->getMappings();
 
         # import
+        $qb = m::mock(\Illuminate\Database\Eloquent\Builder::class);
+        $qb->shouldReceive('get')->andReturn([]);
+        $morphHelper = m::mock(\Belt\Core\Helpers\MorphHelper::class);
+        $morphHelper->shouldReceive('type2QB')->with('foo')->andReturn($qb);
+        $engine = m::mock(ElasticEngine::class);
+        $engine->shouldReceive('update')->with([])->andReturnNull();
+        $service->engine = $engine;
+        $service->morphHelper = $morphHelper;
+        $service->import(['foo']);
 
     }
 
