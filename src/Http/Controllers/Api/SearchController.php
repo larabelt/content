@@ -4,7 +4,7 @@ namespace Belt\Content\Http\Controllers\Api;
 
 use Belt\Core\Http\Requests\PaginateRequest;
 use Belt\Core\Http\Controllers\BaseController;
-use Belt\Core\Pagination\BaseLengthAwarePaginator;
+use Belt\Core\Pagination\DefaultLengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -66,7 +66,8 @@ class SearchController extends BaseController
                 continue;
             }
 
-            $builder = new BaseLengthAwarePaginator($modelClass::query(), new $paginateClass($request->all()));
+            $builder = new DefaultLengthAwarePaginator($modelClass::query(), new $paginateClass($request->all()));
+            $builder->build();
             if ($builder && $builder->paginator) {
                 foreach ($builder->paginator->items() as $item) {
                     $items->push($item);

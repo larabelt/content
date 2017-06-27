@@ -4,7 +4,7 @@ use Mockery as m;
 use Belt\Core\Testing;
 use Belt\Content\Handle;
 use Belt\Content\Http\Requests\PaginateHandles;
-use Belt\Core\Pagination\BaseLengthAwarePaginator;
+use Belt\Core\Pagination\DefaultLengthAwarePaginator;
 
 class PaginateHandlesTest extends Testing\BeltTestCase
 {
@@ -32,11 +32,12 @@ class PaginateHandlesTest extends Testing\BeltTestCase
         $qbMock->shouldReceive('where')->once()->withArgs(['handleable_id', 1]);
         $qbMock->shouldReceive('where')->once()->withArgs(['handleable_type', 'pages']);
 
-        new BaseLengthAwarePaginator($qbMock, new PaginateHandles([
+        $paginator = new DefaultLengthAwarePaginator($qbMock, new PaginateHandles([
             'status' => 1,
             'handleable_id' => 1,
             'handleable_type' => 'pages'
         ]));
+        $paginator->build();
     }
 
 }

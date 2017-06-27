@@ -4,7 +4,7 @@ namespace Belt\Content\Http\Controllers\Web;
 
 use Belt\Core\Http\Requests\PaginateRequest;
 use Belt\Core\Http\Controllers\BaseController;
-use Belt\Core\Pagination\BaseLengthAwarePaginator;
+use Belt\Core\Pagination\DefaultLengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -35,7 +35,8 @@ class SearchController extends BaseController
         $pager = null;
         $paginators = new Collection();
         foreach ($classes as $modelClass => $paginateClass) {
-            $builder = new BaseLengthAwarePaginator($modelClass::query(), new $paginateClass($request->all()));
+            $builder = new DefaultLengthAwarePaginator($modelClass::query(), new $paginateClass($request->all()));
+            $builder->build();
             if ($builder && $builder->paginator) {
                 $paginators->push($builder->paginator);
                 if (!$pager || $builder->paginator->lastPage() > $pager->lastPage()) {
