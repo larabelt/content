@@ -2,7 +2,7 @@
 
 namespace Belt\Content;
 
-use Belt, Elasticsearch, Laravel, Validator, View;
+use Belt, Laravel, Validator;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Routing\Router;
@@ -124,15 +124,8 @@ class BeltContentServiceProvider extends ServiceProvider
 
         # engines
         $this->app->register(Laravel\Scout\ScoutServiceProvider::class);
-        if (config('belt.elastic.index.name') && config('belt.elastic.index.hosts')) {
-            app(Laravel\Scout\EngineManager::class)->extend('elastic', function ($app) {
-                return new Belt\Content\Search\Elastic\ElasticEngine(Elasticsearch\ClientBuilder::create()
-                    ->setHosts(config('belt.elastic.index.hosts'))
-                    ->build(),
-                    config('belt.elastic.index.name')
-                );
-            });
-        }
+        $this->app->register(Belt\Content\Search\Elastic\ElasticServiceProvider::class);
+        $this->app->register(Belt\Content\Search\Mock\MockEngineServiceProvider::class);
     }
 
     /**

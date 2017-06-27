@@ -4,17 +4,22 @@ namespace Belt\Content\Search\Elastic;
 
 use Belt\Core\Helpers\MorphHelper;
 use Belt\Core\Http\Requests\PaginateRequest;
+use Belt\Content\Search;
 use Laravel\Scout\Builder;
 use Laravel\Scout\Engines\Engine;
 use Elasticsearch\Client as Elastic;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
- * Class AlertService
- * @package Belt\Core\Services
+ * Class ElasticEngine
+ * @package Belt\Content\Search
  */
-class ElasticEngine extends Engine
+class ElasticEngine extends Engine implements Search\HasPaginatorInterface
 {
+
+    use Search\HasPaginator;
+
+    public static $paginatorClass = ElasticSearchPaginator::class;
 
     /**
      * Index where the models will be saved.
