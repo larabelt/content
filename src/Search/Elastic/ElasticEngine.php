@@ -1,6 +1,6 @@
 <?php
 
-namespace Belt\Content\SearchEngines;
+namespace Belt\Content\Search\Elastic;
 
 use Belt\Core\Helpers\MorphHelper;
 use Belt\Core\Http\Requests\PaginateRequest;

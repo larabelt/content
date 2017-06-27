@@ -6,7 +6,7 @@ use Belt\Core\Http\Requests\PaginateRequest;
 use Belt\Core\Pagination\IsActiveQueryModifier;
 use Belt\Core\Testing;
 use Belt\Content\Page;
-use Belt\Content\SearchEngines\ElasticEngine;
+use Belt\Content\Search\Elastic\ElasticEngine;
 use Elasticsearch\Client as Elastic;
 use Illuminate\Database\Eloquent\Collection;
 use Laravel\Scout\Builder;
@@ -19,21 +19,21 @@ class ElasticEngineTest extends Testing\BeltTestCase
     }
 
     /**
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::__construct
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::setRequest
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::setOptions
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::update
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::delete
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::search
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::performSearch
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::query
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::morphResults
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::paginate
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::filters
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::mapIds
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::map
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::getTotalCount
-     * @covers \Belt\Content\SearchEngines\ElasticEngine::sort
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::__construct
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::setRequest
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::setOptions
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::update
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::delete
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::search
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::performSearch
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::query
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::morphResults
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::paginate
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::filters
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::mapIds
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::map
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::getTotalCount
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::sort
      */
     public function test()
     {

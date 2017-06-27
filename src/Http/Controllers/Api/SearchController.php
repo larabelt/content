@@ -97,7 +97,7 @@ class SearchController extends BaseController
     public function elastic(Request $request)
     {
         /**
-         * @var $engine \Belt\Content\SearchEngines\ElasticEngine
+         * @var $engine \Belt\Content\Search\Elastic\ElasticEngine
          */
         $engine = app(EngineManager::class)->driver('elastic');
 

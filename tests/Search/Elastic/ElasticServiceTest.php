@@ -2,8 +2,8 @@
 
 use Mockery as m;
 use Belt\Core\Testing\BeltTestCase;
-use Belt\Content\SearchEngines\ElasticEngine;
-use Belt\Content\Services\ElasticService;
+use Belt\Content\Search\Elastic\ElasticEngine;
+use Belt\Content\Search\Elastic\ElasticService;
 use Elasticsearch\Namespaces\IndicesNamespace;
 use Elasticsearch\Client as Elastic;
 use Illuminate\Contracts\Filesystem\Filesystem;
@@ -16,18 +16,18 @@ class ElasticServiceTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Content\Services\ElasticService::__construct
-     * @covers \Belt\Content\Services\ElasticService::elastic
-     * @covers \Belt\Content\Services\ElasticService::engine
-     * @covers \Belt\Content\Services\ElasticService::indices
-     * @covers \Belt\Content\Services\ElasticService::disk
-     * @covers \Belt\Content\Services\ElasticService::writeConfig
-     * @covers \Belt\Content\Services\ElasticService::deleteIndex
-     * @covers \Belt\Content\Services\ElasticService::createIndex
-     * @covers \Belt\Content\Services\ElasticService::getSettings
-     * @covers \Belt\Content\Services\ElasticService::getMappings
-     * @covers \Belt\Content\Services\ElasticService::putMappings
-     * @covers \Belt\Content\Services\ElasticService::import
+     * @covers \Belt\Content\Search\Elastic\ElasticService::__construct
+     * @covers \Belt\Content\Search\Elastic\ElasticService::elastic
+     * @covers \Belt\Content\Search\Elastic\ElasticService::engine
+     * @covers \Belt\Content\Search\Elastic\ElasticService::indices
+     * @covers \Belt\Content\Search\Elastic\ElasticService::disk
+     * @covers \Belt\Content\Search\Elastic\ElasticService::writeConfig
+     * @covers \Belt\Content\Search\Elastic\ElasticService::deleteIndex
+     * @covers \Belt\Content\Search\Elastic\ElasticService::createIndex
+     * @covers \Belt\Content\Search\Elastic\ElasticService::getSettings
+     * @covers \Belt\Content\Search\Elastic\ElasticService::getMappings
+     * @covers \Belt\Content\Search\Elastic\ElasticService::putMappings
+     * @covers \Belt\Content\Search\Elastic\ElasticService::import
      */
     public function test()
     {

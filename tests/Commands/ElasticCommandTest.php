@@ -3,7 +3,7 @@
 use Mockery as m;
 use Belt\Core\Testing\BeltTestCase;
 use Belt\Content\Commands\ElasticCommand;
-use Belt\Content\Services\ElasticService;
+use Belt\Content\Search\Elastic\ElasticService;
 
 class ElasticCommandTest extends BeltTestCase
 {

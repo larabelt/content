@@ -126,7 +126,7 @@ class BeltContentServiceProvider extends ServiceProvider
         $this->app->register(Laravel\Scout\ScoutServiceProvider::class);
         if (config('belt.elastic.index.name') && config('belt.elastic.index.hosts')) {
             app(Laravel\Scout\EngineManager::class)->extend('elastic', function ($app) {
-                return new Belt\Content\SearchEngines\ElasticEngine(Elasticsearch\ClientBuilder::create()
+                return new Belt\Content\Search\Elastic\ElasticEngine(Elasticsearch\ClientBuilder::create()
                     ->setHosts(config('belt.elastic.index.hosts'))
                     ->build(),
                     config('belt.elastic.index.name')
