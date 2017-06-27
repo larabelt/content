@@ -8,8 +8,6 @@ use Laravel\Scout\Builder;
 use Laravel\Scout\Engines\Engine;
 use Elasticsearch\Client as Elastic;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Collection as BaseCollection;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class AlertService
@@ -66,9 +64,14 @@ class ElasticEngine extends Engine
     public $types = [];
 
     /**
+     * @var Elastic
+     */
+    public $elastic;
+
+    /**
      * Create a new engine instance.
      *
-     * @param \Elasticsearch\Client $elastic
+     * @param Elastic $elastic
      * @param string $index
      * @return void
      */
