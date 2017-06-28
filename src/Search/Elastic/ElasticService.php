@@ -6,6 +6,7 @@ use Belt, Riimu;
 use Belt\Core\Helpers\BeltHelper;
 use Belt\Core\Helpers\MorphHelper;
 use Belt\Content\Search\Elastic\ElasticEngine;
+use Belt\Core\Behaviors\HasConsole;
 use Elasticsearch\Client as Elastic;
 use Laravel\Scout\EngineManager;
 
@@ -15,6 +16,7 @@ use Laravel\Scout\EngineManager;
  */
 class ElasticService
 {
+    use HasConsole;
     /**
      * @var \Illuminate\Contracts\Filesystem\Filesystem
      */
@@ -45,10 +47,14 @@ class ElasticService
      */
     public $morphHelper;
 
-    public function __construct()
+    public function __construct($params = [])
     {
         $this->index = config('belt.elastic.index.name');
         $this->morphHelper = new MorphHelper();
+
+        if ($console = array_get($params, 'console')) {
+            $this->console = $console;
+        }
     }
 
     /**
@@ -177,13 +183,23 @@ class ElasticService
      *
      * @param $types
      */
-    public function import($types)
+    public function import($types, $limit = 10)
     {
         $types = is_array($types) ? $types : explode(',', $types);
 
         foreach ($types as $type) {
-            $qb = $this->morphHelper->type2QB($type);
-            $this->engine()->update($qb->get());
+            $page = 1;
+            $masterQB = $this->morphHelper->type2QB($type);
+            do {
+                $qb = clone $masterQB;
+                $items = $qb->take($limit)->offset($limit * $page - $limit)->get();
+                if ($count = $items->count()) {
+                    $this->engine()->update($items);
+                }
+                $this->info(sprintf('%s page: %s', $type, $page));
+                $page++;
+            } while ($count >= $limit);
+
         }
 
     }

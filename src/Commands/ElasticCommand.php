@@ -37,7 +37,7 @@ class ElasticCommand extends Command
      */
     public function service()
     {
-        return $this->service = $this->service ?: new ElasticService();
+        return $this->service = $this->service ?: new ElasticService(['console' => $this]);
     }
 
     /**
