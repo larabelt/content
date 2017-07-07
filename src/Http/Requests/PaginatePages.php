@@ -18,7 +18,7 @@ class PaginatePages extends PaginateRequest
 
     public $searchable = [
         'pages.name',
-        'pages.searchable',
+        //'pages.searchable',
     ];
 
     /**
