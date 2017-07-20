@@ -17,6 +17,7 @@ use Laravel\Scout\EngineManager;
 class ElasticService
 {
     use HasConsole;
+
     /**
      * @var \Illuminate\Contracts\Filesystem\Filesystem
      */
@@ -110,7 +111,7 @@ class ElasticService
         try {
             $this->indices()->delete(['index' => $this->index]);
         } catch (\Exception $e) {
-            dump($e->getMessage());
+            //dump($e->getMessage());
         }
     }
 
@@ -133,7 +134,7 @@ class ElasticService
             $this->putMappings();
 
         } catch (\Exception $e) {
-            dump($e->getMessage());
+            //dump($e->getMessage());
         }
     }
 
@@ -174,12 +175,12 @@ class ElasticService
                 'type' => $type,
                 'body' => $mapping
             ]);
-            dump($result);
+            //dump($result);
         }
     }
 
     /**
-     * Upset items to elastic index
+     * Upsert items to elastic index
      *
      * @param $types
      */
@@ -189,9 +190,8 @@ class ElasticService
 
         foreach ($types as $type) {
             $page = 1;
-            $masterQB = $this->morphHelper->type2QB($type);
             do {
-                $qb = clone $masterQB;
+                $qb = $this->morphHelper->type2QB($type);
                 $items = $qb->take($limit)->offset($limit * $page - $limit)->get();
                 if ($count = $items->count()) {
                     $this->engine()->update($items);
@@ -199,7 +199,6 @@ class ElasticService
                 $this->info(sprintf('%s page: %s', $type, $page));
                 $page++;
             } while ($count >= $limit);
-
         }
 
     }

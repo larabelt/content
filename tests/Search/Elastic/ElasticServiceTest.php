@@ -7,6 +7,7 @@ use Belt\Content\Search\Elastic\ElasticService;
 use Elasticsearch\Namespaces\IndicesNamespace;
 use Elasticsearch\Client as Elastic;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Database\Eloquent\Collection;
 
 class ElasticServiceTest extends BeltTestCase
 {
@@ -37,6 +38,9 @@ class ElasticServiceTest extends BeltTestCase
             'posts' => [],
         ]);
 
+        # construct
+        $service = new ElasticService(['console' => true]);
+        $this->assertNotNull($service->console);
         $service = new ElasticService();
 
         # elastic
@@ -114,12 +118,16 @@ class ElasticServiceTest extends BeltTestCase
         $service->getMappings();
 
         # import
+        $items = new Collection(['stuff']);
         $qb = m::mock(\Illuminate\Database\Eloquent\Builder::class);
-        $qb->shouldReceive('get')->andReturn([]);
+        $qb->shouldReceive('__clone')->andReturnSelf();
+        $qb->shouldReceive('take')->andReturnSelf();
+        $qb->shouldReceive('offset')->andReturnSelf();
+        $qb->shouldReceive('get')->andReturn($items);
         $morphHelper = m::mock(\Belt\Core\Helpers\MorphHelper::class);
         $morphHelper->shouldReceive('type2QB')->with('foo')->andReturn($qb);
         $engine = m::mock(ElasticEngine::class);
-        $engine->shouldReceive('update')->with([])->andReturnNull();
+        $engine->shouldReceive('update')->with($items)->andReturnNull();
         $service->engine = $engine;
         $service->morphHelper = $morphHelper;
         $service->import(['foo']);
