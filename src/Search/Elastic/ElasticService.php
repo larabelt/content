@@ -111,7 +111,7 @@ class ElasticService
         try {
             $this->indices()->delete(['index' => $this->index]);
         } catch (\Exception $e) {
-            //dump($e->getMessage());
+            $this->warn($e->getMessage());
         }
     }
 
@@ -134,7 +134,7 @@ class ElasticService
             $this->putMappings();
 
         } catch (\Exception $e) {
-            //dump($e->getMessage());
+            $this->warn($e->getMessage());
         }
     }
 
@@ -175,7 +175,7 @@ class ElasticService
                 'type' => $type,
                 'body' => $mapping
             ]);
-            //dump($result);
+            $this->info($result);
         }
     }
 
