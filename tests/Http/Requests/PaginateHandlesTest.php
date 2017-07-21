@@ -28,12 +28,12 @@ class PaginateHandlesTest extends Testing\BeltTestCase
 
         # modifyQuery
         $qbMock = $this->getPaginateQBMock(new PaginateHandles(), [$handle1]);
-        $qbMock->shouldReceive('where')->once()->withArgs(['status', 1]);
+        //$qbMock->shouldReceive('where')->once()->withArgs(['status', 1]);
         $qbMock->shouldReceive('where')->once()->withArgs(['handleable_id', 1]);
         $qbMock->shouldReceive('where')->once()->withArgs(['handleable_type', 'pages']);
 
         $paginator = new DefaultLengthAwarePaginator($qbMock, new PaginateHandles([
-            'status' => 1,
+            //'status' => 1,
             'handleable_id' => 1,
             'handleable_type' => 'pages'
         ]));

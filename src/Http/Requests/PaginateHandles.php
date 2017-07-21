@@ -35,9 +35,9 @@ class PaginateHandles extends PaginateRequest
 
     public function modifyQuery(Builder $query)
     {
-        if ($status = $this->query->has('status')) {
-            $query->where('status', $this->query->get('status'));
-        }
+//        if ($status = $this->query->has('status')) {
+//            $query->where('status', $this->query->get('status'));
+//        }
 
         if ($handleable_id = $this->get('handleable_id')) {
             $query->where('handleable_id', $handleable_id);
