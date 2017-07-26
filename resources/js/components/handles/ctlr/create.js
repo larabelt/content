@@ -1,8 +1,8 @@
 // components
-import shared from './shared';
+import shared from 'belt/content/js/components/handles/ctlr/shared';
 
-import create_html from '../templates/create.html';
-import form_html from '../templates/form-create.html';
+import create_html from 'belt/content/js/components/handles/templates/create.html';
+import form_html from 'belt/content/js/components/handles/templates/form-create.html';
 
 export default {
     mixins: [shared],

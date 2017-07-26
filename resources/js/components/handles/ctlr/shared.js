@@ -1,6 +1,6 @@
 // helpers
-import Config from '../config';
-import Form from '../form';
+import Config from 'belt/content/js/components/handles/config';
+import Form from 'belt/content/js/components/handles/form';
 
 // templates make a change
 import heading_html from 'belt/core/js/templates/heading.html';

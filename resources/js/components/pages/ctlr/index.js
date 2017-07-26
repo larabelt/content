@@ -3,12 +3,12 @@ import debounce from 'debounce';
 import tags from 'belt/glue/js/components/taggables/filter';
 
 // helpers
-import Form from '../form';
-import Table from '../table';
+import Form from 'belt/content/js/components/pages/form';
+import Table from 'belt/content/js/components/pages/table';
 
 // templates make a change
 import heading_html from 'belt/core/js/templates/heading.html';
-import index_html from '../templates/index.html';
+import index_html from 'belt/content/js/components/pages/templates/index.html';
 
 export default {
     data() {

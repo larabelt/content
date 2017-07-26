@@ -1,11 +1,11 @@
-import index from './ctlr/index';
-import create from './ctlr/create';
-import edit  from './ctlr/edit';
-import attachments  from './ctlr/attachments';
-import categories  from './ctlr/categories';
-import handles  from './ctlr/handles';
-import tags  from './ctlr/tags';
-import sections  from './ctlr/sections';
+import index from 'belt/content/js/components/posts/ctlr/index';
+import create from 'belt/content/js/components/posts/ctlr/create';
+import edit  from 'belt/content/js/components/posts/ctlr/edit';
+import attachments  from 'belt/content/js/components/posts/ctlr/attachments';
+import categories  from 'belt/content/js/components/posts/ctlr/categories';
+import handles  from 'belt/content/js/components/posts/ctlr/handles';
+import tags  from 'belt/content/js/components/posts/ctlr/tags';
+import sections  from 'belt/content/js/components/posts/ctlr/sections';
 
 export default [
     {path: '/posts', component: index, canReuse: false, name: 'posts'},

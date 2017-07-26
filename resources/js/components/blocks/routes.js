@@ -1,8 +1,8 @@
-import index from './ctlr/index';
-import create from './ctlr/create';
-import edit  from './ctlr/edit';
-import categories  from './ctlr/categories';
-import tags  from './ctlr/tags';
+import index from 'belt/content/js/components/blocks/ctlr/index';
+import create from 'belt/content/js/components/blocks/ctlr/create';
+import edit  from 'belt/content/js/components/blocks/ctlr/edit';
+import categories  from 'belt/content/js/components/blocks/ctlr/categories';
+import tags  from 'belt/content/js/components/blocks/ctlr/tags';
 
 export default [
     {path: '/blocks', component: index, canReuse: false, name: 'blocks'},

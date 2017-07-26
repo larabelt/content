@@ -1,9 +1,9 @@
-import blocks  from './components/blocks/routes';
-import handles  from './components/handles/routes';
-import pages  from './components/pages/routes';
-import posts  from './components/posts/routes';
+import blocks  from 'belt/content/js/components/blocks/routes';
+import handles  from 'belt/content/js/components/handles/routes';
+import pages  from 'belt/content/js/components/pages/routes';
+import posts  from 'belt/content/js/components/posts/routes';
 import store from 'belt/core/js/store/index';
-import touts  from './components/touts/routes';
+import touts  from 'belt/content/js/components/touts/routes';
 
 export default class BeltContent {
 

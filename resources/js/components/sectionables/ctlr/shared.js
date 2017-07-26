@@ -1,5 +1,5 @@
-import Form from '../form';
-import TreeForm from '../tree';
+import Form from 'belt/content/js/components/sectionables/form';
+import TreeForm from 'belt/content/js/components/sectionables/tree';
 
 export default {
     props: {

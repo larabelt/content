@@ -1,8 +1,8 @@
-import shared from './shared';
-import self from './panel';
+import shared from 'belt/content/js/components/sectionables/ctlr/shared';
+import self from 'belt/content/js/components/sectionables/ctlr/panel';
 
 // templates
-import panel_html from '../templates/panel.html';
+import panel_html from 'belt/content/js/components/sectionables/templates/panel.html';
 
 export default {
     mixins: [shared],

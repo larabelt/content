@@ -1,15 +1,15 @@
 // components
-import create from './create';
-import edit from './edit';
-import panel from './panel';
+import create from 'belt/content/js/components/sectionables/ctlr/create';
+import edit from 'belt/content/js/components/sectionables/ctlr/edit';
+import panel from 'belt/content/js/components/sectionables/ctlr/panel';
 
 // helpers
-import Config from '../config';
-import Form from '../form';
-import Table from '../table';
+import Config from 'belt/content/js/components/sectionables/config';
+import Form from 'belt/content/js/components/sectionables/form';
+import Table from 'belt/content/js/components/sectionables/table';
 
 // templates
-import index_html from '../templates/index.html';
+import index_html from 'belt/content/js/components/sectionables/templates/index.html';
 
 export default {
     data() {

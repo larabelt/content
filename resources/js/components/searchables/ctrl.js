@@ -1,8 +1,8 @@
 // helpers
-import Table from './table';
+import Table from 'belt/content/js/components/searchables/table';
 
 // templates
-import index_html from './templates/index.html';
+import index_html from 'belt/content/js/components/searchables/templates/index.html';
 
 export default {
     data() {

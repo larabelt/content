@@ -1,11 +1,11 @@
-import shared from '../ctlr/shared';
+import shared from 'belt/content/js/components/sectionables/ctlr/shared';
 
 // components
-import Table from './table';
-import Form from './form';
+import Table from 'belt/content/js/components/sectionables/params/table';
+import Form from 'belt/content/js/components/sectionables/params/form';
 
 // templates
-import params_html from './params.html';
+import params_html from 'belt/content/js/components/sectionables/params/params.html';
 
 export default {
     mixins: [shared],

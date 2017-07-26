@@ -1,11 +1,11 @@
-import shared from './shared';
+import shared from 'belt/content/js/components/handles/ctlr/shared';
 
 // helpers
-import Table from '../table';
+import Table from 'belt/content/js/components/handles/table';
 
 // templates make a change
 import heading_html from 'belt/core/js/templates/heading.html';
-import index_html from '../templates/index.html';
+import index_html from 'belt/content/js/components/handles/templates/index.html';
 
 export default {
     components: {

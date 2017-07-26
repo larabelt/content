@@ -1,8 +1,8 @@
-import attachments  from './ctlr/attachments';
-import index from './ctlr/index';
-import create from './ctlr/create';
-import edit  from './ctlr/edit';
-import tags  from './ctlr/tags';
+import attachments  from 'belt/content/js/components/touts/ctlr/attachments';
+import index from 'belt/content/js/components/touts/ctlr/index';
+import create from 'belt/content/js/components/touts/ctlr/create';
+import edit  from 'belt/content/js/components/touts/ctlr/edit';
+import tags  from 'belt/content/js/components/touts/ctlr/tags';
 
 export default [
     {path: '/touts', component: index, canReuse: false, name: 'touts'},

@@ -1,11 +1,11 @@
-import index from './ctlr/index';
-import create from './ctlr/create';
-import edit  from './ctlr/edit';
-import attachments  from './ctlr/attachments';
-import categories  from './ctlr/categories';
-import handles  from './ctlr/handles';
-import tags  from './ctlr/tags';
-import sections  from './ctlr/sections';
+import index from 'belt/content/js/components/pages/ctlr/index';
+import create from 'belt/content/js/components/pages/ctlr/create';
+import edit  from 'belt/content/js/components/pages/ctlr/edit';
+import attachments  from 'belt/content/js/components/pages/ctlr/attachments';
+import categories  from 'belt/content/js/components/pages/ctlr/categories';
+import handles  from 'belt/content/js/components/pages/ctlr/handles';
+import tags  from 'belt/content/js/components/pages/ctlr/tags';
+import sections  from 'belt/content/js/components/pages/ctlr/sections';
 
 export default [
     {path: '/pages', component: index, canReuse: false, name: 'pages'},

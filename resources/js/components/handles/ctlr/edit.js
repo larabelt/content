@@ -1,9 +1,9 @@
 // components
 import searchables from 'belt/content/js/components/searchables/ctrl';
-import shared from './shared';
+import shared from 'belt/content/js/components/handles/ctlr/shared';
 
-import edit_html from '../templates/edit.html';
-import form_html from '../templates/form-edit.html';
+import edit_html from 'belt/content/js/components/handles/templates/edit.html';
+import form_html from 'belt/content/js/components/handles/templates/form-edit.html';
 
 export default {
     mixins: [shared],

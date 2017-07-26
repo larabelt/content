@@ -4,8 +4,8 @@ import attachments from 'belt/clip/js/components/attachables/ctlr/index';
 
 // templates
 import heading_html from 'belt/core/js/templates/heading.html';
-import tabs_html from '../templates/tabs.html';
-import attachment_html from '../templates/attachments.html';
+import tabs_html from 'belt/content/js/components/touts/templates/tabs.html';
+import attachment_html from 'belt/content/js/components/touts/templates/attachments.html';
 
 export default {
     data() {

@@ -1,10 +1,10 @@
 // helpers
-import Form from '../form';
+import Form from 'belt/content/js/components/pages/form';
 
 // templates make a change
 import heading_html from 'belt/core/js/templates/heading.html';
-import form_html from '../templates/form.html';
-import create_html from '../templates/create.html';
+import form_html from 'belt/content/js/components/pages/templates/form.html';
+import create_html from 'belt/content/js/components/pages/templates/create.html';
 
 export default {
     components: {

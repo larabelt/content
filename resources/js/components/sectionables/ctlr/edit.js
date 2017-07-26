@@ -1,9 +1,9 @@
-import shared from './shared';
+import shared from 'belt/content/js/components/sectionables/ctlr/shared';
 
-import inner from './edit-inner';
+import inner from 'belt/content/js/components/sectionables/ctlr/edit-inner';
 
 // templates
-import edit_html from '../templates/edit.html';
+import edit_html from 'belt/content/js/components/sectionables/templates/edit.html';
 
 export default {
     mixins: [shared],

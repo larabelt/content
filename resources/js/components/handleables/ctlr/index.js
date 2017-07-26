@@ -1,11 +1,11 @@
 // helpers
-import Form from '../form';
-import Table from '../table';
+import Form from 'belt/content/js/components/handleables/form';
+import Table from 'belt/content/js/components/handleables/table';
 
-import edit from './edit';
+import edit from 'belt/content/js/components/handleables/ctlr/edit';
 
 // templates
-import index_html from '../templates/index.html';
+import index_html from 'belt/content/js/components/handleables/templates/index.html';
 
 export default {
     data() {
