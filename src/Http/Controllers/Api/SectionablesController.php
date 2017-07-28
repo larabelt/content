@@ -130,7 +130,11 @@ class SectionablesController extends ApiController
 
         $section->save();
 
-        $this->cache($owner);
+        try {
+            $this->cache($owner);
+        } catch (\Exception $e) {
+
+        }
 
         return response()->json($section, 201);
     }

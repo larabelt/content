@@ -1,4 +1,5 @@
 <?php
+
 namespace Belt\Content\Behaviors;
 
 use Belt\Core\Behaviors\ParamableInterface;
@@ -19,6 +20,40 @@ trait IncludesTemplate
     }
 
     /**
+     * @param $value
+     *
+     * @return string
+     */
+    public function getTemplateAttribute($value)
+    {
+        return $value ?: 'default';
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemplateConfigPrefix()
+    {
+        return sprintf('belt.templates.%s', $this->getTemplateGroup());
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultTemplateKey()
+    {
+        $prefix = $this->getTemplateConfigPrefix();
+
+        $configs = config($prefix);
+
+        if (isset($configs['default']) || !count($configs)) {
+            return 'default';
+        }
+
+        return array_keys($configs)[0];
+    }
+
+    /**
      * @return mixed
      */
     public function getTemplateGroup()
@@ -32,12 +67,16 @@ trait IncludesTemplate
      */
     public function getTemplateConfig()
     {
-        $key = sprintf('belt.templates.%s', $this->getTemplateGroup());
+        $prefix = $this->getTemplateConfigPrefix();
 
-        $config = config("$key.$this->template") ?: config("$key.default");
+        $config = config(sprintf('%s.%s', $prefix, $this->template));
 
         if (!$config) {
-            throw new \Exception("missing template config: $key.$this->template");
+            $config = config(sprintf('%s.%s', $prefix, $this->getDefaultTemplateKey()));
+        }
+
+        if (!$config) {
+            throw new \Exception("missing template config: $prefix.$this->template");
         }
 
         return $config;

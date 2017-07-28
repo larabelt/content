@@ -11,7 +11,7 @@ export default {
     methods: {
         save() {
             this.active.submit()
-                .then(function () {
+                .then(() => {
                     this.sections.index();
                 });
         },

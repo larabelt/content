@@ -20,35 +20,35 @@ export default {
     methods: {
         create(type)
         {
-            let self = this;
-
-            self.form.sectionable_type = type;
-            if (self.creating.position == 'in') {
-                self.form.parent_id = self.creating.neighbor_id;
+            this.form.sectionable_type = type;
+            if (this.creating.position == 'in') {
+                this.form.parent_id = this.creating.neighbor_id;
             }
 
-            self.form.submit()
-                .then(function () {
-                    if (self.creating.position == 'before' || self.creating.position == 'after') {
-                        self.moving.show(self.form.id)
-                            .then(function () {
-                                self.move(self.creating.neighbor_id, self.creating.position)
-                                    .then(function () {
-                                        self.postCreate(self.form.id);
+            console.log(111);
+            this.form.submit()
+                .then(() => {
+                    console.log(this.form.id);
+                    console.log(999);
+                    if (this.creating.position == 'before' || this.creating.position == 'after') {
+                        this.moving.show(this.form.id)
+                            .then(() => {
+                                this.move(this.creating.neighbor_id, this.creating.position)
+                                    .then(() => {
+                                        this.postCreate(this.form.id);
                                     });
 
                             })
                     } else {
-                        self.postCreate(self.form.id);
+                        this.postCreate(this.form.id);
                     }
                 });
         },
         postCreate(id) {
-            let self = this;
-            self.reset()
-                .then(function () {
-                    self.setActive(id);
-                    self.form.reset();
+            this.reset()
+                .then(() => {
+                    this.setActive(id);
+                    this.form.reset();
                 });
         }
     },
