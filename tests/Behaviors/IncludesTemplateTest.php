@@ -12,13 +12,11 @@ use Illuminate\Database\Eloquent\Model;
 class IncludesTemplateTest extends Testing\BeltTestCase
 {
 
-    public function tearDown()
-    {
-        m::close();
-    }
-
     /**
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::getDefaultTemplateKey
      * @covers \Belt\Content\Behaviors\IncludesTemplate::setTemplateAttribute
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateAttribute
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateConfigPrefix
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateConfig
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateGroup
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateViewAttribute
@@ -84,6 +82,26 @@ class IncludesTemplateTest extends Testing\BeltTestCase
         $templateStub = new IncludesTemplateTest3Stub();
         $templateStub->reconcileTemplateParams();
 
+        # getDefaultTemplateKey
+        app()['config']->set('belt.templates.pages', [
+            'pagetest' => 'belt-content::pages.sections.test',
+            'pagetest2' => 'belt-content::pages.sections.test',
+        ]);
+        $templateStub = new IncludesTemplateTestStub();
+        $this->assertEquals('pagetest', $templateStub->getDefaultTemplateKey());
+
+        # getTemplateConfigPrefix
+        $this->assertEquals('belt.templates.pages', $templateStub->getTemplateConfigPrefix());
+
+        # getTemplateAttribute
+        $templateStub->setAttribute('template', 'test');
+        $this->assertEquals('test', $templateStub->template);
+
+    }
+
+    public function tearDown()
+    {
+        m::close();
     }
 
 }
