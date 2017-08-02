@@ -1,5 +1,5 @@
 import shared from 'belt/content/js/posts/ctlr/shared';
-
+import templateDropdown from 'belt/content/js/templates';
 import form_html from 'belt/content/js/posts/templates/form.html';
 
 export default {
@@ -10,6 +10,9 @@ export default {
                 return {
                     form: this.$parent.form,
                 }
+            },
+            components: {
+                templateDropdown
             },
             template: form_html,
         },

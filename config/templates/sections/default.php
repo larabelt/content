@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'path' => 'belt-content::sections.sections.default'
+    'path' => 'belt-content::sections.sections.default',
 ];

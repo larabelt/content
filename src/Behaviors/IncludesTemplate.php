@@ -62,10 +62,12 @@ trait IncludesTemplate
     }
 
     /**
+     * @param null $key
+     * @param null $default
      * @return mixed
      * @throws \Exception
      */
-    public function getTemplateConfig()
+    public function getTemplateConfig($key = null, $default = null)
     {
         $prefix = $this->getTemplateConfigPrefix();
 
@@ -77,6 +79,10 @@ trait IncludesTemplate
 
         if (!$config) {
             throw new \Exception("missing template config: $prefix.$this->template");
+        }
+
+        if ($key) {
+            return array_get($config, $key, $default);
         }
 
         return $config;

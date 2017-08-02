@@ -36,6 +36,7 @@ class IncludesTemplateTest extends Testing\BeltTestCase
         # template_view
         app()['config']->set('belt.templates.pages', [
             'default' => [
+                'foo' => 'bar',
                 'path' => 'belt-content::pages.sections.default',
                 'params' => [
                     'class' => [
@@ -58,6 +59,11 @@ class IncludesTemplateTest extends Testing\BeltTestCase
         $this->assertEquals('belt-content::pages.sections.default', $templateStub->template_view);
         $templateStub->template = 'PageTest';
         $this->assertEquals('belt-content::pages.sections.test', $templateStub->template_view);
+
+        # getTemplateConfig
+        $templateStub->template = 'default';
+        $this->assertEquals('bar', $templateStub->getTemplateConfig('foo'));
+        $this->assertEquals('some-default', $templateStub->getTemplateConfig('missing', 'some-default'));
 
         # template_view (exception due to missing config)
         $missingStub = new IncludesTemplateTest2Stub();
@@ -96,6 +102,7 @@ class IncludesTemplateTest extends Testing\BeltTestCase
         # getTemplateAttribute
         $templateStub->setAttribute('template', 'test');
         $this->assertEquals('test', $templateStub->template);
+
 
     }
 
