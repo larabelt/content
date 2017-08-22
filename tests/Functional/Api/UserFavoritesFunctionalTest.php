@@ -6,7 +6,7 @@ use Belt\Core\Testing;
 class UserFavoritesFunctionalTest extends Testing\BeltTestCase
 {
 
-    public function ztest()
+    public function test()
     {
         $this->refreshDB();
 
