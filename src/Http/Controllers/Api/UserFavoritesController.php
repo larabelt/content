@@ -63,7 +63,6 @@ class UserFavoritesController extends ApiController
     public function parseCode($code)
     {
         $auth = Auth::user();
-
         $this->code = $code;
 
         /**

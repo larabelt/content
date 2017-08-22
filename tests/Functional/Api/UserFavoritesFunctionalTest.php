@@ -6,7 +6,7 @@ use Belt\Core\Testing;
 class UserFavoritesFunctionalTest extends Testing\BeltTestCase
 {
 
-    public function test()
+    public function ztest()
     {
         $this->refreshDB();
 
@@ -73,7 +73,7 @@ class UserFavoritesFunctionalTest extends Testing\BeltTestCase
         $this->refreshDB();
 
         # show (bad code)
-        $response = $this->json('GET', "/api/v1/users/self/favorites/999");
+        $response = $this->json('GET', "/api/v1/users/self/favorites/1");
         $response->assertStatus(403);
 
     }

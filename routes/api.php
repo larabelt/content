@@ -84,13 +84,6 @@ Route::group([
             Route::post('', Api\TreeController::class . '@store');
         });
 
-        /**
-         * route injection then rules?
-         * save guid instead?
-         * read with guid instead?
-         * tests
-         */
-
         # user / favorites
         Route::group([
             'prefix' => 'users/{code}/favorites',
