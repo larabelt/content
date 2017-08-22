@@ -5,6 +5,7 @@ namespace Belt\Content\Http\Controllers\Api;
 use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Block;
 use Belt\Content\Http\Requests;
+use Illuminate\Http\Request;
 
 /**
  * Class BlocksController
@@ -38,14 +39,16 @@ class BlocksController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @param $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateBlocks $request)
+    public function index(Request $request)
     {
         $this->authorize('index', Block::class);
 
-        $paginator = $this->paginator($this->blocks->query(), $request->reCapture());
+        $request = Requests\PaginateBlocks::extend($request);
+
+        $paginator = $this->paginator($this->blocks->query(), $request);
 
         return response()->json($paginator->toArray());
     }

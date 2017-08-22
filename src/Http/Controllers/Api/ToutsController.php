@@ -5,6 +5,7 @@ namespace Belt\Content\Http\Controllers\Api;
 use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Tout;
 use Belt\Content\Http\Requests;
+use Illuminate\Http\Request;
 
 /**
  * Class ToutsController
@@ -38,14 +39,16 @@ class ToutsController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @param $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateTouts $request)
+    public function index(Request $request)
     {
         $this->authorize('index', Tout::class);
 
-        $paginator = $this->paginator($this->touts->with('attachment'), $request->reCapture());
+        $request = Requests\PaginateTouts::extend($request);
+
+        $paginator = $this->paginator($this->touts->with('attachment'), $request);
 
         return response()->json($paginator->toArray());
     }

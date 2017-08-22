@@ -6,6 +6,7 @@ use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Post;
 use Belt\Content\Http\Controllers\Compiler;
 use Belt\Content\Http\Requests;
+use Illuminate\Http\Request;
 
 /**
  * Class PostsController
@@ -32,12 +33,14 @@ class PostsController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @param $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginatePosts $request)
+    public function index(Request $request)
     {
-        $paginator = $this->paginator($this->posts->query(), $request->reCapture());
+        $request = Requests\PaginatePosts::extend($request);
+
+        $paginator = $this->paginator($this->posts->query(), $request);
 
         return response()->json($paginator->toArray());
     }

@@ -8,6 +8,7 @@ use Belt\Core\User;
 use Belt\Core\Helpers\MorphHelper;
 use Belt\Content\Favorite;
 use Belt\Content\Http\Requests;
+use Illuminate\Http\Request;
 
 class UserFavoritesController extends ApiController
 {
@@ -134,16 +135,16 @@ class UserFavoritesController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @param Requests\PaginateFavorites $request
+     * @param Request $request
      * @param mixed $code
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateFavorites $request, $code)
+    public function index(Request $request, $code)
     {
         $this->parseCode($code);
 
-        $request->reCapture();
+        $request = Requests\PaginateFavorites::extend($request);
 
         $request->merge([$this->column => $this->code]);
 

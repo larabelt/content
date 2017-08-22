@@ -5,6 +5,7 @@ namespace Belt\Content\Http\Controllers\Api;
 use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Page;
 use Belt\Content\Http\Requests;
+use Illuminate\Http\Request;
 
 /**
  * Class PagesController
@@ -30,14 +31,16 @@ class PagesController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @param $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginatePages $request)
+    public function index(Request $request)
     {
         $this->authorize('index', Page::class);
 
-        $paginator = $this->paginator($this->pages->query(), $request->reCapture());
+        $request = Requests\PaginatePages::extend($request);
+
+        $paginator = $this->paginator($this->pages->query(), $request);
 
         return response()->json($paginator->toArray());
     }

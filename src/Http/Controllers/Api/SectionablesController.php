@@ -8,6 +8,7 @@ use Belt\Content\Behaviors\HasSectionsInterface;
 use Belt\Content\Http\Requests;
 use Belt\Content\Section;
 use Belt\Content\Services\CompileService;
+use Illuminate\Http\Request;
 
 class SectionablesController extends ApiController
 {
@@ -76,17 +77,17 @@ class SectionablesController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @param $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateSections $request, $owner_type, $owner_id)
+    public function index(Request $request, $owner_type, $owner_id)
     {
-
-        $request->reCapture();
 
         $owner = $this->owner($owner_type, $owner_id);
 
         $this->authorize('view', $owner);
+
+        $request = Requests\PaginateSections::extend($request);
 
         $request->merge([
             'owner_id' => $owner->id,

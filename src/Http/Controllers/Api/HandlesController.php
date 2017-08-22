@@ -6,6 +6,7 @@ use Belt\Core\Http\Controllers\ApiController;
 use Belt\Core\Http\Controllers\Behaviors\Morphable;
 use Belt\Content\Handle;
 use Belt\Content\Http\Requests;
+use Illuminate\Http\Request;
 
 /**
  * Class HandlesController
@@ -32,12 +33,14 @@ class HandlesController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @param $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Requests\PaginateHandles $request)
+    public function index(Request $request)
     {
-        $paginator = $this->paginator($this->handles->with('handleable'), $request->reCapture());
+        $request = Requests\PaginateHandles::extend($request);
+
+        $paginator = $this->paginator($this->handles->with('handleable'), $request);
 
         return response()->json($paginator->toArray());
     }
