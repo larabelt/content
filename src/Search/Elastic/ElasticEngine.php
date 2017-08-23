@@ -97,7 +97,7 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
         $this->morphHelper = new MorphHelper();
 
         if ($config && array_has($config, 'min_score')) {
-            $this->min_score = (int) array_get($config, 'min_score');
+            $this->min_score = (float) array_get($config, 'min_score');
         }
     }
 
@@ -120,7 +120,7 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
         }
 
         if ($request->has('min_score')) {
-            $this->min_score = (int) $request->get('min_score');
+            $this->min_score = (float) $request->get('min_score');
         }
     }
 
@@ -150,7 +150,7 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
         }
 
         if (array_has($options, 'min_score')) {
-            $this->min_score = (int) array_get($options, 'min_score');
+            $this->min_score = (float) array_get($options, 'min_score');
         }
     }
 
@@ -305,6 +305,7 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
         $items = new Collection();
         foreach (array_get($results, 'hits.hits', []) as $result) {
 
+            // @codeCoverageIgnoreStart
             if ($this->debug) {
                 $msg = sprintf('%s: #%s %s (%s)',
                     array_get($result, '_type'),
@@ -314,6 +315,7 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
                 );
                 dump($msg);
             }
+            // @codeCoverageIgnoreEnd
 
             $id = array_get($result, '_id');
             $type = array_get($result, '_type');

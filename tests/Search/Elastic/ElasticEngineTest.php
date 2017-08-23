@@ -37,6 +37,8 @@ class ElasticEngineTest extends Testing\BeltTestCase
      */
     public function test()
     {
+        //app()['config']->set('belt.elastic.index.min_score', 1);
+
         $results = [
             'hits' => [
                 'total' => 2,
@@ -51,10 +53,10 @@ class ElasticEngineTest extends Testing\BeltTestCase
         $elastic->shouldReceive('bulk')->andReturnSelf();
         $elastic->shouldReceive('search')->andReturn($results);
 
-        $engine = new ElasticEngine($elastic, 'test');
+        $engine = new ElasticEngine($elastic, 'test', ['min_score' => 1]);
 
         # setRequest
-        $request = new PaginateRequest(['q' => 'test', 'perPage' => 25, 'page' => 3, 'include' => 'pages,posts']);
+        $request = new PaginateRequest(['q' => 'test', 'perPage' => 25, 'page' => 3, 'include' => 'pages,posts', 'min_score' => .5]);
         $engine->setRequest($request);
         $this->assertEquals(25, $engine->size);
         $this->assertEquals(50, $engine->from);
@@ -67,6 +69,7 @@ class ElasticEngineTest extends Testing\BeltTestCase
             'from' => 100,
             'size' => 20,
             'types' => ['pages'],
+            'min_score' => .25
         ]);
         $this->assertEquals(20, $engine->size);
         $this->assertEquals(100, $engine->from);
