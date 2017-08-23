@@ -108,18 +108,30 @@ trait IncludesTemplate
             return;
         }
 
+        $this->load('params');
+
         $config = $this->getTemplateConfig();
 
         foreach (array_get($config, 'params', []) as $key => $values) {
-
-            $values = array_keys($values);
-
-            $param = $this->params->where('key', $key)->first() ?: $this->params()->create(['key' => $key]);
-
-            if (!$param->value || !in_array($param->value, $values)) {
-                $param->update(['value' => $values[0]]);
+            if (is_array($values)) {
+                $param = $this->params->where('key', $key)->first() ?: $this->params()->create(['key' => $key]);
+                if (!$param->value || !in_array($param->value, $values)) {
+                    $default = $values[0] ?? array_keys($values)[0];
+                    $param->update(['value' => $default]);
+                }
             }
         }
+
+    }
+
+    /**
+     * Binds events to subclass
+     */
+    public static function bootIncludesTemplate()
+    {
+        static::saved(function ($item) {
+            $item->reconcileTemplateParams();
+        });
     }
 
 }

@@ -52,6 +52,7 @@ class BeltContentServiceProvider extends ServiceProvider
     {
         //observers
         Section::observe(Belt\Content\Observers\SectionObserver::class);
+        Belt\Core\Param::observe(Belt\Content\Observers\ParamObserver::class);
 
         // set view paths
         // $this->loadViewsFrom(resource_path('belt/content/views'), 'belt-content');
@@ -97,15 +98,6 @@ class BeltContentServiceProvider extends ServiceProvider
         });
         $router->bind('section', function ($value) {
             return Belt\Content\Section::find($value);
-        });
-
-        // add includes behavior
-        $this->app['events']->listen('eloquent.saved*', function ($eventName, array $data) {
-            foreach ($data as $model) {
-                if ($model instanceof Belt\Content\Behaviors\IncludesTemplateInterface) {
-                    $model->reconcileTemplateParams();
-                }
-            }
         });
 
         // validators

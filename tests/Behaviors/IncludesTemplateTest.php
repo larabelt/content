@@ -162,6 +162,11 @@ class IncludesTemplateTest3Stub extends Model implements ParamableInterface
         return $param;
     }
 
+    public function load($relations)
+    {
+
+    }
+
     public function params()
     {
         $builder = m::mock(Param::class);
