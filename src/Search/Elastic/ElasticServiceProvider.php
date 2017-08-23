@@ -35,7 +35,8 @@ class ElasticServiceProvider extends BaseServiceProvider
                 return new ElasticEngine(Elasticsearch\ClientBuilder::create()
                     ->setHosts(config('belt.elastic.index.hosts'))
                     ->build(),
-                    config('belt.elastic.index.name')
+                    config('belt.elastic.index.name'),
+                    config('belt.elastic.index')
                 );
             });
         }

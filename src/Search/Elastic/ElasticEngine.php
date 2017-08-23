@@ -39,14 +39,19 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
     public $needle = '';
 
     /**
-     * @var string
+     * @var integer
      */
     public $from = 0;
 
     /**
-     * @var string
+     * @var integer
      */
     public $size = 10;
+
+    /**
+     * @var integer
+     */
+    public $min_score = 0;
 
     /**
      * @var array
@@ -74,17 +79,26 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
     public $elastic;
 
     /**
+     * @var bool
+     */
+    public $debug = false;
+
+    /**
      * Create a new engine instance.
      *
      * @param Elastic $elastic
      * @param string $index
-     * @return void
+     * @param array $config
      */
-    public function __construct(Elastic $elastic, $index)
+    public function __construct(Elastic $elastic, $index, $config = [])
     {
         $this->elastic = $elastic;
         $this->index = $index;
         $this->morphHelper = new MorphHelper();
+
+        if ($config && array_has($config, 'min_score')) {
+            $this->min_score = (int) array_get($config, 'min_score');
+        }
     }
 
     /**
@@ -99,9 +113,14 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
         $this->needle = $request->needle();
         $this->from = $request->offset();
         $this->size = $request->perPage();
+        $this->debug = (bool) $request->get('debug', false);
 
         if ($include = $request->get('include')) {
             $this->types = explode(',', $include);
+        }
+
+        if ($request->has('min_score')) {
+            $this->min_score = (int) $request->get('min_score');
         }
     }
 
@@ -128,6 +147,10 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
 
         if (array_has($options, 'types')) {
             $this->types = array_get($options, 'types');
+        }
+
+        if (array_has($options, 'min_score')) {
+            $this->min_score = (int) array_get($options, 'min_score');
         }
     }
 
@@ -224,6 +247,10 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
         $params['body']['from'] = $this->from;
         $params['body']['size'] = $this->size;
 
+        if ($this->min_score) {
+            $params['body']['min_score'] = $this->min_score;
+        }
+
         if (isset($options['numericFilters']) && count($options['numericFilters'])) {
             $params['body']['query']['bool']['must'] = array_merge(
                 $params['body']['query']['bool']['must'],
@@ -278,13 +305,15 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
         $items = new Collection();
         foreach (array_get($results, 'hits.hits', []) as $result) {
 
-//            $debug = sprintf('%s: #%s %s (%s)',
-//                array_get($result, '_type'),
-//                array_get($result, '_id'),
-//                array_get($result, '_source.name'),
-//                array_get($result, '_score')
-//            );
-//            dump($debug);
+            if ($this->debug) {
+                $msg = sprintf('%s: #%s %s (%s)',
+                    array_get($result, '_type'),
+                    array_get($result, '_id'),
+                    array_get($result, '_source.name'),
+                    array_get($result, '_score')
+                );
+                dump($msg);
+            }
 
             $id = array_get($result, '_id');
             $type = array_get($result, '_type');

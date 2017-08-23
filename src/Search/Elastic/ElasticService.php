@@ -5,7 +5,6 @@ namespace Belt\Content\Search\Elastic;
 use Belt, Riimu;
 use Belt\Core\Helpers\BeltHelper;
 use Belt\Core\Helpers\MorphHelper;
-use Belt\Content\Search\Elastic\ElasticEngine;
 use Belt\Core\Behaviors\HasConsole;
 use Elasticsearch\Client as Elastic;
 use Laravel\Scout\EngineManager;
