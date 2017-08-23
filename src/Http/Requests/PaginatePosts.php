@@ -20,7 +20,7 @@ class PaginatePosts extends PaginateRequest
 
     public $searchable = [
         'posts.name',
-        'posts.searchable',
+        //'posts.searchable',
     ];
 
     /**
