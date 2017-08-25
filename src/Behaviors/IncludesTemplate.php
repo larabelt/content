@@ -114,10 +114,13 @@ trait IncludesTemplate
 
         foreach (array_get($config, 'params', []) as $key => $values) {
             if (is_array($values)) {
-                $param = $this->params->where('key', $key)->first() ?: $this->params()->create(['key' => $key]);
-                if (!$param->value || !in_array($param->value, $values)) {
-                    $default = $values[0] ?? array_keys($values)[0];
+                $default = $values[0] ?? array_keys($values)[0];
+                $param = $this->params->where('key', $key)->first();
+                if ($param && $param->value && !in_array($param->value, $values)) {
                     $param->update(['value' => $default]);
+                }
+                if (!$param) {
+                    $this->params()->create(['key' => $key, 'value' => $default]);
                 }
             }
         }
