@@ -23,7 +23,6 @@ class UpdateHandle extends HandleFormRequest
             'url' => [
                 'sometimes',
                 'unique_route',
-                //'unique:handles,target',
                 Rule::unique('handles', 'url')->ignore($handle->id),
             ],
             'handleable_id' => $this->config('show_handlable', false) ? 'sometimes' : '',
@@ -31,7 +30,6 @@ class UpdateHandle extends HandleFormRequest
         ];
 
         if ($this->config('show_target', false)) {
-            //$rules['target'] = 'sometimes|unique:handles,url';
             $rules['target'] = 'required';
         }
 

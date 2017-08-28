@@ -1,4 +1,4 @@
-<form role="form" @submit.prevent="tout.submit()" @keydown="tout.errors.clear($event.target.name)">
+<form  @submit.prevent="tout.submit()" @keydown="tout.errors.clear($event.target.name)">
     <div class="checkbox">
         <label>
             <input type="checkbox"
@@ -9,18 +9,18 @@
         </label>
     </div>
     <div class="form-group" :class="{ 'has-error': tout.error('name') }">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" v-model="tout.name" placeholder="name">
+        <label for="name">Name *</label>
+        <input  class="form-control" v-model="tout.name" placeholder="name">
         <span v-for="error in tout.error('name')" class="text-danger">{{ error }}</span>
     </div>
     <div v-if="tout.id" class="form-group" :class="{ 'has-error': tout.error('slug') }">
         <label for="slug">Slug</label>
-        <input type="text" class="form-control" v-model="tout.slug" placeholder="slug">
+        <input  class="form-control" v-model="tout.slug" placeholder="slug">
         <span v-for="error in tout.error('slug')" class="text-danger">{{ error }}</span>
     </div>
     <div class="form-group" :class="{ 'has-error': tout.error('heading') }">
         <label for="heading">Heading</label>
-        <input type="text" class="form-control" v-model="tout.heading" placeholder="heading">
+        <input  class="form-control" v-model="tout.heading" placeholder="heading">
         <span v-for="error in tout.error('heading')" class="text-danger">{{ error }}</span>
     </div>
     <div class="form-group" :class="{ 'has-error': tout.error('body') }">
@@ -32,21 +32,21 @@
         <div class="col-md-6">
             <div class="form-group" :class="{ 'has-error': tout.error('btn_text') }">
                 <label for="btn_text">Button Text</label>
-                <input type="text" class="form-control" v-model="tout.btn_text" placeholder="btn_text">
+                <input  class="form-control" v-model="tout.btn_text" placeholder="btn_text">
                 <span v-for="error in tout.error('btn_text')" class="text-danger">{{ error }}</span>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group" :class="{ 'has-error': tout.error('btn_url') }">
                 <label for="btn_url">Button Url</label>
-                <input type="text" class="form-control" v-model="tout.btn_url" placeholder="btn_url">
+                <input  class="form-control" v-model="tout.btn_url" placeholder="btn_url">
                 <span v-for="error in tout.error('btn_url')" class="text-danger">{{ error }}</span>
             </div>
         </div>
     </div>
     <attachment v-if="tout.id" :owner="tout" :path="'touts'"></attachment>
     <div class="text-right">
-        <button type="submit" class="btn btn-primary" :disabled="tout.errors.any()">
+        <button class="btn btn-primary" :disabled="tout.errors.any()">
             <span v-if="tout.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
             <span v-else>Save</span>
         </button>

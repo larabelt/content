@@ -8,7 +8,7 @@
 
             <inner :section="section"></inner>
 
-            <form role="form" @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
+            <form  @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
                 <div class="form-group" :class="{ 'has-error': active.error('heading') }">
                     <label for="heading">Heading</label>
                     <input @change="active.submit()" type="text" class="form-control" v-model="active.heading" placeholder="heading">
@@ -22,7 +22,7 @@
                     <span v-for="error in active.error('before')" class="content-danger">{{ error }}</span>
                 </div>
             </form>
-            <form role="form" @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
+            <form  @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
                 <div class="form-group" :class="{ 'has-error': active.error('after') }">
                     <label for="after">Lower Content</label>
                     <textarea @change="active.submit()" class="form-control" rows="10" v-model="active.after" v-tinymce></textarea>
@@ -31,7 +31,7 @@
                 </div>
             </form>
             <div class="alt-box-footer text-right">
-                <button type="submit" class="btn btn-primary" :disabled="active.errors.any()" @click.prevent="save()">
+                <button class="btn btn-primary" :disabled="active.errors.any()" @click.prevent="save()">
                     <span v-if="active.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
                     <span v-else>Save</span>
                 </button>
