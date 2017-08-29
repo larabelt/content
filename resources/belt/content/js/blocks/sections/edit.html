@@ -19,8 +19,20 @@
             <div class="col-md-8">
                 <div class="pull-right">
                     <div class="btn-group">
-                        <a class="btn btn-sm btn-default" href="/admin/belt/content/blocks/create" target="_blank"><i class="fa fa-plus"></i></a>
-                        <a v-if="block.id" class="btn btn-sm btn-default" :href="'/admin/belt/content/blocks/edit/' + block.id" target="_blank">
+                        <a
+                                title="add block"
+                                class="btn btn-sm btn-default"
+                                href="/admin/belt/content/blocks/create"
+                                target="_blank"
+                        >
+                            <i class="fa fa-plus"></i>
+                        </a>
+                        <a v-if="block.id"
+                           title="edit block"
+                           class="btn btn-sm btn-default"
+                           :href="'/admin/belt/content/blocks/edit/' + block.id"
+                           target="_blank"
+                        >
                             <i class="fa fa-edit"></i>
                         </a>
                     </div>

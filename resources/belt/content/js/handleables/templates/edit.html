@@ -16,14 +16,33 @@
             <template v-else>
                 <button class="btn btn-xs btn-default"
                         @click.prevent="makeDefault()"
+                        title="click to set as default handle"
                 ><i class="fa fa-square-o"></i></button>
             </template>
         </template>
     </td>
     <td class="text-right">
-        <router-link :to="{ name: 'handles.edit', params: { id: handle.id } }" :class="'btn btn-xs btn-warning'">
-            <i class="fa fa-edit"></i>
-        </router-link>
-        <modal-delete :item-id="handle.id" _class="''" :callingObject="table"></modal-delete>
+        <div class="btn-group">
+            <button
+                    type="button"
+                    class="btn btn-xs btn-default dropdown-toggle text-muted"
+                    data-toggle="dropdown"
+                    aria-expanded="false"
+                    title="options"
+            >
+                <i class="fa fa-gear"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li><modal-delete :item-id="handle.id" _class="''" :callingObject="table"><i class="fa fa-trash"></i> Remove</modal-delete></li>
+            </ul>
+            <router-link
+                    :to="{ name: 'handles.edit', params: { id: handle.id } }"
+                    :class="'btn btn-xs btn-default'"
+                    title="edit handle"
+                    target="_blank"
+            >
+                <i class="fa fa-edit"></i>
+            </router-link>
+        </div>
     </td>
 </tr>

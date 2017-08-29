@@ -15,9 +15,12 @@ class Form extends BaseForm {
 
         this.service = new BaseService({baseUrl: baseUrl});
         this.setData({
-            url: '',
+            //handleable_id: this.morphable_id,
+            //handleable_type: this.morphable_type,
             is_active: 1,
             is_default: 0,
+            config_name: 'alias',
+            url: '',
             target: '',
         });
     }

@@ -31,8 +31,9 @@ export default {
     methods: {
         store() {
             this.form.store()
-                .then(response => {
+                .then(() => {
                     this.table.index();
+                    this.form.reset()
                 })
         }
     },
