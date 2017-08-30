@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Page extends Model implements
     Belt\Core\Behaviors\IsSearchableInterface,
+    Belt\Core\Behaviors\ParamableInterface,
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Core\Behaviors\TypeInterface,
     Belt\Content\Behaviors\HandleableInterface,
@@ -24,6 +25,7 @@ class Page extends Model implements
     Belt\Clip\Behaviors\ClippableInterface
 {
     use Belt\Core\Behaviors\HasSortableTrait;
+    use Belt\Core\Behaviors\Paramable;
     use Belt\Core\Behaviors\IsSearchable;
     use Belt\Core\Behaviors\Sluggable;
     use Belt\Core\Behaviors\TypeTrait;
