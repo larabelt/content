@@ -74,8 +74,8 @@ class BeltContentPageSeeds extends Seeder
 
         # section w/touts
         $section = $this->section($page);
-        $this->tout($section, [], ['class' => 'col-md-3 col-md-offset-3']);
-        $this->tout($section, [], ['class' => 'col-md-3']);
+        $this->tout($section, [], ['class' => 'col-md-3', 'icon' => 'create']);
+        $this->tout($section, [], ['class' => 'col-md-3', 'icon' => 'edit']);
 
         # section w/touts
         $section = $this->section($page);
