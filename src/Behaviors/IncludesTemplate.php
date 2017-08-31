@@ -3,6 +3,7 @@
 namespace Belt\Content\Behaviors;
 
 use Belt\Core\Behaviors\ParamableInterface;
+use Belt\Core\Helpers\ArrayHelper;
 
 /**
  * Class IncludesTemplate
@@ -116,6 +117,8 @@ trait IncludesTemplate
 
             $default = '';
             $param = $this->params->where('key', $key)->first();
+
+            $values = ArrayHelper::isAssociative($values) ? array_keys($values) : $values;
 
             if (is_array($values)) {
                 $default = $values[0] ?? array_keys($values)[0];
