@@ -6,6 +6,7 @@ class PageTable extends BaseTable {
     constructor(options = {}) {
         super(options);
         this.service = new BaseService({baseUrl: '/api/v1/pages/'});
+        this.name = 'admin.pages';
     }
 
 }

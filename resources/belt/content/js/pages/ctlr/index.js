@@ -26,6 +26,7 @@ export default {
                 }
             },
             mounted() {
+                this.table.updateQueryFromHisory();
                 this.table.updateQueryFromRouter();
                 this.table.index();
             },
