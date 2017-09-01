@@ -1,5 +1,3 @@
-import tags from 'belt/glue/js/taggables/filter';
-
 // helpers
 import Table from 'belt/content/js/posts/table';
 
@@ -26,7 +24,6 @@ export default {
                 this.table.updateQueryFromRouter();
                 this.table.index();
             },
-            components: {tags},
             template: index_html,
         },
     },

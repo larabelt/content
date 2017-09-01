@@ -1,23 +1,15 @@
 <div class="box box-primary">
     <div class="box-body">
+
         <div class="clearfix">
-            <div class="pull-left">
-                <div class="form-group">
-                    <input
-                            type="text"
-                            class="form-control"
-                            v-model="table.query.q"
-                            placeholder="filter"
-                            @keyup="filter()"
-                    >
-                </div>
-            </div>
             <div class="pull-right">
                 <div class="btn-group">
                     <router-link :to="{ name: 'pages.create' }" :class="'btn btn-primary'">add page</router-link>
                 </div>
             </div>
         </div>
+
+        <filter-set :table="table"></filter-set>
 
         <tags :table="table"></tags>
 

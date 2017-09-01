@@ -1,5 +1,7 @@
 import debounce from 'debounce';
 
+import filterSet from 'belt/core/js/inputs/filter-set';
+import filterSearch from 'belt/core/js/inputs/filter-search';
 import tags from 'belt/glue/js/taggables/filter';
 
 // helpers
@@ -41,7 +43,15 @@ export default {
                     form.submit();
                 }
             },
-            components: {tags},
+            components: {
+                filterSet: {
+                    mixins: [filterSet],
+                    components: {
+                        slot1: filterSearch,
+                    },
+                },
+                tags
+            },
             template: index_html,
         },
     },
