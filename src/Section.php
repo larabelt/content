@@ -14,6 +14,7 @@ use Kalnoy\Nestedset\NodeTrait;
 class Section extends Model implements
     Belt\Core\Behaviors\NestedSetInterface,
     Belt\Core\Behaviors\ParamableInterface,
+    Belt\Core\Behaviors\TypeInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\IncludesTemplateInterface,
     Belt\Content\Behaviors\SectionableInterface
@@ -23,6 +24,7 @@ class Section extends Model implements
         children as nodeChildren;
     }
     use Belt\Core\Behaviors\Paramable;
+    use Belt\Core\Behaviors\TypeTrait;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\IncludesTemplate;
     use Belt\Content\Behaviors\Sectionable;
@@ -45,7 +47,7 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['name'];
+    protected $appends = ['name', 'morph_class'];
 
     /**
      * @return string

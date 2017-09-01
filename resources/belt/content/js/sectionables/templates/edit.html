@@ -1,5 +1,5 @@
 <div>
-    <div class="box box-warning">
+    <div v-if="section.id" class="box box-warning">
         <div class="box-header with-border">
             <span class="pull-right"><button class="btn btn-default" @click.prevent="close()" title="close section"><i class="fa fa-times"></i></button></span>
             <h3 class="box-title">{{ section.name }}</h3>

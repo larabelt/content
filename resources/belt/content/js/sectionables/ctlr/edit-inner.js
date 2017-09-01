@@ -1,6 +1,7 @@
 import shared from 'belt/content/js/sectionables/ctlr/shared';
 
-import params from 'belt/content/js/sectionables/params/params';
+//import params from 'belt/content/js/sectionables/params/params';
+import params from 'belt/core/js/paramables/ctlr/index';
 
 // section items
 import itemAlbum from 'belt/clip/js/albums/sections/edit';
