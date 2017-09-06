@@ -136,7 +136,6 @@ class IncludesTemplateTest2Stub extends Model
 class IncludesTemplateTest3Stub extends Model implements ParamableInterface
 {
     use IncludesTemplate;
-    use Paramable;
 
     public function getMorphClass()
     {

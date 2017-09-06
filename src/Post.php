@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model implements
     Belt\Core\Behaviors\IsSearchableInterface,
+    Belt\Core\Behaviors\ParamableInterface,
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Core\Behaviors\TypeInterface,
     Belt\Content\Behaviors\HandleableInterface,

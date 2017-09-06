@@ -3,7 +3,9 @@
 namespace Belt\Content\Behaviors;
 
 use Belt\Core\Behaviors\ParamableInterface;
+use Belt\Core\Behaviors\Paramable;
 use Belt\Core\Helpers\ArrayHelper;
+use Belt\Content\Observers\IncludesTemplateObserver;
 
 /**
  * Class IncludesTemplate
@@ -11,6 +13,8 @@ use Belt\Core\Helpers\ArrayHelper;
  */
 trait IncludesTemplate
 {
+
+    use Paramable;
 
     /**
      * @param $value
@@ -138,9 +142,7 @@ trait IncludesTemplate
      */
     public static function bootIncludesTemplate()
     {
-        static::saved(function ($item) {
-            $item->reconcileTemplateParams();
-        });
+        static::observe(IncludesTemplateObserver::class);
     }
 
 }

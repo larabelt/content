@@ -12,8 +12,8 @@ use Kalnoy\Nestedset\NodeTrait;
  * @package Belt\Content
  */
 class Section extends Model implements
-    Belt\Core\Behaviors\NestedSetInterface,
     Belt\Core\Behaviors\ParamableInterface,
+    Belt\Core\Behaviors\NestedSetInterface,
     Belt\Core\Behaviors\TypeInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\IncludesTemplateInterface,
@@ -23,7 +23,6 @@ class Section extends Model implements
     use NodeTrait {
         children as nodeChildren;
     }
-    use Belt\Core\Behaviors\Paramable;
     use Belt\Core\Behaviors\TypeTrait;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\IncludesTemplate;
