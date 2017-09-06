@@ -1,8 +1,9 @@
 import debounce from 'debounce';
 
-import filterSet from 'belt/core/js/inputs/filter-set';
 import filterSearch from 'belt/core/js/inputs/filter-search';
-import tags from 'belt/glue/js/taggables/filter';
+import filterTags from 'belt/glue/js/inputs/filter-tags/filter';
+import filterTagsAttached from 'belt/glue/js/inputs/filter-tags/attached';
+import filterTagsDetached from 'belt/glue/js/inputs/filter-tags/detached';
 
 // helpers
 import Form from 'belt/content/js/pages/form';
@@ -24,17 +25,26 @@ export default {
         index: {
             data() {
                 return {
-                    table: new Table({router: this.$router}),
+                    morphable_type: 'places',
+                    table: new Table({router: this.$router, query: {tag: null}}),
                 }
             },
             mounted() {
-                this.table.updateQueryFromHisory();
+                this.table.updateQueryFromHistory();
                 this.table.updateQueryFromRouter();
                 this.table.index();
             },
             methods: {
-                filter: debounce(function () {
-                    this.table.index();
+                filter: debounce(function (query) {
+                    if (query) {
+                        query.page = 1;
+                        this.table.updateQuery(query);
+                    }
+                    this.table.index()
+                        .then(() => {
+                            this.table.pushQueryToHistory();
+                            this.table.pushQueryToRouter();
+                        });
                 }),
                 copy(id) {
                     let form = new Form();
@@ -44,13 +54,10 @@ export default {
                 }
             },
             components: {
-                filterSet: {
-                    mixins: [filterSet],
-                    components: {
-                        slot1: filterSearch,
-                    },
-                },
-                tags
+                filterSearch,
+                filterTags,
+                filterTagsAttached,
+                filterTagsDetached,
             },
             template: index_html,
         },

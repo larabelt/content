@@ -1,17 +1,21 @@
 <div class="box box-primary">
     <div class="box-body">
 
-        <div class="clearfix">
+        <div class="filter-set clearfix">
+            <div class="pull-left">
+                <filter-search @filter-search-update="filter"></filter-search>
+            </div>
+            <div class="pull-left">
+                <filter-tags></filter-tags>
+            </div>
             <div class="pull-right">
-                <div class="btn-group">
-                    <router-link :to="{ name: 'pages.create' }" :class="'btn btn-primary'">add page</router-link>
-                </div>
+                <router-link :to="{ name: 'pages.create' }" :class="'btn btn-primary'">add page</router-link>
             </div>
         </div>
 
-        <filter-set :table="table"></filter-set>
+        <filter-tags-attached @filter-tags-update="filter" :_query="$router.currentRoute.query.tag" ></filter-tags-attached>
 
-        <tags :table="table"></tags>
+        <filter-tags-detached @filter-tags-update="filter"></filter-tags-detached>
 
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
@@ -46,7 +50,10 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a href="#" @click.prevent="copy(item.id)"><i class="fa fa-clone"></i> Copy</i></a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><modal-delete :item-id="item.id" _class="''" :callingObject="table"><i class="fa fa-trash"></i> Remove</modal-delete></li>
+                                <li>
+                                    <modal-delete :item-id="item.id" _class="''" :callingObject="table"><i class="fa fa-trash"></i> Remove
+                                    </modal-delete>
+                                </li>
                             </ul>
                             <router-link :to="{ name: 'pages.edit', params: { id: item.id } }" :class="'btn btn-xs btn-default'" title="edit page">
                                 <i class="fa fa-edit"></i>
