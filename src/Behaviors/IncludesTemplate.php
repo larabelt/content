@@ -120,7 +120,7 @@ trait IncludesTemplate
 
             if (is_array($values)) {
                 $values = ArrayHelper::isAssociative($values) ? array_keys($values) : $values;
-                $default = $values[0] ?? array_keys($values)[0];
+                $default = $values[0];
                 if ($param && $param->value && !in_array($param->value, $values)) {
                     $param->update(['value' => $default]);
                 }
