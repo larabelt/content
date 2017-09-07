@@ -55,5 +55,10 @@ class Post extends Model implements
     /**
      * @var array
      */
+    protected $with = ['handles'];
+
+    /**
+     * @var array
+     */
     protected $appends = ['image', 'morph_class', 'default_url'];
 }
