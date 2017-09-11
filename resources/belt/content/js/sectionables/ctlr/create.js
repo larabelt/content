@@ -25,11 +25,8 @@ export default {
                 this.form.parent_id = this.creating.neighbor_id;
             }
 
-            console.log(111);
             this.form.submit()
                 .then(() => {
-                    console.log(this.form.id);
-                    console.log(999);
                     if (this.creating.position == 'before' || this.creating.position == 'after') {
                         this.moving.show(this.form.id)
                             .then(() => {
