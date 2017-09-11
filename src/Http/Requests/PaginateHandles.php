@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PaginateHandles extends PaginateRequest
 {
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    public $modelClass = Belt\Content\Handle::class;
+
     public $perPage = 10;
 
     public $orderBy = 'handles.id';
@@ -30,14 +35,12 @@ class PaginateHandles extends PaginateRequest
      * @var Belt\Core\Pagination\PaginationQueryModifier[]
      */
     public $queryModifiers = [
+        Belt\Core\Pagination\InQueryModifier::class,
         Belt\Core\Pagination\IsActiveQueryModifier::class,
     ];
 
     public function modifyQuery(Builder $query)
     {
-//        if ($status = $this->query->has('status')) {
-//            $query->where('status', $this->query->get('status'));
-//        }
 
         if ($handleable_id = $this->get('handleable_id')) {
             $query->where('handleable_id', $handleable_id);

@@ -1,11 +1,17 @@
 <?php
 namespace Belt\Content\Http\Requests;
 
+use Belt;
 use Belt\Core\Http\Requests\PaginateRequest;
 use Illuminate\Database\Eloquent\Builder;
 
 class PaginateSections extends PaginateRequest
 {
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    public $modelClass = Belt\Content\Section::class;
+
     public $perPage = 100;
 
     public $orderBy = 'sections._lft';
@@ -17,6 +23,13 @@ class PaginateSections extends PaginateRequest
 
     public $searchable = [
         'sections.name',
+    ];
+
+    /**
+     * @var Belt\Core\Pagination\PaginationQueryModifier[]
+     */
+    public $queryModifiers = [
+        Belt\Core\Pagination\InQueryModifier::class,
     ];
 
     public function modifyQuery(Builder $query)

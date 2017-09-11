@@ -2,17 +2,30 @@
 
 namespace Belt\Content\Http\Requests;
 
+use Belt;
 use Belt\Core\Http\Requests\PaginateRequest;
 use Illuminate\Database\Eloquent\Builder;
 
 class PaginateFavorites extends PaginateRequest
 {
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    public $modelClass = Belt\Content\Favorite::class;
+
     public $perPage = 100;
 
     public $orderBy = 'favorites.id';
 
     public $sortable = [
         'favorites.id',
+    ];
+
+    /**
+     * @var Belt\Core\Pagination\PaginationQueryModifier[]
+     */
+    public $queryModifiers = [
+        Belt\Core\Pagination\InQueryModifier::class,
     ];
 
     public function modifyQuery(Builder $query)

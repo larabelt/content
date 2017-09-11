@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PaginatePosts extends PaginateRequest
 {
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    public $modelClass = Belt\Content\Post::class;
+
     public $perPost = 10;
 
     public $orderBy = 'posts.id';
@@ -20,13 +25,13 @@ class PaginatePosts extends PaginateRequest
 
     public $searchable = [
         'posts.name',
-        //'posts.searchable',
     ];
 
     /**
      * @var Belt\Core\Pagination\PaginationQueryModifier[]
      */
     public $queryModifiers = [
+        Belt\Core\Pagination\InQueryModifier::class,
         Belt\Core\Pagination\IsActiveQueryModifier::class,
         Belt\Glue\Pagination\CategorizableQueryModifier::class,
         Belt\Glue\Pagination\TaggableQueryModifier::class,

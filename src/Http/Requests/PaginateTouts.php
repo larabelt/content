@@ -1,10 +1,16 @@
 <?php
 namespace Belt\Content\Http\Requests;
 
+use Belt;
 use Belt\Core\Http\Requests\PaginateRequest;
 
 class PaginateTouts extends PaginateRequest
 {
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    public $modelClass = Belt\Content\Tout::class;
+
     public $perTout = 10;
 
     public $orderBy = 'touts.id';
@@ -17,6 +23,13 @@ class PaginateTouts extends PaginateRequest
 
     public $searchable = [
         'touts.name',
+    ];
+
+    /**
+     * @var Belt\Core\Pagination\PaginationQueryModifier[]
+     */
+    public $queryModifiers = [
+        Belt\Core\Pagination\InQueryModifier::class,
     ];
 
 }
