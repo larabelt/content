@@ -113,5 +113,11 @@ export default {
                     });
             });
         },
+        updateActive() {
+            this.active.submit()
+                .then(() => {
+                    this.$forceUpdate();
+                });
+        }
     },
 }

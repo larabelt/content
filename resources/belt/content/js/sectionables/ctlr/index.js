@@ -40,11 +40,10 @@ export default {
         }
     },
     created() {
-        let self = this;
         this.configurator.load()
-            .then(function (response) {
-                self.configs = response;
-                self.sections.index();
+            .then((response) => {
+                this.configs = response;
+                this.sections.index();
             });
     },
     mounted() {

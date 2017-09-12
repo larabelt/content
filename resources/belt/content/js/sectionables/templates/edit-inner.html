@@ -2,12 +2,12 @@
     <div class="section-sub-item">
         <div class="row">
             <div class="col-md-6">
-                <form @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
+                <form @submit.prevent="updateActive()" @keydown="active.errors.clear($event.target.name)">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group" :class="{ 'has-error': active.error('template') }">
                                 <label for="template">Template</label>
-                                <select @change="active.submit()" v-model="active.template" name="template" class="form-control">
+                                <select @change="updateActive()" v-model="active.template" name="template" class="form-control">
                                     <template v-for="label, value in dropdown">
                                         <option :value="value">{{ label }}</option>
                                     </template>
@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-12">
                 <hr/>
-                <params :morphable="section" :_config="config"></params>
+                <params :morphable="active" :_config="config"></params>
                 <hr/>
             </div>
         </div>
