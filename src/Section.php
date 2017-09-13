@@ -106,7 +106,7 @@ class Section extends Model implements
     /**
      * Get a relationship value from a method.
      *
-     * @param  string  $method
+     * @param  string $method
      * @return mixed
      *
      * @throws \LogicException
@@ -169,10 +169,11 @@ class Section extends Model implements
         $clone = $section->replicate(['_lft', '_rgt']);
         $clone->owner_id = array_get($options, 'owner_id');
         $clone->parent_id = array_get($options, 'parent_id');
-        $clone->push();
+        $clone->save();
 
         foreach ($section->params as $param) {
-            Belt\Core\Param::copy($param, ['paramable_id' => $clone->id]);
+            //Belt\Core\Param::copy($param, ['paramable_id' => $clone->id]);
+            $clone->saveParam($param->key, $param->value);
         }
 
         foreach ($section->children as $child) {

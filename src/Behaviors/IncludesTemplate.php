@@ -5,6 +5,7 @@ namespace Belt\Content\Behaviors;
 use Belt\Core\Behaviors\ParamableInterface;
 use Belt\Core\Behaviors\Paramable;
 use Belt\Core\Helpers\ArrayHelper;
+use Belt\Core\Observers\ParamableObserver;
 use Belt\Content\Observers\IncludesTemplateObserver;
 
 /**
@@ -117,7 +118,9 @@ trait IncludesTemplate
 
         $config = $this->getTemplateConfig();
 
-        foreach (array_get($config, 'params', []) as $key => $values) {
+        $configParams = array_get($config, 'params', []);
+
+        foreach ($configParams as $key => $values) {
 
             $default = '';
             $param = $this->params->where('key', $key)->first();
@@ -135,6 +138,12 @@ trait IncludesTemplate
             }
         }
 
+        foreach ($this->params as $param) {
+            if (!in_array($param->key, array_keys($configParams))) {
+                $param->delete();
+            }
+        }
+
     }
 
     /**
@@ -142,6 +151,7 @@ trait IncludesTemplate
      */
     public static function bootIncludesTemplate()
     {
+        static::observe(ParamableObserver::class);
         static::observe(IncludesTemplateObserver::class);
     }
 

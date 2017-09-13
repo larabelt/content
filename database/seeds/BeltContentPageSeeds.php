@@ -22,11 +22,13 @@ class BeltContentPageSeeds extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        factory(Page::class)->create();
         Page::unguard();
 
+        factory(Page::class)->create();
+
         # make sectioned example page
-        $page = Page::first();
+        factory(Page::class)->create(['slug' => 'sectioned']);
+        $page = Page::where('slug', 'sectioned')->first();
         Section::where('owner_id', $page->id)->where('owner_type', 'pages')->delete();
         $data = factory(Page::class)->make([
             'template' => 'default',
