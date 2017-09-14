@@ -14,26 +14,26 @@
                             </button>
                         </template>
                         <template v-if="panelMode == 'default'">
-                            <button
-                                    type="button"
-                                    title="options"
-                                    class="btn btn-xs btn-default dropdown-toggle text-muted"
-                                    data-toggle="dropdown"
-                                    aria-expanded="false"
-                            >
-                            <i class="fa fa-gear"></i> <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="#" @click.prevent="setActive(section.id)"><i class="fa fa-edit"></i> Edit</i></a></li>
-                                <li><a href="#" @click.prevent="setMoving(section.id)"><i class="fa fa-arrows-alt"></i> Move</i></a></li>
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">Add New:</li>
-                                <li><a href="#" @click.prevent="insert(section.id, 'before')">&bull; before</i></a></li>
-                                <li v-if="isBox" @click.prevent="insert(section.id, 'in')"><a href="#">&bull; inside</i></a></li>
-                                <li><a href="#" @click.prevent="insert(section.id, 'after')">&bull; after</i></a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><modal-delete :item-id="section.id" _class="''"><i class="fa fa-trash"></i> Remove</modal-delete></li>
-                            </ul>
+                            <div class="btn-group">
+                                <button
+                                        type="button"
+                                        title="options"
+                                        class="btn btn-xs btn-default dropdown-toggle text-muted"
+                                        data-toggle="dropdown"
+                                        aria-expanded="false"
+                                ><i class="fa fa-gear"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#" @click.prevent="setMoving(section.id)"><i class="fa fa-arrows-alt"></i> Move</i></a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="dropdown-header">Add New:</li>
+                                    <li><a href="#" @click.prevent="insert(section.id, 'before')">&bull; before</i></a></li>
+                                    <li v-if="isBox" @click.prevent="insert(section.id, 'in')"><a href="#">&bull; inside</i></a></li>
+                                    <li><a href="#" @click.prevent="insert(section.id, 'after')">&bull; after</i></a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><modal-delete :item-id="section.id" _class="''"><i class="fa fa-trash"></i> Remove</modal-delete></li>
+                                </ul>
+                                <a class="btn btn-xs btn-default" href="#" @click.prevent="setActive(section.id)" title="edit section"><i class="fa fa-edit"></i></a>
+                            </div>
                         </template>
                     </div>
                 </span>
