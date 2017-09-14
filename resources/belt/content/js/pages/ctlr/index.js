@@ -32,6 +32,7 @@ export default {
             mounted() {
                 this.table.updateQueryFromHistory();
                 this.table.updateQueryFromRouter();
+                this.table.pushQueryToRouter();
                 this.table.index();
             },
             methods: {
