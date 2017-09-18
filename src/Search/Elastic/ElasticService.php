@@ -185,6 +185,8 @@ class ElasticService
      */
     public function import($types, $limit = 10)
     {
+
+        $types = $types ?: config('belt.elastic.index.types');
         $types = is_array($types) ? $types : explode(',', $types);
 
         foreach ($types as $type) {
