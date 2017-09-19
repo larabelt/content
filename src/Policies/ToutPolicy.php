@@ -16,6 +16,17 @@ class ToutPolicy extends BaseAdminPolicy
      * Determine whether the user can view the object.
      *
      * @param  User $auth
+     * @return mixed
+     */
+    public function index(User $auth)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view the object.
+     *
+     * @param  User $auth
      * @param  Tout $object
      * @return mixed
      */

@@ -30,6 +30,7 @@ class PaginateTouts extends PaginateRequest
      */
     public $queryModifiers = [
         Belt\Core\Pagination\InQueryModifier::class,
+        Belt\Glue\Pagination\TaggableQueryModifier::class,
     ];
 
 }
