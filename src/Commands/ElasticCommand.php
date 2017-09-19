@@ -69,6 +69,11 @@ class ElasticCommand extends Command
             $this->service()->createIndex();
         }
 
+        if ($action == 'replace-index') {
+            $this->service()->deleteIndex();
+            $this->service()->createIndex();
+        }
+
         if ($action == 'import') {
             $this->service()->import($this->option('type'));
         }

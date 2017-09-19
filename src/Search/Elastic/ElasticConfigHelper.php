@@ -9,12 +9,12 @@ namespace Belt\Content\Search\Elastic;
 class ElasticConfigHelper
 {
 
-    public static $analyzers = [
-        'case_insensitive_sort' => [
-            'filter' => [
-                'lowercase'
-            ],
-            'tokenizer' => 'keyword',
+    public static $analyzers = [];
+
+    public static $normalizers = [
+        'lower_asciifolding' => [
+            'type' => 'custom',
+            'filter' => ['lowercase', 'asciifolding']
         ],
     ];
 
@@ -37,10 +37,7 @@ class ElasticConfigHelper
                 'keyword' => [
                     'type' => 'keyword',
                     'ignore_above' => 256,
-                ],
-                'lower_case_sort' => [
-                    'type' => 'string',
-                    'analyzer' => 'case_insensitive_sort',
+                    'normalizer' => 'lower_asciifolding',
                 ],
             ],
             'analyzer' => 'snowball',
@@ -73,6 +70,11 @@ class ElasticConfigHelper
     public static function analyzer($key)
     {
         return static::$analyzers[$key] ?? [];
+    }
+
+    public static function normalizer($key)
+    {
+        return static::$normalizers[$key] ?? [];
     }
 
     public static function property($key)

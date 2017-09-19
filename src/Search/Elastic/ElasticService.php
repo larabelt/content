@@ -124,6 +124,7 @@ class ElasticService
             $this->indices()->create([
                 'index' => $this->index,
                 'body' => [
+                    'number_of_shards' => config("belt.elastic.settings.index.number_of_shards", 5),
                     'number_of_replicas' => config("belt.elastic.settings.index.number_of_replicas", 1),
                     'refresh_interval' => config("belt.elastic.settings.index.refresh_interval", 0),
                     'analysis' => config("belt.elastic.settings.analysis", []),
@@ -166,6 +167,8 @@ class ElasticService
      */
     public function putMappings()
     {
+        $this->info('put-mappings:');
+
         $mappings = config('belt.elastic.mappings');
 
         foreach ($mappings as $type => $mapping) {
@@ -174,7 +177,7 @@ class ElasticService
                 'type' => $type,
                 'body' => $mapping
             ]);
-            $this->info($result);
+            $this->info(sprintf('%s: %s', $type, array_get($result, 'acknowledged', 0)));
         }
     }
 
