@@ -10,8 +10,6 @@ export default {
             morphable_id: this.$parent.morphable_id,
             morphable_type: this.$parent.morphable_type,
             active: this.$parent.active,
-            configurator: this.$parent.configurator,
-            configs: this.$parent.configs,
             creating: this.$parent.creating,
             first: this.$parent.first,
             form: new Form({
@@ -19,6 +17,7 @@ export default {
                 morphable_id: this.$parent.morphable_id,
             }),
             moving: this.$parent.moving,
+            paramable: this.$parent.active,
             sections: this.$parent.sections,
             scroll: this.$parent.scroll,
         }
@@ -34,25 +33,17 @@ export default {
             return this.section.id == this.moving.id;
         },
         config() {
-            return _.get(this.configs, `${this.section.sectionable_type}.${this.section.template}`);
+            return this.$store.getters[this.storeActiveKey + '/config/data'];
         },
-        dropdown() {
-            if (this.section) {
-                return this.configurator.dropdown(this.section.sectionable_type);
-            }
-            return [];
+        storeActiveKey() {
+            return 'sections' + this.active.id;
         },
-
     },
     methods: {
         close() {
             this.reset();
             window.scrollTo(0, this.scroll.y);
             this.scroll.y = 0;
-        },
-        getConfig(key, _default) {
-            let value = _.get(this.config, key);
-            return value ? value : _default;
         },
         isType(type) {
             if (this.section) {
@@ -116,7 +107,8 @@ export default {
         updateActive() {
             this.active.submit()
                 .then(() => {
-                    this.$forceUpdate();
+                    this.$store.dispatch(this.storeActiveKey + '/load', this.active);
+                    this.$store.dispatch(this.storeActiveKey + '/params/load');
                 });
         }
     },

@@ -8,7 +8,7 @@
                             <div class="form-group" :class="{ 'has-error': active.error('template') }">
                                 <label for="template">Template</label>
                                 <select @change="updateActive()" v-model="active.template" name="template" class="form-control">
-                                    <template v-for="label, value in dropdown">
+                                    <template v-for="label, value in templates">
                                         <option :value="value">{{ label }}</option>
                                     </template>
                                 </select>
@@ -18,9 +18,9 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-12">
+            <div v-if="active.id" class="col-md-12">
                 <hr/>
-                <params :morphable="active" :_config="config"></params>
+                <params paramable_type="sections" :paramable_id="active.id"></params>
                 <hr/>
             </div>
         </div>

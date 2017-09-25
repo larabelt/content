@@ -4,7 +4,6 @@ import edit from 'belt/content/js/sectionables/ctlr/edit';
 import panel from 'belt/content/js/sectionables/ctlr/panel';
 
 // helpers
-import Config from 'belt/content/js/sectionables/config';
 import Form from 'belt/content/js/sectionables/form';
 import Table from 'belt/content/js/sectionables/table';
 
@@ -27,8 +26,6 @@ export default {
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
-            configurator: new Config(),
-            configs: {},
             first: {id: null},
             morphable_type: this.$parent.morphable_type,
             morphable_id: this.$parent.morphable_id,
@@ -39,14 +36,8 @@ export default {
             scroll: {x: 0, y: 0},
         }
     },
-    created() {
-        this.configurator.load()
-            .then((response) => {
-                this.configs = response;
-                this.sections.index();
-            });
-    },
     mounted() {
+        this.sections.index();
         let section_id = this.$route.params.section;
         if (section_id) {
             this.active.show(section_id);

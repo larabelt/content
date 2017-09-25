@@ -20,11 +20,15 @@ class CompileService
      */
     public function compile(HasSectionsInterface $owner)
     {
-        //$compiled = view($owner->template_view, ['owner' => $owner])->render();
-        $compiled = View::make($owner->template_view, ['owner' => $owner])->render();
+        $compiled = null;
 
-        $owner->searchable = $this->crawl($owner);
-        $owner->save();
+        try {
+            $compiled = View::make($owner->template_view, ['owner' => $owner])->render();
+            $owner->searchable = $this->crawl($owner);
+            $owner->save();
+        } catch (\Exception $e) {
+
+        }
 
         return $compiled;
     }

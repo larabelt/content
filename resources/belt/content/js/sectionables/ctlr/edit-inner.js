@@ -18,6 +18,36 @@ import inner_html from 'belt/content/js/sectionables/templates/edit-inner.html';
 
 export default {
     mixins: [shared],
+    data() {
+        return {
+            templates: {},
+        }
+    },
+    computed: {
+        // dropdown() {
+        //     let type = this.active.sectionable_type;
+        //     let configs = this.$store.getters['configs/data'];
+        //     configs = configs[type];
+        //     let templates = {};
+        //     for (let key in configs) {
+        //         let config = configs[key];
+        //         templates[key] = config['label'] ? config['label'] : key;
+        //     }
+        //     return templates;
+        // },
+    },
+    mounted() {
+        let type = this.active.sectionable_type;
+        this.$store.dispatch('configs/loadType', type)
+            .then((configs) => {
+                let templates = {};
+                for (let key in configs) {
+                    let config = configs[key];
+                    templates[key] = config['label'] ? config['label'] : key;
+                }
+                this.templates = templates;
+            });
+    },
     components: {
         params,
         itemAlbum,

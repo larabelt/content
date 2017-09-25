@@ -6,4 +6,7 @@ export default {
     components: {
         tab: params,
     },
+    mounted() {
+        this.$store.dispatch(this.storeKey + '/params/load');
+    }
 }
