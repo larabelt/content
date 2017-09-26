@@ -23,8 +23,8 @@ class ElasticCommandTest extends BeltTestCase
         $service->shouldReceive('getSettings')->once()->andReturnSelf();
         $service->shouldReceive('getMappings')->once()->andReturnSelf();
         $service->shouldReceive('putMappings')->once()->andReturnSelf();
-        $service->shouldReceive('deleteIndex')->once()->andReturnSelf();
-        $service->shouldReceive('createIndex')->once()->andReturnSelf();
+        $service->shouldReceive('deleteIndex')->twice()->andReturnSelf();
+        $service->shouldReceive('createIndex')->twice()->andReturnSelf();
         $service->shouldReceive('import')->once()->with('test')->andReturnSelf();
 
         # get-settings
@@ -62,6 +62,12 @@ class ElasticCommandTest extends BeltTestCase
         $cmd->service = $service;
         $cmd->shouldReceive('argument')->andReturn('import');
         $cmd->shouldReceive('option')->andReturn('test');
+        $cmd->handle();
+
+        # replace-index
+        $cmd = m::mock(ElasticCommand::class . '[argument]');
+        $cmd->service = $service;
+        $cmd->shouldReceive('argument')->andReturn('replace-index');
         $cmd->handle();
     }
 

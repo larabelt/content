@@ -77,6 +77,19 @@ class CompileServiceTest extends BeltTestCase
     }
 
     /**
+     * @covers \Belt\Content\Services\CompileService::compile
+     */
+    public function testCompileException()
+    {
+        $page = factory(Page::class)->make();
+
+        View::shouldReceive('make')->andThrow(new \Exception());
+
+        $service = new CompileService();
+        $service->compile($page);
+    }
+
+    /**
      * @covers \Belt\Content\Services\CompileService::cache
      */
     public function testCache()

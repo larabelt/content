@@ -11,6 +11,7 @@ class SectionTest extends BeltTestCase
      * @covers \Belt\Content\Section::getTemplateGroup
      * @covers \Belt\Content\Section::getSectionName
      * @covers \Belt\Content\Section::getNameAttribute
+     * @covers \Belt\Content\Section::owner
      */
     public function test()
     {
@@ -25,6 +26,9 @@ class SectionTest extends BeltTestCase
 
         # getSectionName
         $this->assertNotEmpty($section->getSectionName());
+
+        # owner
+        $this->assertInstanceOf(MorphTo::class, $section->owner());
 
     }
 

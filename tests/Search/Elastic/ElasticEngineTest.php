@@ -22,6 +22,7 @@ class ElasticEngineTest extends Testing\BeltTestCase
      * @covers \Belt\Content\Search\Elastic\ElasticEngine::__construct
      * @covers \Belt\Content\Search\Elastic\ElasticEngine::setRequest
      * @covers \Belt\Content\Search\Elastic\ElasticEngine::setOptions
+     * @covers \Belt\Content\Search\Elastic\ElasticEngine::setSort
      * @covers \Belt\Content\Search\Elastic\ElasticEngine::update
      * @covers \Belt\Content\Search\Elastic\ElasticEngine::delete
      * @covers \Belt\Content\Search\Elastic\ElasticEngine::search
@@ -32,8 +33,6 @@ class ElasticEngineTest extends Testing\BeltTestCase
      * @covers \Belt\Content\Search\Elastic\ElasticEngine::mapIds
      * @covers \Belt\Content\Search\Elastic\ElasticEngine::map
      * @covers \Belt\Content\Search\Elastic\ElasticEngine::getTotalCount
-     * covers \Belt\Content\Search\Elastic\ElasticEngine::sort
-     * covers \Belt\Content\Search\Elastic\ElasticEngine::filters
      */
     public function test()
     {
@@ -56,7 +55,15 @@ class ElasticEngineTest extends Testing\BeltTestCase
         $engine = new ElasticEngine($elastic, 'test', ['min_score' => 1]);
 
         # setRequest
-        $request = new PaginateRequest(['q' => 'test', 'perPage' => 25, 'page' => 3, 'include' => 'pages,posts', 'min_score' => .5]);
+        $request = new PaginateRequest([
+            'q' => 'test',
+            'perPage' => 25,
+            'page' => 3,
+            'include' => 'pages,posts',
+            'min_score' => .5,
+            'debug' => true,
+            'orderBy' => 'score',
+        ]);
         $engine->setRequest($request);
         $this->assertEquals(25, $engine->size);
         $this->assertEquals(50, $engine->from);
@@ -65,6 +72,8 @@ class ElasticEngineTest extends Testing\BeltTestCase
 
         # setOptions
         $engine->setOptions([
+            'debug' => false,
+            'orderBy' => 'score',
             'needle' => 'test2',
             'from' => 100,
             'size' => 20,
@@ -109,31 +118,38 @@ class ElasticEngineTest extends Testing\BeltTestCase
         $this->assertInstanceOf(Collection::class, $items);
 
         # paginate
-//        $builder = new Builder(new Page(), Page::query());
-//        $builder->limit = 10;
-//        $builder->query = 'test';
-//        $builder->orderBy('id');
-//        $engine->paginate($builder, 1, 1);
+        $builder = new Builder(new Page(), Page::query());
+        $engine->paginate($builder, 1, 1);
+
+        # setSort
+        $engine->orderBy = '-name';
+        $params = $engine->setSort([]);
+        $this->assertEquals('desc', $params['body']['sort']['name.keyword']['order']);
+
+        # empty placeholder functions
+        $engine->getTotalCount([]);
+        $engine->map([], '');
+        $engine->mapIds([]);
 
 //        # filters
 //        $builder = new Builder(new Page(), Page::query());
 //        $builder->where('name', 'test');
 //        $this->assertEquals([['match_phrase' => ['name' => 'test']]], $engine->filters($builder));
-
-        # mapIds
+//
+//        # mapIds
 //        $this->assertEquals([1, 2], $engine->mapIds($results)->toArray());
-
-        # map
+//
+//        # map
 //        $this->assertEquals(0, $engine->map(['hits' => ['total' => []]], new Page())->count());
 //        $model = m::mock(Page::class);
 //        $model->shouldReceive('getKeyName')->andReturn('id');
 //        $model->shouldReceive('whereIn')->with('id', [1, 2])->andReturnSelf();
 //        $model->shouldReceive('get')->andReturn(collect([new Page, new Page]));
 //        $engine->map($results, $model);
-
-        # getTotalCount
+//
+//        # getTotalCount
 //        $this->assertEquals(2, $engine->getTotalCount($results));
-
+//
 //        # sort
 //        $builder = new Builder(new Page(), Page::query());
 //        $this->assertNull($engine->sort($builder));
