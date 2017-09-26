@@ -19,6 +19,7 @@ class PaginatePages extends PaginateRequest
     public $sortable = [
         'pages.id',
         'pages.name',
+        'pages.is_active',
     ];
 
     public $searchable = [
