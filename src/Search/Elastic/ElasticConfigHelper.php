@@ -31,6 +31,12 @@ class ElasticConfigHelper
                 ],
             ],
         ],
+        'long' => [
+            'type' => 'long',
+        ],
+        'float' => [
+            'type' => 'float',
+        ],
         'name' => [
             'type' => 'text',
             'fields' => [

@@ -2,8 +2,9 @@
 
 namespace Belt\Content\Search\Elastic;
 
+use Belt;
 use Belt\Core\Behaviors\HasConfig;
-use Belt\Core\Helpers\MorphHelper;
+use Belt\Core\Helpers;
 use Belt\Core\Http\Requests\PaginateRequest;
 use Belt\Content\Search;
 use Laravel\Scout\Builder;
@@ -57,10 +58,10 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
     /**
      * @var array
      */
-    public $modifiers;
+    public static $modifiers = [];
 
     /**
-     * @var MorphHelper
+     * @var Helpers\MorphHelper
      */
     public $morphHelper;
 
@@ -72,7 +73,7 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
     /**
      * @var array
      */
-    public $types = [];
+    public $types = '';
 
     /**
      * @var Elastic
@@ -101,8 +102,9 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
         $this->config = $config;
         $this->elastic = $elastic;
         $this->index = $index;
-        $this->morphHelper = new MorphHelper();
+        $this->morphHelper = new Helpers\MorphHelper();
         $this->min_score = (float) $this->config('min_score', 0);
+        $this->types = $this->config('types');
     }
 
     /**
@@ -243,13 +245,7 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
      */
     public function search(Builder $builder)
     {
-//        return $this->performSearch(array_filter([
-//            //'numericFilters' => $this->filters($builder),
-//            'size' => $builder->limit,
-//            'needle' => $builder->query,
-//            'types' => [$builder->model->searchableAs()],
-//            //'sort' => $this->sort($builder),
-//        ]));
+
     }
 
     /**
@@ -279,23 +275,23 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
             $params['body']['min_score'] = $this->min_score;
         }
 
-        //if ($numericFilters = array_get($options, 'numericFilters')) {
-        //    $params['body']['query']['bool']['must'] = array_merge($params['body']['query']['bool']['must'], $numericFilters);
-        //}
-
-        //dump($params);
-
         return $this->elastic->search($params);
     }
 
     public function setSort($params)
     {
         $dir = substr($this->orderBy, 0, 1) == '-' ? 'desc' : 'asc';
-        $sort = ltrim($this->orderBy, '-');
+        $sort = Helpers\ArrayHelper::last(explode('.', ltrim($this->orderBy, '-')));
 
         if ($sort == 'name') {
             $params['body']['sort']['name.keyword']['order'] = $dir;
-            //$params['body']['sort']['slug.keyword']['order'] = $dir;
+        }
+
+        if ($sort == 'rating') {
+            $params['body']['sort']['rating'] = [
+                'unmapped_type' => 'float',
+                'order' => $dir,
+            ];
         }
 
         return $params;
@@ -327,13 +323,47 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
             ];
         }
 
-        # query modifiers
-        if ($this->modifiers && $this->request) {
-            foreach ($this->modifiers as $modifier) {
-                if (method_exists($modifier, 'elastic')) {
-                    $query = $modifier::elastic($query, $this->request);
+        $query = $this->applyModifiers($query);
+
+        return $query;
+    }
+
+    /**
+     * @param string $type
+     * @param mixed $classes
+     */
+    public static function addModifiers($type, $classes)
+    {
+        static::$modifiers[$type] = static::$modifiers[$type] ?? [];
+
+        $classes = is_array($classes) ? $classes : [$classes];
+
+        foreach ($classes as $class) {
+            if (!in_array($class, static::$modifiers[$type])) {
+                static::$modifiers[$type][] = $class;
+            }
+        }
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function applyModifiers($query)
+    {
+
+        $modifiers = [];
+        foreach (explode(',', $this->types) as $type) {
+            foreach (array_get(static::$modifiers, $type, []) as $class) {
+                if (!in_array($class, $modifiers)) {
+                    $modifiers[] = $class;
                 }
             }
+        }
+
+        foreach ($modifiers as $class) {
+            $modifier = new $class();
+            $query = $modifier->modify($query, $this->request);
         }
 
         return $query;
@@ -370,42 +400,7 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
      */
     public function paginate(Builder $builder, $perPage, $page)
     {
-//        $result = $this->performSearch(array_filter([
-//            //'numericFilters' => $this->filters($builder),
-//            'from' => (($page * $perPage) - $perPage),
-//            'size' => $builder->limit,
-//            'needle' => $builder->query,
-//            'types' => [$builder->model->searchableAs()],
-//            //'sort' => $this->sort($builder),
-//        ]));
-//
-//        $result['nbPages'] = $result['hits']['total'] / $perPage;
-//
-//        return $result;
-    }
 
-//    /**
-//     * Get the filter array for the query.
-//     *
-//     * @param  Builder $builder
-//     * @return array
-//     */
-//    public function filters(Builder $builder)
-//    {
-//        return collect($builder->wheres)->map(function ($value, $key) {
-//            return ['match_phrase' => [$key => $value]];
-//        })->values()->all();
-//    }
-
-    /**
-     * Pluck and return the primary keys of the given results.
-     *
-     * @param  mixed $results
-     * @return \Illuminate\Support\Collection
-     */
-    public function mapIds($results)
-    {
-        //return collect(array_get($results, 'hits.hits'))->pluck('_id')->values();
     }
 
     /**
@@ -417,15 +412,18 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
      */
     public function map($results, $model)
     {
-//        if (count(array_get($results, 'hits.total')) === 0) {
-//            return new Collection();
-//        }
-//
-//        $keys = $this->mapIds($results)->all();
-//
-//        $models = $model->whereIn($model->getKeyName(), $keys)->get()->keyBy($model->getKeyName());
-//
-//        return $models;
+
+    }
+
+    /**
+     * Pluck and return the primary keys of the given results.
+     *
+     * @param  mixed $results
+     * @return \Illuminate\Support\Collection
+     */
+    public function mapIds($results)
+    {
+
     }
 
     /**
@@ -436,7 +434,7 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
      */
     public function getTotalCount($results)
     {
-        //return $results['hits']['total'];
+
     }
 
     /**
@@ -456,22 +454,5 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
             dump($msg);
         }
     }
-
-//    /**
-//     * Generates the sort if theres any.
-//     *
-//     * @param  Builder $builder
-//     * @return array|null
-//     */
-//    public function sort($builder)
-//    {
-//        if (count($builder->orders) == 0) {
-//            return null;
-//        }
-//
-//        return collect($builder->orders)->map(function ($order) {
-//            return [$order['column'] => $order['direction']];
-//        })->toArray();
-//    }
 
 }

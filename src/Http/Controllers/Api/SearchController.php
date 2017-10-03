@@ -27,12 +27,12 @@ class SearchController extends BaseController
 
         $engine = $request->get('engine', $default_engine);
 
-        $class = LocalSearchPaginator::class;
+        $paginatorClass = LocalSearchPaginator::class;
 
         if ($engine != 'local') {
             try {
                 $driver = app(EngineManager::class)->driver($engine);
-                $class = $driver->getPaginatorClass();
+                $paginatorClass = $driver->getPaginatorClass();
             } catch (\Exception $e) {
                 abort(404);
             }
@@ -42,7 +42,7 @@ class SearchController extends BaseController
 
         $request->merge(['is_active' => true, 'is_searchable' => true]);
 
-        $paginator = new $class(null, $request);
+        $paginator = new $paginatorClass(null, $request);
 
         return response()->json($paginator->build()->toArray());
     }

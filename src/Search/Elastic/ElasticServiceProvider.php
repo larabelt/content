@@ -31,13 +31,16 @@ class ElasticServiceProvider extends BaseServiceProvider
     public function boot()
     {
         if (config('belt.elastic.index.name') && config('belt.elastic.index.hosts')) {
-            app(EngineManager::class)->extend('elastic', function ($app) {
-                return new ElasticEngine(Elasticsearch\ClientBuilder::create()
-                    ->setHosts(config('belt.elastic.index.hosts'))
-                    ->build(),
-                    config('belt.elastic.index.name'),
-                    config('belt.elastic.index')
-                );
+
+            $engine = new ElasticEngine(Elasticsearch\ClientBuilder::create()
+                ->setHosts(config('belt.elastic.index.hosts'))
+                ->build(),
+                config('belt.elastic.index.name'),
+                config('belt.elastic.index')
+            );
+
+            app(EngineManager::class)->extend('elastic', function () use ($engine) {
+                return $engine;
             });
         }
     }

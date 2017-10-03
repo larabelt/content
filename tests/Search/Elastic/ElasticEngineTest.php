@@ -3,7 +3,6 @@
 use Mockery as m;
 use Belt\Core\Helpers\MorphHelper;
 use Belt\Core\Http\Requests\PaginateRequest;
-use Belt\Core\Pagination\IsActiveQueryModifier;
 use Belt\Core\Testing;
 use Belt\Content\Page;
 use Belt\Content\Search\Elastic\ElasticEngine;
@@ -77,13 +76,13 @@ class ElasticEngineTest extends Testing\BeltTestCase
             'needle' => 'test2',
             'from' => 100,
             'size' => 20,
-            'types' => ['pages'],
+            'types' => 'pages',
             'min_score' => .25
         ]);
         $this->assertEquals(20, $engine->size);
         $this->assertEquals(100, $engine->from);
         $this->assertEquals('test2', $engine->needle);
-        $this->assertEquals(['pages'], $engine->types);
+        $this->assertEquals('pages', $engine->types);
 
         $models = new Collection([new Page()]);
 
@@ -107,7 +106,6 @@ class ElasticEngineTest extends Testing\BeltTestCase
         ]);
 
         # query
-        $engine->modifiers[] = IsActiveQueryModifier::class;
         $engine->query();
 
         # morphResults

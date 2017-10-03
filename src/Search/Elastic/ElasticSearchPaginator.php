@@ -20,12 +20,15 @@ class ElasticSearchPaginator extends BaseLengthAwarePaginator
      */
     public function build()
     {
-        $request = $this->request;
 
         /**
          * @var $engine \Belt\Content\Search\Elastic\ElasticEngine
          */
         $engine = app(EngineManager::class)->driver('elastic');
+
+        # request
+        $request = $this->request;
+        $engine->setRequest($request);
 
         # include / types
         if ($include = $request->get('include', [])) {
@@ -33,27 +36,20 @@ class ElasticSearchPaginator extends BaseLengthAwarePaginator
         }
 
         # class / config
-        $modifiers = [];
         foreach (config('belt.search.classes') as $modelClass => $paginateClass) {
             $morphKey = (new $modelClass)->getMorphClass();
             if ($include && !in_array($morphKey, $include)) {
                 continue;
             }
-            $queryModifiers = (new $paginateClass)->queryModifiers;
-            foreach ($queryModifiers as $queryModifier) {
-                if (!in_array($queryModifier, $modifiers)) {
-                    $modifiers[] = $queryModifier;
-                }
-            }
         }
-
-        $engine->setRequest($request);
-        $engine->modifiers = $modifiers;
 
         # execute search
         $results = $engine->performSearch();
+
+        # morph results
         $items = $engine->morphResults($results);
 
+        # create paginator
         $paginator = new LengthAwarePaginator(
             $items->toArray(),
             array_get($results, 'hits.total', $items->count()),
