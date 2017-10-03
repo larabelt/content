@@ -23,7 +23,9 @@ class SearchController extends BaseController
      */
     public function index(Request $request)
     {
-        $engine = $request->get('engine', 'local');
+        $default_engine = config('belt.search.default_engine', 'local');
+
+        $engine = $request->get('engine', $default_engine);
 
         $class = LocalSearchPaginator::class;
 
