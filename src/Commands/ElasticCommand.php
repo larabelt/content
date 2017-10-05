@@ -3,7 +3,7 @@
 namespace Belt\Content\Commands;
 
 use Riimu;
-use Belt\Content\Search\Elastic\ElasticService;
+use Belt\Content\Elastic\ElasticService;
 use Illuminate\Console\Command;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace Belt\Content\Search\Elastic;
+namespace Belt\Content\Elastic;
 
 use Belt, Elasticsearch;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;

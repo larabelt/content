@@ -1,6 +1,6 @@
 <?php
 
-namespace Belt\Content\Search\Elastic;
+namespace Belt\Content\Elastic;
 
 use Belt, Riimu;
 use Belt\Core\Helpers\BeltHelper;

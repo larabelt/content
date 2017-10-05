@@ -1,6 +1,6 @@
 <?php
 
-namespace Belt\Content\Search\Elastic;
+namespace Belt\Content\Elastic;
 
 use Belt\Core\Pagination\BaseLengthAwarePaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -22,7 +22,7 @@ class ElasticSearchPaginator extends BaseLengthAwarePaginator
     {
 
         /**
-         * @var $engine \Belt\Content\Search\Elastic\ElasticEngine
+         * @var $engine \Belt\Content\Elastic\ElasticEngine
          */
         $engine = app(EngineManager::class)->driver('elastic');
 

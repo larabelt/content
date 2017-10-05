@@ -1,16 +1,16 @@
 <?php
 
-namespace Belt\Content\Search\Elastic;
+namespace Belt\Content\Elastic;
 
 use Belt;
 use Belt\Core\Behaviors\HasConfig;
 use Belt\Core\Helpers;
 use Belt\Core\Http\Requests\PaginateRequest;
 use Belt\Content\Search;
-use Laravel\Scout\Builder;
-use Laravel\Scout\Engines\Engine;
 use Elasticsearch\Client as Elastic;
 use Illuminate\Database\Eloquent\Collection;
+use Laravel\Scout\Builder;
+use Laravel\Scout\Engines\Engine;
 
 /**
  * Class ElasticEngine
@@ -24,6 +24,11 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
     public static $paginatorClass = ElasticSearchPaginator::class;
 
     /**
+     * @var Elastic
+     */
+    public $elastic;
+
+    /**
      * Index where the models will be saved.
      *
      * @var string
@@ -34,11 +39,6 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
      * @var PaginateRequest
      */
     public $request;
-
-    /**
-     * @var string
-     */
-    public $needle = '';
 
     /**
      * @var integer
@@ -73,22 +73,22 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
     /**
      * @var array
      */
-    public $types = '';
+    public $query = [];
 
     /**
-     * @var Elastic
+     * @var array
      */
-    public $elastic;
+    public $sort = [];
+
+    /**
+     * @var array
+     */
+    public $types = '';
 
     /**
      * @var bool
      */
     public $debug = false;
-
-    /**
-     * @var string
-     */
-    public $orderBy;
 
     /**
      * Create a new engine instance.
@@ -118,10 +118,6 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
 
         $options = [];
 
-        if ($needle = $request->needle()) {
-            $options['needle'] = $needle;
-        }
-
         if ($from = $request->offset()) {
             $options['from'] = $from;
         }
@@ -140,10 +136,6 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
 
         if ($min_score = $request->has('min_score')) {
             $options['min_score'] = (float) $request->get('min_score');
-        }
-
-        if ($orderBy = $request->get('orderBy')) {
-            $options['orderBy'] = $orderBy;
         }
 
         $this->setOptions($options);
@@ -166,16 +158,8 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
             $this->from = array_get($options, 'from');
         }
 
-        if (array_has($options, 'needle')) {
-            $this->needle = array_get($options, 'needle');
-        }
-
         if (array_has($options, 'min_score')) {
             $this->min_score = (float) array_get($options, 'min_score');
-        }
-
-        if (array_has($options, 'orderBy')) {
-            $this->orderBy = array_get($options, 'orderBy');
         }
 
         if (array_has($options, 'size')) {
@@ -259,50 +243,19 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
 
         $this->setOptions($options);
 
-        $query = $this->query();
-
-        $params = [
+        $this->params = [
             'index' => $this->index,
             'type' => $this->types,
-            'body' => ['query' => $query]
+            'body' => [
+                'from' => $this->from,
+                'min_score' => $this->min_score ?: 0,
+                'query' => [],
+                'size' => $this->size,
+                'sort' => [],
+            ],
         ];
 
-        $params['body']['from'] = $this->from;
-        $params['body']['size'] = $this->size;
-        $params = $this->setSort($params);
-
-        if ($this->min_score) {
-            $params['body']['min_score'] = $this->min_score;
-        }
-
-        return $this->elastic->search($params);
-    }
-
-    public function setSort($params)
-    {
-        $dir = substr($this->orderBy, 0, 1) == '-' ? 'desc' : 'asc';
-        $sort = Helpers\ArrayHelper::last(explode('.', ltrim($this->orderBy, '-')));
-
-        if ($sort == 'name') {
-            $params['body']['sort']['name.keyword']['order'] = $dir;
-        }
-
-        if ($sort == 'rating') {
-            $params['body']['sort']['rating'] = [
-                'unmapped_type' => 'float',
-                'order' => $dir,
-            ];
-        }
-
-        return $params;
-    }
-
-    /**
-     * @return array
-     */
-    public function query()
-    {
-        $query = [
+        $this->query = [
             'bool' => [
                 'must' => [],
                 'should' => [],
@@ -311,21 +264,12 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
             ],
         ];
 
-        if ($this->needle) {
-            $query['bool']['should'][]['multi_match'] = [
-                'query' => $this->needle,
-                'fields' => ['name^10', 'meta_title^5', 'meta_keywords^5', 'meta_description^5', 'searchable'],
-                'type' => 'best_fields',
-                'tie_breaker' => 0.3,
-            ];
-            $query['bool']['should'][]['wildcard'] = [
-                'name' => "*$this->needle*",
-            ];
-        }
+        $this->applyModifiers();
 
-        $query = $this->applyModifiers($query);
+        $this->params['body']['sort'] = $this->sort;
+        $this->params['body']['query'] = $this->query;
 
-        return $query;
+        return $this->elastic->search($this->params);
     }
 
     /**
@@ -346,12 +290,10 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
     }
 
     /**
-     * @param $query
      * @return mixed
      */
-    public function applyModifiers($query)
+    public function applyModifiers()
     {
-
         $modifiers = [];
         foreach (explode(',', $this->types) as $type) {
             foreach (array_get(static::$modifiers, $type, []) as $class) {
@@ -362,11 +304,11 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
         }
 
         foreach ($modifiers as $class) {
-            $modifier = new $class();
-            $query = $modifier->modify($query, $this->request);
+            $modifier = new $class($this);
+            $modifier->modify($this->request);
         }
 
-        return $query;
+        return $this->query;
     }
 
     /**

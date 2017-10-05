@@ -2,8 +2,8 @@
 
 use Mockery as m;
 use Belt\Core\Testing\BeltTestCase;
-use Belt\Content\Search\Elastic\ElasticEngine;
-use Belt\Content\Search\Elastic\ElasticService;
+use Belt\Content\Elastic\ElasticEngine;
+use Belt\Content\Elastic\ElasticService;
 use Elasticsearch\Namespaces\IndicesNamespace;
 use Elasticsearch\Client as Elastic;
 use Illuminate\Contracts\Filesystem\Filesystem;
@@ -17,18 +17,18 @@ class ElasticServiceTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Content\Search\Elastic\ElasticService::__construct
-     * @covers \Belt\Content\Search\Elastic\ElasticService::elastic
-     * @covers \Belt\Content\Search\Elastic\ElasticService::engine
-     * @covers \Belt\Content\Search\Elastic\ElasticService::indices
-     * @covers \Belt\Content\Search\Elastic\ElasticService::disk
-     * @covers \Belt\Content\Search\Elastic\ElasticService::writeConfig
-     * @covers \Belt\Content\Search\Elastic\ElasticService::deleteIndex
-     * @covers \Belt\Content\Search\Elastic\ElasticService::createIndex
-     * @covers \Belt\Content\Search\Elastic\ElasticService::getSettings
-     * @covers \Belt\Content\Search\Elastic\ElasticService::getMappings
-     * @covers \Belt\Content\Search\Elastic\ElasticService::putMappings
-     * @covers \Belt\Content\Search\Elastic\ElasticService::import
+     * @covers \Belt\Content\Elastic\ElasticService::__construct
+     * @covers \Belt\Content\Elastic\ElasticService::elastic
+     * @covers \Belt\Content\Elastic\ElasticService::engine
+     * @covers \Belt\Content\Elastic\ElasticService::indices
+     * @covers \Belt\Content\Elastic\ElasticService::disk
+     * @covers \Belt\Content\Elastic\ElasticService::writeConfig
+     * @covers \Belt\Content\Elastic\ElasticService::deleteIndex
+     * @covers \Belt\Content\Elastic\ElasticService::createIndex
+     * @covers \Belt\Content\Elastic\ElasticService::getSettings
+     * @covers \Belt\Content\Elastic\ElasticService::getMappings
+     * @covers \Belt\Content\Elastic\ElasticService::putMappings
+     * @covers \Belt\Content\Elastic\ElasticService::import
      */
     public function test()
     {

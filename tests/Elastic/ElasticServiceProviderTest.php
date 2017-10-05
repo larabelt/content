@@ -1,14 +1,14 @@
 <?php
 
 use Belt\Core\Testing;
-use Belt\Content\Search\Elastic\ElasticServiceProvider;
+use Belt\Content\Elastic\ElasticServiceProvider;
 use Laravel\Scout\EngineManager;
 
 class ElasticServiceProviderTest extends Testing\BeltTestCase
 {
     /**
-     * @covers \Belt\Content\Search\Elastic\ElasticServiceProvider::register
-     * @covers \Belt\Content\Search\Elastic\ElasticServiceProvider::boot
+     * @covers \Belt\Content\Elastic\ElasticServiceProvider::register
+     * @covers \Belt\Content\Elastic\ElasticServiceProvider::boot
      */
     public function test()
     {

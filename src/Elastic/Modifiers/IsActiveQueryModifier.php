@@ -1,28 +1,25 @@
 <?php
 
-namespace Belt\Content\Search\Elastic\Pagination;
+namespace Belt\Content\Elastic\Modifiers;
 
 use Belt\Core\Http\Requests\PaginateRequest;
-use Belt\Content\Search\Elastic\Pagination\PaginationQueryModifier;
+use Belt\Content\Elastic\Modifiers\PaginationQueryModifier;
 
 class IsActiveQueryModifier extends PaginationQueryModifier
 {
     /**
      * Modify the query
      *
-     * @param  array $query
      * @param  PaginateRequest $request
      * @return $query
      */
-    public function modify(array $query, PaginateRequest $request)
+    public function modify(PaginateRequest $request)
     {
         if ($request->query->has('is_active')) {
             $is_active = $request->query->get('is_active') ? true : false;
-            $query['bool']['must'][]['terms'] = [
+            $this->engine->query['bool']['must'][]['terms'] = [
                 'is_active' => [$is_active],
             ];
         }
-
-        return $query;
     }
 }

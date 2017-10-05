@@ -1,13 +1,13 @@
 <?php
 
-use Belt\Content\Search\Elastic\ElasticConfigHelper;
+use Belt\Content\Elastic\ElasticConfigHelper;
 
 class ElasticConfigHelperTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers \Belt\Content\Search\Elastic\ElasticConfigHelper::analyzer
-     * @covers \Belt\Content\Search\Elastic\ElasticConfigHelper::normalizer
-     * @covers \Belt\Content\Search\Elastic\ElasticConfigHelper::property
+     * @covers \Belt\Content\Elastic\ElasticConfigHelper::analyzer
+     * @covers \Belt\Content\Elastic\ElasticConfigHelper::normalizer
+     * @covers \Belt\Content\Elastic\ElasticConfigHelper::property
      */
     public function test()
     {
