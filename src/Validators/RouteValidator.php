@@ -42,7 +42,8 @@ class RouteValidator
              * catch-all routes.
              */
             if ($route->uri() == '{any?}') {
-                $validates = true;
+                //$validates = true;
+                throw new \Exception();
             }
 
         } catch (\Exception $e) {
