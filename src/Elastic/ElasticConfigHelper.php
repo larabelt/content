@@ -37,6 +37,9 @@ class ElasticConfigHelper
         'float' => [
             'type' => 'float',
         ],
+        'geo_point' => [
+            'type' => 'geo_point',
+        ],
         'name' => [
             'type' => 'text',
             'fields' => [

@@ -78,6 +78,11 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
     /**
      * @var array
      */
+    public $filter = [];
+
+    /**
+     * @var array
+     */
     public $sort = [];
 
     /**
@@ -268,6 +273,7 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
 
         $this->params['body']['sort'] = $this->sort;
         $this->params['body']['query'] = $this->query;
+        $this->params['body']['query']['bool']['filter'] = $this->filter;
 
         return $this->elastic->search($this->params);
     }
