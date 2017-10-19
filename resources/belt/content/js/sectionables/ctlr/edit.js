@@ -15,12 +15,18 @@ export default {
     },
     components: {inner},
     methods: {
-        save() {
+        // save() {
+        //     this.active.submit()
+        //         .then(() => {
+        //             this.sections.index();
+        //         });
+        // },
+        save: _.debounce(function () {
             this.active.submit()
                 .then(() => {
                     this.sections.index();
                 });
-        },
+        }, 1000),
     },
     template: edit_html
 }
