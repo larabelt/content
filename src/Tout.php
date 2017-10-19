@@ -11,11 +11,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tout extends Model implements
     Belt\Core\Behaviors\SluggableInterface,
+    Belt\Core\Behaviors\TypeInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\SectionableInterface,
     Belt\Glue\Behaviors\TaggableInterface
 {
     use Belt\Core\Behaviors\Sluggable;
+    use Belt\Core\Behaviors\TypeTrait;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\Sectionable;
     use Belt\Glue\Behaviors\Taggable;
@@ -34,6 +36,11 @@ class Tout extends Model implements
      * @var array
      */
     protected $fillable = ['name', 'body'];
+
+    /**
+     * @var array
+     */
+    protected $appends = ['morph_class'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
