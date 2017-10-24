@@ -54,7 +54,8 @@ class LocalSearchPaginator extends BaseLengthAwarePaginator
         }
 
         $paginator = new LengthAwarePaginator(
-            $items->toArray(),
+            //$items->toArray(),
+            $items,
             $pager ? $pager->total() : 0,
             $pager ? $pager->perPage() : $request->perPage(),
             $pager ? $pager->currentPage() : 1

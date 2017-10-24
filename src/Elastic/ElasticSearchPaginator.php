@@ -51,7 +51,8 @@ class ElasticSearchPaginator extends BaseLengthAwarePaginator
 
         # create paginator
         $paginator = new LengthAwarePaginator(
-            $items->toArray(),
+            //$items->toArray(),
+            $items,
             array_get($results, 'hits.total', $items->count()),
             $request->perPage(),
             $request->page()

@@ -42,6 +42,7 @@ export default {
                             this.form.handleable_id = item.id;
                             this.table.query.q = null;
                             this.table.items = [];
+                            this.form.target = this.form.target ? this.form.target : _.get(item, 'default_url');
                         },
                         clear() {
                             this.item = {};
