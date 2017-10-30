@@ -399,6 +399,15 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
                 array_get($result, '_source.name'),
                 array_get($result, '_score')
             );
+
+            if ($categories = array_get($result, '_source.categories')) {
+                $msg = sprintf('%s (c: %s)', $msg, implode(',', $categories));
+            }
+
+            if ($tags = array_get($result, '_source.tags')) {
+                $msg = sprintf('%s (t: %s)', $msg, implode(',', $tags));
+            }
+
             dump($msg);
         }
     }
