@@ -31,6 +31,9 @@ class ElasticConfigHelper
                 ],
             ],
         ],
+        'integer' => [
+            'type' => 'integer',
+        ],
         'long' => [
             'type' => 'long',
         ],

@@ -393,20 +393,33 @@ class ElasticEngine extends Engine implements Search\HasPaginatorInterface
     public function debug($result)
     {
         if ($this->debug) {
-            $msg = sprintf('%s: #%s %s (%s)',
+
+            $msg = [];
+
+            $source = array_get($result, '_source', []);
+
+            $msg[] = sprintf('%s: #%s %s (%s)',
                 array_get($result, '_type'),
                 array_get($result, '_id'),
-                array_get($result, '_source.name'),
+                array_get($source, 'name'),
                 array_get($result, '_score')
             );
 
-            if ($categories = array_get($result, '_source.categories')) {
-                $msg = sprintf('%s (c: %s)', $msg, implode(',', $categories));
+            if ($categories = array_get($source, 'categories')) {
+                $msg[] = sprintf("categories: %s", implode(',', $categories));
             }
 
-            if ($tags = array_get($result, '_source.tags')) {
-                $msg = sprintf('%s (t: %s)', $msg, implode(',', $tags));
+            if ($tags = array_get($source, 'tags')) {
+                $msg[] = sprintf("tags: %s", implode(',', $tags));
             }
+
+            $starts_at = array_get($source, 'starts_at');
+            $ends_at = array_get($source, 'ends_at');
+            if ($starts_at || $ends_at) {
+                $msg[] = sprintf("starts: %s, ends: %s", date('Y-m-d H:i', $starts_at), date('Y-m-d H:i', $ends_at));
+            }
+
+            $msg = implode("\n", $msg);
 
             dump($msg);
         }
