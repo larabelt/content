@@ -60,6 +60,11 @@ class Post extends Model implements
     /**
      * @var array
      */
+    protected $dates = ['post_at', 'created_at', 'updated_at', 'deleted_at'];
+
+    /**
+     * @var array
+     */
     protected $appends = ['image', 'morph_class', 'default_url'];
 
     /**
