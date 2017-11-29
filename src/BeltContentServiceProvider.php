@@ -94,6 +94,7 @@ class BeltContentServiceProvider extends ServiceProvider
         });
 
         // validators
+        Validator::extend('alt_url', Belt\Content\Validators\AltUrlValidator::class . '@altUrl');
         Validator::extend('unique_route', Belt\Content\Validators\RouteValidator::class . '@routeIsUnique');
 
         # beltable values for global belt command
