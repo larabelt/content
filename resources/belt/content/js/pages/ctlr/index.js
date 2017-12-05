@@ -36,7 +36,7 @@ export default {
                 this.table.index();
             },
             methods: {
-                filter: debounce(function (query) {
+                filter: _.debounce(function (query) {
                     if (query) {
                         query.page = 1;
                         this.table.updateQuery(query);
@@ -46,7 +46,7 @@ export default {
                             this.table.pushQueryToHistory();
                             this.table.pushQueryToRouter();
                         });
-                }, 250),
+                }, 300),
                 copy(id) {
                     let form = new Form();
                     form.service.baseUrl = '/api/v1/pages/?source=' + id;
