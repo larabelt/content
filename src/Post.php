@@ -1,4 +1,5 @@
 <?php
+
 namespace Belt\Content;
 
 use Belt;
@@ -65,7 +66,7 @@ class Post extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['image', 'morph_class', 'default_url'];
+    protected $appends = ['image', 'morph_class', 'default_url', 'is_public'];
 
     /**
      * Get the indexable data array for the model.
@@ -75,9 +76,38 @@ class Post extends Model implements
     public function toSearchableArray()
     {
         $array = $this->__toSearchableArray();
+        $array['is_active'] = $this->is_public;
         $array['categories'] = $this->categories ? $this->categories->pluck('id')->all() : null;
         $array['tags'] = $this->tags ? $this->tags->pluck('id')->all() : null;
 
         return $array;
+    }
+
+    /**
+     * Is post publicly available
+     *
+     * @return bool
+     */
+    public function getIsPublicAttribute()
+    {
+        if ($this->is_active && $this->post_at && $this->post_at->isPast()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Return tags associated with taggable
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeIsPublic($query)
+    {
+        $query->where('posts.is_active', 1);
+        $query->where('posts.post_at', '<', date('Y-m-d H:i:s'));
+
+        return $query;
     }
 }
