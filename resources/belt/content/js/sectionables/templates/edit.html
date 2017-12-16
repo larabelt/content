@@ -16,7 +16,12 @@
                     </div>
                     <div class="form-group" :class="{ 'has-error': active.error('before') }">
                         <label for="before">Upper Content</label>
-                        <textarea @change="active.submit()" class="form-control" rows="10" v-model="active.before" v-tinymce></textarea>
+                        <!--<textarea @change="active.submit()" class="form-control" rows="10" v-model="active.before" v-tinymce></textarea>-->
+
+                        <quill-editor v-model="active.before"
+                                      @change="active.submit()">
+                        </quill-editor>
+
                         <span class="help-block">Optional HTML body. Will appear above any nested items.</span>
                         <span v-for="error in active.error('before')" class="content-danger">{{ error }}</span>
                     </div>
