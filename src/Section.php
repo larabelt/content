@@ -49,6 +49,13 @@ class Section extends Model implements
     protected $appends = ['name', 'morph_class'];
 
     /**
+     * @var array
+     */
+    protected $attributes = [
+        'sectionable_type' => 'sections',
+    ];
+
+    /**
      * @return string
      */
     public function getNameAttribute()

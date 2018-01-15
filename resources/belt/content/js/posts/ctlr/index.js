@@ -1,7 +1,8 @@
-// helpers
 import Table from 'belt/content/js/posts/table';
-
-// templates make a change
+import filterSearch from 'belt/core/js/inputs/filter-search';
+import filterTags from 'belt/glue/js/inputs/filter-tags/filter';
+import filterTagsAttached from 'belt/glue/js/inputs/filter-tags/attached';
+import filterTagsDetached from 'belt/glue/js/inputs/filter-tags/detached';
 import heading_html from 'belt/core/js/templates/heading.html';
 import index_html from 'belt/content/js/posts/templates/index.html';
 
@@ -23,6 +24,25 @@ export default {
             mounted() {
                 this.table.updateQueryFromRouter();
                 this.table.index();
+            },
+            methods: {
+                filter: _.debounce(function (query) {
+                    if (query) {
+                        query.page = 1;
+                        this.table.updateQuery(query);
+                    }
+                    this.table.index()
+                        .then(() => {
+                            this.table.pushQueryToHistory();
+                            this.table.pushQueryToRouter();
+                        });
+                }, 300),
+            },
+            components: {
+                filterSearch,
+                filterTags,
+                filterTagsAttached,
+                filterTagsDetached,
             },
             template: index_html,
         },

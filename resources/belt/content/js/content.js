@@ -5,6 +5,8 @@ import posts  from 'belt/content/js/posts/routes';
 import store from 'belt/core/js/store/index';
 import touts  from 'belt/content/js/touts/routes';
 
+window.larabelt.content = _.get(window, 'larabelt.content', {});
+
 export default class BeltContent {
 
     constructor() {
