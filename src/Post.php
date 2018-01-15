@@ -103,10 +103,12 @@ class Post extends Model implements
      * @param $query
      * @return mixed
      */
-    public function scopeIsPublic($query)
+    public function scopeIsPublic($query, $datetime = null)
     {
-        $query->where('posts.is_active', 1);
-        $query->where('posts.post_at', '<', date('Y-m-d H:i:s'));
+        $datetime = $datetime ?: date('Y-m-d H:i:s');
+
+        $query->where('posts.is_active', true);
+        $query->where('posts.post_at', '<', $datetime);
 
         return $query;
     }
