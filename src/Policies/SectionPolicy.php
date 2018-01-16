@@ -2,6 +2,7 @@
 
 namespace Belt\Content\Policies;
 
+use Belt\Core\Behaviors\TeamableInterface;
 use Belt\Core\User;
 use Belt\Core\Policies\BaseAdminPolicy;
 use Belt\Content\Section;
@@ -22,5 +23,20 @@ class SectionPolicy extends BaseAdminPolicy
     public function view(User $auth, $object)
     {
         return true;
+    }
+
+    /**
+     * Determine whether the user can update the object.
+     *
+     * @param  User $auth
+     * @param  Model $object
+     * @return mixed
+     */
+    public function update(User $auth, $object)
+    {
+        $owner = $object->owner;
+        if ($owner instanceof TeamableInterface) {
+            return $this->ofTeam($auth, $owner->team);
+        }
     }
 }
