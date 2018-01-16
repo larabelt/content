@@ -1,6 +1,8 @@
 {
   "name": "larabelt/content",
   "description": "Content package for LaraBelt.",
+  "keywords": ["cms", "laravel", "larabelt"],
+  "license": "MIT",
   "authors": [
     {
       "name": "Matt Crowe",
