@@ -16,10 +16,10 @@ class BlockPolicy extends BaseAdminPolicy
      * Determine whether the user can view the object.
      *
      * @param  User $auth
-     * @param  Block $object
+     * @param  mixed $arguments
      * @return mixed
      */
-    public function view(User $auth, $object)
+    public function view(User $auth, $arguments = null)
     {
         return true;
     }
