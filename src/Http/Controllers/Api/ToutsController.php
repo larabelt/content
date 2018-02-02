@@ -44,7 +44,7 @@ class ToutsController extends ApiController
      */
     public function index(Request $request)
     {
-        $this->authorize('index', Tout::class);
+        $this->authorize('view', Tout::class);
 
         $request = Requests\PaginateTouts::extend($request);
 

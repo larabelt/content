@@ -15,6 +15,7 @@ class ElasticNeedleQueryModifierTest extends BeltTestCase
 
     /**
      * @covers \Belt\Content\Elastic\Modifiers\NeedleQueryModifier::modify
+     * @covers \Belt\Content\Elastic\Modifiers\NeedleQueryModifier::needle
      */
     public function test()
     {

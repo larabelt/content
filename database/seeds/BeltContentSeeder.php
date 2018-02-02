@@ -17,5 +17,6 @@ class BeltContentSeeder extends Seeder
         $this->call(BeltContentPageSeeds::class);
         $this->call(BeltContentPostSeeds::class);
         $this->call(BeltContentToutSeeds::class);
+        $this->call(BeltContentPermissbleSeeds::class);
     }
 }
