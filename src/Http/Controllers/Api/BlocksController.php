@@ -44,7 +44,7 @@ class BlocksController extends ApiController
      */
     public function index(Request $request)
     {
-        $this->authorize('index', Block::class);
+        $this->authorize('view', Block::class);
 
         $request = Requests\PaginateBlocks::extend($request);
 

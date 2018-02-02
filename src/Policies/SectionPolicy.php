@@ -17,10 +17,10 @@ class SectionPolicy extends BaseAdminPolicy
      * Determine whether the user can view the object.
      *
      * @param  User $auth
-     * @param  Section $object
+     * @param  mixed $arguments
      * @return mixed
      */
-    public function view(User $auth, $object)
+    public function view(User $auth, $arguments = null)
     {
         return true;
     }
@@ -29,14 +29,16 @@ class SectionPolicy extends BaseAdminPolicy
      * Determine whether the user can update the object.
      *
      * @param  User $auth
-     * @param  Model $object
+     * @param  mixed $arguments
      * @return mixed
      */
-    public function update(User $auth, $object)
+    public function update(User $auth, $arguments = null)
     {
-        $owner = $object->owner;
-        if ($owner instanceof TeamableInterface) {
-            return $this->ofTeam($auth, $owner->team);
+        if ($arguments instanceof Section) {
+            $owner = $arguments->owner;
+            if ($owner && $owner instanceof TeamableInterface) {
+                return $this->ofTeam($auth, $owner->team);
+            }
         }
     }
 }

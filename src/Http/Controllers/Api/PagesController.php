@@ -36,7 +36,7 @@ class PagesController extends ApiController
      */
     public function index(Request $request)
     {
-        $this->authorize('index', Page::class);
+        $this->authorize('view', Page::class);
 
         $request = Requests\PaginatePages::extend($request);
 
