@@ -14,6 +14,11 @@ export default {
         this.$store.dispatch(this.storeActiveKey + '/params/load');
     },
     components: {inner},
+    computed: {
+        editorOptions() {
+            return global.QuillOptions;
+        }
+    },
     methods: {
         // save() {
         //     this.active.submit()
