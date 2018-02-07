@@ -25,7 +25,7 @@
                 <form  @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
                     <div class="form-group" :class="{ 'has-error': active.error('after') }">
                         <label for="after">Lower Content</label>
-                        <textarea @change="active.submit()" class="form-control" rows="10" v-model="active.after" v-editor></textarea>
+                        <belt-editor v-model="active.after"></belt-editor>
                         <span class="help-block">Optional HTML body. Will appear below above any nested items.</span>
                         <span v-for="error in active.error('after')" class="content-danger">{{ error }}</span>
                     </div>
