@@ -21,6 +21,7 @@ class PostForm extends BaseForm {
             post_at_date: '',
             post_at_time: '',
             source_url: '',
+            source_name: '',
         })
     }
 

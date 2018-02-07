@@ -12,5 +12,7 @@ $factory->define(Belt\Content\Post::class, function (Faker\Generator $faker) {
         'meta_description' => $faker->paragraphs(1, true),
         'meta_keywords' => $faker->words(12, true),
         'post_at' => $faker->dateTimeBetween('-3 days', '+3 days'),
+        'source_url' => $faker->url,
+        'source_name' => Str::title($faker->words(random_int(2, 4), true)),
     ];
 });

@@ -70,6 +70,7 @@ class PostsController extends ApiController
             'meta_description',
             'post_at',
             'source_url',
+            'source_name',
         ]);
 
         $post->save();
@@ -117,6 +118,7 @@ class PostsController extends ApiController
             'meta_description',
             'post_at',
             'source_url',
+            'source_name',
         ]);
 
         $post->save();

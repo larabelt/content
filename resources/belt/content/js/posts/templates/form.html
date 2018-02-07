@@ -17,10 +17,22 @@
         <span v-for="error in form.error('slug')" class="text-danger">{{ error }}</span>
     </div>
     <template-dropdown v-if="form.id" templateType="posts"></template-dropdown>
-    <div class="form-group" :class="{ 'has-error': form.error('source_url') }">
-        <label for="source_url">Source Url</label>
-        <input  class="form-control" v-model="form.source_url" placeholder="source url">
-        <span v-for="error in form.error('source_url')" class="text-danger">{{ error }}</span>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" :class="{ 'has-error': form.error('source_name') }">
+                <label for="source_name">Source Name</label>
+                <input  class="form-control" v-model="form.source_name" placeholder="source name">
+                <span v-for="error in form.error('source_name')" class="text-danger">{{ error }}</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" :class="{ 'has-error': form.error('source_url') }">
+                <label for="source_url">Source Url</label>
+                <input  class="form-control" v-model="form.source_url" placeholder="source url">
+                <span v-for="error in form.error('source_url')" class="text-danger">{{ error }}</span>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-6">
