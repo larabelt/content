@@ -10,7 +10,6 @@ class ToutForm extends BaseForm {
         this.setData({
             attachment: null,
             id: '',
-            is_active: 0,
             name: '',
             slug: '',
             body: '',
