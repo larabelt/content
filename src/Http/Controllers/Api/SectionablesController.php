@@ -133,6 +133,8 @@ class SectionablesController extends ApiController
 
         $this->cache($owner);
 
+        $this->itemEvent('updated', $owner);
+
         return response()->json($section, 201);
     }
 
@@ -187,6 +189,8 @@ class SectionablesController extends ApiController
 
         $this->cache($owner);
 
+        $this->itemEvent('updated', $owner);
+
         return response()->json($section);
     }
 
@@ -208,6 +212,8 @@ class SectionablesController extends ApiController
         $section->delete();
 
         $this->cache($owner);
+
+        $this->itemEvent('updated', $owner);
 
         return response()->json(null, 204);
     }

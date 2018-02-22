@@ -80,6 +80,8 @@ class BlocksController extends ApiController
 
         $block->save();
 
+        $this->itemEvent('created', $block);
+
         return response()->json($block, 201);
     }
 
@@ -125,6 +127,8 @@ class BlocksController extends ApiController
 
         $block->save();
 
+        $this->itemEvent('updated', $block);
+
         return response()->json($block);
     }
 
@@ -141,6 +145,8 @@ class BlocksController extends ApiController
         $block = $this->get($id);
 
         $this->authorize('delete', $block);
+
+        $this->itemEvent('deleted', $block);
 
         $block->delete();
 
