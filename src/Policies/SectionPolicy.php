@@ -34,9 +34,8 @@ class SectionPolicy extends BaseAdminPolicy
      */
     public function update(User $auth, $object)
     {
-        $owner = $object->owner;
-        if ($owner instanceof TeamableInterface) {
-            return $this->ofTeam($auth, $owner->team);
+        if ($object->owner instanceof TeamableInterface && $team = $object->owner->team) {
+            return $this->ofTeam($auth, $team);
         }
     }
 }
