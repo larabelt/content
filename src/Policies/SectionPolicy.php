@@ -41,3 +41,5 @@ class SectionPolicy extends BaseAdminPolicy
             }
         }
     }
+
+}
