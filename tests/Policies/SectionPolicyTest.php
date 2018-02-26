@@ -4,6 +4,7 @@ use Belt\Core\Behaviors\Teamable;
 use Belt\Core\Behaviors\TeamableInterface;
 use Belt\Core\Testing;
 use Belt\Content\Page;
+use Belt\Core\Team;
 use Belt\Content\Section;
 use Belt\Content\Policies\SectionPolicy;
 
@@ -25,30 +26,37 @@ class SectionPolicyTest extends Testing\BeltTestCase
         # view
         $this->assertTrue($policy->view($user, 1));
 
-        # update (non-teamable section object)
-        $section = factory(Section::class)->make();
-        $policy->update($user, $section);
+//        # update (non-teamable section object)
+//        $section = factory(Section::class)->make();
+//        $policy->update($user, $section);
+//
+//        # update (teamable section object)
+//        $user = $this->getUser('team');
+//        $team = $user->teams->first();
+//        $stub = new SectionPolicyTestStub($team);
+//        $section = factory(Section::class)->make();
+//        $section->owner = $stub;
+//        $policy->update($user, $section);
 
-        # update (teamable section object)
-        $user = $this->getUser('team');
-        $team = $user->teams->first();
-        $stub = new SectionPolicyTestStub($team);
+        # update
+        $stub = new SectionPolicyStub();
         $section = factory(Section::class)->make();
         $section->owner = $stub;
-        $policy->update($user, $section);
+        $this->assertNotTrue($policy->update($user, $section));
+
+        Team::unguard();
+        $team = factory(Team::class)->make(['id' => 123]);
+        $user->teams->add($team);
+        $stub->team = $team;
+        $this->assertTrue($policy->update($user, $section));
 
     }
 
 }
 
-class SectionPolicyTestStub implements TeamableInterface
+class SectionPolicyStub extends Testing\BaseModelStub implements
+    TeamableInterface
 {
-
     use Teamable;
-
-    public function __construct($team)
-    {
-        $this->team = $team;
-    }
 
 }

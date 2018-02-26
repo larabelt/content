@@ -45,6 +45,6 @@ class NeedleQueryModifier extends PaginationQueryModifier
         $needle = preg_replace('/\s+/', ' ', $needle);
         $needle = preg_replace("/[^0-9a-zA-Z ]/", '', $needle);
 
-        return $needle;
+        return trim($needle);
     }
 }
