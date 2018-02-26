@@ -75,6 +75,8 @@ class PostsController extends ApiController
 
         $post->save();
 
+        $this->itemEvent('created', $post);
+
         return response()->json($post, 201);
     }
 
@@ -123,6 +125,8 @@ class PostsController extends ApiController
 
         $post->save();
 
+        $this->itemEvent('updated', $post);
+
         return response()->json($post);
     }
 
@@ -137,6 +141,8 @@ class PostsController extends ApiController
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);
+
+        $this->itemEvent('deleted', $post);
 
         $post->delete();
 

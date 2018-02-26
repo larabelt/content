@@ -76,6 +76,8 @@ class PagesController extends ApiController
 
         $page->save();
 
+        $this->itemEvent('created', $page);
+
         return response()->json($page, 201);
     }
 
@@ -120,6 +122,8 @@ class PagesController extends ApiController
 
         $page->save();
 
+        $this->itemEvent('updated', $page);
+
         return response()->json($page);
     }
 
@@ -133,6 +137,8 @@ class PagesController extends ApiController
     public function destroy(Page $page)
     {
         $this->authorize('delete', $page);
+
+        $this->itemEvent('deleted', $page);
 
         $page->delete();
 

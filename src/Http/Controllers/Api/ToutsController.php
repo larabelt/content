@@ -83,6 +83,8 @@ class ToutsController extends ApiController
 
         $tout->save();
 
+        $this->itemEvent('created', $tout);
+
         return response()->json($tout, 201);
     }
 
@@ -131,6 +133,8 @@ class ToutsController extends ApiController
 
         $tout->save();
 
+        $this->itemEvent('updated', $tout);
+
         return response()->json($tout);
     }
 
@@ -147,6 +151,8 @@ class ToutsController extends ApiController
         $tout = $this->get($id);
 
         $this->authorize('delete', $tout);
+
+        $this->itemEvent('deleted', $tout);
 
         $tout->delete();
 
