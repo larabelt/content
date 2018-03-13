@@ -58,22 +58,25 @@ class Section extends Model implements
     /**
      * @return string
      */
+    public function getTemplateConfigPrefix()
+    {
+        return 'belt.templates.sections';
+    }
+
+    /**
+     * @return string
+     */
     public function getNameAttribute()
     {
-        $type = $name = $this->sectionable_type;
+        $name = array_last(explode('.', $this->template));
+        if (substr($this->template, 0, 10) === 'containers') {
+            $name = 'html container';
+        }
+        if ($sectionable = $this->sectionable) {
+            $name = $sectionable->getSectionName();
+        }
 
-        $sectionable = $this->sectionable;
-
-        $name = $type == 'sections' ? 'html container' : $name;
-        $name = $type == 'custom' ? sprintf('%s', $this->template) : $name;
-        $name = $type == 'menus' ? sprintf('Menu: %s', $this->template) : $name;
-        $name = $sectionable ? $sectionable->getSectionName() : $name;
-
-        $name = title_case(str_singular($name));
-
-        //$name = strlen($name) < 25 ? $name : sprintf('%s...', substr($name, 0, 22));
-
-        return ucfirst(str_singular($name));
+        return title_case(str_singular($name));
     }
 
     /**

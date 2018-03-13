@@ -25,7 +25,7 @@ export default {
         data: (context, value) => context.commit('data', value),
         load: ({dispatch, commit}, section) => {
             commit('data', section.data());
-            dispatch('config/set', {morphType: section.sectionable_type, configKey: section.template});
+            dispatch('config/set', {morphType: 'sections', configKey: section.template});
             dispatch('config/load');
         },
     },

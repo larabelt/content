@@ -88,7 +88,7 @@ trait IncludesTemplate
         }
 
         if ($key) {
-            return array_get($config, $key, $default);
+            return array_get($config, $key) ?: $default;
         }
 
         return $config;
