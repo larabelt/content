@@ -7,34 +7,33 @@
         <div class="box-body">
             <template v-if="active.id">
                 <inner :section="section"></inner>
-                <form  @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
-                    <div class="form-group" :class="{ 'has-error': active.error('heading') }">
-                        <label for="heading">Heading</label>
-                        <input @change="active.submit()" type="text" class="form-control" v-model="active.heading" placeholder="heading">
-                        <span class="help-block">Optional heading. Will appear at the top of the section.</span>
-                        <span v-for="error in active.error('heading')" class="content-danger">{{ error }}</span>
+                <div v-if="showHeading || showBefore || showAfter">
+                    <form  @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
+                        <div v-if="showHeading" class="form-group" :class="{ 'has-error': active.error('heading') }">
+                            <label for="heading">{{ getConfig('heading.label', 'Heading') }}</label>
+                            <input @change="active.submit()" type="text" class="form-control" v-model="active.heading" placeholder="heading">
+                            <span class="help-block">{{ getConfig('heading.description', 'Optional heading. Will appear at the top of the section.') }}</span>
+                            <span v-for="error in active.error('heading')" class="content-danger">{{ error }}</span>
+                        </div>
+                        <div v-if="showBefore" class="form-group" :class="{ 'has-error': active.error('before') }">
+                            <label for="before">{{ getConfig('before.label', 'Upper Content') }}</label>
+                            <belt-editor v-model="active.before"></belt-editor>
+                            <span class="help-block">{{ getConfig('before.description', 'Optional HTML body. Will appear above any nested items.') }}</span>
+                            <span v-for="error in active.error('before')" class="content-danger">{{ error }}</span>
+                        </div>
+                        <div v-if="showAfter" class="form-group" :class="{ 'has-error': active.error('after') }">
+                            <label for="after">{{ getConfig('after.label', 'Lower Content') }}</label>
+                            <belt-editor v-model="active.after"></belt-editor>
+                            <span class="help-block">{{ getConfig('after.description', 'Optional HTML body. Will appear below above any nested items.') }}</span>
+                            <span v-for="error in active.error('after')" class="content-danger">{{ error }}</span>
+                        </div>
+                    </form>
+                    <div class="alt-box-footer text-right">
+                        <button class="btn btn-primary" :disabled="active.errors.any()" @click.prevent="save()">
+                            <span v-if="active.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                            <span v-else>Save</span>
+                        </button>
                     </div>
-                    <div class="form-group" :class="{ 'has-error': active.error('before') }">
-                        <label for="before">Upper Content</label>
-                        <belt-editor v-model="active.before"></belt-editor>
-
-                        <span class="help-block">Optional HTML body. Will appear above any nested items.</span>
-                        <span v-for="error in active.error('before')" class="content-danger">{{ error }}</span>
-                    </div>
-                </form>
-                <form  @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
-                    <div class="form-group" :class="{ 'has-error': active.error('after') }">
-                        <label for="after">Lower Content</label>
-                        <belt-editor v-model="active.after"></belt-editor>
-                        <span class="help-block">Optional HTML body. Will appear below above any nested items.</span>
-                        <span v-for="error in active.error('after')" class="content-danger">{{ error }}</span>
-                    </div>
-                </form>
-                <div class="alt-box-footer text-right">
-                    <button class="btn btn-primary" :disabled="active.errors.any()" @click.prevent="save()">
-                        <span v-if="active.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-                        <span v-else>Save</span>
-                    </button>
                 </div>
             </template>
         </div>

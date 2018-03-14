@@ -24,6 +24,10 @@ export default {
                 let config = group[key];
                 templates[templateKey] = config['label'] ? config['label'] : key;
             }
+            // templates = _.sortBy(templates, [function (o) {
+            //     let sort = o.entity_type ? o.entity_type : 1;
+            //     return sort;
+            // }]);
             return templates;
         }
     },

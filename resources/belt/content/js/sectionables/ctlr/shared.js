@@ -35,6 +35,15 @@ export default {
         config() {
             return this.$store.getters[this.storeActiveKey + '/config/data'];
         },
+        showAfter() {
+            return !!_.get(this.config, 'after', false);
+        },
+        showBefore() {
+            return !!_.get(this.config, 'before', false);
+        },
+        showHeading() {
+            return !!_.get(this.config, 'heading', false);
+        },
         storeActiveKey() {
             return 'sections' + this.active.id;
         },
@@ -44,6 +53,11 @@ export default {
             this.reset();
             window.scrollTo(0, this.scroll.y);
             this.scroll.y = 0;
+        },
+        getConfig(key, defaultValue) {
+            let config = this.config ? this.config : {};
+            let value = _.get(config, key);
+            return value ? value : defaultValue;
         },
         isType(type) {
             if (this.section) {

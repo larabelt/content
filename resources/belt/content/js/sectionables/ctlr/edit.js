@@ -14,18 +14,7 @@ export default {
         this.$store.dispatch(this.storeActiveKey + '/params/load');
     },
     components: {inner},
-    computed: {
-        editorOptions() {
-            return global.QuillOptions;
-        }
-    },
     methods: {
-        // save() {
-        //     this.active.submit()
-        //         .then(() => {
-        //             this.sections.index();
-        //         });
-        // },
         save: _.debounce(function () {
             this.active.submit()
                 .then(() => {
