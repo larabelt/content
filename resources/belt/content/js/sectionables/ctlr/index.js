@@ -37,6 +37,7 @@ export default {
         }
     },
     mounted() {
+        this.$store.dispatch('configs/loadType', 'sections');
         this.sections.index();
         let section_id = this.$route.params.section;
         if (section_id) {

@@ -46,24 +46,9 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['name', 'morph_class'];
+    protected $appends = ['name', 'morph_class', 'template_subgroup'];
 
-    /**
-     * @var array
-     */
-    protected $attributes = [
-        'sectionable_type' => 'sections',
-    ];
-
-    /**
-     * @return string
-     */
-    public function getTemplateConfigPrefix()
-    {
-        return 'belt.templates.sections';
-    }
-
-    /**
+    /**`
      * @return string
      */
     public function getNameAttribute()
@@ -85,6 +70,14 @@ class Section extends Model implements
     public function getSectionName()
     {
         return 'box';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTemplateSubgroupAttribute()
+    {
+        return array_first(explode('.', $this->template));
     }
 
     /**
@@ -131,14 +124,6 @@ class Section extends Model implements
         }
 
         return parent::getRelationshipFromMethod($method);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTemplateGroup()
-    {
-        return $this->sectionable_type ?: 'sections';
     }
 
     /**

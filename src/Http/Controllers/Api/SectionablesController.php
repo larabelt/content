@@ -154,6 +154,8 @@ class SectionablesController extends ApiController
 
         $section = $this->section($id, $owner);
 
+        $section->config = $section->getTemplateConfig();
+
         return response()->json($section);
     }
 
