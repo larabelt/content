@@ -8,8 +8,8 @@
                             <div class="form-group" :class="{ 'has-error': active.error('template') }">
                                 <label for="template">Template</label>
                                 <select @change="updateActive()" v-model="active.template" name="template" class="form-control">
-                                    <template v-for="label, value in templates">
-                                        <option :value="value">{{ label }}</option>
+                                    <template v-for="template in templates">
+                                        <option :value="template.key">{{ template.label }}</option>
                                     </template>
                                 </select>
                                 <span v-for="error in active.error('template')" class="contents-danger">{{ error }}</span>

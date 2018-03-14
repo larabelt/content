@@ -17,18 +17,18 @@ export default {
         templates() {
             let configs = this.$store.getters['configs/data'];
             let group = _.get(configs, 'sections.' + this.active.template_subgroup);
-            let templates = {};
-            let templateKey = '';
+            let templates = [];
             for (let key in group) {
-                templateKey = this.active.template_subgroup + '.' + key;
                 let config = group[key];
-                templates[templateKey] = config['label'] ? config['label'] : key;
+                let template = {
+                    key: this.active.template_subgroup + '.' + key,
+                    label: config['label'] ? config['label'] : key
+                };
+                templates.push(template);
             }
-            // templates = _.sortBy(templates, [function (o) {
-            //     let sort = o.entity_type ? o.entity_type : 1;
-            //     return sort;
-            // }]);
-            return templates;
+            return _.sortBy(templates, [function (o) {
+                return o.key;
+            }]);
         }
     },
     components: {
