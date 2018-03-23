@@ -61,6 +61,12 @@ class Section extends Model implements
             $name = $sectionable->getSectionName();
         }
 
+        $name = $this->getTemplateConfig('name') ?: $name;
+
+        if ($name instanceof \Closure) {
+            $name = $name->call($this);
+        }
+
         return title_case(str_singular($name));
     }
 
