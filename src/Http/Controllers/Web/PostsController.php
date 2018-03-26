@@ -32,6 +32,9 @@ class PostsController extends BaseController
      */
     public function show(Post $post)
     {
+        if (!$post->is_active) {
+            abort(404);
+        }
 
         $compiled = $this->compile($post);
 
@@ -39,7 +42,7 @@ class PostsController extends BaseController
 
         $view = $post->getTemplateConfig('extends', 'belt-content::posts.web.show');
 
-        return view('belt-content::posts.web.show', compact('owner', 'post', 'compiled'));
+        return view($view, compact('owner', 'post', 'compiled'));
     }
 
 }

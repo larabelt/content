@@ -23,6 +23,7 @@ class PaginateHandles extends PaginateRequest
         'handles.hits',
         'handles.is_active',
         'handles.target',
+        'handles.created_at',
         'handles.updated_at',
     ];
 
