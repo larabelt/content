@@ -21,6 +21,8 @@ class PaginatePosts extends PaginateRequest
         'posts.id',
         'posts.name',
         'posts.post_at',
+        'posts.created_at',
+        'posts.updated_at',
     ];
 
     public $searchable = [

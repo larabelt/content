@@ -18,6 +18,8 @@ class PaginateBlocks extends PaginateRequest
     public $sortable = [
         'blocks.id',
         'blocks.name',
+        'blocks.created_at',
+        'blocks.updated_at',
     ];
 
     public $searchable = [

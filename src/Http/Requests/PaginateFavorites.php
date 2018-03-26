@@ -19,6 +19,8 @@ class PaginateFavorites extends PaginateRequest
 
     public $sortable = [
         'favorites.id',
+        'favorites.created_at',
+        'favorites.updated_at',
     ];
 
     /**
