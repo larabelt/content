@@ -20,6 +20,8 @@ class PaginatePages extends PaginateRequest
         'pages.id',
         'pages.name',
         'pages.is_active',
+        'pages.created_at',
+        'pages.updated_at',
     ];
 
     public $searchable = [

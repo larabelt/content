@@ -32,6 +32,10 @@ class PagesController extends BaseController
      */
     public function show(Page $page)
     {
+        if (!$page->is_active) {
+            abort(404);
+        }
+
         $compiled = $this->compile($page);
 
         $owner = $page;

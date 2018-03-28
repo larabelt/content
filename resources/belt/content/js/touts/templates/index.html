@@ -35,6 +35,8 @@
                             <column-sorter :column="'touts.heading'"></column-sorter>
                         </th>
                         <th>Image</th>
+                        <th>Created<column-sorter :column="'touts.created_at'"></column-sorter></th>
+                        <th>Updated<column-sorter :column="'touts.updated_at'"></column-sorter></th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
@@ -48,6 +50,8 @@
                                 <img class="img-thumbnail" :src="item.attachment.src" style="max-height: 100px;"/>
                             </template>
                         </td>
+                        <td>{{ item.created_at }}</td>
+                        <td>{{ item.updated_at }}</td>
                         <td class="text-right">
                             <div class="btn-group">
                                 <button
@@ -75,6 +79,8 @@
                         <th>Name</th>
                         <th>Heading</th>
                         <th>Image</th>
+                        <th>Created</th>
+                        <th>Updated</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </tfoot>

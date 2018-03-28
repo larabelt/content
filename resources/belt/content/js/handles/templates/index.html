@@ -59,10 +59,8 @@
                         Hits
                         <column-sorter :column="'handles.hits'"></column-sorter>
                     </th>
-                    <th>
-                        Updated
-                        <column-sorter :column="'handles.updated_at'"></column-sorter>
-                    </th>
+                    <th>Created<column-sorter :column="'handles.created_at'"></column-sorter></th>
+                    <th>Updated<column-sorter :column="'handles.updated_at'"></column-sorter></th>
                     <th class="text-right">Actions</th>
                 </tr>
                 </thead>
@@ -82,6 +80,7 @@
                     </td>
                     <td>{{ item.target }}</td>
                     <td>{{ item.hits }}</td>
+                    <td>{{ item.created_at }}</td>
                     <td>{{ item.updated_at }}</td>
                     <td class="text-right">
                         <div class="btn-group">
@@ -111,6 +110,7 @@
                     <th>Url</th>
                     <th>Target</th>
                     <th>Hits</th>
+                    <th>Created</th>
                     <th>Updated</th>
                     <th class="text-right">Actions</th>
                 </tr>

@@ -19,6 +19,8 @@ class PaginateTouts extends PaginateRequest
         'touts.id',
         'touts.name',
         'touts.heading',
+        'touts.created_at',
+        'touts.updated_at',
     ];
 
     public $searchable = [
