@@ -48,17 +48,17 @@ class Section extends Model implements
      */
     protected $appends = ['name', 'morph_class', 'template_subgroup'];
 
-    /**`
-     * @return string
+    /**
+     * @return mixed|string
+     * @throws \Exception
      */
     public function getNameAttribute()
     {
-        $name = array_last(explode('.', $this->template));
-        if (substr($this->template, 0, 10) === 'containers') {
-            $name = 'html container';
-        }
-        if ($sectionable = $this->sectionable) {
-            $name = $sectionable->getSectionName();
+        $names = explode('.', $this->template);
+
+        $name = isset($names[0]) ? title_case(str_singular($names[0])) : '???';
+        if (isset($names[1]) && $names[1] != 'default') {
+            $name .= sprintf(' [%s]', title_case($names[1]));
         }
 
         $name = $this->getTemplateConfig('name') ?: $name;
@@ -67,15 +67,7 @@ class Section extends Model implements
             $name = $name->call($this);
         }
 
-        return title_case(str_singular($name));
-    }
-
-    /**
-     * @return string
-     */
-    public function getSectionName()
-    {
-        return 'box';
+        return $name;
     }
 
     /**
@@ -108,6 +100,7 @@ class Section extends Model implements
     /**
      * The Associated owning model
      *
+     * @deprecated
      * @return MorphTo|Model
      */
     public function sectionable()
@@ -118,6 +111,7 @@ class Section extends Model implements
     /**
      * Get a relationship value from a method.
      *
+     * @deprecated
      * @param  string $method
      * @return mixed
      *
@@ -157,6 +151,33 @@ class Section extends Model implements
         $query->where('sections.owner_id', $owner_id);
 
         return $query;
+    }
+
+    /**
+     * @deprecated
+     * @return null
+     */
+    public function getHeadingAttribute()
+    {
+        return $this->param('heading');
+    }
+
+    /**
+     * @deprecated
+     * @return null
+     */
+    public function getBeforeAttribute()
+    {
+        return $this->param('before');
+    }
+
+    /**
+     * @deprecated
+     * @return null
+     */
+    public function getAfterAttribute()
+    {
+        return $this->param('after');
     }
 
     /**

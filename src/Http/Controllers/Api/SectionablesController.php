@@ -94,6 +94,8 @@ class SectionablesController extends ApiController
             'owner_type' => $owner->getMorphClass()
         ]);
 
+        //$owner->reconcileTemplateParams();
+
         $paginator = $this->paginator($this->sections->query(), $request);
 
         return response()->json($paginator->toArray());
@@ -153,6 +155,8 @@ class SectionablesController extends ApiController
         $this->authorize('view', $owner);
 
         $section = $this->section($id, $owner);
+
+        //$section->reconcileTemplateParams();
 
         $section->config = $section->getTemplateConfig();
 

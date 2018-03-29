@@ -5,6 +5,11 @@ import posts  from 'belt/content/js/posts/routes';
 import store from 'belt/core/js/store/index';
 import touts  from 'belt/content/js/touts/routes';
 
+import inputBlock from 'belt/content/js/inputs/block';
+import inputTout from 'belt/content/js/inputs/tout';
+Vue.component('input-block', inputBlock);
+Vue.component('input-tout', inputTout);
+
 window.larabelt.content = _.get(window, 'larabelt.content', {});
 
 export default class BeltContent {
