@@ -53,12 +53,11 @@ abstract class BaseBuilder
             'parent_id' => $parent ? $parent->id : null,
             'owner_id' => $this->item->id,
             'owner_type' => $this->item->getMorphClass(),
-            'sectionable_type' => array_get($options, 'sectionable_type', 'sections'),
-            'sectionable_id' => array_get($options, 'sectionable_id'),
-            'heading' => array_get($options, 'heading'),
-            'before' => array_get($options, 'before'),
-            'after' => array_get($options, 'after'),
         ]);
+
+        foreach (array_get($options, 'params') as $key => $value) {
+            $section->saveParam($key, $value);
+        }
 
         return $section;
     }

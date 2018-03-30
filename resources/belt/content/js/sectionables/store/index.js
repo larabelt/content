@@ -10,8 +10,10 @@ export default {
         config,
         params,
     },
-    state: {
-        data: {},
+    state() {
+        return {
+            data: {},
+        }
     },
     mutations: {
         config: (state, value) => state.config = value,
