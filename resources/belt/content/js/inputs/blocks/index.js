@@ -1,7 +1,7 @@
 import shared from 'belt/core/js/inputs/shared';
 import BlockTable from 'belt/content/js/blocks/table';
 import BlockForm from 'belt/content/js/blocks/form';
-import html from 'belt/content/js/inputs/block/template.html';
+import html from 'belt/content/js/inputs/blocks/template.html';
 
 export default {
     mixins: [shared],

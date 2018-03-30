@@ -1,7 +1,7 @@
 import shared from 'belt/core/js/inputs/shared';
 import ToutTable from 'belt/content/js/touts/table';
 import ToutForm from 'belt/content/js/touts/form';
-import html from 'belt/content/js/inputs/tout/template.html';
+import html from 'belt/content/js/inputs/touts/template.html';
 
 export default {
     mixins: [shared],
