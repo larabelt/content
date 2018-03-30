@@ -6,51 +6,52 @@
     </div>
     <div class="box" :class="{'box-primary': !section.parent_id, moving: isMoving}">
         <div class="box-header with-border">
-                <span class="pull-right">
+            <span class="pull-left">
+                <h6 class="box-title">{{ section.name }}</h6>
+            </span>
+            <span class="pull-right">
+                <template v-if="panelMode == 'is-moving'">
+                    <button class="btn btn-xs btn-default btn-flat" @click.prevent="cancel()">
+                        cancel
+                    </button>
+                </template>
+                <template v-if="panelMode == 'default'">
                     <div class="btn-group">
-                        <template v-if="panelMode == 'is-moving'">
-                            <button class="btn btn-xs btn-default btn-flat" @click.prevent="cancel()">
-                                cancel
-                            </button>
-                        </template>
-                        <template v-if="panelMode == 'default'">
-                            <div class="btn-group">
-                                <button
-                                        type="button"
-                                        title="options"
-                                        class="btn btn-xs btn-default dropdown-toggle text-muted"
-                                        data-toggle="dropdown"
-                                        aria-expanded="false"
-                                ><i class="fa fa-gear"></i></button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="#" @click.prevent="setMoving(section.id)"><i class="fa fa-arrows-alt"></i> Move</i></a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li class="dropdown-header">Add New:</li>
-                                    <li><a href="#" @click.prevent="insert(section.id, 'before')">&bull; before</i></a></li>
-                                    <li v-if="isBox" @click.prevent="insert(section.id, 'in')"><a href="#">&bull; inside</i></a></li>
-                                    <li><a href="#" @click.prevent="insert(section.id, 'after')">&bull; after</i></a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><modal-delete :item-id="section.id" _class="''"><i class="fa fa-trash"></i> Remove</modal-delete></li>
-                                </ul>
-                                <a class="btn btn-xs btn-default" href="#" @click.prevent="setActive(section.id)" title="edit section"><i class="fa fa-edit"></i></a>
-                            </div>
-                        </template>
+                        <button
+                                type="button"
+                                title="options"
+                                class="btn text-muted dropdown-toggle"
+                                data-toggle="dropdown"
+                                aria-expanded="false"
+                        ><i class="fa fa-gear"></i></button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#" @click.prevent="setMoving(section.id)"><i class="fa fa-arrows-alt"></i> Move</i></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Add New:</li>
+                            <li><a href="#" @click.prevent="insert(section.id, 'before')">&bull; before</i></a></li>
+                            <li v-if="isBox" @click.prevent="insert(section.id, 'in')"><a href="#">&bull; inside</i></a></li>
+                            <li><a href="#" @click.prevent="insert(section.id, 'after')">&bull; after</i></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><modal-delete :item-id="section.id" _class="''"><i class="fa fa-trash"></i> Remove</modal-delete></li>
+                        </ul>
+                        <a class="btn text-muted" href="#" @click.prevent="setActive(section.id)" title="edit section"><i
+                                    class="fa fa-pencil"></i></a>
                     </div>
-                </span>
-            <h6 class="box-title">{{ section.name }}</h6>
+                </template>
+            </span>
         </div>
         <div class="box-body">
 
             <div class="section-content section-preview" v-html="preview"></div>
 
-<!--            <div v-if="section.heading" class="section-content">-->
-<!--                <h6>heading</h6>-->
-<!--                <div v-html="section.heading"></div>-->
-<!--            </div>-->
-<!--            <div v-if="section.before" class="section-content">-->
-<!--                <h6>upper content</h6>-->
-<!--                <div v-html="section.before"></div>-->
-<!--            </div>-->
+            <!--            <div v-if="section.heading" class="section-content">-->
+            <!--                <h6>heading</h6>-->
+            <!--                <div v-html="section.heading"></div>-->
+            <!--            </div>-->
+            <!--            <div v-if="section.before" class="section-content">-->
+            <!--                <h6>upper content</h6>-->
+            <!--                <div v-html="section.before"></div>-->
+            <!--            </div>-->
 
             <div v-if="isBox && panelMode == 'is-watching'">
                 <div class="box-actions">
@@ -63,10 +64,10 @@
                 </template>
             </template>
 
-<!--            <div v-if="section.after" class="section-content">-->
-<!--                <h6>lower content</h6>-->
-<!--                <div v-html="section.after"></div>-->
-<!--            </div>-->
+            <!--            <div v-if="section.after" class="section-content">-->
+            <!--                <h6>lower content</h6>-->
+            <!--                <div v-html="section.after"></div>-->
+            <!--            </div>-->
 
         </div>
     </div>

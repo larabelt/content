@@ -1,3 +1,17 @@
+.sections-admin {
+    .box-header {
+        padding: 0;
+        .btn.text-muted {
+            line-height: 14px;
+            padding: 10px;
+        }
+    }
+    .box-title {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
 .sections-index {
     .box {
         border: 2px solid #357ca5;
@@ -19,10 +33,10 @@
         }
         .box-header {
             .box-title {
-                font-size: 15px;
+                font-size: 14px;
             }
             .btn-group {
-                margin:0 ;
+                margin: 0;
             }
         }
         .box-body {
@@ -64,6 +78,6 @@
 .section-sub-item {
     padding: 20px;
     background-color: #f4f4f4;
-    border:1px dashed #ccc;
+    border: 1px dashed #ccc;
     margin-bottom: 20px;
 }
