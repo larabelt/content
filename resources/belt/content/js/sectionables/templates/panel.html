@@ -40,14 +40,18 @@
             <h6 class="box-title">{{ section.name }}</h6>
         </div>
         <div class="box-body">
-            <div v-if="section.heading" class="section-content">
-                <h6>heading</h6>
-                <div v-html="section.heading"></div>
-            </div>
-            <div v-if="section.before" class="section-content">
-                <h6>upper content</h6>
-                <div v-html="section.before"></div>
-            </div>
+
+            <div class="section-content section-preview" v-html="preview"></div>
+
+<!--            <div v-if="section.heading" class="section-content">-->
+<!--                <h6>heading</h6>-->
+<!--                <div v-html="section.heading"></div>-->
+<!--            </div>-->
+<!--            <div v-if="section.before" class="section-content">-->
+<!--                <h6>upper content</h6>-->
+<!--                <div v-html="section.before"></div>-->
+<!--            </div>-->
+
             <div v-if="isBox && panelMode == 'is-watching'">
                 <div class="box-actions">
                     <button class="btn btn-xs btn-info btn-block" @click.prevent="move(section.id, 'in')"><i class="fa fa-arrows"></i></button>
@@ -58,10 +62,12 @@
                     <panel :section="child"></panel>
                 </template>
             </template>
-            <div v-if="section.after" class="section-content">
-                <h6>lower content</h6>
-                <div v-html="section.after"></div>
-            </div>
+
+<!--            <div v-if="section.after" class="section-content">-->
+<!--                <h6>lower content</h6>-->
+<!--                <div v-html="section.after"></div>-->
+<!--            </div>-->
+
         </div>
     </div>
     <div class="box-actions">

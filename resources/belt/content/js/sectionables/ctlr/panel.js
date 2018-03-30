@@ -28,7 +28,10 @@ export default {
                 return 'is-watching';
             }
             return 'default';
-        }
+        },
+        preview() {
+            return _.get(this.section, 'preview');
+        },
     },
     methods: {
         destroy(id) {

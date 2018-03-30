@@ -98,6 +98,10 @@ class SectionablesController extends ApiController
 
         $paginator = $this->paginator($this->sections->query(), $request);
 
+        foreach ($paginator->paginator->items() as $section) {
+            $section->append('preview');
+        }
+
         return response()->json($paginator->toArray());
     }
 
@@ -157,6 +161,9 @@ class SectionablesController extends ApiController
         $section = $this->section($id, $owner);
 
         //$section->reconcileTemplateParams();
+        //dump($section->preview);
+        $section->preview;
+        $section->append('preview');
 
         $section->config = $section->getTemplateConfig();
 

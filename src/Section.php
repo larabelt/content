@@ -46,7 +46,7 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['name', 'morph_class', 'template_subgroup'];
+    protected $appends = ['name', 'morph_class', 'template_subgroup', 'preview'];
 
     /**
      * @return mixed|string
@@ -153,31 +153,53 @@ class Section extends Model implements
         return $query;
     }
 
-    /**
-     * @deprecated
-     * @return null
-     */
-    public function getHeadingAttribute()
-    {
-        return $this->param('heading');
-    }
+//    /**
+//     * @deprecated
+//     * @return null
+//     */
+//    public function getHeadingAttribute()
+//    {
+//        return $this->param('heading');
+//    }
+//
+//    /**
+//     * @deprecated
+//     * @return null
+//     */
+//    public function getBeforeAttribute()
+//    {
+//        return $this->param('before');
+//    }
+//
+//    /**
+//     * @deprecated
+//     * @return null
+//     */
+//    public function getAfterAttribute()
+//    {
+//        return $this->param('after');
+//    }
 
     /**
-     * @deprecated
-     * @return null
+     * @return string
      */
-    public function getBeforeAttribute()
+    public function getPreviewAttribute()
     {
-        return $this->param('before');
-    }
+        $default = function () {
+            return view('belt-content::sections.previews.default', ['section' => $this]);
+        };
 
-    /**
-     * @deprecated
-     * @return null
-     */
-    public function getAfterAttribute()
-    {
-        return $this->param('after');
+        $preview = $this->getTemplateConfig('preview', $default);
+
+        if ($preview instanceof \Closure) {
+            $preview = $preview->call($this);
+        }
+
+        if ($preview instanceof \Illuminate\View\View) {
+            $preview = $preview->render();
+        }
+
+        return $preview;
     }
 
     /**
