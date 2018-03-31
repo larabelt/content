@@ -35,6 +35,9 @@ export default {
         config() {
             return this.$store.getters[this.storeActiveKey + '/config/data'];
         },
+        configs() {
+            return this.$store.getters['configs/data'];
+        },
         showAfter() {
             return !!_.get(this.config, 'after', false);
         },

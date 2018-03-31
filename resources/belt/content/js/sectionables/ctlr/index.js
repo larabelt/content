@@ -43,6 +43,7 @@ export default {
         if (section_id) {
             this.active.show(section_id);
         }
+        //this.creating.show = true;
     },
     components: {create, edit, panel},
     computed: {

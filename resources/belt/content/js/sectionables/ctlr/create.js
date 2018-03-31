@@ -11,16 +11,54 @@ export default {
     data() {
         return {
             show: false,
+            activeGroup: false,
             form: new Form({
                 morphable_id: this.$parent.morphable_id,
                 morphable_type: this.$parent.morphable_type,
             }),
         }
     },
+    computed: {
+        templateGroups() {
+
+            let options = [];
+            let templates = _.get(this.configs, 'sections', {});
+
+            _.forOwn(templates, function (template, key) {
+                options.push({
+                    value: key,
+                    label: template.label ? template.label : key,
+                });
+            });
+
+            options = _.orderBy(options, ['label']);
+
+            return options;
+        },
+        templates() {
+
+            let options = [];
+            let templates = _.get(this.configs, 'sections.' + this.activeGroup, {});
+
+            _.forOwn(templates, (template, key) => {
+                template.name = this.activeGroup + '.' + key;
+                template.label = template.label ? template.label : key;
+                options.push(template);
+            });
+
+            options = _.orderBy(options, ['label']);
+
+            return options;
+        },
+    },
+    mounted() {
+    },
     methods: {
-        create(type)
-        {
-            this.form.sectionable_type = type;
+        create(template) {
+
+            //this.form.sectionable_type = type;
+            this.form.template = template;
+
             if (this.creating.position == 'in') {
                 this.form.parent_id = this.creating.neighbor_id;
             }

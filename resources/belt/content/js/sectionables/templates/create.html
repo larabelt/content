@@ -1,18 +1,40 @@
-<div>
+<div v-if="configs">
     <div class="box box-info">
         <div class="box-header with-border">
-            <span class="pull-right"><button class="btn btn-default" @click.prevent="reset()"><i class="fa fa-times"></i></button></span>
-            <h3 class="box-title">Add New Section</h3>
+            <span class="pull-left"><h3 class="box-title">Add New Section</h3></span>
+            <span class="pull-right"><button class="btn text-muted" @click.prevent="reset()"><i class="fa fa-times"></i></button></span>
         </div>
         <div class="box-body">
-            <button class="btn btn-primary" @click.prevent="create('sections')">Html Container</button>
-            <button class="btn btn-primary" @click.prevent="create('albums')">Album</button>
-            <button class="btn btn-primary" @click.prevent="create('attachments')">Attachment</button>
-            <button class="btn btn-primary" @click.prevent="create('blocks')">Block</button>
-            <button class="btn btn-primary" @click.prevent="create('custom')">Custom</button>
-            <button class="btn btn-primary" @click.prevent="create('itineraries')">Itinerary</button>
-            <button class="btn btn-primary" @click.prevent="create('menus')">Menu</button>
-            <button class="btn btn-primary" @click.prevent="create('touts')">Tout</button>
+
+            <select v-model="activeGroup" class="form-control" change="emitEvent()">
+                <template v-for="templateGroup in templateGroups">
+                    <option :value="templateGroup.value">{{ templateGroup.label }}</option>
+                </template>
+            </select>
+
+            <div v-for="template, key in templates" class="clearfix">
+                <span class="pull-left">
+                    <strong>{{ template.label }}</strong>
+                    <p v-if="template.description">{{ template.description }}</p>
+                </span>
+                <span class="pull-right">
+                    <button class="btn btn-xs btn-primary" @click.prevent="create(template.name)">Add</button>
+                </span>
+            </div>
+
+            <!--            <template v-for="templates, group in templateGroups">-->
+            <!--                <h6>{{ group }}</h6>-->
+            <!--                <div v-for="template, key in templates" class="clearfix">-->
+            <!--                    <span class="pull-left">-->
+            <!--                        <strong>{{ template.label ? template.label : key }}</strong>-->
+            <!--                        <p v-if="template.description">{{ template.description }}</p>-->
+            <!--                    </span>-->
+            <!--                    <span class="pull-right">-->
+            <!--                        <button class="btn btn-xs btn-primary" @click.prevent="create(group + '.' + key)">Add</button>-->
+            <!--                    </span>-->
+            <!--                </div>-->
+            <!--            </template>-->
+
         </div>
     </div>
 </div>

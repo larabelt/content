@@ -121,12 +121,12 @@ class SectionablesController extends ApiController
         $section = $this->sections->create([
             'owner_id' => $input['owner_id'],
             'owner_type' => $input['owner_type'],
-            'sectionable_type' => $input['sectionable_type'],
+            //'sectionable_type' => $input['sectionable_type'],
             'parent_id' => array_get($input, 'parent_id'),
         ]);
 
         $this->set($section, $input, [
-            'sectionable_id',
+            //'sectionable_id',
             'template',
             'heading',
             'before',
