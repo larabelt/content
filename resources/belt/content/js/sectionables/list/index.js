@@ -1,14 +1,7 @@
-// components
-import create from 'belt/content/js/sectionables/ctlr/create';
-import edit from 'belt/content/js/sectionables/ctlr/edit';
-import panel from 'belt/content/js/sectionables/ctlr/panel';
-
-// helpers
+import panel from 'belt/content/js/sectionables/list/panel';
 import Form from 'belt/content/js/sectionables/form';
 import Table from 'belt/content/js/sectionables/table';
-
-// templates
-import index_html from 'belt/content/js/sectionables/templates/index.html';
+import html from 'belt/content/js/sectionables/list/template.html';
 
 export default {
     data() {
@@ -37,48 +30,14 @@ export default {
         }
     },
     mounted() {
-
-        console.log(111);
-
-        console.log(this.$router);
-
-        // const router = new VueRouter({
-        //     mode: 'history',
-        //     base: '',
-        //     routes: [
-        //         ,
-        //     ]
-        // });
-
-        this.$router.addRoutes([
-                {path: 'asdf', component: index2, name: 'pages.index2'}
-            ]
-        );
-
         this.$store.dispatch('configs/loadType', 'sections');
         this.sections.index();
-        let section_id = this.$route.params.section;
-        if (section_id) {
-            this.active.show(section_id);
-        }
-        //this.creating.show = true;
-    },
-    components: {create, edit, panel},
-    computed: {
-        mode() {
-            if (this.active.id) {
-                return 'edit';
-            }
-            if (this.creating.show == true) {
-                return 'create';
-            }
-            return 'index';
-        }
     },
     methods: {
         insert() {
             this.creating.show = true;
         },
     },
-    template: index_html
+    components: {panel},
+    template: html,
 }

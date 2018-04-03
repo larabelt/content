@@ -1,0 +1,27 @@
+<div v-if="configs">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <span class="pull-left"><h3 class="box-title">Add New Section</h3></span>
+            <span class="pull-right"><button class="btn text-muted" @click.prevent="reset()"><i class="fa fa-times"></i></button></span>
+        </div>
+        <div class="box-body">
+
+            <select v-model="activeGroup" class="form-control" change="emitEvent()">
+                <template v-for="templateGroup in templateGroups">
+                    <option :value="templateGroup.value">{{ templateGroup.label }}</option>
+                </template>
+            </select>
+
+            <div v-for="template, key in templates" class="clearfix">
+                <span class="pull-left">
+                    <strong>{{ template.label }}</strong>
+                    <p v-if="template.description">{{ template.description }}</p>
+                </span>
+                <span class="pull-right">
+                    <button class="btn btn-xs btn-primary" @click.prevent="create(template.name)">Add</button>
+                </span>
+            </div>
+
+        </div>
+    </div>
+</div>

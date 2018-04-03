@@ -1,4 +1,5 @@
 // components
+import index2 from 'belt/content/js/sectionables/ctlr/index2';
 import create from 'belt/content/js/sectionables/ctlr/create';
 import edit from 'belt/content/js/sectionables/ctlr/edit';
 import panel from 'belt/content/js/sectionables/ctlr/panel';

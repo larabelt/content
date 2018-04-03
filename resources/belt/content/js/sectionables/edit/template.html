@@ -1,0 +1,31 @@
+<div>
+    <div v-if="active.id" class="box box-warning">
+        <div class="box-header with-border">
+            <span class="pull-left">
+                <h6 class="box-title">{{ active.name }}</h6>
+            </span>
+            <span class="pull-right">
+                <a class="btn text-muted" href="sections" title="close section">
+                    <i class="fa fa-times"></i>
+                </a>
+            </span>
+        </div>
+        <div class="box-body">
+            <p>111</p>
+            <!--<inner :section="active"></inner>-->
+            <form @submit.prevent="updateActive()" @keydown="active.errors.clear($event.target.name)">
+                <div class="form-group" :class="{ 'has-error': active.error('template') }">
+                    <label for="template">Template</label>
+                    <select @change="updateActive()" v-model="active.template" name="template" class="form-control">
+                        <template v-for="template in templates">
+                            <option :value="template.key">{{ template.label }}</option>
+                        </template>
+                    </select>
+                    <span v-for="error in active.error('template')" class="contents-danger">{{ error }}</span>
+                </div>
+            </form>
+            <p>222</p>
+            <params paramable_type="sections" :paramable_id="active.id"></params>
+        </div>
+    </div>
+</div>
