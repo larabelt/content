@@ -8,7 +8,7 @@ export default {
     mixins: [shared],
     data() {
         return {
-            active: new Form({
+            section: new Form({
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
@@ -16,10 +16,10 @@ export default {
     },
     computed: {
         config() {
-            return this.$store.getters[this.storeActiveKey + '/config/data'];
+            return this.$store.getters[this.storeKey + '/config/data'];
         },
-        storeActiveKey() {
-            return 'sections' + this.active.id;
+        storeKey() {
+            return 'sections' + this.section.id;
         },
         templateGroups() {
 
@@ -28,7 +28,7 @@ export default {
 
             _.forOwn(templates, function (template, key) {
                 options.push({
-                    value: key,
+                    key: key,
                     label: template.label ? template.label : key,
                 });
             });
@@ -40,10 +40,10 @@ export default {
         templates() {
 
             let options = [];
-            let templates = _.get(this.configs, this.activeGroup, {});
+            let templates = _.get(this.configs, this.section.template_subgroup, {});
 
             _.forOwn(templates, (template, key) => {
-                template.name = this.activeGroup + '.' + key;
+                template.key = this.section.template_subgroup + '.' + key;
                 template.label = template.label ? template.label : key;
                 options.push(template);
             });
@@ -54,26 +54,24 @@ export default {
         },
     },
     created() {
-        let section_id = this.$route.params.section_id;
-        this.active.id = section_id;
+        let section_id = this.section.id = this.$route.params.section_id;
 
-        if (!this.$store.state[this.storeActiveKey]) {
-            this.$store.registerModule(this.storeActiveKey, store);
-            this.$store.dispatch(this.storeActiveKey + '/construct', {id: this.active.id});
+        if (!this.$store.state[this.storeKey]) {
+            this.$store.registerModule(this.storeKey, store);
+            this.$store.dispatch(this.storeKey + '/construct', {id: this.section.id});
         }
-        this.$store.dispatch(this.storeActiveKey + '/load', this.active);
-        this.$store.dispatch(this.storeActiveKey + '/params/load');
 
-        this.active.show(section_id);
+        this.section.show(section_id)
+            .then(() => {
+                this.$store.dispatch(this.storeKey + '/load', this.section);
+                this.$store.dispatch(this.storeKey + '/params/load');
+            });
     },
     components: {params},
     methods: {
         save: _.debounce(function () {
-            this.active.submit()
-                .then(() => {
-                    this.sections.index();
-                });
-        }, 1000),
+            this.section.submit();
+        }, 750),
     },
     template: html,
 }

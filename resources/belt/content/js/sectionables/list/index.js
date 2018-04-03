@@ -1,41 +1,54 @@
+import shared from 'belt/content/js/sectionables/shared';
 import panel from 'belt/content/js/sectionables/list/panel';
 import Form from 'belt/content/js/sectionables/form';
 import Table from 'belt/content/js/sectionables/table';
 import html from 'belt/content/js/sectionables/list/template.html';
 
 export default {
+    mixins: [shared],
     data() {
         return {
-            active: new Form({
-                morphable_type: this.$parent.morphable_type,
-                morphable_id: this.$parent.morphable_id,
-            }),
-            creating: {
-                show: false,
-                neighbor_id: null,
-                position: null,
-            },
+            loading: false,
             moving: new Form({
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
-            first: {id: null},
-            morphable_type: this.$parent.morphable_type,
-            morphable_id: this.$parent.morphable_id,
-            sections: new Table({
+            table: new Table({
+                morphable_type: this.$parent.morphable_type,
+                morphable_id: this.$parent.morphable_id,
+            }),
+
+
+            active: new Form({
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
             scroll: {x: 0, y: 0},
         }
     },
-    mounted() {
-        this.sections.index();
+    computed: {
+        first() {
+            return _.head(this.sections);
+        },
+        sections() {
+            return this.table.items;
+        },
     },
     methods: {
-        insert() {
-            this.creating.show = true;
-        },
+        setMoving(section) {
+            if (section) {
+                this.moving.setData(section);
+            } else {
+                this.moving.reset();
+            }
+        }
+    },
+    mounted() {
+        this.loading = true;
+        this.table.index()
+            .then(() => {
+                this.loading = false;
+            });
     },
     components: {panel},
     template: html,

@@ -11,18 +11,17 @@ class TreeForm extends BaseForm {
     constructor(options = {}) {
         super(options);
 
-        let section_id = null;
-        if (options.section.id) {
-            section_id = options.section.id;
-        }
+        let section_id = options.section_id;
+        let neighbor_id = options.neighbor_id;
+        let move = options.move;
 
         let baseUrl = `/api/v1/sections/${section_id}/tree/`;
         this.service = new BaseService({baseUrl: baseUrl});
 
         // data
         this.setData({
-            neighbor_id: '',
-            move: '',
+            neighbor_id: neighbor_id,
+            move: move,
         });
     }
 

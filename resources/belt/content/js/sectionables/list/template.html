@@ -1,14 +1,18 @@
 <div class="sections-admin">
     <div class="sections-index">
-        <template v-if="sections.items.length">
-            <template v-for="section in sections.items">
+        <div v-if="loading" class="box-body"><i class="fa fa-spinner fa-spin"></i></div>
+        <template v-if="sections.length">
+            <template v-for="section in sections">
                 <div class="row">
-                    <panel :section="section"></panel>
+                    <panel
+                            :section="section"
+                            @set-moving="setMoving"
+                    ></panel>
                 </div>
             </template>
         </template>
         <div class="box-actions">
-            <button class="btn btn-xs btn-info btn-block" @click.prevent="insert(0)" title="add section"><i class="fa fa-plus"></i></button>
+            <button class="btn btn-xs btn-info btn-block" @click.prevent="go('create')" title="add section"><i class="fa fa-plus"></i></button>
         </div>
     </div>
 </div>

@@ -15,9 +15,7 @@ export default {
         },
     },
     data() {
-        return {
-
-        }
+        return {}
     },
     computed: {
         configs() {
@@ -25,11 +23,13 @@ export default {
         },
     },
     methods: {
-        close() {
-            this.$router.push({params: {
-                section_mode: null,
-                section_id: null,
-            }});
+        go(mode, id) {
+            this.$router.push({
+                params: {
+                    section_mode: mode,
+                    section_id: id,
+                }
+            });
         }
     },
     mounted() {
