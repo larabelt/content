@@ -1,7 +1,16 @@
 <div class="sections-admin">
+
     <div class="sections-index">
         <div v-if="loading" class="box-body"><i class="fa fa-spinner fa-spin"></i></div>
         <template v-if="sections.length">
+
+            <div class="clearfix">
+                <div class="pull-right">
+                    <button class="btn btn-xs btn-primary" @click.prevent="go('create', null, {mode:'before', relative_id: first.id})" title="add section">add section</button>
+                </div>
+            </div>
+            <br/>
+
             <template v-for="section in sections">
                 <div class="row">
                     <panel
@@ -11,8 +20,10 @@
                 </div>
             </template>
         </template>
-        <div class="box-actions">
-            <button class="btn btn-xs btn-info btn-block" @click.prevent="go('create')" title="add section"><i class="fa fa-plus"></i></button>
+    </div>
+    <div class="box-actions clearfix">
+        <div class="pull-right">
+            <button class="btn btn-xs btn-primary" @click.prevent="go('create')" title="add section">add section</button>
         </div>
     </div>
 </div>

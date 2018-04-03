@@ -17,13 +17,6 @@ export default {
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
-
-
-            active: new Form({
-                morphable_type: this.$parent.morphable_type,
-                morphable_id: this.$parent.morphable_id,
-            }),
-            scroll: {x: 0, y: 0},
         }
     },
     computed: {

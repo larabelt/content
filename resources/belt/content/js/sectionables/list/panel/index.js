@@ -1,9 +1,6 @@
 import shared from 'belt/content/js/sectionables/shared';
-
 import Form from 'belt/content/js/sectionables/form';
 import TreeForm from 'belt/content/js/sectionables/tree';
-
-
 import self from 'belt/content/js/sectionables/list/panel';
 import html from 'belt/content/js/sectionables/list/panel/template.html';
 
@@ -22,19 +19,14 @@ export default {
     },
     data() {
         return {
-            active: this.$parent.active,
-
             form: new Form({
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
-            paramable: this.$parent.active,
             sections: this.$parent.sections,
-            scroll: this.$parent.scroll,
         }
     },
     computed: {
-
         first() {
             return this.$parent.first;
         },
@@ -62,7 +54,6 @@ export default {
         preview() {
             return _.get(this.section, 'preview');
         },
-
     },
     methods: {
         cancel() {
@@ -75,7 +66,7 @@ export default {
                 });
         },
         insert(id, position) {
-
+            this.go('create', null, {mode: position, relative_id: id});
         },
         move(id, position) {
             return new Promise((resolve, reject) => {

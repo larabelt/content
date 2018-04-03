@@ -23,11 +23,15 @@ export default {
         },
     },
     methods: {
-        go(mode, id) {
+        go(mode, id, query) {
             this.$router.push({
                 params: {
                     section_mode: mode,
                     section_id: id,
+                },
+                query: {
+                    mode: _.get(query, 'mode'),
+                    relative_id: _.get(query, 'relative_id'),
                 }
             });
         }

@@ -22,7 +22,10 @@
                     <span v-for="error in section.error('template')" class="contents-danger">{{ error }}</span>
                 </div>
             </form>
-            <params paramable_type="sections" :paramable_id="section.id"></params>
+            <div v-if="loading" class="box-body"><i class="fa fa-spinner fa-spin"></i></div>
+            <div v-else>
+                <params paramable_type="sections" :paramable_id="section.id"></params>
+            </div>
         </div>
     </div>
 </div>

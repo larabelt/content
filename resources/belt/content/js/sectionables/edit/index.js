@@ -8,6 +8,7 @@ export default {
     mixins: [shared],
     data() {
         return {
+            loading: false,
             section: new Form({
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
@@ -22,34 +23,26 @@ export default {
             return 'sections' + this.section.id;
         },
         templateGroups() {
-
             let options = [];
             let templates = this.configs ? this.configs : {};
-
             _.forOwn(templates, function (template, key) {
                 options.push({
                     key: key,
                     label: template.label ? template.label : key,
                 });
             });
-
             options = _.orderBy(options, ['label']);
-
             return options;
         },
         templates() {
-
             let options = [];
             let templates = _.get(this.configs, this.section.template_subgroup, {});
-
             _.forOwn(templates, (template, key) => {
                 template.key = this.section.template_subgroup + '.' + key;
                 template.label = template.label ? template.label : key;
                 options.push(template);
             });
-
             options = _.orderBy(options, ['label']);
-
             return options;
         },
     },
@@ -69,9 +62,17 @@ export default {
     },
     components: {params},
     methods: {
-        save: _.debounce(function () {
-            this.section.submit();
-        }, 750),
+        updateSection() {
+            this.loading = true;
+            this.section.submit()
+                .then(() => {
+                    this.$store.dispatch(this.storeKey + '/load', this.section);
+                    this.$store.dispatch(this.storeKey + '/params/load')
+                        .then(() => {
+                            this.loading = false;
+                        });
+                });
+        }
     },
     template: html,
 }
