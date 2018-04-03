@@ -20,12 +20,17 @@ export default {
         }
     },
     computed: {
-        configs2() {
-            return this.$store.getters['configs/data'];
-        },
         configs() {
             return _.get(this.$store.getters['configs/data'], 'sections');
         },
+    },
+    methods: {
+        close() {
+            this.$router.push({params: {
+                section_mode: null,
+                section_id: null,
+            }});
+        }
     },
     mounted() {
         if (!_.has(this.$store.getters['configs/data'], 'sections')) {

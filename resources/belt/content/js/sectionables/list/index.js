@@ -30,7 +30,6 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch('configs/loadType', 'sections');
         this.sections.index();
     },
     methods: {

@@ -14,6 +14,45 @@ export default {
             }),
         }
     },
+    computed: {
+        config() {
+            return this.$store.getters[this.storeActiveKey + '/config/data'];
+        },
+        storeActiveKey() {
+            return 'sections' + this.active.id;
+        },
+        templateGroups() {
+
+            let options = [];
+            let templates = this.configs ? this.configs : {};
+
+            _.forOwn(templates, function (template, key) {
+                options.push({
+                    value: key,
+                    label: template.label ? template.label : key,
+                });
+            });
+
+            options = _.orderBy(options, ['label']);
+
+            return options;
+        },
+        templates() {
+
+            let options = [];
+            let templates = _.get(this.configs, this.activeGroup, {});
+
+            _.forOwn(templates, (template, key) => {
+                template.name = this.activeGroup + '.' + key;
+                template.label = template.label ? template.label : key;
+                options.push(template);
+            });
+
+            options = _.orderBy(options, ['label']);
+
+            return options;
+        },
+    },
     created() {
         let section_id = this.$route.params.section_id;
         this.active.id = section_id;
@@ -35,22 +74,6 @@ export default {
                     this.sections.index();
                 });
         }, 1000),
-        templates() {
-            let configs = this.$store.getters['configs/data'];
-            let group = _.get(configs, 'sections.' + this.active.template_subgroup);
-            let templates = [];
-            for (let key in group) {
-                let config = group[key];
-                let template = {
-                    key: this.active.template_subgroup + '.' + key,
-                    label: config['label'] ? config['label'] : key
-                };
-                templates.push(template);
-            }
-            return _.sortBy(templates, [function (o) {
-                return o.key;
-            }]);
-        }
     },
     template: html,
 }

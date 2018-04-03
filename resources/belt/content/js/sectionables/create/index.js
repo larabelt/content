@@ -13,11 +13,13 @@ export default {
             }),
         }
     },
+    mounted() {
+        console.log(this.$router.currentRoute);
+    },
     computed: {
         templateGroups() {
 
             let options = [];
-            //let templates = _.get(this.configs, 'sections', {});
             let templates = this.configs ? this.configs : {};
 
             _.forOwn(templates, function (template, key) {
@@ -34,7 +36,7 @@ export default {
         templates() {
 
             let options = [];
-            let templates = _.get(this.configs, 'sections.' + this.activeGroup, {});
+            let templates = _.get(this.configs, this.activeGroup, {});
 
             _.forOwn(templates, (template, key) => {
                 template.name = this.activeGroup + '.' + key;
