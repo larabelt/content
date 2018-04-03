@@ -1,0 +1,7 @@
+<div>
+    <select v-model="group" class="form-control" @change="update()">
+        <template v-for="group in groups">
+            <option :value="group.value">{{ group.label }}</option>
+        </template>
+    </select>
+</div>

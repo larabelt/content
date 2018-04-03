@@ -1,6 +1,7 @@
 import shared from 'belt/content/js/sectionables/shared';
 import store from 'belt/content/js/sectionables/store';
 import Form from 'belt/content/js/sectionables/form';
+import templates from 'belt/content/js/sectionables/templates';
 import params from 'belt/core/js/paramables/ctlr/index';
 import html from 'belt/content/js/sectionables/edit/template.html';
 
@@ -13,6 +14,7 @@ export default {
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
+            showTemplates: false,
         }
     },
     computed: {
@@ -21,6 +23,9 @@ export default {
         },
         storeKey() {
             return 'sections' + this.section.id;
+        },
+        templateSubgroup() {
+            return this.section.template_subgroup;
         },
         templateGroups() {
             let options = [];
@@ -58,12 +63,15 @@ export default {
             .then(() => {
                 this.$store.dispatch(this.storeKey + '/load', this.section);
                 this.$store.dispatch(this.storeKey + '/params/load');
+                console.log(this.section);
             });
     },
-    components: {params},
+
     methods: {
-        updateSection() {
+        update(template) {
+            this.showTemplates = false;
             this.loading = true;
+            this.section.template = template;
             this.section.submit()
                 .then(() => {
                     this.$store.dispatch(this.storeKey + '/load', this.section);
@@ -73,6 +81,10 @@ export default {
                         });
                 });
         }
+    },
+    components: {
+        templates,
+        params
     },
     template: html,
 }

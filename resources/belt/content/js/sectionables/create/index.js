@@ -1,13 +1,15 @@
 import shared from 'belt/content/js/sectionables/shared';
 import Form from 'belt/content/js/sectionables/form';
 import TreeForm from 'belt/content/js/sectionables/tree';
+import templateGroups from 'belt/content/js/sectionables/templates/groups';
+import templates from 'belt/content/js/sectionables/templates';
 import html from 'belt/content/js/sectionables/create/template.html';
 
 export default {
     mixins: [shared],
     data() {
         return {
-            activeGroup: false,
+            templateSubgroup: false,
             form: new Form({
                 morphable_id: this.morphable_id,
                 morphable_type: this.morphable_type,
@@ -23,29 +25,6 @@ export default {
         },
         relative_id() {
             return _.get(this.query, 'relative_id');
-        },
-        templateGroups() {
-            let options = [];
-            let templates = this.configs ? this.configs : {};
-            _.forOwn(templates, function (template, key) {
-                options.push({
-                    value: key,
-                    label: template.label ? template.label : key,
-                });
-            });
-            options = _.orderBy(options, ['label']);
-            return options;
-        },
-        templates() {
-            let options = [];
-            let templates = _.get(this.configs, this.activeGroup, {});
-            _.forOwn(templates, (template, key) => {
-                template.name = this.activeGroup + '.' + key;
-                template.label = template.label ? template.label : key;
-                options.push(template);
-            });
-            options = _.orderBy(options, ['label']);
-            return options;
         },
     },
     methods: {
@@ -84,7 +63,14 @@ export default {
         },
         postCreate(id) {
             this.go('edit', id);
+        },
+        setTemplateSubgroup(templateSubgroup) {
+            this.templateSubgroup = templateSubgroup;
         }
+    },
+    components: {
+        templateGroups,
+        templates,
     },
     template: html,
 }

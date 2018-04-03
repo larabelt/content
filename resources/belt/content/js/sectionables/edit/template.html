@@ -11,17 +11,20 @@
             </span>
         </div>
         <div class="box-body">
-            <form @submit.prevent="updateSection()" @keydown="section.errors.clear($event.target.name)">
-                <div class="form-group" :class="{ 'has-error': section.error('template') }">
-                    <label for="template">Template</label>
-                    <select @change="updateSection()" v-model="section.template" name="template" class="form-control">
-                        <template v-for="template in templates">
-                            <option :value="template.key">{{ template.label }}</option>
-                        </template>
-                    </select>
-                    <span v-for="error in section.error('template')" class="contents-danger">{{ error }}</span>
+
+            <div class="form-group">
+                <label for="template">Template</label>
+                <div class="input-group">
+                    <div class="input-group-addon" @click="showTemplates = !showTemplates">
+                        <i class="fa fa-pencil"></i>
+                    </div>
+                    <input class="form-control" v-model="section.template" readonly>
                 </div>
-            </form>
+            </div>
+            <div v-if="showTemplates" class="box-body">
+                <templates @select-section-template="update"></templates>
+            </div>
+
             <div v-if="loading" class="box-body"><i class="fa fa-spinner fa-spin"></i></div>
             <div v-else>
                 <params paramable_type="sections" :paramable_id="section.id"></params>

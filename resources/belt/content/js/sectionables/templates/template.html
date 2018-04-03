@@ -1,0 +1,11 @@
+<div>
+    <div v-for="template, key in templates" class="clearfix">
+        <span class="pull-left">
+            <strong>{{ template.label }}</strong>
+            <p v-if="template.description">{{ template.description }}</p>
+        </span>
+        <span class="pull-right">
+            <button class="btn btn-xs btn-primary" @click.prevent="update(template.name)"><i class="fa fa-angle-double-right"></i></button>
+        </span>
+    </div>
+</div>

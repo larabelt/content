@@ -4,22 +4,7 @@
         <span class="pull-right"><button class="btn text-muted" @click.prevent="go()"><i class="fa fa-times"></i></button></span>
     </div>
     <div class="box-body">
-
-        <select v-model="activeGroup" class="form-control" change="emitEvent()">
-            <template v-for="templateGroup in templateGroups">
-                <option :value="templateGroup.value">{{ templateGroup.label }}</option>
-            </template>
-        </select>
-
-        <div v-for="template, key in templates" class="clearfix">
-            <span class="pull-left">
-                <strong>{{ template.label }}</strong>
-                <p v-if="template.description">{{ template.description }}</p>
-            </span>
-            <span class="pull-right">
-                <button class="btn btn-xs btn-primary" @click.prevent="create(template.name)">Add</button>
-            </span>
-        </div>
-
+        <template-groups @select-section-template-group="setTemplateSubgroup"></template-groups>
+        <templates @select-section-template="create"></templates>
     </div>
 </div>
