@@ -1,4 +1,4 @@
-import shared from 'belt/content/js/sectionables/ctlr/shared';
+import shared from 'belt/content/js/sectionables/shared';
 import Form from 'belt/content/js/sectionables/form';
 import html from 'belt/content/js/sectionables/create/template.html';
 
@@ -6,11 +6,10 @@ export default {
     mixins: [shared],
     data() {
         return {
-            show: false,
             activeGroup: false,
             form: new Form({
-                morphable_id: this.$parent.morphable_id,
-                morphable_type: this.$parent.morphable_type,
+                morphable_id: this.morphable_id,
+                morphable_type: this.morphable_type,
             }),
         }
     },
@@ -18,7 +17,8 @@ export default {
         templateGroups() {
 
             let options = [];
-            let templates = _.get(this.configs, 'sections', {});
+            //let templates = _.get(this.configs, 'sections', {});
+            let templates = this.configs ? this.configs : {};
 
             _.forOwn(templates, function (template, key) {
                 options.push({
@@ -47,17 +47,14 @@ export default {
             return options;
         },
     },
-    mounted() {
-    },
     methods: {
         create(template) {
 
-            //this.form.sectionable_type = type;
             this.form.template = template;
 
-            if (this.creating.position == 'in') {
-                this.form.parent_id = this.creating.neighbor_id;
-            }
+            // if (this.creating.position == 'in') {
+            //     this.form.parent_id = this.creating.neighbor_id;
+            // }
 
             this.form.submit()
                 .then(() => {
