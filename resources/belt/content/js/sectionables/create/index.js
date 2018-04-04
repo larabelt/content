@@ -46,20 +46,7 @@ export default {
                 });
         },
         move(id, relative_id, position) {
-            return new Promise((resolve, reject) => {
-                let tree = new TreeForm({
-                    section_id: id,
-                    neighbor_id: relative_id,
-                    move: position
-                });
-                tree.submit()
-                    .then(() => {
-                        resolve();
-                    })
-                    .catch(() => {
-                        reject();
-                    });
-            });
+            return this.moveSection(id, relative_id, position);
         },
         postCreate(id) {
             this.go('edit', id);

@@ -26,8 +26,10 @@ export default {
         }
     },
     methods: {
-        update() {
-            this.$emit('select-section-template-group', this.group);
+        update(group) {
+            //group = group ? group : this.group;
+            this.group = group;
+            this.$emit('select-section-template-group', group);
         },
     },
     template: html,

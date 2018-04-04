@@ -34,7 +34,23 @@ export default {
                     relative_id: _.get(query, 'relative_id'),
                 }
             });
-        }
+        },
+        moveSection(id, relative_id, position) {
+            return new Promise((resolve, reject) => {
+                let tree = new TreeForm({
+                    section_id: id,
+                    neighbor_id: relative_id,
+                    move: position
+                });
+                tree.submit()
+                    .then(() => {
+                        resolve();
+                    })
+                    .catch(() => {
+                        reject();
+                    });
+            });
+        },
     },
     mounted() {
         if (!_.has(this.$store.getters['configs/data'], 'sections')) {

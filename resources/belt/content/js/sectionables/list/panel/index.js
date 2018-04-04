@@ -68,22 +68,26 @@ export default {
         insert(id, position) {
             this.go('create', null, {mode: position, relative_id: id});
         },
-        move(id, position) {
-            return new Promise((resolve, reject) => {
-                let tree = new TreeForm({
-                    section_id: this.moving.id,
-                    neighbor_id: id,
-                    move: position
+        move(relative_id, position) {
+            return this.moveSection(this.moving.id, relative_id, position)
+                .then(() => {
+                    this.reset();
                 });
-                tree.submit()
-                    .then(() => {
-                        this.reset();
-                        resolve();
-                    })
-                    .catch(() => {
-                        reject();
-                    });
-            });
+            // return new Promise((resolve, reject) => {
+            //     let tree = new TreeForm({
+            //         section_id: this.moving.id,
+            //         neighbor_id: id,
+            //         move: position
+            //     });
+            //     tree.submit()
+            //         .then(() => {
+            //             this.reset();
+            //             resolve();
+            //         })
+            //         .catch(() => {
+            //             reject();
+            //         });
+            // });
         },
         reset() {
             return new Promise((resolve, reject) => {

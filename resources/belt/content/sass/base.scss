@@ -81,3 +81,20 @@
     border: 1px dashed #ccc;
     margin-bottom: 20px;
 }
+
+.template-select-list {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    .row {
+        border-bottom: 1px solid #ddd;
+    }
+    .template-label {
+        padding: 5px 10px;
+    }
+    .template-description {
+        padding: 5px 10px;
+    }
+    .template-action {
+        padding: 5px 10px;
+    }
+}
