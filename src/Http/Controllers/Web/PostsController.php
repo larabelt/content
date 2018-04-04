@@ -33,7 +33,11 @@ class PostsController extends BaseController
     public function show(Post $post)
     {
         if (!$post->is_active) {
-            abort(404);
+            try {
+                $this->authorize('update', $post);
+            } catch (\Exception $e) {
+                abort(404);
+            }
         }
 
         $compiled = $this->compile($post);
