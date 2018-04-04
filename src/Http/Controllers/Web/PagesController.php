@@ -33,7 +33,11 @@ class PagesController extends BaseController
     public function show(Page $page)
     {
         if (!$page->is_active) {
-            abort(404);
+            try {
+                $this->authorize('update', $page);
+            } catch (\Exception $e) {
+                abort(404);
+            }
         }
 
         $compiled = $this->compile($page);

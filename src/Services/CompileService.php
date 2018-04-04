@@ -50,9 +50,9 @@ class CompileService
         }
 
         if ($force) {
-            Cache::put($key, $compiled, 3600);
+            Cache::put($key, $compiled, 60);
         } else {
-            Cache::add($key, $compiled, 3600);
+            Cache::add($key, $compiled, 60);
         }
 
         return $compiled;
