@@ -2,7 +2,7 @@
 
 namespace Belt\Content;
 
-use Belt;
+use Belt, View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Kalnoy\Nestedset\NodeTrait;
@@ -181,15 +181,20 @@ class Section extends Model implements
 //    }
 
     /**
-     * @return string
+     * @return \Closure|mixed|string
+     * @throws \Exception
      */
     public function getPreviewAttribute()
     {
-        $default = function () {
-            return view('belt-content::sections.previews.default', ['section' => $this]);
-        };
+        $default = 'belt-content::sections.previews.default';
 
         $preview = $this->getTemplateConfig('preview', $default);
+
+        if (is_string($preview) && View::exists($preview)) {
+            $preview = function () use ($preview) {
+                return view($preview, ['section' => $this]);
+            };
+        }
 
         if ($preview instanceof \Closure) {
             $preview = $preview->call($this);

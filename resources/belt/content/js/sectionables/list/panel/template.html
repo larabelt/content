@@ -27,10 +27,16 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="#" @click.prevent="setMoving(section)"><i class="fa fa-arrows-alt"></i> Move</i></a></li>
                             <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">Add New:</li>
-                            <li><a href="#" @click.prevent="insert(section.id, 'before')">&bull; before</i></a></li>
-                            <li v-if="isBox" @click.prevent="insert(section.id, 'in')"><a href="#">&bull; inside</i></a></li>
-                            <li><a href="#" @click.prevent="insert(section.id, 'after')">&bull; after</i></a></li>
+
+<!--                            <li class="dropdown-header">Add New:</li>-->
+<!--                            <li><a href="#" @click.prevent="insert(section.id, 'before')">&bull; before</i></a></li>-->
+<!--                            <li v-if="isBox" @click.prevent="insert(section.id, 'in')"><a href="#">&bull; inside</i></a></li>-->
+<!--                            <li><a href="#" @click.prevent="insert(section.id, 'after')">&bull; after</i></a></li>-->
+
+                            <li><a href="#" @click.prevent="insert(section.id, 'before')"><i class="fa fa-plus"></i> Before</i></a></li>
+                            <li v-if="isBox" @click.prevent="insert(section.id, 'in')"><a href="#"><i class="fa fa-plus"></i> Inside</i></a></li>
+                            <li><a href="#" @click.prevent="insert(section.id, 'after')"><i class="fa fa-plus"></i> After</i></a></li>
+
                             <li role="separator" class="divider"></li>
                             <li><modal-delete :item-id="section.id" _class="''"><i class="fa fa-trash"></i> Remove</modal-delete></li>
                         </ul>
@@ -41,7 +47,7 @@
         </div>
         <div class="box-body">
 
-            <div class="section-content section-preview" v-html="preview"></div>
+            <div v-if="preview" class="section-content section-preview" v-html="preview"></div>
 
             <div v-if="isBox && mode == 'is-watching'">
                 <div class="box-actions">
@@ -56,8 +62,8 @@
 
         </div>
     </div>
-    <div class="box-actions">
-        <div v-if="mode == 'is-watching'">
+    <div v-if="mode == 'is-watching'">
+        <div class="box-actions">
             <button class="btn btn-xs btn-info btn-block" @click.prevent="move(section.id, 'after')"><i class="fa fa-arrows"></i></button>
         </div>
     </div>
