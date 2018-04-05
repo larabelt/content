@@ -105,7 +105,7 @@ class CompileServiceTest extends BeltTestCase
         $page->template = 'belt-content::pages.templates.default';
         $cacheKey = sprintf('compiled-%s-%s', $page->getMorphClass(), $page->id);
         Cache::shouldReceive('get')->once()->with($cacheKey)->andReturn('compiled');
-        Cache::shouldReceive('add')->once()->with($cacheKey, 'compiled', 3600);
+        Cache::shouldReceive('add')->once()->with($cacheKey, 'compiled', 60);
         $result = $service->cache($page);
         $this->assertEquals('compiled', $result);
 
@@ -115,7 +115,7 @@ class CompileServiceTest extends BeltTestCase
         $page->template = 'belt-content::pages.templates.default';
         $cacheKey = sprintf('compiled-%s-%s', $page->getMorphClass(), $page->id);
         Cache::shouldReceive('get')->once()->with($cacheKey)->andReturn('compiled');
-        Cache::shouldReceive('put')->once()->with($cacheKey, 'compiled', 3600);
+        Cache::shouldReceive('put')->once()->with($cacheKey, 'compiled', 60);
         $result = $service->cache($page, true);
         $this->assertEquals('compiled', $result);
     }
