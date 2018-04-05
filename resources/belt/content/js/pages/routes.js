@@ -16,6 +16,6 @@ export default [
     {path: '/pages/edit/:id/categories', component: categories, name: 'pages.categories'},
     {path: '/pages/edit/:id/handles', component: handles, name: 'pages.handles'},
     {path: '/pages/edit/:id/params', component: params, name: 'pages.params'},
-    {path: '/pages/edit/:id/sections/:section?', component: sections, name: 'pages.sections'},
+    {path: '/pages/edit/:id/sections/:section_mode?/:section_id?', component: sections, name: 'pages.sections'},
     {path: '/pages/edit/:id/tags', component: tags, name: 'pages.tags'},
 ]

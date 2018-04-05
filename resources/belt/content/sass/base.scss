@@ -1,12 +1,28 @@
+.sections-admin {
+    .box-header {
+        padding: 0;
+        .btn.text-muted {
+            line-height: 14px;
+            padding: 10px;
+        }
+    }
+    .box-title {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
 .sections-index {
     .box {
         border: 2px solid #357ca5;
-        margin-bottom: 10px;
+        //margin-bottom: 10px;
+        margin-bottom: 0;
         .box {
             border: 2px solid #b5bbc8;
             border-left-width: 8px !important;
             border-right-width: 1px !important;
-            margin-bottom: 10px !important;
+            //margin-bottom: 10px !important;
+            //margin-bottom: 0;
             .box {
                 border-color: #357ca5;
                 .box {
@@ -19,10 +35,10 @@
         }
         .box-header {
             .box-title {
-                font-size: 15px;
+                font-size: 14px;
             }
             .btn-group {
-                margin:0 ;
+                margin: 0;
             }
         }
         .box-body {
@@ -38,6 +54,10 @@
                 background-color: #d2d6de !important;
             }
         }
+
+    }
+    & > .row {
+        margin-bottom: 10px;
     }
     .section-content {
         clear: both;
@@ -49,12 +69,15 @@
             color: #bfbfbf;
         }
         & > div {
-            padding: 5px 10px;
+            //padding: 5px 10px;
         }
         p {
             margin: 0;
             padding: 0 0 10px;
         }
+    }
+    .section-preview {
+        padding: 10px;
     }
     .box-actions {
         margin: 0 10px 10px;
@@ -64,6 +87,23 @@
 .section-sub-item {
     padding: 20px;
     background-color: #f4f4f4;
-    border:1px dashed #ccc;
+    border: 1px dashed #ccc;
     margin-bottom: 20px;
+}
+
+.template-select-list {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    .row {
+        border-bottom: 1px solid #ddd;
+    }
+    .template-label {
+        padding: 5px 10px;
+    }
+    .template-description {
+        padding: 5px 10px;
+    }
+    .template-action {
+        padding: 5px 10px;
+    }
 }

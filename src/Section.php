@@ -2,7 +2,7 @@
 
 namespace Belt\Content;
 
-use Belt;
+use Belt, View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Kalnoy\Nestedset\NodeTrait;
@@ -46,42 +46,36 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['name', 'morph_class'];
+    protected $appends = ['name', 'morph_class', 'template_subgroup', 'preview'];
 
     /**
-     * @var array
-     */
-    protected $attributes = [
-        'sectionable_type' => 'sections',
-    ];
-
-    /**
-     * @return string
+     * @return mixed|string
+     * @throws \Exception
      */
     public function getNameAttribute()
     {
-        $type = $name = $this->sectionable_type;
+        $names = explode('.', $this->template);
 
-        $sectionable = $this->sectionable;
+        $name = isset($names[0]) ? title_case(str_singular($names[0])) : '???';
+        if (isset($names[1]) && $names[1] != 'default') {
+            $name .= sprintf(' [%s]', title_case($names[1]));
+        }
 
-        $name = $type == 'sections' ? 'html container' : $name;
-        $name = $type == 'custom' ? sprintf('%s', $this->template) : $name;
-        $name = $type == 'menus' ? sprintf('Menu: %s', $this->template) : $name;
-        $name = $sectionable ? $sectionable->getSectionName() : $name;
+        $name = $this->getTemplateConfig('name') ?: $name;
 
-        $name = title_case(str_singular($name));
+        if ($name instanceof \Closure) {
+            $name = $name->call($this);
+        }
 
-        //$name = strlen($name) < 25 ? $name : sprintf('%s...', substr($name, 0, 22));
-
-        return ucfirst(str_singular($name));
+        return $name;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getSectionName()
+    public function getTemplateSubgroupAttribute()
     {
-        return 'box';
+        return array_first(explode('.', $this->template));
     }
 
     /**
@@ -106,6 +100,7 @@ class Section extends Model implements
     /**
      * The Associated owning model
      *
+     * @deprecated
      * @return MorphTo|Model
      */
     public function sectionable()
@@ -116,6 +111,7 @@ class Section extends Model implements
     /**
      * Get a relationship value from a method.
      *
+     * @deprecated
      * @param  string $method
      * @return mixed
      *
@@ -128,14 +124,6 @@ class Section extends Model implements
         }
 
         return parent::getRelationshipFromMethod($method);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTemplateGroup()
-    {
-        return $this->sectionable_type ?: 'sections';
     }
 
     /**
@@ -163,6 +151,60 @@ class Section extends Model implements
         $query->where('sections.owner_id', $owner_id);
 
         return $query;
+    }
+
+//    /**
+//     * @deprecated
+//     * @return null
+//     */
+//    public function getHeadingAttribute()
+//    {
+//        return $this->param('heading');
+//    }
+//
+//    /**
+//     * @deprecated
+//     * @return null
+//     */
+//    public function getBeforeAttribute()
+//    {
+//        return $this->param('before');
+//    }
+//
+//    /**
+//     * @deprecated
+//     * @return null
+//     */
+//    public function getAfterAttribute()
+//    {
+//        return $this->param('after');
+//    }
+
+    /**
+     * @return \Closure|mixed|string
+     * @throws \Exception
+     */
+    public function getPreviewAttribute()
+    {
+        $default = 'belt-content::sections.previews.default';
+
+        $preview = $this->getTemplateConfig('preview', $default);
+
+        if (is_string($preview) && View::exists($preview)) {
+            $preview = function () use ($preview) {
+                return view($preview, ['section' => $this]);
+            };
+        }
+
+        if ($preview instanceof \Closure) {
+            $preview = $preview->call($this);
+        }
+
+        if ($preview instanceof \Illuminate\View\View) {
+            $preview = $preview->render();
+        }
+
+        return $preview;
     }
 
     /**

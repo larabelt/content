@@ -1,0 +1,24 @@
+<div>
+
+    <!--    <select v-model="group" class="form-control" @change="update()">-->
+    <!--        <template v-for="group in groups">-->
+    <!--            <option :value="group.value">{{ group.label }}</option>-->
+    <!--        </template>-->
+    <!--    </select>-->
+
+    <template v-if="group">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <button class="btn btn-default btn-sm" @click.prevent="update(null)"><i class="fa fa-undo"></i></button> {{ group }}
+            </h3>
+        </div>
+    </template>
+    <template v-else>
+        <template v-for="group in groups">
+            <!--<div class="col col-lg-2 col-md-3 col-sm-4"></div>-->
+            <a class="btn btn-app" @click="update(group.value)">
+                <i class="fa fa-plus"></i> {{ group.label }}
+            </a>
+        </template>
+    </template>
+</div>

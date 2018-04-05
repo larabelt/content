@@ -1,0 +1,20 @@
+<div>
+
+    <item-itinerary v-if="isType('itineraries')" :section="section"></item-itinerary>
+    <item-menu v-if="isType('menus')" :section="section"></item-menu>
+
+    <div v-if="active.id">
+        <form @submit.prevent="updateActive()" @keydown="active.errors.clear($event.target.name)">
+            <div class="form-group" :class="{ 'has-error': active.error('template') }">
+                <label for="template">Template</label>
+                <select @change="updateActive()" v-model="active.template" name="template" class="form-control">
+                    <template v-for="template in templates">
+                        <option :value="template.key">{{ template.label }}</option>
+                    </template>
+                </select>
+                <span v-for="error in active.error('template')" class="contents-danger">{{ error }}</span>
+            </div>
+        </form>
+        <params paramable_type="sections" :paramable_id="active.id"></params>
+    </div>
+</div>

@@ -18,7 +18,8 @@ class StoreSection extends FormRequest
         return [
             'owner_id' => 'required',
             'owner_type' => 'required',
-            'sectionable_type' => 'required',
+            //'sectionable_type' => 'required',
+            'template' => 'required',
         ];
     }
 

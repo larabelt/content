@@ -88,7 +88,7 @@ trait IncludesTemplate
         }
 
         if ($key) {
-            return array_get($config, $key, $default);
+            return array_get($config, $key) ?: $default;
         }
 
         return $config;
@@ -120,12 +120,14 @@ trait IncludesTemplate
 
         $configParams = array_get($config, 'params', []);
 
-        foreach ($configParams as $key => $values) {
+        foreach ($configParams as $key => $configParam) {
 
             $default = '';
             $param = $this->params->where('key', $key)->first();
 
-            if (is_array($values)) {
+            $values = array_get($configParam, 'options', []);
+
+            if (is_array($values) && $values) {
                 $values = ArrayHelper::isAssociative($values) ? array_keys($values) : $values;
                 $default = $values[0];
                 if ($param && $param->value && !in_array($param->value, $values)) {
@@ -136,6 +138,7 @@ trait IncludesTemplate
             if (!$param) {
                 $this->params()->create(['key' => $key, 'value' => $default]);
             }
+
         }
 
         foreach ($this->params as $param) {

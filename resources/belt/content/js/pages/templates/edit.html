@@ -2,7 +2,9 @@
     <heading>
         <span slot="title">Page Editor</span>
         <span slot="subtitle">{{ form.name }}</span>
-        <li><router-link :to="{ name: 'pages' }">Pages</router-link></li>
+        <li>
+            <router-link :to="{ name: 'pages' }">Pages</router-link>
+        </li>
     </heading>
     <section class="content">
         <div class="nav-tabs-custom">
@@ -15,7 +17,14 @@
                         </div>
                     </div>
                 </div>
-                <tab v-if="form.id" :morphable="form" :_config="config"></tab>
+                <template v-if="form.id">
+                    <tab
+                            :morphable="form"
+                            :morphable_id="form.id"
+                            morphable_type="pages"
+                    ></tab>
+                    <!--:_config="config"-->
+                </template>
             </div>
         </div>
     </section>
