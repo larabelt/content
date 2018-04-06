@@ -108,23 +108,23 @@ class Section extends Model implements
         return $this->morphTo();
     }
 
-    /**
-     * Get a relationship value from a method.
-     *
-     * @deprecated
-     * @param  string $method
-     * @return mixed
-     *
-     * @throws \LogicException
-     */
-    protected function getRelationshipFromMethod($method)
-    {
-        if ($method == 'sectionable' && !$this->sectionable_id) {
-            return null;
-        }
-
-        return parent::getRelationshipFromMethod($method);
-    }
+//    /**
+//     * Get a relationship value from a method.
+//     *
+//     * @deprecated
+//     * @param  string $method
+//     * @return mixed
+//     *
+//     * @throws \LogicException
+//     */
+//    protected function getRelationshipFromMethod($method)
+//    {
+//        if ($method == 'sectionable' && !$this->sectionable_id) {
+//            return null;
+//        }
+//
+//        return parent::getRelationshipFromMethod($method);
+//    }
 
     /**
      * Child sections
@@ -152,33 +152,6 @@ class Section extends Model implements
 
         return $query;
     }
-
-//    /**
-//     * @deprecated
-//     * @return null
-//     */
-//    public function getHeadingAttribute()
-//    {
-//        return $this->param('heading');
-//    }
-//
-//    /**
-//     * @deprecated
-//     * @return null
-//     */
-//    public function getBeforeAttribute()
-//    {
-//        return $this->param('before');
-//    }
-//
-//    /**
-//     * @deprecated
-//     * @return null
-//     */
-//    public function getAfterAttribute()
-//    {
-//        return $this->param('after');
-//    }
 
     /**
      * @return \Closure|mixed|string

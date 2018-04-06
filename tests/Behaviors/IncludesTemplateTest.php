@@ -40,15 +40,18 @@ class IncludesTemplateTest extends Testing\BeltTestCase
                 'path' => 'belt-content::pages.sections.default',
                 'params' => [
                     'class' => [
-                        'col-md-3' => 'default',
-                        'col-md-12' => 'wide',
+                        'options' => [
+                            'col-md-3' => 'default',
+                            'col-md-12' => 'wide',
+                        ]
                     ],
                     'icon' => [
                         'default' => 'default',
                         'special' => 'special',
                     ],
                     'foo' => [
-                        'bar' => 'default',
+                        'type' => 'text',
+                        'default' => 'bar',
                         'other' => 'other',
                     ],
                 ]

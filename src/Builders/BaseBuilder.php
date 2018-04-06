@@ -22,6 +22,10 @@ abstract class BaseBuilder
      */
     public $sections;
 
+    /**
+     * BaseBuilder constructor.
+     * @param IncludesTemplateInterface $item
+     */
     public function __construct(IncludesTemplateInterface $item)
     {
         $this->item = $item;
@@ -34,7 +38,7 @@ abstract class BaseBuilder
      */
     public function sections()
     {
-        return $this->sections ?: $this->sections = new Section();
+        return $this->sections ?: $this->sections = Section::query();
     }
 
     /**
@@ -46,7 +50,7 @@ abstract class BaseBuilder
 
         $parent = array_get($options, 'parent');
 
-        Section::unguard();
+        //Section::unguard();
 
         $section = $this->sections()->create([
             'template' => array_get($options, 'template', 'default'),
@@ -55,7 +59,7 @@ abstract class BaseBuilder
             'owner_type' => $this->item->getMorphClass(),
         ]);
 
-        foreach (array_get($options, 'params') as $key => $value) {
+        foreach ((array) array_get($options, 'params') as $key => $value) {
             $section->saveParam($key, $value);
         }
 

@@ -36,6 +36,14 @@ trait IncludesTemplate
     }
 
     /**
+     * @return mixed
+     */
+    public function getTemplateGroup()
+    {
+        return $this->getMorphClass();
+    }
+
+    /**
      * @return string
      */
     public function getTemplateConfigPrefix()
@@ -57,14 +65,6 @@ trait IncludesTemplate
         }
 
         return array_keys($configs)[0];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTemplateGroup()
-    {
-        return $this->getMorphClass();
     }
 
     /**
