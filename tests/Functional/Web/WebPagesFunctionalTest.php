@@ -9,21 +9,24 @@ class WebPagesFunctionalTest extends Testing\BeltTestCase
     public function testAsSuper()
     {
         $this->refreshDB();
-        $this->actAsSuper();
 
         Page::unguard();
         $page = Page::find(1);
-        $page->update(['is_active' => true]);
 
         # show
+        $page->update(['is_active' => true]);
         $response = $this->json('GET', '/pages/1');
         $response->assertStatus(200);
 
-        $page->update(['is_active' => false]);
-
         # show (404)
+        $page->update(['is_active' => false]);
         $response = $this->json('GET', '/pages/1');
         $response->assertStatus(404);
+
+        # show (super, avoid 404)
+        $this->actAsSuper();
+        $response = $this->json('GET', '/pages/1');
+        $response->assertStatus(200);
     }
 
 }

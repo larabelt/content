@@ -2,14 +2,21 @@
 
 use Belt\Core\Testing;
 use Belt\Core\User;
+use Belt\Content\Page;
 
 class CompilerFunctionalTest extends Testing\BeltTestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->refreshDB();
+        Page::unguard();
+        $page = Page::find(1);
+        $page->update(['is_active' => true]);
+    }
 
     public function testAsAnonymousUser()
     {
-        $this->refreshDB();
-
         app()['config']->set('belt.templates.pages.default.force_compile', true);
 
         # show forces compile for template
@@ -19,7 +26,6 @@ class CompilerFunctionalTest extends Testing\BeltTestCase
 
     public function testAsSuper()
     {
-        $this->refreshDB();
         $this->actAsSuper();
 
         # show compiles b/c debug env
@@ -36,8 +42,6 @@ class CompilerFunctionalTest extends Testing\BeltTestCase
 
     public function testAsLoggedInUser()
     {
-        $this->refreshDB();
-
         # show caches b/c logged in user does not own page
         putenv("APP_DEBUG=false");
         $this->actingAs(factory(User::class)->make(['is_super' => false]));
