@@ -1,18 +1,11 @@
 <?php
 
-namespace Belt\Content\HandleResponses;
-
-use Mockery as m;
 use Belt\Core\Testing;
 use Belt\Content\Handle;
+use Belt\Content\HandleResponses\BaseHandleResponse;
 
 class BaseHandleResponseTest extends Testing\BeltTestCase
 {
-
-    public function tearDown()
-    {
-        m::close();
-    }
 
     /**
      * @covers \Belt\Content\HandleResponses\BaseHandleResponse::__construct
