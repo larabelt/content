@@ -1,4 +1,5 @@
 <?php
+
 namespace Belt\Content\Behaviors;
 
 use DB;
@@ -13,6 +14,14 @@ trait HasSections
     public function sections()
     {
         return $this->morphMany(Section::class, 'owner')->whereNull('parent_id')->orderBy('_lft');
+    }
+
+    /**
+     * @return string
+     */
+    public function getHasSectionsCacheKey()
+    {
+        return sprintf('sections.%s.%s', $this->getMorphClass(), $this->getKey());
     }
 
     public function purgeSections()

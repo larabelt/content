@@ -3,8 +3,9 @@
 namespace Belt\Content\Http\Controllers\Api;
 
 use Belt\Core\Http\Controllers\ApiController;
-use Belt\Content\Page;
+use Belt\Content\Http\Controllers\Compiler;
 use Belt\Content\Http\Requests;
+use Belt\Content\Page;
 use Illuminate\Http\Request;
 
 /**
@@ -13,6 +14,8 @@ use Illuminate\Http\Request;
  */
 class PagesController extends ApiController
 {
+
+    use Compiler;
 
     /**
      * @var Page
@@ -121,6 +124,8 @@ class PagesController extends ApiController
         ]);
 
         $page->save();
+
+        $this->compile($page, true);
 
         $this->itemEvent('updated', $page);
 

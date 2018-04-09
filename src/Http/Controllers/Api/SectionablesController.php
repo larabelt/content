@@ -3,8 +3,8 @@
 namespace Belt\Content\Http\Controllers\Api;
 
 use Belt\Core\Http\Controllers\ApiController;
-use Belt\Core\Helpers\MorphHelper;
-use Belt\Content\Behaviors\HasSectionsInterface;
+use Belt\Core\Http\Controllers\Morphable;
+use Belt\Content\Http\Controllers\Compiler;
 use Belt\Content\Http\Requests;
 use Belt\Content\Section;
 use Belt\Content\Services\CompileService;
@@ -13,25 +13,25 @@ use Illuminate\Http\Request;
 class SectionablesController extends ApiController
 {
 
+    use Compiler, Morphable;
+
     /**
      * @var Section
      */
     public $sections;
 
     /**
-     * @var MorphHelper
-     */
-    public $morphHelper;
-
-    /**
      * @var CompileService
      */
     public $service;
 
-    public function __construct(Section $section, MorphHelper $morphHelper)
+    /**
+     * SectionablesController constructor.
+     * @param Section $section
+     */
+    public function __construct(Section $section)
     {
         $this->sections = $section;
-        $this->morphHelper = $morphHelper;
     }
 
     public function section($id, $owner = null)
@@ -47,43 +47,21 @@ class SectionablesController extends ApiController
         return $section ?: $this->abort(404);
     }
 
-    public function owner($owner_type, $owner_id)
-    {
-        $owner = $this->morphHelper->morph($owner_type, $owner_id);
-
-        return $owner ?: $this->abort(404);
-    }
-
-    /**
-     * @return CompileService
-     */
-    public function service()
-    {
-        return $this->service = $this->service ?: new CompileService();
-    }
-
-    /**
-     * Cache sections
-     *
-     * @param $owner
-     */
-    public function cache($owner)
-    {
-        if ($owner instanceof HasSectionsInterface) {
-            $this->service()->cache($owner, true);
-        }
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @param $owner_type
+     * @param $owner_id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request, $owner_type, $owner_id)
     {
 
-        $owner = $this->owner($owner_type, $owner_id);
+        $owner = $this->morphable($owner_type, $owner_id);
 
         $this->authorize('view', $owner);
 
@@ -106,13 +84,17 @@ class SectionablesController extends ApiController
     /**
      * Store a newly created resource in glue.
      *
-     * @param  Requests\StoreSection $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param Requests\StoreSection $request
+     * @param $owner_type
+     * @param $owner_id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Requests\StoreSection $request, $owner_type, $owner_id)
     {
-        $owner = $this->owner($owner_type, $owner_id);
+        $owner = $this->morphable($owner_type, $owner_id);
 
         $this->authorize('update', $owner);
 
@@ -135,7 +117,7 @@ class SectionablesController extends ApiController
 
         $section->save();
 
-        $this->cache($owner);
+        $this->compile($owner, true);
 
         $this->itemEvent('created', $section);
         $this->itemEvent('sections.created', $owner);
@@ -146,13 +128,17 @@ class SectionablesController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $owner_type
+     * @param $owner_id
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show($owner_type, $owner_id, $id)
     {
-        $owner = $this->owner($owner_type, $owner_id);
+        $owner = $this->morphable($owner_type, $owner_id);
 
         $this->authorize('view', $owner);
 
@@ -168,15 +154,19 @@ class SectionablesController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  Requests\UpdateSection $request
-     * @param  string $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param Requests\UpdateSection $request
+     * @param $owner_type
+     * @param $owner_id
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Requests\UpdateSection $request, $owner_type, $owner_id, $id)
     {
 
-        $owner = $this->owner($owner_type, $owner_id);
+        $owner = $this->morphable($owner_type, $owner_id);
 
         $this->authorize('update', $owner);
 
@@ -196,7 +186,7 @@ class SectionablesController extends ApiController
 
         $section->save();
 
-        $this->cache($owner);
+        $this->compile($owner, true);
 
         $this->itemEvent('updated', $section);
         $this->itemEvent('sections.updated', $owner);
@@ -207,13 +197,17 @@ class SectionablesController extends ApiController
     /**
      * Remove the specified resource from glue.
      *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $owner_type
+     * @param $owner_id
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy($owner_type, $owner_id, $id)
     {
-        $owner = $this->owner($owner_type, $owner_id);
+        $owner = $this->morphable($owner_type, $owner_id);
 
         $this->authorize('update', $owner);
 
@@ -221,7 +215,7 @@ class SectionablesController extends ApiController
 
         $section->delete();
 
-        $this->cache($owner);
+        $this->compile($owner, true);
 
         $this->itemEvent('deleted', $section);
         $this->itemEvent('sections.deleted', $owner);

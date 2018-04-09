@@ -20,6 +20,8 @@ class CompileService
      */
     public function compile(HasSectionsInterface $owner)
     {
+        $this->clearCache($owner);
+
         $compiled = null;
 
         try {
@@ -29,6 +31,8 @@ class CompileService
         } catch (\Exception $e) {
 
         }
+
+        $this->putCache($owner, $compiled);
 
         return $compiled;
     }
@@ -40,22 +44,37 @@ class CompileService
      */
     public function cache(HasSectionsInterface $owner, $force = false)
     {
-
-        $key = sprintf('compiled-%s-%s', $owner->getMorphClass(), $owner->id);
-
-        $compiled = Cache::get($key) ?: $this->compile($owner);
-
-        if (!$compiled || $force) {
-            $compiled = $this->compile($owner);
-        }
-
         if ($force) {
-            Cache::put($key, $compiled, 60);
-        } else {
-            Cache::add($key, $compiled, 60);
+            $this->clearCache($owner);
         }
 
-        return $compiled;
+        return $this->getCached($owner);
+    }
+
+    /**
+     * @param HasSectionsInterface $owner
+     */
+    public function clearCache(HasSectionsInterface $owner)
+    {
+        Cache::forget($owner->getHasSectionsCacheKey());
+    }
+
+    /**
+     * @param HasSectionsInterface $owner
+     * @param $compiled
+     */
+    public function putCache(HasSectionsInterface $owner, $compiled)
+    {
+        Cache::put($owner->getHasSectionsCacheKey(), $compiled, 60);
+    }
+
+    /**
+     * @param HasSectionsInterface $owner
+     * @return string
+     */
+    public function getCached(HasSectionsInterface $owner)
+    {
+        return Cache::get($owner->getHasSectionsCacheKey()) ?: $this->compile($owner);
     }
 
     /**
@@ -108,6 +127,11 @@ class CompileService
         return $searchable;
     }
 
+    /**
+     * @param $item
+     * @param string $searchable
+     * @return string
+     */
     public function getSearchable($item, $searchable = '')
     {
         $new = [];

@@ -22,30 +22,32 @@ trait Compiler
         return $this->compiler = $this->compiler ?: new CompileService();
     }
 
-    public function compile(HasSectionsInterface $owner)
+    /**
+     * @param HasSectionsInterface $owner
+     * @param bool $force
+     * @return mixed
+     */
+    public function compile(HasSectionsInterface $owner, $force = false)
     {
-        $method = env('APP_DEBUG') ? 'compile' : 'cache';
 
-        $force_compile = array_get($owner->getTemplateConfig(), 'force_compile', false);
-        if ($force_compile) {
-            $method = 'compile';
+        if (env('APP_DEBUG') || $owner->getTemplateConfig('force_compile')) {
+            $force = true;
         }
 
-        /**
-         * @todo below does not work on "handled" routes
-         */
-        if ($method == 'cache' && Auth::user()) {
+        if (!$force && Auth::user()) {
             try {
                 $this->authorize('update', $owner);
-                $method = 'compile';
+                $force = true;
             } catch (\Exception $e) {
 
             }
         }
 
-        $compiled = $this->compiler()->$method($owner);
+        if ($force) {
+            $this->compiler()->clearCache($owner);
+        }
 
-        return $compiled;
+        return $this->compiler()->getCached($owner);
     }
 
 }
