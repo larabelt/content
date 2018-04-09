@@ -41,25 +41,25 @@ class BeltContentPageSeeds extends Seeder
 
         # section w/breadcrumbs
         $section = $this->section($page);
-        $this->custom($section, ['template' => 'breadcrumbs'], [
+        $this->custom($section, ['template' => 'custom.breadcrumbs'], [
             'menu' => 'example',
             'active' => '/products/tools/weird'
         ]);
 
         # section w/menus
         $section = $this->section($page);
-        $leftSection = $this->section($section, 'sections', ['template' => 'width-3']);
-        $this->menu($leftSection, ['template' => 'example'], [
+        $leftSection = $this->section($section, 'sections', ['template' => 'containers.width-3']);
+        $this->menu($leftSection, ['template' => 'menus.default'], [
             'menu' => 'example',
             'active' => '/products/tools/weird'
         ]);
-        $rightSection = $this->section($section, 'sections', ['template' => 'width-9']);
+        $rightSection = $this->section($section, 'sections', ['template' => 'containers.width-9']);
         $this->block($rightSection, [], []);
 
         # section w/custom
         $section = $this->section($page);
         $this->block($section, [], ['class' => 'col-md-6']);
-        $this->custom($section, ['template' => 'contact'], ['class' => 'col-md-6']);
+        $this->custom($section, ['template' => 'custom.contact'], ['class' => 'col-md-6']);
 
         # section w/block
         $block = factory(Block::class)->create();

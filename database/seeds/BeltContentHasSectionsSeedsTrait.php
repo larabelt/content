@@ -23,15 +23,15 @@ trait BeltContentHasSectionsSeedsTrait
         }
 
         $section = factory(Section::class)->create([
-            'template' => array_get($options, 'template', 'default'),
+            'template' => array_get($options, 'template', 'containers.default'),
             'parent_id' => $parent ? $parent->id : null,
             'owner_id' => $owner ? $owner->id : $parent->owner_id,
             'owner_type' => $owner ? $owner->getMorphClass() : $parent->owner_type,
-            'sectionable_id' => $sectionable_id,
-            'sectionable_type' => $sectionable_type,
-            'heading' => array_get($options, 'heading', null),
-            'before' => array_get($options, 'before', null),
-            'after' => array_get($options, 'after', null),
+//            'sectionable_id' => $sectionable_id,
+//            'sectionable_type' => $sectionable_type,
+//            'heading' => array_get($options, 'heading', null),
+//            'before' => array_get($options, 'before', null),
+//            'after' => array_get($options, 'after', null),
         ]);
 
         foreach ($params as $key => $value) {
@@ -43,11 +43,12 @@ trait BeltContentHasSectionsSeedsTrait
 
     public function block($parent, $options = [], $params = [])
     {
-        $options = array_merge(['template' => 'default'], $options);
-
-        $params = array_merge(['class' => 'col-md-12'], $params);
+        $options = array_merge(['template' => 'blocks.default'], $options);
 
         $block = factory(Block::class)->create();
+
+        $params = array_merge(['class' => 'col-md-12'], $params);
+        $params['blocks'] = $block->id;
 
         $this->section($parent, $block, $options, $params);
     }
@@ -61,11 +62,12 @@ trait BeltContentHasSectionsSeedsTrait
 
     public function file($parent, $options = [], $params = [])
     {
-        $options = array_merge(['template' => 'default'], $options);
-
-        $params = array_merge(['class' => 'col-md-12'], $params);
+        $options = array_merge(['template' => 'attachments.default'], $options);
 
         $file = factory(Attachment::class)->create();
+
+        $params = array_merge(['class' => 'col-md-12'], $params);
+        $params['attachments'] = $file->id;
 
         $this->section($parent, $file, $options, $params);
     }
@@ -79,11 +81,12 @@ trait BeltContentHasSectionsSeedsTrait
 
     public function tout($parent, $options = [], $params = [])
     {
-        $options = array_merge(['template' => 'default'], $options);
-
-        $params = array_merge(['class' => 'col-md-4'], $params);
+        $options = array_merge(['template' => 'touts.default'], $options);
 
         $tout = factory(Tout::class)->create();
+
+        $params = array_merge(['class' => 'col-md-4'], $params);
+        $params['touts'] = $tout->id;
 
         $this->section($parent, $tout, $options, $params);
     }
