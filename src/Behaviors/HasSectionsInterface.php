@@ -13,4 +13,9 @@ interface HasSectionsInterface
      */
     public function sections();
 
+    /**
+     * @return string
+     */
+    public function getHasSectionsCacheKey();
+
 }

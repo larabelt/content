@@ -89,7 +89,7 @@ class PostsController extends ApiController
      */
     public function show(Post $post)
     {
-        $post->compiled = $this->compiler()->compile($post);
+        $post->compiled = $this->compile($post, true);
         $post->sections;
 
         return response()->json($post);
@@ -124,6 +124,8 @@ class PostsController extends ApiController
         ]);
 
         $post->save();
+
+        $this->compile($post, true);
 
         $this->itemEvent('updated', $post);
 
