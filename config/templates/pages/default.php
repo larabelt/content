@@ -42,22 +42,10 @@ return [
     */
 
     'params' => [
-        'attachment' => [
-            'type' => 'attachments',
-            'label' => 'Cool Attachment',
-            'description' => 'cool description',
-        ],
         'body' => [
             'type' => 'editor',
             'label' => 'Body',
             'description' => 'Enter main content of page here.',
-        ],
-        'class' => [
-            'type' => 'select',
-            'options' => [
-                'col-md-3' => 'default',
-                'col-md-12' => 'wide',
-            ],
         ],
     ],
 

@@ -4,8 +4,6 @@ use Belt\Content\Block;
 use Belt\Content\Page;
 use Belt\Content\Handle;
 use Belt\Content\Section;
-use Belt\Content\Tout;
-use Belt\Clip\Attachment;
 use Illuminate\Database\Seeder;
 
 class BeltContentPageSeeds extends Seeder
@@ -84,6 +82,33 @@ class BeltContentPageSeeds extends Seeder
         $this->tout($section);
         $this->tout($section);
         $this->tout($section);
+
+        # make sectioned example page
+        factory(Page::class)->create(['slug' => 'sectioned']);
+        $page = Page::where('slug', 'sectioned')->first();
+        Section::where('owner_id', $page->id)->where('owner_type', 'pages')->delete();
+        $data = factory(Page::class)->make([
+            'template' => 'default',
+            'is_active' => true,
+            'slug' => 'sectioned',
+            'body' => null
+        ]);
+        $data->setAppends([]);
+        $page->update($data->toArray());
+
+        # page with "example" template
+        $page = factory(Page::class)->create([
+            'is_active' => true,
+            'template' => 'example',
+            'slug' => 'example',
+            'name' => 'Example Template Page',
+        ]);
+        $page->saveParam('menu', 'example');
+        $page->saveParam('attachments', 1);
+        $page->saveParam('touts', 1);
+        $page->saveParam('blocks', 1);
+        $page->saveParam('albums', 1);
+        $page->saveParam('body', $faker->paragraphs(3, true));
 
         factory(Page::class)->create(['template' => 'no-cache']);
 

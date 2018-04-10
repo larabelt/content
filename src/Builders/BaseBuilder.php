@@ -53,7 +53,7 @@ abstract class BaseBuilder
         //Section::unguard();
 
         $section = $this->sections()->create([
-            'template' => array_get($options, 'template', 'default'),
+            'template' => array_get($options, 'template', 'containers.default'),
             'parent_id' => $parent ? $parent->id : null,
             'owner_id' => $this->item->id,
             'owner_type' => $this->item->getMorphClass(),

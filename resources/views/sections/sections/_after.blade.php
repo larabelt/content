@@ -1,5 +1,5 @@
-@if($section->after)
+@if($after = $section->param('after'))
     <div class="section-after">
-        {!! $section->after !!}
+        {!! $after !!}
     </div>
 @endif

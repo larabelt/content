@@ -1,5 +1,5 @@
-@if($section->heading)
+@if($heading = $section->param('heading'))
     <div class="section-heading">
-        {!! $section->heading !!}
+        {!! $heading !!}
     </div>
 @endif

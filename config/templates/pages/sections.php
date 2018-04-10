@@ -3,10 +3,10 @@
 return [
 
     // Required. A blade view path to the main template layout.
-    'path' => 'belt-content::touts.sections.default',
+    'path' => 'belt-content::pages.templates.default',
 
     // A blade view path that can be extended by the layout found in :path.
-    'extends' => null,
+    'extends' => 'belt-content::pages.web.show',
 
     // The human-readable name of your template.
     'label' => '',
@@ -16,10 +16,14 @@ return [
 
     // A builder class that extends \Belt\Content\Builders\BaseBuilder,
     // that will run custom code when a new templatable object is created.
-    'builder' => null,
+    'builder' => \App\Builders\DefaultBuilder::class,
 
     // A blade layout that show can show a snapshot of what the templates structure and/or style will look like when compiled.
-    'preview' => 'belt-content::touts.previews.default',
+    'preview' => '',
+
+
+    // By default, compiled views are cached. Set the value below to false, to avoid this behavior.
+    'force_compile' => false,
 
     /*
     | A set of custom parameters that belong to the templatable object.
@@ -38,15 +42,7 @@ return [
     */
 
     'params' => [
-        'touts' => [
-            'type' => 'touts',
-            'label' => 'Tout',
-            'description' => '',
-        ],
-        'class' => [
-            'col-md-3' => 'default',
-            'col-md-12' => 'wide',
-        ],
+
     ],
 
 ];

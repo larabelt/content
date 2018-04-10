@@ -1,5 +1,5 @@
 @php
-    $tout = $section->sectionable;
+    $tout = $section->morphParam('touts');
 @endphp
 
 @if($tout)

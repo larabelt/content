@@ -1,5 +1,5 @@
 @php
-    $block = $section->sectionable;
+    $block = $section->morphParam('blocks');
 @endphp
 
 @if($block)
