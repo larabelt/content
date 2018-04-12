@@ -1,5 +1,3 @@
-import debounce from 'debounce';
-
 import filterSearch from 'belt/core/js/inputs/filter-search';
 import filterTags from 'belt/glue/js/inputs/filter-tags/filter';
 import filterTagsAttached from 'belt/glue/js/inputs/filter-tags/attached';
