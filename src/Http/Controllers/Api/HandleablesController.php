@@ -36,7 +36,7 @@ class HandleablesController extends ApiController
 
         $owner = $this->morphable($handleable_type, $handleable_id);
 
-        $this->authorize('view', $owner);
+        $this->authorize(['view', 'create', 'update', 'delete'], $owner);
 
         $request->merge([
             'handleable_id' => $owner->id,
@@ -97,7 +97,7 @@ class HandleablesController extends ApiController
     {
         $owner = $this->morphable($handleable_type, $handleable_id);
 
-        $this->authorize('view', $owner);
+        $this->authorize(['view', 'create', 'update', 'delete'], $owner);
 
         $this->morphableContains($owner, 'handles', $handle);
 

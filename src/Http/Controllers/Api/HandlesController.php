@@ -88,7 +88,7 @@ class HandlesController extends ApiController
      */
     public function show(Handle $handle)
     {
-        $this->authorize('view', $handle);
+        $this->authorize(['view', 'create', 'update', 'delete'], $handle);
 
         /**
          * called to append to toArray()

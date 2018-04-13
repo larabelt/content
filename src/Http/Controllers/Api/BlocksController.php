@@ -44,7 +44,7 @@ class BlocksController extends ApiController
      */
     public function index(Request $request)
     {
-        $this->authorize('view', Block::class);
+        $this->authorize(['view', 'create', 'update', 'delete'], Block::class);
 
         $request = Requests\PaginateBlocks::extend($request);
 
@@ -96,7 +96,7 @@ class BlocksController extends ApiController
     {
         $block = $this->get($id);
 
-        $this->authorize('view', $block);
+        $this->authorize(['view', 'create', 'update', 'delete'], $block);
 
         return response()->json($block);
     }

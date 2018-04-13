@@ -44,7 +44,7 @@ class ToutsController extends ApiController
      */
     public function index(Request $request)
     {
-        $this->authorize('view', Tout::class);
+        $this->authorize(['view', 'create', 'update', 'delete'], Tout::class);
 
         $request = Requests\PaginateTouts::extend($request);
 
@@ -99,7 +99,7 @@ class ToutsController extends ApiController
     {
         $tout = $this->get($id);
 
-        $this->authorize('view', $tout);
+        $this->authorize(['view', 'create', 'update', 'delete'], $tout);
 
         return response()->json($tout);
     }
