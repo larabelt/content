@@ -8,7 +8,7 @@ export default {
         tab: {
             data() {
                 return {
-                    async: true,
+                    //async: true,
                     form: this.$parent.form,
                 }
             },

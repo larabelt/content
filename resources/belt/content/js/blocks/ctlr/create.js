@@ -12,7 +12,7 @@ export default {
         create: {
             data() {
                 return {
-                    async: false,
+                    //async: false,
                     form: new Form({router: this.$router}),
                 }
             },
