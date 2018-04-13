@@ -1,9 +1,9 @@
 @php
-    $can['blocks'] = Auth::user()->can('edit', Belt\Content\Block::class);
-    $can['handles'] = Auth::user()->can('edit', Belt\Content\Handle::class);
-    $can['pages'] = Auth::user()->can('edit', Belt\Content\Page::class);
-    $can['posts'] = Auth::user()->can('edit', Belt\Content\Post::class);
-    $can['touts'] = Auth::user()->can('edit', Belt\Content\Tout::class);
+    $can['blocks'] = $auth->can(['create','update','delete'], Belt\Content\Block::class);
+    $can['handles'] = $auth->can(['create','update','delete'], Belt\Content\Handle::class);
+    $can['pages'] = $auth->can(['create','update','delete'], Belt\Content\Page::class);
+    $can['posts'] = $auth->can(['create','update','delete'], Belt\Content\Post::class);
+    $can['touts'] = $auth->can(['create','update','delete'], Belt\Content\Tout::class);
 @endphp
 
 @if($can['blocks'] || $can['handles'] || $can['pages'] || $can['posts'] || $can['touts'])
