@@ -63,7 +63,7 @@ class SectionablesController extends ApiController
 
         $owner = $this->morphable($owner_type, $owner_id);
 
-        $this->authorize('view', $owner);
+        $this->authorize(['view', 'create', 'update', 'delete'], $owner);
 
         $request = Requests\PaginateSections::extend($request);
 
@@ -140,7 +140,7 @@ class SectionablesController extends ApiController
     {
         $owner = $this->morphable($owner_type, $owner_id);
 
-        $this->authorize('view', $owner);
+        $this->authorize(['view', 'create', 'update', 'delete'], $owner);
 
         $section = $this->section($id, $owner);
 

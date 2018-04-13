@@ -39,7 +39,7 @@ class PagesController extends ApiController
      */
     public function index(Request $request)
     {
-        $this->authorize('view', Page::class);
+        $this->authorize(['view', 'create', 'update', 'delete'], Page::class);
 
         $request = Requests\PaginatePages::extend($request);
 
@@ -93,7 +93,7 @@ class PagesController extends ApiController
      */
     public function show(Page $page)
     {
-        $this->authorize('view', $page);
+        $this->authorize(['view', 'create', 'update', 'delete'], $page);
 
         return response()->json($page);
     }

@@ -1,12 +1,12 @@
 @php
-    $can['blocks'] = Auth::user()->can('edit', Belt\Content\Block::class);
-    $can['handles'] = Auth::user()->can('edit', Belt\Content\Handle::class);
-    $can['pages'] = Auth::user()->can('edit', Belt\Content\Page::class);
-    $can['posts'] = Auth::user()->can('edit', Belt\Content\Post::class);
-    $can['touts'] = Auth::user()->can('edit', Belt\Content\Tout::class);
+    $can['blocks'] = $auth->can(['create','update','delete'], Belt\Content\Block::class);
+    $can['handles'] = $auth->can(['create','update','delete'], Belt\Content\Handle::class);
+    $can['pages'] = $auth->can(['create','update','delete'], Belt\Content\Page::class);
+    $can['posts'] = $auth->can(['create','update','delete'], Belt\Content\Post::class);
+    $can['touts'] = $auth->can(['create','update','delete'], Belt\Content\Tout::class);
     if(belt()->uses('glue')) {
-        $can['categories'] = Auth::user()->can('edit', Belt\Glue\Category::class);
-        $can['tags'] = Auth::user()->can('edit', Belt\Glue\Tag::class);
+        $can['categories'] = $auth->can(['create','update','delete'], Belt\Glue\Category::class);
+        $can['tags'] = $auth->can(['create','update','delete'], Belt\Glue\Tag::class);
     }
 @endphp
 
