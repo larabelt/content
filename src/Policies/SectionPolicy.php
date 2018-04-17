@@ -36,8 +36,10 @@ class SectionPolicy extends BaseAdminPolicy
     {
         if ($arguments instanceof Section) {
             $owner = $arguments->owner;
-            if ($owner && $owner instanceof TeamableInterface && $team = $owner->team) {
-                return $this->ofTeam($auth, $team);
+            if ($owner && $owner instanceof TeamableInterface) {
+                if($this->ofTeam($auth, $owner, $owner->team)) {
+                    return true;
+                };
             }
         }
     }
