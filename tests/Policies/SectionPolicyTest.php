@@ -29,13 +29,11 @@ class SectionPolicyTest extends Testing\BeltTestCase
         $stub = new SectionPolicyStub();
         $section = factory(Section::class)->make();
         $section->owner = $stub;
-        $this->assertNotTrue($policy->update($user, $section));
+        $teamUser = $this->getUser('team');
+        $stub->team = $teamUser->teams->first();
 
-        Team::unguard();
-        $team = factory(Team::class)->make(['id' => 123]);
-        $user->teams->add($team);
-        $stub->team = $team;
-        $this->assertTrue($policy->update($user, $section));
+        $this->assertEmpty($policy->update($user, $section));
+        $this->assertNotEmpty($policy->update($teamUser, $section));
     }
 
 }
