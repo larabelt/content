@@ -112,4 +112,39 @@ class Post extends Model implements
 
         return $query;
     }
+
+    /**
+     * @param $post
+     * @return Model
+     */
+    public static function copy($post)
+    {
+        $post = $post instanceof Post ? $post : self::sluggish($post)->first();
+
+        $clone = $post->replicate();
+        $clone->slug .= '-' . strtotime('now');
+        $clone->push();
+
+        foreach ($post->sections as $section) {
+            Section::copy($section, ['owner_id' => $clone->id]);
+        }
+
+        foreach ($post->attachments as $attachment) {
+            $clone->attachments()->attach($attachment);
+        }
+
+        foreach ($post->categories as $category) {
+            $clone->categories()->attach($category);
+        }
+
+        foreach ($post->handles as $handle) {
+            Handle::copy($handle, ['handleable_id' => $clone->id]);
+        }
+
+        foreach ($post->tags as $tag) {
+            $clone->tags()->attach($tag);
+        }
+
+        return $clone;
+    }
 }

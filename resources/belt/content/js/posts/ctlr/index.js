@@ -1,3 +1,4 @@
+import Form from 'belt/content/js/posts/form';
 import Table from 'belt/content/js/posts/table';
 import filterSearch from 'belt/core/js/inputs/filter-search';
 import filterTags from 'belt/glue/js/inputs/filter-tags/filter';
@@ -37,6 +38,12 @@ export default {
                             this.table.pushQueryToRouter();
                         });
                 }, 300),
+                copy(id) {
+                    let form = new Form();
+                    form.service.baseUrl = '/api/v1/posts/?source=' + id;
+                    form.router = this.$router;
+                    form.submit();
+                }
             },
             components: {
                 filterSearch,

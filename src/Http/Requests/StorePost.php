@@ -15,9 +15,14 @@ class StorePost extends FormRequest
      */
     public function rules()
     {
+        if ($this->get('source')) {
+            return [
+                'source' => 'exists:posts,id',
+            ];
+        }
+
         return [
             'name' => 'required',
-            //'source_url' => $this->get('source_url') ? 'url' : '',
             'source_url' => $this->get('source_url') ? 'alt_url' : '',
         ];
     }
