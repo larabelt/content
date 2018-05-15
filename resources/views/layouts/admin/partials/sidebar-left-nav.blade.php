@@ -26,7 +26,7 @@
                 <li id="content-admin-sidebar-left-pages"><a href="/admin/belt/content/pages"><i class="fa fa-files-o"></i> <span>Pages</span></a></li>
             @endif
             @if($can['posts'])
-                <li id="content-admin-sidebar-left-posts"><a href="/admin/belt/content/posts"><i class="fa fa-clone"></i> <span>Posts</span></a></li>
+                <li id="content-admin-sidebar-left-posts"><a href="/admin/belt/content/posts"><i class="fa fa-thumb-tack"></i> <span>Posts</span></a></li>
             @endif
             @if($can['touts'])
                 <li id="content-admin-sidebar-left-touts"><a href="/admin/belt/content/touts"><i class="fa fa-sticky-note"></i> <span>Touts</span></a></li>

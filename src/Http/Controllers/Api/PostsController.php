@@ -58,6 +58,10 @@ class PostsController extends ApiController
 
         $input = $request->all();
 
+        if ($source = $request->get('source')) {
+            return response()->json($this->posts->copy($source), 201);
+        }
+
         $post = $this->posts->create(['name' => $input['name']]);
 
         $this->set($post, $input, [
