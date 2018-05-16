@@ -4,12 +4,12 @@ import shared from 'belt/content/js/handles/ctlr/shared';
 import Table from 'belt/content/js/handles/table';
 
 // templates make a change
-import heading_html from 'belt/core/js/templates/heading.html';
+
 import index_html from 'belt/content/js/handles/templates/index.html';
 
 export default {
     components: {
-        heading: {template: heading_html},
+
         index: {
             mixins: [shared],
             data() {

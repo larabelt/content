@@ -3,7 +3,7 @@ import Config from 'belt/content/js/handles/config';
 import Form from 'belt/content/js/handles/form';
 
 // templates make a change
-import heading_html from 'belt/core/js/templates/heading.html';
+
 
 export default {
     data() {
@@ -20,6 +20,6 @@ export default {
             });
     },
     components: {
-        heading: {template: heading_html},
+
     },
 }

@@ -4,7 +4,7 @@ import filterSearch from 'belt/core/js/inputs/filter-search';
 import filterTags from 'belt/glue/js/inputs/filter-tags/filter';
 import filterTagsAttached from 'belt/glue/js/inputs/filter-tags/attached';
 import filterTagsDetached from 'belt/glue/js/inputs/filter-tags/detached';
-import heading_html from 'belt/core/js/templates/heading.html';
+
 import index_html from 'belt/content/js/posts/templates/index.html';
 
 export default {
@@ -15,7 +15,7 @@ export default {
         }
     },
     components: {
-        heading: {template: heading_html},
+
         index: {
             data() {
                 return {

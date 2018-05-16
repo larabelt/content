@@ -2,7 +2,7 @@
 import Form from 'belt/content/js/touts/form';
 
 // templates make a change
-import heading_html from 'belt/core/js/templates/heading.html';
+
 import tabs_html from 'belt/content/js/touts/templates/tabs.html';
 import edit_html from 'belt/content/js/touts/templates/edit.html';
 
@@ -16,7 +16,7 @@ export default {
         }
     },
     components: {
-        heading: {template: heading_html},
+
         tabs: {template: tabs_html},
     },
     mounted() {
