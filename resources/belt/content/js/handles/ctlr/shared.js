@@ -2,9 +2,6 @@
 import Config from 'belt/content/js/handles/config';
 import Form from 'belt/content/js/handles/form';
 
-// templates make a change
-
-
 export default {
     data() {
         return {
@@ -18,8 +15,5 @@ export default {
             .then((configs) => {
                 this.configs = configs;
             });
-    },
-    components: {
-
     },
 }

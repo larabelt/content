@@ -1,9 +1,8 @@
 // components
-import searchables from 'belt/content/js/searchables/ctrl';
 import shared from 'belt/content/js/handles/ctlr/shared';
-
-import edit_html from 'belt/content/js/handles/templates/edit.html';
+import searchables from 'belt/content/js/searchables/ctrl';
 import form_html from 'belt/content/js/handles/templates/form-edit.html';
+import html from 'belt/content/js/handles/templates/edit.html';
 
 export default {
     mixins: [shared],
@@ -11,7 +10,7 @@ export default {
         this.form.show(this.$route.params.id);
     },
     components: {
-        tab: {
+        edit: {
             data() {
                 return {
                     configurator: this.$parent.configurator,
@@ -57,5 +56,5 @@ export default {
             template: form_html,
         },
     },
-    template: edit_html,
+    template: html,
 }
