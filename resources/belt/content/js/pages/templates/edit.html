@@ -1,10 +1,8 @@
 <div>
     <heading>
         <span slot="title">Page Editor</span>
-        <span slot="subtitle">{{ form.name }}</span>
-        <li>
-            <router-link :to="{ name: 'pages' }">Pages</router-link>
-        </li>
+        <li><router-link :to="{ name: 'pages' }">Page Manager</router-link></li>
+        <li>{{ form.name }}</li>
     </heading>
     <section class="content">
         <div class="nav-tabs-custom">
