@@ -12,12 +12,15 @@ export default {
             form: new Form(),
             morphable_type: 'touts',
             morphable_id: this.$route.params.id,
-            tout: this.$parent.tout,
         }
     },
     components: {
-
         tabs: {template: tabs_html},
+    },
+    computed: {
+        tout() {
+            return this.form;
+        }
     },
     mounted() {
         this.form.show(this.morphable_id);

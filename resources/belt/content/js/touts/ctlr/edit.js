@@ -7,7 +7,6 @@ import attachment from 'belt/clip/js/clippables/ctlr/attachment';
 import Form from 'belt/content/js/touts/form';
 
 // templates make a change
-
 import tabs_html from 'belt/content/js/touts/templates/tabs.html';
 import edit_html from 'belt/content/js/touts/templates/edit.html';
 import form_html from 'belt/content/js/touts/templates/form.html';
@@ -24,7 +23,6 @@ export default {
         this.tout.show(this.morphable_id);
     },
     components: {
-
         tabs: {template: tabs_html},
         tab: {
             mixins: [shared],
