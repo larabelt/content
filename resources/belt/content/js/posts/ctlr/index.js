@@ -59,6 +59,7 @@ export default {
         <div>
             <heading>
                 <span slot="title">Post Manager</span>
+                <li><router-link :to="{ name: 'posts' }">Post Manager</router-link></li>
             </heading>
             <section class="content">
                 <index></index>

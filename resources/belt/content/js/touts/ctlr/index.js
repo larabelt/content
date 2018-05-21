@@ -27,6 +27,7 @@ export default {
         <div>
             <heading>
                 <span slot="title">Tout Manager</span>
+                <li><router-link :to="{ name: 'touts' }">Tout Manager</router-link></li>
             </heading>
             <section class="content">
                 <index></index>

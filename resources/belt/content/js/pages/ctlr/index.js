@@ -65,6 +65,7 @@ export default {
         <div>
             <heading>
                 <span slot="title">Page Manager</span>
+                <li><router-link :to="{ name: 'pages' }">Page Manager</router-link></li>
             </heading>
             <section class="content">
                 <index></index>

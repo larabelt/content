@@ -27,6 +27,7 @@ export default {
         <div>
             <heading>
                 <span slot="title">Block Manager</span>
+                <li><router-link :to="{ name: 'blocks' }">Block Manager</router-link></li>
             </heading>
             <section class="content">
                 <index></index>
