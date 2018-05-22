@@ -7,6 +7,9 @@
         <template v-if="sections.length">
 
             <div class="clearfix">
+                <div class="pull-left">
+                    <p class="text-muted">{{ trans('belt-content::sections.manager.overall') }}</p>
+                </div>
                 <div class="pull-right">
                     <button class="btn btn-sm btn-primary" @click.prevent="go('create', null, {mode:'before', relative_id: first.id})"
                             title="add section">add section
