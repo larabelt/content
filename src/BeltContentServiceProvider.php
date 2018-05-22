@@ -41,6 +41,11 @@ class BeltContentServiceProvider extends ServiceProvider
         include __DIR__ . '/../routes/api.php';
         include __DIR__ . '/../routes/handleables.php';
         include __DIR__ . '/../routes/web.php';
+
+        # beltable values for global belt command
+        $this->app['belt']->addPackage('content', ['dir' => __DIR__ . '/..']);
+        $this->app['belt']->publish('belt-content:publish');
+        $this->app['belt']->seeders('BeltContentSeeder');
     }
 
     /**
@@ -52,6 +57,9 @@ class BeltContentServiceProvider extends ServiceProvider
     {
         // set backup view paths
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belt-content');
+
+        // set backup translation paths
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'belt-content');
 
         // policies
         $this->registerPolicies($gate);
@@ -96,10 +104,6 @@ class BeltContentServiceProvider extends ServiceProvider
         // validators
         Validator::extend('alt_url', Belt\Content\Validators\AltUrlValidator::class . '@altUrl');
         Validator::extend('unique_route', Belt\Content\Validators\RouteValidator::class . '@routeIsUnique');
-
-        # beltable values for global belt command
-        $this->app['belt']->publish('belt-content:publish');
-        $this->app['belt']->seeders('BeltContentSeeder');
 
         # blade directives
         Blade::directive('block', function ($expression) {
