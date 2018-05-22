@@ -5,8 +5,10 @@ import posts  from 'belt/content/js/posts/routes';
 import store from 'belt/core/js/store/index';
 import touts  from 'belt/content/js/touts/routes';
 
+import seo from 'belt/content/js/base/seo';
 import inputBlocks from 'belt/content/js/inputs/blocks';
 import inputTouts from 'belt/content/js/inputs/touts';
+Vue.component('seo', seo);
 Vue.component('input-blocks', inputBlocks);
 Vue.component('input-touts', inputTouts);
 
