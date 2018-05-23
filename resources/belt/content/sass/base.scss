@@ -14,7 +14,7 @@
 
 .sections-index {
     .box {
-        border: 2px solid #357ca5;
+        border: 2px solid $default-color !important;
         //margin-bottom: 10px;
         margin-bottom: 0;
         .box {
@@ -24,11 +24,11 @@
             //margin-bottom: 10px !important;
             //margin-bottom: 0;
             .box {
-                border-color: #357ca5;
+                border-color: $default-color;
                 .box {
                     border-color: #b5bbc8;
                     .box {
-                        border-color: #357ca5;
+                        border-color: $default-color;
                     }
                 }
             }
