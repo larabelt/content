@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Belt\Content\Behaviors\IncludesSeo;
 
-class IncludesSeoTest extends \PHPUnit_Framework_TestCase
+class IncludesSeoTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

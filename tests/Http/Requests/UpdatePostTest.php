@@ -2,7 +2,7 @@
 
 use Belt\Content\Http\Requests\UpdatePost;
 
-class UpdatePostTest extends \PHPUnit_Framework_TestCase
+class UpdatePostTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

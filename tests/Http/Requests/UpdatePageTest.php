@@ -2,7 +2,7 @@
 
 use Belt\Content\Http\Requests\UpdatePage;
 
-class UpdatePageTest extends \PHPUnit_Framework_TestCase
+class UpdatePageTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

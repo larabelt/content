@@ -2,7 +2,7 @@
 
 use Belt\Content\Http\Requests\StoreTout;
 
-class StoreToutTest extends \PHPUnit_Framework_TestCase
+class StoreToutTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

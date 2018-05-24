@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Belt\Content\Behaviors\IncludesContent;
 
-class IncludesContentTest extends \PHPUnit_Framework_TestCase
+class IncludesContentTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

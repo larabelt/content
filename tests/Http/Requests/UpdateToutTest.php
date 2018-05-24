@@ -2,7 +2,7 @@
 
 use Belt\Content\Http\Requests\UpdateTout;
 
-class UpdateToutTest extends \PHPUnit_Framework_TestCase
+class UpdateToutTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

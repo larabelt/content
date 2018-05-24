@@ -2,7 +2,7 @@
 
 use Belt\Content\Elastic\ElasticConfigHelper;
 
-class ElasticConfigHelperTest extends \PHPUnit_Framework_TestCase
+class ElasticConfigHelperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers \Belt\Content\Elastic\ElasticConfigHelper::analyzer
