@@ -22,4 +22,10 @@ Route::group(['middleware' => ['web']], function () {
     # sections
     Route::get('sections/{section}/preview', Web\SectionsController::class . '@preview');
 
+    # terms
+    Route::get('terms/{term}', Web\TermsController::class . '@show');
+    Route::get('terms', function () {
+        return view('belt-core::base.web.home');
+    });
+
 });

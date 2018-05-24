@@ -1,0 +1,22 @@
+<div>
+    <heading>
+        <span slot="title">Term Editor</span>
+        <li><router-link :to="{ name: 'terms' }">Term Manager</router-link></li>
+        <li>{{ form.name }}</li>
+    </heading>
+    <section class="content">
+        <div class="nav-tabs-custom">
+            <tabs></tabs>
+            <div class="tab-content">
+                <div class="clearfix">
+                    <div class="pull-right">
+                        <div class="btn-group sub-tab-btn-group">
+                            <a class="btn btn-xs btn-default" target="_blank" :href="'/terms/' + form.id">preview</a>
+                        </div>
+                    </div>
+                </div>
+                <tab></tab>
+            </div>
+        </div>
+    </section>
+</div>

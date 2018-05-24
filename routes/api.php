@@ -69,6 +69,25 @@ Route::group([
             Route::post('', Api\SectionablesController::class . '@store');
         });
 
+        # terms
+        Route::get('terms/{term}', Api\TermsController::class . '@show');
+        Route::put('terms/{term}', Api\TermsController::class . '@update');
+        Route::delete('terms/{term}', Api\TermsController::class . '@destroy');
+        Route::get('terms', Api\TermsController::class . '@index');
+        Route::post('terms', Api\TermsController::class . '@store');
+
+        # termables
+        Route::group([
+            'prefix' => '{termable_type}/{termable_id}/terms',
+            'middleware' => 'request.injections:termable_type,termable_id'
+        ], function () {
+            Route::get('{id}', Api\TermablesController::class . '@show');
+            Route::put('{id}', Api\TermablesController::class . '@update');
+            Route::delete('{id}', Api\TermablesController::class . '@destroy');
+            Route::get('', Api\TermablesController::class . '@index');
+            Route::post('', Api\TermablesController::class . '@store');
+        });
+
         # touts
         Route::get('touts/{id}', Api\ToutsController::class . '@show');
         Route::put('touts/{id}', Api\ToutsController::class . '@update');
