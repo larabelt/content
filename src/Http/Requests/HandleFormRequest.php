@@ -58,9 +58,13 @@ class HandleFormRequest extends FormRequest
         ];
     }
 
-    public function all()
+    /**
+     * @param null $keys
+     * @return array
+     */
+    public function all($keys = null)
     {
-        $all = parent::all();
+        $all = parent::all($keys);
 
         if (array_has($all, 'url')) {
             $all['url'] = Handle::normalizeUrl($all['url']);
