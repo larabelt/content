@@ -3,6 +3,7 @@
     $can['handles'] = $auth->can(['create','update','delete'], Belt\Content\Handle::class);
     $can['pages'] = $auth->can(['create','update','delete'], Belt\Content\Page::class);
     $can['posts'] = $auth->can(['create','update','delete'], Belt\Content\Post::class);
+    $can['terms'] = $auth->can(['create','update','delete'], Belt\Content\Term::class);
     $can['touts'] = $auth->can(['create','update','delete'], Belt\Content\Tout::class);
     if(belt()->uses('glue')) {
         $can['categories'] = $auth->can(['create','update','delete'], Belt\Glue\Category::class);
@@ -27,6 +28,9 @@
             @endif
             @if($can['posts'])
                 <li id="content-admin-sidebar-left-posts"><a href="/admin/belt/content/posts"><i class="fa fa-thumb-tack"></i> <span>Posts</span></a></li>
+            @endif
+            @if($can['terms'])
+                <li id="content-admin-sidebar-left-terms"><a href="/admin/belt/content/terms"><i class="fa fa-sitemap"></i> <span>Terms</span></a></li>
             @endif
             @if($can['touts'])
                 <li id="content-admin-sidebar-left-touts"><a href="/admin/belt/content/touts"><i class="fa fa-sticky-note"></i> <span>Touts</span></a></li>
