@@ -6,6 +6,7 @@ import categories  from 'belt/content/js/pages/ctlr/categories';
 import handles  from 'belt/content/js/pages/ctlr/handles';
 import params  from 'belt/content/js/pages/ctlr/params';
 import tags  from 'belt/content/js/pages/ctlr/tags';
+import terms  from 'belt/content/js/pages/ctlr/terms';
 import sections  from 'belt/content/js/pages/ctlr/sections';
 
 export default [
@@ -18,4 +19,5 @@ export default [
     {path: '/pages/edit/:id/params', component: params, name: 'pages.params'},
     {path: '/pages/edit/:id/sections/:section_mode?/:section_id?', component: sections, name: 'pages.sections'},
     {path: '/pages/edit/:id/tags', component: tags, name: 'pages.tags'},
+    {path: '/pages/edit/:id/terms', component: terms, name: 'pages.terms'},
 ]

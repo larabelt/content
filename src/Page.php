@@ -20,6 +20,7 @@ class Page extends Model implements
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\IncludesSeoInterface,
     Belt\Content\Behaviors\IncludesTemplateInterface,
+    Belt\Content\Behaviors\TermableInterface,
     Belt\Glue\Behaviors\CategorizableInterface,
     Belt\Glue\Behaviors\TaggableInterface,
     Belt\Clip\Behaviors\ClippableInterface
@@ -34,6 +35,7 @@ class Page extends Model implements
     use Belt\Content\Behaviors\Handleable;
     use Belt\Content\Behaviors\HasSections;
     use Belt\Content\Behaviors\IncludesTemplate;
+    use Belt\Content\Behaviors\Termable;
     use Belt\Glue\Behaviors\Categorizable;
     use Belt\Glue\Behaviors\Taggable;
     use SoftDeletes;
