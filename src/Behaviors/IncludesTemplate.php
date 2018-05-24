@@ -56,9 +56,15 @@ trait IncludesTemplate
      */
     public function getDefaultTemplateKey()
     {
+        dump(111);
+
         $prefix = $this->getTemplateConfigPrefix();
 
+        dump($prefix);
+
         $configs = config($prefix);
+
+        dump($configs);
 
         if (isset($configs['default']) || !count($configs)) {
             return 'default';

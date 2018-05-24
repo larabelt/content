@@ -27,6 +27,7 @@ class BeltContentServiceProvider extends ServiceProvider
         Belt\Content\Page::class => Belt\Content\Policies\PagePolicy::class,
         Belt\Content\Post::class => Belt\Content\Policies\PostPolicy::class,
         Belt\Content\Section::class => Belt\Content\Policies\SectionPolicy::class,
+        Belt\Content\Term::class => Belt\Content\Policies\TermPolicy::class,
         Belt\Content\Tout::class => Belt\Content\Policies\ToutPolicy::class,
     ];
 
@@ -72,6 +73,7 @@ class BeltContentServiceProvider extends ServiceProvider
             'pages' => Belt\Content\Page::class,
             'posts' => Belt\Content\Post::class,
             'sections' => Belt\Content\Section::class,
+            'terms' => Belt\Content\Term::class,
             'touts' => Belt\Content\Tout::class,
 
             /**
@@ -99,6 +101,9 @@ class BeltContentServiceProvider extends ServiceProvider
         });
         $router->bind('section', function ($value) {
             return Belt\Content\Section::find($value);
+        });
+        $router->model('term', Belt\Content\Term::class, function ($value) {
+            return Belt\Content\Term::sluggish($value)->firstOrFail();
         });
 
         // validators

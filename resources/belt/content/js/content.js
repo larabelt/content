@@ -3,6 +3,7 @@ import handles  from 'belt/content/js/handles/routes';
 import pages  from 'belt/content/js/pages/routes';
 import posts  from 'belt/content/js/posts/routes';
 import store from 'belt/core/js/store/index';
+import terms  from 'belt/content/js/terms/routes';
 import touts  from 'belt/content/js/touts/routes';
 
 import seo from 'belt/content/js/base/seo';
@@ -30,6 +31,7 @@ export default class BeltContent {
             router.addRoutes(handles);
             router.addRoutes(pages);
             router.addRoutes(posts);
+            router.addRoutes(terms);
             router.addRoutes(touts);
 
             const app = new Vue({router, store}).$mount('#belt-content');

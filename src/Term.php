@@ -129,14 +129,4 @@ class Term extends Model implements
         return $this->getDefaultUrlAttribute();
     }
 
-    /**
-     * Get all of the pages that are assigned this term.
-     *
-     * @deprecated
-     */
-    public function pages()
-    {
-        return $this->morphedByMany(Belt\Content\Page::class, 'termable');
-    }
-
 }
