@@ -10,7 +10,7 @@ import index_html from 'belt/content/js/posts/templates/index.html';
 export default {
     data() {
         return {
-            morphable_type: 'places',
+            morphable_type: 'posts',
             morphable_id: null,
         }
     },
