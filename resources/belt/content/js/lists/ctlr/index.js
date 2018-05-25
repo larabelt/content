@@ -1,9 +1,8 @@
-import filterPriority from 'belt/core/js/inputs/priority/filter';
 import filterSearch from 'belt/core/js/inputs/filter-search';
-import Form from 'belt/spot/js/lists/form';
-import Table from 'belt/spot/js/lists/table';
+import Form from 'belt/content/js/lists/form';
+import Table from 'belt/content/js/lists/table';
 
-import index_html from 'belt/spot/js/lists/templates/index.html';
+import index_html from 'belt/content/js/lists/templates/index.html';
 
 export default {
 
@@ -39,7 +38,6 @@ export default {
                 }
             },
             components: {
-                filterPriority,
                 filterSearch,
             },
             template: index_html,

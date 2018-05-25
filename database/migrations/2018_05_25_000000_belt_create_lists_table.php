@@ -14,6 +14,7 @@ class BeltCreateListsTable extends Migration
     {
         Schema::create('lists', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('template')->default('default');
             $table->string('name');
             $table->string('slug')->index();
             $table->string('meta_title')->nullable();

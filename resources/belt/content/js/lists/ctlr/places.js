@@ -1,7 +1,7 @@
-import shared from 'belt/spot/js/lists/ctlr/shared';
+import shared from 'belt/content/js/lists/ctlr/shared';
 
 // components
-import places from 'belt/spot/js/listables/ctlr/index';
+import places from 'belt/content/js/listables/ctlr/index';
 
 export default {
     mixins: [shared],

@@ -1,8 +1,8 @@
-import shared from 'belt/spot/js/listables/ctlr/shared';
-import self from 'belt/spot/js/listables/ctlr/panel';
+import shared from 'belt/content/js/listables/ctlr/shared';
+import self from 'belt/content/js/listables/ctlr/panel';
 
 // templates
-import panel_html from 'belt/spot/js/listables/templates/panel.html';
+import panel_html from 'belt/content/js/listables/templates/panel.html';
 
 export default {
     mixins: [shared],

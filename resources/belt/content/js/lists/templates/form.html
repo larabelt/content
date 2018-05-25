@@ -21,13 +21,7 @@
             <template-dropdown templateType="lists" formKey="list"></template-dropdown>
         </div>
         <div class="col-md-6">
-            <priorityDropdown :form="list"></priorityDropdown>
         </div>
-    </div>
-    <div class="form-group" :class="{ 'has-error': list.error('body') }">
-        <label for="body">Body *</label>
-        <belt-editor v-model="list.body" @change="form.errors.clear('body')"></belt-editor>
-        <span v-for="error in list.error('body')" class="text-danger">{{ error }}</span>
     </div>
     <seo :form="list"></seo>
     <div class="text-right">

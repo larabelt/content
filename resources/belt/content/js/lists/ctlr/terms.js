@@ -1,4 +1,4 @@
-import shared from 'belt/spot/js/lists/ctlr/shared';
+import shared from 'belt/content/js/lists/ctlr/shared';
 import terms from 'belt/content/js/termables/ctlr-edit';
 
 export default {

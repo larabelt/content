@@ -1,10 +1,10 @@
-import index from 'belt/spot/js/lists/ctlr/index';
-import create from 'belt/spot/js/lists/ctlr/create';
-import edit  from 'belt/spot/js/lists/ctlr/edit';
-import attachments  from 'belt/spot/js/lists/ctlr/attachments';
-import places  from 'belt/spot/js/lists/ctlr/places';
-import sections  from 'belt/spot/js/lists/ctlr/sections';
-import terms  from 'belt/spot/js/lists/ctlr/terms';
+import index from 'belt/content/js/lists/ctlr/index';
+import create from 'belt/content/js/lists/ctlr/create';
+import edit  from 'belt/content/js/lists/ctlr/edit';
+import attachments  from 'belt/content/js/lists/ctlr/attachments';
+import places  from 'belt/content/js/lists/ctlr/places';
+import sections  from 'belt/content/js/lists/ctlr/sections';
+import terms  from 'belt/content/js/lists/ctlr/terms';
 
 export default [
     {path: '/lists', component: index, canReuse: false, name: 'lists'},

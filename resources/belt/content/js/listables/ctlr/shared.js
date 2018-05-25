@@ -1,4 +1,4 @@
-import Form from 'belt/spot/js/listables/form';
+import Form from 'belt/content/js/listables/form';
 
 export default {
     props: {

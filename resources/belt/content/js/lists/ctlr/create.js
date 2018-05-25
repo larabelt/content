@@ -1,10 +1,10 @@
 // helpers
-import Form from 'belt/spot/js/lists/form';
+import Form from 'belt/content/js/lists/form';
 
 // templates make a change
 
-import form_html from 'belt/spot/js/lists/templates/form.html';
-import create_html from 'belt/spot/js/lists/templates/create.html';
+import form_html from 'belt/content/js/lists/templates/form.html';
+import create_html from 'belt/content/js/lists/templates/create.html';
 
 export default {
     components: {

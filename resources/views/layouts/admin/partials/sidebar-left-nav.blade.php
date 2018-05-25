@@ -1,7 +1,7 @@
 @php
     $can['blocks'] = $auth->can(['create','update','delete'], Belt\Content\Block::class);
     $can['handles'] = $auth->can(['create','update','delete'], Belt\Content\Handle::class);
-    $can['lists'] = $auth->can(['create','update','delete'], Belt\Content\List::class);
+    $can['lists'] = $auth->can(['create','update','delete'], Belt\Content\Lyst::class);
     $can['pages'] = $auth->can(['create','update','delete'], Belt\Content\Page::class);
     $can['posts'] = $auth->can(['create','update','delete'], Belt\Content\Post::class);
     $can['terms'] = $auth->can(['create','update','delete'], Belt\Content\Term::class);

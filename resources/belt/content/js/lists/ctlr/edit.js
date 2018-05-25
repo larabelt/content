@@ -1,12 +1,12 @@
-import shared from 'belt/spot/js/lists/ctlr/shared';
+import shared from 'belt/content/js/lists/ctlr/shared';
 import attachment from 'belt/clip/js/clippables/ctlr/attachment';
 import priorityDropdown from 'belt/core/js/inputs/priority/form';
 import templateDropdown from 'belt/content/js/templates';
-import Form from 'belt/spot/js/lists/form';
+import Form from 'belt/content/js/lists/form';
 
-import tabs_html from 'belt/spot/js/lists/templates/tabs.html';
-import edit_html from 'belt/spot/js/lists/templates/edit.html';
-import form_html from 'belt/spot/js/lists/templates/form.html';
+import tabs_html from 'belt/content/js/lists/templates/tabs.html';
+import edit_html from 'belt/content/js/lists/templates/edit.html';
+import form_html from 'belt/content/js/lists/templates/form.html';
 
 export default {
     data() {

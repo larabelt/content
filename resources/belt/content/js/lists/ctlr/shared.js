@@ -1,9 +1,9 @@
 // templates
 
-import tabs_html from 'belt/spot/js/lists/templates/tabs.html';
-import edit_html from 'belt/spot/js/lists/templates/edit.html';
+import tabs_html from 'belt/content/js/lists/templates/tabs.html';
+import edit_html from 'belt/content/js/lists/templates/edit.html';
 
-import Form from 'belt/spot/js/lists/form';
+import Form from 'belt/content/js/lists/form';
 
 export default {
     data() {

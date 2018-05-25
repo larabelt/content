@@ -1,14 +1,13 @@
 // components
-import edit from 'belt/spot/js/listables/ctlr/edit';
-import panel from 'belt/spot/js/listables/ctlr/panel';
+import edit from 'belt/content/js/listables/ctlr/edit';
+import panel from 'belt/content/js/listables/ctlr/panel';
 
 // helpers
-import Form from 'belt/spot/js/listables/form';
-import Table from 'belt/spot/js/listables/table';
-import PlaceTable from 'belt/spot/js/listables/../places/table';
+import Form from 'belt/content/js/listables/form';
+import Table from 'belt/content/js/listables/table';
 
 // templates
-import index_html from 'belt/spot/js/listables/templates/index.html';
+import index_html from 'belt/content/js/listables/templates/index.html';
 
 export default {
     data() {
@@ -23,7 +22,6 @@ export default {
             listables: new Table({
                 morphable_id: this.$parent.morphable_id,
             }),
-            places: new PlaceTable(),
             modes: {
                 active: 'index',
             },

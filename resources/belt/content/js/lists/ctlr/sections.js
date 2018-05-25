@@ -1,4 +1,4 @@
-import shared from 'belt/spot/js/lists/ctlr/shared';
+import shared from 'belt/content/js/lists/ctlr/shared';
 
 // components
 import sections from 'belt/content/js/sectionables/router';
