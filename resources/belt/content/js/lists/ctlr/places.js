@@ -1,7 +1,7 @@
 import shared from 'belt/spot/js/itineraries/ctlr/shared';
 
 // components
-import places from 'belt/spot/js/itinerary-places/ctlr/index';
+import places from 'belt/spot/js/listables/ctlr/index';
 
 export default {
     mixins: [shared],

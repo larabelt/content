@@ -5,12 +5,12 @@ namespace Belt\Spot\Http\Controllers\Api;
 use Belt\Core\Http\Controllers\ApiController;
 use Belt\Core\Http\Controllers\Behaviors\Positionable;
 use Belt\Spot\Itinerary;
-use Belt\Spot\ItineraryPlace;
+use Belt\Spot\Listable;
 use Belt\Spot\Place;
 use Belt\Spot\Http\Requests;
 use Illuminate\Http\Request;
 
-class ItineraryPlacesController extends ApiController
+class ListablesController extends ApiController
 {
 
     use Positionable;
@@ -18,16 +18,16 @@ class ItineraryPlacesController extends ApiController
     /**
      * @var Itinerary
      */
-    public $itineraryPlace;
+    public $listable;
 
     /**
-     * ItineraryPlacesController constructor.
-     * @param ItineraryPlace $itineraryPlace
+     * ListablesController constructor.
+     * @param Listable $listable
      * @param Place $place
      */
-    public function __construct(ItineraryPlace $itineraryPlace, Place $place)
+    public function __construct(Listable $listable, Place $place)
     {
-        $this->itineraryPlace = $itineraryPlace;
+        $this->listable = $listable;
         $this->place = $place;
     }
 
@@ -42,11 +42,11 @@ class ItineraryPlacesController extends ApiController
         }
     }
 
-    public function itineraryPlace($id)
+    public function listable($id)
     {
-        $itineraryPlace = $this->itineraryPlace->with('place')->find($id);
+        $listable = $this->listable->with('place')->find($id);
 
-        return $itineraryPlace ?: $this->abort(404);
+        return $listable ?: $this->abort(404);
     }
 
     /**
@@ -59,13 +59,13 @@ class ItineraryPlacesController extends ApiController
      */
     public function index(Request $request, $itinerary)
     {
-        $request = Requests\PaginateItineraryPlaces::extend($request);
+        $request = Requests\PaginateListables::extend($request);
 
         $request->merge(['itinerary_id' => $itinerary->id]);
 
         $this->authorize(['view', 'create', 'update', 'delete'], $itinerary);
 
-        $paginator = $this->paginator($this->itineraryPlace->with('place'), $request);
+        $paginator = $this->paginator($this->listable->with('place'), $request);
 
         return response()->json($paginator->toArray());
     }
@@ -73,34 +73,34 @@ class ItineraryPlacesController extends ApiController
     /**
      * Store a newly created resource in glue.
      *
-     * @param  Requests\StoreItineraryPlace $request
+     * @param  Requests\StoreListable $request
      * @param Itinerary $itinerary
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\StoreItineraryPlace $request, $itinerary)
+    public function store(Requests\StoreListable $request, $itinerary)
     {
         $this->authorize('update', $itinerary);
 
         $place_id = $request->get('place_id');
 
-        $itineraryPlace = $this->itineraryPlace->create([
+        $listable = $this->listable->create([
             'itinerary_id' => $itinerary->id,
             'place_id' => $place_id,
         ]);
 
         $input = $request->all();
 
-        $this->set($itineraryPlace, $input, [
+        $this->set($listable, $input, [
             'heading',
             'body',
         ]);
 
-        $itineraryPlace->save();
+        $listable->save();
 
-        $itineraryPlace = $this->itineraryPlace($itineraryPlace->id);
+        $listable = $this->listable($listable->id);
 
-        return response()->json($itineraryPlace, 201);
+        return response()->json($listable, 201);
     }
 
     /**
@@ -118,20 +118,20 @@ class ItineraryPlacesController extends ApiController
 
         $this->contains($itinerary, $id);
 
-        $itineraryPlace = $this->itineraryPlace($id);
+        $listable = $this->listable($id);
 
         $input = $request->all();
 
-        $this->set($itineraryPlace, $input, [
+        $this->set($listable, $input, [
             'heading',
             'body',
         ]);
 
-        $itineraryPlace->save();
+        $listable->save();
 
-        $this->reposition($request, $itineraryPlace);
+        $this->reposition($request, $listable);
 
-        return response()->json($itineraryPlace);
+        return response()->json($listable);
     }
 
     /**
@@ -148,9 +148,9 @@ class ItineraryPlacesController extends ApiController
 
         $this->contains($itinerary, $id);
 
-        $itineraryPlace = $this->itineraryPlace($id);
+        $listable = $this->listable($id);
 
-        return response()->json($itineraryPlace);
+        return response()->json($listable);
     }
 
     /**
@@ -168,9 +168,9 @@ class ItineraryPlacesController extends ApiController
 
         $this->contains($itinerary, $id);
 
-        $itineraryPlace = $this->itineraryPlace($id);
+        $listable = $this->listable($id);
 
-        $itineraryPlace->delete();
+        $listable->delete();
 
         return response()->json(null, 204);
     }

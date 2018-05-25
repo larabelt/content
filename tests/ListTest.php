@@ -14,7 +14,7 @@ class ItineraryTest extends BeltTestCase
 
     /**
      * @covers \Belt\Spot\Itinerary::places
-     * @covers \Belt\Spot\Itinerary::itineraryPlaces
+     * @covers \Belt\Spot\Itinerary::listables
      * @covers \Belt\Spot\Itinerary::toSearchableArray
      */
     public function test()
@@ -24,8 +24,8 @@ class ItineraryTest extends BeltTestCase
         # places
         $this->assertInstanceOf(HasMany::class, $itinerary->places());
 
-        # itineraryPlaces
-        $this->assertInstanceOf(HasMany::class, $itinerary->itineraryPlaces());
+        # listables
+        $this->assertInstanceOf(HasMany::class, $itinerary->listables());
 
         # toSearchableArray
         $this->assertNotEmpty($itinerary->toSearchableArray());

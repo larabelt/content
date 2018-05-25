@@ -4,10 +4,10 @@ namespace Belt\Spot\Http\Requests;
 use Belt\Core\Http\Requests\FormRequest;
 
 /**
- * Class StoreItineraryPlace
+ * Class StoreListable
  * @package Belt\Spot\Http\Requests
  */
-class StoreItineraryPlace extends FormRequest
+class StoreListable extends FormRequest
 {
 
     /**

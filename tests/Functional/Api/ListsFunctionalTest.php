@@ -39,7 +39,7 @@ class ApiItinerariesFunctionalTest extends Testing\BeltTestCase
         $old->sections()->create(['sectionable_type' => 'sections']);
         $old->attachments()->attach(1);
         $old->categories()->attach(1);
-        $old->itineraryPlaces()->create([
+        $old->listables()->create([
             'place_id' => 1,
         ]);
         $old->tags()->attach(1);

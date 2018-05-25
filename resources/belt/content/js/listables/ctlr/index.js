@@ -1,14 +1,14 @@
 // components
-import edit from 'belt/spot/js/itinerary-places/ctlr/edit';
-import panel from 'belt/spot/js/itinerary-places/ctlr/panel';
+import edit from 'belt/spot/js/listables/ctlr/edit';
+import panel from 'belt/spot/js/listables/ctlr/panel';
 
 // helpers
-import Form from 'belt/spot/js/itinerary-places/form';
-import Table from 'belt/spot/js/itinerary-places/table';
-import PlaceTable from 'belt/spot/js/itinerary-places/../places/table';
+import Form from 'belt/spot/js/listables/form';
+import Table from 'belt/spot/js/listables/table';
+import PlaceTable from 'belt/spot/js/listables/../places/table';
 
 // templates
-import index_html from 'belt/spot/js/itinerary-places/templates/index.html';
+import index_html from 'belt/spot/js/listables/templates/index.html';
 
 export default {
     data() {
@@ -20,7 +20,7 @@ export default {
             form: new Form({
                 morphable_id: this.$parent.morphable_id,
             }),
-            itineraryPlaces: new Table({
+            listables: new Table({
                 morphable_id: this.$parent.morphable_id,
             }),
             places: new PlaceTable(),
@@ -34,13 +34,13 @@ export default {
         }
     },
     created() {
-        this.itineraryPlaces.index();
+        this.listables.index();
     },
     mounted() {
-        let itinerary_place_id = this.$route.params.place;
-        if (itinerary_place_id) {
+        let listable_id = this.$route.params.place;
+        if (listable_id) {
             this.modes.active = 'edit';
-            this.active.show(itinerary_place_id);
+            this.active.show(listable_id);
         }
     },
     components: {edit, panel},
@@ -57,7 +57,7 @@ export default {
             });
             this.form.store()
                 .then(() => {
-                    this.itineraryPlaces.index();
+                    this.listables.index();
                     this.places.query.q = '';
                 })
         },

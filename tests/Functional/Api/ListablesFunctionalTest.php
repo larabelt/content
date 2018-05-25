@@ -2,7 +2,7 @@
 
 use Belt\Core\Testing;
 
-class ApiItineraryPlacesFunctionalTest extends Testing\BeltTestCase
+class ApiListablesFunctionalTest extends Testing\BeltTestCase
 {
 
     public function test()

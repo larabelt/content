@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Rutorika\Sortable\SortableTrait;;
 
 /**
- * Class ItineraryPlace
+ * Class Listable
  * @package Belt\Spot
  */
-class ItineraryPlace extends Model
+class Listable extends Model
 {
 
     use SortableTrait;
@@ -18,7 +18,7 @@ class ItineraryPlace extends Model
     /**
      * @var string
      */
-    protected $table = 'itinerary_place';
+    protected $table = 'listable';
 
     /**
      * @var array

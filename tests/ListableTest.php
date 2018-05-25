@@ -2,10 +2,10 @@
 use Mockery as m;
 
 use Belt\Core\Testing\BeltTestCase;
-use Belt\Spot\ItineraryPlace;
+use Belt\Spot\Listable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ItineraryPlaceTest extends BeltTestCase
+class ListableTest extends BeltTestCase
 {
     public function tearDown()
     {
@@ -13,14 +13,14 @@ class ItineraryPlaceTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Spot\ItineraryPlace::place
+     * @covers \Belt\Spot\Listable::place
      */
     public function test()
     {
-        $itineraryPlace = new ItineraryPlace();
+        $listable = new Listable();
 
         # place
-        $this->assertInstanceOf(BelongsTo::class, $itineraryPlace->place());
+        $this->assertInstanceOf(BelongsTo::class, $listable->place());
     }
 
 }

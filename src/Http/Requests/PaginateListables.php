@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Belt\Core\Http\Requests\PaginateRequest;
 
 /**
- * Class PaginateItineraryPlaces
+ * Class PaginateListables
  * @package Belt\Place\Http\Requests
  */
-class PaginateItineraryPlaces extends PaginateRequest
+class PaginateListables extends PaginateRequest
 {
 
     /**
@@ -21,7 +21,7 @@ class PaginateItineraryPlaces extends PaginateRequest
     /**
      * @var string
      */
-    public $orderBy = 'itinerary_place.position';
+    public $orderBy = 'listable.position';
 
     /**
      * @var Belt\Core\Pagination\PaginationQueryModifier[]

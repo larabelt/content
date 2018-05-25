@@ -1,10 +1,10 @@
 <?php
 use Mockery as m;
 use Belt\Core\Testing;
-use Belt\Spot\Http\Requests\PaginateItineraryPlaces;
+use Belt\Spot\Http\Requests\PaginateListables;
 use Illuminate\Database\Eloquent\Builder;
 
-class PaginateItineraryPlacesTest extends Testing\BeltTestCase
+class PaginateListablesTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
@@ -15,14 +15,14 @@ class PaginateItineraryPlacesTest extends Testing\BeltTestCase
     }
 
     /**
-     * @covers \Belt\Spot\Http\Requests\PaginateItineraryPlaces::modifyQuery
+     * @covers \Belt\Spot\Http\Requests\PaginateListables::modifyQuery
      */
     public function test()
     {
         # modifyQuery
         $query = m::mock(Builder::class);
         $query->shouldReceive('where')->once()->with('itinerary_id', 1);
-        $paginateRequest = new PaginateItineraryPlaces(['itinerary_id' => 1]);
+        $paginateRequest = new PaginateListables(['itinerary_id' => 1]);
         $paginateRequest->modifyQuery($query);
     }
 

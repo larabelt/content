@@ -1,17 +1,17 @@
 <?php
 
-use Belt\Spot\Http\Requests\StoreItineraryPlace;
+use Belt\Spot\Http\Requests\StoreListable;
 
-class StoreItineraryPlaceTest extends \PHPUnit\Framework\TestCase
+class StoreListableTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @covers \Belt\Spot\Http\Requests\StoreItineraryPlace::rules
+     * @covers \Belt\Spot\Http\Requests\StoreListable::rules
      */
     public function test()
     {
 
-        $request = new StoreItineraryPlace();
+        $request = new StoreListable();
 
         $this->assertNotEmpty($request->rules());
     }

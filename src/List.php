@@ -91,15 +91,15 @@ class Itinerary extends Model implements
      */
     public function places()
     {
-        return $this->hasMany(ItineraryPlace::class)->orderBy('position');
+        return $this->hasMany(Listable::class)->orderBy('position');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function itineraryPlaces()
+    public function listables()
     {
-        return $this->hasMany(ItineraryPlace::class)->with('place')->orderBy('position');
+        return $this->hasMany(Listable::class)->with('place')->orderBy('position');
     }
 
     /**
@@ -119,12 +119,12 @@ class Itinerary extends Model implements
 
         Itinerary::unguard();
 
-        foreach ($itinerary->itineraryPlaces as $itineraryPlace) {
-            $clone->itineraryPlaces()->create([
-                'place_id' => $itineraryPlace->place_id,
-                'position' => $itineraryPlace->position,
-                'heading' => $itineraryPlace->heading,
-                'body' => $itineraryPlace->body,
+        foreach ($itinerary->listables as $listable) {
+            $clone->listables()->create([
+                'place_id' => $listable->place_id,
+                'position' => $listable->position,
+                'heading' => $listable->heading,
+                'body' => $listable->body,
             ]);
         }
 

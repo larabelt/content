@@ -1,8 +1,8 @@
-import Form from 'belt/spot/js/itinerary-places/form';
+import Form from 'belt/spot/js/listables/form';
 
 export default {
     props: {
-        itineraryPlace: {},
+        listable: {},
     },
     data() {
         return {
@@ -12,7 +12,7 @@ export default {
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
-            itineraryPlaces: this.$parent.itineraryPlaces,
+            listables: this.$parent.listables,
             modes: this.$parent.modes,
             moving: this.$parent.moving,
             places: this.$parent.places,
@@ -24,10 +24,10 @@ export default {
             return this.modes.active;
         },
         isFirst() {
-            return this.itineraryPlace.position == 1;
+            return this.listable.position == 1;
         },
         isMoving() {
-            return this.itineraryPlace.id == this.moving.id;
+            return this.listable.id == this.moving.id;
         },
         place() {
             return this.active.place ? this.active.place : {};
@@ -55,7 +55,7 @@ export default {
                 this.$router.push({params: {place: null}});
                 this.active.reset();
                 this.moving.reset();
-                this.itineraryPlaces.index()
+                this.listables.index()
                     .then(function () {
                         resolve();
                     })

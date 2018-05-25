@@ -1,16 +1,16 @@
-import shared from 'belt/spot/js/itinerary-places/ctlr/shared';
-import self from 'belt/spot/js/itinerary-places/ctlr/panel';
+import shared from 'belt/spot/js/listables/ctlr/shared';
+import self from 'belt/spot/js/listables/ctlr/panel';
 
 // templates
-import panel_html from 'belt/spot/js/itinerary-places/templates/panel.html';
+import panel_html from 'belt/spot/js/listables/templates/panel.html';
 
 export default {
     mixins: [shared],
-    props: ['itineraryPlace'],
+    props: ['listable'],
     computed: {
         panelMode() {
             if (this.moving.id) {
-                if (this.itineraryPlace.id == this.moving.id) {
+                if (this.listable.id == this.moving.id) {
                     return 'is-moving';
                 }
                 return 'is-watching';
@@ -23,7 +23,7 @@ export default {
             this.active.setData({id: id});
             this.active.destroy(id)
                 .then(() => {
-                    this.itineraryPlaces.index();
+                    this.listables.index();
                 });
         },
         cancel() {

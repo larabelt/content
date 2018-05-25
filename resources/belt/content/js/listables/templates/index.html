@@ -31,14 +31,14 @@
             <div class="col-md-12">
                 <hr/>
                 <h4>Place List</h4>
-                <div v-if="itineraryPlaces.items.length">
+                <div v-if="listables.items.length">
                     <p class="help-block">The following places are linked to this item.</p>
-                    <template v-for="itineraryPlace in itineraryPlaces.items">
+                    <template v-for="listable in listables.items">
                         <div class="row">
-                            <panel :itineraryPlace="itineraryPlace"></panel>
+                            <panel :listable="listable"></panel>
                         </div>
                     </template>
-                    <pagination :table="itineraryPlaces"></pagination>
+                    <pagination :table="listables"></pagination>
                 </div>
                 <div v-else>
                     <p style="font-style: italic;">No places are currently linked to this item.</p>

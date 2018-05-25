@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use Belt\Spot\Itinerary;
-use Belt\Spot\ItineraryPlace;
+use Belt\Spot\Listable;
 
 class BeltSpotItinerarySeeds extends Seeder
 {
@@ -20,7 +20,7 @@ class BeltSpotItinerarySeeds extends Seeder
 
                     $faker = Faker\Factory::create();
 
-                    ItineraryPlace::firstOrCreate([
+                    Listable::firstOrCreate([
                        'itinerary_id' => $itinerary->id,
                        'place_id' => $i,
                        'heading' => $faker->words(3, true),
