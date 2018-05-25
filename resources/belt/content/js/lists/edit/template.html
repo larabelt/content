@@ -1,0 +1,18 @@
+<div>
+    <heading>
+        <span slot="title">List Editor</span>
+        <li><router-link :to="{ name: 'lists' }">List Manager</router-link></li>
+        <li>{{ list.name }}</li>
+    </heading>
+    <section class="content-subheader">
+        <p class="text-muted">{{ trans('belt-content::lists.editor.overall') }}</p>
+    </section>
+    <section class="content">
+        <div class="nav-tabs-custom">
+            <tabs></tabs>
+            <div class="tab-content">
+                <edit></edit>
+            </div>
+        </div>
+    </section>
+</div>

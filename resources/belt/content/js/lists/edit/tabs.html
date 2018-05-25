@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs">
+    <li :class="{active: $router.currentRoute.name == 'lists.edit'}">
+        <router-link :to="{ name: 'lists.edit', params: {id: $route.params.id}}">Main</router-link>
+    </li>
+    <li :class="{active: $router.currentRoute.name == 'lists.sections'}">
+        <router-link :to="{ name: 'lists.sections', params: {id: $route.params.id}}">Sections</router-link>
+    </li>
+    <li :class="{active: $router.currentRoute.name == 'lists.attachments'}">
+        <router-link :to="{ name: 'lists.attachments', params: {id: $route.params.id}}">Attachments</router-link>
+    </li>
+    <li :class="{active: $router.currentRoute.name == 'lists.params'}">
+        <router-link :to="{ name: 'lists.params', params: {id: $route.params.id}}">Params</router-link>
+    </li>
+    <li :class="{active: $router.currentRoute.name == 'lists.terms'}">
+        <router-link :to="{ name: 'lists.terms', params: {id: $route.params.id}}">Terms</router-link>
+    </li>
+</ul>

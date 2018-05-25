@@ -1,0 +1,75 @@
+<div class="box box-primary">
+    <div class="box-body">
+
+        <div class="filter-set clearfix">
+            <div class="pull-left">
+                <filter-search @filter-search-update="filter">Filter</filter-search>
+            </div>
+            <div class="pull-left">
+                <filter-priority @filter-priority-update="filter"></filter-priority>
+            </div>
+            <div class="pull-right">
+                <router-link :to="{ name: 'lists.create' }" :class="'btn btn-primary'">add a list</router-link>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                            <column-sorter :column="'lists.id'"></column-sorter>
+                        </th>
+                        <th>
+                            Name
+                            <column-sorter :column="'lists.name'"></column-sorter>
+                        </th>
+                        <th>
+                            Priority
+                            <column-sorter :column="'events.priority'"></column-sorter>
+                        </th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="list in table.items">
+                        <td>{{ list.id }}</td>
+                        <td>{{ list.name }}</td>
+                        <td>{{ list.priority }}</td>
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <button
+                                        type="button"
+                                        class="btn btn-xs btn-default dropdown-toggle text-muted"
+                                        data-toggle="dropdown"
+                                        aria-expanded="false"
+                                        title="options"
+                                >
+                                    <i class="fa fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#" @click.prevent="copy(list.id)"><i class="fa fa-clone"></i> Copy</i></a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><modal-delete :item-id="list.id" _class="''" :callingObject="table"><i class="fa fa-trash"></i> Remove</modal-delete></li>
+                                </ul>
+                                <router-link :to="{ name: 'lists.edit', params: { id: list.id } }" :class="'btn btn-xs btn-default'" title="edit list">
+                                    <i class="fa fa-edit"></i>
+                                </router-link>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Priority</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <pagination></pagination>
+    </div>
+</div>

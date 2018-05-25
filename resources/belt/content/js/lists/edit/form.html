@@ -1,0 +1,49 @@
+<div>
+    <form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
+        <div class="clearfix">
+            <div class="pull-left">
+                <p class="text-muted">{{ trans('belt-content::lists.editor.main') }}</p>
+            </div>
+            <div class="pull-right">
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-default" target="_blank" :href="'/lists/' + form.id">preview</a>
+                    <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">
+                        <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                        <span v-else>save</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="checkbox" v-if="adminMode == 'admin'">
+            <label>
+                <input type="checkbox"
+                       v-model="form.is_active"
+                > Is Active
+            </label>
+        </div>
+        <team-input :form="list">{{ trans('belt-core::teams.label') }}</team-input>
+        <div class="form-group" :class="{ 'has-error': form.error('name') }">
+            <label for="name">Name</label>
+            <input class="form-control" v-model="form.name" placeholder="name">
+            <span v-for="error in form.error('name')" class="text-danger">{{ error }}</span>
+        </div>
+        <div class="form-group" :class="{ 'has-error': form.error('slug') }">
+            <label for="slug">Slug</label>
+            <input class="form-control" v-model="form.slug" placeholder="slug">
+            <span v-for="error in form.error('slug')" class="text-danger">{{ error }}</span>
+        </div>
+        <template-dropdown templateType="lists" formKey="list"></template-dropdown>
+        <seo></seo>
+        <div class="clearfix">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-default" target="_blank" :href="'/lists/' + form.id">preview</a>
+                    <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">
+                        <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                        <span v-else>save</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

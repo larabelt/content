@@ -1,0 +1,17 @@
+<div>
+    <heading>
+        <span slot="title">List Creator</span>
+        <li><router-link :to="{ name: 'lists' }">List Manager</router-link></li>
+        <li>List Creator</li>
+    </heading>
+    <section class="content-subheader">
+        <p class="text-muted">{{ trans('belt-content::lists.creator.overall') }}</p>
+    </section>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-body">
+                <create></create>
+            </div>
+        </div>
+    </section>
+</div>

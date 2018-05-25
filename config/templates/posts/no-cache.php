@@ -21,7 +21,6 @@ return [
     // A blade layout that show can show a snapshot of what the templates structure and/or style will look like when compiled.
     'preview' => '',
 
-
     // By default, compiled views are cached. Set the value below to false, to avoid this behavior.
     'force_compile' => true,
 
