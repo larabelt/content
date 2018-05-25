@@ -13,15 +13,13 @@ class Block extends Model implements
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\SectionableInterface,
-    Belt\Glue\Behaviors\CategorizableInterface,
-    Belt\Glue\Behaviors\TaggableInterface
+    Belt\Content\Behaviors\TermableInterface
 {
     use Belt\Core\Behaviors\HasSortableTrait;
     use Belt\Core\Behaviors\Sluggable;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\Sectionable;
-    use Belt\Glue\Behaviors\Categorizable;
-    use Belt\Glue\Behaviors\Taggable;
+    use Belt\Content\Behaviors\Termable;
     use SoftDeletes;
 
     /**

@@ -36,8 +36,7 @@ class PostsFunctionalTest extends Testing\BeltTestCase
         $old = Post::find($postID);
         $old->sections()->create(['sectionable_type' => 'sections']);
         $old->attachments()->attach(1);
-        $old->categories()->attach(1);
-        $old->tags()->attach(1);
+        $old->terms()->attach(1);
         $old->handles()->create(['url' => '/copied-post']);
         $response = $this->json('POST', '/api/v1/posts', ['source' => $postID]);
         $response->assertStatus(201);

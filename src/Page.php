@@ -21,8 +21,6 @@ class Page extends Model implements
     Belt\Content\Behaviors\IncludesSeoInterface,
     Belt\Content\Behaviors\IncludesTemplateInterface,
     Belt\Content\Behaviors\TermableInterface,
-    Belt\Glue\Behaviors\CategorizableInterface,
-    Belt\Glue\Behaviors\TaggableInterface,
     Belt\Clip\Behaviors\ClippableInterface
 {
     use Belt\Core\Behaviors\HasSortableTrait;
@@ -36,8 +34,6 @@ class Page extends Model implements
     use Belt\Content\Behaviors\HasSections;
     use Belt\Content\Behaviors\IncludesTemplate;
     use Belt\Content\Behaviors\Termable;
-    use Belt\Glue\Behaviors\Categorizable;
-    use Belt\Glue\Behaviors\Taggable;
     use SoftDeletes;
 
     /**
@@ -73,8 +69,7 @@ class Page extends Model implements
     public function toSearchableArray()
     {
         $array = $this->__toSearchableArray();
-        $array['categories'] = $this->categories ? $this->categories->pluck('id')->all() : null;
-        $array['tags'] = $this->tags ? $this->tags->pluck('id')->all() : null;
+        $array['terms'] = $this->terms ? $this->terms->pluck('id')->all() : null;
 
         return $array;
     }
@@ -99,16 +94,12 @@ class Page extends Model implements
             $clone->attachments()->attach($attachment);
         }
 
-        foreach ($page->categories as $category) {
-            $clone->categories()->attach($category);
+        foreach ($page->terms as $term) {
+            $clone->terms()->attach($term);
         }
 
         foreach ($page->handles as $handle) {
             Handle::copy($handle, ['handleable_id' => $clone->id]);
-        }
-
-        foreach ($page->tags as $tag) {
-            $clone->tags()->attach($tag);
         }
 
         return $clone;

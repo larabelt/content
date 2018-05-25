@@ -1,7 +1,7 @@
 import filterSearch from 'belt/core/js/inputs/filter-search';
-import filterTags from 'belt/glue/js/inputs/filter-tags/filter';
-import filterTagsAttached from 'belt/glue/js/inputs/filter-tags/attached';
-import filterTagsDetached from 'belt/glue/js/inputs/filter-tags/detached';
+import filterTags from 'belt/content/js/inputs/filter-terms/filter';
+import filterTagsAttached from 'belt/content/js/inputs/filter-terms/attached';
+import filterTagsDetached from 'belt/content/js/inputs/filter-terms/detached';
 
 // helpers
 import Form from 'belt/content/js/pages/form';

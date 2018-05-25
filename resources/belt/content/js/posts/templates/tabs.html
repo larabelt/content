@@ -11,10 +11,7 @@
     <li :class="{active: $router.currentRoute.name == 'posts.attachments'}">
         <router-link :to="{ name: 'posts.attachments', params: {id: $route.params.id}}">Attachments</router-link>
     </li>
-    <li :class="{active: $router.currentRoute.name == 'posts.categories'}">
-        <router-link :to="{ name: 'posts.categories', params: {id: $route.params.id}}">Categories</router-link>
-    </li>
-    <li :class="{active: $router.currentRoute.name == 'posts.tags'}">
-        <router-link :to="{ name: 'posts.tags', params: {id: $route.params.id}}">Tags</router-link>
+    <li :class="{active: $router.currentRoute.name == 'posts.terms'}">
+        <router-link :to="{ name: 'posts.terms', params: {id: $route.params.id}}">Terms</router-link>
     </li>
 </ul>

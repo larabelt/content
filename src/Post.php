@@ -20,8 +20,7 @@ class Post extends Model implements
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\IncludesSeoInterface,
     Belt\Content\Behaviors\IncludesTemplateInterface,
-    Belt\Glue\Behaviors\CategorizableInterface,
-    Belt\Glue\Behaviors\TaggableInterface,
+    Belt\Content\Behaviors\TermableInterface,
     Belt\Clip\Behaviors\ClippableInterface
 {
     use Belt\Core\Behaviors\HasSortableTrait;
@@ -34,8 +33,7 @@ class Post extends Model implements
     use Belt\Content\Behaviors\Handleable;
     use Belt\Content\Behaviors\HasSections;
     use Belt\Content\Behaviors\IncludesTemplate;
-    use Belt\Glue\Behaviors\Categorizable;
-    use Belt\Glue\Behaviors\Taggable;
+    use Belt\Content\Behaviors\Termable;
     use SoftDeletes;
 
     /**
@@ -77,8 +75,7 @@ class Post extends Model implements
     {
         $array = $this->__toSearchableArray();
         $array['is_active'] = $this->is_public;
-        $array['categories'] = $this->categories ? $this->categories->pluck('id')->all() : null;
-        $array['tags'] = $this->tags ? $this->tags->pluck('id')->all() : null;
+        $array['terms'] = $this->terms ? $this->terms->pluck('id')->all() : null;
 
         return $array;
     }
@@ -98,8 +95,6 @@ class Post extends Model implements
     }
 
     /**
-     * Return tags associated with taggable
-     *
      * @param $query
      * @return mixed
      */
@@ -133,16 +128,12 @@ class Post extends Model implements
             $clone->attachments()->attach($attachment);
         }
 
-        foreach ($post->categories as $category) {
-            $clone->categories()->attach($category);
+        foreach ($post->terms as $term) {
+            $clone->terms()->attach($term);
         }
 
         foreach ($post->handles as $handle) {
             Handle::copy($handle, ['handleable_id' => $clone->id]);
-        }
-
-        foreach ($post->tags as $tag) {
-            $clone->tags()->attach($tag);
         }
 
         return $clone;

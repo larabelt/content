@@ -36,8 +36,7 @@ class PagesFunctionalTest extends Testing\BeltTestCase
         $old = Page::find($pageID);
         $old->sections()->create(['sectionable_type' => 'sections']);
         $old->attachments()->attach(1);
-        $old->categories()->attach(1);
-        $old->tags()->attach(1);
+        $old->terms()->attach(1);
         $old->handles()->create(['url' => '/copied-page']);
         $response = $this->json('POST', '/api/v1/pages', ['source' => $pageID]);
         $response->assertStatus(201);

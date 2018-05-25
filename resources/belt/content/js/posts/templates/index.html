@@ -6,16 +6,16 @@
                 <filter-search @filter-search-update="filter"></filter-search>
             </div>
             <div class="pull-left">
-                <filter-tags></filter-tags>
+                <filter-terms></filter-terms>
             </div>
             <div class="pull-right">
                 <router-link :to="{ name: 'posts.create' }" :class="'btn btn-primary'">add post</router-link>
             </div>
         </div>
 
-        <filter-tags-attached @filter-tags-update="filter" :_query="$router.currentRoute.query.tag" ></filter-tags-attached>
+        <filter-terms-attached @filter-terms-update="filter" :_query="$router.currentRoute.query.tag" ></filter-terms-attached>
 
-        <filter-tags-detached @filter-tags-update="filter"></filter-tags-detached>
+        <filter-terms-detached @filter-terms-update="filter"></filter-terms-detached>
 
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
