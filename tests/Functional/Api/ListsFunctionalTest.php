@@ -2,9 +2,9 @@
 
 use Belt\Core\Testing;
 
-use Belt\Spot\Itinerary;
+use Belt\Spot\List;
 
-class ApiItinerariesFunctionalTest extends Testing\BeltTestCase
+class ApiListsFunctionalTest extends Testing\BeltTestCase
 {
 
     public function test()
@@ -13,29 +13,29 @@ class ApiItinerariesFunctionalTest extends Testing\BeltTestCase
         $this->actAsSuper();
 
         # index
-        $response = $this->json('GET', '/api/v1/itineraries');
+        $response = $this->json('GET', '/api/v1/lists');
         $response->assertStatus(200);
 
         # store
-        $response = $this->json('POST', '/api/v1/itineraries', [
+        $response = $this->json('POST', '/api/v1/lists', [
             'name' => 'test',
             'body' => 'test',
         ]);
         $response->assertStatus(201);
-        $itineraryID = array_get($response->json(), 'id');
+        $listID = array_get($response->json(), 'id');
 
         # show
-        $response = $this->json('GET', "/api/v1/itineraries/$itineraryID");
+        $response = $this->json('GET', "/api/v1/lists/$listID");
         $response->assertStatus(200);
 
         # update
-        $this->json('PUT', "/api/v1/itineraries/$itineraryID", ['name' => 'updated']);
-        $response = $this->json('GET', "/api/v1/itineraries/$itineraryID");
+        $this->json('PUT', "/api/v1/lists/$listID", ['name' => 'updated']);
+        $response = $this->json('GET', "/api/v1/lists/$listID");
         $response->assertJson(['name' => 'updated']);
 
         # copy
-        Itinerary::unguard();
-        $old = Itinerary::find($itineraryID);
+        List::unguard();
+        $old = List::find($listID);
         $old->sections()->create(['sectionable_type' => 'sections']);
         $old->attachments()->attach(1);
         $old->categories()->attach(1);
@@ -43,17 +43,17 @@ class ApiItinerariesFunctionalTest extends Testing\BeltTestCase
             'place_id' => 1,
         ]);
         $old->tags()->attach(1);
-        $old->handles()->create(['url' => '/copied-itinerary']);
-        $response = $this->json('POST', '/api/v1/itineraries', ['source' => $itineraryID]);
+        $old->handles()->create(['url' => '/copied-list']);
+        $response = $this->json('POST', '/api/v1/lists', ['source' => $listID]);
         $response->assertStatus(201);
-        $copiedItineraryID = array_get($response->json(), 'id');
-        $response = $this->json('GET', "/api/v1/itineraries/$copiedItineraryID");
+        $copiedListID = array_get($response->json(), 'id');
+        $response = $this->json('GET', "/api/v1/lists/$copiedListID");
         $response->assertStatus(200);
 
         # delete
-        $response = $this->json('DELETE', "/api/v1/itineraries/$itineraryID");
+        $response = $this->json('DELETE', "/api/v1/lists/$listID");
         $response->assertStatus(204);
-        $response = $this->json('GET', "/api/v1/itineraries/$itineraryID");
+        $response = $this->json('GET', "/api/v1/lists/$listID");
         $response->assertStatus(404);
     }
 

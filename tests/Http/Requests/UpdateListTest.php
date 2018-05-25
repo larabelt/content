@@ -1,17 +1,17 @@
 <?php
 
-use Belt\Spot\Http\Requests\UpdateItinerary;
+use Belt\Spot\Http\Requests\UpdateList;
 
-class UpdateItineraryTest extends \PHPUnit\Framework\TestCase
+class UpdateListTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @covers \Belt\Spot\Http\Requests\UpdateItinerary::rules
+     * @covers \Belt\Spot\Http\Requests\UpdateList::rules
      */
     public function test()
     {
 
-        $request = new UpdateItinerary();
+        $request = new UpdateList();
 
         $this->assertNotEmpty($request->rules());
     }

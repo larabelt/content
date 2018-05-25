@@ -1,13 +1,13 @@
 <?php
-namespace Belt\Spot\Http\Requests;
+namespace Belt\Content\Http\Requests;
 
 use Belt\Core\Http\Requests\FormRequest;
 
 /**
- * Class StoreItinerary
- * @package Belt\Spot\Http\Requests
+ * Class StoreList
+ * @package Belt\Content\Http\Requests
  */
-class StoreItinerary extends FormRequest
+class StoreList extends FormRequest
 {
 
     /**
@@ -17,12 +17,12 @@ class StoreItinerary extends FormRequest
     {
         if ($this->get('source')) {
             return [
-                'source' => 'exists:itineraries,id',
+                'source' => 'exists:lists,id',
             ];
         }
 
         return [
-            'name' => 'required|unique:itineraries,name',
+            'name' => 'required|unique:lists,name',
             'body' => 'required',
         ];
     }

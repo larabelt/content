@@ -1,13 +1,13 @@
 import BaseTable from 'belt/core/js/helpers/table';
 import BaseService from 'belt/core/js/helpers/service';
 
-class ItineraryTable extends BaseTable {
+class ListTable extends BaseTable {
 
     constructor(options = {}) {
         super(options);
-        this.service = new BaseService({baseUrl: '/api/v1/itineraries/'});
+        this.service = new BaseService({baseUrl: '/api/v1/lists/'});
     }
 
 }
 
-export default ItineraryTable;
+export default ListTable;

@@ -1,4 +1,4 @@
-import shared from 'belt/spot/js/itineraries/ctlr/shared';
+import shared from 'belt/spot/js/lists/ctlr/shared';
 
 // components
 import places from 'belt/spot/js/listables/ctlr/index';

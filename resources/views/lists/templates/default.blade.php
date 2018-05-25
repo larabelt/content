@@ -1,10 +1,10 @@
 @php
-    $itinerary = $itinerary ?? $owner ?? new \Belt\Spot\Itinerary();
+    $list = $list ?? $owner ?? new \Belt\Spot\List();
 @endphp
 
-<div class="itinerary">
+<div class="list">
 
-    @foreach($itinerary->sections as $section)
+    @foreach($list->sections as $section)
         @include($section->template_view, ['section' => $section])
     @endforeach
 

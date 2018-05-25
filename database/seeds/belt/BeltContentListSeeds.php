@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
-use Belt\Spot\Itinerary;
+use Belt\Spot\List;
 use Belt\Spot\Listable;
 
-class BeltSpotItinerarySeeds extends Seeder
+class BeltSpotListSeeds extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +14,14 @@ class BeltSpotItinerarySeeds extends Seeder
      */
     public function run()
     {
-        factory(Itinerary::class, 5)->create()
-            ->each(function ($itinerary) {
+        factory(List::class, 5)->create()
+            ->each(function ($list) {
                 for ($i = 1; $i <= 5; $i++) {
 
                     $faker = Faker\Factory::create();
 
                     Listable::firstOrCreate([
-                       'itinerary_id' => $itinerary->id,
+                       'list_id' => $list->id,
                        'place_id' => $i,
                        'heading' => $faker->words(3, true),
                        'body' => $faker->words(20, true),

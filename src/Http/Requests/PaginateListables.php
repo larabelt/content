@@ -1,6 +1,6 @@
 <?php
 
-namespace Belt\Spot\Http\Requests;
+namespace Belt\Content\Http\Requests;
 
 use Belt;
 use Illuminate\Database\Eloquent\Builder;
@@ -33,8 +33,8 @@ class PaginateListables extends PaginateRequest
      */
     public function modifyQuery(Builder $query)
     {
-        if ($itinerary_id = $this->get('itinerary_id')) {
-            $query->where('itinerary_id', $itinerary_id);
+        if ($list_id = $this->get('list_id')) {
+            $query->where('list_id', $list_id);
         }
 
         return $query;

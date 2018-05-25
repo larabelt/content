@@ -1,13 +1,13 @@
 <?php
-namespace Belt\Spot\Http\Requests;
+namespace Belt\Content\Http\Requests;
 
 use Belt\Core\Http\Requests\FormRequest;
 
 /**
- * Class UpdateItinerary
- * @package Belt\Spot\Http\Requests
+ * Class UpdateList
+ * @package Belt\Content\Http\Requests
  */
-class UpdateItinerary extends FormRequest
+class UpdateList extends FormRequest
 {
 
     /**

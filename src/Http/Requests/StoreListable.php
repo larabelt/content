@@ -1,11 +1,11 @@
 <?php
-namespace Belt\Spot\Http\Requests;
+namespace Belt\Content\Http\Requests;
 
 use Belt\Core\Http\Requests\FormRequest;
 
 /**
  * Class StoreListable
- * @package Belt\Spot\Http\Requests
+ * @package Belt\Content\Http\Requests
  */
 class StoreListable extends FormRequest
 {

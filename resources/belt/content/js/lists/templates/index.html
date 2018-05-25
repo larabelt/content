@@ -9,7 +9,7 @@
                 <filter-priority @filter-priority-update="filter"></filter-priority>
             </div>
             <div class="pull-right">
-                <router-link :to="{ name: 'itineraries.create' }" :class="'btn btn-primary'">add itinerary</router-link>
+                <router-link :to="{ name: 'lists.create' }" :class="'btn btn-primary'">add list</router-link>
             </div>
         </div>
 
@@ -19,18 +19,18 @@
                     <tr>
                         <th>
                             ID
-                            <column-sorter :column="'itineraries.id'"></column-sorter>
+                            <column-sorter :column="'lists.id'"></column-sorter>
                         </th>
                         <th>
                             Name
-                            <column-sorter :column="'itineraries.name'"></column-sorter>
+                            <column-sorter :column="'lists.name'"></column-sorter>
                         </th>
                         <th>
                             Priority
-                            <column-sorter :column="'itineraries.priority'"></column-sorter>
+                            <column-sorter :column="'lists.priority'"></column-sorter>
                         </th>
-                        <th>Created<column-sorter :column="'itineraries.created_at'"></column-sorter></th>
-                        <th>Updated<column-sorter :column="'itineraries.updated_at'"></column-sorter></th>
+                        <th>Created<column-sorter :column="'lists.created_at'"></column-sorter></th>
+                        <th>Updated<column-sorter :column="'lists.updated_at'"></column-sorter></th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
@@ -57,7 +57,7 @@
                                     <li role="separator" class="divider"></li>
                                     <li><modal-delete :item-id="item.id" _class="''" :callingObject="table"><i class="fa fa-trash"></i> Remove</modal-delete></li>
                                 </ul>
-                                <router-link :to="{ name: 'itineraries.edit', params: { id: item.id } }" :class="'btn btn-xs btn-default'" title="edit itinerary">
+                                <router-link :to="{ name: 'lists.edit', params: { id: item.id } }" :class="'btn btn-xs btn-default'" title="edit list">
                                     <i class="fa fa-edit"></i>
                                 </router-link>
                             </div>

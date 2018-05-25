@@ -1,10 +1,10 @@
 // helpers
-import Form from 'belt/spot/js/itineraries/form';
+import Form from 'belt/spot/js/lists/form';
 
 // templates make a change
 
-import form_html from 'belt/spot/js/itineraries/templates/form.html';
-import create_html from 'belt/spot/js/itineraries/templates/create.html';
+import form_html from 'belt/spot/js/lists/templates/form.html';
+import create_html from 'belt/spot/js/lists/templates/create.html';
 
 export default {
     components: {
@@ -12,7 +12,7 @@ export default {
         create: {
             data() {
                 return {
-                    itinerary: new Form({router: this.$router}),
+                    list: new Form({router: this.$router}),
                 }
             },
             template: form_html,

@@ -1,31 +1,31 @@
 <?php
 
-namespace Belt\Spot\Http\Controllers\Api;
+namespace Belt\Content\Http\Controllers\Api;
 
 use Belt\Core\Http\Controllers\ApiController;
-use Belt\Spot\Itinerary;
-use Belt\Spot\Http\Requests;
+use Belt\Content\Lyst;
+use Belt\Content\Http\Requests;
 use Illuminate\Http\Request;
 
 /**
- * Class ItinerariesController
- * @package Belt\Spot\Http\Controllers\Api
+ * Class ListsController
+ * @package Belt\Content\Http\Controllers\Api
  */
-class ItinerariesController extends ApiController
+class ListsController extends ApiController
 {
 
     /**
-     * @var Itinerary
+     * @var Lyst
      */
-    public $itineraries;
+    public $lists;
 
     /**
      * ApiController constructor.
-     * @param Itinerary $itinerary
+     * @param Lyst $list
      */
-    public function __construct(Itinerary $itinerary)
+    public function __construct(Lyst $list)
     {
-        $this->itineraries = $itinerary;
+        $this->lists = $list;
     }
 
     /**
@@ -36,11 +36,11 @@ class ItinerariesController extends ApiController
      */
     public function index(Request $request)
     {
-        $request = Requests\PaginateItineraries::extend($request);
+        $request = Requests\PaginateLists::extend($request);
 
-        $this->authorize(['view', 'create', 'update', 'delete'], Itinerary::class);
+        $this->authorize(['view', 'create', 'update', 'delete'], Lyst::class);
 
-        $paginator = $this->paginator($this->itineraries->query(), $request);
+        $paginator = $this->paginator($this->lists->query(), $request);
 
         return response()->json($paginator->toArray());
     }
@@ -48,25 +48,25 @@ class ItinerariesController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Requests\StoreItinerary $request
+     * @param  Requests\StoreList $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\StoreItinerary $request)
+    public function store(Requests\StoreList $request)
     {
-        $this->authorize('create', Itinerary::class);
+        $this->authorize('create', Lyst::class);
 
         if ($source = $request->get('source')) {
-            return response()->json($this->itineraries->copy($source), 201);
+            return response()->json($this->lists->copy($source), 201);
         }
 
         $input = $request->all();
 
-        $itinerary = $this->itineraries->create([
+        $list = $this->lists->create([
             'name' => $input['name'],
         ]);
 
-        $this->set($itinerary, $input, [
+        $this->set($list, $input, [
             'is_active',
             'template',
             'slug',
@@ -78,42 +78,42 @@ class ItinerariesController extends ApiController
             'meta_keywords',
         ]);
 
-        $itinerary->save();
+        $list->save();
 
-        $this->itemEvent('created', $itinerary);
+        $this->itemEvent('created', $list);
 
-        return response()->json($itinerary, 201);
+        return response()->json($list, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Itinerary $itinerary
+     * @param  Lyst $list
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($itinerary)
+    public function show($list)
     {
-        $this->authorize(['view', 'create', 'update', 'delete'], $itinerary);
+        $this->authorize(['view', 'create', 'update', 'delete'], $list);
 
-        return response()->json($itinerary);
+        return response()->json($list);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Requests\UpdateItinerary $request
-     * @param  Itinerary $itinerary
+     * @param  Requests\UpdateList $request
+     * @param  Lyst $list
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\UpdateItinerary $request, $itinerary)
+    public function update(Requests\UpdateList $request, $list)
     {
-        $this->authorize('update', $itinerary);
+        $this->authorize('update', $list);
 
         $input = $request->all();
 
-        $this->set($itinerary, $input, [
+        $this->set($list, $input, [
             'is_active',
             'template',
             'slug',
@@ -126,28 +126,28 @@ class ItinerariesController extends ApiController
             'meta_keywords',
         ]);
 
-        $itinerary->save();
+        $list->save();
 
-        $this->itemEvent('updated', $itinerary);
+        $this->itemEvent('updated', $list);
 
-        return response()->json($itinerary);
+        return response()->json($list);
     }
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Itinerary $itinerary
+     * @param  Lyst $list
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($itinerary)
+    public function destroy($list)
     {
-        $this->authorize('delete', $itinerary);
+        $this->authorize('delete', $list);
 
-        $this->itemEvent('deleted', $itinerary);
+        $this->itemEvent('deleted', $list);
 
-        $itinerary->delete();
+        $list->delete();
 
         return response()->json(null, 204);
     }

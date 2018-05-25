@@ -24,6 +24,7 @@ class BeltContentServiceProvider extends ServiceProvider
     protected $policies = [
         Belt\Content\Block::class => Belt\Content\Policies\BlockPolicy::class,
         Belt\Content\Handle::class => Belt\Content\Policies\HandlePolicy::class,
+        Belt\Content\Lyst::class => Belt\Content\Policies\ListPolicy::class,
         Belt\Content\Page::class => Belt\Content\Policies\PagePolicy::class,
         Belt\Content\Post::class => Belt\Content\Policies\PostPolicy::class,
         Belt\Content\Section::class => Belt\Content\Policies\SectionPolicy::class,
@@ -68,6 +69,7 @@ class BeltContentServiceProvider extends ServiceProvider
         Relation::morphMap([
             'blocks' => Belt\Content\Block::class,
             'handles' => Belt\Content\Handle::class,
+            'lists' => Belt\Content\Lyst::class,
             'favorites' => Belt\Content\Favorite::class,
             'pages' => Belt\Content\Page::class,
             'posts' => Belt\Content\Post::class,
@@ -89,6 +91,9 @@ class BeltContentServiceProvider extends ServiceProvider
         // route model binding
         $router->model('favorite', Belt\Content\Favorite::class);
         $router->model('handle', Belt\Content\Handle::class);
+        $router->model('list', Belt\Content\Lyst::class, function ($value) {
+            return Belt\Content\Lyst::sluggish($value)->firstOrFail();
+        });
         $router->bind('page', function ($value) {
             $column = is_numeric($value) ? 'id' : 'slug';
             return Belt\Content\Page::where($column, $value)->first();

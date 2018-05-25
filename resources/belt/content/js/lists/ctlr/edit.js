@@ -1,23 +1,23 @@
-import shared from 'belt/spot/js/itineraries/ctlr/shared';
+import shared from 'belt/spot/js/lists/ctlr/shared';
 import attachment from 'belt/clip/js/clippables/ctlr/attachment';
 import priorityDropdown from 'belt/core/js/inputs/priority/form';
 import templateDropdown from 'belt/content/js/templates';
-import Form from 'belt/spot/js/itineraries/form';
+import Form from 'belt/spot/js/lists/form';
 
-import tabs_html from 'belt/spot/js/itineraries/templates/tabs.html';
-import edit_html from 'belt/spot/js/itineraries/templates/edit.html';
-import form_html from 'belt/spot/js/itineraries/templates/form.html';
+import tabs_html from 'belt/spot/js/lists/templates/tabs.html';
+import edit_html from 'belt/spot/js/lists/templates/edit.html';
+import form_html from 'belt/spot/js/lists/templates/form.html';
 
 export default {
     data() {
         return {
-            morphable_type: 'itineraries',
+            morphable_type: 'lists',
             morphable_id: this.$route.params.id,
-            itinerary: new Form(),
+            list: new Form(),
         }
     },
     mounted() {
-        this.itinerary.show(this.morphable_id);
+        this.list.show(this.morphable_id);
     },
     components: {
 

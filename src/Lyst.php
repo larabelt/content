@@ -1,6 +1,6 @@
 <?php
 
-namespace Belt\Spot;
+namespace Belt\Content;
 
 use Belt;
 use Belt\Clip\Attachment;
@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 use Rutorika\Sortable\BelongsToSortedManyTrait;
 
 /**
- * Class Itinerary
- * @package Belt\Spot
+ * Class Lyst
+ * @package Belt\Content
  */
-class Itinerary extends Model implements
+class Lyst extends Model implements
     Belt\Core\Behaviors\IsSearchableInterface,
     Belt\Core\Behaviors\ParamableInterface,
     Belt\Core\Behaviors\PriorityInterface,
@@ -27,8 +27,7 @@ class Itinerary extends Model implements
     Belt\Content\Behaviors\IncludesSeoInterface,
     Belt\Content\Behaviors\SectionableInterface,
     Belt\Content\Behaviors\TermableInterface,
-    Belt\Content\Behaviors\HandleableInterface,
-    Belt\Spot\Behaviors\RateableInterface
+    Belt\Content\Behaviors\HandleableInterface
 {
     use BelongsToSortedManyTrait;
     use Belt\Core\Behaviors\HasSortableTrait;
@@ -45,17 +44,16 @@ class Itinerary extends Model implements
     use Belt\Content\Behaviors\IncludesTemplate;
     use Belt\Content\Behaviors\Sectionable;
     use Belt\Content\Behaviors\Termable;
-    use Belt\Spot\Behaviors\Rateable;
 
     /**
      * @var string
      */
-    protected $morphClass = 'itineraries';
+    protected $morphClass = 'lists';
 
     /**
      * @var string
      */
-    protected $table = 'itineraries';
+    protected $table = 'lists';
 
     /**
      * @var array
@@ -103,23 +101,23 @@ class Itinerary extends Model implements
     }
 
     /**
-     * @param $itinerary
+     * @param $list
      * @return Model
      */
-    public static function copy($itinerary)
+    public static function copy($list)
     {
-        $itinerary = $itinerary instanceof Itinerary ? $itinerary : self::sluggish($itinerary)->first();
+        $list = $list instanceof Lyst ? $list : self::sluggish($list)->first();
 
         /**
-         * @var $clone Itinerary
+         * @var $clone List
          */
-        $clone = $itinerary->replicate();
+        $clone = $list->replicate();
         $clone->slug .= '-' . strtotime('now');
         $clone->push();
 
-        Itinerary::unguard();
+        Lyst::unguard();
 
-        foreach ($itinerary->listables as $listable) {
+        foreach ($list->listables as $listable) {
             $clone->listables()->create([
                 'place_id' => $listable->place_id,
                 'position' => $listable->position,
@@ -128,23 +126,23 @@ class Itinerary extends Model implements
             ]);
         }
 
-        foreach ($itinerary->sections as $section) {
+        foreach ($list->sections as $section) {
             Section::copy($section, ['owner_id' => $clone->id]);
         }
 
-        foreach ($itinerary->attachments as $attachment) {
+        foreach ($list->attachments as $attachment) {
             $clone->attachments()->attach($attachment);
         }
 
-        foreach ($itinerary->categories as $category) {
+        foreach ($list->categories as $category) {
             $clone->categories()->attach($category);
         }
 
-        foreach ($itinerary->handles as $handle) {
+        foreach ($list->handles as $handle) {
             Handle::copy($handle, ['handleable_id' => $clone->id]);
         }
 
-        foreach ($itinerary->tags as $tag) {
+        foreach ($list->tags as $tag) {
             $clone->tags()->attach($tag);
         }
 

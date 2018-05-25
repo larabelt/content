@@ -2,10 +2,10 @@
 use Mockery as m;
 
 use Belt\Core\Testing\BeltTestCase;
-use Belt\Spot\Itinerary;
+use Belt\Spot\List;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ItineraryTest extends BeltTestCase
+class ListTest extends BeltTestCase
 {
     public function tearDown()
     {
@@ -13,22 +13,22 @@ class ItineraryTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Spot\Itinerary::places
-     * @covers \Belt\Spot\Itinerary::listables
-     * @covers \Belt\Spot\Itinerary::toSearchableArray
+     * @covers \Belt\Spot\List::places
+     * @covers \Belt\Spot\List::listables
+     * @covers \Belt\Spot\List::toSearchableArray
      */
     public function test()
     {
-        $itinerary = new Itinerary();
+        $list = new List();
 
         # places
-        $this->assertInstanceOf(HasMany::class, $itinerary->places());
+        $this->assertInstanceOf(HasMany::class, $list->places());
 
         # listables
-        $this->assertInstanceOf(HasMany::class, $itinerary->listables());
+        $this->assertInstanceOf(HasMany::class, $list->listables());
 
         # toSearchableArray
-        $this->assertNotEmpty($itinerary->toSearchableArray());
+        $this->assertNotEmpty($list->toSearchableArray());
     }
 
 }

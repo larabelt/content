@@ -1,6 +1,6 @@
 <?php
 
-namespace Belt\Spot;
+namespace Belt\Content;
 
 use Belt;
 use Illuminate\Database\Eloquent\Model;
@@ -8,7 +8,7 @@ use Rutorika\Sortable\SortableTrait;;
 
 /**
  * Class Listable
- * @package Belt\Spot
+ * @package Belt\Content
  */
 class Listable extends Model
 {
@@ -23,12 +23,12 @@ class Listable extends Model
     /**
      * @var array
      */
-    protected $fillable = ['itinerary_id', 'place_id'];
+    protected $fillable = ['list_id', 'place_id'];
 
     /**
      * @var array
      */
-    protected static $sortableGroupField = ['itinerary_id'];
+    protected static $sortableGroupField = ['list_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -1,6 +1,6 @@
 <div>
 
-    <item-itinerary v-if="isType('itineraries')" :section="section"></item-itinerary>
+    <item-list v-if="isType('lists')" :section="section"></item-list>
     <item-menu v-if="isType('menus')" :section="section"></item-menu>
 
     <div v-if="active.id">

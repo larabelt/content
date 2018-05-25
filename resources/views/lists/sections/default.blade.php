@@ -1,14 +1,14 @@
 @php
-    $itinerary = $section->morphParam('intineraries');
+    $list = $section->morphParam('intineraries');
 @endphp
 
-@if($itinerary)
-    <div class="section section-itinerary {{ $section->param('class') }}">
+@if($list)
+    <div class="section section-list {{ $section->param('class') }}">
         @include('belt-content::sections.sections._heading')
         @include('belt-content::sections.sections._before')
-        @include('belt-spot::itineraries.web.show')
+        @include('belt-spot::lists.web.show')
         @include('belt-content::sections.sections._after')
     </div>
 @else
-    <p>section with empty itinerary</p>
+    <p>section with empty list</p>
 @endif

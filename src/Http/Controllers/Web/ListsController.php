@@ -1,16 +1,16 @@
 <?php
 
-namespace Belt\Spot\Http\Controllers\Web;
+namespace Belt\Content\Http\Controllers\Web;
 
 use Belt\Content\Http\Controllers\Compiler;
 use Belt\Core\Http\Controllers\BaseController;
-use Belt\Spot\Itinerary;
+use Belt\Content\Lyst;
 
 /**
- * Class ItinerariesController
- * @package Belt\Spot\Http\Controllers\Web
+ * Class ListsController
+ * @package Belt\Content\Http\Controllers\Web
  */
-class ItinerariesController extends BaseController
+class ListsController extends BaseController
 {
 
     use Compiler;
@@ -26,27 +26,27 @@ class ItinerariesController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  Itinerary $itinerary
+     * @param  List $list
      *
      * @return \Illuminate\View\View
      */
-    public function show(Itinerary $itinerary)
+    public function show(Lyst $list)
     {
-        if (!$itinerary->is_active) {
+        if (!$list->is_active) {
             try {
-                $this->authorize('update', $itinerary);
+                $this->authorize('update', $list);
             } catch (\Exception $e) {
                 abort(404);
             }
         }
 
-        $compiled = $this->compile($itinerary);
+        $compiled = $this->compile($list);
 
-        $owner = $itinerary;
+        $owner = $list;
 
-        $view = $itinerary->getTemplateConfig('extends', 'belt-spot::itineraries.web.show');
+        $view = $list->getTemplateConfig('extends', 'belt-spot::lists.web.show');
 
-        return view($view, compact('owner', 'itinerary', 'compiled'));
+        return view($view, compact('owner', 'list', 'compiled'));
     }
 
 }

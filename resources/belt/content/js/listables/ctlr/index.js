@@ -52,7 +52,7 @@ export default {
     methods: {
         attach(place_id) {
             this.form.setData({
-                itinerary_id: this.morphable_id,
+                list_id: this.morphable_id,
                 place_id: place_id,
             });
             this.form.store()

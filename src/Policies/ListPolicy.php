@@ -1,16 +1,16 @@
 <?php
 
-namespace Belt\Spot\Policies;
+namespace Belt\Content\Policies;
 
 use Belt\Core\User;
 use Belt\Core\Policies\BaseAdminPolicy;
-use Belt\Spot\Itinerary;
+use Belt\Content\Lyst;
 
 /**
- * Class ItineraryPolicy
- * @package Belt\Spot\Policies
+ * Class ListPolicy
+ * @package Belt\Content\Policies
  */
-class ItineraryPolicy extends BaseAdminPolicy
+class ListPolicy extends BaseAdminPolicy
 {
     /**
      * Determine whether the user can create object.

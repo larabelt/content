@@ -4,8 +4,8 @@ use Belt\Content\Http\Controllers\Web;
 
 Route::group(['middleware' => ['web']], function () {
 
-    # itineraries
-    Route::get('itineraries/{itinerary}/{slug?}', Web\ItinerariesController::class . '@show');
+    # lists
+    Route::get('lists/{list}/{slug?}', Web\ListsController::class . '@show');
 
     # pages
     Route::get('pages/{page}/{slug?}', Web\PagesController::class . '@show');

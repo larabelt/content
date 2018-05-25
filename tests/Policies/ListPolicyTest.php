@@ -1,22 +1,22 @@
 <?php
 
 use Belt\Core\Testing;
-use Belt\Spot\Policies\ItineraryPolicy;
+use Belt\Spot\Policies\ListPolicy;
 
-class ItineraryPolicyTest extends Testing\BeltTestCase
+class ListPolicyTest extends Testing\BeltTestCase
 {
 
     use Testing\CommonMocks;
 
     /**
-     * @covers \Belt\Spot\Policies\ItineraryPolicy::view
-     * @covers \Belt\Spot\Policies\ItineraryPolicy::create
+     * @covers \Belt\Spot\Policies\ListPolicy::view
+     * @covers \Belt\Spot\Policies\ListPolicy::create
      */
     public function test()
     {
         $user = $this->getUser();
 
-        $policy = new ItineraryPolicy();
+        $policy = new ListPolicy();
 
         # create
         $this->assertNotTrue($policy->create($user));

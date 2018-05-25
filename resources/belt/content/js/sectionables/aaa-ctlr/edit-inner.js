@@ -1,6 +1,6 @@
 import shared from 'belt/content/js/sectionables/ctlr/shared';
 import params from 'belt/core/js/paramables/ctlr/index';
-import itemItinerary from 'belt/spot/js/itineraries/sections/edit';
+import itemList from 'belt/spot/js/lists/sections/edit';
 import itemMenu from 'belt/menu/js/menus/sections/edit';
 
 import html from 'belt/content/js/sectionables/templates/edit-inner.html';
@@ -27,7 +27,7 @@ export default {
     },
     components: {
         params,
-        itemItinerary,
+        itemList,
         itemMenu,
     },
     template: html

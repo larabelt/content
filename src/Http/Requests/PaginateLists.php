@@ -1,30 +1,30 @@
 <?php
-namespace Belt\Spot\Http\Requests;
+namespace Belt\Content\Http\Requests;
 
 use Belt;
 use Belt\Core\Http\Requests\PaginateRequest;
 
-class PaginateItineraries extends PaginateRequest
+class PaginateLists extends PaginateRequest
 {
     /**
      * @var \Illuminate\Database\Eloquent\Model
      */
-    public $modelClass = Belt\Spot\Itinerary::class;
+    public $modelClass = Belt\Content\Lyst::class;
 
-    public $perItinerary = 10;
+    public $perList = 10;
 
-    public $orderBy = 'itineraries.id';
+    public $orderBy = 'lists.id';
 
     public $sortable = [
-        'itineraries.id',
-        'itineraries.name',
-        'itineraries.rating',
-        'itineraries.created_at',
-        'itineraries.updated_at',
+        'lists.id',
+        'lists.name',
+        'lists.rating',
+        'lists.created_at',
+        'lists.updated_at',
     ];
 
     public $searchable = [
-        'itineraries.name',
+        'lists.name',
     ];
 
     /**

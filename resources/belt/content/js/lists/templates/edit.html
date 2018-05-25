@@ -1,8 +1,8 @@
 <div>
     <heading>
-        <span slot="title">Itinerary Editor</span>
-        <li><router-link :to="{ name: 'itineraries' }">Itinerary Manager</router-link></li>
-        <li>{{ itinerary.name }}</li>
+        <span slot="title">List Editor</span>
+        <li><router-link :to="{ name: 'lists' }">List Manager</router-link></li>
+        <li>{{ list.name }}</li>
     </heading>
     <section class="content">
         <div class="nav-tabs-custom">
@@ -11,7 +11,7 @@
                 <div class="clearfix">
                     <div class="pull-right">
                         <div class="btn-group sub-tab-btn-group">
-                            <a class="btn btn-xs btn-default" target="_blank" :href="'/itineraries/' + itinerary.id">preview</a>
+                            <a class="btn btn-xs btn-default" target="_blank" :href="'/lists/' + list.id">preview</a>
                         </div>
                     </div>
                 </div>

@@ -1,17 +1,17 @@
-import index from 'belt/spot/js/itineraries/ctlr/index';
-import create from 'belt/spot/js/itineraries/ctlr/create';
-import edit  from 'belt/spot/js/itineraries/ctlr/edit';
-import attachments  from 'belt/spot/js/itineraries/ctlr/attachments';
-import places  from 'belt/spot/js/itineraries/ctlr/places';
-import sections  from 'belt/spot/js/itineraries/ctlr/sections';
-import terms  from 'belt/spot/js/itineraries/ctlr/terms';
+import index from 'belt/spot/js/lists/ctlr/index';
+import create from 'belt/spot/js/lists/ctlr/create';
+import edit  from 'belt/spot/js/lists/ctlr/edit';
+import attachments  from 'belt/spot/js/lists/ctlr/attachments';
+import places  from 'belt/spot/js/lists/ctlr/places';
+import sections  from 'belt/spot/js/lists/ctlr/sections';
+import terms  from 'belt/spot/js/lists/ctlr/terms';
 
 export default [
-    {path: '/itineraries', component: index, canReuse: false, name: 'itineraries'},
-    {path: '/itineraries/create', component: create, name: 'itineraries.create'},
-    {path: '/itineraries/edit/:id', component: edit, name: 'itineraries.edit'},
-    {path: '/itineraries/edit/:id/attachments', component: attachments, name: 'itineraries.attachments'},
-    {path: '/itineraries/edit/:id/places/:place?', component: places, name: 'itineraries.places'},
-    {path: '/itineraries/edit/:id/sections/:section?', component: sections, name: 'itineraries.sections'},
-    {path: '/itineraries/edit/:id/terms', component: terms, name: 'itineraries.terms'},
+    {path: '/lists', component: index, canReuse: false, name: 'lists'},
+    {path: '/lists/create', component: create, name: 'lists.create'},
+    {path: '/lists/edit/:id', component: edit, name: 'lists.edit'},
+    {path: '/lists/edit/:id/attachments', component: attachments, name: 'lists.attachments'},
+    {path: '/lists/edit/:id/places/:place?', component: places, name: 'lists.places'},
+    {path: '/lists/edit/:id/sections/:section?', component: sections, name: 'lists.sections'},
+    {path: '/lists/edit/:id/terms', component: terms, name: 'lists.terms'},
 ]

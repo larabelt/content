@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class BeltCreateItinerariesTable extends Migration
+class BeltCreateListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class BeltCreateItinerariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('itineraries', function (Blueprint $table) {
+        Schema::create('lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('slug')->index();
@@ -34,6 +34,6 @@ class BeltCreateItinerariesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('itineraries');
+        Schema::drop('lists');
     }
 }

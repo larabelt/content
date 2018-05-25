@@ -10,11 +10,11 @@ class Form extends BaseForm {
      */
     constructor(options = {}) {
         super(options);
-        let baseUrl = `/api/v1/itineraries/${this.morphable_id}/places/`;
+        let baseUrl = `/api/v1/lists/${this.morphable_id}/places/`;
         this.service = new BaseService({baseUrl: baseUrl});
         this.setData({
             id: '',
-            itinerary_id: '',
+            list_id: '',
             place_id: '',
             heading: '',
             body: '',

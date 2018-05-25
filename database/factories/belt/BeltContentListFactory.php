@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(Belt\Spot\Itinerary::class, function (Faker\Generator $faker) {
+$factory->define(Belt\Spot\List::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->words(3, true),
         'priority' => $faker->numberBetween(0, 10),
