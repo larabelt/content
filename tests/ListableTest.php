@@ -2,7 +2,7 @@
 use Mockery as m;
 
 use Belt\Core\Testing\BeltTestCase;
-use Belt\Spot\Listable;
+use Belt\Content\Listable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ListableTest extends BeltTestCase
@@ -13,7 +13,7 @@ class ListableTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Spot\Listable::place
+     * @covers \Belt\Content\Listable::place
      */
     public function test()
     {

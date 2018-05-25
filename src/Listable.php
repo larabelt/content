@@ -18,24 +18,16 @@ class Listable extends Model
     /**
      * @var string
      */
-    protected $table = 'listable';
+    protected $table = 'listables';
 
     /**
      * @var array
      */
-    protected $fillable = ['list_id', 'place_id'];
+    protected $fillable = ['list_id', 'listable_type', 'listable_id'];
 
     /**
      * @var array
      */
     protected static $sortableGroupField = ['list_id'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function place()
-    {
-        return $this->belongsTo(Place::class);
-    }
 
 }

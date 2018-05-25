@@ -1,5 +1,5 @@
 @php
-    $list = $list ?? $owner ?? new \Belt\Spot\List();
+    $list = $list ?? $owner ?? new \Belt\Content\List();
 @endphp
 
 <div class="list">

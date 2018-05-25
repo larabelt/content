@@ -1,7 +1,7 @@
 <?php
 
 use Belt\Core\Testing;
-use Belt\Spot\List;
+use Belt\Content\Lyst;
 
 class WebListsFunctionalTest extends Testing\BeltTestCase
 {
@@ -10,8 +10,8 @@ class WebListsFunctionalTest extends Testing\BeltTestCase
     {
         $this->refreshDB();
 
-        List::unguard();
-        $list = List::find(1);
+        Lyst::unguard();
+        $list = Lyst::find(1);
 
         # show
         $list->update(['is_active' => true]);

@@ -2,7 +2,7 @@
 
 use Belt\Core\Testing;
 
-use Belt\Spot\List;
+use Belt\Content\Lyst;
 
 class ApiListsFunctionalTest extends Testing\BeltTestCase
 {
@@ -34,8 +34,8 @@ class ApiListsFunctionalTest extends Testing\BeltTestCase
         $response->assertJson(['name' => 'updated']);
 
         # copy
-        List::unguard();
-        $old = List::find($listID);
+        Lyst::unguard();
+        $old = Lyst::find($listID);
         $old->sections()->create(['sectionable_type' => 'sections']);
         $old->attachments()->attach(1);
         $old->categories()->attach(1);

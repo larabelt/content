@@ -1,7 +1,7 @@
 <?php
 use Mockery as m;
 use Belt\Core\Testing;
-use Belt\Spot\Http\Requests\PaginateListables;
+use Belt\Content\Http\Requests\PaginateListables;
 use Illuminate\Database\Eloquent\Builder;
 
 class PaginateListablesTest extends Testing\BeltTestCase
@@ -15,7 +15,7 @@ class PaginateListablesTest extends Testing\BeltTestCase
     }
 
     /**
-     * @covers \Belt\Spot\Http\Requests\PaginateListables::modifyQuery
+     * @covers \Belt\Content\Http\Requests\PaginateListables::modifyQuery
      */
     public function test()
     {

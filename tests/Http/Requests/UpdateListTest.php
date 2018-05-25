@@ -1,12 +1,12 @@
 <?php
 
-use Belt\Spot\Http\Requests\UpdateList;
+use Belt\Content\Http\Requests\UpdateList;
 
 class UpdateListTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @covers \Belt\Spot\Http\Requests\UpdateList::rules
+     * @covers \Belt\Content\Http\Requests\UpdateList::rules
      */
     public function test()
     {

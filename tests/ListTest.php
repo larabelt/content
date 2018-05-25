@@ -2,7 +2,7 @@
 use Mockery as m;
 
 use Belt\Core\Testing\BeltTestCase;
-use Belt\Spot\List;
+use Belt\Content\Lyst;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ListTest extends BeltTestCase
@@ -13,9 +13,9 @@ class ListTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Spot\List::places
-     * @covers \Belt\Spot\List::listables
-     * @covers \Belt\Spot\List::toSearchableArray
+     * @covers \Belt\Content\Lyst::places
+     * @covers \Belt\Content\Lyst::listables
+     * @covers \Belt\Content\Lyst::toSearchableArray
      */
     public function test()
     {

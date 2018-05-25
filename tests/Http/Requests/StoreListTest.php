@@ -1,12 +1,12 @@
 <?php
 
-use Belt\Spot\Http\Requests\StoreList;
+use Belt\Content\Http\Requests\StoreList;
 
 class StoreListTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * @covers \Belt\Spot\Http\Requests\StoreList::rules
+     * @covers \Belt\Content\Http\Requests\StoreList::rules
      */
     public function test()
     {

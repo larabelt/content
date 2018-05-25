@@ -1,7 +1,7 @@
 <?php
 
 use Belt\Core\Testing;
-use Belt\Spot\Policies\ListPolicy;
+use Belt\Content\Policies\ListPolicy;
 
 class ListPolicyTest extends Testing\BeltTestCase
 {
@@ -9,8 +9,8 @@ class ListPolicyTest extends Testing\BeltTestCase
     use Testing\CommonMocks;
 
     /**
-     * @covers \Belt\Spot\Policies\ListPolicy::view
-     * @covers \Belt\Spot\Policies\ListPolicy::create
+     * @covers \Belt\Content\Policies\ListPolicy::view
+     * @covers \Belt\Content\Policies\ListPolicy::create
      */
     public function test()
     {

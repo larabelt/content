@@ -16,8 +16,6 @@ class BeltCreateListsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug')->index();
-            $table->string('heading')->nullable();
-            $table->text('body')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->text('meta_keywords')->nullable();

@@ -1,6 +1,7 @@
 @php
     $can['blocks'] = $auth->can(['create','update','delete'], Belt\Content\Block::class);
     $can['handles'] = $auth->can(['create','update','delete'], Belt\Content\Handle::class);
+    $can['lists'] = $auth->can(['create','update','delete'], Belt\Content\List::class);
     $can['pages'] = $auth->can(['create','update','delete'], Belt\Content\Page::class);
     $can['posts'] = $auth->can(['create','update','delete'], Belt\Content\Post::class);
     $can['terms'] = $auth->can(['create','update','delete'], Belt\Content\Term::class);
@@ -17,6 +18,9 @@
             @endif
             @if($can['handles'])
                 <li id="content-admin-sidebar-left-handles"><a href="/admin/belt/content/handles?orderBy=-handles.hits&is_active=0"><i class="fa fa-signing"></i> <span>Handles</span></a></li>
+            @endif
+            @if($can['lists'])
+                <li id="content-admin-sidebar-left-lists"><a href="/admin/belt/content/lists"><i class="fa fa-list"></i> <span>Lists</span></a></li>
             @endif
             @if($can['pages'])
                 <li id="content-admin-sidebar-left-pages"><a href="/admin/belt/content/pages"><i class="fa fa-files-o"></i> <span>Pages</span></a></li>
