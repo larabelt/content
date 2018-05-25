@@ -3,9 +3,6 @@
 namespace Belt\Content;
 
 use Belt;
-use Belt\Clip\Attachment;
-use Belt\Content\Handle;
-use Belt\Content\Section;
 use Illuminate\Database\Eloquent\Model;
 use Rutorika\Sortable\BelongsToSortedManyTrait;
 
@@ -16,7 +13,6 @@ use Rutorika\Sortable\BelongsToSortedManyTrait;
 class Lyst extends Model implements
     Belt\Core\Behaviors\IsSearchableInterface,
     Belt\Core\Behaviors\ParamableInterface,
-    Belt\Core\Behaviors\PriorityInterface,
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Core\Behaviors\TeamableInterface,
     Belt\Core\Behaviors\TypeInterface,
@@ -32,7 +28,6 @@ class Lyst extends Model implements
     use BelongsToSortedManyTrait;
     use Belt\Core\Behaviors\HasSortableTrait;
     use Belt\Core\Behaviors\IsSearchable;
-    use Belt\Core\Behaviors\PriorityTrait;
     use Belt\Core\Behaviors\Sluggable;
     use Belt\Core\Behaviors\Teamable;
     use Belt\Core\Behaviors\TypeTrait;
@@ -127,7 +122,7 @@ class Lyst extends Model implements
         }
 
         foreach ($list->sections as $section) {
-            Section::copy($section, ['owner_id' => $clone->id]);
+            Belt\Content\Section::copy($section, ['owner_id' => $clone->id]);
         }
 
         foreach ($list->attachments as $attachment) {
@@ -139,7 +134,7 @@ class Lyst extends Model implements
         }
 
         foreach ($list->handles as $handle) {
-            Handle::copy($handle, ['handleable_id' => $clone->id]);
+            Belt\Content\Handle::copy($handle, ['handleable_id' => $clone->id]);
         }
 
         foreach ($list->tags as $tag) {
