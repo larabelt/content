@@ -20,7 +20,6 @@ class TermTest extends BeltTestCase
      * @covers \Belt\Content\Term::getFullNameAttribute
      * @covers \Belt\Content\Term::getDefaultUrlAttribute
      * @covers \Belt\Content\Term::getUrlAttribute
-     * @covers \Belt\Content\Term::pages
      */
     public function test()
     {
@@ -32,9 +31,6 @@ class TermTest extends BeltTestCase
         # getDefaultUrlAttribute
         $this->assertNotEmpty($term->default_url);
         $this->assertEquals($term->default_url, $term->url);
-
-        # pages (bletch)
-        $this->assertInstanceOf(Collection::class, $term->pages);
 
         # scopeTerm
         $qbMock = m::mock(Builder::class);
