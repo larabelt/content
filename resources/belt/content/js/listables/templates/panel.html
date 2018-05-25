@@ -1,0 +1,55 @@
+<div class="col-md-12">
+    <div v-if="isFirst && panelMode == 'is-watching'">
+        <div class="box-actions">
+            <button class="btn btn-xs btn-info btn-block" @click.prevent="move(itineraryPlace.id, 'before')"><i class="fa fa-arrows"></i></button>
+        </div>
+    </div>
+    <div class="box" :class="{'box-primary': !itineraryPlace.parent_id, moving: isMoving}">
+        <div class="box-header with-border">
+                <span class="pull-right">
+                    <div class="btn-group">
+                        <template v-if="panelMode == 'is-moving'">
+                            <button class="btn btn-xs btn-default btn-flat" @click.prevent="cancel()">
+                                cancel
+                            </button>
+                        </template>
+                        <template v-if="panelMode == 'default'">
+                            <button
+                                    type="button"
+                                    title="options"
+                                    class="btn btn-xs btn-default dropdown-toggle text-muted"
+                                    data-toggle="dropdown"
+                                    aria-expanded="false"
+                            >
+                            <i class="fa fa-gear"></i> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#" @click.prevent="setActive(itineraryPlace.id)"><i class="fa fa-edit"></i> Edit</i></a></li>
+                                <li><a href="#" @click.prevent="setMoving(itineraryPlace.id)"><i class="fa fa-arrows-alt"></i> Move</i></a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><modal-delete :item-id="itineraryPlace.id" _class="''"><i class="fa fa-trash"></i> Remove</modal-delete></li>
+                            </ul>
+                        </template>
+                    </div>
+                </span>
+            <h6 class="box-title">{{ itineraryPlace.place.name }}</h6>
+        </div>
+        <div class="box-body">
+            <div class="section-content">
+                <div v-if="itineraryPlace.heading">
+                    <h6>heading</h6>
+                    <div v-html="itineraryPlace.heading"></div>
+                </div>
+                <div v-if="itineraryPlace.body">
+                    <h6>body</h6>
+                    <div v-html="itineraryPlace.body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-actions">
+        <div v-if="panelMode == 'is-watching'">
+            <button class="btn btn-xs btn-info btn-block" @click.prevent="move(itineraryPlace.id, 'after')"><i class="fa fa-arrows"></i></button>
+        </div>
+    </div>
+</div>

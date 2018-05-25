@@ -1,0 +1,81 @@
+<div class="box box-primary">
+    <div class="box-body">
+
+        <div class="filter-set clearfix">
+            <div class="pull-left">
+                <filter-search @filter-search-update="filter"></filter-search>
+            </div>
+            <div class="pull-left">
+                <filter-priority @filter-priority-update="filter"></filter-priority>
+            </div>
+            <div class="pull-right">
+                <router-link :to="{ name: 'itineraries.create' }" :class="'btn btn-primary'">add itinerary</router-link>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                            <column-sorter :column="'itineraries.id'"></column-sorter>
+                        </th>
+                        <th>
+                            Name
+                            <column-sorter :column="'itineraries.name'"></column-sorter>
+                        </th>
+                        <th>
+                            Priority
+                            <column-sorter :column="'itineraries.priority'"></column-sorter>
+                        </th>
+                        <th>Created<column-sorter :column="'itineraries.created_at'"></column-sorter></th>
+                        <th>Updated<column-sorter :column="'itineraries.updated_at'"></column-sorter></th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in table.items">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.priority }}</td>
+                        <td>{{ item.created_at }}</td>
+                        <td>{{ item.updated_at }}</td>
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <button
+                                        type="button"
+                                        class="btn btn-xs btn-default dropdown-toggle text-muted"
+                                        data-toggle="dropdown"
+                                        aria-expanded="false"
+                                        title="options"
+                                >
+                                    <i class="fa fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#" @click.prevent="copy(item.id)"><i class="fa fa-clone"></i> Copy</i></a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><modal-delete :item-id="item.id" _class="''" :callingObject="table"><i class="fa fa-trash"></i> Remove</modal-delete></li>
+                                </ul>
+                                <router-link :to="{ name: 'itineraries.edit', params: { id: item.id } }" :class="'btn btn-xs btn-default'" title="edit itinerary">
+                                    <i class="fa fa-edit"></i>
+                                </router-link>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Priority</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <pagination></pagination>
+    </div>
+</div>

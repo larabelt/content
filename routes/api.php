@@ -39,6 +39,24 @@ Route::group([
             Route::post('', Api\HandleablesController::class . '@store');
         });
 
+        # listables
+        Route::group([
+            'prefix' => 'itineraries/{itinerary}/places',
+        ], function () {
+            Route::get('{id}', Api\ListablesController::class . '@show');
+            Route::put('{id}', Api\ListablesController::class . '@update');
+            Route::delete('{id}', Api\ListablesController::class . '@destroy');
+            Route::get('', Api\ListablesController::class . '@index');
+            Route::post('', Api\ListablesController::class . '@store');
+        });
+
+        # lists
+        Route::get('itineraries/{itinerary}', Api\ItinerariesController::class . '@show');
+        Route::put('itineraries/{itinerary}', Api\ItinerariesController::class . '@update');
+        Route::delete('itineraries/{itinerary}', Api\ItinerariesController::class . '@destroy');
+        Route::get('itineraries', Api\ItinerariesController::class . '@index');
+        Route::post('itineraries', Api\ItinerariesController::class . '@store');
+
         # pages
         Route::get('pages/{page}', Api\PagesController::class . '@show');
         Route::put('pages/{page}', Api\PagesController::class . '@update');
