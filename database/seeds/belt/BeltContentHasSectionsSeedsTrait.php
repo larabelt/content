@@ -3,7 +3,6 @@
 use Belt\Content\Behaviors\HasSectionsInterface;
 use Belt\Content\Block;
 use Belt\Content\Section;
-use Belt\Content\Tout;
 use Belt\Clip\Attachment;
 
 trait BeltContentHasSectionsSeedsTrait
@@ -27,11 +26,6 @@ trait BeltContentHasSectionsSeedsTrait
             'parent_id' => $parent ? $parent->id : null,
             'owner_id' => $owner ? $owner->id : $parent->owner_id,
             'owner_type' => $owner ? $owner->getMorphClass() : $parent->owner_type,
-//            'sectionable_id' => $sectionable_id,
-//            'sectionable_type' => $sectionable_type,
-//            'heading' => array_get($options, 'heading', null),
-//            'before' => array_get($options, 'before', null),
-//            'after' => array_get($options, 'after', null),
         ]);
 
         foreach ($params as $key => $value) {
@@ -77,18 +71,6 @@ trait BeltContentHasSectionsSeedsTrait
         $params = array_merge(['class' => 'col-md-3'], $params);
 
         $this->section($parent, 'menus', $options, $params);
-    }
-
-    public function tout($parent, $options = [], $params = [])
-    {
-        $options = array_merge(['template' => 'touts.default'], $options);
-
-        $tout = factory(Tout::class)->create();
-
-        $params = array_merge(['class' => 'col-md-4'], $params);
-        $params['touts'] = $tout->id;
-
-        $this->section($parent, $tout, $options, $params);
     }
 
 }

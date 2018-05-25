@@ -4,7 +4,6 @@ use Mockery as m;
 use Belt\Core\Testing\BeltTestCase;
 use Belt\Content\Page;
 use Belt\Content\Section;
-use Belt\Content\Tout;
 use Belt\Content\Services\CompileService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -43,13 +42,11 @@ class CompileServiceTest extends BeltTestCase
         # crawl
         Page::unguard();
         Section::unguard();
-        Tout::unguard();
 
         $page = new Page();
         $page->sections = new Collection();
 
         $section1 = new Section(['heading' => 'foo']);
-        $section1->sectionable = new Tout(['heading' => 'tout']);
         $section2 = new Section(['heading' => 'bar']);
         $section2->children = new Collection([new Section(['heading' => 'child'])]);
 
@@ -62,7 +59,6 @@ class CompileServiceTest extends BeltTestCase
         $this->assertContains('foo', $result);
         $this->assertContains('bar', $result);
         $this->assertContains('child', $result);
-        $this->assertContains('tout', $result);
 
         # crawl (exception)
         try {

@@ -4,14 +4,9 @@
     $can['pages'] = $auth->can(['create','update','delete'], Belt\Content\Page::class);
     $can['posts'] = $auth->can(['create','update','delete'], Belt\Content\Post::class);
     $can['terms'] = $auth->can(['create','update','delete'], Belt\Content\Term::class);
-    $can['touts'] = $auth->can(['create','update','delete'], Belt\Content\Tout::class);
-    if(belt()->uses('glue')) {
-        $can['categories'] = $auth->can(['create','update','delete'], Belt\Glue\Category::class);
-        $can['tags'] = $auth->can(['create','update','delete'], Belt\Glue\Tag::class);
-    }
 @endphp
 
-@if($can['blocks'] || $can['handles'] || $can['pages'] || $can['posts'] || $can['touts'])
+@if($can['blocks'] || $can['handles'] || $can['pages'] || $can['posts'])
     <li id="content-admin-sidebar-left" class="treeview">
         <a href="#">
             <i class="fa fa-file-o"></i> <span>Content</span> <i class="fa fa-angle-left pull-right"></i>
@@ -31,17 +26,6 @@
             @endif
             @if($can['terms'])
                 <li id="content-admin-sidebar-left-terms"><a href="/admin/belt/content/terms"><i class="fa fa-sitemap"></i> <span>Terms</span></a></li>
-            @endif
-            @if($can['touts'])
-                <li id="content-admin-sidebar-left-touts"><a href="/admin/belt/content/touts"><i class="fa fa-sticky-note"></i> <span>Touts</span></a></li>
-            @endif
-            @if(belt()->uses('glue'))
-                @if($can['categories'])
-                    <li id="glue-admin-sidebar-left-categories"><a href="/admin/belt/glue/categories"><i class="fa fa-sitemap"></i> <span>Categories</span></a></li>
-                @endif
-                @if($can['tags'])
-                    <li id="glue-admin-sidebar-left-tags"><a href="/admin/belt/glue/tags"><i class="fa fa-tags"></i> <span>Tags</span></a></li>
-                @endif
             @endif
         </ul>
     </li>

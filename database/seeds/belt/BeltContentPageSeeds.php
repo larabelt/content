@@ -72,17 +72,6 @@ class BeltContentPageSeeds extends Seeder
         $this->block($section, [], ['class' => 'col-md-9']);
         $this->block($section, [], ['class' => 'col-md-3']);
 
-        # section w/touts
-        $section = $this->section($page);
-        $this->tout($section, [], ['class' => 'col-md-3', 'icon' => 'create']);
-        $this->tout($section, [], ['class' => 'col-md-3', 'icon' => 'edit']);
-
-        # section w/touts
-        $section = $this->section($page);
-        $this->tout($section);
-        $this->tout($section);
-        $this->tout($section);
-
         # make sectioned example page
         factory(Page::class)->create(['slug' => 'sectioned']);
         $page = Page::where('slug', 'sectioned')->first();

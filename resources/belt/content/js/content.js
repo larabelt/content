@@ -4,14 +4,11 @@ import pages  from 'belt/content/js/pages/routes';
 import posts  from 'belt/content/js/posts/routes';
 import store from 'belt/core/js/store/index';
 import terms  from 'belt/content/js/terms/routes';
-import touts  from 'belt/content/js/touts/routes';
 
 import seo from 'belt/content/js/base/seo';
 import inputBlocks from 'belt/content/js/inputs/blocks';
-import inputTouts from 'belt/content/js/inputs/touts';
 Vue.component('seo', seo);
 Vue.component('input-blocks', inputBlocks);
-Vue.component('input-touts', inputTouts);
 
 window.larabelt.content = _.get(window, 'larabelt.content', {});
 
@@ -32,7 +29,6 @@ export default class BeltContent {
             router.addRoutes(pages);
             router.addRoutes(posts);
             router.addRoutes(terms);
-            router.addRoutes(touts);
 
             const app = new Vue({router, store}).$mount('#belt-content');
         }

@@ -19,7 +19,6 @@ class BeltContentPermissbleSeeds extends Seeder
             'handles',
             'pages',
             'posts',
-            'touts',
         ];
         foreach ($abilities as $entity_type => $set) {
             if (is_numeric($entity_type)) {

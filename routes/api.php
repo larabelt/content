@@ -88,13 +88,6 @@ Route::group([
             Route::post('', Api\TermablesController::class . '@store');
         });
 
-        # touts
-        Route::get('touts/{id}', Api\ToutsController::class . '@show');
-        Route::put('touts/{id}', Api\ToutsController::class . '@update');
-        Route::delete('touts/{id}', Api\ToutsController::class . '@destroy');
-        Route::get('touts', Api\ToutsController::class . '@index');
-        Route::post('touts', Api\ToutsController::class . '@store');
-
         # tree
         Route::group([
             'prefix' => '{node_type}/{node_id}/tree',

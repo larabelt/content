@@ -29,10 +29,6 @@
         @include('belt-content::blocks.web.show')
     @endif
 
-    @if($tout = $page->morphParam('touts'))
-        @include('belt-content::touts.web.show')
-    @endif
-
     @if($album = $page->morphParam('albums'))
         @include('belt-clip::albums.web.files')
     @endif

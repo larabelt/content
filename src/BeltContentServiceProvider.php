@@ -28,7 +28,6 @@ class BeltContentServiceProvider extends ServiceProvider
         Belt\Content\Post::class => Belt\Content\Policies\PostPolicy::class,
         Belt\Content\Section::class => Belt\Content\Policies\SectionPolicy::class,
         Belt\Content\Term::class => Belt\Content\Policies\TermPolicy::class,
-        Belt\Content\Tout::class => Belt\Content\Policies\ToutPolicy::class,
     ];
 
     /**
@@ -74,7 +73,6 @@ class BeltContentServiceProvider extends ServiceProvider
             'posts' => Belt\Content\Post::class,
             'sections' => Belt\Content\Section::class,
             'terms' => Belt\Content\Term::class,
-            'touts' => Belt\Content\Tout::class,
 
             /**
              * @todo find why to get this out of here

@@ -65,11 +65,6 @@ return [
             'label' => 'Block',
             'description' => 'Optional. Link existing block to this page.',
         ],
-        'touts' => [
-            'type' => 'touts',
-            'label' => 'Tout',
-            'description' => 'Optional. Link existing tout to this page.',
-        ],
         'albums' => [
             'type' => 'albums',
             'label' => 'Album',
