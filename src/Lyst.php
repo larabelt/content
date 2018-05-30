@@ -82,17 +82,9 @@ class Lyst extends Model implements
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function places()
-    {
-        return $this->hasMany(Listable::class)->orderBy('position');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function listables()
     {
-        return $this->hasMany(Listable::class)->with('place')->orderBy('position');
+        return $this->hasMany(Listable::class, 'list_id')->orderBy('position');
     }
 
     /**

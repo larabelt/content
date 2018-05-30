@@ -15,18 +15,22 @@
                 </div>
             </div>
 
-            <table class="table table-bordered table-hover">
+            <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>Type <column-sorter :column="'index.listable_type'"></column-sorter></th>
-                    <th>ID <column-sorter :column="'index.listable_id'"></column-sorter></th>
-                    <th>Name <column-sorter :column="'index.name'"></column-sorter></th>
+                    <th>Type</th>
+                    <th>Name</th>
                     <th class="text-right">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <template v-for="item in table.items">
-                    <row-item :item="item"></row-item>
+                    <row-item
+                            :item="item"
+                            @start-listable-move="startMove"
+                            @cancel-listable-move="cancelMove"
+                            @complete-listable-move="completeMove"
+                    ></row-item>
                 </template>
                 </tbody>
             </table>

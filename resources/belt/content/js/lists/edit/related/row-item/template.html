@@ -1,8 +1,24 @@
 <tr>
     <td>{{ item.listable_type }}</td>
-    <td>{{ item.listable_id }}</td>
     <td>{{ name }}</td>
     <td class="text-right">
-        <a :href="editUrl" :title="title" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
+        <div class="btn-group">
+            <template v-if="mode == 'is-moving'">
+                <button class="btn btn-xs btn-default btn-flat" @click.prevent="cancelMove()">
+                    cancel
+                </button>
+            </template>
+            <template v-if="mode == 'is-watching'">
+                <button class="btn btn-xs btn-default btn-flat" @click.prevent="move(item.id, 'before')">
+                    <i class="fa fa-caret-up"></i> before
+                </button>
+                <button class="btn btn-xs btn-default btn-flat" @click.prevent="move(item.id, 'after')">
+                    after <i class="fa fa-caret-down"></i>
+                </button>
+            </template>
+            <template v-if="mode == 'default'">
+                <button class="btn btn-xs btn-default btn-flat" @click.prevent="startMove(item.id)"><i class="fa fa-arrows-alt"></i> Move</i></button>
+            </template>
+        </div>
     </td>
 </tr>

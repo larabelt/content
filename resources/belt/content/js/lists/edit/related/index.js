@@ -23,6 +23,7 @@ export default {
             },
             data() {
                 return {
+                    moving_id: null,
                     table: new Table({
                         morphable_type: 'lists',
                         morphable_id: this.morphable_id,
@@ -33,6 +34,13 @@ export default {
                 this.table.index();
             },
             methods: {
+                cancelMove() {
+                    this.moving_id = null;
+                },
+                completeMove() {
+                    this.moving_id = null;
+                    this.table.index();
+                },
                 filter: _.debounce(function (query) {
                     if (query) {
                         query.page = 1;
@@ -44,6 +52,9 @@ export default {
                             this.table.pushQueryToRouter();
                         });
                 }, 300),
+                startMove(id) {
+                    this.moving_id = id;
+                },
             },
             components: {
                 filterSearch,
