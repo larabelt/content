@@ -30,4 +30,12 @@ class Listable extends Model
      */
     protected static $sortableGroupField = ['list_id'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function listable()
+    {
+        return $this->morphTo('listable');
+    }
+
 }

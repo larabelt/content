@@ -11,7 +11,7 @@ export default {
                 morphable_type: this.morphable_type,
                 morphable_id: this.morphable_id,
             }),
-            indexable_type: null,
+            listable_type: null,
         }
     },
     computed: {
@@ -19,13 +19,13 @@ export default {
             let options = {
                 '': '',
             };
-            let items = _.uniqBy(this.groupedItems.items, 'indexable_type');
+            let items = _.uniqBy(this.groupedItems.items, 'listable_type');
             items = _.sortBy(items, [function (o) {
-                return o.indexable_type ? o.indexable_type : 1;
+                return o.listable_type ? o.listable_type : 1;
             }]);
             _.forEach(items, (item) => {
-                //options.push(item.indexable_type);
-                options[item.indexable_type] = item.indexable_type;
+                //options.push(item.listable_type);
+                options[item.listable_type] = item.listable_type;
             });
             return options;
         },
@@ -35,25 +35,25 @@ export default {
     },
     mounted() {
         this.groupedItems.updateQuery({
-            groupBy: 'indexable_type',
+            groupBy: 'listable_type',
         });
         this.groupedItems.index();
     },
     watch: {
-        'table.query.indexable_type': function (indexable_type) {
-            if (indexable_type) {
-                this.indexable_type = indexable_type;
+        'table.query.listable_type': function (listable_type) {
+            if (listable_type) {
+                this.listable_type = listable_type;
             }
         }
     },
     methods: {
         change() {
-            //this.table.updateQuery({indexable_type: null});
-            delete this.table.query.indexable_type;
-            if (this.indexable_type) {
-                this.table.updateQuery({indexable_type: this.indexable_type});
+            //this.table.updateQuery({listable_type: null});
+            delete this.table.query.listable_type;
+            if (this.listable_type) {
+                this.table.updateQuery({listable_type: this.listable_type});
             }
-            this.$emit('filter-indexable_type-update');
+            this.$emit('filter-listable_type-update');
         },
     },
     template: html

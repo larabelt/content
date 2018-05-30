@@ -21,7 +21,7 @@ class PaginateListables extends PaginateRequest
     /**
      * @var string
      */
-    public $orderBy = 'listable.position';
+    public $orderBy = 'listables.position';
 
     /**
      * @var Belt\Core\Pagination\PaginationQueryModifier[]
@@ -35,6 +35,14 @@ class PaginateListables extends PaginateRequest
     {
         if ($list_id = $this->get('list_id')) {
             $query->where('list_id', $list_id);
+        }
+
+        if ($id = $this->get('listable_id')) {
+            $query->whereIn('listable_id', explode(',', $id));
+        }
+
+        if ($type = $this->get('listable_type')) {
+            $query->whereIn('listable_type', explode(',', $type));
         }
 
         return $query;

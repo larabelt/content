@@ -1,11 +1,12 @@
 import BaseTable from 'belt/core/js/helpers/table';
+import BaseService from 'belt/core/js/helpers/service';
 
 class Table extends BaseTable {
 
     constructor(options = {}) {
-        options.baseUrl = `/api/v1/index/`;
         super(options);
-        this.query.list_id = this.morphable_id;
+        let baseUrl = `/api/v1/lists/${this.morphable_id}/listables/`;
+        this.service = new BaseService({baseUrl: baseUrl});
     }
 
 }

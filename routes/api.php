@@ -41,7 +41,7 @@ Route::group([
 
         # listables
         Route::group([
-            'prefix' => 'lists/{list}/places',
+            'prefix' => 'lists/{list}/listables',
         ], function () {
             Route::get('{id}', Api\ListablesController::class . '@show');
             Route::put('{id}', Api\ListablesController::class . '@update');

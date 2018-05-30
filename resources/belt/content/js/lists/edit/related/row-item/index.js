@@ -10,13 +10,13 @@ export default {
     },
     computed: {
         editUrl() {
-            return this.adminEditUrl(this.item.id, this.item.indexable_type);
+            return this.adminEditUrl(this.item.id, this.item.listable_type);
             let beltPackage = 'core';
             let compiled = _.template('/admin/belt/${package}/${type}/edit/${id}');
             return compiled({
                 package: beltPackage,
-                type: this.item.indexable_type,
-                id: this.item.indexable_id,
+                type: this.item.listable_type,
+                id: this.item.listable_id,
             });
         },
         id() {
@@ -25,8 +25,11 @@ export default {
         title() {
             return 'edit ' + this.type;
         },
+        name() {
+            return _.get(this.item, 'listable.name');
+        },
         type() {
-            return this.item.indexable_type;
+            return this.item.listable_type;
         },
     },
     template: html,
