@@ -1,4 +1,4 @@
-import filter from 'belt/content/js/inputs/filter-base';
+import filter from 'belt/core/js/inputs/filter-base';
 import Table from 'belt/content/js/lists/edit/related/table';
 import html from 'belt/content/js/lists/edit/related/filters/type/template.html';
 

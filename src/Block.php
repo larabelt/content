@@ -10,14 +10,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package Belt\Content
  */
 class Block extends Model implements
+    Belt\Core\Behaviors\ParamableInterface,
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
+    Belt\Content\Behaviors\IncludesTemplateInterface,
     Belt\Content\Behaviors\SectionableInterface,
     Belt\Content\Behaviors\TermableInterface
 {
     use Belt\Core\Behaviors\HasSortableTrait;
     use Belt\Core\Behaviors\Sluggable;
     use Belt\Content\Behaviors\IncludesContent;
+    use Belt\Content\Behaviors\IncludesTemplate;
     use Belt\Content\Behaviors\Sectionable;
     use Belt\Content\Behaviors\Termable;
     use SoftDeletes;
@@ -36,13 +39,5 @@ class Block extends Model implements
      * @var array
      */
     protected $fillable = ['name', 'body'];
-
-    /**
-     * @param $value
-     */
-    public function setTemplateAttribute($value)
-    {
-        $this->attributes['template'] = trim(strtolower($value));
-    }
 
 }

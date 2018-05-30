@@ -1,4 +1,4 @@
-import adminUrls from 'belt/content/js/mixins/admin-urls';
+import adminUrls from 'belt/core/js/mixins/admin-urls';
 import html from 'belt/content/js/lists/edit/related/row-item/template.html';
 
 export default {
@@ -11,7 +11,7 @@ export default {
     computed: {
         editUrl() {
             return this.adminEditUrl(this.item.id, this.item.indexable_type);
-            let beltPackage = 'content';
+            let beltPackage = 'core';
             let compiled = _.template('/admin/belt/${package}/${type}/edit/${id}');
             return compiled({
                 package: beltPackage,

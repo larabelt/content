@@ -9,25 +9,11 @@ class BlockForm extends BaseForm {
         this.routeEditName = 'blocks.edit';
         this.setData({
             id: '',
-            team_id: '',
             is_active: 0,
             name: '',
             slug: '',
-            rating: '',
+            heading: '',
             body: '',
-            intro: '',
-            phone: '',
-            phone_tollfree: '',
-            hours: '',
-            url: '',
-            email: '',
-            meta_title: '',
-            meta_description: '',
-            meta_keywords: '',
-            starts_at: '',
-            ends_at: '',
-            template: '',
-            priority: 0,
         })
     }
 

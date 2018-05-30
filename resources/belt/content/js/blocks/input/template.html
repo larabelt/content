@@ -1,0 +1,64 @@
+<span>
+    <template v-if="adminMode == 'admin'">
+        <div class="form-group" :class="{ 'has-error': form.error('block_id') }">
+            <label for="name">Block</label>
+            <input type="hidden" v-model="form.block_id">
+            <div class="input-group">
+                <div class="input-group-addon" @click="toggle()"><i class="fa fa-search"></i></div>
+                <input class="form-control" :value="block.name" readonly>
+                <div v-if="block.id" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>
+            </div>
+            <span v-for="error in form.error('block_id')" class="text-danger">{{ error }}</span>
+        </div>
+        <div v-if="search">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <div class="form-group">
+                                <input
+                                        class="form-control"
+                                        v-model="table.query.q"
+                                        placeholder="filter"
+                                        @keydown="filter()"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        ID
+                                        <column-sorter :column="'blocks.id'"></column-sorter>
+                                    </th>
+                                    <th>
+                                        Code
+                                        <column-sorter :column="'blocks.code'"></column-sorter>
+                                    </th>
+                                    <th>
+                                        Name
+                                        <column-sorter :column="'blocks.name'"></column-sorter>
+                                    </th>
+                                    <th class="text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="block in table.items">
+                                    <td>{{ block.id }}</td>
+                                    <td>{{ block.code }}</td>
+                                    <td>{{ block.name }}</td>
+                                    <td class="text-right">
+                                        <button class="btn btn-default btn-xs" @click.prevent="setBlock(block)"><i class="fa fa-chevron-right"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pagination></pagination>
+                </div>
+            </div>
+        </div>
+    </template>
+</span>

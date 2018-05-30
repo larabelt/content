@@ -1,4 +1,4 @@
-import Form from 'belt/content/js/lists/form';
+import Form from 'belt/content/js/blocks/form';
 import config from 'belt/core/js/configs/store/local';
 import params from 'belt/core/js/paramables/store';
 
@@ -16,12 +16,12 @@ export default {
     },
     actions: {
         construct: ({dispatch, commit}, options) => {
-            dispatch('config/set', {morphType: 'lists'});
-            dispatch('params/set', {morphType: 'lists', morphID: options.id});
+            dispatch('config/set', {morphType: 'blocks'});
+            dispatch('params/set', {morphType: 'blocks', morphID: options.id});
         },
-        load: ({commit, dispatch, state}, listID) => {
+        load: ({commit, dispatch, state}, blockID) => {
             return new Promise((resolve, reject) => {
-                state.form.show(listID)
+                state.form.show(blockID)
                     .then(response => {
                         dispatch('config/set', {configKey: response.template});
                         dispatch('config/load');

@@ -1,0 +1,17 @@
+<div>
+    <heading>
+        <span slot="title">Block Creator</span>
+        <li><router-link :to="{ name: 'blocks' }">Block Manager</router-link></li>
+        <li>Block Creator</li>
+    </heading>
+    <section class="content-subheader">
+        <p class="text-muted">{{ trans('belt-content::blocks.creator.overall') }}</p>
+    </section>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-body">
+                <create></create>
+            </div>
+        </div>
+    </section>
+</div>

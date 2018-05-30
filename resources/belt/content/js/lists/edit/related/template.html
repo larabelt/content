@@ -4,7 +4,7 @@
 
         <h4>Related List</h4>
         <div v-if="table.items.length">
-            <p class="help-block">The following items are associated with this list.</p>
+            <p class="help-block">The following items are associated with this {{ trans('belt-core::lists.label').toLowerCase() }}.</p>
 
             <div class="filter-set clearfix">
                 <div class="pull-left">
@@ -33,7 +33,7 @@
             <pagination></pagination>
         </div>
         <div v-else>
-            <p style="font-style: italic;">No users are currently linked to this item.</p>
+            <p style="font-style: italic;">No items are currently linked to this item.</p>
         </div>
 
     </div>

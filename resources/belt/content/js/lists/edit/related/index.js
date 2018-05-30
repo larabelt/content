@@ -1,5 +1,5 @@
 import edit from 'belt/content/js/lists/edit/shared';
-import filterSearch from 'belt/content/js/inputs/filter-search';
+import filterSearch from 'belt/core/js/inputs/filter-search';
 import filterType from 'belt/content/js/lists/edit/related/filters/type';
 import Table from 'belt/content/js/lists/edit/related/table';
 import rowItem from 'belt/content/js/lists/edit/related/row-item';
