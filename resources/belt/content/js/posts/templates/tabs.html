@@ -1,17 +1,17 @@
 <ul class="nav nav-tabs">
     <li :class="{active: $router.currentRoute.name == 'posts.edit'}">
-        <router-link :to="{ name: 'posts.edit', params: {id: $route.params.id}}">Main</router-link>
+        <router-link :to="{ name: 'posts.edit', params: {id: $route.params.id}}"><span class="hidden-sm">Main</span> <i class="fa fa-home visible-sm"></i></router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'posts.sections'}">
-        <router-link :to="{ name: 'posts.sections', params: {id: $route.params.id}}">Sections</router-link>
+        <router-link :to="{ name: 'posts.sections', params: {id: $route.params.id}}"><span class="hidden-sm">Sections</span> <i class="fa fa-table visible-sm"></i></router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'posts.handles'}">
         <router-link :to="{ name: 'posts.handles', params: {id: $route.params.id}}">Handles</router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'posts.attachments'}">
-        <router-link :to="{ name: 'posts.attachments', params: {id: $route.params.id}}">Attachments</router-link>
+        <router-link :to="{ name: 'posts.attachments', params: {id: $route.params.id}}"><span class="hidden-sm">Attachments</span> <i class="fa fa-file-o visible-sm"></i></router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'posts.terms'}">
-        <router-link :to="{ name: 'posts.terms', params: {id: $route.params.id}}">Terms</router-link>
+        <router-link :to="{ name: 'posts.terms', params: {id: $route.params.id}}"><span class="hidden-sm">Terms</span> <i class="fa fa-sitemap visible-sm"></i></router-link>
     </li>
 </ul>
