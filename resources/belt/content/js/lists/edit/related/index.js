@@ -1,6 +1,8 @@
 import edit from 'belt/content/js/lists/edit/shared';
 import filterSearch from 'belt/core/js/inputs/filter-search';
 import filterType from 'belt/content/js/lists/edit/related/filters/type';
+import search from 'belt/core/js/search';
+import Form from 'belt/content/js/lists/edit/related/form';
 import Table from 'belt/content/js/lists/edit/related/table';
 import rowItem from 'belt/content/js/lists/edit/related/row-item';
 import html from 'belt/content/js/lists/edit/related/template.html';
@@ -40,6 +42,20 @@ export default {
                 this.table.index();
             },
             methods: {
+                attach(index) {
+
+                    console.log(333);
+                    console.log(index);
+
+                    let form = new Form({morphable_id: this.morphable_id});
+                    form.listable_type = index.indexable_type;
+                    form.listable_id = index.indexable_id;
+
+                    form.submit()
+                        .then(() => {
+                            this.table.index();
+                        });
+                },
                 cancelMove() {
                     this.moving_id = null;
                 },
@@ -77,6 +93,7 @@ export default {
                 },
             },
             components: {
+                search,
                 filterSearch,
                 filterType,
                 rowItem,

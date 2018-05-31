@@ -3,6 +3,7 @@
 namespace Belt\Content\Http\Controllers\Api;
 
 use Belt\Core\Http\Controllers\ApiController;
+use Belt\Core\Http\Controllers\Behaviors\Morphable;
 use Belt\Core\Http\Controllers\Behaviors\Positionable;
 use Belt\Content\Lyst;
 use Belt\Content\Listable;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 class ListablesController extends ApiController
 {
 
+    use Morphable;
     use Positionable;
 
     /**
@@ -79,25 +81,19 @@ class ListablesController extends ApiController
     {
         $this->authorize('update', $list);
 
+        $listable_type = $request->get('listable_type');
+
         $listable_id = $request->get('listable_id');
 
-        $listable = $this->listable->create([
+        $listable = $this->morphable($listable_type, $listable_id);
+
+        $listItem = $this->listable->create([
             'list_id' => $list->id,
+            'listable_type' => $listable_type,
             'listable_id' => $listable_id,
         ]);
 
-        $input = $request->all();
-
-        $this->set($listable, $input, [
-            'heading',
-            'body',
-        ]);
-
-        $listable->save();
-
-        $listable = $this->listable($listable->id);
-
-        return response()->json($listable, 201);
+        return response()->json($listItem, 201);
     }
 
     /**

@@ -19,6 +19,8 @@ class Form extends BaseForm {
             id: '',
             move: '',
             position_entity_id: '',
+            listable_type: '',
+            listable_id: '',
         });
     }
 

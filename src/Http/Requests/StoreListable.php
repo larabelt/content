@@ -16,7 +16,8 @@ class StoreListable extends FormRequest
     public function rules()
     {
         return [
-            'place_id' => 'required|exists:places,id',
+            'listable_type' => 'required',
+            'listable_id' => 'required',
         ];
     }
 
