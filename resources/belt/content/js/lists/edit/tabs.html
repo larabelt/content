@@ -2,6 +2,9 @@
     <li :class="{active: $router.currentRoute.name == 'lists.edit'}">
         <router-link :to="{ name: 'lists.edit', params: {id: $route.params.id}}"><span class="hidden-sm">Main</span> <i class="fa fa-home visible-sm"></i></router-link>
     </li>
+    <li :class="{active: $router.currentRoute.name == 'lists.related'}">
+        <router-link :to="{ name: 'lists.related', params: {id: $route.params.id}}">Items</router-link>
+    </li>
     <li :class="{active: $router.currentRoute.name == 'lists.sections'}">
         <router-link :to="{ name: 'lists.sections', params: {id: $route.params.id}}"><span class="hidden-sm">Sections</span> <i class="fa fa-table visible-sm"></i></router-link>
     </li>
@@ -10,9 +13,6 @@
     </li>
     <li :class="{active: $router.currentRoute.name == 'lists.params'}">
         <router-link :to="{ name: 'lists.params', params: {id: $route.params.id}}"><span class="hidden-sm">Params</span> <i class="fa fa-info-circle visible-sm"></i></router-link>
-    </li>
-    <li :class="{active: $router.currentRoute.name == 'lists.related'}">
-        <router-link :to="{ name: 'lists.related', params: {id: $route.params.id}}">Related</router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'lists.terms'}">
         <router-link :to="{ name: 'lists.terms', params: {id: $route.params.id}}"><span class="hidden-sm">Terms</span> <i class="fa fa-sitemap visible-sm"></i></router-link>

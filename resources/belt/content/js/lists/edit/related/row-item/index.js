@@ -7,7 +7,15 @@ export default {
             default: null,
         }
     },
+    data() {
+        return {
+
+        }
+    },
     computed: {
+        highlighted() {
+            return _.has(this.$parent.highlighted, this.item.id);
+        },
         list_id() {
             return this.$parent.morphable_id;
         },
@@ -37,6 +45,9 @@ export default {
     methods: {
         cancelMove() {
             this.$emit('cancel-listable-move');
+        },
+        highlight(id) {
+            this.$emit('highlight-listable', id);
         },
         move(target_id, position) {
 

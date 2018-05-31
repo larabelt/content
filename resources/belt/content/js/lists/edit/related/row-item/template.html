@@ -1,27 +1,42 @@
-<tr>
-    <td>{{ item.listable_type }}</td>
-    <td>
-        {{ tile }}
-        <component :is="tile" :item="item.listable"></component>
-    </td>
-    <td class="text-right">
-        <div class="btn-group">
-            <template v-if="mode == 'is-moving'">
-                <button class="btn btn-xs btn-default btn-flat" @click.prevent="cancelMove()">
+<div class="tile-panel" :class="{highlighted: highlighted}">
+    <div class="tile-panel-toolbar clearfix">
+        <template v-if="mode == 'is-moving'">
+            <span class="pull-right">
+                <button class="btn btn-xs btn-primary btn-flat" @click.prevent="cancelMove()">
                     cancel
                 </button>
-            </template>
-            <template v-if="mode == 'is-watching'">
+            </span>
+        </template>
+        <template v-if="mode == 'is-watching'">
+            <span class="pull-left">
                 <button class="btn btn-xs btn-default btn-flat" @click.prevent="move(item.id, 'before')">
-                    <i class="fa fa-caret-up"></i> before
+                    <i class="fa fa-caret-left"></i> before
                 </button>
+            </span>
+            <span class="pull-right">
                 <button class="btn btn-xs btn-default btn-flat" @click.prevent="move(item.id, 'after')">
-                    after <i class="fa fa-caret-down"></i>
+                    after <i class="fa fa-caret-right"></i>
                 </button>
-            </template>
-            <template v-if="mode == 'default'">
-                <button class="btn btn-xs btn-default btn-flat" @click.prevent="startMove(item.id)"><i class="fa fa-arrows-alt"></i> Move</i></button>
-            </template>
-        </div>
-    </td>
-</tr>
+            </span>
+        </template>
+        <template v-if="mode == 'default'">
+            <div class="pull-left">
+                <div class="tile-panel-checkbox" @click.prevent="highlight(item.id)">
+                    <span v-if="highlighted"><i class="fa fa-check-square-o"></i></span>
+                    <span v-else><i class="fa fa-square-o"></i></span>
+                </div>
+            </div>
+            <span class="pull-right">
+                <button class="btn btn-xs btn-default btn-flat" @click.prevent="startMove(item.id)"><i class="fa fa-arrows"></i></i></button>
+            </span>
+        </template>
+    </div>
+    <div @click.prevent="highlight(file)">
+        <component :is="tile" :item="item.listable"></component>
+    </div>
+    <div class="tile-panel-footer clearfix">
+        <span class="pull-left">
+            {{ item.listable_type }}
+        </span>
+    </div>
+</div>

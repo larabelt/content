@@ -23,12 +23,18 @@ export default {
             },
             data() {
                 return {
+                    highlighted: {},
                     moving_id: null,
                     table: new Table({
                         morphable_type: 'lists',
                         morphable_id: this.morphable_id,
                     }),
                 }
+            },
+            computed: {
+                hasHighlighted() {
+                    return !_.isEmpty(this.highlighted);
+                },
             },
             mounted() {
                 this.table.index();
@@ -41,6 +47,13 @@ export default {
                     this.moving_id = null;
                     this.table.index();
                 },
+                detach() {
+                    for (let id in this.highlighted) {
+                        this.table.destroy(id).then(() => {
+                            this.table.index();
+                        });
+                    }
+                },
                 filter: _.debounce(function (query) {
                     if (query) {
                         query.page = 1;
@@ -52,6 +65,13 @@ export default {
                             this.table.pushQueryToRouter();
                         });
                 }, 300),
+                highlight(id) {
+                    if (_.has(this.highlighted, id)) {
+                        Vue.delete(this.highlighted, id);
+                    } else {
+                        Vue.set(this.highlighted, id, true);
+                    }
+                },
                 startMove(id) {
                     this.moving_id = id;
                 },
