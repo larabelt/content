@@ -23,12 +23,16 @@ export default {
         moving_id() {
             return this.$parent.moving_id;
         },
-        name() {
-            return _.get(this.item, 'listable.name');
+        tile() {
+            let tileName = 'tile-' + this.item.listable_type;
+            return _.has(Vue.options.components, tileName) ? tileName : 'tile-default';
         },
         type() {
             return this.item.listable_type;
         },
+    },
+    mounted() {
+
     },
     methods: {
         cancelMove() {

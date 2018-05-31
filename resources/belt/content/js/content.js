@@ -11,6 +11,9 @@ import inputBlocks from 'belt/content/js/inputs/blocks';
 Vue.component('seo', seo);
 Vue.component('input-blocks', inputBlocks);
 
+import tilePages from 'belt/content/js/pages/tile';
+Vue.component('tile-pages', tilePages);
+
 window.larabelt.content = _.get(window, 'larabelt.content', {});
 
 export default class BeltContent {

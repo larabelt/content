@@ -1,6 +1,9 @@
 <tr>
     <td>{{ item.listable_type }}</td>
-    <td>{{ name }}</td>
+    <td>
+        {{ tile }}
+        <component :is="tile" :item="item.listable"></component>
+    </td>
     <td class="text-right">
         <div class="btn-group">
             <template v-if="mode == 'is-moving'">
