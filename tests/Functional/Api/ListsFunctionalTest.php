@@ -42,7 +42,7 @@ class ApiListsFunctionalTest extends Testing\BeltTestCase
         $old->listables()->create([
             'place_id' => 1,
         ]);
-        $old->tags()->attach(1);
+        $old->terms()->attach(1);
         $old->handles()->create(['url' => '/copied-list']);
         $response = $this->json('POST', '/api/v1/lists', ['source' => $listID]);
         $response->assertStatus(201);

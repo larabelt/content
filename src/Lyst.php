@@ -121,16 +121,12 @@ class Lyst extends Model implements
             $clone->attachments()->attach($attachment);
         }
 
-        foreach ($list->categories as $category) {
-            $clone->categories()->attach($category);
-        }
-
         foreach ($list->handles as $handle) {
             Belt\Content\Handle::copy($handle, ['handleable_id' => $clone->id]);
         }
 
-        foreach ($list->tags as $tag) {
-            $clone->tags()->attach($tag);
+        foreach ($list->terms as $term) {
+            $clone->terms()->attach($term);
         }
 
         return $clone;
