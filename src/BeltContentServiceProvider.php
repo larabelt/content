@@ -84,7 +84,6 @@ class BeltContentServiceProvider extends ServiceProvider
 
         // commands
         $this->commands(Belt\Content\Commands\CompileCommand::class);
-        $this->commands(Belt\Content\Commands\ElasticCommand::class);
         $this->commands(Belt\Content\Commands\PublishCommand::class);
         $this->commands(Belt\Content\Commands\TemplateCommand::class);
 
@@ -122,7 +121,6 @@ class BeltContentServiceProvider extends ServiceProvider
 
         # engines
         $this->app->register(Laravel\Scout\ScoutServiceProvider::class);
-        $this->app->register(Belt\Content\Elastic\ElasticServiceProvider::class);
         $this->app->register(Belt\Content\Search\Mock\MockEngineServiceProvider::class);
     }
 
