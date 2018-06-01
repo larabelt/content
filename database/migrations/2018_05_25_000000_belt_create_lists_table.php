@@ -14,6 +14,9 @@ class BeltCreateListsTable extends Migration
     {
         Schema::create('lists', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('is_active')->default('0')->index();
+            $table->boolean('is_searchable')->default('0')->index();
+            $table->tinyInteger('status')->default('0')->index();
             $table->string('template')->default('default');
             $table->string('name');
             $table->string('slug')->index();
