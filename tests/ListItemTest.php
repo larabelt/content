@@ -2,10 +2,10 @@
 use Mockery as m;
 
 use Belt\Core\Testing\BeltTestCase;
-use Belt\Content\Listable;
+use Belt\Content\ListItem;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class ListableTest extends BeltTestCase
+class ListItemTest extends BeltTestCase
 {
     public function tearDown()
     {
@@ -13,11 +13,11 @@ class ListableTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Content\Listable::listable
+     * @covers \Belt\Content\ListItem::listable
      */
     public function test()
     {
-        $listable = new Listable();
+        $listable = new ListItem();
 
         # place
         $this->assertInstanceOf(MorphTo::class, $listable->listable());

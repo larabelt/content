@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use Belt\Content\Lyst;
-use Belt\Content\Listable;
+use Belt\Content\ListItem;
 
 class BeltContentListSeeds extends Seeder
 {
@@ -20,7 +20,7 @@ class BeltContentListSeeds extends Seeder
 
                     $faker = Faker\Factory::create();
 
-                    Listable::firstOrCreate([
+                    ListItem::firstOrCreate([
                        'list_id' => $list->id,
                        'listable_id' => $i,
                        'listable_type' => 'pages',

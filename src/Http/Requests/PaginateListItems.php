@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Belt\Core\Http\Requests\PaginateRequest;
 
 /**
- * Class PaginateListables
+ * Class PaginateListItems
  * @package Belt\Place\Http\Requests
  */
-class PaginateListables extends PaginateRequest
+class PaginateListItems extends PaginateRequest
 {
 
     /**

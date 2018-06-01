@@ -6,26 +6,26 @@ use Belt\Core\Http\Controllers\ApiController;
 use Belt\Core\Http\Controllers\Behaviors\Morphable;
 use Belt\Core\Http\Controllers\Behaviors\Positionable;
 use Belt\Content\Lyst;
-use Belt\Content\Listable;
+use Belt\Content\ListItem;
 use Belt\Content\Http\Requests;
 use Illuminate\Http\Request;
 
-class ListablesController extends ApiController
+class ListItemsController extends ApiController
 {
 
     use Morphable;
     use Positionable;
 
     /**
-     * @var Listable
+     * @var ListItem
      */
     public $listable;
 
     /**
-     * ListablesController constructor.
-     * @param Listable $listable
+     * ListItemsController constructor.
+     * @param ListItem $listable
      */
-    public function __construct(Listable $listable)
+    public function __construct(ListItem $listable)
     {
         $this->listable = $listable;
     }
@@ -58,7 +58,7 @@ class ListablesController extends ApiController
      */
     public function index(Request $request, $list)
     {
-        $request = Requests\PaginateListables::extend($request);
+        $request = Requests\PaginateListItems::extend($request);
 
         $request->merge(['list_id' => $list->id]);
 
@@ -72,12 +72,12 @@ class ListablesController extends ApiController
     /**
      * Store a newly created resource in glue.
      *
-     * @param  Requests\StoreListable $request
+     * @param  Requests\StoreListItem $request
      * @param List $list
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\StoreListable $request, $list)
+    public function store(Requests\StoreListItem $request, $list)
     {
         $this->authorize('update', $list);
 

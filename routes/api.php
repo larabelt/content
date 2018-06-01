@@ -43,11 +43,11 @@ Route::group([
         Route::group([
             'prefix' => 'lists/{list}/listables',
         ], function () {
-            Route::get('{id}', Api\ListablesController::class . '@show');
-            Route::put('{id}', Api\ListablesController::class . '@update');
-            Route::delete('{id}', Api\ListablesController::class . '@destroy');
-            Route::get('', Api\ListablesController::class . '@index');
-            Route::post('', Api\ListablesController::class . '@store');
+            Route::get('{id}', Api\ListItemsController::class . '@show');
+            Route::put('{id}', Api\ListItemsController::class . '@update');
+            Route::delete('{id}', Api\ListItemsController::class . '@destroy');
+            Route::get('', Api\ListItemsController::class . '@index');
+            Route::post('', Api\ListItemsController::class . '@store');
         });
 
         # lists

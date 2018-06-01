@@ -2,7 +2,7 @@
 
 use Belt\Core\Testing;
 
-class ApiListablesFunctionalTest extends Testing\BeltTestCase
+class ApiListItemFunctionalTest extends Testing\BeltTestCase
 {
 
     public function test()

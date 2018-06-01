@@ -84,7 +84,7 @@ class Lyst extends Model implements
      */
     public function items()
     {
-        return $this->hasMany(Listable::class, 'list_id')->orderBy('position');
+        return $this->hasMany(ListItem::class, 'list_id')->orderBy('position');
     }
 
     /**
