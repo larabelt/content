@@ -23,7 +23,6 @@ class StoreList extends FormRequest
 
         return [
             'name' => 'required|unique:lists,name',
-            'body' => 'required',
         ];
     }
 

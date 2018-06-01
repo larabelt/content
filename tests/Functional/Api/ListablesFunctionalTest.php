@@ -11,31 +11,30 @@ class ApiListablesFunctionalTest extends Testing\BeltTestCase
         $this->actAsSuper();
 
         # index
-        $response = $this->json('GET', '/api/v1/lists/1/places');
+        $response = $this->json('GET', '/api/v1/lists/1/listables');
         $response->assertStatus(200);
 
         # store
-        $response = $this->json('POST', '/api/v1/lists/1/places', [
-            'place_id' => 10,
-            'heading' => 'test',
-            'body' => 'test',
+        $response = $this->json('POST', '/api/v1/lists/1/listables', [
+            'listable_type' => 'pages',
+            'listable_id' => 10,
         ]);
         $response->assertStatus(201);
-        $placeID = array_get($response->json(), 'id');
+        $listableID = array_get($response->json(), 'id');
 
         # show
-        $response = $this->json('GET', "/api/v1/lists/1/places/$placeID");
+        $response = $this->json('GET', "/api/v1/lists/1/listables/$listableID");
         $response->assertStatus(200);
 
         # update
-        $this->json('PUT', "/api/v1/lists/1/places/$placeID", ['heading' => 'updated']);
-        $response = $this->json('GET', "/api/v1/lists/1/places/$placeID");
-        $response->assertJson(['heading' => 'updated']);
+        $this->json('PUT', "/api/v1/lists/1/listables/$listableID");
+        $response = $this->json('GET', "/api/v1/lists/1/listables/$listableID");
+        //$response->assertJson(['heading' => 'updated']);
 
         # delete
-        $response = $this->json('DELETE', "/api/v1/lists/1/places/$placeID");
+        $response = $this->json('DELETE', "/api/v1/lists/1/listables/$listableID");
         $response->assertStatus(204);
-        $response = $this->json('GET', "/api/v1/lists/1/places/$placeID");
+        $response = $this->json('GET', "/api/v1/lists/1/listables/$listableID");
         $response->assertStatus(404);
     }
 

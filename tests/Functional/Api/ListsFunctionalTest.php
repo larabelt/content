@@ -19,8 +19,8 @@ class ApiListsFunctionalTest extends Testing\BeltTestCase
         # store
         $response = $this->json('POST', '/api/v1/lists', [
             'name' => 'test',
-            'body' => 'test',
         ]);
+
         $response->assertStatus(201);
         $listID = array_get($response->json(), 'id');
 
@@ -38,13 +38,14 @@ class ApiListsFunctionalTest extends Testing\BeltTestCase
         $old = Lyst::find($listID);
         $old->sections()->create(['sectionable_type' => 'sections']);
         $old->attachments()->attach(1);
-        $old->categories()->attach(1);
         $old->listables()->create([
-            'place_id' => 1,
+            'listable_type' => 'pages',
+            'listable_id' => 1,
         ]);
         $old->terms()->attach(1);
         $old->handles()->create(['url' => '/copied-list']);
         $response = $this->json('POST', '/api/v1/lists', ['source' => $listID]);
+
         $response->assertStatus(201);
         $copiedListID = array_get($response->json(), 'id');
         $response = $this->json('GET', "/api/v1/lists/$copiedListID");

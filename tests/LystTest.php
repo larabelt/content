@@ -13,19 +13,15 @@ class LystTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Content\Lyst::places
-     * @covers \Belt\Content\Lyst::listables
+     * @covers \Belt\Content\Lyst::items
      * @covers \Belt\Content\Lyst::toSearchableArray
      */
     public function test()
     {
         $list = new Lyst();
 
-        # places
-        $this->assertInstanceOf(HasMany::class, $list->places());
-
         # listables
-        $this->assertInstanceOf(HasMany::class, $list->listables());
+        $this->assertInstanceOf(HasMany::class, $list->items());
 
         # toSearchableArray
         $this->assertNotEmpty($list->toSearchableArray());

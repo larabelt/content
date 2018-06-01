@@ -3,7 +3,7 @@ use Mockery as m;
 
 use Belt\Core\Testing\BeltTestCase;
 use Belt\Content\Listable;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class ListableTest extends BeltTestCase
 {
@@ -13,14 +13,14 @@ class ListableTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Content\Listable::place
+     * @covers \Belt\Content\Listable::listable
      */
     public function test()
     {
         $listable = new Listable();
 
         # place
-        $this->assertInstanceOf(BelongsTo::class, $listable->place());
+        $this->assertInstanceOf(MorphTo::class, $listable->listable());
     }
 
 }

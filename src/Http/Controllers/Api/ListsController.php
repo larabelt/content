@@ -68,11 +68,10 @@ class ListsController extends ApiController
 
         $this->set($list, $input, [
             'is_active',
+            'is_searchable',
+            'status',
             'template',
             'slug',
-            'priority',
-            'body',
-            'heading',
             'meta_title',
             'meta_description',
             'meta_keywords',
@@ -96,6 +95,11 @@ class ListsController extends ApiController
     {
         $this->authorize(['view', 'create', 'update', 'delete'], $list);
 
+        $list->items;
+        foreach ($list->items as $item) {
+            $item->listable;
+        }
+
         return response()->json($list);
     }
 
@@ -115,12 +119,11 @@ class ListsController extends ApiController
 
         $this->set($list, $input, [
             'is_active',
+            'is_searchable',
+            'status',
             'template',
-            'slug',
-            'priority',
             'name',
-            'body',
-            'heading',
+            'slug',
             'meta_title',
             'meta_description',
             'meta_keywords',

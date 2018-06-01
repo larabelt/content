@@ -21,7 +21,7 @@ class PaginateListablesTest extends Testing\BeltTestCase
     {
         # modifyQuery
         $query = m::mock(Builder::class);
-        $query->shouldReceive('where')->once()->with('list_id', 1);
+        $query->shouldReceive('where')->once()->with('listables.list_id', 1);
         $paginateRequest = new PaginateListables(['list_id' => 1]);
         $paginateRequest->modifyQuery($query);
     }

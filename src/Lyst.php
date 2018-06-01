@@ -63,7 +63,7 @@ class Lyst extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['image', 'type', 'default_url', 'morph_class'];
+    protected $appends = ['morph_class'];
 
     /**
      * Get the indexable data array for the model.
@@ -82,7 +82,7 @@ class Lyst extends Model implements
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function listables()
+    public function items()
     {
         return $this->hasMany(Listable::class, 'list_id')->orderBy('position');
     }
@@ -106,10 +106,9 @@ class Lyst extends Model implements
 
         foreach ($list->listables as $listable) {
             $clone->listables()->create([
-                'place_id' => $listable->place_id,
+                'listable_type' => $listable->listable_type,
+                'listable_id' => $listable->listable_id,
                 'position' => $listable->position,
-                'heading' => $listable->heading,
-                'body' => $listable->body,
             ]);
         }
 
