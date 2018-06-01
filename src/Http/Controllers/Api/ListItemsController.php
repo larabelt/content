@@ -5,7 +5,6 @@ namespace Belt\Content\Http\Controllers\Api;
 use Belt\Core\Http\Controllers\ApiController;
 use Belt\Core\Http\Controllers\Behaviors\Morphable;
 use Belt\Core\Http\Controllers\Behaviors\Positionable;
-use Belt\Content\Lyst;
 use Belt\Content\ListItem;
 use Belt\Content\Http\Requests;
 use Illuminate\Http\Request;
@@ -19,42 +18,47 @@ class ListItemsController extends ApiController
     /**
      * @var ListItem
      */
-    public $listable;
+    public $listItems;
 
     /**
      * ListItemsController constructor.
-     * @param ListItem $listable
+     * @param ListItem $listItem
      */
-    public function __construct(ListItem $listable)
+    public function __construct(ListItem $listItem)
     {
-        $this->listable = $listable;
+        $this->listItems = $listItem;
     }
 
     /**
      * @param $list
      * @param $id
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
      */
     public function contains($list, $id)
     {
-        if (!$list->listables->contains($id)) {
-            $this->abort(404, 'list does not have this listable');
+        if (!$list->items->contains($id)) {
+            $this->abort(404, 'list does not have this item');
         }
     }
 
-    public function listable($id)
+    /**
+     * @param $id
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     */
+    public function listItem($id)
     {
-        $listable = $this->listable->with('listable')->find($id);
+        $listItem = $this->listItems->with('listable')->find($id);
 
-        return $listable ?: $this->abort(404);
+        return $listItem ?: $this->abort(404);
     }
 
     /**
-     * Display a listing of the resource.
-     *
      * @param Request $request
-     * @param List $list
-     *
-     * @return \Illuminate\Http\Response
+     * @param $list
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request, $list)
     {
@@ -64,18 +68,16 @@ class ListItemsController extends ApiController
 
         $this->authorize(['view', 'create', 'update', 'delete'], $list);
 
-        $paginator = $this->paginator($this->listable->with('listable'), $request);
+        $paginator = $this->paginator($this->listItems->with('listItem'), $request);
 
         return response()->json($paginator->toArray());
     }
 
     /**
-     * Store a newly created resource in glue.
-     *
-     * @param  Requests\StoreListItem $request
-     * @param List $list
-     *
-     * @return \Illuminate\Http\Response
+     * @param Requests\StoreListItem $request
+     * @param $list
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Requests\StoreListItem $request, $list)
     {
@@ -85,9 +87,9 @@ class ListItemsController extends ApiController
 
         $listable_id = $request->get('listable_id');
 
-        $listable = $this->morphable($listable_type, $listable_id);
+        $this->morphable($listable_type, $listable_id);
 
-        $listItem = $this->listable->create([
+        $listItem = $this->listItems->create([
             'list_id' => $list->id,
             'listable_type' => $listable_type,
             'listable_id' => $listable_id,
@@ -97,13 +99,13 @@ class ListItemsController extends ApiController
     }
 
     /**
-     * Store a newly created resource in glue.
-     *
      * @param Request $request
-     * @param List $list
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $list
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, $list, $id)
     {
@@ -111,29 +113,22 @@ class ListItemsController extends ApiController
 
         $this->contains($list, $id);
 
-        $listable = $this->listable($id);
+        $listItem = $this->listItem($id);
 
-        $input = $request->all();
+        $this->reposition($request, $listItem);
 
-        $this->set($listable, $input, [
-            'heading',
-            'body',
-        ]);
+        $listItem->save();
 
-        $listable->save();
-
-        $this->reposition($request, $listable);
-
-        return response()->json($listable);
+        return response()->json($listItem);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param List $list
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $list
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show($list, $id)
     {
@@ -141,18 +136,18 @@ class ListItemsController extends ApiController
 
         $this->contains($list, $id);
 
-        $listable = $this->listable($id);
+        $listItem = $this->listItem($id);
 
-        return response()->json($listable);
+        return response()->json($listItem);
     }
 
     /**
-     * Remove the specified resource from glue.
-     *
-     * @param List $list
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $list
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy($list, $id)
     {
@@ -161,9 +156,9 @@ class ListItemsController extends ApiController
 
         $this->contains($list, $id);
 
-        $listable = $this->listable($id);
+        $listItem = $this->listItem($id);
 
-        $listable->delete();
+        $listItem->delete();
 
         return response()->json(null, 204);
     }

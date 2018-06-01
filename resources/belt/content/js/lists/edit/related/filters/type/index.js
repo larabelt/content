@@ -24,7 +24,6 @@ export default {
                 return o.listable_type ? o.listable_type : 1;
             }]);
             _.forEach(items, (item) => {
-                //options.push(item.listable_type);
                 options[item.listable_type] = item.listable_type;
             });
             return options;
@@ -48,7 +47,6 @@ export default {
     },
     methods: {
         change() {
-            //this.table.updateQuery({listable_type: null});
             delete this.table.query.listable_type;
             if (this.listable_type) {
                 this.table.updateQuery({listable_type: this.listable_type});

@@ -39,9 +39,9 @@ Route::group([
             Route::post('', Api\HandleablesController::class . '@store');
         });
 
-        # listables
+        # list-items
         Route::group([
-            'prefix' => 'lists/{list}/listables',
+            'prefix' => 'lists/{list}/items',
         ], function () {
             Route::get('{id}', Api\ListItemsController::class . '@show');
             Route::put('{id}', Api\ListItemsController::class . '@update');

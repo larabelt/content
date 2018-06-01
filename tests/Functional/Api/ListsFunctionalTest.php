@@ -31,6 +31,7 @@ class ApiListsFunctionalTest extends Testing\BeltTestCase
         # update
         $this->json('PUT', "/api/v1/lists/$listID", ['name' => 'updated']);
         $response = $this->json('GET', "/api/v1/lists/$listID");
+
         $response->assertJson(['name' => 'updated']);
 
         # copy
@@ -38,7 +39,7 @@ class ApiListsFunctionalTest extends Testing\BeltTestCase
         $old = Lyst::find($listID);
         $old->sections()->create(['sectionable_type' => 'sections']);
         $old->attachments()->attach(1);
-        $old->listables()->create([
+        $old->items()->create([
             'listable_type' => 'pages',
             'listable_id' => 1,
         ]);

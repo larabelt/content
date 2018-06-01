@@ -104,11 +104,11 @@ class Lyst extends Model implements
 
         Lyst::unguard();
 
-        foreach ($list->listables as $listable) {
-            $clone->listables()->create([
-                'listable_type' => $listable->listable_type,
-                'listable_id' => $listable->listable_id,
-                'position' => $listable->position,
+        foreach ($list->items as $item) {
+            $clone->items()->create([
+                'listable_type' => $item->listable_type,
+                'listable_id' => $item->listable_id,
+                'position' => $item->position,
             ]);
         }
 

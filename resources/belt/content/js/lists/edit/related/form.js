@@ -11,10 +11,10 @@ class Form extends BaseForm {
     constructor(options = {}) {
         super(options);
 
-        let baseUrl = `/api/v1/lists/${this.morphable_id}/listables/`;
+        let baseUrl = `/api/v1/lists/${this.morphable_id}/items/`;
 
         this.service = new BaseService({baseUrl: baseUrl});
-        this.routeEditName = 'lists.listables';
+        this.routeEditName = 'lists.items';
         this.setData({
             id: '',
             move: '',
