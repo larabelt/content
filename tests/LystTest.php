@@ -5,7 +5,7 @@ use Belt\Core\Testing\BeltTestCase;
 use Belt\Content\Lyst;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ListTest extends BeltTestCase
+class LystTest extends BeltTestCase
 {
     public function tearDown()
     {
@@ -19,7 +19,7 @@ class ListTest extends BeltTestCase
      */
     public function test()
     {
-        $list = new List();
+        $list = new Lyst();
 
         # places
         $this->assertInstanceOf(HasMany::class, $list->places());
