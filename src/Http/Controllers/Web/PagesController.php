@@ -42,11 +42,9 @@ class PagesController extends BaseController
 
         $compiled = $this->compile($page);
 
-        $owner = $page;
-
         $view = $page->getTemplateConfig('extends', 'belt-content::pages.web.show');
 
-        return view($view, compact('owner', 'page', 'compiled'));
+        return view($view, compact('page', 'compiled'));
     }
 
 }
