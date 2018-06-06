@@ -36,6 +36,7 @@ class TreeController extends ApiController
      * Store a newly created resource in core.
      *
      * @todo Validation, Testing
+     * @todo alternative to $node->owner
      *
      * @param  Request $request
      *
@@ -45,7 +46,11 @@ class TreeController extends ApiController
     {
         $node = $this->node($node_type, $node_id);
 
-        $this->authorize('update', $node);
+        if ($owner = $node->owner) {
+            $this->authorize('update', $owner);
+        } else {
+            $this->authorize('update', $node);
+        }
 
         $neighbor = $this->node($node_type, $request->get('neighbor_id'));
 
