@@ -8,9 +8,6 @@
     <li :class="{active: $router.currentRoute.name == 'pages.tags'}">
         <router-link :to="{ name: 'pages.tags', params: {id: $route.params.id}}">Tags</router-link>
     </li>
-    <li :class="{active: $router.currentRoute.name == 'pages.params'}">
-        <router-link :to="{ name: 'pages.params', params: {id: $route.params.id}}">Params</router-link>
-    </li>
     <li :class="{active: $router.currentRoute.name == 'pages.handles'}">
         <router-link :to="{ name: 'pages.handles', params: {id: $route.params.id}}">Handles</router-link>
     </li>

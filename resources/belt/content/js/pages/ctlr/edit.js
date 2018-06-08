@@ -9,6 +9,13 @@ export default {
             data() {
                 return {
                     form: this.$parent.form,
+                    morphable_id: this.$parent.morphable_id,
+                }
+            },
+            methods: {
+                submit() {
+                    Events.$emit('pages:' + this.morphable_id + ':updating', this.form);
+                    this.form.submit();
                 }
             },
             components: {
