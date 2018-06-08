@@ -2,7 +2,6 @@ import shared from 'belt/content/js/sectionables/shared';
 import store from 'belt/content/js/sectionables/store';
 import Form from 'belt/content/js/sectionables/form';
 import templates from 'belt/content/js/sectionables/templates';
-import params from 'belt/core/js/paramables/ctlr/index';
 import html from 'belt/content/js/sectionables/edit/template.html';
 
 export default {
@@ -14,6 +13,7 @@ export default {
                 morphable_type: this.$parent.morphable_type,
                 morphable_id: this.$parent.morphable_id,
             }),
+            section_id: this.$route.params.section_id,
             showTemplates: false,
         }
     },
@@ -68,6 +68,9 @@ export default {
     },
 
     methods: {
+        submit() {
+            Events.$emit('sections:' + this.section_id + ':updating', this.section);
+        },
         update(template) {
             this.showTemplates = false;
             this.loading = true;
@@ -84,7 +87,6 @@ export default {
     },
     components: {
         templates,
-        params
     },
     template: html,
 }

@@ -27,7 +27,22 @@
 
         <div v-if="loading" class="box-body"><i class="fa fa-spinner fa-spin"></i></div>
         <div v-else>
-            <params paramable_type="sections" :paramable_id="section.id"></params>
+            <!--<params paramable_type="sections" :paramable_id="section.id"></params>-->
+            <form @submit.prevent="submit()" @keydown="section.errors.clear($event.target.name)">
+                <param-list paramable_type="sections" :paramable_id="section_id"></param-list>
+                <div class="clearfix">
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-primary" :disabled="section.errors.any()">
+                                <span v-if="section.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                                <span v-else>save</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
+
+
     </div>
 </div>
