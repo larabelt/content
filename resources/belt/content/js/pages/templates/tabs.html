@@ -8,9 +8,6 @@
     <li :class="{active: $router.currentRoute.name == 'pages.terms'}">
         <router-link :to="{ name: 'pages.terms', params: {id: $route.params.id}}"><span class="hidden-sm">Terms</span> <i class="fa fa-sitemap visible-sm"></i></router-link>
     </li>
-    <li :class="{active: $router.currentRoute.name == 'pages.params'}">
-        <router-link :to="{ name: 'pages.params', params: {id: $route.params.id}}"><span class="hidden-sm">Params</span> <i class="fa fa-info-circle visible-sm"></i></router-link>
-    </li>
     <li :class="{active: $router.currentRoute.name == 'pages.handles'}">
         <router-link :to="{ name: 'pages.handles', params: {id: $route.params.id}}">Handles</router-link>
     </li>

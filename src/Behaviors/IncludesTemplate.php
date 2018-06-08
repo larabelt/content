@@ -150,6 +150,17 @@ trait IncludesTemplate
     }
 
     /**
+     * @param null $key
+     * @param null $default
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getParamConfig()
+    {
+        return $this->getTemplateConfig('params');
+    }
+
+    /**
      * Binds events to subclass
      */
     public static function bootIncludesTemplate()
