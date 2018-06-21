@@ -8,8 +8,10 @@ import terms  from 'belt/content/js/terms/routes';
 
 import seo from 'belt/content/js/base/seo';
 import inputBlocks from 'belt/content/js/inputs/blocks';
+import inputPages from 'belt/content/js/inputs/pages';
 Vue.component('seo', seo);
 Vue.component('input-blocks', inputBlocks);
+Vue.component('input-pages', inputPages);
 
 import tilePages from 'belt/content/js/pages/tile';
 Vue.component('tile-pages', tilePages);
