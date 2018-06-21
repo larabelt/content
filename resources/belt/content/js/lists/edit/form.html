@@ -33,6 +33,7 @@
             <span v-for="error in form.error('slug')" class="text-danger">{{ error }}</span>
         </div>
         <template-dropdown templateType="lists" formKey="list"></template-dropdown>
+        <param-list v-if="form.id" paramable_type="lists"  :paramable_id="morphable_id"></param-list>
         <seo></seo>
         <div class="clearfix">
             <div class="pull-right">

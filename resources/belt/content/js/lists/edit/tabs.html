@@ -11,9 +11,6 @@
     <li :class="{active: $router.currentRoute.name == 'lists.attachments'}">
         <router-link :to="{ name: 'lists.attachments', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Attachments</span> <i class="fa fa-file-o visible-sm visible-xs"></i></router-link>
     </li>
-    <li :class="{active: $router.currentRoute.name == 'lists.params'}">
-        <router-link :to="{ name: 'lists.params', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Params</span> <i class="fa fa-info-circle visible-sm visible-xs"></i></router-link>
-    </li>
     <li :class="{active: $router.currentRoute.name == 'lists.terms'}">
         <router-link :to="{ name: 'lists.terms', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Terms</span> <i class="fa fa-sitemap visible-sm visible-xs"></i></router-link>
     </li>
