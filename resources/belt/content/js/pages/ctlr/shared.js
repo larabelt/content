@@ -24,14 +24,17 @@ export default {
     },
     computed: {
         config() {
-            return this.$store.getters[this.storeKey + '/config/data'];
+            return this.form.config;
+            //return this.$store.getters[this.storeKey + '/config/data'];
+        },
+        sectionable() {
+            return _.get(this.config, 'sectionable', false);
         },
         storeKey() {
             return 'pages' + this.morphable_id;
-        }
+        },
     },
     components: {
-
         tabs: {template: tabs_html},
     },
     template: edit_html,

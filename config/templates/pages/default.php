@@ -24,6 +24,9 @@ return [
     // By default, compiled views are cached. Set the value below to false, to avoid this behavior.
     'force_compile' => false,
 
+    // Sectionable. Allow highly customizable page to be built via the Sections tab.
+    'sectionable' => false,
+
     /*
     | A set of custom parameters that belong to the templatable object.
     |
