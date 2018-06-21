@@ -1,7 +1,7 @@
 import filterSearch from 'belt/core/js/inputs/filter-search';
-import filterTags from 'belt/content/js/inputs/filter-terms/filter';
-import filterTagsAttached from 'belt/content/js/inputs/filter-terms/attached';
-import filterTagsDetached from 'belt/content/js/inputs/filter-terms/detached';
+import filterTerms from 'belt/content/js/inputs/filter-terms/filter';
+import filterTermsAttached from 'belt/content/js/inputs/filter-terms/attached';
+import filterTermsDetached from 'belt/content/js/inputs/filter-terms/detached';
 
 // helpers
 import Form from 'belt/content/js/pages/form';
@@ -54,9 +54,9 @@ export default {
             },
             components: {
                 filterSearch,
-                filterTags,
-                filterTagsAttached,
-                filterTagsDetached,
+                filterTerms,
+                filterTermsAttached,
+                filterTermsDetached,
             },
             template: index_html,
         },
