@@ -116,6 +116,14 @@ class BeltContentServiceProvider extends ServiceProvider
         $this->app->register(Laravel\Scout\ScoutServiceProvider::class);
         $this->app->register(Belt\Content\Elastic\ElasticServiceProvider::class);
         $this->app->register(Belt\Content\Search\Mock\MockEngineServiceProvider::class);
+
+        // access map for window config
+        Belt\Core\Services\AccessService::put('*', 'blocks');
+        Belt\Core\Services\AccessService::put('*', 'handles');
+        Belt\Core\Services\AccessService::put('*', 'favorites');
+        Belt\Core\Services\AccessService::put('*', 'pages');
+        Belt\Core\Services\AccessService::put('*', 'posts');
+        Belt\Core\Services\AccessService::put('*', 'sections');
     }
 
     /**
