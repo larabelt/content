@@ -90,6 +90,8 @@ class TermsController extends ApiController
     {
         $this->authorize(['view', 'create', 'update', 'delete'], $term);
 
+        $term->config = $term->getTemplateConfig();
+
         return response()->json($term);
     }
 

@@ -161,6 +161,17 @@ trait IncludesTemplate
     }
 
     /**
+     * Get config attribute
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getConfigAttribute()
+    {
+        return $this->getTemplateConfig();
+    }
+
+    /**
      * Binds events to subclass
      */
     public static function bootIncludesTemplate()
