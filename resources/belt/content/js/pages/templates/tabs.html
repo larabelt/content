@@ -1,17 +1,17 @@
 <ul class="nav nav-tabs">
     <li :class="{active: $router.currentRoute.name == 'pages.edit'}">
-        <router-link :to="{ name: 'pages.edit', params: {id: $route.params.id}}"><span class="hidden-sm">Main</span> <i class="fa fa-home visible-sm"></i></router-link>
+        <router-link :to="{ name: 'pages.edit', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Main</span> <i class="fa fa-home visible-sm visible-xs"></i></router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'pages.sections'}">
-        <router-link :to="{ name: 'pages.sections', params: {id: $route.params.id}}"><span class="hidden-sm">Sections</span> <i class="fa fa-table visible-sm"></i></router-link>
+        <router-link :to="{ name: 'pages.sections', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Sections</span> <i class="fa fa-table visible-sm visible-xs"></i></router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'pages.terms'}">
-        <router-link :to="{ name: 'pages.terms', params: {id: $route.params.id}}"><span class="hidden-sm">Terms</span> <i class="fa fa-sitemap visible-sm"></i></router-link>
+        <router-link :to="{ name: 'pages.terms', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Terms</span> <i class="fa fa-sitemap visible-sm visible-xs"></i></router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'pages.handles'}">
         <router-link :to="{ name: 'pages.handles', params: {id: $route.params.id}}">Handles</router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'pages.attachments'}">
-        <router-link :to="{ name: 'pages.attachments', params: {id: $route.params.id}}"><span class="hidden-sm">Attachments</span> <i class="fa fa-file-o visible-sm"></i></router-link>
+        <router-link :to="{ name: 'pages.attachments', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Attachments</span> <i class="fa fa-file-o visible-sm visible-xs"></i></router-link>
     </li>
 </ul>
