@@ -144,9 +144,7 @@ class SectionablesController extends ApiController
 
         $section = $this->section($id, $owner);
 
-        $section->append('preview');
-
-        $section->config = $section->getTemplateConfig();
+        $section->append(['config', 'preview']);
 
         return response()->json($section);
     }

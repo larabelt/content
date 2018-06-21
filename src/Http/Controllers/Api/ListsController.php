@@ -100,6 +100,8 @@ class ListsController extends ApiController
             $item->listable;
         }
 
+        $list->append(['config']);
+
         return response()->json($list);
     }
 

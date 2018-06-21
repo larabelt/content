@@ -96,6 +96,8 @@ class PostsController extends ApiController
         $post->compiled = $this->compile($post, true);
         $post->sections;
 
+        $post->append(['config']);
+
         return response()->json($post);
     }
 
