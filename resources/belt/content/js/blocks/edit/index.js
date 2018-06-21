@@ -16,6 +16,12 @@ export default {
                     morphable_id: this.$parent.morphable_id,
                 }
             },
+            methods: {
+                submit() {
+                    Events.$emit('blocks:' + this.morphable_id + ':updating', this.form);
+                    this.form.submit();
+                }
+            },
             components: {
                 priorityDropdown,
                 templateDropdown,

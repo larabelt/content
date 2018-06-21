@@ -1,5 +1,5 @@
 <div>
-    <form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
+    <form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)">
         <div class="clearfix">
             <div class="pull-left">
                 <p class="text-muted">{{ trans('belt-content::lists.editor.main') }}</p>
