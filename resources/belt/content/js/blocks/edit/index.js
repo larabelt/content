@@ -13,6 +13,7 @@ export default {
                 return {
                     form: this.$parent.form,
                     block: this.$parent.block,
+                    morphable_id: this.$parent.morphable_id,
                 }
             },
             components: {

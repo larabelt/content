@@ -2,9 +2,6 @@
     <li :class="{active: $router.currentRoute.name == 'blocks.edit'}">
         <router-link :to="{ name: 'blocks.edit', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Main</span> <i class="fa fa-home visible-sm visible-xs"></i></router-link>
     </li>
-    <li :class="{active: $router.currentRoute.name == 'blocks.params'}">
-        <router-link :to="{ name: 'blocks.params', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Params</span> <i class="fa fa-info-circle visible-sm visible-xs"></i></router-link>
-    </li>
     <li :class="{active: $router.currentRoute.name == 'blocks.terms'}">
         <router-link :to="{ name: 'blocks.terms', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Terms</span> <i class="fa fa-sitemap visible-sm visible-xs"></i></router-link>
     </li>
