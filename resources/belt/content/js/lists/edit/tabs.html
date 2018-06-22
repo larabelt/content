@@ -5,7 +5,7 @@
     <li :class="{active: $router.currentRoute.name == 'lists.related'}">
         <router-link :to="{ name: 'lists.related', params: {id: $route.params.id}}">Items</router-link>
     </li>
-    <li :class="{active: $router.currentRoute.name == 'lists.sections'}">
+    <li v-if="$parent.sectionable" :class="{active: $router.currentRoute.name == 'lists.sections'}">
         <router-link :to="{ name: 'lists.sections', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Sections</span> <i class="fa fa-table visible-sm visible-xs"></i></router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'lists.attachments'}">

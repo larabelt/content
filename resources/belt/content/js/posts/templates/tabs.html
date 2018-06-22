@@ -2,7 +2,7 @@
     <li :class="{active: $router.currentRoute.name == 'posts.edit'}">
         <router-link :to="{ name: 'posts.edit', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Main</span> <i class="fa fa-home visible-sm visible-xs"></i></router-link>
     </li>
-    <li :class="{active: $router.currentRoute.name == 'posts.sections'}">
+    <li v-if="$parent.sectionable" :class="{active: $router.currentRoute.name == 'posts.sections'}">
         <router-link :to="{ name: 'posts.sections', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Sections</span> <i class="fa fa-table visible-sm visible-xs"></i></router-link>
     </li>
     <li :class="{active: $router.currentRoute.name == 'posts.handles'}">

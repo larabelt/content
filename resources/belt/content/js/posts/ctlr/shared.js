@@ -14,8 +14,15 @@ export default {
             morphable_id: this.$route.params.id,
         }
     },
+    computed: {
+        config() {
+            return this.form.config;
+        },
+        sectionable() {
+            return _.get(this.config, 'sectionable', false);
+        },
+    },
     components: {
-
         tabs: {template: tabs_html},
     },
     mounted() {
