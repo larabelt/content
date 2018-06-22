@@ -26,8 +26,8 @@
                             <column-sorter :column="'lists.name'"></column-sorter>
                         </th>
                         <th>
-                            Priority
-                            <column-sorter :column="'events.priority'"></column-sorter>
+                            Template
+                            <column-sorter :column="'lists.template'"></column-sorter>
                         </th>
                         <th class="text-right">Actions</th>
                     </tr>
@@ -36,7 +36,7 @@
                     <tr v-for="list in table.items">
                         <td>{{ list.id }}</td>
                         <td>{{ list.name }}</td>
-                        <td>{{ list.priority }}</td>
+                        <td>{{ list.template }}</td>
                         <td class="text-right">
                             <div class="btn-group">
                                 <button
@@ -64,7 +64,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Priority</th>
+                        <th>Template</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </tfoot>
