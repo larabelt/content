@@ -21,7 +21,7 @@ class PaginateListItems extends PaginateRequest
     /**
      * @var string
      */
-    public $orderBy = 'listables.position';
+    public $orderBy = 'list_items.position';
 
     /**
      * @var Belt\Core\Pagination\PaginationQueryModifier[]
@@ -34,22 +34,22 @@ class PaginateListItems extends PaginateRequest
     public function modifyQuery(Builder $query)
     {
         if ($list_id = $this->get('list_id')) {
-            $query->where('listables.list_id', $list_id);
+            $query->where('list_items.list_id', $list_id);
         }
 
         if ($id = $this->get('listable_id')) {
-            $query->whereIn('listables.listable_id', explode(',', $id));
+            $query->whereIn('list_items.listable_id', explode(',', $id));
         }
 
         if ($type = $this->get('listable_type')) {
-            $query->whereIn('listables.listable_type', explode(',', $type));
+            $query->whereIn('list_items.listable_type', explode(',', $type));
         }
 
         if ($groupBy = $this->get('groupBy')) {
             if ($groupBy == 'listable_type') {
-                $query->select(['listables.listable_type']);
-                $query->groupBy('listables.listable_type');
-                $this->orderBy = 'listables.listable_type';
+                $query->select(['list_items.listable_type']);
+                $query->groupBy('list_items.listable_type');
+                $this->orderBy = 'list_items.listable_type';
             }
         }
 
