@@ -68,7 +68,7 @@ class ListItemsController extends ApiController
 
         $this->authorize(['view', 'create', 'update', 'delete'], $list);
 
-        $paginator = $this->paginator($this->listItems->with('listItem'), $request);
+        $paginator = $this->paginator($this->listItems->with('listable'), $request);
 
         return response()->json($paginator->toArray());
     }

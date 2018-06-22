@@ -35,7 +35,7 @@ class ListItem extends Model
      */
     public function listable()
     {
-        return $this->morphTo('listable');
+        return $this->morphTo();
     }
 
 }

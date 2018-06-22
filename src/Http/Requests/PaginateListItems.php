@@ -12,6 +12,10 @@ use Belt\Core\Http\Requests\PaginateRequest;
  */
 class PaginateListItems extends PaginateRequest
 {
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    public $modelClass = Belt\Content\ListItem::class;
 
     /**
      * @var int
