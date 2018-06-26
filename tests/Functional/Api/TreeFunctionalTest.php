@@ -1,7 +1,10 @@
 <?php
 
 use Belt\Core\Testing;
+use Belt\Core\User;
+use Belt\Content\Page;
 use Belt\Content\Section;
+use Silber\Bouncer\BouncerFacade as Bouncer;
 
 class TreeFunctionalTest extends Testing\BeltTestCase
 {
@@ -35,14 +38,18 @@ class TreeFunctionalTest extends Testing\BeltTestCase
         # assert 1 is child of 2
         $this->moveSection($sections, 1, 2, 'in');
         $this->assertEquals($sections->get(1)->parent_id, $sections->get(2)->id);
+
+        # tree-item w/o owner
+        $this->json('POST', "/api/v1/terms/1/tree", [
+            'neighbor_id' => 2,
+            'move' => 'after',
+        ]);
     }
 
     public function addSection()
     {
         $response = $this->json('POST', '/api/v1/pages/1/sections', [
-            'sectionable_id' => 1,
-            'sectionable_type' => 'blocks',
-            'template' => 'blocks',
+            'template' => 'sections.block',
         ]);
 
         $this->assertNotEmpty(array_get($response->json(), 'id'));
