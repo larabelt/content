@@ -88,7 +88,7 @@ class CompileServiceTest extends BeltTestCase
     /**
      * @covers \Belt\Content\Services\CompileService::cache
      */
-    public function ztestCache()
+    public function testCache()
     {
         Page::unguard();
 
@@ -127,6 +127,38 @@ class CompileServiceTest extends BeltTestCase
         Cache::shouldReceive('put')->once()->with($cacheKey, 'compiled', 60);
         $result = $service->cache($page, true);
         $this->assertEquals('compiled', $result);
+    }
+
+    /**
+     * @covers \Belt\Content\Services\CompileService::clearCache
+     * @covers \Belt\Content\Services\CompileService::putCache
+     * @covers \Belt\Content\Services\CompileService::getCached
+     */
+    public function testCacheContinued()
+    {
+
+        $page = factory(Page::class)->make();
+
+        # clearCache
+        Cache::shouldReceive('forget')->once()->with($page->getHasSectionsCacheKey());
+        (new CompileService())->clearCache($page);
+
+        # putCache
+        Cache::shouldReceive('put')->once()->with($page->getHasSectionsCacheKey(), 'foo', 60);
+        (new CompileService())->putCache($page, 'foo');
+
+        # getCached (exists)
+        Cache::shouldReceive('get')->once()->with($page->getHasSectionsCacheKey())->andReturn('foo');
+        $this->assertEquals('foo', (new CompileService())->getCached($page));
+
+        # getCached (does not exist yet)
+        $page = factory(Page::class)->make();
+
+        Cache::shouldReceive('get')->once()->with($page->getHasSectionsCacheKey())->andReturn(false);
+
+        $service = m::mock(CompileService::class . '[compile]');
+        $service->shouldReceive('compile')->andReturn('compiled');
+        $this->assertEquals('compiled', $service->getCached($page));
     }
 
 }

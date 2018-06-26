@@ -13,6 +13,7 @@ class IncludesTemplateTest extends Testing\BeltTestCase
 {
 
     /**
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::bootIncludesTemplate
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getDefaultTemplateKey
      * @covers \Belt\Content\Behaviors\IncludesTemplate::setTemplateAttribute
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateAttribute
@@ -21,9 +22,14 @@ class IncludesTemplateTest extends Testing\BeltTestCase
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateGroup
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateViewAttribute
      * @covers \Belt\Content\Behaviors\IncludesTemplate::reconcileTemplateParams
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::getParamConfig
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::getConfigAttribute
      */
     public function test()
     {
+        # bootIncludesTemplate
+        IncludesTemplateTestStub::bootIncludesTemplate();
+
         $templateStub = new IncludesTemplateTestStub();
 
         # template
@@ -106,7 +112,18 @@ class IncludesTemplateTest extends Testing\BeltTestCase
         $templateStub->setAttribute('template', 'test');
         $this->assertEquals('test', $templateStub->template);
 
+        # getParamConfig
+        app()['config']->set('belt.templates.pages.foo', [
+            'name' => 'test',
+            'params' => [
+                'foo' => 'bar'
+            ],
+        ]);
+        $templateStub->template = 'foo';
+        $this->assertEquals(config('belt.templates.pages.foo.params'), $templateStub->getParamConfig());
 
+        # getConfigAttribute
+        $this->assertEquals(config('belt.templates.pages.foo'), $templateStub->config);
     }
 
     public function tearDown()

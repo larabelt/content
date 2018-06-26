@@ -4,7 +4,6 @@ namespace Belt\Content\Services;
 
 use Belt, Cache, View;
 use Belt\Content\Behaviors\HasSectionsInterface;
-use Belt\Content\Behaviors\SectionableInterface;
 use Html2Text\Html2Text;
 
 /**
@@ -114,11 +113,11 @@ class CompileService
 
         $searchable = $this->getSearchable($section, $searchable);
 
-        if ($sectionable = $section->sectionable) {
-            if ($sectionable instanceof SectionableInterface) {
-                $searchable = $this->getSearchable($sectionable, $searchable);
-            }
-        }
+//        if ($sectionable = $section->sectionable) {
+//            if ($sectionable instanceof SectionableInterface) {
+//                $searchable = $this->getSearchable($sectionable, $searchable);
+//            }
+//        }
 
         foreach ($section->children as $child) {
             $searchable = $this->__crawl($child, $searchable);
