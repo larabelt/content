@@ -1,6 +1,6 @@
 <div>
     <div class="form-group" :class="{ 'has-error': form.error('template') }">
-        <label for="template">Template</label>
+        <label for="template"><slot>Type</slot></label>
         <select v-model="form.template" name="template" class="form-control">
             <template v-for="label, value in dropdown">
                 <option :value="value">{{ label }}</option>
