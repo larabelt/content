@@ -28,7 +28,7 @@ return [
     'sectionable' => false,
 
     // Allowed related types. A comma-delimited string of data types that can be added to this list.
-    'indexable_types' => '',
+    'indexable_types' => 'attachments',
 
     /*
     | A set of custom parameters that belong to the templatable object.

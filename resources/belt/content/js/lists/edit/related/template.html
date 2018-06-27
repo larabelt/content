@@ -1,8 +1,9 @@
 <div class="row">
 
-    <div class="col-md-12">
+    <div v-if="config" class="col-md-12">
         <search
                 @attach-search-item="attach"
+                :type="config.indexable_types"
         ></search>
     </div>
 

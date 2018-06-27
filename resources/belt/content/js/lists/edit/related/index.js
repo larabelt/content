@@ -34,6 +34,9 @@ export default {
                 }
             },
             computed: {
+                config() {
+                    return this.$parent.config;
+                },
                 hasHighlighted() {
                     return !_.isEmpty(this.highlighted);
                 },
