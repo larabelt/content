@@ -24,7 +24,7 @@ export default {
             data() {
                 return {
                     morphable_type: 'places',
-                    table: new Table({router: this.$router, query: {tag: null}}),
+                    table: new Table({router: this.$router, query: {term: null}}),
                 }
             },
             mounted() {

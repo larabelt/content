@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <filter-terms-attached @filter-terms-update="filter" :_query="$router.currentRoute.query.tag" ></filter-terms-attached>
+        <filter-terms-attached @filter-terms-update="filter" :_query="$router.currentRoute.query.term" ></filter-terms-attached>
 
         <filter-terms-detached @filter-terms-update="filter"></filter-terms-detached>
 
@@ -24,6 +24,10 @@
                     <th>
                         ID
                         <column-sorter :column="'pages.id'"></column-sorter>
+                    </th>
+                    <th>
+                        Type
+                        <column-sorter :column="'pages.template'"></column-sorter>
                     </th>
                     <th>
                         Name
@@ -37,6 +41,7 @@
                 <tbody>
                 <tr v-for="item in table.items">
                     <td>{{ item.id }}</td>
+                    <td>{{ item.template }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.created_at }}</td>
                     <td>{{ item.updated_at }}</td>
@@ -69,6 +74,7 @@
                 <tfoot>
                 <tr>
                     <th>ID</th>
+                    <th>Template</th>
                     <th>Name</th>
                     <th>Created</th>
                     <th>Updated</th>

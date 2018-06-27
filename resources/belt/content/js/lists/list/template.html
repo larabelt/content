@@ -22,21 +22,25 @@
                             <column-sorter :column="'lists.id'"></column-sorter>
                         </th>
                         <th>
+                            Type
+                            <column-sorter :column="'lists.template'"></column-sorter>
+                        </th>
+                        <th>
                             Name
                             <column-sorter :column="'lists.name'"></column-sorter>
                         </th>
-                        <th>
-                            Template
-                            <column-sorter :column="'lists.template'"></column-sorter>
-                        </th>
+                        <th>Created<column-sorter :column="'lists.created_at'"></column-sorter></th>
+                        <th>Updated<column-sorter :column="'lists.updated_at'"></column-sorter></th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="list in table.items">
                         <td>{{ list.id }}</td>
-                        <td>{{ list.name }}</td>
                         <td>{{ list.template }}</td>
+                        <td>{{ list.name }}</td>
+                        <td>{{ list.created_at }}</td>
+                        <td>{{ list.updated_at }}</td>
                         <td class="text-right">
                             <div class="btn-group">
                                 <button
@@ -63,8 +67,10 @@
                 <tfoot>
                     <tr>
                         <th>ID</th>
+                        <th>Type</th>
                         <th>Name</th>
-                        <th>Template</th>
+                        <th>Created</th>
+                        <th>Updated</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </tfoot>
