@@ -1,0 +1,49 @@
+<div>
+    <div class="clearfix">
+        <span class="pull-left"><strong>id</strong></span>
+        <span class="pull-right">{{ attachment.id }}</span>
+    </div>
+    <hr/>
+
+    <div class="clearfix">
+        <span class="pull-left"><strong>original name</strong></span>
+        <span class="pull-right break-word">
+            {{ attachment.original_name }}
+        </span>
+    </div>
+    <hr/>
+
+    <div class="clearfix">
+        <span class="pull-left"><strong>mimetype</strong></span>
+        <span class="pull-right">{{ attachment.mimetype }}</span>
+    </div>
+    <hr/>
+
+    <div class="clearfix">
+        <span class="pull-left"><strong>size</strong></span>
+        <span class="pull-right">{{ attachment.readable_size }}</span>
+    </div>
+    <hr/>
+
+    <template v-if="attachment.is_image">
+        <div class="clearfix">
+            <span class="pull-left"><strong>w x h</strong></span>
+            <span class="pull-right">{{ attachment.width }} x {{ attachment.height }}</span>
+        </div>
+        <hr/>
+    </template>
+
+    <template v-if="attachment.is_image && attachment.resizes.length">
+        <div class="clearfix">
+            <span class="pull-left"><strong>resizes</strong></span>
+            <span class="pull-right">
+                <ul>
+                    <template v-for="resize in attachment.resizes">
+                        <li><a :href="resize.src" target="_blank">{{ resize.preset }}</a></li>
+                    </template>
+                </ul>
+            </span>
+        </div>
+        <hr/>
+    </template>
+</div>

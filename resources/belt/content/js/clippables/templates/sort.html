@@ -1,0 +1,50 @@
+<div>
+    <div class="clippable-panel">
+
+        <div class="clippable-panel-toolbar clearfix">
+            <span class="pull-left">
+                <h4>Sort Attachments <i v-if="table.loading" class="fa fa-spin fa-spinner"></i></h4>
+            </span>
+            <span class="pull-right">
+                <div class="btn-group">
+                    <template v-if="hasHighlighted">
+                        <button
+                                class="btn btn-default"
+                                title="click to unlink selected attachments from item"
+                                @click.prevent="detachHighlighted()"
+                        ><i class="fa fa-unlink"></i></button>
+                    </template>
+                </div>
+            </span>
+        </div>
+
+        <div v-if="table.items.length">
+
+            <p class="help-block">
+                Click the <code><i class="fa fa-arrows"></i></code> icon to re-position that attachment
+                <code><i class="fa fa-caret-left"></i> before</code>
+                or <code>after <i class="fa fa-caret-right"></i></code> another attachment.
+            </p>
+
+            <div class="row tile-panels">
+                <template v-for="attachment, index in table.items">
+
+                    <!--<div v-if="attachment.is_image" @dragover.prevent @drop="drop">-->
+                    <!--    <img class="img-thumbnail pull-left" :src="attachment.src" :data-index=index style="max-height: 100px"-->
+                    <!--         draggable="true" @drag="drag"/>-->
+                    <!--</div>-->
+
+                    <div class="col col-lg-2 col-md-3 col-sm-4">
+                        <list-item :attachment="attachment"></list-item>
+                    </div>
+                </template>
+            </div>
+            <pagination></pagination>
+
+        </div>
+        <div v-else>
+            <p style="font-style: italic;">No attachments are currently linked to this item.</p>
+        </div>
+
+    </div>
+</div>

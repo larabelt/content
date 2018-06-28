@@ -3,7 +3,7 @@
 return [
 
     // Required. A blade view path to the main template layout.
-    'path' => 'belt-content::lists.templates.default',
+    'path' => 'belt-content::lists.templates.album',
 
     // A blade view path that can be extended by the layout found in :path.
     'extends' => 'belt-content::lists.web.show',

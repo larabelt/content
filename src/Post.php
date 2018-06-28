@@ -21,13 +21,13 @@ class Post extends Model implements
     Belt\Content\Behaviors\IncludesSeoInterface,
     Belt\Content\Behaviors\IncludesTemplateInterface,
     Belt\Content\Behaviors\TermableInterface,
-    Belt\Clip\Behaviors\ClippableInterface
+    Belt\Content\Behaviors\ClippableInterface
 {
     use Belt\Core\Behaviors\HasSortableTrait;
     use Belt\Core\Behaviors\IsSearchable;
     use Belt\Core\Behaviors\Sluggable;
     use Belt\Core\Behaviors\TypeTrait;
-    use Belt\Clip\Behaviors\Clippable;
+    use Belt\Content\Behaviors\Clippable;
     use Belt\Content\Behaviors\IncludesSeo;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\Handleable;

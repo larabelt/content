@@ -22,6 +22,7 @@ class BeltContentServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        Belt\Content\Attachment::class => Belt\Content\Policies\AttachmentPolicy::class,
         Belt\Content\Block::class => Belt\Content\Policies\BlockPolicy::class,
         Belt\Content\Handle::class => Belt\Content\Policies\HandlePolicy::class,
         Belt\Content\Lyst::class => Belt\Content\Policies\ListPolicy::class,
@@ -67,6 +68,8 @@ class BeltContentServiceProvider extends ServiceProvider
 
         // morphMap
         Relation::morphMap([
+            'attachments' => Belt\Content\Attachment::class,
+            'attachment_resizes' => Belt\Content\Resize::class,
             'blocks' => Belt\Content\Block::class,
             'handles' => Belt\Content\Handle::class,
             'lists' => Belt\Content\Lyst::class,
@@ -83,11 +86,15 @@ class BeltContentServiceProvider extends ServiceProvider
         ]);
 
         // commands
+        $this->commands(Belt\Content\Commands\FakerCommand::class);
+        $this->commands(Belt\Content\Commands\MoveCommand::class);
+        $this->commands(Belt\Content\Commands\ResizeCommand::class);
         $this->commands(Belt\Content\Commands\CompileCommand::class);
         $this->commands(Belt\Content\Commands\PublishCommand::class);
         $this->commands(Belt\Content\Commands\TemplateCommand::class);
 
         // route model binding
+        $router->model('attachment', Belt\Content\Attachment::class);
         $router->model('favorite', Belt\Content\Favorite::class);
         $router->model('handle', Belt\Content\Handle::class);
         $router->model('list', Belt\Content\Lyst::class, function ($value) {
@@ -101,6 +108,7 @@ class BeltContentServiceProvider extends ServiceProvider
             $column = is_numeric($value) ? 'id' : 'slug';
             return Belt\Content\Post::where($column, $value)->first();
         });
+        $router->model('resize', Belt\Content\Resize::class);
         $router->bind('section', function ($value) {
             return Belt\Content\Section::find($value);
         });
@@ -112,18 +120,22 @@ class BeltContentServiceProvider extends ServiceProvider
         Validator::extend('alt_url', Belt\Content\Validators\AltUrlValidator::class . '@altUrl');
         Validator::extend('unique_route', Belt\Content\Validators\RouteValidator::class . '@routeIsUnique');
 
-        # blade directives
+        // blade directives
         Blade::directive('block', function ($expression) {
             list($slug, $field) = Belt\Core\Helpers\StrHelper::strToArguments($expression, 2);
             $block = Block::where('slug', $slug)->first();
             return $block ? ($field ? $block->$field : $block->body) : '';
         });
 
-        # engines
+        // engines
         $this->app->register(Laravel\Scout\ScoutServiceProvider::class);
         $this->app->register(Belt\Content\Search\Mock\MockEngineServiceProvider::class);
 
+        // additional providers
+        $this->app->register(Belt\Content\Services\Cloudinary\CloudinaryServiceProvider::class);
+
         // access map for window config
+        Belt\Core\Services\AccessService::put('*', 'attachments');
         Belt\Core\Services\AccessService::put('*', 'blocks');
         Belt\Core\Services\AccessService::put('*', 'handles');
         Belt\Core\Services\AccessService::put('*', 'favorites');

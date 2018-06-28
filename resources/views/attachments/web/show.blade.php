@@ -1,0 +1,1 @@
+<img class="img-responsive center-attachment" src="{{ $attachment->src }}"/>

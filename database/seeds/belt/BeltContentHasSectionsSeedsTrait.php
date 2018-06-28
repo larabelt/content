@@ -3,7 +3,7 @@
 use Belt\Content\Behaviors\HasSectionsInterface;
 use Belt\Content\Block;
 use Belt\Content\Section;
-use Belt\Clip\Attachment;
+use Belt\Content\Attachment;
 
 trait BeltContentHasSectionsSeedsTrait
 {

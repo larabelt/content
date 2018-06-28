@@ -107,3 +107,58 @@
         padding: 5px 10px;
     }
 }
+
+.clippable-panel {
+    .clippable-panel-toolbar {
+        background-color: $gray-lighter;
+        margin-bottom: 10px;
+        label {
+            margin-bottom: 0;
+        }
+    }
+    .alert-clippable {
+        background-color: #f3f5f7;
+    }
+    .clippable-dropzone {
+        border: 2px dashed #ddd;
+        padding: 10px;
+    }
+    h4 {
+        margin-left: 10px;
+    }
+    h5 {
+        margin-top: 0;
+    }
+}
+
+.non-image-thumb {
+    .non-image-thumb-type {
+        margin-bottom: 5px;
+        background-color: $brand-warning;
+        padding: 3px 5px;
+    }
+    .non-image-thumb-content {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+
+.clippable-edit {
+    .clippable-toolbar {
+        margin-bottom: 10px;
+    }
+    .help-block {
+        margin:3px 0 !important;
+        font-size: 12px;
+    }
+}
+
+.attachment-summary {
+    * {
+        font-size: 12px;
+    }
+    hr {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}

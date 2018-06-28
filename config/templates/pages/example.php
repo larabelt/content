@@ -67,11 +67,6 @@ return [
             'label' => 'Block',
             'description' => 'Optional. Link existing block to this page.',
         ],
-        'albums' => [
-            'type' => 'albums',
-            'label' => 'Album',
-            'description' => 'Optional. Link existing album to this page.',
-        ],
     ],
 
 ];

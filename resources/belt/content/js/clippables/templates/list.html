@@ -1,0 +1,13 @@
+<div>
+    <h4>Attachment List</h4>
+    <template v-if="table.items.length">
+        <p class="help-block">The following attachments are linked to this item.</p>
+        <div class="row" v-for="attachment, index in table.items">
+            <list-item :attachment="attachment" />
+        </div>
+        <pagination></pagination>
+    </template>
+    <template v-else>
+        <p style="font-style: italic;">No attachments are currently linked to this item.</p>
+    </template>
+</div>

@@ -96,7 +96,6 @@ class BeltContentPageSeeds extends Seeder
         $page->saveParam('attachments', 1);
         $page->saveParam('touts', 1);
         $page->saveParam('blocks', 1);
-        $page->saveParam('albums', 1);
         $page->saveParam('body', $faker->paragraphs(3, true));
 
         factory(Page::class)->create(['template' => 'no-cache']);

@@ -14,6 +14,7 @@ class BeltContentPermissbleSeeds extends Seeder
     {
         Ability::unguard();
         $abilities = [
+            'attachments',
             'blocks',
             'favorites',
             'handles',

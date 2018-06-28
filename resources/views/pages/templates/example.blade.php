@@ -29,8 +29,4 @@
         @include('belt-content::blocks.web.show')
     @endif
 
-    @if($album = $page->morphParam('albums'))
-        @include('belt-clip::albums.web.files')
-    @endif
-
 </div>

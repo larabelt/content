@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-12">
+        <span class="pull-left">
+            <h4>Add Resized Image</h4>
+        </span>
+        <span class="pull-left" style="margin-left: 20px;">
+            <uploader accept="image/*" title="select file"></uploader>
+        </span>
+    </div>
+    <div class="col-md-12">
+        <hr/>
+        <h4>Resize List</h4>
+        <div v-if="table.items.length">
+            <p class="help-block">The following resizes belong to this attachment.</p>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Preset</th>
+                        <th>Nickname</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <template v-for="resize in table.items">
+                        <edit :resize="resize"></edit>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+            <pagination></pagination>
+        </div>
+        <div v-else>
+            <p style="font-style: italic;">No resizes belong to this item.</p>
+        </div>
+    </div>
+</div>

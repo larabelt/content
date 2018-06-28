@@ -15,12 +15,18 @@
   ],
   "minimum-stability": "dev",
   "require": {
+    "cloudinary/cloudinary_php": "^1.8",
+    "intervention/image": "2.3.*",
     "laravel/scout": "^4.0",
+    "league/flysystem-aws-s3-v3": "~1.0",
     "soundasleep/html2text": "^0.3.4"
   },
   "autoload": {
     "psr-4": {
       "Belt\\Content\\": "src/"
-    }
+    },
+    "files": [
+      "src/helpers.php"
+    ]
   }
 }

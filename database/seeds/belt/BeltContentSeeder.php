@@ -11,6 +11,7 @@ class BeltContentSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(BeltContentAttachmentSeeds::class);
         $this->call(BeltContentBlockSeeds::class);
         $this->call(BeltContentFavoriteSeeds::class);
         $this->call(BeltContentHandleSeeds::class);

@@ -1,0 +1,71 @@
+<div>
+    <form @submit.prevent="active.submit()" @keydown="active.errors.clear($event.target.name)">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group" :class="{ 'has-error': active.error('sectionable_id') }">
+                    <div class="input-group">
+                        <input
+                                type="text"
+                                class="form-control"
+                                v-model="table.query.q"
+                                placeholder="Search"
+                                @keydown="table.index()"
+                        >
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    </div>
+                    <span v-for="error in active.error('sectionable_id')" class="contents-danger">{{ error }}</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <template v-if="attachment.id">
+                    <thumb :attachment="attachment"></thumb>
+                </template>
+            </div>
+            <div class="col-md-5">
+                <div class="clearfix">
+                    <div class="btn-group pull-right">
+                        <a
+                                title="go to attachments"
+                                class="btn btn-sm btn-default"
+                                href="/admin/belt/content/attachments"
+                                target="_blank"
+                        >
+                            <i class="fa fa-external-link"></i>
+                        </a>
+                        <a v-if="attachment.id"
+                           title="edit attachment"
+                           class="btn btn-sm btn-default"
+                           :href="'/admin/belt/content/attachments/edit/' + attachment.id"
+                           target="_blank"
+                        >
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+                <template v-if="attachment.id">
+                    <p>{{ attachment.id }}. {{ attachment.name }}</p>
+                    <p><strong>{{ attachment.title }}</strong></p>
+                </template>
+            </div>
+        </div>
+    </form>
+
+    <div v-if="table.query.q && table.items.length">
+        <div class="row">
+            <div class="col-md-12 no-gutter">
+                <template v-for="attachment in table.items">
+                    <div class="col-md-1">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <thumb :attachment="attachment" :open_btn="false"></thumb>
+                            </div>
+                            <div class="panel-footer clearfix">
+                                <span class="pull-right"><button class="btn btn-xs btn-primary" @click="update(attachment.id)"><i class="fa fa-link"></i></button></span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</div>

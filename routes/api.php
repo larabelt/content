@@ -9,12 +9,43 @@ Route::group([
 ],
     function () {
 
+        # attachment resizes
+        Route::group([
+            'prefix' => 'attachments/{attachment}/resizes',
+        ], function () {
+            Route::get('{resize}', Api\ResizesController::class . '@show');
+            Route::put('{resize}', Api\ResizesController::class . '@update');
+            Route::delete('{resize}', Api\ResizesController::class . '@destroy');
+            Route::post('', Api\ResizesController::class . '@store');
+            Route::get('', Api\ResizesController::class . '@index');
+        });
+
+        # attachments
+        Route::get('attachments/{id}', Api\AttachmentsController::class . '@show');
+        Route::put('attachments/{id}', Api\AttachmentsController::class . '@update');
+        Route::delete('attachments/{id}', Api\AttachmentsController::class . '@destroy');
+        Route::get('attachments', Api\AttachmentsController::class . '@index');
+        Route::post('attachments', Api\AttachmentsController::class . '@store');
+
         # blocks
         Route::get('blocks/{id}', Api\BlocksController::class . '@show');
         Route::put('blocks/{id}', Api\BlocksController::class . '@update');
         Route::delete('blocks/{id}', Api\BlocksController::class . '@destroy');
         Route::get('blocks', Api\BlocksController::class . '@index');
         Route::post('blocks', Api\BlocksController::class . '@store');
+
+        # clippable
+        Route::pattern('clippable_id', '[0-9]+');
+        Route::group([
+            'prefix' => '{clippable_type}/{clippable_id}/attachments',
+            'middleware' => 'request.injections:clippable_type,clippable_id'
+        ], function () {
+            Route::get('{id}', Api\ClippablesController::class . '@show');
+            Route::put('{id}', Api\ClippablesController::class . '@update');
+            Route::delete('{id}', Api\ClippablesController::class . '@destroy');
+            Route::get('', Api\ClippablesController::class . '@index');
+            Route::post('', Api\ClippablesController::class . '@store');
+        });
 
         # config
         Route::get('config/belt.content.handles.responses/', ConfigController::class . '@show');

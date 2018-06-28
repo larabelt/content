@@ -1,0 +1,90 @@
+<div class="box box-primary">
+    <div class="box-body">
+        <div class="clearfix">
+            <div class="pull-left">
+                <div class="form-group">
+                    <input
+                            type="text"
+                            class="form-control"
+                            v-model="table.query.q"
+                            placeholder="filter"
+                            @keydown="table.index()"
+                    >
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="btn-group">
+                    <uploader button_class="btn-primary">
+                        <template slot="button">add attachment</template>
+                    </uploader>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        ID
+                        <column-sorter :column="'attachments.id'"></column-sorter>
+                    </th>
+                    <td></td>
+                    <th>
+                        Name
+                        <column-sorter :column="'attachments.original_name'"></column-sorter>
+                    </th>
+                    <th>
+                        Title
+                        <column-sorter :column="'attachments.title'"></column-sorter>
+                    </th>
+                    <th>Created<column-sorter :column="'attachments.created_at'"></column-sorter></th>
+                    <th>Updated<column-sorter :column="'attachments.updated_at'"></column-sorter></th>
+                    <th class="text-right">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in table.items">
+                    <td>{{ item.id }}</td>
+                    <td v-if="item.is_image"><img class="img-thumbnail pull-left" :src="item.src" style="max-height: 100px" /></td>
+                    <td v-else>{{ item.mimetype }}</td>
+                    <td>{{ item.original_name }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.created_at }}</td>
+                    <td>{{ item.updated_at }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button
+                                    type="button"
+                                    class="btn btn-xs btn-default dropdown-toggle text-muted"
+                                    data-toggle="dropdown"
+                                    aria-expanded="false"
+                                    title="options"
+                            >
+                                <i class="fa fa-gear"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><modal-delete :item-id="item.id" _class="''" :callingObject="table"><i class="fa fa-trash"></i> Remove</modal-delete></li>
+                            </ul>
+                            <router-link :to="{ name: 'attachments.edit', params: { id: item.id } }" :class="'btn btn-xs btn-default'" title="edit attachment">
+                                <i class="fa fa-edit"></i>
+                            </router-link>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <pagination></pagination>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 @php
+    $can['attachments'] = $auth->can(['create','update','delete'], Belt\Content\Attachment::class);
     $can['blocks'] = $auth->can(['create','update','delete'], Belt\Content\Block::class);
     $can['handles'] = $auth->can(['create','update','delete'], Belt\Content\Handle::class);
     $can['lists'] = $auth->can(['create','update','delete'], Belt\Content\Lyst::class);
@@ -13,6 +14,9 @@
             <i class="fa fa-file-o"></i> <span>Content</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
+            @if($can['attachments'])
+                <li id="content-admin-sidebar-left-attachments"><a href="/admin/belt/content/attachments"><i class="fa fa-paperclip"></i> <span>Attachments</span></a></li>
+            @endif
             @if($can['blocks'])
                 <li id="content-admin-sidebar-left-blocks"><a href="/admin/belt/content/blocks"><i class="fa fa-code"></i> <span>Blocks</span></a></li>
             @endif

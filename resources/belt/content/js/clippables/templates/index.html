@@ -1,0 +1,30 @@
+<div>
+    <p class="text-muted">{{ trans('belt-clip::clippables.manager.overall') }}</p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <div class="btn-group" role="group" aria-label="...">
+                    <a class="btn btn-default" :class="{ 'btn-primary': tabs.show('list') }"   @click="setTab('list')"   title="edit attachments"><i class="fa fa-bars"></i></a>
+                    <a class="btn btn-default" :class="{ 'btn-primary': tabs.show('search') }" @click="setTab('search')" title="search"><i class="fa fa-search"></i></a>
+                    <a class="btn btn-default" :class="{ 'btn-primary': tabs.show('sort') }"   @click="setTab('sort')"   title="sort attachments"><i class="fa fa-random"></i></a>
+                </div>
+            </div>
+            <div class="pull-right">
+                <uploader button_class="btn-primary" :driver=driver :path=path :multiple=multiple>
+                    <template slot="button">add attachment</template>
+                </uploader>
+            </div>
+        </div>
+    </div>
+
+    <div v-show="tabs.show('list')">
+        <list></list>
+    </div>
+    <div v-show="tabs.show('search')">
+        <search></search>
+    </div>
+    <div v-show="tabs.show('sort')">
+        <sort></sort>
+    </div>
+
+</div>

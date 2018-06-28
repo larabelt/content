@@ -1,0 +1,41 @@
+<div>
+    <div class="file-group">
+        <label for="file">
+            <label class="btn" :class="button_class" for="my-file-selector" @click="onFileClick" :title="title">
+                <input :ref="'fileinput'" type="file" name="file" id="file-uploader" style="display:none;" :accept="accept" @change="onFileChange"
+                       :multiple="multiple">
+                <slot name="button"><i class="fa fa-upload"></i></slot>
+            </label>
+            <template v-if="search">
+                <div class="form-group">
+                    <input class="form-control" v-model.trim="table.query.q" @keyup="table.index()" placeholder="search">
+                </div>
+            </template>
+            <slot></slot>
+        </label>
+        <button class="btn btn-default hide" type="button" @click="uploadFiles">upload</button>
+    </div>
+    <div v-if="pending.length">
+        <table class="table">
+            <tr v-for="file, i in pending">
+                <td>{{ file.name }}</td>
+                <td>{{ file.progress }}</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" :aria-valuenow=progress[i] aria-valuemin="0" aria-valuemax="100"
+                             :style="'width: ' + progress[i] + '%;'">
+                            {{ progress[i] }}%
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div v-if="table.query.q" class="clearfix">
+        <div v-for="attachment in table.items">
+            <span class="pull-left">
+                <img class="img-thumbnail" :src="attachment.src" style="max-height: 100px" @click="attachFile(attachment.id)"/>
+            </span>
+        </div>
+    </div>
+</div>
