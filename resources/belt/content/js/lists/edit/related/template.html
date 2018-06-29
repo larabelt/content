@@ -24,7 +24,20 @@
             </div>
 
             <div class="tile-panel-toolbar clearfix">
-                &nbsp;
+                <span class="pull-left">
+                    <div class="btn-group">
+                        <button
+                                class="btn btn-default"
+                                :disabled="mode == 'grid'"
+                                @click.prevent="setMode('grid')"
+                        ><i class="fa fa-th"></i></button>
+                        <button
+                                class="btn btn-default"
+                                :disabled="mode == 'rows'"
+                                @click.prevent="setMode('rows')"
+                        ><i class="fa fa-bars"></i></button>
+                    </div>
+                </span>
                 <span class="pull-right">
                     <div class="btn-group">
                         <template v-if="hasHighlighted">
@@ -38,9 +51,23 @@
                 </span>
             </div>
 
-            <div class="row tile-panels">
+            <div v-if="mode == 'grid'" class="row tile-panels">
                 <template v-for="item in table.items">
                     <div class="col col-lg-2 col-md-3 col-sm-4">
+                        <grid-item
+                                :item="item"
+                                @highlight-listable="highlight"
+                                @start-listable-move="startMove"
+                                @cancel-listable-move="cancelMove"
+                                @complete-listable-move="completeMove"
+                        ></grid-item>
+                    </div>
+                </template>
+            </div>
+
+            <div v-if="mode == 'rows'" class="row tile-panels">
+                <template v-for="item in table.items">
+                    <div class="col-md-12">
                         <row-item
                                 :item="item"
                                 @highlight-listable="highlight"
@@ -51,6 +78,7 @@
                     </div>
                 </template>
             </div>
+
             <pagination></pagination>
 
         </div>

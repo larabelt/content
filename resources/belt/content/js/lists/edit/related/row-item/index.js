@@ -20,16 +20,7 @@ export default {
             return this.$parent.morphable_id;
         },
         mode() {
-            if (this.item.id == this.moving_id) {
-                return 'is-moving';
-            }
-            if (this.moving_id) {
-                return 'is-watching';
-            }
             return 'default';
-        },
-        moving_id() {
-            return this.$parent.moving_id;
         },
         tile() {
             let tileName = 'tile-' + this.item.listable_type;
@@ -43,26 +34,8 @@ export default {
 
     },
     methods: {
-        cancelMove() {
-            this.$emit('cancel-listable-move');
-        },
         highlight(id) {
             this.$emit('highlight-listable', id);
-        },
-        move(target_id, position) {
-
-            let form = new Form({morphable_id: this.item.list_id});
-            form.id = this.moving_id;
-            form.move = position;
-            form.position_entity_id = target_id;
-
-            form.submit()
-                .then(() => {
-                    this.$emit('complete-listable-move');
-                });
-        },
-        startMove(id) {
-            this.$emit('start-listable-move', id);
         },
     },
     template: html,

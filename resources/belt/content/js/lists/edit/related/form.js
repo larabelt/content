@@ -17,6 +17,7 @@ class Form extends BaseForm {
         this.routeEditName = 'lists.items';
         this.setData({
             id: '',
+            template: '',
             move: '',
             position_entity_id: '',
             listable_type: '',
