@@ -41,7 +41,7 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $fillable = ['owner_id', 'owner_type', 'sectionable_type', 'parent_id'];
+    protected $fillable = ['template', 'owner_id', 'owner_type', 'sectionable_type', 'parent_id'];
 
     /**
      * @var array
@@ -192,6 +192,7 @@ class Section extends Model implements
         $section->load('params');
 
         $clone = $section->replicate(['_lft', '_rgt']);
+        $clone->setIsCopy(true);
         $clone->owner_id = array_get($options, 'owner_id');
         $clone->parent_id = array_get($options, 'parent_id');
         $clone->save();
