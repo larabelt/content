@@ -27,16 +27,21 @@
                 </div>
             </div>
             <span class="pull-right">
-                <button class="btn btn-xs btn-default btn-flat" @click.prevent="startMove(item.id)"><i class="fa fa-arrows"></i></i></button>
+                <div class="btn-group" role="group" aria-label="">
+                    <button class="btn btn-xs btn-default btn-flat" @click.prevent="startMove(item.id)"><i class="fa fa-arrows"></i></button>
+                    <router-link :to="{ name: 'lists.items.edit', params: {id: $route.params.id, item_id: item.id}}">
+                        <button class="btn btn-xs btn-default btn-flat"><i class="fa fa-edit"></i></button>
+                    </router-link>
+                </div>
             </span>
         </template>
     </div>
     <div @click.prevent="highlight(file)">
-        <component :is="tile" :item="item.listable"></component>
+<!--        <component :is="tile" :item="item.listable"></component>-->
     </div>
-    <div class="tile-panel-footer clearfix">
-        <span class="pull-left">
-            {{ item.listable_type }}
-        </span>
+<!--    <div class="tile-panel-footer clearfix">-->
+<!--        <span class="pull-left">-->
+<!--            {{ item.listable_type }}-->
+<!--        </span>-->
     </div>
 </div>

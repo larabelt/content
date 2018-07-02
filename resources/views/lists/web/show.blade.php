@@ -1,7 +1,13 @@
-@foreach($list->places as $pivot)
-    <div class="well well-sm">
-        <p>{{ $pivot->heading }}</p>
-        <p>{{ $pivot->body }}</p>
-        <p>{{ $pivot->place->name }}</p>
+@extends('belt-core::layouts.web.main')
+
+@section('meta-title', $list->meta_title)
+@section('meta-description', $list->meta_description)
+@section('meta-keywords', $list->meta_keywords)
+
+@section('main')
+
+    <div class="container">
+        @include($list->template_view)
     </div>
-@endforeach
+
+@endsection

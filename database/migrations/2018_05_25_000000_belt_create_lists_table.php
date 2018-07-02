@@ -17,7 +17,7 @@ class BeltCreateListsTable extends Migration
             $table->boolean('is_active')->default('0')->index();
             $table->boolean('is_searchable')->default('0')->index();
             $table->tinyInteger('status')->default('0')->index();
-            $table->string('template')->default('default');
+            $table->string('template')->default('default')->index();
             $table->string('name');
             $table->string('slug')->index();
             $table->string('meta_title')->nullable();

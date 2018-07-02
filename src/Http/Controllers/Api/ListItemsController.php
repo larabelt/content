@@ -83,17 +83,21 @@ class ListItemsController extends ApiController
     {
         $this->authorize('update', $list);
 
-        $listable_type = $request->get('listable_type');
+//        $listable_type = $request->get('listable_type');
+//        $listable_id = $request->get('listable_id');
+//        $this->morphable($listable_type, $listable_id);
 
-        $listable_id = $request->get('listable_id');
-
-        $this->morphable($listable_type, $listable_id);
+        $input = $request->all();
 
         $listItem = $this->listItems->create([
             'list_id' => $list->id,
-            'listable_type' => $listable_type,
-            'listable_id' => $listable_id,
         ]);
+
+        $this->set($listItem, $input, [
+            'template',
+        ]);
+
+        $listItem->save();
 
         return response()->json($listItem, 201);
     }
@@ -107,7 +111,7 @@ class ListItemsController extends ApiController
      * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, $list, $id)
+    public function update(Requests\UpdateListItem $request, $list, $id)
     {
         $this->authorize('update', $list);
 
@@ -116,6 +120,12 @@ class ListItemsController extends ApiController
         $listItem = $this->listItem($id);
 
         $this->reposition($request, $listItem);
+
+        $input = $request->all();
+
+        $this->set($listItem, $input, [
+            'template',
+        ]);
 
         $listItem->save();
 

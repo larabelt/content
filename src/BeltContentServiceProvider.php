@@ -73,6 +73,7 @@ class BeltContentServiceProvider extends ServiceProvider
             'blocks' => Belt\Content\Block::class,
             'handles' => Belt\Content\Handle::class,
             'lists' => Belt\Content\Lyst::class,
+            'list_items' => Belt\Content\ListItem::class,
             'favorites' => Belt\Content\Favorite::class,
             'pages' => Belt\Content\Page::class,
             'posts' => Belt\Content\Post::class,

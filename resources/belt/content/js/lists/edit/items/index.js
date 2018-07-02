@@ -1,12 +1,13 @@
 import edit from 'belt/content/js/lists/edit/shared';
+import create from 'belt/content/js/lists/edit/items/create';
 import filterSearch from 'belt/core/js/inputs/filter-search';
-import filterType from 'belt/content/js/lists/edit/related/filters/type';
+import filterType from 'belt/content/js/lists/edit/items/filters/type';
 import search from 'belt/core/js/search';
-import Form from 'belt/content/js/lists/edit/related/form';
-import Table from 'belt/content/js/lists/edit/related/table';
-import gridItem from 'belt/content/js/lists/edit/related/grid-item';
-import rowItem from 'belt/content/js/lists/edit/related/row-item';
-import html from 'belt/content/js/lists/edit/related/template.html';
+import Form from 'belt/content/js/lists/edit/items/form';
+import Table from 'belt/content/js/lists/edit/items/table';
+import gridItem from 'belt/content/js/lists/edit/items/grid-item';
+import rowItem from 'belt/content/js/lists/edit/items/row-item';
+import html from 'belt/content/js/lists/edit/items/template.html';
 
 export default {
     mixins: [edit],
@@ -50,8 +51,8 @@ export default {
             methods: {
                 attach(index) {
                     let form = new Form({morphable_id: this.morphable_id});
-                    form.listable_type = index.indexable_type;
-                    form.listable_id = index.indexable_id;
+                    //form.listable_type = index.indexable_type;
+                    //form.listable_id = index.indexable_id;
 
                     form.submit()
                         .then(() => {
@@ -99,6 +100,7 @@ export default {
                 },
             },
             components: {
+                create,
                 search,
                 filterSearch,
                 filterType,

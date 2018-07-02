@@ -3,9 +3,7 @@
 @endphp
 
 <div class="list">
-
-    @foreach($list->sections as $section)
-        @include($section->template_view, ['section' => $section])
+    @foreach($list->items as $listItem)
+        @include('belt-content::list_items.web.show')
     @endforeach
-
 </div>

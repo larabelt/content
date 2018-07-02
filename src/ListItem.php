@@ -4,16 +4,26 @@ namespace Belt\Content;
 
 use Belt;
 use Illuminate\Database\Eloquent\Model;
-use Rutorika\Sortable\SortableTrait;;
+use Rutorika\Sortable\SortableTrait;
+
+;
 
 /**
  * Class ListItem
  * @package Belt\Content
  */
-class ListItem extends Model
+class ListItem extends Model implements
+    Belt\Core\Behaviors\ParamableInterface,
+    Belt\Content\Behaviors\IncludesTemplateInterface
 {
 
     use SortableTrait;
+    use Belt\Content\Behaviors\IncludesTemplate;
+
+    /**
+     * @var string
+     */
+    protected $morphClass = 'list_items';
 
     /**
      * @var string

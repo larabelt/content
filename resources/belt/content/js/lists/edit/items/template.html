@@ -1,11 +1,17 @@
 <div class="row">
 
-    <div v-if="config" class="col-md-12">
-        <search
-                @attach-search-item="attach"
-                :type="config.indexable_types"
-        ></search>
+    <div class="col-md-12">
+        <create></create>
     </div>
+
+    <hr/>
+
+<!--    <div v-if="config" class="col-md-12">-->
+<!--        <search-->
+<!--                @attach-search-item="attach"-->
+<!--                :type="config.indexable_types"-->
+<!--        ></search>-->
+<!--    </div>-->
 
     <div class="col-md-12">
 
@@ -18,9 +24,9 @@
                 <div class="pull-left">
                     <filter-search @filter-search-update="filter"></filter-search>
                 </div>
-                <div class="pull-left">
-                    <filter-type @filter-listable_type-update="filter">Type</filter-type>
-                </div>
+<!--                <div class="pull-left">-->
+<!--                    <filter-type @filter-listable_type-update="filter">Type</filter-type>-->
+<!--                </div>-->
             </div>
 
             <div class="tile-panel-toolbar clearfix">

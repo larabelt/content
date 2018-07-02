@@ -1,5 +1,5 @@
-import Form from 'belt/content/js/lists/edit/related/form';
-import html from 'belt/content/js/lists/edit/related/grid-item/template.html';
+import Form from 'belt/content/js/lists/edit/items/form';
+import html from 'belt/content/js/lists/edit/items/grid-item/template.html';
 
 export default {
     props: {
@@ -32,8 +32,9 @@ export default {
             return this.$parent.moving_id;
         },
         tile() {
-            let tileName = 'tile-' + this.item.listable_type;
-            return _.has(Vue.options.components, tileName) ? tileName : 'tile-default';
+            return 'tile-default';
+            // let tileName = 'tile-' + this.item.listable_type;
+            // return _.has(Vue.options.components, tileName) ? tileName : 'tile-default';
         },
         type() {
             return this.item.listable_type;
