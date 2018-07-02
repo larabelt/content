@@ -50,8 +50,6 @@ abstract class BaseBuilder
 
         $parent = array_get($options, 'parent');
 
-        //Section::unguard();
-
         $section = $this->sections()->create([
             'template' => array_get($options, 'template', 'containers.default'),
             'parent_id' => $parent ? $parent->id : null,

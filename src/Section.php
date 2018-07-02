@@ -41,7 +41,7 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $fillable = ['owner_id', 'owner_type', 'sectionable_type', 'parent_id'];
+    protected $fillable = ['template', 'owner_id', 'owner_type', 'sectionable_type', 'parent_id'];
 
     /**
      * @var array

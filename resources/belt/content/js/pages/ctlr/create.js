@@ -15,6 +15,12 @@ export default {
                     form: new Form({router: this.$router}),
                 }
             },
+            methods: {
+                submit() {
+                    Events.$emit('pages:' + this.morphable_id + ':saving', this.form);
+                    this.form.submit();
+                }
+            },
             template: form_html,
         },
     },
