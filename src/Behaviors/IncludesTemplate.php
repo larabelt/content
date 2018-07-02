@@ -2,6 +2,7 @@
 
 namespace Belt\Content\Behaviors;
 
+use Belt\Core\Behaviors\Copyable;
 use Belt\Core\Behaviors\ParamableInterface;
 use Belt\Core\Behaviors\Paramable;
 use Belt\Core\Helpers\ArrayHelper;
@@ -14,6 +15,8 @@ use Belt\Content\Observers\IncludesTemplateObserver;
  */
 trait IncludesTemplate
 {
+
+    use Copyable;
 
     use Paramable;
 

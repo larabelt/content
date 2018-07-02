@@ -17,7 +17,7 @@ class IncludesTemplateObserver
     {
         /** @var $builder BaseBuilder */
         $class = $item->getTemplateConfig('builder');
-        if ($class && class_exists($class)) {
+        if ($class && class_exists($class) && !$item->getIsCopy()) {
             $builder = new $class($item);
             $builder->build();
         }
