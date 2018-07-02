@@ -122,6 +122,7 @@ class Post extends Model implements
         $post = $post instanceof Post ? $post : self::sluggish($post)->first();
 
         $clone = $post->replicate();
+        $clone->setIsCopy(true);
         $clone->slug .= '-' . strtotime('now');
         $clone->push();
 

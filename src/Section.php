@@ -177,6 +177,7 @@ class Section extends Model implements
         $section->load('params');
 
         $clone = $section->replicate(['_lft', '_rgt']);
+        $clone->setIsCopy(true);
         $clone->owner_id = array_get($options, 'owner_id');
         $clone->parent_id = array_get($options, 'parent_id');
         $clone->save();

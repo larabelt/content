@@ -86,6 +86,7 @@ class Page extends Model implements
         $page = $page instanceof Page ? $page : self::sluggish($page)->first();
 
         $clone = $page->replicate();
+        $clone->setIsCopy(true);
         $clone->slug .= '-' . strtotime('now');
         $clone->push();
 
