@@ -1,7 +1,7 @@
 <div class="form-inline">
     <form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)">
         <div class="form-group">
-            <template-dropdown templateType="list_items"></template-dropdown>
+            <template-dropdown templateType="list_items" autoset="true"></template-dropdown>
         </div>
         <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">
             <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>

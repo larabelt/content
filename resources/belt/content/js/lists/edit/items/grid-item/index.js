@@ -32,9 +32,9 @@ export default {
             return this.$parent.moving_id;
         },
         tile() {
-            return 'tile-default';
-            // let tileName = 'tile-' + this.item.listable_type;
-            // return _.has(Vue.options.components, tileName) ? tileName : 'tile-default';
+            //return 'tile-default';
+            let tileName = _.get(this.item, 'config.tile', 'tile-default');
+            return _.has(Vue.options.components, tileName) ? tileName : 'tile-default';
         },
         type() {
             return this.item.listable_type;
@@ -52,7 +52,7 @@ export default {
         },
         move(target_id, position) {
 
-            let form = new Form({morphable_id: this.item.list_id});
+            let form = new Form({list_id: this.item.list_id});
             form.id = this.moving_id;
             form.move = position;
             form.position_entity_id = target_id;

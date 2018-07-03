@@ -50,7 +50,7 @@ export default {
             },
             methods: {
                 attach(index) {
-                    let form = new Form({morphable_id: this.morphable_id});
+                    let form = new Form({list_id: this.morphable_id});
                     //form.listable_type = index.indexable_type;
                     //form.listable_id = index.indexable_id;
 

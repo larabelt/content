@@ -23,9 +23,9 @@ export default {
             return 'default';
         },
         tile() {
-            return 'tile-default';
-            // let tileName = 'tile-' + this.item.listable_type;
-            // return _.has(Vue.options.components, tileName) ? tileName : 'tile-default';
+            //return 'tile-default';
+            let tileName = _.get(this.item, 'config.tile', 'tile-default');
+            return _.has(Vue.options.components, tileName) ? tileName : 'tile-default';
         },
         type() {
             return this.item.listable_type;

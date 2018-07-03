@@ -21,9 +21,11 @@ Vue.component('input-attachments', inputAttachments);
 Vue.component('input-blocks', inputBlocks);
 Vue.component('input-pages', inputPages);
 
-import tilePages from 'belt/content/js/pages/tile';
+import tilePageDefault from 'belt/content/js/pages/tiles/default';
+import tilePageListItem from 'belt/content/js/pages/tiles/list-item';
 
-Vue.component('tile-pages', tilePages);
+Vue.component('tile-page-default', tilePageDefault);
+Vue.component('tile-page-list-item', tilePageListItem);
 
 window.larabelt.content = _.get(window, 'larabelt.content', {});
 

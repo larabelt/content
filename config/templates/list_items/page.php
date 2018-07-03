@@ -21,6 +21,9 @@ return [
     // A blade layout that show can show a snapshot of what the templates structure and/or style will look like when compiled.
     'preview' => '',
 
+    // The VueJS tile component to summarize the component
+    'tile' => 'tile-page-list-item',
+
     /*
     | A set of custom parameters that belong to the templatable object.
     |

@@ -41,6 +41,11 @@ class ListItem extends Model implements
     protected static $sortableGroupField = ['list_id'];
 
     /**
+     * @var array
+     */
+    protected $appends = ['config'];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
     public function listable()

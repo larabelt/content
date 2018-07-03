@@ -37,11 +37,6 @@
         </template>
     </div>
     <div @click.prevent="highlight(file)">
-<!--        <component :is="tile" :item="item.listable"></component>-->
-    </div>
-<!--    <div class="tile-panel-footer clearfix">-->
-<!--        <span class="pull-left">-->
-<!--            {{ item.listable_type }}-->
-<!--        </span>-->
+        <component :is="tile" :item="item"></component>
     </div>
 </div>
