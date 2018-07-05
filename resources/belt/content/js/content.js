@@ -15,10 +15,12 @@ Vue.component('template-dropdown', templateDropdown);
 
 import inputAttachments from 'belt/content/js/inputs/attachments';
 import inputBlocks from 'belt/content/js/inputs/blocks';
+import inputLists from 'belt/content/js/inputs/lists';
 import inputPages from 'belt/content/js/inputs/pages';
 
 Vue.component('input-attachments', inputAttachments);
 Vue.component('input-blocks', inputBlocks);
+Vue.component('input-lists', inputLists);
 Vue.component('input-pages', inputPages);
 
 import tilePageDefault from 'belt/content/js/pages/tiles/default';
