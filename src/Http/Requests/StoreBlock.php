@@ -17,7 +17,6 @@ class StoreBlock extends FormRequest
     {
         return [
             'name' => 'required|unique:blocks,name',
-            'body' => 'required',
         ];
     }
 

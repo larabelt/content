@@ -1,78 +1,11 @@
 <div>
     <form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
-        <div class="clearfix">
-            <div class="pull-right">
-                <div class="btn-group">
-                    <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">
-                        <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-                        <span v-else>save</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="checkbox" v-if="adminMode == 'admin'">
-            <label>
-                <input type="checkbox"
-                       v-model="form.is_active"
-                       :true-value="1"
-                       :false-value="0"
-                > Is Active
-            </label>
-        </div>
         <div class="form-group" :class="{ 'has-error': form.error('name') }">
             <label for="name">Name *</label>
             <input class="form-control" v-model="form.name" placeholder="name">
             <span v-for="error in form.error('name')" class="text-danger">{{ error }}</span>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group" :class="{ 'has-error': form.error('phone') }">
-                    <label for="phone">Phone Number</label>
-                    <input class="form-control" v-model="form.phone" placeholder="phone number">
-                    <span v-for="error in form.error('phone')" class="text-danger">{{ error }}</span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group" :class="{ 'has-error': form.error('phone_tollfree') }">
-                    <label for="phone_tollfree">Toll Free Phone Number</label>
-                    <input class="form-control" v-model="form.phone_tollfree" placeholder="phone number">
-                    <span v-for="error in form.error('phone_tollfree')" class="text-danger">{{ error }}</span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group" :class="{ 'has-error': form.error('url') }">
-                    <label for="url">Website</label>
-                    <input class="form-control" v-model="form.url" placeholder="website" @change="form.normalizeUrl()">
-                    <span v-for="error in form.error('url')" class="text-danger">{{ error }}</span>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group" :class="{ 'has-error': form.error('email') }">
-                    <label for="email">Email</label>
-                    <input class="form-control" v-model="form.email" placeholder="email">
-                    <span v-for="error in form.error('email')" class="text-danger">{{ error }}</span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <priorityDropdown :form="form"></priorityDropdown>
-            </div>
-        </div>
-        <div class="form-group" :class="{ 'has-error': form.error('hours') }">
-            <label for="hours">Hours</label>
-            <textarea class="form-control" rows="10" v-model="form.hours"></textarea>
-            <span v-for="error in form.error('hours')" class="text-danger">{{ error }}</span>
-        </div>
-        <div class="form-group" :class="{ 'has-error': form.error('body') }">
-            <label for="body">Body</label>
-            <belt-editor v-model="form.body"></belt-editor>
-            <span v-for="error in form.error('body')" class="text-danger">{{ error }}</span>
-        </div>
-        <seo></seo>
+        <template-dropdown templateType="blocks" formKey="form" autoset="true"></template-dropdown>
         <div class="clearfix">
             <div class="pull-right">
                 <div class="btn-group">
