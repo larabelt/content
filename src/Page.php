@@ -103,6 +103,10 @@ class Page extends Model implements
             Handle::copy($handle, ['handleable_id' => $clone->id]);
         }
 
+        foreach ($page->params as $param) {
+            $clone->saveParam($param->key, $param->value);
+        }
+
         return $clone;
     }
 

@@ -12,6 +12,6 @@ export default [
     {path: '/posts/edit/:id', component: edit, name: 'posts.edit'},
     {path: '/posts/edit/:id/attachments', component: attachments, name: 'posts.attachments'},
     {path: '/posts/edit/:id/handles', component: handles, name: 'posts.handles'},
-    {path: '/posts/edit/:id/sections/:section?', component: sections, name: 'posts.sections'},
     {path: '/posts/edit/:id/terms', component: terms, name: 'posts.terms'},
+    {path: '/posts/edit/:id/sections/:section_mode?/:section_id?', component: sections, name: 'posts.sections'},
 ]

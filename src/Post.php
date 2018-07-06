@@ -137,6 +137,10 @@ class Post extends Model implements
             Handle::copy($handle, ['handleable_id' => $clone->id]);
         }
 
+        foreach ($post->params as $param) {
+            $clone->saveParam($param->key, $param->value);
+        }
+
         return $clone;
     }
 }
