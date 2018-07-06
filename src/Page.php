@@ -110,6 +110,10 @@ class Page extends Model implements
             $clone->tags()->attach($tag);
         }
 
+        foreach ($page->params as $param) {
+            $clone->saveParam($param->key, $param->value);
+        }
+
         return $clone;
     }
 

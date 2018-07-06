@@ -146,6 +146,10 @@ class Post extends Model implements
             $clone->tags()->attach($tag);
         }
 
+        foreach ($post->params as $param) {
+            $clone->saveParam($param->key, $param->value);
+        }
+
         return $clone;
     }
 }
