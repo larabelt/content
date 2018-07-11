@@ -1,0 +1,12 @@
+<span>
+    <div class="form-group filter pull-left">
+        <label><slot>Type</slot></label>
+        <div class="form-group">
+            <select class="form-control" v-model="template" title="item type" @change="change()">
+                <template v-for="option in options">
+                    <option :value="option">{{ option }}</option>
+                </template>
+            </select>
+        </div>
+    </div>
+</span>
