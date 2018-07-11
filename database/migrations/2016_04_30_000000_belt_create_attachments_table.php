@@ -43,6 +43,6 @@ class BeltCreateAttachmentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('attachments');
+        Schema::dropIfExists('attachments');
     }
 }

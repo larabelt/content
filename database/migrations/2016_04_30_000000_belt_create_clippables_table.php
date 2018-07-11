@@ -28,6 +28,6 @@ class BeltCreateClippablesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('clippables');
+        Schema::dropIfExists('clippables');
     }
 }

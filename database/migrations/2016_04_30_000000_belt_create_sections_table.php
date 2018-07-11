@@ -35,6 +35,6 @@ class BeltCreateSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sections');
+        Schema::dropIfExists('sections');
     }
 }

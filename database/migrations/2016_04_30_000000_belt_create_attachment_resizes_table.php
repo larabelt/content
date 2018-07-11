@@ -38,6 +38,6 @@ class BeltCreateAttachmentResizesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('attachment_resizes');
+        Schema::dropIfExists('attachment_resizes');
     }
 }

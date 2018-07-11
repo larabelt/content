@@ -39,6 +39,6 @@ class BeltCreateTermsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('terms');
+        Schema::dropIfExists('terms');
     }
 }

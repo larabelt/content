@@ -17,14 +17,11 @@ class BeltContentListSeeds extends Seeder
         factory(Lyst::class, 5)->create()
             ->each(function ($list) {
                 for ($i = 1; $i <= 5; $i++) {
-
-                    $faker = Faker\Factory::create();
-
-                    ListItem::firstOrCreate([
-                       'list_id' => $list->id,
-                       'listable_id' => $i,
-                       'listable_type' => 'pages',
+                    $item = ListItem::firstOrCreate([
+                        'template' => 'page',
+                        'list_id' => $list->id,
                     ]);
+                    $item->saveParam('pages', $i);
                 }
             });
     }

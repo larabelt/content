@@ -30,6 +30,6 @@ class BeltCreateBlocksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('blocks');
+        Schema::dropIfExists('blocks');
     }
 }

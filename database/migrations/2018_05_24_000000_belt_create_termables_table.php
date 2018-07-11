@@ -28,6 +28,6 @@ class BeltCreateTermablesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('termables');
+        Schema::dropIfExists('termables');
     }
 }

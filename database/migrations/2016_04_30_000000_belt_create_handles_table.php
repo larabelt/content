@@ -30,6 +30,6 @@ class BeltCreateHandlesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('handles');
+        Schema::dropIfExists('handles');
     }
 }

@@ -36,6 +36,6 @@ class BeltCreateListsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('lists');
+        Schema::dropIfExists('lists');
     }
 }

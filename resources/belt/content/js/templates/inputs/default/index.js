@@ -35,7 +35,7 @@ export default {
         this.config.setService(this.type);
         this.config.load()
             .then((response) => {
-                this.dropdown = this.config.dropdown();
+                this.dropdown = this.config.options();
                 if (this.autoset) {
                     this.form.template = this.defaultTemplate;
                 }
