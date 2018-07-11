@@ -8,7 +8,7 @@ import store from 'belt/core/js/store/index';
 import terms from 'belt/content/js/terms/routes';
 
 import seo from 'belt/content/js/base/seo';
-import templateDropdown from 'belt/content/js/templates';
+import templateDropdown from 'belt/content/js/templates/inputs/default';
 
 Vue.component('seo', seo);
 Vue.component('template-dropdown', templateDropdown);
@@ -28,6 +28,10 @@ import tilePageListItem from 'belt/content/js/pages/tiles/list-item';
 
 Vue.component('tile-page-default', tilePageDefault);
 Vue.component('tile-page-list-item', tilePageListItem);
+
+import filterTemplates from 'belt/content/js/templates/filters/default';
+
+Vue.component('filter-templates', filterTemplates);
 
 window.larabelt.content = _.get(window, 'larabelt.content', {});
 

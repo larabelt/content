@@ -5,6 +5,9 @@
             <div class="pull-left">
                 <filter-search @filter-search-update="filter">Filter</filter-search>
             </div>
+            <div class="pull-left">
+                <filter-templates @filter-template-update="filter" templateType="blocks"></filter-templates>
+            </div>
             <div class="pull-right">
                 <router-link :to="{ name: 'blocks.create' }" :class="'btn btn-primary'">add a block</router-link>
             </div>

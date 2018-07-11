@@ -2,7 +2,7 @@
 
 namespace Belt\Content\Behaviors;
 
-use DB;
+use Belt, DB;
 use Belt\Content\Attachment;
 
 /**
@@ -11,30 +11,23 @@ use Belt\Content\Attachment;
  */
 trait Clippable
 {
-
     /**
      * @return array
      */
-    public static function getResizePresets()
+    public function getResizePresets()
     {
-        $presets = config('belt.content.resize.models.' . static::class);
-
-        if ($presets) {
-            return $presets;
-        }
-
-        return isset(static::$presets) ? static::$presets : [];
+        return $this->getTemplateConfig('resizes.presets');
     }
 
-    /**
-     * @todo need 2 classes for single attachments vs collections
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function attachment()
-    {
-        return $this->belongsTo(Attachment::class);
-    }
+//    /**
+//     * @todo need 2 classes for single attachments vs collections
+//     *
+//     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+//     */
+//    public function attachment()
+//    {
+//        return $this->belongsTo(Attachment::class);
+//    }
 
     /**
      * @return \Rutorika\Sortable\BelongsToSortedMany
@@ -44,20 +37,19 @@ trait Clippable
         return $this->morphToSortedMany(Attachment::class, 'clippable')->withPivot('position');
     }
 
-    /**
-     * purge related items in clippables table
-     */
-    public function purgeAttachments()
-    {
-        DB::connection($this->getConnectionName())
-            ->table('clippables')
-            ->where('clippable_id', $this->id)
-            ->where('clippable_type', $this->getMorphClass())
-            ->delete();
-    }
+//    /**
+//     * purge related items in clippables table
+//     */
+//    public function purgeAttachments()
+//    {
+//        DB::connection($this->getConnectionName())
+//            ->table('clippables')
+//            ->where('clippable_id', $this->id)
+//            ->where('clippable_type', $this->getMorphClass())
+//            ->delete();
+//    }
 
     /**
-     * @todo determine if it's okay to return null instead
      * @return Attachment
      */
     public function getImageAttribute()

@@ -12,7 +12,7 @@ class TemplateConfig extends BaseConfig {
         this.service = new BaseService({baseUrl: baseUrl});
     }
 
-    dropdown() {
+    options() {
 
         let templates = {};
 

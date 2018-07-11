@@ -1,5 +1,5 @@
 import shared from 'belt/content/js/pages/ctlr/shared';
-import templateDropdown from 'belt/content/js/templates';
+import templateDropdown from 'belt/content/js/templates/inputs/default';
 import form_html from 'belt/content/js/pages/templates/form.html';
 
 export default {

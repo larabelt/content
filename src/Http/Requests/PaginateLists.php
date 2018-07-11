@@ -34,6 +34,7 @@ class PaginateLists extends PaginateRequest
         Belt\Core\Pagination\InQueryModifier::class,
         Belt\Core\Pagination\PriorityQueryModifier::class,
         Belt\Core\Pagination\TeamableQueryModifier::class,
+        Belt\Content\Pagination\TemplateQueryModifier::class,
         Belt\Content\Pagination\TermableQueryModifier::class,
     ];
 

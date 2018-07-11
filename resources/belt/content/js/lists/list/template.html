@@ -6,7 +6,7 @@
                 <filter-search @filter-search-update="filter">Filter</filter-search>
             </div>
             <div class="pull-left">
-                <filter-priority @filter-priority-update="filter"></filter-priority>
+                <filter-templates @filter-template-update="filter" templateType="lists"></filter-templates>
             </div>
             <div class="pull-right">
                 <router-link :to="{ name: 'lists.create' }" :class="'btn btn-primary'">add a list</router-link>

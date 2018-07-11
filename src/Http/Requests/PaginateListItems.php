@@ -30,7 +30,9 @@ class PaginateListItems extends PaginateRequest
     /**
      * @var Belt\Core\Pagination\PaginationQueryModifier[]
      */
-    public $queryModifiers = [];
+    public $queryModifiers = [
+        Belt\Content\Pagination\TemplateQueryModifier::class,
+    ];
 
     /**
      * @inheritdoc
