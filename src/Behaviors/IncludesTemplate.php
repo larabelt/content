@@ -21,6 +21,15 @@ trait IncludesTemplate
     use Paramable;
 
     /**
+     * Binds events to subclass
+     */
+    public static function bootIncludesTemplate()
+    {
+        static::observe(ParamableObserver::class);
+        static::observe(IncludesTemplateObserver::class);
+    }
+
+    /**
      * @param $value
      */
     public function setTemplateAttribute($value)
@@ -61,7 +70,7 @@ trait IncludesTemplate
     {
         $prefix = $this->getTemplateConfigPrefix();
 
-        $configs = config($prefix);
+        $configs = (array) config($prefix);
 
         if (isset($configs['default']) || !count($configs)) {
             return 'default';
@@ -87,14 +96,14 @@ trait IncludesTemplate
         }
 
         if (!$config) {
-            throw new \Exception("missing template config: $prefix.$this->template");
+            //throw new \Exception("missing template config: $prefix.$this->template");
         }
 
         if ($key) {
             return array_get($config, $key) ?: $default;
         }
 
-        return $config;
+        return (array) $config;
     }
 
     /**
@@ -172,15 +181,6 @@ trait IncludesTemplate
     public function getConfigAttribute()
     {
         return $this->getTemplateConfig();
-    }
-
-    /**
-     * Binds events to subclass
-     */
-    public static function bootIncludesTemplate()
-    {
-        static::observe(ParamableObserver::class);
-        static::observe(IncludesTemplateObserver::class);
     }
 
 }
