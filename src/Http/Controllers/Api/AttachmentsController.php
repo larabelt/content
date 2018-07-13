@@ -111,6 +111,7 @@ class AttachmentsController extends ApiController
 
         $this->set($attachment, $input, [
             'team_id',
+            'template',
             'is_public',
             'title',
             'note',
@@ -167,6 +168,7 @@ class AttachmentsController extends ApiController
 
         $this->set($attachment, $input, [
             'team_id',
+            'template',
             'is_public',
             'title',
             'note',

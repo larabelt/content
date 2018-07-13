@@ -16,6 +16,7 @@ export default {
         path: {default: ''},
         driver: {default: ''},
         multiple: {default: true},
+        template: {default: ''},
     },
 
     data() {
@@ -23,11 +24,14 @@ export default {
         let morphable_type = this.$parent.morphable_type;
         let morphable_id = this.$parent.morphable_id;
 
+        console.log(111);
+        console.log({not: 1, template: this.template});
+
         return {
             detached: new Table({
                 morphable_type: morphable_type,
                 morphable_id: morphable_id,
-                query: {not: 1},
+                query: {not: 1, template: this.template},
             }),
             form: new Form({
                 morphable_type: this.$parent.morphable_type,
@@ -41,6 +45,7 @@ export default {
     beforeMount() {
         this.$store.dispatch('clippable/set', {morphableType: this.morphable_type, morphableID: this.morphable_id});
         this.$store.dispatch('clippable/construct');
+        this.table.updateQuery({template: this.template});
         this.$store.dispatch('clippable/load');
     },
     components: {

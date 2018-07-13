@@ -16,6 +16,7 @@ export default {
         search: {default: false},
         title: {default: 'upload file'},
         id: {default: ''},
+        template: {default: ''},
         button_class: {default: 'btn-default'},
     },
     data() {
@@ -65,6 +66,7 @@ export default {
             this.form.file = file;
             this.form.driver = this.driver;
             this.form.path = this.path;
+            this.form.template = this.template ? this.template : 'default';
 
             if (this.id) {
                 this.form.id = this.id;

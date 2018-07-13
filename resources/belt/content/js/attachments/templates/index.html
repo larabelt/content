@@ -1,16 +1,24 @@
 <div class="box box-primary">
     <div class="box-body">
-        <div class="clearfix">
+
+<!--            <div class="pull-left">-->
+<!--                <div class="form-group">-->
+<!--                    <input-->
+<!--                            type="text"-->
+<!--                            class="form-control"-->
+<!--                            v-model="table.query.q"-->
+<!--                            placeholder="filter"-->
+<!--                            @keydown="table.index()"-->
+<!--                    >-->
+<!--                </div>-->
+<!--            </div>-->
+
+        <div class="filter-set clearfix">
             <div class="pull-left">
-                <div class="form-group">
-                    <input
-                            type="text"
-                            class="form-control"
-                            v-model="table.query.q"
-                            placeholder="filter"
-                            @keydown="table.index()"
-                    >
-                </div>
+                <filter-search @filter-search-update="filter"></filter-search>
+            </div>
+            <div class="pull-left">
+                <filter-templates @filter-template-update="filter" templateType="attachments"></filter-templates>
             </div>
             <div class="pull-right">
                 <div class="btn-group">
@@ -20,6 +28,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -27,6 +37,10 @@
                     <th>
                         ID
                         <column-sorter :column="'attachments.id'"></column-sorter>
+                    </th>
+                    <th>
+                        Type
+                        <column-sorter :column="'posts.template'"></column-sorter>
                     </th>
                     <td></td>
                     <th>
@@ -45,6 +59,7 @@
                 <tbody>
                 <tr v-for="item in table.items">
                     <td>{{ item.id }}</td>
+                    <td>{{ item.template }}</td>
                     <td v-if="item.is_image"><img class="img-thumbnail pull-left" :src="item.src" style="max-height: 100px" /></td>
                     <td v-else>{{ item.mimetype }}</td>
                     <td>{{ item.original_name }}</td>
@@ -75,6 +90,7 @@
                 <tfoot>
                 <tr>
                     <th>ID</th>
+                    <th>Type</th>
                     <th></th>
                     <th>Name</th>
                     <th>Title</th>

@@ -18,6 +18,19 @@ export default {
                 this.table.updateQueryFromRouter();
                 this.table.index();
             },
+            methods: {
+                filter: _.debounce(function (query) {
+                    if (query) {
+                        query.page = 1;
+                        this.table.updateQuery(query);
+                    }
+                    this.table.index()
+                        .then(() => {
+                            this.table.pushQueryToHistory();
+                            this.table.pushQueryToRouter();
+                        });
+                }, 300),
+            },
             components: {
                 uploader: {
                     mixins: [uploader],

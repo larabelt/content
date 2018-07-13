@@ -25,7 +25,6 @@ export default {
     },
     methods: {
         change() {
-            console.log(111);
             this.table.query.template = this.template;
             this.$emit('filter-template-update');
         },

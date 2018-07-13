@@ -95,7 +95,7 @@ class MoveService
 
             $this->createTmpFile($attachment->contents);
 
-            $file = new UploadedFile(array_get(stream_get_meta_data($this->tmpFile), 'uri'), $attachment->name);
+            $file = new UploadedFile($this->getTmpFileUri(), $attachment->name);
 
             $path = is_null(array_get($options, 'path')) ? $attachment->path : array_get($options, 'path');
 

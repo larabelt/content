@@ -15,6 +15,7 @@ class UploaderForm extends BaseForm {
     reset() {
         this.setData({
             id: '',
+            template: '',
             driver: '',
             path: '',
             file: '',

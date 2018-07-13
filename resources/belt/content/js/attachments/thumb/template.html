@@ -8,9 +8,9 @@
         </div>
     </template>
 
-    <template v-if="previewUrl">
+    <div v-if="previewUrl" style="background-color: #000;">
         <img class="img-responsive" :src="previewUrl"/>
-    </template>
+    </div>
 
     <template v-else>
         <div class="non-image-thumb">

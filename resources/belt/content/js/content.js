@@ -29,8 +29,10 @@ import tilePageListItem from 'belt/content/js/pages/tiles/list-item';
 Vue.component('tile-page-default', tilePageDefault);
 Vue.component('tile-page-list-item', tilePageListItem);
 
+import filterSearch from 'belt/core/js/inputs/filter-search';
 import filterTemplates from 'belt/content/js/templates/filters/default';
 
+Vue.component('filter-search', filterSearch);
 Vue.component('filter-templates', filterTemplates);
 
 window.larabelt.content = _.get(window, 'larabelt.content', {});

@@ -23,7 +23,9 @@ class PaginateClippables extends PaginateAttachments
     /**
      * @var Belt\Core\Pagination\PaginationQueryModifier[]
      */
-    public $queryModifiers = [];
+    public $queryModifiers = [
+        Belt\Content\Pagination\TemplateQueryModifier::class,
+    ];
 
     /**
      * @inheritdoc
