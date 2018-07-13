@@ -24,9 +24,6 @@ export default {
         let morphable_type = this.$parent.morphable_type;
         let morphable_id = this.$parent.morphable_id;
 
-        console.log(111);
-        console.log({not: 1, template: this.template});
-
         return {
             detached: new Table({
                 morphable_type: morphable_type,

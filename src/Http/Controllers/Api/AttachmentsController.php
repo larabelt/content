@@ -141,6 +141,8 @@ class AttachmentsController extends ApiController
 
         $this->authorize(['view', 'create', 'update', 'delete'], $attachment);
 
+        $attachment->append(['config']);
+
         return response()->json($attachment);
     }
 

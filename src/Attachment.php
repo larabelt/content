@@ -14,12 +14,13 @@ class Attachment extends Model implements
     Belt\Core\Behaviors\ParamableInterface,
     Belt\Core\Behaviors\TypeInterface,
     Belt\Core\Behaviors\TeamableInterface,
+    Belt\Content\Behaviors\IncludesTemplateInterface,
     Belt\Content\Behaviors\SectionableInterface
 {
     use AttachmentTrait;
-    use Belt\Core\Behaviors\Paramable;
     use Belt\Core\Behaviors\TypeTrait;
     use Belt\Core\Behaviors\Teamable;
+    use Belt\Content\Behaviors\IncludesTemplate;
     use Belt\Content\Behaviors\Sectionable;
 
     /**

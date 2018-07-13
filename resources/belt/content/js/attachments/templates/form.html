@@ -14,6 +14,7 @@
                     </div>
                 </div>
             </div>
+            <template-dropdown v-if="form.id" templateType="attachments"></template-dropdown>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group" :class="{ 'has-error': form.error('title') }">
@@ -30,6 +31,13 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <param-list v-if="form.id" paramable_type="attachments" :paramable_id="morphable_id"></param-list>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group" :class="{ 'has-error': form.error('target_url') }">
