@@ -36,7 +36,7 @@ export default {
             }),
             morphable_type: morphable_type,
             morphable_id: morphable_id,
-            tabs: new Tabs({router: this.$router, default: 'list'}),
+            tabs: new Tabs({router: this.$router, default: 'sort'}),
         }
     },
     beforeMount() {
