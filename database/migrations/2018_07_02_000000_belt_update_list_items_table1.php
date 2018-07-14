@@ -14,7 +14,13 @@ class BeltUpdateListItemsTable1 extends Migration
     {
         Schema::table('list_items', function (Blueprint $table) {
             $table->string('template')->default('default')->index();
+        });
+
+        Schema::table('list_items', function (Blueprint $table) {
             $table->dropColumn('listable_id');
+        });
+
+        Schema::table('list_items', function (Blueprint $table) {
             $table->dropColumn('listable_type');
         });
     }
