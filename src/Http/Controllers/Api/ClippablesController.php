@@ -115,7 +115,10 @@ class ClippablesController extends ApiController
 
         $owner->attachments()->attach($id);
 
+        $owner->touch();
+
         $this->itemEvent('attachments.attached', $owner);
+
 
         return response()->json($attachment, 201);
     }
@@ -197,6 +200,8 @@ class ClippablesController extends ApiController
         }
 
         $owner->attachments()->detach($id);
+
+        $owner->touch();
 
         $this->itemEvent('attachments.detached', $owner);
 

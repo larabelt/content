@@ -28,12 +28,6 @@
 
             <div class="row tile-panels">
                 <template v-for="attachment, index in table.items">
-
-                    <!--<div v-if="attachment.is_image" @dragover.prevent @drop="drop">-->
-                    <!--    <img class="img-thumbnail pull-left" :src="attachment.src" :data-index=index style="max-height: 100px"-->
-                    <!--         draggable="true" @drag="drag"/>-->
-                    <!--</div>-->
-
                     <div class="col col-lg-2 col-md-3 col-sm-4">
                         <list-item :attachment="attachment"></list-item>
                     </div>

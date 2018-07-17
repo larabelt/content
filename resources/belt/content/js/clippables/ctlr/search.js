@@ -25,6 +25,7 @@ export default {
                 .then(() => {
                     this.table.index();
                     this.detached.index();
+                    Events.$emit('clippable-attach', id);
                 })
         },
         clear() {

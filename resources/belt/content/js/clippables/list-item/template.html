@@ -4,6 +4,7 @@
             <div class="pull-right">
                 <div class="btn-group">
                     <button class="btn btn-xs btn-default" @click="setMoving(attachment)"><i class="fa fa-arrows"></i></button>
+                    <a :href="'/admin/belt/content/attachments/edit/' + attachment.id" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
                     <a :href="attachment.src" class="btn btn-xs btn-default" target="_blank"><i class="fa fa-external-link"></i></a>
                 </div>
             </div>
@@ -26,5 +27,6 @@
     </div>
     <div @click.prevent="highlight(attachment)">
         <thumb :attachment="attachment" :open_btn="false"></thumb>
+        <p class="text-muted truncate">{{ attachment.name }}</p>
     </div>
 </div>

@@ -1,5 +1,6 @@
 <div class="row">
     <div class="col-md-12">
+
         <h4>Search Attachments</h4>
         <form class="form-inline" style="margin-bottom: 20px;">
             <div class="form-group">
@@ -11,39 +12,49 @@
                 </div>
             </div>
         </form>
+
         <template v-if="detached.query.q">
             <h5><strong>Attachment Search Results</strong></h5>
-            <div class="row tile-panels">
-                <template v-for="attachment in detached.items">
-                    <div class="col col-lg-2 col-md-3 col-sm-4">
-                        <div class="panel panel-default">
-                            <thumb :attachment="attachment" :open_btn="false"></thumb>
-                            <div class="panel-footer clearfix">
-                                <span class="pull-right">
-                                    <button
-                                            class="btn btn-xs btn-primary"
-                                            @click="attach(attachment.id)"
-                                    ><i class="fa fa-link"></i>
-                                    </button>
-                                </span>
+            <div class="clippable-panel">
+                <div class="row tile-panels">
+                    <template v-for="attachment in detached.items">
+                        <div class="col col-lg-2 col-md-3 col-sm-4">
+                            <div class="tile-panel" :class="{highlighted: highlighted}">
+                                <div>
+                                    <thumb :attachment="attachment" :open_btn="false"></thumb>
+                                    <p class="text-muted truncate">{{ attachment.name }}</p>
+                                </div>
+                                <div class="tile-panel-toolbar clearfix">
+                                    <div class="pull-right">
+                                        <button class="btn btn-xs btn-primary" @click="attach(attachment.id)"><i class="fa fa-link"></i></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </template>
+                    </template>
+                </div>
             </div>
         </template>
+
     </div>
     <div class="col-md-12">
         <hr/>
         <h4>Attachment List</h4>
         <div v-if="table.items.length">
             <p class="help-block">The following attachments are linked to this item.</p>
-            <div class="row tile-panels">
-                <template v-for="attachment, index in table.items" class="clearfix">
-                    <div class="col col-lg-2 col-md-3 col-sm-4">
-                        <thumb :attachment="attachment" :open_btn="false"></thumb>
-                    </div>
-                </template>
+            <div class="clippable-panel">
+                <div class="row tile-panels">
+                    <template v-for="attachment, index in table.items">
+                        <div class="col col-lg-2 col-md-3 col-sm-4">
+                            <div class="tile-panel" :class="{highlighted: highlighted}">
+                                <div>
+                                    <thumb :attachment="attachment" :open_btn="false"></thumb>
+                                    <p class="text-muted truncate">{{ attachment.name }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
             </div>
             <pagination></pagination>
         </div>
