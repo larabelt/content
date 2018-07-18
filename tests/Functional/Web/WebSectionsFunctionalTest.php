@@ -1,6 +1,7 @@
 <?php
 
 use Belt\Core\Testing;
+use Belt\Content\Section;
 
 class WebSectionsFunctionalTest extends Testing\BeltTestCase
 {
@@ -10,8 +11,10 @@ class WebSectionsFunctionalTest extends Testing\BeltTestCase
         $this->refreshDB();
         $this->actAsSuper();
 
+        $section = Section::first();
+
         # index
-        $response = $this->json('GET', '/sections/1/preview');
+        $response = $this->json('GET', "/sections/$section->id/preview");
         $response->assertStatus(200);
     }
 

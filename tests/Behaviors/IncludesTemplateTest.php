@@ -24,6 +24,7 @@ class IncludesTemplateTest extends Testing\BeltTestCase
      * @covers \Belt\Content\Behaviors\IncludesTemplate::reconcileTemplateParams
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getParamConfig
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getConfigAttribute
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::bootIncludesTemplate
      */
     public function test()
     {
@@ -31,6 +32,9 @@ class IncludesTemplateTest extends Testing\BeltTestCase
         IncludesTemplateTestStub::bootIncludesTemplate();
 
         $templateStub = new IncludesTemplateTestStub();
+
+        # bootIncludesTemplate
+        $templateStub->bootIncludesTemplate();
 
         # template
         $templateStub->setTemplateAttribute(' Test ');

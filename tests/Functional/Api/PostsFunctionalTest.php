@@ -34,6 +34,7 @@ class PostsFunctionalTest extends Testing\BeltTestCase
         # copy
         Post::unguard();
         $old = Post::find($postID);
+        $old->saveParam('foo', 'bar');
         $old->sections()->create(['sectionable_type' => 'sections']);
         $old->attachments()->attach(1);
         $old->terms()->attach(1);
