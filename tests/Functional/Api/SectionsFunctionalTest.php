@@ -11,10 +11,6 @@ class SectionsFunctionalTest extends Testing\BeltTestCase
         $this->refreshDB();
         $this->actAsSuper();
 
-        # index
-        $response = $this->json('GET', '/api/v1/pages/1/sections');
-        $response->assertStatus(200);
-
         # store
         $response = $this->json('POST', '/api/v1/pages/1/sections', [
             'sectionable_id' => 1,
@@ -24,6 +20,10 @@ class SectionsFunctionalTest extends Testing\BeltTestCase
         ]);
         $response->assertStatus(201);
         $sectionID = array_get($response->json(), 'id');
+
+        # index
+        $response = $this->json('GET', '/api/v1/pages/1/sections');
+        $response->assertStatus(200);
 
         # show
         $response = $this->json('GET', "/api/v1/pages/1/sections/$sectionID");

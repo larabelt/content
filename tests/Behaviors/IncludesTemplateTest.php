@@ -21,10 +21,15 @@ class IncludesTemplateTest extends Testing\BeltTestCase
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateGroup
      * @covers \Belt\Content\Behaviors\IncludesTemplate::getTemplateViewAttribute
      * @covers \Belt\Content\Behaviors\IncludesTemplate::reconcileTemplateParams
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::getParamConfig
+     * @covers \Belt\Content\Behaviors\IncludesTemplate::bootIncludesTemplate
      */
     public function test()
     {
         $templateStub = new IncludesTemplateTestStub();
+
+        # bootIncludesTemplate
+        $templateStub->bootIncludesTemplate();
 
         # template
         $templateStub->setTemplateAttribute(' Test ');
@@ -105,6 +110,9 @@ class IncludesTemplateTest extends Testing\BeltTestCase
         # getTemplateAttribute
         $templateStub->setAttribute('template', 'test');
         $this->assertEquals('test', $templateStub->template);
+
+        # getParamConfig
+        $this->assertEquals($templateStub->getParamConfig(), $templateStub->getTemplateConfig('params'));
 
 
     }
