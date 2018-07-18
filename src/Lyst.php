@@ -99,17 +99,20 @@ class Lyst extends Model implements
          * @var $clone List
          */
         $clone = $list->replicate();
+        $clone->setIsCopy(true);
         $clone->slug .= '-' . strtotime('now');
         $clone->push();
 
         Lyst::unguard();
 
-        foreach ($list->items as $item) {
-            $clone->items()->create([
-                'listable_type' => $item->listable_type,
-                'listable_id' => $item->listable_id,
-                'position' => $item->position,
+        foreach ($list->items as $oldItem) {
+            $newItem = $clone->items()->create([
+                'template' => $oldItem->template,
+                'position' => $oldItem->position,
             ]);
+            foreach ($oldItem->params as $param) {
+                $newItem->saveParam($param->key, $param->value);
+            }
         }
 
         foreach ($list->sections as $section) {

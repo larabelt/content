@@ -5,6 +5,7 @@ use Belt\Core\Testing\BeltTestCase;
 use Belt\Content\Behaviors\Clippable;
 use Belt\Content\Attachment;
 use Belt\Content\Resize;
+use Belt\Content\Page;
 use Belt\Content\Adapters\BaseAdapter;
 use Belt\Content\Services\ResizeService;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,6 +23,9 @@ class ResizeServiceTest extends BeltTestCase
     public function setUp()
     {
         parent::setUp();
+
+        Page::unguard();
+
         app()['config']->set('belt.content.resize', [
             'foo' => 'bar',
             'local_driver' => 'local',
@@ -30,6 +34,25 @@ class ResizeServiceTest extends BeltTestCase
                 ResizeServiceTestStub1::class,
                 ResizeServiceTestStub2::class,
             ],
+        ]);
+
+        app()['config']->set('belt.templates.ResizeServiceTestStub1.test', [
+            'resizes' => [
+                'presets' => [
+                    [100, 100],
+                    [200, 200, 'resize'],
+                    [300, 300, 'resize'],
+                ]
+            ]
+        ]);
+
+        app()['config']->set('belt.templates.ResizeServiceTestStub2.test', [
+            'resizes' => [
+                'presets' => [
+                    [300, 300],
+                    [500, 500],
+                ]
+            ]
         ]);
     }
 
@@ -68,8 +91,8 @@ class ResizeServiceTest extends BeltTestCase
     {
         $attachments1 = $this->attachments([1, 2, 3]);
         $attachments2 = $this->attachments([4, 5, 6]);
-        $presets1 = ResizeServiceTestStub1::getResizePresets();
-        $presets2 = ResizeServiceTestStub2::getResizePresets();
+        $presets1 = (new ResizeServiceTestStub1(['template' => 'test']))->getResizePresets();
+        $presets2 = (new ResizeServiceTestStub2(['template' => 'test']))->getResizePresets();
 
         app()['config']->set('belt.content.resize.models', [
             ResizeServiceTestStub1::class => $presets1,
@@ -106,7 +129,7 @@ class ResizeServiceTest extends BeltTestCase
     public function testQuery()
     {
         $attachments1 = $this->attachments([1, 2, 3]);
-        $presets1 = ResizeServiceTestStub1::getResizePresets();
+        $presets1 = (new ResizeServiceTestStub1(['template' => 'test']))->getResizePresets();
 
         $qb = m::mock(Builder::class);
         $qb->shouldReceive('select')->andReturnSelf();
@@ -155,7 +178,7 @@ class ResizeServiceTest extends BeltTestCase
         $attachment = $this->attachments([1])->first();
         $attachment->resizes->push(factory(Resize::class)->make(['attachment' => $attachment, 'width' => 100, 'height' => 100]));
 
-        $presets = ResizeServiceTestStub1::getResizePresets();
+        $presets = (new ResizeServiceTestStub1(['template' => 'test']))->getResizePresets();
 
         $resizeRepo = m::mock(Resize::class);
         $resizeRepo->shouldReceive('unguard')->twice();
@@ -192,28 +215,13 @@ class ResizeServiceTest extends BeltTestCase
 
 }
 
-class ResizeServiceTestStub1 extends Model
+class ResizeServiceTestStub1 extends Page
 {
 
-    public static $presets = [
-        [100, 100],
-        [200, 200, 'resize'],
-        [300, 300, 'resize'],
-    ];
-
-    use Belt\Core\Behaviors\HasSortableTrait;
-    use Clippable;
 
 }
 
-class ResizeServiceTestStub2 extends Model
+class ResizeServiceTestStub2 extends Page
 {
 
-    public static $presets = [
-        [300, 300],
-        [500, 500],
-    ];
-
-    use Belt\Core\Behaviors\HasSortableTrait;
-    use Clippable;
 }

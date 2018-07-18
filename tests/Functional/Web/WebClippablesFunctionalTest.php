@@ -3,6 +3,8 @@
 use Mockery as m;
 use Illuminate\Support\Facades\Cache;
 use Belt\Core\Testing;
+use Belt\Content\Attachment;
+use Belt\Content\Lyst;
 
 class WebClippablesFunctionalTest extends Testing\BeltTestCase
 {
@@ -11,9 +13,18 @@ class WebClippablesFunctionalTest extends Testing\BeltTestCase
         m::close();
     }
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        Lyst::find(1)->attachAttachment(Attachment::find(1));
+    }
+
     public function test1()
     {
         $this->refreshDB();
+
+
 
         Cache::shouldReceive('get')->once()->with('attachment:lists:1:1:src')->andReturnNull();
         Cache::shouldReceive('put');

@@ -139,7 +139,7 @@ class ClippableTestStub2 extends Model
     }
 }
 
-class ClippableTestStub3
+class ClippableTestStub3 extends Model
 {
     use Belt\Core\Behaviors\HasSortableTrait;
     use Clippable;

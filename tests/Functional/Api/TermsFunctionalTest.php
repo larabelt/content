@@ -20,7 +20,7 @@ class TermsFunctionalTest extends Testing\BeltTestCase
             'name' => 'test',
         ]);
         $response->assertStatus(201);
-        $response->assertJsonFragment(['id']);
+        $response->assertJsonFragment(['name' => 'test']);
         $termID = array_get($response->json(), 'id');
 
         # show

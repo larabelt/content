@@ -24,7 +24,7 @@ class ClippablesFunctionalTest extends Testing\BeltTestCase
         $response = $this->json('GET', "/api/v1/lists/1/attachments/11");
         $position11 = $response->json('position');
         $response->assertStatus(200);
-        $response->assertJsonFragment(['id']);
+        $response->assertJsonFragment(['id' => 11]);
 
         # attach (fail)
         $response = $this->json('POST', '/api/v1/lists/1/attachments', ['id' => 11]);

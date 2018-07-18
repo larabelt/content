@@ -16,8 +16,7 @@ class ApiListItemFunctionalTest extends Testing\BeltTestCase
 
         # store
         $response = $this->json('POST', '/api/v1/lists/1/items', [
-            'listable_type' => 'pages',
-            'listable_id' => 10,
+            'template' => 'pages',
         ]);
         $response->assertStatus(201);
         $listableID = array_get($response->json(), 'id');

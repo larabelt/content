@@ -40,13 +40,11 @@ class ApiListsFunctionalTest extends Testing\BeltTestCase
         $old->sections()->create(['sectionable_type' => 'sections']);
         $old->attachments()->attach(1);
         $old->items()->create([
-            'listable_type' => 'pages',
-            'listable_id' => 1,
+            'template' => 'pages',
         ]);
         $old->terms()->attach(1);
         $old->handles()->create(['url' => '/copied-list']);
         $response = $this->json('POST', '/api/v1/lists', ['source' => $listID]);
-
         $response->assertStatus(201);
         $copiedListID = array_get($response->json(), 'id');
         $response = $this->json('GET', "/api/v1/lists/$copiedListID");

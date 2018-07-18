@@ -19,7 +19,7 @@ class TermablesFunctionalTest extends Testing\BeltTestCase
             'id' => 1
         ]);
         $response->assertStatus(201);
-        $response->assertJsonFragment(['id']);
+        $response->assertJsonFragment(['id' => 1]);
         $response = $this->json('GET', "/api/v1/pages/1/terms/1");
         $response->assertStatus(200);
 
