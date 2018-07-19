@@ -3,8 +3,8 @@
 use Mockery as m;
 use Belt\Core\Testing\BeltTestCase;
 use Belt\Core\Helpers\MorphHelper;
-use Belt\Content\Behaviors\IncludesTemplateInterface;
-use Belt\Content\Behaviors\IncludesTemplate;
+use Belt\Core\Behaviors\IncludesSubtypesInterface;
+use Belt\Core\Behaviors\IncludesSubtypes;
 use Belt\Content\Commands\TemplateCommand;
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,9 +41,9 @@ class TemplateCommandTest extends BeltTestCase
 
 }
 
-class TemplateCommandTestStub extends Model implements IncludesTemplateInterface
+class TemplateCommandTestStub extends Model implements IncludesSubtypesInterface
 {
-    use IncludesTemplate;
+    use IncludesSubtypes;
 
     public static function all($columns = ['*'])
     {

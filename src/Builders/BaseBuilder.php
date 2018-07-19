@@ -3,7 +3,7 @@
 namespace Belt\Content\Builders;
 
 use Belt;
-use Belt\Content\Behaviors\IncludesTemplateInterface;
+use Belt\Core\Behaviors\IncludesSubtypesInterface;
 use Belt\Content\Section;
 
 /**
@@ -13,7 +13,7 @@ use Belt\Content\Section;
 abstract class BaseBuilder
 {
     /**
-     * @var IncludesTemplateInterface
+     * @var IncludesSubtypesInterface
      */
     public $item;
 
@@ -24,9 +24,9 @@ abstract class BaseBuilder
 
     /**
      * BaseBuilder constructor.
-     * @param IncludesTemplateInterface $item
+     * @param IncludesSubtypesInterface $item
      */
-    public function __construct(IncludesTemplateInterface $item)
+    public function __construct(IncludesSubtypesInterface $item)
     {
         $this->item = $item;
     }

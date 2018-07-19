@@ -30,7 +30,7 @@ trait Compiler
     public function compile(HasSectionsInterface $owner, $force = false)
     {
 
-        if (env('APP_DEBUG') || $owner->getTemplateConfig('force_compile')) {
+        if (env('APP_DEBUG') || $owner->getSubtypeConfig('force_compile')) {
             $force = true;
         }
 

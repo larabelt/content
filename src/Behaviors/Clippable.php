@@ -16,7 +16,7 @@ trait Clippable
      */
     public function getResizePresets()
     {
-        return $this->getTemplateConfig('resizes.presets');
+        return $this->getSubtypeConfig('resizes.presets');
     }
 
 //    /**

@@ -46,13 +46,13 @@ interface ClippableInterface
     );
 
     /**
-     * Model requires \Belt\Content\Behaviors\IncludesTemplate
+     * Model requires \Belt\Core\Behaviors\IncludesSubtypes
      *
      * @param null $key
      * @param null $default
      * @return mixed
      * @throws \Exception
      */
-    public function getTemplateConfig($key = null, $default = null);
+    public function getSubtypeConfig($key = null, $default = null);
 
 }

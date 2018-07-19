@@ -44,7 +44,7 @@ class ListsController extends BaseController
 
         $owner = $list;
 
-        $view = $list->getTemplateConfig('extends', 'belt-spot::lists.web.show');
+        $view = $list->getSubtypeConfig('extends', 'belt-spot::lists.web.show');
 
         return view($view, compact('owner', 'list', 'compiled'));
     }

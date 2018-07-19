@@ -14,11 +14,11 @@ use Rutorika\Sortable\SortableTrait;
  */
 class ListItem extends Model implements
     Belt\Core\Behaviors\ParamableInterface,
-    Belt\Content\Behaviors\IncludesTemplateInterface
+    Belt\Core\Behaviors\IncludesSubtypesInterface
 {
 
     use SortableTrait;
-    use Belt\Content\Behaviors\IncludesTemplate;
+    use Belt\Core\Behaviors\IncludesSubtypes;
 
     /**
      * @var string

@@ -19,7 +19,7 @@ class Post extends Model implements
     Belt\Content\Behaviors\HasSectionsInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\IncludesSeoInterface,
-    Belt\Content\Behaviors\IncludesTemplateInterface,
+    Belt\Core\Behaviors\IncludesSubtypesInterface,
     Belt\Content\Behaviors\TermableInterface,
     Belt\Content\Behaviors\ClippableInterface
 {
@@ -32,7 +32,7 @@ class Post extends Model implements
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\Handleable;
     use Belt\Content\Behaviors\HasSections;
-    use Belt\Content\Behaviors\IncludesTemplate;
+    use Belt\Core\Behaviors\IncludesSubtypes;
     use Belt\Content\Behaviors\Termable;
     use SoftDeletes;
 

@@ -22,6 +22,9 @@
     "soundasleep/html2text": "^0.3.4"
   },
   "autoload": {
+    "classmap": [
+      "updates"
+    ],
     "psr-4": {
       "Belt\\Content\\": "src/"
     },

@@ -18,7 +18,7 @@ class Term extends Model implements
     Belt\Content\Behaviors\ClippableInterface,
     Belt\Content\Behaviors\HasSectionsInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
-    Belt\Content\Behaviors\IncludesTemplateInterface
+    Belt\Core\Behaviors\IncludesSubtypesInterface
 {
 
     use Belt\Core\Behaviors\IsNested;
@@ -29,7 +29,7 @@ class Term extends Model implements
     use Belt\Content\Behaviors\Clippable;
     use Belt\Content\Behaviors\HasSections;
     use Belt\Content\Behaviors\IncludesContent;
-    use Belt\Content\Behaviors\IncludesTemplate;
+    use Belt\Core\Behaviors\IncludesSubtypes;
 
     /**
      * @var string

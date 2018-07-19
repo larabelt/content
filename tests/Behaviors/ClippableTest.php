@@ -121,7 +121,7 @@ class ClippableTest extends BeltTestCase
 class ClippableTestStub extends Model
 {
     use Belt\Core\Behaviors\HasSortableTrait;
-    use Belt\Content\Behaviors\IncludesTemplate;
+    use Belt\Core\Behaviors\IncludesSubtypes;
     use Clippable;
 
     public function getMorphClass()
@@ -133,7 +133,7 @@ class ClippableTestStub extends Model
 class ClippableTestStub2 extends Model
 {
     use Belt\Core\Behaviors\HasSortableTrait;
-    use Belt\Content\Behaviors\IncludesTemplate;
+    use Belt\Core\Behaviors\IncludesSubtypes;
     use Clippable;
 
     public function getMorphClass()
@@ -145,7 +145,7 @@ class ClippableTestStub2 extends Model
 class ClippableTestStub3 extends Model
 {
     use Belt\Core\Behaviors\HasSortableTrait;
-    use Belt\Content\Behaviors\IncludesTemplate;
+    use Belt\Core\Behaviors\IncludesSubtypes;
     use Clippable;
 
     public function getMorphClass()

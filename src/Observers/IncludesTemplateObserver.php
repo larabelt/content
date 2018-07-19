@@ -2,21 +2,21 @@
 
 namespace Belt\Content\Observers;
 
-use Belt\Content\Behaviors\IncludesTemplateInterface;
+use Belt\Core\Behaviors\IncludesSubtypesInterface;
 use Belt\Content\Builders\BaseBuilder;
 
-class IncludesTemplateObserver
+class IncludesSubtypesObserver
 {
     /**
-     * Listen to the IncludesTemplateInterface created $item.
+     * Listen to the IncludesSubtypesInterface created $item.
      *
-     * @param  IncludesTemplateInterface $item
+     * @param  IncludesSubtypesInterface $item
      * @return void
      */
-    public function created(IncludesTemplateInterface $item)
+    public function created(IncludesSubtypesInterface $item)
     {
         /** @var $builder BaseBuilder */
-        $class = $item->getTemplateConfig('builder');
+        $class = $item->getSubtypeConfig('builder');
         if ($class && class_exists($class) && !$item->getIsCopy()) {
             $builder = new $class($item);
             $builder->build();
@@ -24,12 +24,12 @@ class IncludesTemplateObserver
     }
 
     /**
-     * Listen to the IncludesTemplateInterface saved $item.
+     * Listen to the IncludesSubtypesInterface saved $item.
      *
-     * @param  IncludesTemplateInterface $item
+     * @param  IncludesSubtypesInterface $item
      * @return void
      */
-    public function saved(IncludesTemplateInterface $item)
+    public function saved(IncludesSubtypesInterface $item)
     {
         $item->reconcileTemplateParams();
     }

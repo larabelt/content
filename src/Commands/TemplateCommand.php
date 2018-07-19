@@ -2,7 +2,7 @@
 
 namespace Belt\Content\Commands;
 
-use Belt\Content\Behaviors\IncludesTemplateInterface;
+use Belt\Core\Behaviors\IncludesSubtypesInterface;
 use Belt\Core\Helpers\MorphHelper;
 use Illuminate\Console\Command;
 
@@ -57,7 +57,7 @@ class TemplateCommand extends Command
                 if (!class_exists($class)) {
                     $class = $this->helper()->type2Class($class);
                 }
-                if (in_array(IncludesTemplateInterface::class, class_implements($class))) {
+                if (in_array(IncludesSubtypesInterface::class, class_implements($class))) {
                     $items = $class::all();
                     foreach ($items as $item) {
                         $item->touch();

@@ -16,7 +16,7 @@ class Section extends Model implements
     Belt\Core\Behaviors\NestedSetInterface,
     Belt\Core\Behaviors\TypeInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
-    Belt\Content\Behaviors\IncludesTemplateInterface,
+    Belt\Core\Behaviors\IncludesSubtypesInterface,
     Belt\Content\Behaviors\SectionableInterface
 {
 
@@ -25,7 +25,7 @@ class Section extends Model implements
     }
     use Belt\Core\Behaviors\TypeTrait;
     use Belt\Content\Behaviors\IncludesContent;
-    use Belt\Content\Behaviors\IncludesTemplate;
+    use Belt\Core\Behaviors\IncludesSubtypes;
     use Belt\Content\Behaviors\Sectionable;
 
     /**
@@ -61,7 +61,7 @@ class Section extends Model implements
             $name .= sprintf(' [%s]', title_case($names[1]));
         }
 
-        $name = $this->getTemplateConfig('name') ?: $name;
+        $name = $this->getSubtypeConfig('name') ?: $name;
 
         if ($name instanceof \Closure) {
             $name = $name->call($this);
@@ -161,7 +161,7 @@ class Section extends Model implements
     {
         $default = 'belt-content::sections.previews.default';
 
-        $preview = $this->getTemplateConfig('preview', $default);
+        $preview = $this->getSubtypeConfig('preview', $default);
 
         if (is_string($preview) && View::exists($preview)) {
             $preview = function () use ($preview) {

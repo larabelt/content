@@ -44,7 +44,7 @@ class PostsController extends BaseController
 
         $owner = $post;
 
-        $view = $post->getTemplateConfig('extends', 'belt-content::posts.web.show');
+        $view = $post->getSubtypeConfig('extends', 'belt-content::posts.web.show');
 
         return view($view, compact('owner', 'post', 'compiled'));
     }
