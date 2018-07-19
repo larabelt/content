@@ -11,8 +11,8 @@ export default {
         return {
             templateSubgroup: false,
             form: new Form({
-                morphable_id: this.morphable_id,
-                morphable_type: this.morphable_type,
+                entity_id: this.entity_id,
+                entity_type: this.entity_type,
             }),
         }
     },

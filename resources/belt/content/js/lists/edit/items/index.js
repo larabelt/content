@@ -14,14 +14,14 @@ export default {
     components: {
         edit: {
             props: {
-                morphable_type: {
+                entity_type: {
                     default: function () {
-                        return this.$parent.morphable_type;
+                        return this.$parent.entity_type;
                     }
                 },
-                morphable_id: {
+                entity_id: {
                     default: function () {
-                        return this.$parent.morphable_id;
+                        return this.$parent.entity_id;
                     }
                 },
             },
@@ -31,8 +31,8 @@ export default {
                     mode: 'grid',
                     moving_id: null,
                     table: new Table({
-                        morphable_type: 'lists',
-                        morphable_id: this.morphable_id,
+                        entity_type: 'lists',
+                        entity_id: this.entity_id,
                     }),
                 }
             },
@@ -50,7 +50,7 @@ export default {
             },
             methods: {
                 attach(index) {
-                    let form = new Form({list_id: this.morphable_id});
+                    let form = new Form({list_id: this.entity_id});
                     //form.listable_type = index.indexable_type;
                     //form.listable_id = index.indexable_id;
 

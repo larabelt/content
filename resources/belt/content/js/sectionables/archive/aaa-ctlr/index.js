@@ -14,8 +14,8 @@ export default {
     data() {
         return {
             active: new Form({
-                morphable_type: this.$parent.morphable_type,
-                morphable_id: this.$parent.morphable_id,
+                entity_type: this.$parent.entity_type,
+                entity_id: this.$parent.entity_id,
             }),
             creating: {
                 show: false,
@@ -23,15 +23,15 @@ export default {
                 position: null,
             },
             moving: new Form({
-                morphable_type: this.$parent.morphable_type,
-                morphable_id: this.$parent.morphable_id,
+                entity_type: this.$parent.entity_type,
+                entity_id: this.$parent.entity_id,
             }),
             first: {id: null},
-            morphable_type: this.$parent.morphable_type,
-            morphable_id: this.$parent.morphable_id,
+            entity_type: this.$parent.entity_type,
+            entity_id: this.$parent.entity_id,
             sections: new Table({
-                morphable_type: this.$parent.morphable_type,
-                morphable_id: this.$parent.morphable_id,
+                entity_type: this.$parent.entity_type,
+                entity_id: this.$parent.entity_id,
             }),
             scroll: {x: 0, y: 0},
         }

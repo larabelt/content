@@ -9,12 +9,12 @@ export default {
             data() {
                 return {
                     form: this.$parent.form,
-                    morphable_id: this.$parent.morphable_id,
+                    entity_id: this.$parent.entity_id,
                 }
             },
             methods: {
                 submit() {
-                    Events.$emit('pages:' + this.morphable_id + ':updating', this.form);
+                    Events.$emit('pages:' + this.entity_id + ':updating', this.form);
                     this.form.submit();
                 }
             },

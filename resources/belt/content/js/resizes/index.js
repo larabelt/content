@@ -9,9 +9,9 @@ import html from 'belt/content/js/resizes/templates/index.html';
 export default {
     data() {
         return {
-            morphable_id: this.$parent.morphable_id,
+            entity_id: this.$parent.entity_id,
             table: new Table({
-                morphable_id: this.$parent.morphable_id,
+                entity_id: this.$parent.entity_id,
             }),
         }
     },
@@ -25,7 +25,7 @@ export default {
                 return {
                     table: this.$parent.table,
                     form: new UploadForm({
-                        morphable_id: this.$parent.morphable_id,
+                        entity_id: this.$parent.entity_id,
                     }),
                 }
             },

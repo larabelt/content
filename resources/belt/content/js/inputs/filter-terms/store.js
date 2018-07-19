@@ -7,21 +7,21 @@ export default {
         detached: new Table(),
         terms: new Table(),
         needle: '',
-        morphable_type: '',
-        morphable_id: '',
+        entity_type: '',
+        entity_id: '',
     },
     mutations: {
         emptyDetached: (state) => {
             state.needle = '';
             state.detached.empty();
         },
-        morphableType: (state, morphable_type) => {
-            state.morphable_type = morphable_type;
-            state.detached.morphable_type = morphable_type;
+        morphableType: (state, entity_type) => {
+            state.entity_type = entity_type;
+            state.detached.entity_type = entity_type;
         },
-        morphableId: (state, morphable_id) => {
-            state.morphable_id = morphable_id;
-            state.detached.morphable_id = morphable_id;
+        morphableId: (state, entity_id) => {
+            state.entity_id = entity_id;
+            state.detached.entity_id = entity_id;
         },
         needle: (state, needle) => state.needle = needle,
         push: (state, term) => {
@@ -47,8 +47,8 @@ export default {
     },
     actions: {
         emptyDetached: (context) => context.commit('emptyDetached'),
-        morphableType: (context, morphable_type) => context.commit('morphableType', morphable_type),
-        morphableId: (context, morphable_id) => context.commit('morphableId', morphable_id),
+        morphableType: (context, entity_type) => context.commit('morphableType', entity_type),
+        morphableId: (context, entity_id) => context.commit('morphableId', entity_id),
         needle: (context, needle) => context.commit('needle', needle),
         push: (context, term) => {
             context.commit('push', term);

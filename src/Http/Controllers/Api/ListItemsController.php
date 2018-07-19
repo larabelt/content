@@ -85,7 +85,7 @@ class ListItemsController extends ApiController
 
 //        $listable_type = $request->get('listable_type');
 //        $listable_id = $request->get('listable_id');
-//        $this->morphable($listable_type, $listable_id);
+//        $this->morph($listable_type, $listable_id);
 
         $input = $request->all();
 

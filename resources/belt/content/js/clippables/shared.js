@@ -27,11 +27,11 @@ export default {
         mode() {
             return this.$store.getters['clippable/mode'];
         },
-        morphID() {
-            return this.$store.getters['clippable/morphID'];
+        entity_id() {
+            return this.$store.getters['clippable/entity_id'];
         },
-        morphType() {
-            return this.$store.getters['clippable/morphType'];
+        entity_type() {
+            return this.$store.getters['clippable/entity_type'];
         },
         table() {
             return this.$store.getters['clippable/table'];

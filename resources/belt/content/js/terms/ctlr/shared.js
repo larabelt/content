@@ -11,8 +11,8 @@ export default {
         return {
             form: new Form(),
             parentTerm: new Form(),
-            morphable_type: 'terms',
-            morphable_id: this.$route.params.id,
+            entity_type: 'terms',
+            entity_id: this.$route.params.id,
         }
     },
     computed: {
@@ -27,7 +27,7 @@ export default {
         tabs: {template: tabs_html},
     },
     mounted() {
-        this.form.show(this.morphable_id)
+        this.form.show(this.entity_id)
             .then(() => {
                 if (this.form.parent_id) {
                     this.parentTerm.show(this.form.parent_id);

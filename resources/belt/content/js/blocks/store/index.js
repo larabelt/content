@@ -16,8 +16,8 @@ export default {
     },
     actions: {
         construct: ({dispatch, commit}, options) => {
-            dispatch('config/set', {morphType: 'blocks'});
-            dispatch('params/set', {morphType: 'blocks', morphID: options.id});
+            dispatch('config/set', {entity_type: 'blocks'});
+            dispatch('params/set', {entity_type: 'blocks', entity_id: options.id});
         },
         load: ({commit, dispatch, state}, blockID) => {
             return new Promise((resolve, reject) => {

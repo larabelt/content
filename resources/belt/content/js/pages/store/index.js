@@ -20,8 +20,8 @@ export default {
     actions: {
         config: (context, value) => context.commit('config', value),
         construct: ({dispatch, commit}, options) => {
-            dispatch('config/set', {morphType: 'pages'});
-            dispatch('params/set', {morphType: 'pages', morphID: options.id});
+            dispatch('config/set', {entity_type: 'pages'});
+            dispatch('params/set', {entity_type: 'pages', entity_id: options.id});
         },
         data: (context, value) => context.commit('data', value),
         load: ({dispatch, commit}, page) => {

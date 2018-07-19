@@ -12,8 +12,8 @@ export default {
             detached: this.$parent.detached,
             table: this.$parent.table,
             form: new Form({
-                morphable_type: this.$parent.morphable_type,
-                morphable_id: this.$parent.morphable_id,
+                entity_type: this.$parent.entity_type,
+                entity_id: this.$parent.entity_id,
             }),
         }
     },

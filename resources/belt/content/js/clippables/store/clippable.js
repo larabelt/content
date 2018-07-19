@@ -21,13 +21,13 @@ export default {
     },
     actions: {
         active: ({commit, state}, attachment) => {
-            let form = new Form({morphable_type: state.morphableType, morphable_id: state.morphableID});
+            let form = new Form({entity_type: state.morphableType, entity_id: state.morphableID});
             form.setData(attachment);
             commit('active', form);
         },
         attach: ({commit, state}, attachment) => {
 
-            let form = new Form({morphable_type: state.morphableType, morphable_id: state.morphableID});
+            let form = new Form({entity_type: state.morphableType, entity_id: state.morphableID});
             form.setData({id: attachment.id});
 
             return new Promise((resolve, reject) => {
@@ -43,12 +43,12 @@ export default {
         },
         attached: (context, attached) => context.commit('attached', attached),
         construct: ({commit, state}, attachment) => {
-            let table = new Table({morphable_type: state.morphableType, morphable_id: state.morphableID});
+            let table = new Table({entity_type: state.morphableType, entity_id: state.morphableID});
             commit('table', table);
         },
         detach: ({commit, state}, id) => {
 
-            let form = new Form({morphable_type: state.morphableType, morphable_id: state.morphableID});
+            let form = new Form({entity_type: state.morphableType, entity_id: state.morphableID});
 
             return new Promise((resolve, reject) => {
                 form.destroy(id)
@@ -66,7 +66,7 @@ export default {
              * Just get attachment ids for convenience
              */
             commit('attached', []);
-            let table = new Table({morphable_type: state.morphableType, morphable_id: state.morphableID});
+            let table = new Table({entity_type: state.morphableType, entity_id: state.morphableID});
             table.query.fields = 'attachment_id';
             table.index()
                 .then((response) => {
@@ -86,7 +86,7 @@ export default {
         },
         move: ({commit, state}, params) => {
 
-            let form = new Form({morphable_type: state.morphableType, morphable_id: state.morphableID});
+            let form = new Form({entity_type: state.morphableType, entity_id: state.morphableID});
 
             form.setData({
                 id: state.active.id,

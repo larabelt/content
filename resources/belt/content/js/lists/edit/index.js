@@ -13,12 +13,12 @@ export default {
                 return {
                     form: this.$parent.form,
                     list: this.$parent.list,
-                    morphable_id: this.$parent.morphable_id,
+                    entity_id: this.$parent.entity_id,
                 }
             },
             methods: {
                 submit() {
-                    Events.$emit('lists:' + this.morphable_id + ':updating', this.form);
+                    Events.$emit('lists:' + this.entity_id + ':updating', this.form);
                     this.form.submit();
                 }
             },

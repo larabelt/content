@@ -6,8 +6,8 @@ export default {
     mixins: [block],
     data() {
         return {
-            morphable_type: 'blocks',
-            morphable_id: this.$route.params.id,
+            entity_type: 'blocks',
+            entity_id: this.$route.params.id,
             block_id: this.$route.params.id,
         }
     },
@@ -22,7 +22,7 @@ export default {
             return this.block;
         },
         storeKey() {
-            return 'blocks' + this.morphable_id;
+            return 'blocks' + this.entity_id;
         },
     },
     components: {

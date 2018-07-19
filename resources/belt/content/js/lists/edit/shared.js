@@ -6,8 +6,8 @@ export default {
     mixins: [list],
     data() {
         return {
-            morphable_type: 'lists',
-            morphable_id: this.$route.params.id,
+            entity_type: 'lists',
+            entity_id: this.$route.params.id,
             list_id: this.$route.params.id,
         }
     },
@@ -26,7 +26,7 @@ export default {
             return _.get(this.config, 'sectionable', false);
         },
         storeKey() {
-            return 'lists' + this.morphable_id;
+            return 'lists' + this.entity_id;
         },
     },
     components: {

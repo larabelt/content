@@ -7,7 +7,7 @@ export default {
         return {
             table: this.$parent.table,
             form: new Form({
-                morphable_id: this.$parent.morphable_id,
+                entity_id: this.$parent.entity_id,
             }),
         }
     },

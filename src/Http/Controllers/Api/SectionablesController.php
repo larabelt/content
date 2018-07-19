@@ -3,7 +3,7 @@
 namespace Belt\Content\Http\Controllers\Api;
 
 use Belt\Core\Http\Controllers\ApiController;
-use Belt\Core\Http\Controllers\Morphable;
+use Belt\Core\Http\Controllers\Behaviors\Morphable;
 use Belt\Content\Http\Controllers\Compiler;
 use Belt\Content\Http\Requests;
 use Belt\Content\Section;
@@ -61,7 +61,7 @@ class SectionablesController extends ApiController
     public function index(Request $request, $owner_type, $owner_id)
     {
 
-        $owner = $this->morphable($owner_type, $owner_id);
+        $owner = $this->morph($owner_type, $owner_id);
 
         $this->authorize(['view', 'create', 'update', 'delete'], $owner);
 
@@ -94,7 +94,7 @@ class SectionablesController extends ApiController
      */
     public function store(Requests\StoreSection $request, $owner_type, $owner_id)
     {
-        $owner = $this->morphable($owner_type, $owner_id);
+        $owner = $this->morph($owner_type, $owner_id);
 
         $this->authorize('update', $owner);
 
@@ -133,7 +133,7 @@ class SectionablesController extends ApiController
      */
     public function show($owner_type, $owner_id, $id)
     {
-        $owner = $this->morphable($owner_type, $owner_id);
+        $owner = $this->morph($owner_type, $owner_id);
 
         $this->authorize(['view', 'create', 'update', 'delete'], $owner);
 
@@ -159,7 +159,7 @@ class SectionablesController extends ApiController
     public function update(Requests\UpdateSection $request, $owner_type, $owner_id, $id)
     {
 
-        $owner = $this->morphable($owner_type, $owner_id);
+        $owner = $this->morph($owner_type, $owner_id);
 
         $this->authorize('update', $owner);
 
@@ -200,7 +200,7 @@ class SectionablesController extends ApiController
      */
     public function destroy($owner_type, $owner_id, $id)
     {
-        $owner = $this->morphable($owner_type, $owner_id);
+        $owner = $this->morph($owner_type, $owner_id);
 
         $this->authorize('update', $owner);
 

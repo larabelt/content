@@ -22,12 +22,12 @@ export default {
     actions: {
         config: (context, value) => context.commit('config', value),
         construct: ({dispatch}, options) => {
-            dispatch('params/set', {morphType: 'sections', morphID: options.id});
+            dispatch('params/set', {entity_type: 'sections', entity_id: options.id});
         },
         data: (context, value) => context.commit('data', value),
         load: ({dispatch, commit}, section) => {
             commit('data', section.data());
-            dispatch('config/set', {morphType: 'sections', configKey: section.template});
+            dispatch('config/set', {entity_type: 'sections', configKey: section.template});
             dispatch('config/load');
         },
     },

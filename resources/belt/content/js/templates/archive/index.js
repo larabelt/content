@@ -15,7 +15,7 @@ export default {
         },
         templateType: {
             default: function () {
-                return this.$parent.morphable_type;
+                return this.$parent.entity_type;
             }
         },
     },
@@ -46,7 +46,7 @@ export default {
             return _.keys(this.dropdown)[0];
         },
         type() {
-            return this.templateType ? this.templateType : this.$parent.morphable_type;
+            return this.templateType ? this.templateType : this.$parent.entity_type;
         }
     },
     template: html

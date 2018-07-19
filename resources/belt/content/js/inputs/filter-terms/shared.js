@@ -39,7 +39,7 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch('filterTerms/morphableType', this.morphable_type);
+        this.$store.dispatch('filterTerms/morphableType', this.entity_type);
     },
     methods: {
         emptyDetached() {

@@ -9,7 +9,7 @@ export default {
     },
     data() {
         return {
-            morphable_id: this.item.id,
+            entity_id: this.item.id,
         }
     },
     computed: {
@@ -17,7 +17,7 @@ export default {
             return _.has(this.$parent.highlighted, this.item.id);
         },
         list_id() {
-            return this.$parent.morphable_id;
+            return this.$parent.entity_id;
         },
         mode() {
             return 'default';

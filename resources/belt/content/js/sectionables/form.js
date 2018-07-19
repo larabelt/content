@@ -12,11 +12,11 @@ class Form extends BaseForm {
         super(options);
 
         // service
-        if (options.morphable_id) {
-            this.morphable_id = options.morphable_id;
-            this.morphable_type = options.morphable_type;
+        if (options.entity_id) {
+            this.entity_id = options.entity_id;
+            this.entity_type = options.entity_type;
         }
-        let baseUrl = `/api/v1/${this.morphable_type}/${this.morphable_id}/sections/`;
+        let baseUrl = `/api/v1/${this.entity_type}/${this.entity_id}/sections/`;
         this.service = new BaseService({baseUrl: baseUrl});
 
         // data

@@ -56,8 +56,6 @@ class HandlesController extends ApiController
     {
         $this->authorize('create', Handle::class);
 
-        $this->morphRequest($request, 'handleable');
-
         $input = $request->all();
 
         $handle = $this->handles->create(['url' => $input['url']]);

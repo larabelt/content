@@ -7,14 +7,14 @@ export default {
     },
     data() {
         return {
-            morphable_id: this.$parent.morphable_id,
-            morphable_type: this.$parent.morphable_type,
+            entity_id: this.$parent.entity_id,
+            entity_type: this.$parent.entity_type,
             active: this.$parent.active,
             creating: this.$parent.creating,
             first: this.$parent.first,
             form: new Form({
-                morphable_type: this.$parent.morphable_type,
-                morphable_id: this.$parent.morphable_id,
+                entity_type: this.$parent.entity_type,
+                entity_id: this.$parent.entity_id,
             }),
             moving: this.$parent.moving,
             paramable: this.$parent.active,

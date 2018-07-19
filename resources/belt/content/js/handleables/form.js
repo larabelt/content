@@ -11,12 +11,12 @@ class Form extends BaseForm {
     constructor(options = {}) {
         super(options);
 
-        let baseUrl = `/api/v1/${this.morphable_type}/${this.morphable_id}/handles/`;
+        let baseUrl = `/api/v1/${this.entity_type}/${this.entity_id}/handles/`;
 
         this.service = new BaseService({baseUrl: baseUrl});
         this.setData({
-            //handleable_id: this.morphable_id,
-            //handleable_type: this.morphable_type,
+            //handleable_id: this.entity_id,
+            //handleable_type: this.entity_type,
             is_active: 1,
             is_default: 0,
             config_name: 'alias',

@@ -5,7 +5,7 @@ class Table extends BaseTable {
 
     constructor(options = {}) {
         super(options);
-        let baseUrl = `/api/v1/lists/${this.morphable_id}/items/`;
+        let baseUrl = `/api/v1/lists/${this.entity_id}/items/`;
         this.service = new BaseService({baseUrl: baseUrl});
     }
 

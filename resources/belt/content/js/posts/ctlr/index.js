@@ -10,8 +10,8 @@ import index_html from 'belt/content/js/posts/templates/index.html';
 export default {
     data() {
         return {
-            morphable_type: 'posts',
-            morphable_id: null,
+            entity_type: 'posts',
+            entity_id: null,
         }
     },
     components: {

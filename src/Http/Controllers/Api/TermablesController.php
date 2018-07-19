@@ -59,7 +59,7 @@ class TermablesController extends ApiController
     public function index(Request $request, $termable_type, $termable_id)
     {
 
-        $owner = $this->morphable($termable_type, $termable_id);
+        $owner = $this->morph($termable_type, $termable_id);
 
         $this->authorize(['view', 'create', 'update', 'delete'], $owner);
 
@@ -88,7 +88,7 @@ class TermablesController extends ApiController
      */
     public function store(Requests\AttachTerm $request, $termable_type, $termable_id)
     {
-        $owner = $this->morphable($termable_type, $termable_id);
+        $owner = $this->morph($termable_type, $termable_id);
 
         $this->authorize('update', $owner);
 
@@ -119,7 +119,7 @@ class TermablesController extends ApiController
      */
     public function show($termable_type, $termable_id, $id)
     {
-        $owner = $this->morphable($termable_type, $termable_id);
+        $owner = $this->morph($termable_type, $termable_id);
 
         $this->authorize(['view', 'create', 'update', 'delete'], $owner);
 
@@ -141,7 +141,7 @@ class TermablesController extends ApiController
      */
     public function destroy($termable_type, $termable_id, $id)
     {
-        $owner = $this->morphable($termable_type, $termable_id);
+        $owner = $this->morph($termable_type, $termable_id);
 
         $this->authorize('update', $owner);
 

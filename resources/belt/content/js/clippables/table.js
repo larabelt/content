@@ -5,7 +5,7 @@ class AttachmentTable extends BaseTable {
 
     constructor(options = {}) {
         super(options);
-        let baseUrl = `/api/v1/${this.morphable_type}/${this.morphable_id}/attachments/`;
+        let baseUrl = `/api/v1/${this.entity_type}/${this.entity_id}/attachments/`;
         this.service = new BaseService({baseUrl: baseUrl});
         //this.query.template = '';
         this.query.perPage = 10;

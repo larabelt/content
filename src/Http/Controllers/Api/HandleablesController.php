@@ -19,28 +19,56 @@ class HandleablesController extends ApiController
      */
     public $handles;
 
+    /**
+     * HandleablesController constructor.
+     * @param Handle $handle
+     */
     public function __construct(Handle $handle)
     {
         $this->handles = $handle;
     }
 
     /**
-     * Display a listing of the resource.
+     * @param $handleable_type
+     * @param $handleable_id
+     * @param Handle|null $handle
+     * @return mixed
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     */
+    private function handleable($handleable_type, $handleable_id, Handle $handle = null)
+    {
+        $handleable = $this->morph($handleable_type, $handleable_id);
+
+        if ($handle && !$handleable->handles->contains($handle->id)) {
+            $this->abort(404, 'handle does not belong to owner');
+        }
+
+        return $handleable;
+    }
+
+    /**
+     * Display a listing of the resource
      *
-     * @param $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $handleable_type
+     * @param $handleable_id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request, $handleable_type, $handleable_id)
     {
         $request = Requests\PaginateHandles::extend($request);
 
-        $owner = $this->morphable($handleable_type, $handleable_id);
+        $handleable = $this->handleable($handleable_type, $handleable_id);
 
-        $this->authorize(['view', 'create', 'update', 'delete'], $owner);
+        $this->authorize(['view', 'create', 'update', 'delete'], $handleable);
 
         $request->merge([
-            'handleable_id' => $owner->id,
-            'handleable_type' => $owner->getMorphClass()
+            'handleable_id' => $handleable->id,
+            'handleable_type' => $handleable->getMorphClass()
         ]);
 
         $qb = $this->handles->query();
@@ -53,17 +81,21 @@ class HandleablesController extends ApiController
     }
 
     /**
-     * Store a newly created resource in glue.
+     * Store a newly created resource
      *
-     * @param  Requests\StoreHandle $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param Requests\StoreHandle $request
+     * @param $handleable_type
+     * @param $handleable_id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Requests\StoreHandle $request, $handleable_type, $handleable_id)
     {
-        $owner = $this->morphable($handleable_type, $handleable_id);
+        $handleable = $this->handleable($handleable_type, $handleable_id);
 
-        $this->authorize('update', $owner);
+        $this->authorize('update', $handleable);
 
         $input = $request->all();
 
@@ -87,39 +119,43 @@ class HandleablesController extends ApiController
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource
      *
-     * @param  Handle $handle
-     *
-     * @return \Illuminate\Http\Response
+     * @param $handleable_type
+     * @param $handleable_id
+     * @param $handle
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show($handleable_type, $handleable_id, $handle)
     {
-        $owner = $this->morphable($handleable_type, $handleable_id);
+        $handleable = $this->handleable($handleable_type, $handleable_id, $handle);
 
-        $this->authorize(['view', 'create', 'update', 'delete'], $owner);
-
-        $this->morphableContains($owner, 'handles', $handle);
+        $this->authorize(['view', 'create', 'update', 'delete'], $handleable);
 
         return response()->json($handle);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource
      *
-     * @param  Requests\UpdateHandle $request
-     * @param  Handle $handle
-     *
-     * @return \Illuminate\Http\Response
+     * @param Requests\UpdateHandle $request
+     * @param $handleable_type
+     * @param $handleable_id
+     * @param $handle
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Requests\UpdateHandle $request, $handleable_type, $handleable_id, $handle)
     {
 
-        $owner = $this->morphable($handleable_type, $handleable_id);
+        $handleable = $this->handleable($handleable_type, $handleable_id, $handle);
 
-        $this->authorize('update', $owner);
-
-        $this->morphableContains($owner, 'handles', $handle);
+        $this->authorize('update', $handleable);
 
         $input = $request->all();
 
@@ -138,19 +174,21 @@ class HandleablesController extends ApiController
     }
 
     /**
-     * Remove the specified resource from glue.
+     * Remove the specified resource
      *
-     * @param  Handle $handle
-     *
-     * @return \Illuminate\Http\Response
+     * @param $handleable_type
+     * @param $handleable_id
+     * @param $handle
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy($handleable_type, $handleable_id, $handle)
     {
-        $owner = $this->morphable($handleable_type, $handleable_id);
+        $handleable = $this->handleable($handleable_type, $handleable_id, $handle);
 
-        $this->authorize('update', $owner);
-
-        $this->morphableContains($owner, 'handles', $handle);
+        $this->authorize('update', $handleable);
 
         $handle->delete();
 

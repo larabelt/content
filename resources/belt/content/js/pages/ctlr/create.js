@@ -17,7 +17,7 @@ export default {
             },
             methods: {
                 submit() {
-                    Events.$emit('pages:' + this.morphable_id + ':saving', this.form);
+                    Events.$emit('pages:' + this.entity_id + ':saving', this.form);
                     this.form.submit();
                 }
             },

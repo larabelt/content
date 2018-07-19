@@ -14,8 +14,8 @@ import index_html from 'belt/content/js/pages/templates/index.html';
 export default {
     data() {
         return {
-            morphable_type: 'places',
-            morphable_id: null,
+            entity_type: 'places',
+            entity_id: null,
         }
     },
     components: {
@@ -23,7 +23,7 @@ export default {
         index: {
             data() {
                 return {
-                    morphable_type: 'places',
+                    entity_type: 'places',
                     table: new Table({router: this.$router, query: {term: null}}),
                 }
             },

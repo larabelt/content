@@ -10,8 +10,8 @@ export default {
     data() {
         return {
             form: new Form(),
-            morphable_type: 'attachments',
-            morphable_id: this.$route.params.id,
+            entity_type: 'attachments',
+            entity_id: this.$route.params.id,
         }
     },
     components: {
@@ -19,7 +19,7 @@ export default {
         tabs: {template: tabs_html},
     },
     mounted() {
-        this.form.show(this.morphable_id);
+        this.form.show(this.entity_id);
     },
     template: edit_html,
 }

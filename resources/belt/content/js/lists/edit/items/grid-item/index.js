@@ -17,7 +17,7 @@ export default {
             return _.has(this.$parent.highlighted, this.item.id);
         },
         list_id() {
-            return this.$parent.morphable_id;
+            return this.$parent.entity_id;
         },
         mode() {
             if (this.item.id == this.moving_id) {

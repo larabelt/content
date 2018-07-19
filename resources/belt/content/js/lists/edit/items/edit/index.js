@@ -10,24 +10,24 @@ export default {
                 return {
                     list_id: this.$route.params.id,
                     reloading: false,
-                    morphable_type: 'list_items',
-                    morphable_id: this.$route.params.item_id,
+                    entity_type: 'list_items',
+                    entity_id: this.$route.params.item_id,
                     form: new Form({list_id: this.$route.params.id}),
                 }
             },
             mounted() {
-                this.form.show(this.morphable_id);
+                this.form.show(this.entity_id);
             },
             methods: {
                 close() {
                     this.$router.push({name: 'lists.items', params: {id: this.list_id}});
                 },
                 submit() {
-                    Events.$emit('list_items:' + this.morphable_id + ':updating', this.form);
+                    Events.$emit('list_items:' + this.entity_id + ':updating', this.form);
                     this.reloading = true;
                     this.form.submit()
                         .then(() => {
-                            this.$store.dispatch('params/list_items' + this.morphable_id + '/load')
+                            this.$store.dispatch('params/list_items' + this.entity_id + '/load')
                                 .then(() => {
                                     this.reloading = false;
                                 });

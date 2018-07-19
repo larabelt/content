@@ -21,26 +21,26 @@ export default {
 
     data() {
 
-        let morphable_type = this.$parent.morphable_type;
-        let morphable_id = this.$parent.morphable_id;
+        let entity_type = this.$parent.entity_type;
+        let entity_id = this.$parent.entity_id;
 
         return {
             detached: new Table({
-                morphable_type: morphable_type,
-                morphable_id: morphable_id,
+                entity_type: entity_type,
+                entity_id: entity_id,
                 query: {not: 1, template: this.template},
             }),
             form: new Form({
-                morphable_type: this.$parent.morphable_type,
-                morphable_id: this.$parent.morphable_id,
+                entity_type: this.$parent.entity_type,
+                entity_id: this.$parent.entity_id,
             }),
-            morphable_type: morphable_type,
-            morphable_id: morphable_id,
+            entity_type: entity_type,
+            entity_id: entity_id,
             tabs: new Tabs({router: this.$router, default: 'sort'}),
         }
     },
     beforeMount() {
-        this.$store.dispatch('clippable/set', {morphableType: this.morphable_type, morphableID: this.morphable_id});
+        this.$store.dispatch('clippable/set', {morphableType: this.entity_type, morphableID: this.entity_id});
         this.$store.dispatch('clippable/construct');
         this.table.updateQuery({template: this.template});
         this.$store.dispatch('clippable/load');

@@ -8,16 +8,16 @@ export default {
     data() {
         return {
             form: new Form(),
-            morphable_type: 'pages',
-            morphable_id: this.$route.params.id,
+            entity_type: 'pages',
+            entity_id: this.$route.params.id,
         }
     },
     created() {
         if (!this.$store.state[this.storeKey]) {
             this.$store.registerModule(this.storeKey, store);
-            this.$store.dispatch(this.storeKey + '/construct', {id: this.morphable_id});
+            this.$store.dispatch(this.storeKey + '/construct', {id: this.entity_id});
         }
-        this.form.show(this.morphable_id)
+        this.form.show(this.entity_id)
             .then(() => {
                 this.$store.dispatch(this.storeKey + '/load', this.form);
             });
@@ -31,7 +31,7 @@ export default {
             return _.get(this.config, 'sectionable', false);
         },
         storeKey() {
-            return 'pages' + this.morphable_id;
+            return 'pages' + this.entity_id;
         },
     },
     components: {

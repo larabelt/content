@@ -5,7 +5,7 @@ class SectionTable extends BaseTable {
 
     constructor(options = {}) {
         super(options);
-        let baseUrl = `/api/v1/${this.morphable_type}/${this.morphable_id}/sections/`;
+        let baseUrl = `/api/v1/${this.entity_type}/${this.entity_id}/sections/`;
         this.service = new BaseService({baseUrl: baseUrl});
     }
 

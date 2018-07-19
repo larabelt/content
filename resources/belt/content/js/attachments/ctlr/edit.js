@@ -11,7 +11,7 @@ export default {
             data() {
                 return {
                     form: this.$parent.form,
-                    morphable_id: this.$parent.morphable_id,
+                    entity_id: this.$parent.entity_id,
                 }
             },
             components: {

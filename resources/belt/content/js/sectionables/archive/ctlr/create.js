@@ -13,8 +13,8 @@ export default {
             show: false,
             activeGroup: false,
             form: new Form({
-                morphable_id: this.$parent.morphable_id,
-                morphable_type: this.$parent.morphable_type,
+                entity_id: this.$parent.entity_id,
+                entity_type: this.$parent.entity_type,
             }),
         }
     },
