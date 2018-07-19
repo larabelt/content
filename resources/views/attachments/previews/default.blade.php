@@ -4,6 +4,6 @@
 
 <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-        @include('belt-clip::attachments.previews.thumbnail')
+        @include('belt-content::attachments.previews.thumbnail')
     </div>
 </div>

@@ -3,7 +3,7 @@
 return [
 
     // Required. A blade view path to the main template layout.
-    'path' => 'belt-clip::attachments.sections.default',
+    'path' => 'belt-content::attachments.sections.default',
 
     // A blade view path that can be extended by the layout found in :path.
     'extends' => null,
@@ -19,7 +19,7 @@ return [
     'builder' => null,
 
     // A blade layout that show can show a snapshot of what the templates structure and/or style will look like when compiled.
-    'preview' => 'belt-clip::attachments.previews.default',
+    'preview' => 'belt-content::attachments.previews.default',
 
     /*
     | A set of custom parameters that belong to the templatable object.

@@ -19,7 +19,7 @@ return [
     'builder' => null,
 
     // A blade layout that show can show a snapshot of what the templates structure and/or style will look like when compiled.
-    'preview' => '',
+    'preview' => 'belt-content::sections.previews.default',
 
     /*
     | A set of custom parameters that belong to the templatable object.

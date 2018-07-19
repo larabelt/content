@@ -7,7 +7,6 @@ use Belt\Content\Behaviors\Clippable;
 use Belt\Content\Lyst;
 use Belt\Content\Attachment;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class ClippableTest extends BeltTestCase
@@ -16,6 +15,23 @@ class ClippableTest extends BeltTestCase
     public function tearDown()
     {
         m::close();
+    }
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        ClippableTestStub::unguard();
+
+        app()['config']->set('belt.templates.clippableTestStub.test', [
+            'resizes' => [
+                'presets' => [
+                    [100, 100],
+                    [200, 200, 'resize'],
+                    [300, 300, 'resize'],
+                ]
+            ]
+        ]);
     }
 
     /**
@@ -34,14 +50,9 @@ class ClippableTest extends BeltTestCase
         $pageMock->shouldReceive('attachments');
         $pageMock->attachments();
 
-//        # getResizePresets
-//        $this->assertNotEmpty(ClippableTestStub::getResizePresets());
-//        $this->assertEmpty(ClippableTestStub3::getResizePresets());
-//        app()['config']->set('belt.content.resize.models.' . ClippableTestStub3::class, [
-//            [100, 100, 'fit'],
-//            [800, 800, 'fit'],
-//        ]);
-//        $this->assertNotEmpty(ClippableTestStub3::getResizePresets());
+        # getResizePresets
+        $clippable = new ClippableTestStub(['template' => 'test']);
+        $this->assertEquals(config('belt.templates.clippableTestStub.test.resizes.presets'), $clippable->getResizePresets());
 
 //        # purgeAttachments
 //        $clippable = new ClippableTestStub();
@@ -110,12 +121,8 @@ class ClippableTest extends BeltTestCase
 class ClippableTestStub extends Model
 {
     use Belt\Core\Behaviors\HasSortableTrait;
+    use Belt\Content\Behaviors\IncludesTemplate;
     use Clippable;
-
-    public static $presets = [
-        100,
-        100
-    ];
 
     public function getMorphClass()
     {
@@ -126,12 +133,8 @@ class ClippableTestStub extends Model
 class ClippableTestStub2 extends Model
 {
     use Belt\Core\Behaviors\HasSortableTrait;
+    use Belt\Content\Behaviors\IncludesTemplate;
     use Clippable;
-
-    public static $presets = [
-        100,
-        100
-    ];
 
     public function getMorphClass()
     {
@@ -142,6 +145,7 @@ class ClippableTestStub2 extends Model
 class ClippableTestStub3 extends Model
 {
     use Belt\Core\Behaviors\HasSortableTrait;
+    use Belt\Content\Behaviors\IncludesTemplate;
     use Clippable;
 
     public function getMorphClass()

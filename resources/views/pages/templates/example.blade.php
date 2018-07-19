@@ -12,7 +12,7 @@
         </div>
         <div class="col-md-9">
             @if($attachment = $page->morphParam('attachments'))
-                @include('belt-clip::attachments.previews.thumbnail')
+                @include('belt-content::attachments.previews.thumbnail')
             @endif
         </div>
     </div>
