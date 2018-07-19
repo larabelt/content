@@ -36,7 +36,7 @@ class ResizeServiceTest extends BeltTestCase
             ],
         ]);
 
-        app()['config']->set('belt.templates.ResizeServiceTestStub1.test', [
+        app()['config']->set('belt.subtypes.ResizeServiceTestStub1.test', [
             'resizes' => [
                 'presets' => [
                     [100, 100],
@@ -46,7 +46,7 @@ class ResizeServiceTest extends BeltTestCase
             ]
         ]);
 
-        app()['config']->set('belt.templates.ResizeServiceTestStub2.test', [
+        app()['config']->set('belt.subtypes.ResizeServiceTestStub2.test', [
             'resizes' => [
                 'presets' => [
                     [300, 300],

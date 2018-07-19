@@ -23,7 +23,7 @@ class ClippableTest extends BeltTestCase
 
         ClippableTestStub::unguard();
 
-        app()['config']->set('belt.templates.clippableTestStub.test', [
+        app()['config']->set('belt.subtypes.clippableTestStub.test', [
             'resizes' => [
                 'presets' => [
                     [100, 100],
@@ -52,7 +52,7 @@ class ClippableTest extends BeltTestCase
 
         # getResizePresets
         $clippable = new ClippableTestStub(['template' => 'test']);
-        $this->assertEquals(config('belt.templates.clippableTestStub.test.resizes.presets'), $clippable->getResizePresets());
+        $this->assertEquals(config('belt.subtypes.clippableTestStub.test.resizes.presets'), $clippable->getResizePresets());
 
 //        # purgeAttachments
 //        $clippable = new ClippableTestStub();

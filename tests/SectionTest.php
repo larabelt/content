@@ -32,7 +32,7 @@ class SectionTest extends BeltTestCase
         # getNameAttribute
         $section = factory(Section::class)->make(['template' => 'foo.bar']);
         $this->assertEquals('Foo [Bar]', $section->getNameAttribute());
-        app()['config']->set('belt.templates.sections.foo.bar.name', function () {
+        app()['config']->set('belt.subtypes.sections.foo.bar.name', function () {
             return 'foo';
         });
         $this->assertEquals('foo', $section->getNameAttribute());
@@ -45,7 +45,7 @@ class SectionTest extends BeltTestCase
         $this->assertTrue(isset($array['children']));
 
         # preview
-        app()['config']->set('belt.templates.sections.foo.bar.preview', function () {
+        app()['config']->set('belt.subtypes.sections.foo.bar.preview', function () {
             return view('belt-content::sections.previews.default', ['section' => $this]);
         });
         $params = new \Illuminate\Database\Eloquent\Collection();

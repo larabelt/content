@@ -17,7 +17,7 @@ class CompilerFunctionalTest extends Testing\BeltTestCase
 
     public function testAsAnonymousUser()
     {
-        app()['config']->set('belt.templates.pages.default.force_compile', true);
+        app()['config']->set('belt.subtypes.pages.default.force_compile', true);
 
         # show forces compile for template
         $response = $this->json('GET', '/pages/1');
