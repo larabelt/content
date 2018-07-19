@@ -91,8 +91,8 @@ class ResizeServiceTest extends BeltTestCase
     {
         $attachments1 = $this->attachments([1, 2, 3]);
         $attachments2 = $this->attachments([4, 5, 6]);
-        $presets1 = (new ResizeServiceTestStub1(['template' => 'test']))->getResizePresets();
-        $presets2 = (new ResizeServiceTestStub2(['template' => 'test']))->getResizePresets();
+        $presets1 = (new ResizeServiceTestStub1(['subtype' => 'test']))->getResizePresets();
+        $presets2 = (new ResizeServiceTestStub2(['subtype' => 'test']))->getResizePresets();
 
         app()['config']->set('belt.content.resize.models', [
             ResizeServiceTestStub1::class => $presets1,
@@ -129,7 +129,7 @@ class ResizeServiceTest extends BeltTestCase
     public function testQuery()
     {
         $attachments1 = $this->attachments([1, 2, 3]);
-        $presets1 = (new ResizeServiceTestStub1(['template' => 'test']))->getResizePresets();
+        $presets1 = (new ResizeServiceTestStub1(['subtype' => 'test']))->getResizePresets();
 
         $qb = m::mock(Builder::class);
         $qb->shouldReceive('select')->andReturnSelf();
@@ -178,7 +178,7 @@ class ResizeServiceTest extends BeltTestCase
         $attachment = $this->attachments([1])->first();
         $attachment->resizes->push(factory(Resize::class)->make(['attachment' => $attachment, 'width' => 100, 'height' => 100]));
 
-        $presets = (new ResizeServiceTestStub1(['template' => 'test']))->getResizePresets();
+        $presets = (new ResizeServiceTestStub1(['subtype' => 'test']))->getResizePresets();
 
         $resizeRepo = m::mock(Resize::class);
         $resizeRepo->shouldReceive('unguard')->twice();

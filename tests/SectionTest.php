@@ -30,7 +30,7 @@ class SectionTest extends BeltTestCase
     public function test()
     {
         # getNameAttribute
-        $section = factory(Section::class)->make(['template' => 'foo.bar']);
+        $section = factory(Section::class)->make(['subtype' => 'foo.bar']);
         $this->assertEquals('Foo [Bar]', $section->getNameAttribute());
         app()['config']->set('belt.subtypes.sections.foo.bar.name', function () {
             return 'foo';

@@ -16,7 +16,7 @@ class StoreListItem extends FormRequest
     public function rules()
     {
         return [
-            'template' => 'required',
+            'subtype' => 'required',
         ];
     }
 

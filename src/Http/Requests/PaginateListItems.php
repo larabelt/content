@@ -31,7 +31,7 @@ class PaginateListItems extends PaginateRequest
      * @var Belt\Core\Pagination\PaginationQueryModifier[]
      */
     public $queryModifiers = [
-        Belt\Content\Pagination\TemplateQueryModifier::class,
+        Belt\Content\Pagination\SubtypeQueryModifier::class,
     ];
 
     /**

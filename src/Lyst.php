@@ -107,7 +107,7 @@ class Lyst extends Model implements
 
         foreach ($list->items as $oldItem) {
             $newItem = $clone->items()->create([
-                'template' => $oldItem->subtype,
+                'subtype' => $oldItem->subtype,
                 'position' => $oldItem->position,
             ]);
             foreach ($oldItem->params as $param) {

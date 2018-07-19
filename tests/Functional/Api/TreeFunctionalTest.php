@@ -49,7 +49,7 @@ class TreeFunctionalTest extends Testing\BeltTestCase
     public function addSection()
     {
         $response = $this->json('POST', '/api/v1/pages/1/sections', [
-            'template' => 'sections.block',
+            'subtype' => 'sections.block',
         ]);
 
         $this->assertNotEmpty(array_get($response->json(), 'id'));

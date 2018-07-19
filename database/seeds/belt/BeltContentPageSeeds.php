@@ -29,7 +29,7 @@ class BeltContentPageSeeds extends Seeder
         $page = Page::where('slug', 'sectioned')->first();
         Section::where('owner_id', $page->id)->where('owner_type', 'pages')->delete();
         $data = factory(Page::class)->make([
-            'template' => 'default',
+            'subtype' => 'default',
             'is_active' => true,
             'slug' => 'sectioned',
             'body' => null
@@ -39,25 +39,25 @@ class BeltContentPageSeeds extends Seeder
 
         # section w/breadcrumbs
         $section = $this->section($page);
-        $this->custom($section, ['template' => 'custom.breadcrumbs'], [
+        $this->custom($section, ['subtype' => 'custom.breadcrumbs'], [
             'menu' => 'example',
             'active' => '/products/tools/weird'
         ]);
 
         # section w/menus
         $section = $this->section($page);
-        $leftSection = $this->section($section, 'sections', ['template' => 'containers.width-3']);
-        $this->menu($leftSection, ['template' => 'menus.default'], [
+        $leftSection = $this->section($section, 'sections', ['subtype' => 'containers.width-3']);
+        $this->menu($leftSection, ['subtype' => 'menus.default'], [
             'menu' => 'example',
             'active' => '/products/tools/weird'
         ]);
-        $rightSection = $this->section($section, 'sections', ['template' => 'containers.width-9']);
+        $rightSection = $this->section($section, 'sections', ['subtype' => 'containers.width-9']);
         $this->block($rightSection, [], []);
 
         # section w/custom
         $section = $this->section($page);
         $this->block($section, [], ['class' => 'col-md-6']);
-        $this->custom($section, ['template' => 'custom.contact'], ['class' => 'col-md-6']);
+        $this->custom($section, ['subtype' => 'custom.contact'], ['class' => 'col-md-6']);
 
         # section w/block
         $block = factory(Block::class)->create();
@@ -77,7 +77,7 @@ class BeltContentPageSeeds extends Seeder
         $page = Page::where('slug', 'sectioned')->first();
         Section::where('owner_id', $page->id)->where('owner_type', 'pages')->delete();
         $data = factory(Page::class)->make([
-            'template' => 'default',
+            'subtype' => 'default',
             'is_active' => true,
             'slug' => 'sectioned',
             'body' => null
@@ -88,7 +88,7 @@ class BeltContentPageSeeds extends Seeder
         # page with "example" template
         $page = factory(Page::class)->create([
             'is_active' => true,
-            'template' => 'example',
+            'subtype' => 'example',
             'slug' => 'example',
             'name' => 'Example Template Page',
         ]);
@@ -98,7 +98,7 @@ class BeltContentPageSeeds extends Seeder
         $page->saveParam('blocks', 1);
         $page->saveParam('body', $faker->paragraphs(3, true));
 
-        factory(Page::class)->create(['template' => 'no-cache']);
+        factory(Page::class)->create(['subtype' => 'no-cache']);
 
         factory(Page::class, 25)
             ->create()

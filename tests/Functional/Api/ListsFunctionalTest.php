@@ -40,7 +40,7 @@ class ApiListsFunctionalTest extends Testing\BeltTestCase
         $old->sections()->create(['sectionable_type' => 'sections']);
         $old->attachments()->attach(1);
         $old->items()->create([
-            'template' => 'pages',
+            'subtype' => 'pages',
         ]);
         $old->terms()->attach(1);
         $old->handles()->create(['url' => '/copied-list']);

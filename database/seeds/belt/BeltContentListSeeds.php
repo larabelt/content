@@ -18,7 +18,7 @@ class BeltContentListSeeds extends Seeder
             ->each(function ($list) {
                 for ($i = 1; $i <= 5; $i++) {
                     $item = ListItem::firstOrCreate([
-                        'template' => 'page',
+                        'subtype' => 'page',
                         'list_id' => $list->id,
                     ]);
                     $item->saveParam('pages', $i);

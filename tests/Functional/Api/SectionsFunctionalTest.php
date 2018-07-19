@@ -15,7 +15,7 @@ class SectionsFunctionalTest extends Testing\BeltTestCase
         $response = $this->json('POST', '/api/v1/pages/1/sections', [
             'sectionable_id' => 1,
             'sectionable_type' => 'blocks',
-            'template' => 'blocks',
+            'subtype' => 'blocks',
             'heading' => 'test',
         ]);
         $response->assertStatus(201);

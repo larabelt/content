@@ -27,7 +27,7 @@ class BeltContentPostSeeds extends Seeder
 
                 Section::where('owner_id', $post->id)->where('owner_type', 'posts')->delete();
                 $data = factory(Post::class)->make([
-                    'template' => 'default',
+                    'subtype' => 'default',
                     'is_active' => true,
                     'body' => null
                 ]);

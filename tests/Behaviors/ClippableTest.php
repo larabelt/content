@@ -51,7 +51,7 @@ class ClippableTest extends BeltTestCase
         $pageMock->attachments();
 
         # getResizePresets
-        $clippable = new ClippableTestStub(['template' => 'test']);
+        $clippable = new ClippableTestStub(['subtype' => 'test']);
         $this->assertEquals(config('belt.subtypes.clippableTestStub.test.resizes.presets'), $clippable->getResizePresets());
 
 //        # purgeAttachments

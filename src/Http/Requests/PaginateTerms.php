@@ -51,7 +51,7 @@ class PaginateTerms extends PaginateRequest
     public $queryModifiers = [
         Belt\Core\Pagination\InQueryModifier::class,
         Belt\Core\Pagination\IsActiveQueryModifier::class,
-        Belt\Content\Pagination\TemplateQueryModifier::class,
+        Belt\Content\Pagination\SubtypeQueryModifier::class,
     ];
 
     /**

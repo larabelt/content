@@ -22,7 +22,7 @@ trait BeltContentHasSectionsSeedsTrait
         }
 
         $section = factory(Section::class)->create([
-            'template' => array_get($options, 'template', 'containers.default'),
+            'subtype' => array_get($options, 'template', 'containers.default'),
             'parent_id' => $parent ? $parent->id : null,
             'owner_id' => $owner ? $owner->id : $parent->owner_id,
             'owner_type' => $owner ? $owner->getMorphClass() : $parent->owner_type,
@@ -37,7 +37,7 @@ trait BeltContentHasSectionsSeedsTrait
 
     public function block($parent, $options = [], $params = [])
     {
-        $options = array_merge(['template' => 'blocks.default'], $options);
+        $options = array_merge(['subtype' => 'blocks.default'], $options);
 
         $block = factory(Block::class)->create();
 
@@ -56,7 +56,7 @@ trait BeltContentHasSectionsSeedsTrait
 
     public function file($parent, $options = [], $params = [])
     {
-        $options = array_merge(['template' => 'attachments.default'], $options);
+        $options = array_merge(['subtype' => 'attachments.default'], $options);
 
         $file = factory(Attachment::class)->create();
 
