@@ -3,7 +3,7 @@
 return [
 
     // Required. A blade view path to the main template layout.
-    'path' => 'belt-content::posts.templates.default',
+    'path' => 'belt-content::posts.subtypes.default',
 
     // A blade view path that can be extended by the layout found in :path.
     'extends' => 'belt-content::posts.web.show',

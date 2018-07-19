@@ -28,8 +28,8 @@ class CompileServiceTest extends BeltTestCase
         View::shouldReceive('render')->andReturn('<div>hello</div>');
 
         # compile
-        $page = m::mock(Page::class . '[save,setAttribute,getTemplateViewAttribute]');
-        $page->shouldReceive('getTemplateViewAttribute')->andReturn('default');
+        $page = m::mock(Page::class . '[save,setAttribute,getSubtypeViewAttribute]');
+        $page->shouldReceive('getSubtypeViewAttribute')->andReturn('default');
         $page->shouldReceive('setAttribute')->andReturnSelf();
         $page->shouldReceive('save')->once()->andReturnSelf();
         $page->sections = new Collection();
@@ -98,7 +98,7 @@ class CompileServiceTest extends BeltTestCase
         # cache (unforced)
         $page = factory(Page::class)->make();
         $page->id = 1;
-        $page->template = 'belt-content::pages.templates.default';
+        $page->subtype = 'belt-content::pages.subtypes.default';
         $cacheKey = $page->getHasSectionsCacheKey();
         Cache::shouldReceive('get')->once()->with($cacheKey)->andReturn('compiled');
         $result = $service->cache($page);
@@ -120,7 +120,7 @@ class CompileServiceTest extends BeltTestCase
         # cache (forced)
         $page = factory(Page::class)->make();
         $page->id = 1;
-        $page->template = 'belt-content::pages.templates.default';
+        $page->subtype = 'belt-content::pages.subtypes.default';
         $cacheKey = $page->getHasSectionsCacheKey();
         Cache::shouldReceive('forget')->twice()->with($cacheKey);
         Cache::shouldReceive('get')->once()->with($cacheKey)->andReturn(false);

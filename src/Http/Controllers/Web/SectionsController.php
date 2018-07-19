@@ -24,7 +24,7 @@ class SectionsController extends BaseController
 
         $this->authorize('update', $section);
 
-        $preview = view($section->template_view, ['section' => $section])->render();
+        $preview = view($section->subtype_view, ['section' => $section])->render();
 
         return view('belt-content::sections.web.preview', ['preview' => $preview]);
     }

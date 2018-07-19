@@ -7,7 +7,7 @@
 @section('main')
 
     <div class="container">
-        @include($post->template_view)
+        @include($post->subtype_view)
     </div>
 
 @endsection

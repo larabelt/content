@@ -24,7 +24,7 @@ class SectionTest extends BeltTestCase
      * @covers \Belt\Content\Section::sectionable
      * zcovers \Belt\Content\Section::copy
      * zcovers \Belt\Content\Section::getRelationshipFromMethod
-     * zcovers \Belt\Content\Section::getTemplateGroup
+     * zcovers \Belt\Content\Section::getSubtypeGroup
      * zcovers \Belt\Content\Section::getSectionName
      */
     public function test()
@@ -38,7 +38,7 @@ class SectionTest extends BeltTestCase
         $this->assertEquals('foo', $section->getNameAttribute());
 
         # getTemplateSubgroupAttribute
-        $this->assertEquals('foo', $section->templateSubgroup);
+        $this->assertEquals('foo', $section->subtypeSubgroup);
 
         # toArray
         $array = $section->toArray();

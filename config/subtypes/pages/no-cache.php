@@ -3,7 +3,7 @@
 return [
 
     // Required. A blade view path to the main template layout.
-    'path' => 'belt-content::pages.templates.default',
+    'path' => 'belt-content::pages.subtypes.default',
 
     // A blade view path that can be extended by the layout found in :path.
     'extends' => 'belt-content::pages.web.show',
@@ -22,7 +22,7 @@ return [
     'preview' => 'belt-content::sections.previews.default',
 
     // By default, compiled views are cached. Set the value below to false, to avoid this behavior.
-    'force_compile' => false,
+    'force_compile' => true,
 
     // Sectionable. Allow highly customizable page to be built via the Sections tab.
     'sectionable' => false,
@@ -44,10 +44,22 @@ return [
     */
 
     'params' => [
+        'attachment' => [
+            'type' => 'attachments',
+            'label' => 'Cool Attachment',
+            'description' => 'cool description',
+        ],
         'body' => [
             'type' => 'editor',
             'label' => 'Body',
             'description' => 'Enter main content of page here.',
+        ],
+        'class' => [
+            'type' => 'select',
+            'options' => [
+                'col-md-3' => 'default',
+                'col-md-12' => 'wide',
+            ],
         ],
     ],
 

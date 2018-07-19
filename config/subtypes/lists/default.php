@@ -3,10 +3,10 @@
 return [
 
     // Required. A blade view path to the main template layout.
-    'path' => 'belt-content::pages.templates.default',
+    'path' => 'belt-content::lists.subtypes.default',
 
     // A blade view path that can be extended by the layout found in :path.
-    'extends' => 'belt-content::pages.web.show',
+    'extends' => 'belt-content::lists.web.show',
 
     // The human-readable name of your template.
     'label' => '',
@@ -22,10 +22,13 @@ return [
     'preview' => 'belt-content::sections.previews.default',
 
     // By default, compiled views are cached. Set the value below to false, to avoid this behavior.
-    'force_compile' => true,
+    'force_compile' => false,
 
     // Sectionable. Allow highly customizable page to be built via the Sections tab.
     'sectionable' => false,
+
+    // Allowed related types. A comma-delimited string of data types that can be added to this list.
+    'indexable_types' => '',
 
     /*
     | A set of custom parameters that belong to the templatable object.
@@ -44,22 +47,22 @@ return [
     */
 
     'params' => [
-        'attachment' => [
-            'type' => 'attachments',
-            'label' => 'Cool Attachment',
-            'description' => 'cool description',
-        ],
-        'body' => [
-            'type' => 'editor',
-            'label' => 'Body',
-            'description' => 'Enter main content of page here.',
-        ],
         'class' => [
             'type' => 'select',
+            'label' => 'class',
             'options' => [
                 'col-md-3' => 'default',
                 'col-md-12' => 'wide',
-            ],
+            ]
+        ],
+        'icon' => [
+            'type' => 'select',
+            'label' => 'Icon',
+            'options' => [
+                'default' => 'default',
+                'edit' => 'edit',
+                'create' => 'create',
+            ]
         ],
     ],
 

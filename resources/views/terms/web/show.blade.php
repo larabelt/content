@@ -7,7 +7,7 @@
 @section('main')
 
     <div class="container">
-        @include($term->template_view)
+        @include($term->subtype_view)
     </div>
 
 @endsection

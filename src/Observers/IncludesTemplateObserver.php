@@ -31,7 +31,7 @@ class IncludesSubtypesObserver
      */
     public function saved(IncludesSubtypesInterface $item)
     {
-        $item->reconcileTemplateParams();
+        $item->reconcileSubtypeParams();
     }
 
 }

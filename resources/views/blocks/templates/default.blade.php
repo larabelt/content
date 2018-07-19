@@ -4,6 +4,6 @@
 
 <div class="block">
 
-    @include($section->template_view, ['block' => $block])
+    @include($section->subtype_view, ['block' => $block])
 
 </div>

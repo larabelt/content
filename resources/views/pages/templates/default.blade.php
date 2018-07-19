@@ -5,7 +5,7 @@
 <div class="page">
 
     @foreach($page->sections as $section)
-        @include($section->template_view, ['section' => $section])
+        @include($section->subtype_view, ['section' => $section])
     @endforeach
 
 </div>

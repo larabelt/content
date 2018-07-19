@@ -54,7 +54,7 @@ class Section extends Model implements
      */
     public function getNameAttribute()
     {
-        $names = explode('.', $this->template);
+        $names = explode('.', $this->subtype);
 
         $name = isset($names[0]) ? title_case(str_singular($names[0])) : '???';
         if (isset($names[1]) && $names[1] != 'default') {
@@ -75,7 +75,7 @@ class Section extends Model implements
      */
     public function getTemplateSubgroupAttribute()
     {
-        return array_first(explode('.', $this->template));
+        return array_first(explode('.', $this->subtype));
     }
 
     /**
