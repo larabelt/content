@@ -23,11 +23,7 @@ class CatchAllFunctionalTest extends Testing\BeltTestCase
         ]);
         $response->assertStatus(201);
 
-
-
         $response = $this->get('/catch-all-example');
-
-        $response->dump();
         $response->assertStatus(200);
     }
 
