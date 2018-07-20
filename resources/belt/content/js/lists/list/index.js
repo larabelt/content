@@ -1,5 +1,5 @@
-import filterPriority from 'belt/core/js/inputs/priority/filter';
-import filterSearch from 'belt/core/js/inputs/filter-search';
+
+
 import Form from 'belt/content/js/lists/form';
 import Table from 'belt/content/js/lists/table';
 
@@ -39,8 +39,8 @@ export default {
                 }
             },
             components: {
-                filterPriority,
-                filterSearch,
+                
+                
             },
             template: index_html,
         },

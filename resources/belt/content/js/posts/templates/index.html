@@ -6,7 +6,7 @@
                 <filter-search @filter-search-update="filter"></filter-search>
             </div>
             <div class="pull-left">
-                <filter-templates @filter-template-update="filter" entity_type="lists"></filter-templates>
+                <filter-subtypes @filter-subtype-update="filter" entity_type="lists"></filter-subtypes>
             </div>
             <div class="pull-left">
                 <filter-terms></filter-terms>
@@ -30,7 +30,7 @@
                     </th>
                     <th>
                         Type
-                        <column-sorter :column="'posts.template'"></column-sorter>
+                        <column-sorter :column="'posts.subtype'"></column-sorter>
                     </th>
                     <th>
                         Name
@@ -44,7 +44,7 @@
                 <tbody>
                 <tr v-for="item in table.items">
                     <td>{{ item.id }}</td>
-                    <td>{{ item.template }}</td>
+                    <td>{{ item.subtype }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.created_at }}</td>
                     <td>{{ item.updated_at }}</td>

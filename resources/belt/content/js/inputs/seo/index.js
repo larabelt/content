@@ -1,4 +1,4 @@
-import html from 'belt/content/js/base/seo/template.html';
+import html from 'belt/content/js/inputs/seo/template.html';
 
 export default {
     props: {

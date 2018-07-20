@@ -40,7 +40,7 @@ export default {
         }
     },
     beforeMount() {
-        this.$store.dispatch('clippable/set', {morphableType: this.entity_type, morphableID: this.entity_id});
+        this.$store.dispatch('clippable/set', {entity_type: this.entity_type, entity_id: this.entity_id});
         this.$store.dispatch('clippable/construct');
         this.table.updateQuery({template: this.template});
         this.$store.dispatch('clippable/load');

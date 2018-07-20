@@ -1,6 +1,6 @@
 import edit from 'belt/content/js/lists/edit/shared';
 import create from 'belt/content/js/lists/edit/items/create';
-import filterSearch from 'belt/core/js/inputs/filter-search';
+
 import filterType from 'belt/content/js/lists/edit/items/filters/type';
 import search from 'belt/core/js/search';
 import Form from 'belt/content/js/lists/edit/items/form';
@@ -102,7 +102,7 @@ export default {
             components: {
                 create,
                 search,
-                filterSearch,
+                
                 filterType,
                 gridItem,
                 rowItem,

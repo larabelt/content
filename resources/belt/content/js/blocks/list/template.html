@@ -6,7 +6,7 @@
                 <filter-search @filter-search-update="filter">Filter</filter-search>
             </div>
             <div class="pull-left">
-                <filter-templates @filter-template-update="filter" entity_type="blocks"></filter-templates>
+                <filter-subtypes @filter-subtype-update="filter" entity_type="blocks"></filter-subtypes>
             </div>
             <div class="pull-right">
                 <router-link :to="{ name: 'blocks.create' }" :class="'btn btn-primary'">add a block</router-link>
@@ -23,7 +23,7 @@
                         </th>
                         <th>
                             Type
-                            <column-sorter :column="'blocks.template'"></column-sorter>
+                            <column-sorter :column="'blocks.subtype'"></column-sorter>
                         </th>
                         <th>
                             Name
@@ -37,7 +37,7 @@
                 <tbody>
                     <tr v-for="block in table.items">
                         <td>{{ block.id }}</td>
-                        <td>{{ block.template }}</td>
+                        <td>{{ block.subtype }}</td>
                         <td>{{ block.name }}</td>
                         <td>{{ block.created_at }}</td>
                         <td>{{ block.updated_at }}</td>

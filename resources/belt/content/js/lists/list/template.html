@@ -6,7 +6,7 @@
                 <filter-search @filter-search-update="filter">Filter</filter-search>
             </div>
             <div class="pull-left">
-                <filter-templates @filter-template-update="filter" entity_type="lists"></filter-templates>
+                <filter-subtypes @filter-subtype-update="filter" entity_type="lists"></filter-subtypes>
             </div>
             <div class="pull-right">
                 <router-link :to="{ name: 'lists.create' }" :class="'btn btn-primary'">add a list</router-link>
@@ -23,7 +23,7 @@
                         </th>
                         <th>
                             Type
-                            <column-sorter :column="'lists.template'"></column-sorter>
+                            <column-sorter :column="'lists.subtype'"></column-sorter>
                         </th>
                         <th>
                             Name
@@ -37,7 +37,7 @@
                 <tbody>
                     <tr v-for="list in table.items">
                         <td>{{ list.id }}</td>
-                        <td>{{ list.template }}</td>
+                        <td>{{ list.subtype }}</td>
                         <td>{{ list.name }}</td>
                         <td>{{ list.created_at }}</td>
                         <td>{{ list.updated_at }}</td>

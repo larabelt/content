@@ -8,7 +8,7 @@
                 </button>
             </div>
         </div>
-        <subtype-dropdown entity_type="blocks" formKey="block"></subtype-dropdown>
+        <input-subtype entity_type="blocks" formKey="block"></input-subtype>
         <div class="form-group" :class="{ 'has-error': form.error('name') }">
             <label for="name">Name *</label>
             <input  class="form-control" v-model="form.name" placeholder="name" @keydown="form.errors.clear('name')">
@@ -19,7 +19,7 @@
             <input  class="form-control" v-model="form.slug" placeholder="slug">
             <span v-for="error in form.error('slug')" class="text-danger">{{ error }}</span>
         </div>
-        <param-list v-if="form.id" paramable_type="blocks" :paramable_id="entity_id"></param-list>
+        <input-params v-if="form.id" paramable_type="blocks" :paramable_id="entity_id"></input-params>
         <div class="clearfix">
             <div class="pull-right">
                 <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">

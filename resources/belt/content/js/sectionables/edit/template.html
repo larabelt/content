@@ -29,7 +29,7 @@
         <div v-else>
             <!--<params paramable_type="sections" :paramable_id="section.id"></params>-->
             <form @submit.prevent="submit()" @keydown="section.errors.clear($event.target.name)">
-                <param-list paramable_type="sections" :paramable_id="section_id"></param-list>
+                <input-params paramable_type="sections" :paramable_id="section_id"></input-params>
                 <div class="clearfix">
                     <div class="pull-right">
                         <div class="btn-group">

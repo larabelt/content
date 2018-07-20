@@ -1,5 +1,5 @@
-import base from 'belt/core/js/inputs/filter-base';
-import store from 'belt/content/js/inputs/filter-terms/store';
+import base from 'belt/core/js/filters/base';
+import store from 'belt/content/js/filters/terms/default/store';
 
 export default {
     mixins: [base],
@@ -39,7 +39,7 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch('filterTerms/morphableType', this.entity_type);
+        this.$store.dispatch('filterTerms/entity_type', this.entity_type);
     },
     methods: {
         emptyDetached() {

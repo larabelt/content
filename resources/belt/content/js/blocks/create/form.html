@@ -1,6 +1,6 @@
 <div>
     <form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
-        <subtype-dropdown entity_type="blocks" formKey="form" autoset="true"></subtype-dropdown>
+        <input-subtype entity_type="blocks" formKey="form" autoset="true"></input-subtype>
         <div class="form-group" :class="{ 'has-error': form.error('name') }">
             <label for="name">Name *</label>
             <input class="form-control" v-model="form.name" placeholder="name">

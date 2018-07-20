@@ -17,9 +17,9 @@ export default {
         attachments() {
             return this.table.items;
         },
-        hasattachments() {
-            return this.table.items.length;
-        },
+        // hasattachments() {
+        //     return this.table.items.length;
+        // },
         hasHighlighted() {
             let highlighted = this.$store.getters['highlighted/data'];
             return !_.isEmpty(highlighted);
@@ -27,12 +27,12 @@ export default {
         mode() {
             return this.$store.getters['clippable/mode'];
         },
-        entity_id() {
-            return this.$store.getters['clippable/entity_id'];
-        },
-        entity_type() {
-            return this.$store.getters['clippable/entity_type'];
-        },
+        // entity_id() {
+        //     return this.$store.getters['clippable/entity_id'];
+        // },
+        // entity_type() {
+        //     return this.$store.getters['clippable/entity_type'];
+        // },
         table() {
             return this.$store.getters['clippable/table'];
         },

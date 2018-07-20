@@ -9,9 +9,9 @@
     </div>
     <div class="box-body">
         <form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)">
-            <subtype-dropdown v-if="form.id" entity_type="list_items"></subtype-dropdown>
+            <input-subtype v-if="form.id" entity_type="list_items"></input-subtype>
             <i v-if="reloading" class="fa fa-spinner fa-spin"></i>
-            <param-list v-else paramable_type="list_items" :paramable_id="entity_id"></param-list>
+            <input-params v-else paramable_type="list_items" :paramable_id="entity_id"></input-params>
             <div class="clearfix">
                 <div class="pull-right">
                     <div class="btn-group">

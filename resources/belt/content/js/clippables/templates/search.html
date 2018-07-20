@@ -46,7 +46,7 @@
                 <div class="row tile-panels">
                     <template v-for="attachment, index in table.items">
                         <div class="col col-lg-2 col-md-3 col-sm-4">
-                            <div class="tile-panel" :class="{highlighted: highlighted}">
+                            <div class="tile-panel">
                                 <div>
                                     <thumb :attachment="attachment" :open_btn="false"></thumb>
                                     <p class="text-muted truncate">{{ attachment.name }}</p>

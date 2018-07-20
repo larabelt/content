@@ -1,3 +1,9 @@
+import 'belt/content/js/bootstrap/inputs';
+import 'belt/content/js/bootstrap/filters';
+import 'belt/content/js/bootstrap/functions';
+import 'belt/content/js/bootstrap/mixins';
+import 'belt/content/js/bootstrap/tiles';
+
 import attachments from 'belt/content/js/attachments/routes';
 import blocks from 'belt/content/js/blocks/routes';
 import handles from 'belt/content/js/handles/routes';
@@ -6,34 +12,6 @@ import pages from 'belt/content/js/pages/routes';
 import posts from 'belt/content/js/posts/routes';
 import store from 'belt/core/js/store/index';
 import terms from 'belt/content/js/terms/routes';
-
-import seo from 'belt/content/js/base/seo';
-import subtypeDropdown from 'belt/content/js/subtypes/inputs/default';
-
-Vue.component('seo', seo);
-Vue.component('subtype-dropdown', subtypeDropdown);
-
-import inputAttachments from 'belt/content/js/inputs/attachments';
-import inputBlocks from 'belt/content/js/inputs/blocks';
-import inputLists from 'belt/content/js/inputs/lists';
-import inputPages from 'belt/content/js/inputs/pages';
-
-Vue.component('input-attachments', inputAttachments);
-Vue.component('input-blocks', inputBlocks);
-Vue.component('input-lists', inputLists);
-Vue.component('input-pages', inputPages);
-
-import tilePageDefault from 'belt/content/js/pages/tiles/default';
-import tilePageListItem from 'belt/content/js/pages/tiles/list-item';
-
-Vue.component('tile-page-default', tilePageDefault);
-Vue.component('tile-page-list-item', tilePageListItem);
-
-import filterSearch from 'belt/core/js/inputs/filter-search';
-import filterSubtypes from 'belt/content/js/subtypes/filters/default';
-
-Vue.component('filter-search', filterSearch);
-Vue.component('filter-subtypes', filterSubtypes);
 
 window.larabelt.content = _.get(window, 'larabelt.content', {});
 

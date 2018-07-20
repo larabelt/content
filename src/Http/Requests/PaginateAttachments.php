@@ -31,6 +31,7 @@ class PaginateAttachments extends PaginateRequest
     public $sortable = [
         'attachments.id',
         'attachments.name',
+        'attachments.subtype',
         'attachments.created_at',
         'attachments.updated_at',
     ];

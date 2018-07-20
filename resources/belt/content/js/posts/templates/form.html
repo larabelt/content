@@ -1,5 +1,5 @@
 <form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
-    <subtype-dropdown v-if="form.id" entity_type="posts"></subtype-dropdown>
+    <input-subtype v-if="form.id" entity_type="posts"></input-subtype>
     <div class="checkbox">
         <label>
             <input type="checkbox"
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <seo></seo>
+    <input-seo></input-seo>
     <div class="text-right">
         <button class="btn btn-primary" :disabled="form.errors.any()">
             <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>

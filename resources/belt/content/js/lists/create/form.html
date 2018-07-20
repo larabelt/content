@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <priorityDropdown :form="form"></priorityDropdown>
+                <input-priority :form="form"></input-priority>
             </div>
         </div>
         <div class="form-group" :class="{ 'has-error': form.error('hours') }">
@@ -72,7 +72,7 @@
             <belt-editor v-model="form.body"></belt-editor>
             <span v-for="error in form.error('body')" class="text-danger">{{ error }}</span>
         </div>
-        <seo></seo>
+        <input-seo></input-seo>
         <div class="clearfix">
             <div class="pull-right">
                 <div class="btn-group">

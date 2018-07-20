@@ -1,8 +1,3 @@
-import filterSearch from 'belt/core/js/inputs/filter-search';
-import filterTerms from 'belt/content/js/inputs/filter-terms/filter';
-import filterTermsAttached from 'belt/content/js/inputs/filter-terms/attached';
-import filterTermsDetached from 'belt/content/js/inputs/filter-terms/detached';
-
 // helpers
 import Form from 'belt/content/js/pages/form';
 import Table from 'belt/content/js/pages/table';
@@ -51,12 +46,6 @@ export default {
                     form.router = this.$router;
                     form.submit();
                 }
-            },
-            components: {
-                filterSearch,
-                filterTerms,
-                filterTermsAttached,
-                filterTermsDetached,
             },
             template: index_html,
         },

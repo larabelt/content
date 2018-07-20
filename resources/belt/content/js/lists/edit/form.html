@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <subtype-dropdown entity_type="lists" formKey="list"></subtype-dropdown>
+        <input-subtype entity_type="lists" formKey="list"></input-subtype>
         <div class="checkbox" v-if="adminMode == 'admin'">
             <label>
                 <input type="checkbox"
@@ -22,7 +22,7 @@
                 > Is Active
             </label>
         </div>
-        <team-input :form="list">{{ trans('belt-core::teams.label') }}</team-input>
+        <input-team :form="list">{{ trans('belt-core::teams.label') }}</input-team>
         <div class="form-group" :class="{ 'has-error': form.error('name') }">
             <label for="name">Name</label>
             <input class="form-control" v-model="form.name" placeholder="name">
@@ -33,8 +33,8 @@
             <input class="form-control" v-model="form.slug" placeholder="slug">
             <span v-for="error in form.error('slug')" class="text-danger">{{ error }}</span>
         </div>
-        <param-list v-if="form.id" paramable_type="lists"  :paramable_id="entity_id"></param-list>
-        <seo></seo>
+        <input-params v-if="form.id" paramable_type="lists"  :paramable_id="entity_id"></input-params>
+        <input-seo></input-seo>
         <div class="clearfix">
             <div class="pull-right">
                 <div class="btn-group">

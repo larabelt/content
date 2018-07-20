@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <subtype-dropdown v-if="form.id" entity_type="attachments"></subtype-dropdown>
+            <input-subtype v-if="form.id" entity_type="attachments"></input-subtype>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group" :class="{ 'has-error': form.error('title') }">
@@ -34,7 +34,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <param-list v-if="form.id" paramable_type="attachments" :paramable_id="entity_id"></param-list>
+                    <input-params v-if="form.id" paramable_type="attachments" :paramable_id="entity_id"></input-params>
                 </div>
             </div>
 

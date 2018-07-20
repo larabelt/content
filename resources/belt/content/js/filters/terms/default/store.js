@@ -15,7 +15,7 @@ export default {
             state.needle = '';
             state.detached.empty();
         },
-        morphableType: (state, entity_type) => {
+        entity_type: (state, entity_type) => {
             state.entity_type = entity_type;
             state.detached.entity_type = entity_type;
         },
@@ -47,7 +47,7 @@ export default {
     },
     actions: {
         emptyDetached: (context) => context.commit('emptyDetached'),
-        morphableType: (context, entity_type) => context.commit('morphableType', entity_type),
+        entity_type: (context, entity_type) => context.commit('entity_type', entity_type),
         morphableId: (context, entity_id) => context.commit('morphableId', entity_id),
         needle: (context, needle) => context.commit('needle', needle),
         push: (context, term) => {
