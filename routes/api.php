@@ -48,7 +48,7 @@ Route::group([
         });
 
         # config
-        Route::get('config/belt.content.handles.responses/', ConfigController::class . '@show');
+        Route::get('config/belt.subtypes.handles/', ConfigController::class . '@show');
         Route::get('config/belt.subtypes/{key?}', ConfigController::class . '@show');
 
         # handles

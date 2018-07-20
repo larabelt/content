@@ -25,7 +25,7 @@ trait HandleResponses
 
         if ($handle && $handle->is_active) {
 
-            $handleResponseClass = $handle->config('class');
+            $handleResponseClass = $handle->getSubtypeConfig('class');
 
             if (class_exists($handleResponseClass)) {
 

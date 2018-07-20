@@ -5,7 +5,7 @@ class TemplateConfig extends BaseConfig {
 
     constructor(options = {}) {
         super(options);
-        this.service = new BaseService({baseUrl: `/api/v1/config/belt.content.handles.responses/`});
+        this.service = new BaseService({baseUrl: `/api/v1/config/belt.subtypes.handles/`});
     }
 
 }

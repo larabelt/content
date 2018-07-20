@@ -115,7 +115,7 @@ class Handle extends Model implements
 //     */
 //    public function config($key = null, $default = null)
 //    {
-//        $config = ConfigHelper::config('belt.content.handles.responses', $this->subtype) ?: [];
+//        $config = ConfigHelper::config('belt.subtypes.handles', $this->subtype) ?: [];
 //
 //        if (!$key) {
 //            return $config;
@@ -133,7 +133,7 @@ class Handle extends Model implements
             return;
         }
 
-        if (!$this->config('show_default', false)) {
+        if (!$this->getSubtypeConfig('show_default', false)) {
             return;
         }
 

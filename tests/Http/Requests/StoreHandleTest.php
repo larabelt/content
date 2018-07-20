@@ -12,7 +12,7 @@ class StoreHandleTest extends Testing\BeltTestCase
     public function test()
     {
 
-        app()['config']->set('belt.content.handles.responses', [
+        app()['config']->set('belt.subtypes.handles', [
             'default' => [
                 'show_target' => true,
             ],

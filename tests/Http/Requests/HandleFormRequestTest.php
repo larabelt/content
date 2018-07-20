@@ -22,7 +22,7 @@ class HandleFormRequestTest extends Testing\BeltTestCase
      */
     public function test()
     {
-        app()['config']->set('belt.content.handles.responses', [
+        app()['config']->set('belt.subtypes.handles', [
             'default' => [
                 'class' => PermanentRedirectResponse::class,
                 'show_target' => true,

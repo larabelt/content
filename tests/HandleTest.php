@@ -20,8 +20,6 @@ class HandleTest extends BeltTestCase
      * @covers \Belt\Content\Handle::normalizeUrl
      * @covers \Belt\Content\Handle::scopeHandled
      * @covers \Belt\Content\Handle::syncDefault
-     * @covers \Belt\Content\Handle::config
-     * @covers \Belt\Content\Handle::getConfigAttribute
      */
     public function test()
     {
@@ -56,17 +54,6 @@ class HandleTest extends BeltTestCase
         $qb->shouldReceive('where')->with('handles.handleable_id', 1)->andReturnSelf();
         $handle->scopeHandled($qb, 'pages', 1);
 
-        # config
-        app()['config']->set('belt.content.handles.responses.test', [
-            'foo' => 'bar'
-        ]);
-        $handle->setAttribute('subtype', 'test');
-        $this->assertEquals(['foo' => 'bar'], $handle->config);
-        $this->assertEquals(['foo' => 'bar'], $handle->config());
-        $this->assertEquals('bar', $handle->config('foo'));
-        $this->assertEquals('default', $handle->config('missing', 'default'));
-
-
 
     }
 
@@ -75,7 +62,7 @@ class HandleTest extends BeltTestCase
      */
     public function testsyncDefault()
     {
-        app()['config']->set('belt.content.handles.responses.test', ['show_default' => true]);
+        app()['config']->set('belt.subtypes.handles.test', ['show_default' => true]);
 
         Page::unguard();
         $page = factory(Page::class)->make();

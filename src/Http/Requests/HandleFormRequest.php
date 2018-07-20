@@ -27,7 +27,7 @@ class HandleFormRequest extends FormRequest
      */
     public function configs()
     {
-        return $this->configs ?: $this->config = config('belt.content.handles.responses', []);
+        return $this->configs ?: $this->config = config('belt.subtypes.handles', []);
     }
 
     /**
