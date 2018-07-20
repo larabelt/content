@@ -1,5 +1,5 @@
 import shared from 'belt/content/js/posts/ctlr/shared';
-import templateDropdown from 'belt/content/js/subtypes/inputs/default';
+import subtypeDropdown from 'belt/content/js/subtypes/inputs/default';
 import form_html from 'belt/content/js/posts/templates/form.html';
 
 export default {
@@ -12,7 +12,7 @@ export default {
                 }
             },
             components: {
-                templateDropdown
+                subtypeDropdown
             },
             template: form_html,
         },

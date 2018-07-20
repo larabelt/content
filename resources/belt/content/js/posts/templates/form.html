@@ -16,7 +16,7 @@
         <input  class="form-control" v-model="form.slug" placeholder="slug">
         <span v-for="error in form.error('slug')" class="text-danger">{{ error }}</span>
     </div>
-    <subtype-dropdown v-if="form.id" templateType="posts"></subtype-dropdown>
+    <subtype-dropdown v-if="form.id" entity_type="posts"></subtype-dropdown>
 
     <div class="row">
         <div class="col-md-6">
