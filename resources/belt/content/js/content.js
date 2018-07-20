@@ -35,7 +35,7 @@ export default class BeltContent {
             router.addRoutes(posts);
             router.addRoutes(terms);
 
-            const app = new Vue({router, store}).$mount('#belt-content');
+            new Vue({router, store}).$mount('#belt-content');
         }
     }
 
