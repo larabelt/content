@@ -92,7 +92,7 @@ class BeltContentServiceProvider extends ServiceProvider
         $this->commands(Belt\Content\Commands\ResizeCommand::class);
         $this->commands(Belt\Content\Commands\CompileCommand::class);
         $this->commands(Belt\Content\Commands\PublishCommand::class);
-        $this->commands(Belt\Content\Commands\TemplateCommand::class);
+        $this->commands(Belt\Content\Commands\SubtypeCommand::class);
 
         // route model binding
         $router->model('attachment', Belt\Content\Attachment::class);

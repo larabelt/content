@@ -85,12 +85,12 @@ class BeltContentPageSeeds extends Seeder
         $data->setAppends([]);
         $page->update($data->toArray());
 
-        # page with "example" template
+        # page with "example" subtype
         $page = factory(Page::class)->create([
             'is_active' => true,
             'subtype' => 'example',
             'slug' => 'example',
-            'name' => 'Example Template Page',
+            'name' => 'Example Subtype Page',
         ]);
         $page->saveParam('menu', 'example');
         $page->saveParam('attachments', 1);

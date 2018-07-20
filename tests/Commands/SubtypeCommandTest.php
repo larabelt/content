@@ -5,10 +5,10 @@ use Belt\Core\Testing\BeltTestCase;
 use Belt\Core\Helpers\MorphHelper;
 use Belt\Core\Behaviors\IncludesSubtypesInterface;
 use Belt\Core\Behaviors\IncludesSubtypes;
-use Belt\Content\Commands\TemplateCommand;
+use Belt\Content\Commands\SubtypeCommand;
 use Illuminate\Database\Eloquent\Model;
 
-class TemplateCommandTest extends BeltTestCase
+class SubtypeCommandTest extends BeltTestCase
 {
     public function tearDown()
     {
@@ -16,22 +16,22 @@ class TemplateCommandTest extends BeltTestCase
     }
 
     /**
-     * @covers \Belt\Content\Commands\TemplateCommand::helper
-     * @covers \Belt\Content\Commands\TemplateCommand::handle
+     * @covers \Belt\Content\Commands\SubtypeCommand::helper
+     * @covers \Belt\Content\Commands\SubtypeCommand::handle
      */
     public function testHandle()
     {
 
-        $cmd = new TemplateCommand();
+        $cmd = new SubtypeCommand();
 
         # helper
         $this->assertInstanceOf(MorphHelper::class, $cmd->helper());
 
         # handle
         $helper = m::mock(MorphHelper::class);
-        $helper->shouldReceive('type2Class')->andReturn(TemplateCommandTestStub::class);
+        $helper->shouldReceive('type2Class')->andReturn(SubtypeCommandTestStub::class);
 
-        $cmd = m::mock(TemplateCommand::class . '[helper,argument,option]');
+        $cmd = m::mock(SubtypeCommand::class . '[helper,argument,option]');
         $cmd->shouldReceive('helper')->andReturn($helper);
         $cmd->shouldReceive('argument')->andReturn('reconcile-params');
         $cmd->shouldReceive('option')->andReturn('test');
@@ -41,7 +41,7 @@ class TemplateCommandTest extends BeltTestCase
 
 }
 
-class TemplateCommandTestStub extends Model implements IncludesSubtypesInterface
+class SubtypeCommandTestStub extends Model implements IncludesSubtypesInterface
 {
     use IncludesSubtypes;
 

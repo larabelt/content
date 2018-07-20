@@ -2,13 +2,13 @@
 
 return [
 
-    // The human-readable name of your template.
+    // The human-readable name of your subtype.
     'label' => '',
 
-    // A short description of template.
+    // A short description of subtype.
     'description' => '',
 
-    // A blade layout that show can show a snapshot of what the templates structure and/or style will look like when compiled.
+    // A blade layout that show can show a snapshot of what the subtypes structure and/or style will look like when compiled.
     'preview' => 'belt-content::sections.previews.default',
 
     /*

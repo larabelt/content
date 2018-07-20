@@ -30,10 +30,10 @@ Vue.component('tile-page-default', tilePageDefault);
 Vue.component('tile-page-list-item', tilePageListItem);
 
 import filterSearch from 'belt/core/js/inputs/filter-search';
-import filterTemplates from 'belt/content/js/subtypes/filters/default';
+import filterSubtypes from 'belt/content/js/subtypes/filters/default';
 
 Vue.component('filter-search', filterSearch);
-Vue.component('filter-templates', filterTemplates);
+Vue.component('filter-subtypes', filterSubtypes);
 
 window.larabelt.content = _.get(window, 'larabelt.content', {});
 

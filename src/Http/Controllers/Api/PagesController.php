@@ -69,7 +69,7 @@ class PagesController extends ApiController
 
         $this->set($page, $input, [
             'is_active',
-            'template',
+            'subtype',
             'slug',
             'body',
             'meta_title',
@@ -116,7 +116,7 @@ class PagesController extends ApiController
 
         $this->set($page, $input, [
             'is_active',
-            'template',
+            'subtype',
             'name',
             'slug',
             'body',

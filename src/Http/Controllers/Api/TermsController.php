@@ -63,7 +63,7 @@ class TermsController extends ApiController
         $this->set($term, $input, [
             'is_active',
             'parent_id',
-            'template',
+            'subtype',
             'name',
             'slug',
             'body',
@@ -112,7 +112,7 @@ class TermsController extends ApiController
         $this->set($term, $input, [
             'is_active',
             'parent_id',
-            'template',
+            'subtype',
             'name',
             'slug',
             'body',

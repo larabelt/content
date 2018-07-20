@@ -41,12 +41,12 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $fillable = ['template', 'owner_id', 'owner_type', 'sectionable_type', 'parent_id'];
+    protected $fillable = ['subtype', 'owner_id', 'owner_type', 'sectionable_type', 'parent_id'];
 
     /**
      * @var array
      */
-    protected $appends = ['name', 'morph_class', 'template_subgroup', 'preview'];
+    protected $appends = ['name', 'morph_class', 'subtype_subgroup', 'preview'];
 
     /**
      * @return mixed|string
@@ -73,7 +73,7 @@ class Section extends Model implements
     /**
      * @return mixed
      */
-    public function getTemplateSubgroupAttribute()
+    public function getSubtypeSubgroupAttribute()
     {
         return array_first(explode('.', $this->subtype));
     }

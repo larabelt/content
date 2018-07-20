@@ -107,7 +107,7 @@ class SectionablesController extends ApiController
         ]);
 
         $this->set($section, $input, [
-            'template',
+            'subtype',
         ]);
 
         $section->save();
@@ -169,9 +169,9 @@ class SectionablesController extends ApiController
 
         $this->set($section, $input, [
             'sectionable_id',
-            'template',
+            'subtype',
             'parent_id',
-            'template',
+            'subtype',
             'heading',
             'before',
             'after',

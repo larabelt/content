@@ -72,7 +72,7 @@ class BlocksController extends ApiController
         ]);
 
         $this->set($block, $input, [
-            'template',
+            'subtype',
             'slug',
             'heading',
             'body',
@@ -118,7 +118,7 @@ class BlocksController extends ApiController
         $input = $request->all();
 
         $this->set($block, $input, [
-            'template',
+            'subtype',
             'name',
             'slug',
             'heading',

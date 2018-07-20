@@ -66,7 +66,7 @@ class PostsController extends ApiController
 
         $this->set($post, $input, [
             'is_active',
-            'template',
+            'subtype',
             'slug',
             'body',
             'meta_title',
@@ -117,7 +117,7 @@ class PostsController extends ApiController
 
         $this->set($post, $input, [
             'is_active',
-            'template',
+            'subtype',
             'name',
             'slug',
             'body',

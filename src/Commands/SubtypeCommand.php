@@ -7,10 +7,10 @@ use Belt\Core\Helpers\MorphHelper;
 use Illuminate\Console\Command;
 
 /**
- * Class TemplateCommand
+ * Class SubtypeCommand
  * @package Belt\Content\Commands
  */
-class TemplateCommand extends Command
+class SubtypeCommand extends Command
 {
 
     /**
@@ -18,7 +18,7 @@ class TemplateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'belt-content:template {action} {--class=}';
+    protected $signature = 'belt-content:subtype {action} {--class=}';
 
     /**
      * The console command description.

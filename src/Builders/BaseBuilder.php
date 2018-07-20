@@ -51,7 +51,7 @@ abstract class BaseBuilder
         $parent = array_get($options, 'parent');
 
         $section = $this->sections()->create([
-            'subtype' => array_get($options, 'template', 'containers.default'),
+            'subtype' => array_get($options, 'subtype', 'containers.default'),
             'parent_id' => $parent ? $parent->id : null,
             'owner_id' => $this->item->id,
             'owner_type' => $this->item->getMorphClass(),

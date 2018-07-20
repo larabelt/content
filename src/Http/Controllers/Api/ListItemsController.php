@@ -94,7 +94,7 @@ class ListItemsController extends ApiController
         ]);
 
         $this->set($listItem, $input, [
-            'template',
+            'subtype',
         ]);
 
         $listItem->save();
@@ -124,7 +124,7 @@ class ListItemsController extends ApiController
         $input = $request->all();
 
         $this->set($listItem, $input, [
-            'template',
+            'subtype',
         ]);
 
         $listItem->save();

@@ -19,7 +19,7 @@ class CompilerFunctionalTest extends Testing\BeltTestCase
     {
         app()['config']->set('belt.subtypes.pages.default.force_compile', true);
 
-        # show forces compile for template
+        # show forces compile for subtype
         $response = $this->json('GET', '/pages/1');
         $response->assertStatus(200);
     }

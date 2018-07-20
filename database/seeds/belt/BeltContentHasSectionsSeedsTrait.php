@@ -22,7 +22,7 @@ trait BeltContentHasSectionsSeedsTrait
         }
 
         $section = factory(Section::class)->create([
-            'subtype' => array_get($options, 'template', 'containers.default'),
+            'subtype' => array_get($options, 'subtype', 'containers.default'),
             'parent_id' => $parent ? $parent->id : null,
             'owner_id' => $owner ? $owner->id : $parent->owner_id,
             'owner_type' => $owner ? $owner->getMorphClass() : $parent->owner_type,

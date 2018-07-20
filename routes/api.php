@@ -49,7 +49,7 @@ Route::group([
 
         # config
         Route::get('config/belt.content.handles.responses/', ConfigController::class . '@show');
-        Route::get('config/belt.templates/{key?}', ConfigController::class . '@show');
+        Route::get('config/belt.subtypes/{key?}', ConfigController::class . '@show');
 
         # handles
         Route::get('handles/{handle}', Api\HandlesController::class . '@show');

@@ -15,7 +15,7 @@ class SectionTest extends BeltTestCase
     /**
      * @covers \Belt\Content\Section::getNameAttribute
      * @covers \Belt\Content\Section::owner
-     * @covers \Belt\Content\Section::getTemplateSubgroupAttribute
+     * @covers \Belt\Content\Section::getSubtypeSubgroupAttribute
      * @covers \Belt\Content\Section::toArray
      * @covers \Belt\Content\Section::children
      * @covers \Belt\Content\Section::scopeOwned
@@ -37,7 +37,7 @@ class SectionTest extends BeltTestCase
         });
         $this->assertEquals('foo', $section->getNameAttribute());
 
-        # getTemplateSubgroupAttribute
+        # getSubtypeSubgroupAttribute
         $this->assertEquals('foo', $section->subtypeSubgroup);
 
         # toArray

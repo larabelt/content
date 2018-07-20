@@ -18,7 +18,7 @@ class PaginateLists extends PaginateRequest
     public $sortable = [
         'lists.id',
         'lists.name',
-        'lists.template',
+        'lists.subtype',
         'lists.created_at',
         'lists.updated_at',
     ];
