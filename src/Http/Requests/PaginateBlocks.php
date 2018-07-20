@@ -31,7 +31,7 @@ class PaginateBlocks extends PaginateRequest
      */
     public $queryModifiers = [
         Belt\Core\Pagination\InQueryModifier::class,
-        Belt\Content\Pagination\SubtypeQueryModifier::class,
+        Belt\Core\Pagination\SubtypeQueryModifier::class,
     ];
 
 }

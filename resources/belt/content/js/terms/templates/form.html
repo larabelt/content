@@ -29,7 +29,7 @@
         <input class="form-control" v-model="form.slug" placeholder="slug">
         <span v-for="error in form.error('slug')" class="text-danger">{{ error }}</span>
     </div>
-    <template-dropdown templateType="terms"></template-dropdown>
+    <subtype-dropdown entity_type="terms"></subtype-dropdown>
     <seo></seo>
     <div class="text-right">
         <button class="btn btn-primary" :disabled="form.errors.any()">

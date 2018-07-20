@@ -21,7 +21,7 @@
             <span v-for="error in form.error('slug')" class="text-danger">{{ error }}</span>
         </div>
 
-        <template-dropdown templateType="blocks" formKey="block"></template-dropdown>
+        <subtype-dropdown entity_type="blocks" formKey="block"></subtype-dropdown>
         <param-list v-if="form.id" paramable_type="blocks" :paramable_id="entity_id"></param-list>
 
         <div class="clearfix">

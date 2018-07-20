@@ -54,7 +54,7 @@ class PaginateAttachments extends PaginateRequest
     public $queryModifiers = [
         Belt\Core\Pagination\InQueryModifier::class,
         Belt\Core\Pagination\TeamableQueryModifier::class,
-        Belt\Content\Pagination\SubtypeQueryModifier::class,
+        Belt\Core\Pagination\SubtypeQueryModifier::class,
         Belt\Content\Pagination\TermableQueryModifier::class,
     ];
 

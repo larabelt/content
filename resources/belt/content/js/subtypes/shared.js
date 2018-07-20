@@ -1,8 +1,8 @@
-import Config from 'belt/content/js/templates/config';
+import Config from 'belt/content/js/subtypes/config';
 
 export default {
     props: {
-        templateType: {
+        entity_type: {
             default: function () {
                 return this.$parent.entity_type;
             }
@@ -22,11 +22,11 @@ export default {
             });
     },
     computed: {
-        defaultTemplate() {
+        defaultSubtype() {
             return _.keys(this.options)[0];
         },
         type() {
-            return this.templateType ? this.templateType : this.$parent.entity_type;
+            return this.entity_type ? this.entity_type : this.$parent.entity_type;
         },
     },
 }

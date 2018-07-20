@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
 
-            <template-dropdown templateType="attachments"></template-dropdown>
+            <subtype-dropdown entity_type="attachments"></subtype-dropdown>
 
             <div class="row">
                 <div class="col-md-6">

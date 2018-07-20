@@ -1,5 +1,5 @@
-import Config from 'belt/content/js/templates/config';
-import html from 'belt/content/js/templates/inputs/default/dropdown.html';
+import Config from 'belt/content/js/subtypes/config';
+import html from 'belt/content/js/subtypes/inputs/default/dropdown.html';
 
 export default {
     props: {
@@ -13,7 +13,7 @@ export default {
                 return 'form';
             }
         },
-        templateType: {
+        entity_type: {
             default: function () {
                 return this.$parent.entity_type;
             }
@@ -37,16 +37,16 @@ export default {
             .then((response) => {
                 this.dropdown = this.config.options();
                 if (this.autoset) {
-                    this.form.template = this.defaultTemplate;
+                    this.form.subtype = this.defaultSubtype;
                 }
             });
     },
     computed: {
-        defaultTemplate() {
+        defaultSubtype() {
             return _.keys(this.dropdown)[0];
         },
         type() {
-            return this.templateType ? this.templateType : this.$parent.entity_type;
+            return this.entity_type ? this.entity_type : this.$parent.entity_type;
         }
     },
     template: html

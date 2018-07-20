@@ -1,6 +1,6 @@
 import base from 'belt/core/js/inputs/filter-base';
-import shared from 'belt/content/js/templates/shared';
-import html from 'belt/content/js/templates/filters/default/template.html';
+import shared from 'belt/content/js/subtypes/shared';
+import html from 'belt/content/js/subtypes/filters/default/template.html';
 
 export default {
     mixins: [base, shared],
@@ -13,20 +13,20 @@ export default {
     },
     data() {
         return {
-            template: null,
+            subtype: null,
         }
     },
     watch: {
-        'table.query.template': function (template) {
-            if (template) {
-                this.template = template;
+        'table.query.subtype': function (subtype) {
+            if (subtype) {
+                this.subtype = subtype;
             }
         }
     },
     methods: {
         change() {
-            this.table.query.template = this.template;
-            this.$emit('filter-template-update');
+            this.table.query.subtype = this.subtype;
+            this.$emit('filter-subtype-update');
         },
     },
     template: html

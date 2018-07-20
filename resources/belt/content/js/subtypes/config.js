@@ -8,20 +8,20 @@ class TemplateConfig extends BaseConfig {
     }
 
     setService(key) {
-        let baseUrl = '/api/v1/config/belt.templates/' + key;
+        let baseUrl = '/api/v1/config/belt.subtypes/' + key;
         this.service = new BaseService({baseUrl: baseUrl});
     }
 
     options() {
 
-        let templates = {};
+        let subtypes = {};
 
         for (let key in this.data) {
             let config = this.data[key];
-            templates[key] = config['label'] ? config['label'] : key;
+            subtypes[key] = config['label'] ? config['label'] : key;
         }
 
-        return templates;
+        return subtypes;
     }
 
 }

@@ -8,10 +8,10 @@ import store from 'belt/core/js/store/index';
 import terms from 'belt/content/js/terms/routes';
 
 import seo from 'belt/content/js/base/seo';
-import templateDropdown from 'belt/content/js/templates/inputs/default';
+import subtypeDropdown from 'belt/content/js/subtypes/inputs/default';
 
 Vue.component('seo', seo);
-Vue.component('template-dropdown', templateDropdown);
+Vue.component('subtype-dropdown', subtypeDropdown);
 
 import inputAttachments from 'belt/content/js/inputs/attachments';
 import inputBlocks from 'belt/content/js/inputs/blocks';
@@ -30,7 +30,7 @@ Vue.component('tile-page-default', tilePageDefault);
 Vue.component('tile-page-list-item', tilePageListItem);
 
 import filterSearch from 'belt/core/js/inputs/filter-search';
-import filterTemplates from 'belt/content/js/templates/filters/default';
+import filterTemplates from 'belt/content/js/subtypes/filters/default';
 
 Vue.component('filter-search', filterSearch);
 Vue.component('filter-templates', filterTemplates);

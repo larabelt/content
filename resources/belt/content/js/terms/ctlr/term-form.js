@@ -1,5 +1,5 @@
 import Table from 'belt/content/js/terms/table';
-import templateDropdown from 'belt/content/js/templates/inputs/default';
+import templateDropdown from 'belt/content/js/subtypes/inputs/default';
 import parentTerms from 'belt/content/js/terms/ctlr/index-table';
 import form_html from 'belt/content/js/terms/templates/form.html';
 
