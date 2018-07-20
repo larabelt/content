@@ -16,7 +16,7 @@ export default {
         path: {default: ''},
         driver: {default: ''},
         multiple: {default: true},
-        template: {default: ''},
+        subtype: {default: ''},
     },
 
     data() {
@@ -28,7 +28,7 @@ export default {
             detached: new Table({
                 entity_type: entity_type,
                 entity_id: entity_id,
-                query: {not: 1, template: this.template},
+                query: {not: 1, subtype: this.subtype},
             }),
             form: new Form({
                 entity_type: this.$parent.entity_type,
@@ -42,7 +42,7 @@ export default {
     beforeMount() {
         this.$store.dispatch('clippable/set', {entity_type: this.entity_type, entity_id: this.entity_id});
         this.$store.dispatch('clippable/construct');
-        this.table.updateQuery({template: this.template});
+        this.table.updateQuery({subtype: this.subtype});
         this.$store.dispatch('clippable/load');
     },
     components: {
