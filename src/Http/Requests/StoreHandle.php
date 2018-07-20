@@ -15,7 +15,7 @@ class StoreHandle extends HandleFormRequest
     public function rules()
     {
         $rules = [
-            'config_name' => 'sometimes|in:' . implode(',', array_keys($this->configs())),
+            'subtype' => 'sometimes|in:' . implode(',', array_keys($this->configs())),
             'url' => [
                 'required',
                 'unique_route',

@@ -11,7 +11,7 @@ class HandleForm extends BaseForm {
             id: '',
             handleable_id: '',
             handleable_type: '',
-            config_name: 'not-found',
+            subtype: 'not-found',
             is_active: 1,
             is_default: 0,
             url: '',

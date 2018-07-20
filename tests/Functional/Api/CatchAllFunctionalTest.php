@@ -16,7 +16,7 @@ class CatchAllFunctionalTest extends Testing\BeltTestCase
         # store
         $response = $this->json('POST', '/api/v1/handles', [
             'is_active' => 1,
-            'config_name' => 'alias',
+            'subtype' => 'alias',
             'handleable_type' => 'pages',
             'handleable_id' => 1,
             'url' => 'catch-all-example',

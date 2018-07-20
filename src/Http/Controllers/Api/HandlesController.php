@@ -63,7 +63,7 @@ class HandlesController extends ApiController
         $this->set($handle, $input, [
             'handleable_id',
             'handleable_type',
-            'config_name',
+            'subtype',
             'is_active',
             'is_default',
             'url',
@@ -113,7 +113,7 @@ class HandlesController extends ApiController
         $this->set($handle, $input, [
             'handleable_id',
             'handleable_type',
-            'config_name',
+            'subtype',
             'is_active',
             'is_default',
             'url',

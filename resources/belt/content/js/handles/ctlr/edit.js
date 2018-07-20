@@ -20,7 +20,7 @@ export default {
             },
             computed: {
                 config() {
-                    return _.get(this.configs, this.form.config_name);
+                    return _.get(this.configs, this.form.subtype);
                 },
             },
             components: {

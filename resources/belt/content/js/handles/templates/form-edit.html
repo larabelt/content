@@ -13,14 +13,14 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div class="form-group" :class="{ 'has-error': form.error('config_name') }">
+            <div class="form-group" :class="{ 'has-error': form.error('subtype') }">
                 <label for="template">Response Type</label>
-                <select v-model="form.config_name" name="template" class="form-control">
+                <select v-model="form.subtype" name="template" class="form-control">
                     <template v-for="config, key in configs">
                         <option :value="key">{{ config.label ? config.label : key }}</option>
                     </template>
                 </select>
-                <span v-for="error in form.error('config_name')" class="contents-danger">{{ error }}</span>
+                <span v-for="error in form.error('subtype')" class="contents-danger">{{ error }}</span>
             </div>
         </div>
         <div class="col-md-6">

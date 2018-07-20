@@ -60,7 +60,7 @@ class HandleTest extends BeltTestCase
         app()['config']->set('belt.content.handles.responses.test', [
             'foo' => 'bar'
         ]);
-        $handle->setAttribute('config_name', 'test');
+        $handle->setAttribute('subtype', 'test');
         $this->assertEquals(['foo' => 'bar'], $handle->config);
         $this->assertEquals(['foo' => 'bar'], $handle->config());
         $this->assertEquals('bar', $handle->config('foo'));
@@ -102,7 +102,7 @@ class HandleTest extends BeltTestCase
         $handle->syncDefault();
 
         # carry out operation otherwise
-        $handle->setAttribute('config_name', 'test');
+        $handle->setAttribute('subtype', 'test');
         $handle->syncDefault();
     }
 

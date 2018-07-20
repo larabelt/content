@@ -2,17 +2,25 @@
 
 namespace Belt\Content;
 
-use Belt\Core\Helpers\ConfigHelper;
+use Belt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Support\Str;
 
 /**
  * Class Handle
  * @package Belt\Content
  */
-class Handle extends Model
+class Handle extends Model implements
+    Belt\Core\Behaviors\ParamableInterface,
+    Belt\Core\Behaviors\IncludesSubtypesInterface
 {
+    use Belt\Core\Behaviors\IncludesSubtypes;
+
+    /**
+     * @var string
+     */
+    protected $morphClass = 'handles';
+
     /**
      * @var string
      */
@@ -92,29 +100,29 @@ class Handle extends Model
         return $query;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getConfigAttribute()
-    {
-        return $this->config();
-    }
-
-    /**
-     * @param null $key
-     * @param null $default
-     * @return mixed
-     */
-    public function config($key = null, $default = null)
-    {
-        $config = ConfigHelper::config('belt.content.handles.responses', $this->config_name) ?: [];
-
-        if (!$key) {
-            return $config;
-        }
-
-        return array_get($config, $key, $default);
-    }
+//    /**
+//     * @return mixed
+//     */
+//    public function getConfigAttribute()
+//    {
+//        return $this->config();
+//    }
+//
+//    /**
+//     * @param null $key
+//     * @param null $default
+//     * @return mixed
+//     */
+//    public function config($key = null, $default = null)
+//    {
+//        $config = ConfigHelper::config('belt.content.handles.responses', $this->subtype) ?: [];
+//
+//        if (!$key) {
+//            return $config;
+//        }
+//
+//        return array_get($config, $key, $default);
+//    }
 
     /**
      * Ensure is_default is correctly handled

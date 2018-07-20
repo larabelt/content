@@ -18,7 +18,7 @@ class StoreHandleTest extends Testing\BeltTestCase
             ],
         ]);
 
-        $request = new StoreHandle(['config_name' => 'default']);
+        $request = new StoreHandle(['subtype' => 'default']);
 
         $this->assertNotEmpty($request->rules());
     }

@@ -18,7 +18,7 @@ class HandlesFunctionalTest extends Testing\BeltTestCase
         # store
         $response = $this->json('POST', '/api/v1/handles', [
             'url' => 'test',
-            'config_name' => 'not-found',
+            'subtype' => 'not-found',
         ]);
         $response->assertStatus(201);
         $handleID = array_get($response->json(), 'id');

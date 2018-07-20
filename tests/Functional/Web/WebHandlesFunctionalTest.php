@@ -37,7 +37,7 @@ class WebHandlesFunctionalTest extends Testing\BeltTestCase
             'is_active' => 1,
             'handleable_type' => 'pages',
             'handleable_id' => 1,
-            'config_name' => 'alias',
+            'subtype' => 'alias',
         ]);
 
         // 200 - Alias - w/handleable
@@ -49,19 +49,19 @@ class WebHandlesFunctionalTest extends Testing\BeltTestCase
         //dump($content);
 
         // 301 - PermanentRedirect  - w/handleable
-        $handle->update(['config_name' => 'permanent-redirect']);
+        $handle->update(['subtype' => 'permanent-redirect']);
         $response = $this->get('/functional-test');
         $response->assertStatus(301);
         $response->assertRedirect($page->default_url);
 
         // 302 - TemporaryRedirect  - w/handleable
-        $handle->update(['config_name' => 'temporary-redirect']);
+        $handle->update(['subtype' => 'temporary-redirect']);
         $response = $this->get('/functional-test');
         $response->assertStatus(302);
         $response->assertRedirect($page->default_url);
 
         // 404 - Alias - w/invliad handleable
-        $handle->update(['config_name' => 'alias', 'handleable_id' => 99999999]);
+        $handle->update(['subtype' => 'alias', 'handleable_id' => 99999999]);
         $response = $this->get('/functional-test');
         $response->assertStatus(404);
 
@@ -72,19 +72,19 @@ class WebHandlesFunctionalTest extends Testing\BeltTestCase
         $handle->update(['handleable_type' => null, 'handleable_id' => null, 'target' => $target]);
 
         // 301 - PermanentRedirect
-        $handle->update(['config_name' => 'permanent-redirect']);
+        $handle->update(['subtype' => 'permanent-redirect']);
         $response = $this->get('/functional-test');
         $response->assertStatus(301);
         $response->assertRedirect($target);
 
         // 302 - TemporaryRedirect
-        $handle->update(['config_name' => 'temporary-redirect']);
+        $handle->update(['subtype' => 'temporary-redirect']);
         $response = $this->get('/functional-test');
         $response->assertStatus(302);
         $response->assertRedirect($target);
 
         // 404 - NotFound
-        $handle->update(['config_name' => 'not-found']);
+        $handle->update(['subtype' => 'not-found']);
         $response = $this->get('/functional-test');
         $response->assertStatus(404);
 

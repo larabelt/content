@@ -104,7 +104,7 @@ class HandleablesController extends ApiController
         $this->set($handle, $input, [
             'handleable_id',
             'handleable_type',
-            'config_name',
+            'subtype',
             'is_active',
             'is_default',
             'url',
@@ -160,7 +160,7 @@ class HandleablesController extends ApiController
         $input = $request->all();
 
         $this->set($handle, $input, [
-            'config_name',
+            'subtype',
             'is_default',
             'url',
             'target',

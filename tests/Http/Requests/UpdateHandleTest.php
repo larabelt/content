@@ -28,7 +28,7 @@ class UpdateHandleTest extends Testing\BeltTestCase
         $handle = new Handle(['id' => 1]);
 
         $request = m::mock(UpdateHandle::class . '[get, route]');
-        $request->shouldReceive('get')->withArgs(['config_name', 'default'])->andReturn('default');
+        $request->shouldReceive('get')->withArgs(['subtype', 'default'])->andReturn('default');
         $request->shouldReceive('route')->with('handle')->andReturn($handle);
 
         $this->assertNotEmpty($request->rules());

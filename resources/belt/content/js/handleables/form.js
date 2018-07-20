@@ -19,7 +19,7 @@ class Form extends BaseForm {
             //handleable_type: this.entity_type,
             is_active: 1,
             is_default: 0,
-            config_name: 'alias',
+            subtype: 'alias',
             url: '',
             target: '',
         });

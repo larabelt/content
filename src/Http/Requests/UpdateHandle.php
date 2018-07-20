@@ -19,7 +19,7 @@ class UpdateHandle extends HandleFormRequest
         $handle = $this->route('handle');
 
         $rules = [
-            'config_name' => 'sometimes|in:' . implode(',', array_keys($this->configs())),
+            'subtype' => 'sometimes|in:' . implode(',', array_keys($this->configs())),
             'url' => [
                 'sometimes',
                 'unique_route',

@@ -37,9 +37,9 @@ class HandleFormRequest extends FormRequest
      */
     public function config($key = null, $default = null)
     {
-        $config_name = $this->get('config_name', 'default');
+        $subtype = $this->get('subtype', 'default');
 
-        $config = array_get($this->configs(), $config_name);
+        $config = array_get($this->configs(), $subtype);
 
         if ($key) {
             return array_get($config, $key, $default);

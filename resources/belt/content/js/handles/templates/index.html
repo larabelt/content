@@ -45,7 +45,7 @@
                     </th>
                     <th>
                         Type
-                        <column-sorter :column="'handles.config_name'"></column-sorter>
+                        <column-sorter :column="'handles.subtype'"></column-sorter>
                     </th>
                     <th>
                         Url
@@ -71,7 +71,7 @@
                         <span v-if="!item.is_active" class="badge bg-yellow-active">NOK</span>
                         <span v-else class="badge">OK</span>
                     </td>
-                    <td>{{ item.config_name }}</td>
+                    <td>{{ item.subtype }}</td>
                     <td><a :href="item.url" target="_blank">{{ item.url }}</a>
                         <p v-if="item.handleable" style="margin-top: 10px;">
                             <strong>Associated:</strong> {{ item.handleable_type }} #{{ item.handleable_id }}
