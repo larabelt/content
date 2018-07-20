@@ -27,6 +27,9 @@ class HandleablesFunctionalTest extends Testing\BeltTestCase
         $response = $this->json('GET', "/api/v1/pages/1/handles/$handleID");
         $response->assertStatus(200);
 
+        $response = $this->json('GET', "/api/v1/pages/2/handles/$handleID");
+        $response->assertStatus(404);
+
         # update
         $response = $this->json('PUT', "/api/v1/pages/1/handles/$handleID", [
             'url' => '/updated'
