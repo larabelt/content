@@ -26,7 +26,7 @@ class ListForm extends BaseForm {
             meta_keywords: '',
             starts_at: '',
             ends_at: '',
-            template: '',
+            subtype: '',
             priority: 0,
         })
     }

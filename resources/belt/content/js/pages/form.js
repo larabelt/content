@@ -12,7 +12,7 @@ class PageForm extends BaseForm {
             is_active: 0,
             name: '',
             slug: '',
-            template: '',
+            subtype: '',
             body: '',
             meta_title: '',
             meta_description: '',

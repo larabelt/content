@@ -27,7 +27,7 @@ class Form extends BaseForm {
             parent_id: '',
             sectionable_id: '',
             sectionable_type: '',
-            template: '',
+            subtype: '',
             heading: '',
             before: '',
             after: '',

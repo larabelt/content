@@ -20,11 +20,9 @@ class Form extends BaseForm {
         this.setData({
             id: '',
             list_id: '',
-            template: '',
+            subtype: '',
             move: '',
             position_entity_id: '',
-            //listable_type: '',
-            //listable_id: '',
         });
     }
 

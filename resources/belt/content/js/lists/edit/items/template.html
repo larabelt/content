@@ -10,17 +10,17 @@
 
         <h4>List Items <i v-if="table.loading" class="fa fa-spin fa-spinner"></i></h4>
 
+        <div class="filter-set clearfix">
+            <div class="pull-left">
+                <filter-search @filter-search-update="filter"></filter-search>
+            </div>
+            <div class="pull-left">
+                <filter-subtype @filter-subtype-update="filter" entity_type="list_items"></filter-subtype>
+            </div>
+        </div>
+
         <div v-if="table.items.length">
             <p class="help-block">The following items are associated with this list.</p>
-
-            <div class="filter-set clearfix">
-                <div class="pull-left">
-                    <filter-search @filter-search-update="filter"></filter-search>
-                </div>
-                <div class="pull-left">
-                    <filter-subtypes @filter-subtype-update="filter" entity_type="list_items"></filter-subtypes>
-                </div>
-            </div>
 
             <div class="tile-panel-toolbar clearfix">
                 <span class="pull-left">

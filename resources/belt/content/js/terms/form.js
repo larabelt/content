@@ -18,7 +18,7 @@ class TermForm extends BaseForm {
             meta_description: '',
             meta_keywords: '',
             full_name: '',
-            template: '',
+            subtype: '',
         })
     }
 
