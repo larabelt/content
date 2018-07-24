@@ -26,7 +26,8 @@ class LocalSearchPaginator extends BaseLengthAwarePaginator
 
         $classes = config('belt.search.classes');
 
-        $include = $request->get('include') ? explode(',', $request->get('include')) : [];
+        $types = $request->get('type') ?: $request->get('include', '');
+        $types = $types ? explode(',', $types) : [];
 
         /**
          * @var $pager LengthAwarePaginator
@@ -37,7 +38,7 @@ class LocalSearchPaginator extends BaseLengthAwarePaginator
 
             $morphKey = (new $modelClass)->getMorphClass();
 
-            if ($include && !in_array($morphKey, $include)) {
+            if ($types && !in_array($morphKey, $types)) {
                 continue;
             }
 
@@ -54,7 +55,6 @@ class LocalSearchPaginator extends BaseLengthAwarePaginator
         }
 
         $paginator = new LengthAwarePaginator(
-            //$items->toArray(),
             $items,
             $pager ? $pager->total() : 0,
             $pager ? $pager->perPage() : $request->perPage(),
