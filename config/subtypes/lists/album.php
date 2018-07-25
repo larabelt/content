@@ -47,22 +47,10 @@ return [
     */
 
     'params' => [
-        'class' => [
-            'type' => 'select',
-            'label' => 'class',
-            'options' => [
-                'col-md-3' => 'default',
-                'col-md-12' => 'wide',
-            ]
-        ],
-        'icon' => [
-            'type' => 'select',
-            'label' => 'Icon',
-            'options' => [
-                'default' => 'default',
-                'edit' => 'edit',
-                'create' => 'create',
-            ]
+        'body' => [
+            'type' => 'editor',
+            'label' => 'Body',
+            'description' => 'Enter main content of album here.',
         ],
     ],
 

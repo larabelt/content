@@ -43,13 +43,25 @@ return [
     'params' => [
         'attachments' => [
             'type' => 'attachments',
-            'label' => 'Cool Attachment',
+            'label' => 'Attachment',
             'description' => 'Link existing attachment to this block.',
         ],
-        'url' => [
+        'body' => [
+            'type' => 'editor',
+            'label' => 'Body',
+            'description' => 'Enter main content of block here.',
+        ],
+        'btn_text' => [
+            'group' => 'button',
             'type' => 'text',
-            'label' => 'Link',
-            'description' => 'Enter link.',
+            'label' => 'Button Label',
+            'description' => 'Enter button label.',
+        ],
+        'btn_url' => [
+            'group' => 'button',
+            'type' => 'text',
+            'label' => 'Button Url',
+            'description' => 'Enter url',
         ],
     ],
 
