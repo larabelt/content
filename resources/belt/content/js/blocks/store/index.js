@@ -23,7 +23,7 @@ export default {
             return new Promise((resolve, reject) => {
                 state.form.show(blockID)
                     .then(response => {
-                        dispatch('config/set', {configKey: response.template});
+                        dispatch('config/set', {configKey: response.subtype});
                         dispatch('config/load');
                         resolve(response);
                     })

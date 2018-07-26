@@ -1,7 +1,7 @@
 import shared from 'belt/content/js/sectionables/shared';
 import store from 'belt/content/js/sectionables/store';
 import Form from 'belt/content/js/sectionables/form';
-import templates from 'belt/content/js/sectionables/templates';
+import subtypes from 'belt/content/js/sectionables/subtypes';
 import html from 'belt/content/js/sectionables/edit/template.html';
 
 export default {
@@ -14,7 +14,7 @@ export default {
                 entity_id: this.$parent.entity_id,
             }),
             section_id: this.$route.params.section_id,
-            showTemplates: false,
+            showSubtypes: false,
         }
     },
     computed: {
@@ -24,28 +24,28 @@ export default {
         storeKey() {
             return 'sections' + this.section.id;
         },
-        templateSubgroup() {
-            return this.section.template_subgroup;
+        subtypeSubgroup() {
+            return this.section.subtype_subgroup;
         },
-        templateGroups() {
+        subtypeGroups() {
             let options = [];
-            let templates = this.configs ? this.configs : {};
-            _.forOwn(templates, function (template, key) {
+            let subtypes = this.configs ? this.configs : {};
+            _.forOwn(subtypes, function (subtype, key) {
                 options.push({
                     key: key,
-                    label: template.label ? template.label : key,
+                    label: subtype.label ? subtype.label : key,
                 });
             });
             options = _.orderBy(options, ['label']);
             return options;
         },
-        templates() {
+        subtypes() {
             let options = [];
-            let templates = _.get(this.configs, this.section.template_subgroup, {});
-            _.forOwn(templates, (template, key) => {
-                template.key = this.section.template_subgroup + '.' + key;
-                template.label = template.label ? template.label : key;
-                options.push(template);
+            let subtypes = _.get(this.configs, this.section.subtype_subgroup, {});
+            _.forOwn(subtypes, (subtype, key) => {
+                subtype.key = this.section.subtype_subgroup + '.' + key;
+                subtype.label = subtype.label ? subtype.label : key;
+                options.push(subtype);
             });
             options = _.orderBy(options, ['label']);
             return options;
@@ -71,10 +71,10 @@ export default {
         submit() {
             Events.$emit('sections:' + this.section_id + ':updating', this.section);
         },
-        update(template) {
-            this.showTemplates = false;
+        update(subtype) {
+            this.showSubtypes = false;
             this.loading = true;
-            this.section.template = template;
+            this.section.subtype = subtype;
             this.section.submit()
                 .then(() => {
                     this.$store.dispatch(this.storeKey + '/load', this.section);
@@ -86,7 +86,7 @@ export default {
         }
     },
     components: {
-        templates,
+        subtypes,
     },
     template: html,
 }

@@ -31,7 +31,7 @@ export default {
             return this.$parent.first;
         },
         isBox() {
-            return this.section.template_subgroup == 'containers';
+            return this.section.subtype_subgroup == 'containers';
         },
         isFirst() {
             return this.section.id == this.first.id;

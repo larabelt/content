@@ -27,7 +27,7 @@ export default {
         data: (context, value) => context.commit('data', value),
         load: ({dispatch, commit}, section) => {
             commit('data', section.data());
-            dispatch('config/set', {entity_type: 'sections', configKey: section.template});
+            dispatch('config/set', {entity_type: 'sections', configKey: section.subtype});
             dispatch('config/load');
         },
     },

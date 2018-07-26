@@ -1,5 +1,5 @@
 import shared from 'belt/content/js/sectionables/shared';
-import html from 'belt/content/js/sectionables/templates/groups/template.html';
+import html from 'belt/content/js/sectionables/subtypes/groups/template.html';
 
 export default {
     mixins: [shared],
@@ -11,25 +11,25 @@ export default {
     computed: {
         groups() {
             let options = [];
-            let templates = this.configs ? this.configs : {};
-            _.forOwn(templates, function (template, key) {
+            let subtypes = this.configs ? this.configs : {};
+            _.forOwn(subtypes, function (subtype, key) {
                 options.push({
                     value: key,
-                    label: template.label ? template.label : key,
+                    label: subtype.label ? subtype.label : key,
                 });
             });
             options = _.orderBy(options, ['label']);
             return options;
         },
         subgroup() {
-            return this.$parent.templateSubgroup;
+            return this.$parent.subtypeSubgroup;
         }
     },
     methods: {
         update(group) {
             //group = group ? group : this.group;
             this.group = group;
-            this.$emit('select-section-template-group', group);
+            this.$emit('select-section-subtype-group', group);
         },
     },
     template: html,

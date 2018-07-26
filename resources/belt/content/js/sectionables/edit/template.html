@@ -12,17 +12,17 @@
     <div class="box-body">
 
         <div class="form-group">
-            <label for="template">Template</label>
+            <label for="subtype">Subtype</label>
             <div class="input-group">
-                <div class="input-group-addon" @click="showTemplates = !showTemplates">
+                <div class="input-group-addon" @click="showSubtypes = !showSubtypes">
                     <i class="fa fa-pencil"></i>
                 </div>
-                <input class="form-control" v-model="section.template" readonly>
+                <input class="form-control" v-model="section.subtype" readonly>
             </div>
         </div>
 
-        <template v-if="showTemplates">
-            <templates @select-section-template="update"></templates>
+        <template v-if="showSubtypes">
+            <subtypes @select-section-subtype="update"></subtypes>
         </template>
 
         <div v-if="loading" class="box-body"><i class="fa fa-spinner fa-spin"></i></div>
