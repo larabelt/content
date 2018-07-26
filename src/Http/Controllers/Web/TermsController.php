@@ -42,11 +42,13 @@ class TermsController extends BaseController
 
         $compiled = $this->compile($term);
 
-        $owner = $term;
-
         $view = $term->getSubtypeConfig('extends', 'belt-content::terms.web.show');
 
-        return view($view, compact('owner', 'term', 'compiled'));
+        return view($view, [
+            'sectionable' => $term,
+            'term' => $term,
+            'compiled' => $compiled,
+        ]);
     }
 
 }

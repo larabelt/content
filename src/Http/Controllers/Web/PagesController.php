@@ -44,7 +44,11 @@ class PagesController extends BaseController
 
         $view = $page->getSubtypeConfig('extends', 'belt-content::pages.web.show');
 
-        return view($view, compact('page', 'compiled'));
+        return view($view, [
+            'sectionable' => $page,
+            'page' => $page,
+            'compiled' => $compiled,
+        ]);
     }
 
 }

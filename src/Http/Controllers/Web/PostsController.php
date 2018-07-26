@@ -42,11 +42,13 @@ class PostsController extends BaseController
 
         $compiled = $this->compile($post);
 
-        $owner = $post;
-
         $view = $post->getSubtypeConfig('extends', 'belt-content::posts.web.show');
 
-        return view($view, compact('owner', 'post', 'compiled'));
+        return view($view, [
+            'sectionable' => $post,
+            'post' => $post,
+            'compiled' => $compiled,
+        ]);
     }
 
 }

@@ -42,11 +42,13 @@ class ListsController extends BaseController
 
         $compiled = $this->compile($list);
 
-        $owner = $list;
-
         $view = $list->getSubtypeConfig('extends', 'belt-spot::lists.web.show');
 
-        return view($view, compact('owner', 'list', 'compiled'));
+        return view($view, [
+            'sectionable' => $list,
+            'list' => $list,
+            'compiled' => $compiled,
+        ]);
     }
 
 }

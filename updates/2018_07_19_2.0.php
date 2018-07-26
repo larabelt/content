@@ -100,6 +100,11 @@ class BeltUpdateContent20 extends BaseUpdate
 
             $this->map['categories'][$category->id] = $term->id;
 
+            $this->attachments($term, 'categories', $category->id);
+            $this->favorites($term, 'categories', $category->id);
+            $this->handles($term, 'categories', $category->id);
+            $this->params($term, 'categories', $category->id);
+
         }
 
         $this->info('categorizables...');
@@ -142,6 +147,11 @@ class BeltUpdateContent20 extends BaseUpdate
 
             $this->map['tags'][$tag->id] = $term->id;
 
+            $this->attachments($term, 'tags', $tag->id);
+            $this->favorites($term, 'tags', $tag->id);
+            $this->handles($term, 'tags', $tag->id);
+            $this->params($term, 'tags', $tag->id);
+
         }
 
         $this->info('taggables...');
@@ -175,6 +185,28 @@ class BeltUpdateContent20 extends BaseUpdate
         foreach ($clippables as $clippable) {
             $object->attachments()->syncWithoutDetaching($clippable->attachment_id);
         }
+    }
+
+    public function favorites($object, $old_type, $old_id)
+    {
+        DB::table('favorites')
+            ->where('favoriteable_type', $old_type)
+            ->where('favoriteable_id', $old_id)
+            ->update([
+                'favoriteable_type' => $object->getMorphClass(),
+                'favoriteable_id' => $object->id,
+            ]);
+    }
+
+    public function handles($object, $old_type, $old_id)
+    {
+        DB::table('handles')
+            ->where('handleable_type', $old_type)
+            ->where('handleable_id', $old_id)
+            ->update([
+                'handleable_type' => $object->getMorphClass(),
+                'handleable_id' => $object->id,
+            ]);
     }
 
     public function params($object, $old_type, $old_id)
@@ -223,6 +255,8 @@ class BeltUpdateContent20 extends BaseUpdate
             $this->map['touts'][$tout->id] = $block->id;
 
             $this->attachments($block, 'touts', $tout->id);
+            $this->favorites($block, 'touts', $tout->id);
+            $this->handles($block, 'touts', $tout->id);
             $this->params($block, 'touts', $tout->id);
         }
     }
@@ -248,6 +282,8 @@ class BeltUpdateContent20 extends BaseUpdate
             $this->map['albums'][$album->id] = $list->id;
 
             $this->attachments($list, 'albums', $album->id);
+            $this->favorites($list, 'albums', $album->id);
+            $this->handles($list, 'albums', $album->id);
             $this->params($list, 'albums', $album->id);
         }
     }
@@ -277,6 +313,8 @@ class BeltUpdateContent20 extends BaseUpdate
             $this->map['itineraries'][$itinerary->id] = $list->id;
 
             $this->attachments($list, 'itineraries', $itinerary->id);
+            $this->favorites($list, 'itineraries', $itinerary->id);
+            $this->handles($list, 'itineraries', $itinerary->id);
             $this->params($list, 'itineraries', $itinerary->id);
 
             $list->items()->delete();
