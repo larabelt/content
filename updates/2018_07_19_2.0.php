@@ -187,6 +187,14 @@ class BeltUpdateContent20 extends BaseUpdate
         foreach ($params as $param) {
             $object->saveParam($param->key, $param->value);
         }
+
+        DB::table('params')
+            ->where('key', $old_type)
+            ->where('value', $old_id)
+            ->update([
+                'key' => $object->getMorphClass(),
+                'value' => $object->id,
+            ]);
     }
 
     public function touts()
