@@ -1,0 +1,17 @@
+<div>
+    <div v-if="subtypes.length" class="subtype-select-list container-fluid">
+        <div v-for="subtype, key in subtypes" class="row row-striped">
+            <div class="col-md-3 subtype-label">
+                <p><strong>{{ subtype.label }}</strong></p>
+            </div>
+            <div class="col-md-6 subtype-description">
+                <p v-if="subtype.description">{{ subtype.description }}</p>
+            </div>
+            <div class="col-md-3 text-right subtype-action">
+                <button class="btn btn-sm btn-default" @click.prevent="update(subtype.name)">
+                    <i class="fa fa-angle-double-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

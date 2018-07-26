@@ -66,7 +66,7 @@ export default {
             this.form.file = file;
             this.form.driver = this.driver;
             this.form.path = this.path;
-            this.form.template = this.template ? this.template : 'default';
+            this.form.subtype = this.subtype ? this.subtype : 'default';
 
             if (this.id) {
                 this.form.id = this.id;

@@ -31,7 +31,7 @@ class Form extends BaseForm {
             heading: '',
             before: '',
             after: '',
-            template_subgroup: '',
+            subtype_group: '',
         });
         if (options.section) {
             this.setData(options.section);

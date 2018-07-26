@@ -1,7 +1,7 @@
 import BaseConfig from 'belt/core/js/helpers/config';
 import BaseService from 'belt/core/js/helpers/service';
 
-class TemplateConfig extends BaseConfig {
+class SubtypeConfig extends BaseConfig {
 
     constructor(options = {}) {
         super(options);
@@ -10,16 +10,16 @@ class TemplateConfig extends BaseConfig {
 
     dropdown(type) {
 
-        let templates = {};
+        let subtypes = {};
 
         for (let key in this.data[type]) {
             let config = this.data[type][key];
-            templates[key] = config['label'] ? config['label'] : key;
+            subtypes[key] = config['label'] ? config['label'] : key;
         }
 
-        return templates;
+        return subtypes;
     }
 
 }
 
-export default TemplateConfig;
+export default SubtypeConfig;

@@ -26,7 +26,7 @@ export default {
         data: (context, value) => context.commit('data', value),
         load: ({dispatch, commit}, page) => {
             commit('data', page.data());
-            dispatch('config/set', {configKey: page.template});
+            dispatch('config/set', {configKey: page.subtype});
             dispatch('config/load');
         },
     },
