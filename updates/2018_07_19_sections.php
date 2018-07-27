@@ -21,7 +21,7 @@ class BeltUpdateContentSections extends BaseUpdate
 
         foreach ($pages as $page) {
             //$this->map['pages'][$page->id] = $this->sections($page->sections);
-            $map = $this->sections($page->sections);
+            $map = $this->getMap($page->sections);
             //$map['count'] = 1;
             $this->addMap($map);
         }
@@ -46,7 +46,7 @@ class BeltUpdateContentSections extends BaseUpdate
         $this->maps[] = $new_map;
     }
 
-    public function sections($sections, $map = [], $tree = [], $depth = 1)
+    public function getMap($sections, $map = [], $tree = [], $depth = 1)
     {
         foreach ($sections as $n => $section) {
 
@@ -57,7 +57,7 @@ class BeltUpdateContentSections extends BaseUpdate
             $map[$key] = $section->subtype;
 
             if ($section->children->count()) {
-                $map = $this->sections($section->children, $map, $tree, $depth + 1);
+                $map = $this->getMap($section->children, $map, $tree, $depth + 1);
             }
         }
 
