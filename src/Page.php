@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package Belt\Content
  */
 class Page extends Model implements
+    Belt\Core\Behaviors\IncludesSubtypesInterface,
     Belt\Core\Behaviors\IsSearchableInterface,
     Belt\Core\Behaviors\ParamableInterface,
     Belt\Core\Behaviors\SluggableInterface,
@@ -19,11 +20,11 @@ class Page extends Model implements
     Belt\Content\Behaviors\HasSectionsInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Content\Behaviors\IncludesSeoInterface,
-    Belt\Core\Behaviors\IncludesSubtypesInterface,
     Belt\Content\Behaviors\TermableInterface,
     Belt\Content\Behaviors\ClippableInterface
 {
     use Belt\Core\Behaviors\HasSortableTrait;
+    use Belt\Core\Behaviors\IncludesSubtypes;
     use Belt\Core\Behaviors\IsSearchable;
     use Belt\Core\Behaviors\Sluggable;
     use Belt\Core\Behaviors\TypeTrait;
@@ -32,7 +33,6 @@ class Page extends Model implements
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\Handleable;
     use Belt\Content\Behaviors\HasSections;
-    use Belt\Core\Behaviors\IncludesSubtypes;
     use Belt\Content\Behaviors\Termable;
     use SoftDeletes;
 
