@@ -22,7 +22,7 @@ class BeltUpdateContentSections extends BaseUpdate
         foreach ($pages as $page) {
             //$this->map['pages'][$page->id] = $this->sections($page->sections);
             $map = $this->sections($page->sections);
-            $map['count'] = 1;
+            //$map['count'] = 1;
             $this->addMap($map);
         }
 
@@ -32,10 +32,16 @@ class BeltUpdateContentSections extends BaseUpdate
     public function addMap($new_map)
     {
         foreach ($this->maps as $n => $map) {
-            if ($map == $new_map) {
+
+            $tmp_map = $map;
+            unset($tmp_map['count']);
+
+            if ($new_map == $tmp_map) {
                 return $this->maps[$n]['count']++;
             }
         }
+
+        $new_map['count'] = 1;
 
         $this->maps[] = $new_map;
     }

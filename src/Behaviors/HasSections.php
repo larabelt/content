@@ -2,11 +2,20 @@
 
 namespace Belt\Content\Behaviors;
 
+use Belt;
 use DB;
 use Belt\Content\Section;
 
 trait HasSections
 {
+
+    /**
+     * Binds events to subclass
+     */
+    public static function bootHasSections()
+    {
+        static::observe(Belt\Content\Observers\HasSectionsObserver::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

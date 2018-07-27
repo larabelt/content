@@ -2,11 +2,20 @@
 
 namespace Belt\Content\Behaviors;
 
+use Belt;
 use DB;
 use Belt\Content\Term;
 
 trait Termable
 {
+
+    /**
+     * Binds events to subclass
+     */
+    public static function bootTermable()
+    {
+        static::observe(Belt\Content\Observers\TermableObserver::class);
+    }
 
     /**
      * @return \Rutorika\Sortable\BelongsToSortedMany

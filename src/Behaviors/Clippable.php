@@ -2,7 +2,7 @@
 
 namespace Belt\Content\Behaviors;
 
-use Belt, DB;
+use Belt;
 use Belt\Content\Attachment;
 
 /**
@@ -12,22 +12,20 @@ use Belt\Content\Attachment;
 trait Clippable
 {
     /**
+     * Binds events to subclass
+     */
+    public static function bootClippable()
+    {
+        static::observe(Belt\Content\Observers\ClippableObserver::class);
+    }
+
+    /**
      * @return array
      */
     public function getResizePresets()
     {
         return $this->getSubtypeConfig('resizes.presets');
     }
-
-//    /**
-//     * @todo need 2 classes for single attachments vs collections
-//     *
-//     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-//     */
-//    public function attachment()
-//    {
-//        return $this->belongsTo(Attachment::class);
-//    }
 
     /**
      * @return \Rutorika\Sortable\BelongsToSortedMany
@@ -36,18 +34,6 @@ trait Clippable
     {
         return $this->morphToSortedMany(Attachment::class, 'clippable')->withPivot('position');
     }
-
-//    /**
-//     * purge related items in clippables table
-//     */
-//    public function purgeAttachments()
-//    {
-//        DB::connection($this->getConnectionName())
-//            ->table('clippables')
-//            ->where('clippable_id', $this->id)
-//            ->where('clippable_type', $this->getMorphClass())
-//            ->delete();
-//    }
 
     /**
      * @return Attachment

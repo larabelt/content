@@ -2,6 +2,7 @@
 
 namespace Belt\Content\Behaviors;
 
+use Belt;
 use Belt\Content\Handle;
 
 /**
@@ -11,13 +12,13 @@ use Belt\Content\Handle;
 trait Handleable
 {
 
-//    /**
-//     * @return mixed
-//     */
-//    public function handle()
-//    {
-//        return $this->morphOne(Handle::class, 'handleable')->where('is_default', true);
-//    }
+    /**
+     * Binds events to subclass
+     */
+    public static function bootHandleable()
+    {
+        static::observe(Belt\Content\Observers\HandleableObserver::class);
+    }
 
     /**
      * @return mixed
