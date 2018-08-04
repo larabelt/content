@@ -19,3 +19,12 @@ Response::macro('posts', function ($post) {
 
     return Response::make($response);
 });
+
+# lists
+Response::macro('lists', function ($list) {
+
+    $controller = app()->make(Web\ListsController::class);
+    $response = $controller->callAction('show', ['list' => $list]);
+
+    return Response::make($response);
+});
