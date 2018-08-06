@@ -17,7 +17,6 @@ class UpdateBlock extends FormRequest
     {
         return [
             'name' => 'sometimes|required',
-            'body' => 'sometimes|required',
         ];
     }
 

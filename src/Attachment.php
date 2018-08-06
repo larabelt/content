@@ -44,7 +44,7 @@ class Attachment extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['src', 'secure', 'rel_path', 'readable_size', 'is_image', 'morph_class'];
+    protected $appends = ['src', 'secure', 'rel_path', 'readable_size', 'is_image', 'morph_class', 'config'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

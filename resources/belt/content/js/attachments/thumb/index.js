@@ -11,6 +11,12 @@ export default {
     },
     computed: {
         icon() {
+
+            let icon = _.get(this.attachment.config, 'icon');
+            if (icon) {
+                return icon;
+            }
+
             if (this.attachment.is_image) {
                 return 'fa-file-image-o';
             }
@@ -45,6 +51,12 @@ export default {
             return this.attachment.title ? this.attachment.title : this.attachment.name;
         },
         type() {
+
+            let label = _.get(this.attachment.config, 'label');
+            if (label) {
+                return label;
+            }
+
             let mimetype = this.attachment.mimetype;
 
             if (mimetype == 'application/pdf') {

@@ -68,7 +68,6 @@ class BlocksController extends ApiController
 
         $block = $this->blocks->create([
             'name' => $input['name'],
-            'body' => $input['body'],
         ]);
 
         $this->set($block, $input, [

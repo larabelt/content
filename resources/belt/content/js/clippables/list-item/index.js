@@ -25,6 +25,9 @@ export default {
 
             return false;
         },
+        name() {
+            return this.attachment.original_name ? this.attachment.original_name : name;
+        }
     },
     methods: {
         cancel() {

@@ -80,7 +80,12 @@ abstract class BaseAdapter
                 $sanitized = preg_replace('/\\.[^.\\s]{3,4}$/', '', $original);
                 $sanitized = str_slug(strtolower($sanitized));
 
-                return sprintf('%s-%s.%s', date('YmdHis'), $sanitized, $fileInfo->guessExtension());
+                $guessedExtension = $fileInfo->guessExtension();
+                if ($guessedExtension == 'bin') {
+                    $guessedExtension = array_get(pathinfo($original), 'extension') ?: $guessedExtension;
+                }
+
+                return sprintf('%s-%s.%s', date('YmdHis'), $sanitized, $guessedExtension);
             }
         }
 
@@ -192,13 +197,18 @@ abstract class BaseAdapter
             $sizes = getimagesize($uploadedFile->getRealPath());
         }
 
+        $mimetype = $uploadedFile->getMimeType();
+        if ($mimetype == 'application/octet-stream') {
+            $mimetype = $uploadedFile->getClientMimeType();
+        }
+
         return [
             'driver' => $this->driver,
             'name' => $filename,
             'original_name' => $uploadedFile->getClientOriginalName(),
             'path' => "$path",
             'size' => $uploadedFile->getSize(),
-            'mimetype' => $uploadedFile->getMimeType(),
+            'mimetype' => $mimetype,
             'width' => $sizes ? $sizes[0] : null,
             'height' => $sizes ? $sizes[1] : null,
         ];

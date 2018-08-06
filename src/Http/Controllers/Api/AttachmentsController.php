@@ -81,6 +81,8 @@ class AttachmentsController extends ApiController
 
         $paginator = $this->paginator($this->attachments->query(), $request);
 
+
+
         return response()->json($paginator->toArray());
     }
 
