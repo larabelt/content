@@ -137,6 +137,14 @@ class Section extends Model implements
     }
 
     /**
+     * @return mixed
+     */
+    public function getSectionsAttribute()
+    {
+        return $this->children;
+    }
+
+    /**
      * Return sections associated with owner
      *
      * @param $query

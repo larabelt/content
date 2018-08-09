@@ -17,6 +17,7 @@ class BeltUpdateContentSections extends BaseUpdate
         $this->info(sprintf('sections map'));
 
         $pages = Page::where('is_active', true)->get();
+        $pages = Page::where('is_converted', false)->get();
         //$pages = Page::all();
 
         foreach ($pages as $page) {
@@ -36,12 +37,13 @@ class BeltUpdateContentSections extends BaseUpdate
             unset($tmp_map['ids']);
 
             if ($new_map == $tmp_map) {
+                $this->maps[$n]['ids'][$object->getMorphClass()][] = sprintf('%s - %s', $object->id, $object->subtype);
                 return $this->maps[$n]['count']++;
             }
         }
 
         $new_map['count'] = 1;
-        $new_map['ids'][$object->getMorphClass()][] = $object->id;
+        $new_map['ids'][$object->getMorphClass()][] = sprintf('%s - %s', $object->id, $object->subtype);
 
         $this->maps[] = $new_map;
     }
