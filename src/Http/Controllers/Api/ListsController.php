@@ -5,6 +5,7 @@ namespace Belt\Content\Http\Controllers\Api;
 use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Lyst;
 use Belt\Content\Http\Requests;
+use Belt\Core\Http\Requests\FormRequest;
 use Illuminate\Http\Request;
 
 /**
@@ -87,15 +88,18 @@ class ListsController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  Lyst $list
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $list
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show($list)
+    public function show(Request $request, $list)
     {
         $this->authorize(['view', 'create', 'update', 'delete'], $list);
 
-        $list->items;
+        $this->append($request, $list);
+        $this->embed($request, $list);
+
         foreach ($list->items as $item) {
             $item->listable;
         }
