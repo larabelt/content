@@ -23,12 +23,110 @@ class BeltUpdateContent20 extends BaseUpdate
         Term::unguard();
         ListItem::unguard();
 
+        $this->purge();
+
         $this->albums();
         $this->itineraries();
         $this->touts();
 
         $this->categories();
         $this->tags();
+    }
+
+    public function purge()
+    {
+        dump(Morph::map());
+
+        foreach (Morph::map() as $table => $class) {
+
+            if (in_array($table, ['custom'])) {
+                continue;
+            }
+
+            DB::table('amenity_spots')
+                ->leftJoin($table, 'amenity_spots.owner_id', '=', "$table.id")
+                ->where('amenity_spots.owner_type', $table)
+                ->whereNull("$table.id")
+                ->delete();
+
+            DB::table('categorizables')
+                ->leftJoin($table, 'categorizables.categorizable_id', '=', "$table.id")
+                ->where('categorizables.categorizable_type', $table)
+                ->whereNull("$table.id")
+                ->delete();
+
+            DB::table('clippables')
+                ->leftJoin($table, 'clippables.clippable_id', '=', "$table.id")
+                ->where('clippables.clippable_type', $table)
+                ->whereNull("$table.id")
+                ->delete();
+
+            if ($table != 'favorites') {
+                DB::table('favorites')
+                    ->leftJoin($table, 'favorites.favoriteable_id', '=', "$table.id")
+                    ->where('favorites.favoriteable_type', $table)
+                    ->whereNull("$table.id")
+                    ->delete();
+            }
+
+            if ($table != 'handles') {
+                DB::table('handles')
+                    ->leftJoin($table, 'handles.handleable_id', '=', "$table.id")
+                    ->where('handles.handleable_type', $table)
+                    ->whereNull("$table.id")
+                    ->delete();
+            }
+
+            DB::table('index')
+                ->leftJoin($table, 'index.indexable_id', '=', "$table.id")
+                ->where('index.indexable_type', $table)
+                ->whereNull("$table.id")
+                ->delete();
+
+            if ($table != 'locations') {
+                DB::table('locations')
+                    ->leftJoin($table, 'locations.locatable_id', '=', "$table.id")
+                    ->where('locations.locatable_type', $table)
+                    ->whereNull("$table.id")
+                    ->delete();
+            }
+
+            if ($table != 'params') {
+                DB::table('params')
+                    ->leftJoin($table, 'params.paramable_id', '=', "$table.id")
+                    ->where('params.paramable_type', $table)
+                    ->where('params.paramable_type', '!=', 'params')
+                    ->whereNull("$table.id")
+                    ->delete();
+            }
+
+            DB::table('taggables')
+                ->leftJoin($table, 'taggables.taggable_id', '=', "$table.id")
+                ->where('taggables.taggable_type', $table)
+                ->whereNull("$table.id")
+                ->delete();
+
+            DB::table('vacation_pois')
+                ->leftJoin($table, 'vacation_pois.vacationable_id', '=', "$table.id")
+                ->where('vacation_pois.vacationable_type', $table)
+                ->whereNull("$table.id")
+                ->delete();
+
+            if ($table != 'work_requests') {
+                DB::table('work_requests')
+                    ->leftJoin($table, 'work_requests.workable_id', '=', "$table.id")
+                    ->where('work_requests.workable_type', $table)
+                    ->whereNull("$table.id")
+                    ->delete();
+            }
+
+        }
+
+        DB::table('itinerary_place')
+            ->leftJoin('places', 'itinerary_place.place_id', '=', "places.id")
+            ->whereNull("places.id")
+            ->delete();
+
     }
 
     /**
