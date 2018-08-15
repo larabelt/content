@@ -1,5 +1,3 @@
-//import Table from 'belt/core/js/paramables/table';
-
 export default {
     namespaced: true,
     state: {
