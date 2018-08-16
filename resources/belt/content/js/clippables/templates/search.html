@@ -6,14 +6,15 @@
             <div class="form-group">
                 <p class="help-block">Use the search field to find attachments that can be linked to this item.</p>
                 <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                    <input class="form-control" v-model.trim="detached.query.q" @keyup="detached.index()" placeholder="enter attachment name">
-                    <div v-if="detached.query.q" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>
+                    <div v-if="!loading" class="input-group-addon" @click="filter()"><i class="fa fa-search"></i></div>
+                    <div v-else class="input-group-addon"><i class="fa fa-spinner fa-spin"></i></div>
+                    <input class="form-control" v-model.trim="detached.query.q" @keyup="filter()" placeholder="enter attachment name">
+                    <div v-if="showResults" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>
                 </div>
             </div>
         </form>
 
-        <template v-if="detached.query.q">
+        <template v-if="showResults">
             <h5><strong>Attachment Search Results</strong></h5>
             <div class="clippable-panel">
                 <div class="row tile-panels">
