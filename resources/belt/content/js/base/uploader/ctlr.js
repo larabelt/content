@@ -18,6 +18,7 @@ export default {
         id: {default: ''},
         template: {default: ''},
         button_class: {default: 'btn-default'},
+        subtype: {default: ''},
     },
     data() {
         return {

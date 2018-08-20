@@ -14,8 +14,12 @@ export default {
     mounted() {
         this.form.show(this.resize.id);
     },
-    methods: {
-
+    watch: {
+        'resize.id': function (id) {
+            if (id) {
+                this.form.show(id);
+            }
+        }
     },
     template: html
 }

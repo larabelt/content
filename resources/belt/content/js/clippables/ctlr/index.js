@@ -68,6 +68,7 @@ export default {
             this.tabs.set(tab);
             this.table.query.perPage = 10;
             if (tab == 'sort') {
+                this.table.query.page = 1;
                 this.table.query.perPage = 9999;
             }
             this.table.index();
