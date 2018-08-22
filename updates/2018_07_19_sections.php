@@ -3,6 +3,7 @@
 use Belt\Core\Facades\MorphFacade as Morph;
 use Belt\Core\Services\Update\BaseUpdate;
 use Belt\Content\Page;
+use Belt\Spot\Place;
 
 /**
  * Class UpdateService
@@ -23,6 +24,14 @@ class BeltUpdateContentSections extends BaseUpdate
         foreach ($pages as $page) {
             $map = $this->getMap($page->sections);
             $this->addMap($map, $page);
+        }
+
+        $places = Place::where('is_converted', false)->get();
+        //$places = Place::all();
+
+        foreach ($places as $place) {
+            $map = $this->getMap($place->sections);
+            $this->addMap($map, $place);
         }
 
         dump($this->maps);
