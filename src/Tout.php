@@ -40,7 +40,7 @@ class Tout extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['morph_class'];
+    protected $appends = ['morph_class', 'image'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
