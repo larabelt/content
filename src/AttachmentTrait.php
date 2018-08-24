@@ -164,6 +164,7 @@ trait AttachmentTrait
     public static function setAttributesFromUpload(array $data = [])
     {
         $attributes = [
+            'subtype' => array_get($data, 'subtype', null),
             'driver' => array_get($data, 'driver', null),
             'name' => array_get($data, 'name', null),
             'original_name' => array_get($data, 'original_name', null),
