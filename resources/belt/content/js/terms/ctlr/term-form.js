@@ -7,6 +7,7 @@ export default {
     data() {
         return {
             form: this.$parent.form,
+            entity_id: this.$parent.entity_id,
             parentTerm: this.$parent.parentTerm,
             search: false,
             table: new Table({router: this.$router}),
