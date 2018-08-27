@@ -202,6 +202,7 @@ class BeltUpdateContent20 extends BaseUpdate
             $this->favorites($term, 'categories', $category->id);
             $this->handles($term, 'categories', $category->id);
             $this->params($term, 'categories', $category->id);
+            $this->sections($term, 'categories', $category->id);
 
         }
 
@@ -324,6 +325,17 @@ class BeltUpdateContent20 extends BaseUpdate
             ->update([
                 'key' => $object->getMorphClass(),
                 'value' => $object->id,
+            ]);
+    }
+
+    public function sections($object, $old_type, $old_id)
+    {
+        DB::table('sections')
+            ->where('owner_type', $old_type)
+            ->where('owner_id', $old_id)
+            ->update([
+                'owner_type' => $object->getMorphClass(),
+                'owner_id' => $object->id,
             ]);
     }
 

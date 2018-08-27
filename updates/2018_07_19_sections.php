@@ -3,6 +3,8 @@
 use Belt\Core\Facades\MorphFacade as Morph;
 use Belt\Core\Services\Update\BaseUpdate;
 use Belt\Content\Page;
+use Belt\Content\Term;
+use Belt\Spot\Event;
 use Belt\Spot\Place;
 
 /**
@@ -11,27 +13,25 @@ use Belt\Spot\Place;
  */
 class BeltUpdateContentSections extends BaseUpdate
 {
+    /**
+     * @var array
+     */
+    public $argumentMap = [
+        'types',
+    ];
+
     protected $maps = [];
 
     public function up()
     {
         $this->info(sprintf('sections map'));
 
-        $pages = Page::where('is_active', true)->get();
-        $pages = Page::where('is_converted', false)->get();
-        //$pages = Page::all();
+        $types = $this->argument('types', 'pages');
 
-        foreach ($pages as $page) {
-            $map = $this->getMap($page->sections);
-            $this->addMap($map, $page);
-        }
-
-        $places = Place::where('is_converted', false)->get();
-        //$places = Place::all();
-
-        foreach ($places as $place) {
-            $map = $this->getMap($place->sections);
-            $this->addMap($map, $place);
+        foreach (explode(',', $types) as $type) {
+            if (method_exists($this, $type)) {
+                $this->$type();
+            }
         }
 
         dump($this->maps);
@@ -73,6 +73,51 @@ class BeltUpdateContentSections extends BaseUpdate
         }
 
         return $map;
+    }
+
+    public function pages()
+    {
+        $pages = Page::where('is_active', true)->get();
+        $pages = Page::where('is_converted', false)->get();
+        //$pages = Page::all();
+
+        foreach ($pages as $page) {
+            $map = $this->getMap($page->sections);
+            $this->addMap($map, $page);
+        }
+    }
+
+    public function places()
+    {
+        $places = Place::where('is_converted', false)->get();
+        //$places = Place::all();
+
+        foreach ($places as $place) {
+            $map = $this->getMap($place->sections);
+            $this->addMap($map, $place);
+        }
+    }
+
+    public function events()
+    {
+        $events = Event::where('is_converted', false)->get();
+        //$events = Event::all();
+
+        foreach ($events as $event) {
+            $map = $this->getMap($event->sections);
+            $this->addMap($map, $event);
+        }
+    }
+
+    public function terms()
+    {
+        $terms = Term::where('is_converted', false)->get();
+        //$terms = Term::all();
+
+        foreach ($terms as $term) {
+            $map = $this->getMap($term->sections);
+            $this->addMap($map, $term);
+        }
     }
 
 }
