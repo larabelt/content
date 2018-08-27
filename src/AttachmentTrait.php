@@ -2,6 +2,7 @@
 
 namespace Belt\Content;
 
+use Belt;
 use Belt\Content\Adapters\BaseAdapter;
 use Belt\Content\Adapters\AdapterFactory;
 
@@ -164,7 +165,7 @@ trait AttachmentTrait
     public static function setAttributesFromUpload(array $data = [])
     {
         $attributes = [
-            'subtype' => array_get($data, 'subtype', null),
+            //'subtype' => array_get($data, 'subtype', null),
             'driver' => array_get($data, 'driver', null),
             'name' => array_get($data, 'name', null),
             'original_name' => array_get($data, 'original_name', null),
@@ -174,6 +175,11 @@ trait AttachmentTrait
             'width' => array_get($data, 'width') ?: 0,
             'height' => array_get($data, 'height') ?: 0,
         ];
+
+        if (in_array(Belt\Core\Behaviors\IncludesSubtypesInterface::class,
+            class_implements(static::class))) {
+            $attributes['subtype'] = array_get($data, 'subtype', null);
+        }
 
         return $attributes;
     }
