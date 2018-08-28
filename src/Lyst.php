@@ -73,8 +73,7 @@ class Lyst extends Model implements
     public function toSearchableArray()
     {
         $array = $this->__toSearchableArray();
-        $array['categories'] = $this->categories ? $this->categories->pluck('id')->all() : null;
-        $array['tags'] = $this->tags ? $this->tags->pluck('id')->all() : null;
+        $array['terms'] = $this->terms ? $this->terms->pluck('id')->all() : null;
 
         return $array;
     }
