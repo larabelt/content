@@ -85,6 +85,11 @@ class BaseAdapterTest extends BeltTestCase
         $fileInfo->shouldReceive('guessExtension')->once()->andReturn('jpg');
         $this->assertTrue(str_contains($adapter->randomFilename($fileInfo), ['.jpg', date('Ymd')]));
 
+        # randomFilename (part 2)
+        $uploadedFile = m::mock(UploadedFile::class . '[guessExtension]', [__DIR__ . '/../testing/test.jpg', 'test.jpg']);
+        $uploadedFile->shouldReceive('guessExtension')->andReturn('bin');
+        $this->assertContains('.jpg', $adapter->randomFilename($uploadedFile));
+
         # normalizePath
         $this->assertEquals('test', $adapter->normalizePath('test'));
         $this->assertEquals('test', $adapter->normalizePath('test/'));
@@ -108,6 +113,13 @@ class BaseAdapterTest extends BeltTestCase
         $this->assertEquals($attachmentInfo->getMimeType(), $data['mimetype']);
         $this->assertEquals($sizes[0], $data['width']);
         $this->assertEquals($sizes[1], $data['height']);
+
+        # __create (part 2)
+        $uploadedFile = m::mock(UploadedFile::class . '[getMimeType,getClientMimeType]', [__DIR__ . '/../testing/test.jpg', 'test.jpg']);
+        $uploadedFile->shouldReceive('getMimeType')->andReturn('application/octet-stream');
+        $uploadedFile->shouldReceive('getClientMimeType')->andReturn('foo');
+        $data = $adapter->__create('testing/test', $uploadedFile);
+        $this->assertEquals('foo', $data['mimetype']);
 
         # tests moved from LocalAdapter
         app()['config']->set('filesystems.disks.LocalAdapterTest', [

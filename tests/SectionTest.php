@@ -18,6 +18,7 @@ class SectionTest extends BeltTestCase
      * @covers \Belt\Content\Section::getSubtypeSubgroupAttribute
      * @covers \Belt\Content\Section::toArray
      * @covers \Belt\Content\Section::children
+     * @covers \Belt\Content\Section::getSectionsAttribute
      * @covers \Belt\Content\Section::scopeOwned
      * @covers \Belt\Content\Section::getPreviewAttribute
      *
@@ -43,6 +44,9 @@ class SectionTest extends BeltTestCase
         # toArray
         $array = $section->toArray();
         $this->assertTrue(isset($array['children']));
+
+        # children / sections
+        $this->assertEquals($section->children, $section->sections);
 
         # preview
         app()['config']->set('belt.subtypes.sections.foo.bar.preview', function () {
