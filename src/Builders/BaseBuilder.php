@@ -3,35 +3,19 @@
 namespace Belt\Content\Builders;
 
 use Belt;
-use Belt\Core\Behaviors\IncludesSubtypesInterface;
+use Belt\Core\Builders\BaseBuilder as CoreBaseBuilder;
 use Belt\Content\Section;
 
 /**
  * Class BaseBuilder
  * @package Belt\Content\Builders
  */
-abstract class BaseBuilder
+abstract class BaseBuilder extends CoreBaseBuilder
 {
-    /**
-     * @var IncludesSubtypesInterface
-     */
-    public $item;
-
     /**
      * @var Section
      */
     public $sections;
-
-    /**
-     * BaseBuilder constructor.
-     * @param IncludesSubtypesInterface $item
-     */
-    public function __construct(IncludesSubtypesInterface $item)
-    {
-        $this->item = $item;
-    }
-
-    abstract function build();
 
     /**
      * @return Section
