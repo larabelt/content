@@ -33,8 +33,23 @@ class BeltUpdateContent20 extends BaseUpdate
         $this->tags();
     }
 
+    public function map($old_type, $old_id, $new_type, $new_id)
+    {
+        $this->map[$old_type][$old_id] = $new_id;
+
+        DB::table('conversions_map')->insert([
+            'old_type' => $old_type,
+            'old_id' => $old_id,
+            'new_type' => $new_type,
+            'new_id' => $new_id,
+        ]);
+    }
+
     public function purge()
     {
+
+        DB::table('conversions_map')->truncate();
+
         dump(Morph::map());
 
         foreach (Morph::map() as $table => $class) {
@@ -196,7 +211,8 @@ class BeltUpdateContent20 extends BaseUpdate
             $term->slugs = json_decode($category->slugs, true);
             $term->save();
 
-            $this->map['categories'][$category->id] = $term->id;
+            //$this->map['categories'][$category->id] = $term->id;
+            $this->map('categories', $category->id, 'terms', $term->id);
 
             $this->attachments($term, 'categories', $category->id);
             $this->favorites($term, 'categories', $category->id);
@@ -244,7 +260,8 @@ class BeltUpdateContent20 extends BaseUpdate
             $term->body = $tag->body;
             $term->save();
 
-            $this->map['tags'][$tag->id] = $term->id;
+            //$this->map['tags'][$tag->id] = $term->id;
+            $this->map('tags', $tag->id, 'terms', $term->id);
 
             $this->attachments($term, 'tags', $tag->id);
             $this->favorites($term, 'tags', $tag->id);
@@ -362,7 +379,8 @@ class BeltUpdateContent20 extends BaseUpdate
             $block->saveParam('btn_url', $tout->btn_url);
             $block->saveParam('btn_text', $tout->btn_text);
 
-            $this->map['touts'][$tout->id] = $block->id;
+            //$this->map['touts'][$tout->id] = $block->id;
+            $this->map('touts', $tout->id, 'blocks', $block->id);
 
             $this->attachments($block, 'touts', $tout->id);
             $this->favorites($block, 'touts', $tout->id);
@@ -389,7 +407,8 @@ class BeltUpdateContent20 extends BaseUpdate
             $list->save();
             $list->saveParam('body', $album->body);
 
-            $this->map['albums'][$album->id] = $list->id;
+            //$this->map['albums'][$album->id] = $list->id;
+            $this->map('albums', $album->id, 'lists', $list->id);
 
             $this->attachments($list, 'albums', $album->id);
             $this->favorites($list, 'albums', $album->id);
@@ -420,7 +439,8 @@ class BeltUpdateContent20 extends BaseUpdate
             $list->save();
             $list->saveParam('body', $itinerary->body);
 
-            $this->map['itineraries'][$itinerary->id] = $list->id;
+            //$this->map['itineraries'][$itinerary->id] = $list->id;
+            $this->map('itineraries', $itinerary->id, 'lists', $list->id);
 
             $this->attachments($list, 'itineraries', $itinerary->id);
             $this->favorites($list, 'itineraries', $itinerary->id);
