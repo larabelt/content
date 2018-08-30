@@ -1,5 +1,5 @@
 <form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
-    <input-subtype v-if="form.id" entity_type="posts"></input-subtype>
+    <input-subtype entity_type="posts" formKey="form"></input-subtype>
     <div class="checkbox">
         <label>
             <input type="checkbox"
