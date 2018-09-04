@@ -25,12 +25,12 @@ class BeltUpdateContent20 extends BaseUpdate
 
         $this->purge();
 
-//        $this->albums();
-//        $this->itineraries();
-//        $this->touts();
-//
-//        $this->categories();
-//        $this->tags();
+        $this->albums();
+        $this->itineraries();
+        $this->touts();
+
+        $this->categories();
+        $this->tags();
     }
 
     public function map($old_type, $old_id, $new_type, $new_id)
