@@ -25,12 +25,12 @@ class BeltUpdateContent20 extends BaseUpdate
 
         $this->purge();
 
-        $this->albums();
-        $this->itineraries();
-        $this->touts();
-
-        $this->categories();
-        $this->tags();
+//        $this->albums();
+//        $this->itineraries();
+//        $this->touts();
+//
+//        $this->categories();
+//        $this->tags();
     }
 
     public function map($old_type, $old_id, $new_type, $new_id)
@@ -50,9 +50,13 @@ class BeltUpdateContent20 extends BaseUpdate
 
         DB::table('conversions_map')->truncate();
 
-        dump(Morph::map());
+        //dump(Morph::map());
 
-        foreach (Morph::map() as $table => $class) {
+        $map = Morph::map();
+        $map['itineraries'] = '\Belt\Spot\Itinerary';
+        $map['touts'] = '\Belt\Content\Tout';
+
+        foreach ($map as $table => $class) {
 
             if (in_array($table, ['custom'])) {
                 continue;
