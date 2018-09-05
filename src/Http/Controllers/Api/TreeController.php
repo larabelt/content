@@ -2,7 +2,9 @@
 
 namespace Belt\Content\Http\Controllers\Api;
 
+use Morph;
 use Belt\Core\Helpers\MorphHelper;
+use Belt\Core\Http\Controllers\Behaviors\Morphable;
 use Belt\Core\Http\Controllers\ApiController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -10,15 +12,7 @@ use Illuminate\Http\Request;
 class TreeController extends ApiController
 {
 
-    /**
-     * @var MorphHelper
-     */
-    public $morphHelper;
-
-    public function __construct(MorphHelper $morphHelper)
-    {
-        $this->morphHelper = $morphHelper;
-    }
+    use Morphable;
 
     /**
      * @param $node_type
@@ -27,7 +21,7 @@ class TreeController extends ApiController
      */
     public function node($node_type, $node_id)
     {
-        $node = $this->morphHelper->morph($node_type, $node_id);
+        $node = $this->morph($node_type, $node_id);
 
         return $node ?: $this->abort(404);
     }

@@ -1,6 +1,5 @@
 import edit from 'belt/content/js/lists/edit/shared';
 import create from 'belt/content/js/lists/edit/items/create';
-
 import filterType from 'belt/content/js/lists/edit/items/filters/type';
 import search from 'belt/core/js/search';
 import Form from 'belt/content/js/lists/edit/items/form';
@@ -43,6 +42,12 @@ export default {
                 hasHighlighted() {
                     return !_.isEmpty(this.highlighted);
                 },
+                maxListItems() {
+                    return _.get(this.config, 'list_items.max', null);
+                },
+                showCreate() {
+                    return this.maxListItems == null || this.table.items.length < this.maxListItems;
+                }
             },
             mounted() {
                 this.table.index();
@@ -102,7 +107,6 @@ export default {
             components: {
                 create,
                 search,
-                
                 filterType,
                 gridItem,
                 rowItem,

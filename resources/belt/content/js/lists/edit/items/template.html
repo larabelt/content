@@ -1,10 +1,11 @@
 <div class="row">
 
-    <div class="col-md-12">
-        <create></create>
-    </div>
-
-    <hr/>
+    <template v-if="showCreate">
+        <div class="col-md-12">
+            <create></create>
+        </div>
+        <hr/>
+    </template>
 
     <div class="col-md-12">
 
