@@ -11,8 +11,13 @@ export default {
             form: new Form({list_id: this.$route.params.id}),
         }
     },
-    mounted() {
-
+    computed: {
+        config() {
+            return this.$parent.config;
+        },
+        allowedTypes() {
+            return _.get(this.config, 'list_items.allowed_types', []);
+        },
     },
     methods: {
         submit() {

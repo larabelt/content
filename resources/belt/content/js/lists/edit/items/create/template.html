@@ -1,7 +1,7 @@
 <div class="form-inline">
     <form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)">
         <div class="form-group">
-            <input-subtype entity_type="list_items" autoset="true"></input-subtype>
+            <input-subtype entity_type="list_items" autoset="true" :allowed_types="allowedTypes"></input-subtype>
         </div>
         <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">
             <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
