@@ -1,5 +1,4 @@
 import Table from 'belt/content/js/terms/table';
-
 import parentTerms from 'belt/content/js/terms/ctlr/index-table';
 import form_html from 'belt/content/js/terms/templates/form.html';
 
@@ -24,10 +23,13 @@ export default {
             this.form.parent_id = null;
             this.parentTerm.reset();
             this.search = false;
+        },
+        submit() {
+            Events.$emit('terms:' + this.entity_id + ':updating', this.form);
+            this.form.submit();
         }
     },
     components: {
-
         parentTerms: {
             mixins: [parentTerms],
             methods: {

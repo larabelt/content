@@ -1,4 +1,15 @@
-<form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
+<form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)">
+    <div class="clearfix">
+        <div class="pull-right">
+            <div class="btn-group">
+                <a v-if="form.id" class="btn btn-sm btn-default" target="_blank" :href="'/terms/' + form.id">preview</a>
+                <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">
+                    <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                    <span v-else>save</span>
+                </button>
+            </div>
+        </div>
+    </div>
     <input-subtype entity_type="terms"></input-subtype>
     <div class="checkbox">
         <label>
@@ -32,10 +43,15 @@
     </div>
     <input-params v-if="form.id" paramable_type="terms" :paramable_id="entity_id"></input-params>
     <input-seo></input-seo>
-    <div class="text-right">
-        <button class="btn btn-primary" :disabled="form.errors.any()">
-            <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-            <span v-else>save</span>
-        </button>
+    <div class="clearfix">
+        <div class="pull-right">
+            <div class="btn-group">
+                <a v-if="form.id" class="btn btn-sm btn-default" target="_blank" :href="'/terms/' + form.id">preview</a>
+                <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">
+                    <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                    <span v-else>save</span>
+                </button>
+            </div>
+        </div>
     </div>
 </form>
