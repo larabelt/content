@@ -1,5 +1,5 @@
 <form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
-    <input-subtype entity_type="posts" formKey="form"></input-subtype>
+    <input-subtype entity_type="posts" formKey="form" autoset="true"></input-subtype>
     <div class="checkbox">
         <label>
             <input type="checkbox"
