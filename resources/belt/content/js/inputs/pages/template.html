@@ -35,7 +35,7 @@
                 <tr v-for="page in pages.items">
                     <td>{{ page.id }}. <strong>{{ page.name }}:</strong> {{ page.slug }}</td>
                     <td class="text-right">
-                        <button class="btn btn-default" @click="update(page.id)"><i class="fa fa-link"></i></button>
+                        <button class="btn btn-default" @click.prevent="update(page.id)"><i class="fa fa-link"></i></button>
                     </td>
                 </tr>
             </table>

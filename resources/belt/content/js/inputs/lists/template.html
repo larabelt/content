@@ -35,7 +35,7 @@
                 <tr v-for="list in lists.items">
                     <td>{{ list.id }}. <strong>{{ list.name }}:</strong> {{ list.slug }}</td>
                     <td class="text-right">
-                        <button class="btn btn-default" @click="update(list.id)"><i class="fa fa-link"></i></button>
+                        <button class="btn btn-default" @click.prevent="update(list.id)"><i class="fa fa-link"></i></button>
                     </td>
                 </tr>
             </table>

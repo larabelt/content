@@ -35,7 +35,7 @@
                 <tr v-for="block in blocks.items">
                     <td>{{ block.id }}. <strong>{{ block.name }}:</strong> {{ block.slug }}</td>
                     <td class="text-right">
-                        <button class="btn btn-default" @click="update(block.id)"><i class="fa fa-link"></i></button>
+                        <button class="btn btn-default" @click.prevent="update(block.id)"><i class="fa fa-link"></i></button>
                     </td>
                 </tr>
             </table>
