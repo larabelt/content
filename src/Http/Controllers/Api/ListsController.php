@@ -68,6 +68,7 @@ class ListsController extends ApiController
         ]);
 
         $this->set($list, $input, [
+            'team_id',
             'is_active',
             'is_searchable',
             'status',
@@ -124,6 +125,7 @@ class ListsController extends ApiController
         $input = $request->all();
 
         $this->set($list, $input, [
+            'team_id',
             'is_active',
             'is_searchable',
             'status',

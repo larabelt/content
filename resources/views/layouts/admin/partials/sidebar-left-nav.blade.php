@@ -8,7 +8,7 @@
     $can['terms'] = $auth->can(['create','update','delete'], Belt\Content\Term::class);
 @endphp
 
-@if($can['blocks'] || $can['handles'] || $can['pages'] || $can['posts'])
+@if($can['attachments'] || $can['blocks'] || $can['handles'] || $can['lists'] || $can['pages'] || $can['posts'] || $can['terms'])
     <li id="content-admin-sidebar-left" class="treeview">
         <a href="#">
             <i class="fa fa-file-o"></i> <span>Content</span> <i class="fa fa-angle-left pull-right"></i>
