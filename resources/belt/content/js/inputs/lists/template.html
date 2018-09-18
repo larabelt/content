@@ -6,28 +6,59 @@
             <slot>{{ label }}</slot>
         </label>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <p class="help-block"></p>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                        <input class="form-control" v-model.trim="lists.query.q" @keyup="lists.index()"
-                               placeholder="enter list name">
-                        <div v-if="lists.query.q" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>
+        <!--        <div class="row">-->
+        <!--            <div class="col-md-4">-->
+        <!--                <div class="form-group">-->
+        <!--                    <p class="help-block"></p>-->
+        <!--                    <div class="input-group">-->
+        <!--                        <div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+        <!--                        <input class="form-control" v-model.trim="lists.query.q" @keyup="lists.index()"-->
+        <!--                               placeholder="enter list name">-->
+        <!--                        <div v-if="lists.query.q" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <span class="help-block" v-html="description"></span>-->
+        <!--            </div>-->
+        <!--            <div class="col-md-3">-->
+        <!--                <p><img class="img-responsive" :src="list.src"/></p>-->
+        <!--            </div>-->
+        <!--            <div class="col-md-5">-->
+        <!--                <template v-if="list.id">-->
+        <!--                    <p @click.prevent="unlink">{{ list.id }}. {{ list.name }}</p>-->
+        <!--                </template>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
+        <template v-if="!list.id">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <p class="help-block"></p>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input class="form-control" v-model.trim="lists.query.q" @keyup="lists.index()"
+                                   placeholder="enter list name">
+                            <div v-if="lists.query.q" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>
+                        </div>
+                    </div>
+                    <span class="help-block" v-html="description"></span>
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="well well-sm clearfix">
+                        <span class="pull-right">
+                            <button class="btn btn-default" @click.prevent="unlink"><i class="fa fa-unlink"></i></button>
+                        </span>
+                        <span class="pull-left">
+                            {{ list.id }}. {{ list.name }}
+                        </span>
                     </div>
                 </div>
-                <span class="help-block" v-html="description"></span>
             </div>
-            <div class="col-md-3">
-                <p><img class="img-responsive" :src="list.src"/></p>
-            </div>
-            <div class="col-md-5">
-                <template v-if="list.id">
-                    <p>{{ list.id }}. {{ list.name }}</p>
-                </template>
-            </div>
-        </div>
+        </template>
 
         <template v-if="lists.query.q && lists.items.length">
             <h5><strong>List Search Results</strong></h5>

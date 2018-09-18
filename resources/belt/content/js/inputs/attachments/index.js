@@ -16,7 +16,9 @@ export default {
         this.config.label = _.get(this.config, 'label', 'Attachment');
         this.config.description = _.get(this.config, 'description', 'Use the search field to find attachments that can be linked to this item.');
         this.$watch('form.' + this.column, function (newValue) {
-            this.attachment.show(newValue);
+            if (newValue) {
+                this.attachment.show(newValue);
+            }
         });
     },
     mounted() {
@@ -27,6 +29,10 @@ export default {
     methods: {
         clear() {
             this.attachments.query.q = '';
+        },
+        unlink() {
+            this.form[this.column] = null;
+            this.attachment.reset();
         },
         update(id) {
             this.form[this.column] = id;

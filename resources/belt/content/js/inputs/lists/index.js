@@ -15,7 +15,9 @@ export default {
         this.config.label = _.get(this.config, 'label', 'List');
         this.config.description = _.get(this.config, 'description', 'Use the search field to find lists that can be linked to this item.');
         this.$watch('form.' + this.column, function (newValue) {
-            this.list.show(newValue);
+            if(newValue) {
+                this.list.show(newValue);
+            }
         });
     },
     mounted() {
@@ -26,6 +28,10 @@ export default {
     methods: {
         clear() {
             this.lists.query.q = '';
+        },
+        unlink() {
+            this.form[this.column] = null;
+            this.list.reset();
         },
         update(id) {
             this.form[this.column] = id;

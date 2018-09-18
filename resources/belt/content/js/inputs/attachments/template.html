@@ -6,33 +6,68 @@
             <slot>{{ label }}</slot>
         </label>
 
-        <p class="help-block">{{ trans('belt-content::inputs.attachments.description' ) }}</></p>
+        <p v-if="!attachment.id" class="help-block">{{ trans('belt-content::inputs.attachments.description' ) }}</></p>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <p class="help-block"></p>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                        <input class="form-control" v-model.trim="attachments.query.q" @keyup="attachments.index()"
-                               placeholder="enter attachment name">
-                        <div v-if="attachments.query.q" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>
+<!--        <div class="row">-->
+<!--            <div class="col-md-4">-->
+<!--                <div class="form-group">-->
+<!--                    <p class="help-block"></p>-->
+<!--                    <div class="input-group">-->
+<!--                        <div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+<!--                        <input class="form-control" v-model.trim="attachments.query.q" @keyup="attachments.index()"-->
+<!--                               placeholder="enter attachment name">-->
+<!--                        <div v-if="attachments.query.q" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <span class="help-block" v-html="description"></span>-->
+<!--            </div>-->
+<!--            <div class="col-md-3">-->
+<!--                <template v-if="attachment.id">-->
+<!--                    <thumb :attachment="attachment"></thumb>-->
+<!--                </template>-->
+<!--            </div>-->
+<!--            <div class="col-md-5">-->
+<!--                <template v-if="attachment.id">-->
+<!--                    <p>{{ attachment.id }}. {{ attachment.name }}</p>-->
+<!--                    <p v-if="attachment.title"><strong>{{ attachment.title }}</strong></p>-->
+<!--                </template>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <template v-if="!attachment.id">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <p class="help-block"></p>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input class="form-control" v-model.trim="attachments.query.q" @keyup="attachments.index()"
+                                   placeholder="enter attachment name">
+                            <div v-if="attachments.query.q" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>
+                        </div>
+                    </div>
+                    <span class="help-block" v-html="description"></span>
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <div class="row">
+                <div class="col-md-3">
+                    <thumb :attachment="attachment"></thumb>
+                </div>
+                <div class="col-md-9">
+                    <div class="well well-sm clearfix">
+                        <span class="pull-right">
+                            <button class="btn btn-default" @click.prevent="unlink"><i class="fa fa-unlink"></i></button>
+                        </span>
+                        <span class="pull-left">
+                            {{ attachment.id }}. {{ attachment.name }}
+                            <strong v-if="attachment.title">{{ attachment.title }}</strong>
+                        </span>
                     </div>
                 </div>
-                <span class="help-block" v-html="description"></span>
             </div>
-            <div class="col-md-3">
-                <template v-if="attachment.id">
-                    <thumb :attachment="attachment"></thumb>
-                </template>
-            </div>
-            <div class="col-md-5">
-                <template v-if="attachment.id">
-                    <p>{{ attachment.id }}. {{ attachment.name }}</p>
-                    <p v-if="attachment.title"><strong>{{ attachment.title }}</strong></p>
-                </template>
-            </div>
-        </div>
+        </template>
 
         <template v-if="attachments.query.q && attachments.items.length">
             <h5><strong>Attachment Search Results</strong></h5>
