@@ -69,6 +69,7 @@ export default {
                 },
                 completeMove() {
                     this.moving_id = null;
+                    //this.table.items = [];
                     this.table.index();
                 },
                 detach() {

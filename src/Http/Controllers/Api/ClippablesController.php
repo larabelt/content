@@ -3,10 +3,10 @@
 namespace Belt\Content\Http\Controllers\Api;
 
 use Belt\Core\Http\Controllers\ApiController;
+use Belt\Core\Http\Controllers\Behaviors\Morphable;
 use Belt\Core\Http\Controllers\Behaviors\Positionable;
 use Belt\Content\Attachment;
 use Belt\Content\Http\Requests;
-use Belt\Core\Helpers\MorphHelper;
 use Illuminate\Http\Request;
 
 /**
@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 class ClippablesController extends ApiController
 {
 
-    use Positionable;
+    use Morphable, Positionable;
 
     /**
      * @var Attachment
@@ -24,24 +24,19 @@ class ClippablesController extends ApiController
     public $attachments;
 
     /**
-     * @var MorphHelper
-     */
-    public $morphHelper;
-
-    /**
      * ClippablesController constructor.
      * @param Attachment $attachment
-     * @param MorphHelper $morphHelper
      */
-    public function __construct(Attachment $attachment, MorphHelper $morphHelper)
+    public function __construct(Attachment $attachment)
     {
         $this->attachments = $attachment;
-        $this->morphHelper = $morphHelper;
     }
 
     /**
      * @param $id
      * @param null $clippable
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
      */
     public function attachment($id, $clippable = null)
     {
@@ -57,34 +52,26 @@ class ClippablesController extends ApiController
     }
 
     /**
-     * @param $clippable_type
-     * @param $clippable_id
-     */
-    public function clippable($clippable_type, $clippable_id)
-    {
-        $clippable = $this->morphHelper->morph($clippable_type, $clippable_id);
-
-        return $clippable ?: $this->abort(404);
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @param $clippable_type
+     * @param $clippable_id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request, $clippable_type, $clippable_id)
     {
 
         $request = Requests\PaginateClippables::extend($request);
 
-        $owner = $this->clippable($clippable_type, $clippable_id);
+        $clippable = $this->morph($clippable_type, $clippable_id);
 
-        $this->authorize(['view', 'create', 'update', 'delete'], $owner);
+        $this->authorize(['view', 'create', 'update', 'delete'], $clippable);
 
         $request->merge([
-            'clippable_id' => $owner->id,
-            'clippable_type' => $owner->getMorphClass()
+            'clippable_id' => $clippable->id,
+            'clippable_type' => $clippable->getMorphClass()
         ]);
 
         $paginator = $this->paginator($this->attachments->with('resizes'), $request);
@@ -95,29 +82,33 @@ class ClippablesController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Requests\AttachAttachment $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param Requests\AttachAttachment $request
+     * @param $clippable_type
+     * @param $clippable_id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Requests\AttachAttachment $request, $clippable_type, $clippable_id)
     {
-        $owner = $this->clippable($clippable_type, $clippable_id);
+        $clippable = $this->morph($clippable_type, $clippable_id);
 
-        $this->authorize('update', $owner);
+        $this->authorize('update', $clippable);
 
         $id = $request->get('id');
 
         $attachment = $this->attachment($id);
 
-        if ($owner->attachments->contains($id)) {
+        if ($clippable->attachments->contains($id)) {
             $this->abort(422, ['id' => ['attachment already attached']]);
         }
 
-        $owner->attachments()->attach($id);
+        $clippable->attachments()->attach($id);
 
-        $owner->touch();
+        $clippable->touch();
 
-        $this->itemEvent('attachments.attached', $owner);
+        $this->itemEvent('attachments.attached', $clippable);
 
 
         return response()->json($attachment, 201);
@@ -126,22 +117,24 @@ class ClippablesController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  Requests\UpdateClippable $request
-     * @param  string $clippable_type
-     * @param  string $clippable_id
-     * @param  string $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param Requests\UpdateClippable $request
+     * @param $clippable_type
+     * @param $clippable_id
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Requests\UpdateClippable $request, $clippable_type, $clippable_id, $id)
     {
-        $owner = $this->clippable($clippable_type, $clippable_id);
+        $clippable = $this->morph($clippable_type, $clippable_id);
 
-        $this->authorize('update', $owner);
+        $this->authorize('update', $clippable);
 
-        $attachment = $this->attachment($id, $owner);
+        $attachment = $this->attachment($id, $clippable);
 
-        $this->repositionHasManyThrough($request, $id, $owner->attachments, $owner->attachments());
+        $this->repositionHasManyThrough($request, $id, $clippable->attachments, $clippable->attachments());
 
         try {
             if ($this->authorize('update', $attachment)) {
@@ -155,7 +148,7 @@ class ClippablesController extends ApiController
                     'nickname',
                 ]);
                 $attachment->save();
-                $this->itemEvent('attachments.updated', $owner);
+                $this->itemEvent('attachments.updated', $clippable);
             }
         } catch (\Exception $e) {
 
@@ -167,17 +160,21 @@ class ClippablesController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $clippable_type
+     * @param $clippable_id
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show($clippable_type, $clippable_id, $id)
     {
-        $owner = $this->clippable($clippable_type, $clippable_id);
+        $clippable = $this->morph($clippable_type, $clippable_id);
 
-        $this->authorize(['view', 'create', 'update', 'delete'], $owner);
+        $this->authorize(['view', 'create', 'update', 'delete'], $clippable);
 
-        $attachment = $this->attachment($id, $owner);
+        $attachment = $this->attachment($id, $clippable);
 
         return response()->json($attachment);
     }
@@ -185,25 +182,29 @@ class ClippablesController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $clippable_type
+     * @param $clippable_id
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Belt\Core\Http\Exceptions\ApiException
+     * @throws \Belt\Core\Http\Exceptions\ApiNotFoundHttpException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy($clippable_type, $clippable_id, $id)
     {
-        $owner = $this->clippable($clippable_type, $clippable_id);
+        $clippable = $this->morph($clippable_type, $clippable_id);
 
-        $this->authorize('update', $owner);
+        $this->authorize('update', $clippable);
 
-        if (!$owner->attachments->contains($id)) {
+        if (!$clippable->attachments->contains($id)) {
             $this->abort(422, ['id' => ['attachment not attached']]);
         }
 
-        $owner->attachments()->detach($id);
+        $clippable->attachments()->detach($id);
 
-        $owner->touch();
+        $clippable->touch();
 
-        $this->itemEvent('attachments.detached', $owner);
+        $this->itemEvent('attachments.detached', $clippable);
 
         return response()->json(null, 204);
     }

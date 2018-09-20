@@ -19,8 +19,8 @@ class Form extends BaseForm {
         this.routeEditName = 'lists.items';
         this.setData({
             id: '',
-            list_id: '',
-            subtype: '',
+            // list_id: '',
+            // subtype: '',
             move: '',
             position_entity_id: '',
         });
