@@ -57,8 +57,10 @@ class BeltUpdateContentSections extends BaseUpdate
         $this->maps[] = $new_map;
     }
 
-    public function getMap($sections, $map = [], $tree = [], $depth = 1)
+    public function getMap($sections = [], $map = [], $tree = [], $depth = 1)
     {
+        $sections = $sections ?: [];
+
         foreach ($sections as $n => $section) {
 
             $tree[$depth] = isset($tree[$depth]) ? $tree[$depth] + 1 : 1;
