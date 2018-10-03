@@ -46,7 +46,7 @@ export default {
                     return _.get(this.config, 'list_items.max', null);
                 },
                 showCreate() {
-                    return this.maxListItems == null || this.table.items.length < this.maxListItems;
+                    return !this.maxListItems || this.table.items.length < this.maxListItems;
                 }
             },
             mounted() {

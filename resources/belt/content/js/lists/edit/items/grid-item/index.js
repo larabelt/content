@@ -54,6 +54,7 @@ export default {
 
             let form = new Form({list_id: this.item.list_id});
             form.id = this.moving_id;
+            form.subtype = this.item.subtype;
             form.move = position;
             form.position_entity_id = target_id;
 

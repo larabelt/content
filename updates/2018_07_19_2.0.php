@@ -418,6 +418,7 @@ class BeltUpdateContent20 extends BaseUpdate
             $this->favorites($list, 'albums', $album->id);
             $this->handles($list, 'albums', $album->id);
             $this->params($list, 'albums', $album->id);
+            $this->sections($list, 'albums', $album->id);
         }
     }
 
@@ -450,6 +451,7 @@ class BeltUpdateContent20 extends BaseUpdate
             $this->favorites($list, 'itineraries', $itinerary->id);
             $this->handles($list, 'itineraries', $itinerary->id);
             $this->params($list, 'itineraries', $itinerary->id);
+            $this->sections($list, 'itineraries', $itinerary->id);
 
             $list->items()->delete();
 
