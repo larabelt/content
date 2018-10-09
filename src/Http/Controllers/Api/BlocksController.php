@@ -98,6 +98,8 @@ class BlocksController extends ApiController
 
         $this->authorize(['view', 'create', 'update', 'delete'], $block);
 
+        $block->append(['config']);
+
         return response()->json($block);
     }
 
