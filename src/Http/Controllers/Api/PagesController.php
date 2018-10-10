@@ -95,7 +95,7 @@ class PagesController extends ApiController
     {
         $this->authorize(['view', 'create', 'update', 'delete'], $page);
 
-        $page->append(['config']);
+        $page->append(['config']);z
 
         return response()->json($page);
     }
