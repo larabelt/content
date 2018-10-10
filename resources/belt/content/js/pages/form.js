@@ -9,7 +9,7 @@ class PageForm extends BaseForm {
         this.routeEditName = 'pages.edit';
         this.setData({
             id: '',
-            is_active: 0,
+            is_active: false,
             name: '',
             slug: '',
             subtype: '',

@@ -1,46 +1,14 @@
-<div>
-    <form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)" class="translatable">
-        <div class="clearfix">
-            <div class="pull-right">
-                <div class="btn-group">
-                    <a v-if="form.id" class="btn btn-sm btn-default" target="_blank" :href="'/pages/' + form.id">preview</a>
-                    <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">
-                        <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-                        <span v-else>save</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <input-subtype entity_type="pages" formKey="form" autoset="true"></input-subtype>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox"
-                       v-model="form.is_active"
-                > Is Active
-            </label>
-        </div>
-        <div class="form-group" :class="{ 'has-error': form.error('name') }">
-            <label for="name">Name * </label>
-            <input class="form-control" v-model="form.name" placeholder="name">
-            <span v-for="error in form.error('name')" class="text-danger">{{ error }}</span>
-        </div>
-        <div v-if="form.id" class="form-group" :class="{ 'has-error': form.error('slug') }">
-            <label for="slug">Slug</label>
-            <input class="form-control" v-model="form.slug" placeholder="slug" :disabled="!translatable(form, 'slug')">
-            <span v-for="error in form.error('slug')" class="text-danger">{{ error }}</span>
-        </div>
-        <input-params v-if="form.id" paramable_type="pages" :paramable_id="entity_id"></input-params>
-        <input-seo></input-seo>
-        <div class="clearfix">
-            <div class="pull-right">
-                <div class="btn-group">
-                    <a v-if="form.id" class="btn btn-sm btn-default" target="_blank" :href="'/pages/' + form.id">preview</a>
-                    <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">
-                        <span v-if="form.saving"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-                        <span v-else>save</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
+<form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)" class="translatable">
+    <button-save-group>
+        <a v-if="form.id" class="btn btn-sm btn-default" target="_blank" :href="'/pages/' + form.id">preview</a>
+    </button-save-group>
+    <input-subtype entity_type="pages" formKey="form" autoset="true"></input-subtype>
+    <input-checkbox column="is_active">Is Active</input-checkbox>
+    <input-text column="name" required="true">Name</input-text>
+    <input-text v-if="form.id" column="slug">Slug</input-text>
+    <input-params v-if="form.id" paramable_type="pages" :paramable_id="entity_id"></input-params>
+    <input-seo></input-seo>
+    <button-save-group>
+        <a v-if="form.id" class="btn btn-sm btn-default" target="_blank" :href="'/pages/' + form.id">preview</a>
+    </button-save-group>
+</form>

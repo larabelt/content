@@ -64,6 +64,11 @@ class Page extends Model implements
     protected $appends = ['image', 'type', 'default_url', 'morph_class'];
 
     /**
+     * @var array
+     */
+    protected $casts = ['is_active' => 'boolean'];
+
+    /**
      * Get the indexable data array for the model.
      *
      * @return array
