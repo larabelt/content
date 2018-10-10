@@ -19,6 +19,7 @@
             <input  class="form-control" v-model="form.slug" placeholder="slug">
             <span v-for="error in form.error('slug')" class="text-danger">{{ error }}</span>
         </div>
+        <input-params v-if="form.id" paramable_type="blocks" :paramable_id="entity_id"></input-params>
         <div class="form-group" :class="{ 'has-error': form.error('heading') }">
             <label for="heading">Heading</label>
             <input  class="form-control" v-model="form.heading" placeholder="heading">
@@ -29,7 +30,6 @@
             <belt-editor v-model="form.body"></belt-editor>
             <span v-for="error in form.error('body')" class="text-danger">{{ error }}</span>
         </div>
-        <input-params v-if="form.id" paramable_type="blocks" :paramable_id="entity_id"></input-params>
         <div class="clearfix">
             <div class="pull-right">
                 <button class="btn btn-sm btn-primary" :disabled="form.errors.any()">
