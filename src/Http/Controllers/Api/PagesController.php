@@ -97,6 +97,8 @@ class PagesController extends ApiController
 
         $page->append(['config']);
 
+        $page->translations;
+
         return response()->json($page);
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Belt\Content\Behaviors;
 
 /**
@@ -38,7 +39,8 @@ trait IncludesSeo
      */
     public function getMetaTitleAttribute($value)
     {
-        return $value ?: $this->name;
+        return $value;
+        //return $value ?: $this->name;
     }
 
 }
