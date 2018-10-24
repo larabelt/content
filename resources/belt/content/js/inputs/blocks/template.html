@@ -24,7 +24,14 @@
             </div>
             <div class="col-md-5">
                 <template v-if="block.id">
-                    <p>{{ block.id }}. {{ block.name }}</p>
+                    <div class="well well-sm clearfix">
+                        <span class="pull-right">
+                            <button class="btn btn-default" @click.prevent="unlink"><i class="fa fa-unlink"></i></button>
+                        </span>
+                        <span class="pull-left">
+                            {{ block.id }}. {{ block.name }}
+                        </span>
+                    </div>
                 </template>
             </div>
         </div>

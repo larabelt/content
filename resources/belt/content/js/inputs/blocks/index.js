@@ -15,7 +15,9 @@ export default {
         this.config.label = _.get(this.config, 'label', 'Block');
         this.config.description = _.get(this.config, 'description', 'Use the search field to find blocks that can be linked to this item.');
         this.$watch('form.' + this.column, function (newValue) {
-            this.block.show(newValue);
+            if (newValue) {
+                this.block.show(newValue);
+            }
         });
     },
     mounted() {
@@ -26,6 +28,10 @@ export default {
     methods: {
         clear() {
             this.blocks.query.q = '';
+        },
+        unlink() {
+            this.form[this.column] = null;
+            this.block.reset();
         },
         update(id) {
             this.form[this.column] = id;
