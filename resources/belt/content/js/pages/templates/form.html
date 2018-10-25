@@ -1,14 +1,26 @@
 <form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)" class="translatable">
-    <button-save-group>
-        <a v-if="form.id" class="btn btn-sm btn-default" target="_blank" :href="'/pages/' + form.id">preview</a>
-    </button-save-group>
-    <input-seo></input-seo>
-    <input-text column="name" required="true">Name</input-text>
+
+    <base-button-group>
+        <template slot="left">
+            <button-translate></button-translate>
+        </template>
+        <button-preview></button-preview>
+        <button-save></button-save>
+    </base-button-group>
+
     <input-subtype entity_type="pages" formKey="form" autoset="true"></input-subtype>
     <input-checkbox column="is_active">Is Active</input-checkbox>
+    <input-text column="name" required="true">Name</input-text>
     <input-text v-if="form.id" column="slug">Slug</input-text>
     <input-params v-if="form.id" paramable_type="pages" :paramable_id="entity_id"></input-params>
-    <button-save-group>
-        <a v-if="form.id" class="btn btn-sm btn-default" target="_blank" :href="'/pages/' + form.id">preview</a>
-    </button-save-group>
+    <input-seo></input-seo>
+
+    <base-button-group>
+        <template slot="left">
+            <button-translate></button-translate>
+        </template>
+        <button-preview></button-preview>
+        <button-save></button-save>
+    </base-button-group>
+
 </form>
