@@ -1,12 +1,12 @@
 <form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)" class="translatable">
 
-    <page-button-group>
+    <base-button-group>
         <template slot="left">
             <button-translate></button-translate>
         </template>
         <button-preview></button-preview>
         <button-save></button-save>
-    </page-button-group>
+    </base-button-group>
 
     <input-subtype entity_type="pages" formKey="form" autoset="true"></input-subtype>
     <input-checkbox column="is_active">Is Active</input-checkbox>
