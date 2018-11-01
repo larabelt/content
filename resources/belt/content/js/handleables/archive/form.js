@@ -15,6 +15,8 @@ class Form extends BaseForm {
 
         this.service = new BaseService({baseUrl: baseUrl});
         this.setData({
+            //handleable_id: this.entity_id,
+            //handleable_type: this.entity_type,
             is_active: 1,
             is_default: 0,
             subtype: 'alias',

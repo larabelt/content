@@ -1,11 +1,9 @@
 import shared from 'belt/content/js/pages/ctlr/shared';
-
-// components
-import handles from 'belt/content/js/handleables/ctlr/index';
+import HandleableManager from 'belt/content/js/handleables/Manager';
 
 export default {
     mixins: [shared],
     components: {
-        tab: handles,
+        tab: HandleableManager,
     },
 }

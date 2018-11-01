@@ -1,0 +1,79 @@
+<template>
+    <tr>
+        <td>{{ handle.url }}</td>
+        <td>
+            <template v-if="handle.is_active">
+                <i class="fa fa-check"></i>
+            </template>
+        </td>
+        <td>{{ handle.subtype }}</td>
+        <td>
+            <template v-if="handle.is_active && handle.config.show_default">
+                <template v-if="handle.is_default">
+                    <button class="btn btn-xs btn-primary">
+                        <i class="fa fa-check-square-o"></i>
+                    </button>
+                </template>
+                <template v-else>
+                    <button class="btn btn-xs btn-default"
+                            @click.prevent="makeDefault()"
+                            title="click to set as default handle"
+                    ><i class="fa fa-square-o"></i></button>
+                </template>
+            </template>
+        </td>
+        <td class="text-right">
+            <div class="btn-group">
+                <button
+                        type="button"
+                        class="btn btn-xs btn-default dropdown-toggle text-muted"
+                        data-toggle="dropdown"
+                        aria-expanded="false"
+                        title="options"
+                >
+                    <i class="fa fa-gear"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <modal-delete :item-id="handle.id" _class="''" :callingObject="table"><i class="fa fa-trash"></i> Remove</modal-delete>
+                    </li>
+                </ul>
+                <router-link
+                        :to="{ name: 'handles.edit', params: { id: handle.id } }"
+                        :class="'btn btn-xs btn-default'"
+                        title="edit handle"
+                        target="_blank"
+                >
+                    <i class="fa fa-edit"></i>
+                </router-link>
+            </div>
+        </td>
+    </tr>
+</template>
+<script>
+    import Form from 'belt/content/js/handleables/form';
+    import shared from 'belt/content/js/handleables/shared';
+
+    export default {
+        mixins: [shared],
+        props: ['handle'],
+        data() {
+            return {
+                form: new Form({
+                    entity_type: this.$parent.entity_type,
+                    entity_id: this.$parent.entity_id,
+                }),
+            }
+        },
+        methods: {
+            makeDefault() {
+                this.form.setData(this.handle);
+                this.form.is_default = true;
+                this.form.submit()
+                    .then(() => {
+                        this.table.index();
+                    });
+            }
+        },
+    }
+</script>
