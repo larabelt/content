@@ -59,7 +59,7 @@ class Page extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['image', 'type', 'default_url', 'morph_class'];
+    protected $appends = ['image', 'type', 'default_url', 'morph_class', 'params'];
 
     /**
      * Get the indexable data array for the model.

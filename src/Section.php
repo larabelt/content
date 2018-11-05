@@ -46,7 +46,7 @@ class Section extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['name', 'morph_class', 'subtype_subgroup', 'preview'];
+    protected $appends = ['name', 'morph_class', 'subtype_subgroup', 'preview', 'params'];
 
     /**
      * @return mixed|string

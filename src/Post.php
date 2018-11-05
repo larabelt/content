@@ -64,7 +64,7 @@ class Post extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['image', 'morph_class', 'default_url', 'is_public'];
+    protected $appends = ['image', 'morph_class', 'default_url', 'is_public', 'params'];
 
     /**
      * Get the indexable data array for the model.
