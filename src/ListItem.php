@@ -43,7 +43,7 @@ class ListItem extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['config'];
+    protected $appends = ['config', 'params'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
