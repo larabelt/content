@@ -54,7 +54,7 @@ class Post extends Model implements
     /**
      * @var array
      */
-    protected $with = ['handles'];
+    protected $with = ['handles', 'params'];
 
     /**
      * @var array
@@ -64,7 +64,7 @@ class Post extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['image', 'morph_class', 'default_url', 'is_public', 'params'];
+    protected $appends = ['image', 'morph_class', 'default_url', 'is_public'];
 
     /**
      * Get the indexable data array for the model.

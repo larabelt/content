@@ -34,7 +34,12 @@ class Handle extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['config', 'params'];
+    protected $with = ['params'];
+
+    /**
+     * @var array
+     */
+    protected $appends = ['config'];
 
     /**
      * The Associated owning model
