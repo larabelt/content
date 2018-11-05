@@ -58,12 +58,12 @@ class Lyst extends Model implements
     /**
      * @var array
      */
-    protected $with = ['handles'];
+    protected $with = ['handles', 'params'];
 
     /**
      * @var array
      */
-    protected $appends = ['morph_class', 'default_url', 'params'];
+    protected $appends = ['morph_class', 'default_url'];
 
     /**
      * Get the indexable data array for the model.

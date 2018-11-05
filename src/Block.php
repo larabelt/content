@@ -38,6 +38,11 @@ class Block extends Model implements
     /**
      * @var array
      */
-    protected $fillable = ['name', 'body', 'params'];
+    protected $with = ['params'];
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['name', 'body'];
 
 }

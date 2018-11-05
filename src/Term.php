@@ -49,7 +49,12 @@ class Term extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['full_name', 'default_url', 'url', 'hierarchy', 'image', 'morph_class', 'params'];
+    protected $with = ['params'];
+
+    /**
+     * @var array
+     */
+    protected $appends = ['full_name', 'default_url', 'url', 'hierarchy', 'image', 'morph_class'];
 
     /**
      * @var array

@@ -38,12 +38,17 @@ class ListItem extends Model implements
     /**
      * @var array
      */
+    protected $with = ['params'];
+
+    /**
+     * @var array
+     */
     protected static $sortableGroupField = ['list_id'];
 
     /**
      * @var array
      */
-    protected $appends = ['config', 'params'];
+    protected $appends = ['config'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
