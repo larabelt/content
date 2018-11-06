@@ -20,7 +20,8 @@
             <input-quasi-checkbox :form="handle" column="is_default" @toggle="makeDefault"></input-quasi-checkbox>
         </td>
         <td class="text-right">
-            <button class="btn btn-default btn-xs" @click.prevent="trash"><i class="fa fa-trash"></i></button>
+            <button-inline-trash @trash="trash"></button-inline-trash>
+            <!--<button class="btn btn-default btn-xs" @click.prevent="trash"><i class="fa fa-trash"></i></button>-->
             <button v-if="handle.saving" class="btn btn-default btn-xs"><i class="fa fa-refresh fa-spin"></i></button>
             <button v-else class="btn btn-default btn-xs" @click.prevent="update"><i class="fa fa-save"></i></button>
         </td>
