@@ -161,6 +161,7 @@ class HandleablesController extends ApiController
 
         $this->set($handle, $input, [
             'subtype',
+            'is_active',
             'is_default',
             'url',
             'target',

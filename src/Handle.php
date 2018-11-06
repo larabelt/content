@@ -88,6 +88,14 @@ class Handle extends Model implements
         return '/' . $value;
     }
 
+//    /**
+//     * @param $value
+//     */
+//    public function setIsActiveAttribute($value)
+//    {
+//        $this->attributes['is_active'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+//    }
+
     /**
      * Return handles associated with handleable
      *
@@ -150,7 +158,8 @@ class Handle extends Model implements
          * There should only be one default, so if there is zero (or somehow more than one)
          * then this lucky duck becomes the default.
          */
-        if ($this->is_default || $count != 1) {
+        if ($this->is_default || ($this->is_active && $count != 1)) {
+
             $this->is_default = true;
             $this->target = null;
             $this->save();

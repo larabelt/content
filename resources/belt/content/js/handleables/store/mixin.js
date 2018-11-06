@@ -1,37 +1,72 @@
-import {mapState} from 'vuex';
 import store from 'belt/content/js/handleables/store';
+import Form from 'belt/content/js/handleables/form';
+import Table from 'belt/content/js/handleables/table';
 
 export default {
     created() {
-        if (!this.$store.getters['locales/initialized']) {
-            this.initializeLocalesStore();
+        if (!this.$store.state[this.handleableStoreKey]) {
+            this.$store.registerModule(this.handleableStoreKey, store);
+            this.loadHandles();
         }
     },
+    data() {
+        return {
+            table: new Table(),
+        }
+    },
+    mounted() {
+        this.table = new Table({entity_type: this.handleableType, entity_id: this.handleableID});
+    },
     computed: {
-        ...mapState('locales', [
-            'canAutoTranslate',
-            'fallbackLocale',
-            'locale',
-            'locales',
-        ]),
-        altLocale() {
-            return this.locale != this.fallbackLocale ? this.locale : false;
+        handleable() {
+            return this.form;
         },
-        altLocales() {
-            return _.differenceBy(this.locales, [{'code': this.fallbackLocale}], 'code');
+        handleableID() {
+            return this.entity_id;
+        },
+        handleableStoreKey() {
+            return 'handles/' + this.handleableType + this.handleableID;
+        },
+        handleableType() {
+            return this.entity_type;
+        },
+        handles() {
+            return this.$store.getters[this.handleableStoreKey + '/handles'];
         },
     },
     methods: {
-        initializeLocalesStore() {
-            this.$store.dispatch('locales/setCanAutoTranslate', _.get(window, 'larabelt.translate.auto-translate', false));
-            this.$store.dispatch('locales/setInitialized', true);
-            this.$store.dispatch('locales/setFallbackLocale', _.get(window, 'larabelt.fallback_locale', ''));
-            this.$store.dispatch('locales/setLocale', Cookies.get('locale') ? Cookies.get('locale') : '');
-            this.$store.dispatch('locales/setLocales', _.get(window, 'larabelt.locales', []));
+        dropHandle(handle) {
+            let id = handle.id;
+            let keep = this.handles;
+            _.remove(keep, function (handle) {
+                return handle.id == id;
+            });
+            console.log(333, id);
+            console.log(keep);
+            this.$store.dispatch(this.handleableStoreKey + '/setHandles', []);
+            this.$store.dispatch(this.handleableStoreKey + '/setHandles', keep);
         },
-        setLocale(code) {
-            Cookies.set('locale', code);
-            this.$store.dispatch('locales/setLocale', code);
+        loadHandles() {
+            let handles = _.get(this.handleable, 'handles', []);
+            if (handles.length) {
+                this.pushHandles(handles);
+            } else {
+                this.fetchHandles();
+            }
+        },
+        fetchHandles() {
+            this.$store.dispatch(this.handleableStoreKey + '/setHandles', []);
+            this.table.index()
+                .then((response) => {
+                    this.pushHandles(response.data);
+                });
+        },
+        pushHandles(handles) {
+            _.each(handles, (handle) => {
+                let form = new Form({entity_type: this.handleableType, entity_id: this.handleableID});
+                form.mergeData(handle);
+                this.$store.dispatch(this.handleableStoreKey + '/pushHandle', form);
+            });
         },
     }
 }

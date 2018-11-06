@@ -2,32 +2,18 @@ export default {
     namespaced: true,
     state() {
         return {
-            canAutoTranslate: false,
-            initialized: false,
-            fallbackLocale: '',
-            locale: [],
-            locales: [],
+            handles: [],
         }
     },
     mutations: {
-        canAutoTranslate: (state, value) => state.canAutoTranslate = value,
-        initialized: (state, value) => state.initialized = value,
-        fallbackLocale: (state, value) => state.fallbackLocale = value,
-        locale: (state, value) => state.locale = value,
-        locales: (state, value) => state.locales = value,
+        handles: (state, handles) => state.handles = handles,
+        pushHandle: (state, handle) => state.handles.push(handle),
     },
     actions: {
-        setCanAutoTranslate: (context, canAutoTranslate) => context.commit('canAutoTranslate', canAutoTranslate),
-        setInitialized: (context, initialized) => context.commit('initialized', initialized),
-        setFallbackLocale: (context, fallbackLocale) => context.commit('fallbackLocale', fallbackLocale),
-        setLocale: (context, locale) => context.commit('locale', locale),
-        setLocales: (context, locales) => context.commit('locales', locales),
+        setHandles: (context, handles) => context.commit('handles', handles),
+        pushHandle: (context, handle) => context.commit('pushHandle', handle),
     },
     getters: {
-        canAutoTranslate: state => state.canAutoTranslate,
-        initialized: state => state.initialized,
-        fallbackLocale: state => state.fallbackLocale,
-        locale: state => state.locale,
-        locales: state => state.locales,
+        handles: state => state.handles,
     },
 }

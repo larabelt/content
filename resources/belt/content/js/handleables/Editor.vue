@@ -1,79 +1,74 @@
 <template>
-    <tr>
-        <td>{{ handle.url }}</td>
+    <tr class="form-inline">
+        <td><input class="form-control" type="text" v-model="handle.url" @change="update"/></td>
         <td>
-            <template v-if="handle.is_active">
-                <i class="fa fa-check"></i>
-            </template>
+            <input type="checkbox"
+                   v-model="handle.is_active"
+                   :true-value="true"
+                   :false-value="false"
+                   @change="update"
+            />
         </td>
-        <td>{{ handle.subtype }}</td>
         <td>
-            <template v-if="handle.is_active && handle.config.show_default">
-                <template v-if="handle.is_default">
-                    <button class="btn btn-xs btn-primary">
-                        <i class="fa fa-check-square-o"></i>
-                    </button>
-                </template>
-                <template v-else>
-                    <button class="btn btn-xs btn-default"
-                            @click.prevent="makeDefault()"
-                            title="click to set as default handle"
-                    ><i class="fa fa-square-o"></i></button>
-                </template>
-            </template>
+            <input type="checkbox"
+                   v-model="handle.is_default"
+                   :true-value="true"
+                   :false-value="false"
+                   @change="makeDefault"
+            />
         </td>
         <td class="text-right">
-            <div class="btn-group">
-                <button
-                        type="button"
-                        class="btn btn-xs btn-default dropdown-toggle text-muted"
-                        data-toggle="dropdown"
-                        aria-expanded="false"
-                        title="options"
-                >
-                    <i class="fa fa-gear"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li>
-                        <modal-delete :item-id="handle.id" _class="''" :callingObject="table"><i class="fa fa-trash"></i> Remove</modal-delete>
-                    </li>
-                </ul>
-                <router-link
-                        :to="{ name: 'handles.edit', params: { id: handle.id } }"
-                        :class="'btn btn-xs btn-default'"
-                        title="edit handle"
-                        target="_blank"
-                >
-                    <i class="fa fa-edit"></i>
-                </router-link>
-            </div>
+            <button class="btn btn-default btn-xs" @click.prevent="trash"><i class="fa fa-trash"></i></button>
+            <button v-if="handle.saving" class="btn btn-default btn-xs"><i class="fa fa-refresh fa-spin"></i></button>
+            <button v-else class="btn btn-default btn-xs" @click.prevent="update"><i class="fa fa-save"></i></button>
         </td>
     </tr>
 </template>
 <script>
-    import Form from 'belt/content/js/handleables/form';
     import shared from 'belt/content/js/handleables/shared';
+    import storeAdapter from 'belt/content/js/handleables/store/mixin';
 
     export default {
-        mixins: [shared],
-        props: ['handle'],
-        data() {
-            return {
-                form: new Form({
-                    entity_type: this.$parent.entity_type,
-                    entity_id: this.$parent.entity_id,
-                }),
+        mixins: [shared, storeAdapter],
+        props: {
+            handle_id: {
+                type: Number,
+                required: true,
+            }
+        },
+        computed: {
+            handle() {
+                return this.handles.find(handle => handle.id === this.handle_id);
             }
         },
         methods: {
             makeDefault() {
-                this.form.setData(this.handle);
-                this.form.is_default = true;
-                this.form.submit()
+                _.each(this.handles, function (handle) {
+                    handle.is_default = false;
+                });
+                this.update();
+            },
+            trash() {
+                this.handle.destroy(this.handle.id)
                     .then(() => {
-                        this.table.index();
+                        this.dropHandle(this.handle);
                     });
-            }
+            },
+            update: _.debounce(function () {
+                return new Promise((resolve, reject) => {
+                    this.handle.submit()
+                        .then(response => {
+
+                            resolve(response);
+                        })
+                        .catch(error => {
+                            reject(error);
+                        })
+                });
+            }, 300, {
+                leading: true,
+                trailing: false
+            }),
         },
     }
 </script>
