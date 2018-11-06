@@ -58,6 +58,7 @@ class BeltContentServiceProvider extends ServiceProvider
     public function boot(GateContract $gate, Router $router)
     {
         //observers
+        Belt\Content\Handle::observe(Belt\Content\Observers\HandleObserver::class);
         Belt\Content\Term::observe(Belt\Content\Observers\TermObserver::class);
 
         // set backup view paths

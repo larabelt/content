@@ -2,20 +2,22 @@
     <tr class="form-inline">
         <td><input class="form-control" type="text" v-model="handle.url" @change="update"/></td>
         <td>
-            <input type="checkbox"
-                   v-model="handle.is_active"
-                   :true-value="true"
-                   :false-value="false"
-                   @change="update"
-            />
+            <!--<input type="checkbox"-->
+            <!--v-model="handle.is_active"-->
+            <!--true-value="1"-->
+            <!--false-value="0"-->
+            <!--@change="update"-->
+            <!--/>-->
+            <input-quasi-checkbox :form="handle" column="is_active" @toggle="update"></input-quasi-checkbox>
         </td>
         <td>
-            <input type="checkbox"
-                   v-model="handle.is_default"
-                   :true-value="true"
-                   :false-value="false"
-                   @change="makeDefault"
-            />
+            <!--<input type="checkbox"-->
+            <!--v-model="handle.is_default"-->
+            <!--true-value="1"-->
+            <!--false-value="0"-->
+            <!--@change="makeDefault"-->
+            <!--/>-->
+            <input-quasi-checkbox :form="handle" column="is_default" @toggle="makeDefault"></input-quasi-checkbox>
         </td>
         <td class="text-right">
             <button class="btn btn-default btn-xs" @click.prevent="trash"><i class="fa fa-trash"></i></button>
@@ -43,9 +45,12 @@
         },
         methods: {
             makeDefault() {
-                _.each(this.handles, function (handle) {
-                    handle.is_default = false;
-                });
+                if (this.handle.is_default) {
+                    _.each(this.handles, function (handle) {
+                        handle.is_default = false;
+                    });
+                    this.handle.is_default = true;
+                }
                 this.update();
             },
             trash() {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h4>Create Handles</h4>
+        <h4>Create New Handle</h4>
         <p class="help-block">Use the field to add a new handle to this item.</p>
         <form @submit.prevent="store()" @keydown="form.errors.clear($event.target.name)" style="margin-bottom: 20px;">
             <div class="form-group">

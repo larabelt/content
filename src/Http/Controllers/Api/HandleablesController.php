@@ -113,8 +113,6 @@ class HandleablesController extends ApiController
 
         $handle->save();
 
-        $handle->syncDefault();
-
         return response()->json($handle, 201);
     }
 
@@ -167,9 +165,10 @@ class HandleablesController extends ApiController
             'target',
         ]);
 
-        $handle->save();
+//        print_r($input);
+//        print_r($handle->toArray());
 
-        $handle->syncDefault();
+        $handle->save();
 
         return response()->json($handle);
     }

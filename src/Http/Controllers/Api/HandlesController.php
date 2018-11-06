@@ -72,8 +72,6 @@ class HandlesController extends ApiController
 
         $handle->save();
 
-        $handle->syncDefault();
-
         return response()->json($handle, 201);
     }
 
@@ -121,8 +119,6 @@ class HandlesController extends ApiController
         ]);
 
         $handle->save();
-
-        $handle->syncDefault();
 
         return response()->json($handle);
     }

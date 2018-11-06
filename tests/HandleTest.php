@@ -57,40 +57,40 @@ class HandleTest extends BeltTestCase
 
     }
 
-    /**
-     * @covers \Belt\Content\Handle::syncDefault
-     */
-    public function testsyncDefault()
-    {
-        app()['config']->set('belt.subtypes.handles.test', ['show_default' => true]);
-
-        Page::unguard();
-        $page = factory(Page::class)->make();
-        $page->id = 1;
-
-        $qb1 = m::mock(Builder::class);
-        $qb1->shouldReceive('where')->with('is_default', true)->andReturnSelf();
-        $qb1->shouldReceive('where')->with('id', '!=', 1)->andReturnSelf();
-        $qb1->shouldReceive('update')->with(['is_default' => false])->andReturnSelf();
-        $qb1->shouldReceive('count')->andReturn(2);
-
-        Handle::unguard();
-        $handle = m::mock(Handle::class . '[handled, save]');
-        $handle->id = 1;
-        $handle->shouldReceive('handled')->andReturn($qb1);
-        $handle->shouldReceive('save')->andReturnSelf();
-
-        # lack of handelable returns false
-        $handle->handleable = null;
-        $handle->syncDefault();
-
-        # skips sync operation if config type doesn't need it
-        $handle->handleable = $page;
-        $handle->syncDefault();
-
-        # carry out operation otherwise
-        $handle->setAttribute('subtype', 'test');
-        $handle->syncDefault();
-    }
+//    /**
+//     * @covers \Belt\Content\Handle::syncDefault
+//     */
+//    public function ztestsyncDefault()
+//    {
+//        app()['config']->set('belt.subtypes.handles.test', ['show_default' => true]);
+//
+//        Page::unguard();
+//        $page = factory(Page::class)->make();
+//        $page->id = 1;
+//
+//        $qb1 = m::mock(Builder::class);
+//        $qb1->shouldReceive('where')->with('is_default', true)->andReturnSelf();
+//        $qb1->shouldReceive('where')->with('id', '!=', 1)->andReturnSelf();
+//        $qb1->shouldReceive('update')->with(['is_default' => false])->andReturnSelf();
+//        $qb1->shouldReceive('count')->andReturn(2);
+//
+//        Handle::unguard();
+//        $handle = m::mock(Handle::class . '[handled, save]');
+//        $handle->id = 1;
+//        $handle->shouldReceive('handled')->andReturn($qb1);
+//        $handle->shouldReceive('save')->andReturnSelf();
+//
+//        # lack of handelable returns false
+//        $handle->handleable = null;
+//        $handle->syncDefault();
+//
+//        # skips sync operation if config type doesn't need it
+//        $handle->handleable = $page;
+//        $handle->syncDefault();
+//
+//        # carry out operation otherwise
+//        $handle->setAttribute('subtype', 'test');
+//        $handle->syncDefault();
+//    }
 
 }

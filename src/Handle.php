@@ -88,14 +88,6 @@ class Handle extends Model implements
         return '/' . $value;
     }
 
-//    /**
-//     * @param $value
-//     */
-//    public function setIsActiveAttribute($value)
-//    {
-//        $this->attributes['is_active'] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
-//    }
-
     /**
      * Return handles associated with handleable
      *
@@ -111,67 +103,6 @@ class Handle extends Model implements
         $query->where('handles.handleable_id', $handleable_id);
 
         return $query;
-    }
-
-//    /**
-//     * @return mixed
-//     */
-//    public function getConfigAttribute()
-//    {
-//        return $this->config();
-//    }
-//
-//    /**
-//     * @param null $key
-//     * @param null $default
-//     * @return mixed
-//     */
-//    public function config($key = null, $default = null)
-//    {
-//        $config = ConfigHelper::config('belt.subtypes.handles', $this->subtype) ?: [];
-//
-//        if (!$key) {
-//            return $config;
-//        }
-//
-//        return array_get($config, $key, $default);
-//    }
-
-    /**
-     * Ensure is_default is correctly handled
-     */
-    public function syncDefault()
-    {
-        if (!$this->handleable) {
-            return;
-        }
-
-        if (!$this->getSubtypeConfig('show_default', false)) {
-            return;
-        }
-
-        $count = $this->handled($this->handleable_type, $this->handleable_id)
-            ->where('is_default', true)
-            ->count();
-
-        /**
-         * There should only be one default, so if there is zero (or somehow more than one)
-         * then this lucky duck becomes the default.
-         */
-        if ($this->is_default || ($this->is_active && $count != 1)) {
-
-            $this->is_default = true;
-            $this->target = null;
-            $this->save();
-
-            /**
-             * Ensure the rest have is_default=0
-             */
-            $this->handled($this->handleable_type, $this->handleable_id)
-                ->where('id', '!=', $this->id)
-                ->update(['is_default' => false]);
-        }
-
     }
 
     /**

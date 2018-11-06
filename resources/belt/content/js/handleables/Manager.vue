@@ -11,7 +11,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Uri</th>
                         <th>Active</th>
                         <th>Is Default</th>
                         <th class="text-right">Actions</th>
