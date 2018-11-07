@@ -149,6 +149,12 @@ class UserFavoritesController extends ApiController
 
         $paginator = $this->paginator($this->favorite->with('favoriteable'), $request);
 
+        $request->merge(['embed' => 'attachments', 'append' => 'image']);
+        foreach ($paginator->paginator->items() as $item) {
+            $this->append($request, $item->favoriteable);
+            $this->embed($request, $item->favoriteable);
+        }
+
         return response()->json($paginator->toArray());
     }
 
