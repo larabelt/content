@@ -104,6 +104,7 @@ class HandleablesController extends ApiController
         $this->set($handle, $input, [
             'handleable_id',
             'handleable_type',
+            'locale',
             'subtype',
             'is_active',
             'is_default',
@@ -158,15 +159,13 @@ class HandleablesController extends ApiController
         $input = $request->all();
 
         $this->set($handle, $input, [
+            'locale',
             'subtype',
             'is_active',
             'is_default',
             'url',
             'target',
         ]);
-
-//        print_r($input);
-//        print_r($handle->toArray());
 
         $handle->save();
 

@@ -1,23 +1,30 @@
 <template>
     <tr class="form-inline">
-        <td><input class="form-control" type="text" v-model="handle.url" @change="update"/></td>
+        <td v-if="hasLocales">
+            <input-locale
+                    :form="handle"
+                    @change-locale="update"
+            ></input-locale>
+        </td>
+        <td><input
+                class="form-control"
+                type="text"
+                v-model="handle.url"
+                @change="update"
+        /></td>
         <td>
-            <!--<input type="checkbox"-->
-            <!--v-model="handle.is_active"-->
-            <!--true-value="1"-->
-            <!--false-value="0"-->
-            <!--@change="update"-->
-            <!--/>-->
-            <input-quasi-checkbox :form="handle" column="is_active" @toggle="update"></input-quasi-checkbox>
+            <input-quasi-checkbox
+                    :form="handle"
+                    column="is_active"
+                    @toggle="update">
+            </input-quasi-checkbox>
         </td>
         <td>
-            <!--<input type="checkbox"-->
-            <!--v-model="handle.is_default"-->
-            <!--true-value="1"-->
-            <!--false-value="0"-->
-            <!--@change="makeDefault"-->
-            <!--/>-->
-            <input-quasi-checkbox :form="handle" column="is_default" @toggle="makeDefault"></input-quasi-checkbox>
+            <input-quasi-checkbox
+                    :form="handle"
+                    column="is_default"
+                    @toggle="makeDefault"
+            ></input-quasi-checkbox>
         </td>
         <td class="text-right">
             <button-inline-trash @trash="trash"></button-inline-trash>
@@ -28,12 +35,16 @@
     </tr>
 </template>
 <script>
-    import shared from 'belt/content/js/handleables/shared';
-    import storeAdapter from 'belt/content/js/handleables/store/mixin';
+    import * as child from 'belt/core/js/helpers/child';
+    import HandleableStore from 'belt/content/js/handleables/store/mixin';
+    import TranslatableStore from 'belt/core/js/translations/store/adapter';
+    import FilterLocale from 'belt/core/js/locales/filter/FilterLocale';
 
     export default {
-        mixins: [shared, storeAdapter],
+        mixins: [HandleableStore, TranslatableStore],
         props: {
+            ...child.propEntityID(),
+            ...child.propEntityType(),
             handle_id: {
                 type: Number,
                 required: true,
@@ -76,5 +87,8 @@
                 trailing: false
             }),
         },
+        components: {
+            FilterLocale,
+        }
     }
 </script>

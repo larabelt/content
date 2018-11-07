@@ -12,8 +12,10 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class Handle extends Model implements
     Belt\Core\Behaviors\ParamableInterface,
+    Belt\Core\Behaviors\IncludesLocaleInterface,
     Belt\Core\Behaviors\IncludesSubtypesInterface
 {
+    use Belt\Core\Behaviors\IncludesLocale;
     use Belt\Core\Behaviors\IncludesSubtypes;
 
     /**

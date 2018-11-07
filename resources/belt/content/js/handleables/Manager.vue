@@ -11,6 +11,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
+                        <th v-if="hasLocales">Locale</th>
                         <th>Uri</th>
                         <th>Active</th>
                         <th>Is Default</th>
@@ -37,12 +38,13 @@
 </template>
 <script>
     import * as child from 'belt/core/js/helpers/child';
-    import storeAdapter from 'belt/content/js/handleables/store/mixin';
+    import HandleableStore from 'belt/content/js/handleables/store/mixin';
+    import TranslatableStore from 'belt/core/js/translations/store/adapter';
     import HandleableCreator from 'belt/content/js/handleables/Creator';
     import HandleableEditor from 'belt/content/js/handleables/Editor';
 
     export default {
-        mixins: [storeAdapter],
+        mixins: [HandleableStore, TranslatableStore],
         props: {
             ...child.propEntityID(),
             ...child.propEntityType(),

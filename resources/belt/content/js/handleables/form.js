@@ -17,6 +17,7 @@ class Form extends BaseForm {
         this.setData({
             is_active: 1,
             is_default: 0,
+            locale: '',
             subtype: 'alias',
             url: '',
             target: '',

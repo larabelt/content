@@ -2,7 +2,12 @@
     <div>
         <h4>Create New Handle</h4>
         <p class="help-block">Use the field to add a new handle to this item.</p>
-        <form @submit.prevent="store()" @keydown="form.errors.clear($event.target.name)" style="margin-bottom: 20px;">
+        <form @submit.prevent="store()" @keydown="form.errors.clear($event.target.name)" style="margin-bottom: 20px;" class="form-inline">
+            <div v-if="hasLocales" class="form-group">
+                <input-locale
+                        :form="form"
+                ></input-locale>
+            </div>
             <div class="form-group">
                 <div class="input-group">
                     <input type="name" class="form-control" v-model="form.url" placeholder="enter handle url">
@@ -21,19 +26,23 @@
     </div>
 </template>
 <script>
+    import * as child from 'belt/core/js/helpers/child';
     import Form from 'belt/content/js/handleables/form';
-    import shared from 'belt/content/js/handleables/shared';
-    import storeAdapter from 'belt/content/js/handleables/store/mixin';
+    import TranslatableStore from 'belt/core/js/translations/store/adapter';
+    import HandleableStore from 'belt/content/js/handleables/store/mixin';
 
     export default {
-        mixins: [shared, storeAdapter],
-        props: {},
+        mixins: [HandleableStore, TranslatableStore],
+        props: {
+            ...child.propEntityID(),
+            ...child.propEntityType(),
+        },
         data() {
             return {
                 form: new Form(),
             }
         },
-        mounted() {
+        created() {
             this.setForm();
         },
         methods: {
