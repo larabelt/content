@@ -54,6 +54,7 @@ class HandleFormRequest extends FormRequest
     public function messages()
     {
         return [
+            'url.unique' => 'url exists as url in other handle',
             'target.unique' => 'target exists as url in other handle',
         ];
     }

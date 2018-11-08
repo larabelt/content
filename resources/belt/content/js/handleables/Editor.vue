@@ -6,25 +6,31 @@
                     @change-locale="update"
             ></input-locale>
         </td>
-        <td><input
-                class="form-control"
-                type="text"
-                v-model="handle.url"
-                @change="update"
-        /></td>
         <td>
-            <input-quasi-checkbox
+            <input
+                    class="form-control"
+                    type="text"
+                    v-model="handle.url"
+                    @change="update"
+                    @keydown="handle.errors.clear('url')"
+            />
+            <div class="form-group" :class="{ 'has-error': handle.error('url') }">
+                <span v-for="error in handle.error('url')" class="text-danger">{{ error }}</span>
+            </div>
+        </td>
+        <td>
+            <input-psuedo-checkbox
                     :form="handle"
                     column="is_active"
                     @toggle="update">
-            </input-quasi-checkbox>
+            </input-psuedo-checkbox>
         </td>
         <td>
-            <input-quasi-checkbox
+            <input-psuedo-checkbox
                     :form="handle"
                     column="is_default"
                     @toggle="makeDefault"
-            ></input-quasi-checkbox>
+            ></input-psuedo-checkbox>
         </td>
         <td class="text-right">
             <button-inline-trash @trash="trash"></button-inline-trash>
