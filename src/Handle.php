@@ -2,7 +2,7 @@
 
 namespace Belt\Content;
 
-use Belt;
+use Belt, Translate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
