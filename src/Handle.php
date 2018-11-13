@@ -2,7 +2,7 @@
 
 namespace Belt\Content;
 
-use Belt, Translate;
+use Belt, UrlHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -41,7 +41,7 @@ class Handle extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['config'];
+    protected $appends = ['config', 'prefixed_url'];
 
     /**
      * The Associated owning model
@@ -67,6 +67,11 @@ class Handle extends Model implements
     public function setUrlAttribute($value)
     {
         $this->attributes['url'] = $this->normalizeUrl($value);
+    }
+
+    public function getPrefixedUrlAttribute()
+    {
+        return Belt\Core\Helpers\UrlHelper::normalize($this->locale . $this->url);
     }
 
     /**

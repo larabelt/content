@@ -2,7 +2,7 @@
 
 namespace Belt\Content\Behaviors;
 
-use Belt;
+use Belt, Translate;
 use Belt\Content\Handle;
 
 /**
@@ -25,7 +25,14 @@ trait Handleable
      */
     public function getHandleAttribute()
     {
-        $handle = $this->handles->where('is_default', true)->first();
+        $handle = null;
+
+        if (Translate::isEnabled()) {
+            $handle = $this->handles->where('is_default', true)->where('locale', Translate::getLocale())->first();
+            $handle = $handle ?: $this->handles->where('locale', Translate::getLocale())->first();
+        }
+
+        $handle = $handle ?: $this->handles->where('is_default', true)->first();
 
         return $handle ?: new Handle([
             'url' => sprintf('/%s/%s/%s', $this->getMorphClass(), $this->id, $this->slug),
@@ -45,6 +52,10 @@ trait Handleable
      */
     public function getDefaultUrlAttribute()
     {
+        if ($this->handle->subtype == 'alias' && Translate::isEnabled()) {
+            return $this->handle->prefixed_url;
+        }
+
         return $this->handle->url;
     }
 
