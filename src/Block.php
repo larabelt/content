@@ -14,6 +14,7 @@ class Block extends Model implements
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Core\Behaviors\IncludesSubtypesInterface,
+    Belt\Core\Behaviors\TranslatableInterface,
     Belt\Content\Behaviors\SectionableInterface,
     Belt\Content\Behaviors\TermableInterface
 {
@@ -23,6 +24,7 @@ class Block extends Model implements
     use Belt\Core\Behaviors\IncludesSubtypes;
     use Belt\Content\Behaviors\Sectionable;
     use Belt\Content\Behaviors\Termable;
+    use Belt\Core\Behaviors\Translatable;
     use SoftDeletes;
 
     /**

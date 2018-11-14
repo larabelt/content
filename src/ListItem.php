@@ -14,11 +14,15 @@ use Rutorika\Sortable\SortableTrait;
  */
 class ListItem extends Model implements
     Belt\Core\Behaviors\ParamableInterface,
-    Belt\Core\Behaviors\IncludesSubtypesInterface
+    Belt\Core\Behaviors\IncludesSubtypesInterface,
+    Belt\Core\Behaviors\TranslatableInterface,
+    Belt\Core\Behaviors\TypeInterface
 {
 
     use SortableTrait;
     use Belt\Core\Behaviors\IncludesSubtypes;
+    use Belt\Core\Behaviors\Translatable;
+    use Belt\Core\Behaviors\TypeTrait;
 
     /**
      * @var string
@@ -48,7 +52,7 @@ class ListItem extends Model implements
     /**
      * @var array
      */
-    protected $appends = ['config'];
+    protected $appends = ['config', 'morph_class'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo

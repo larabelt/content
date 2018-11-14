@@ -1,4 +1,5 @@
 import list from 'belt/content/js/lists/edit/shared';
+import TranslationStore from 'belt/core/js/translations/store/adapter';
 import Form from 'belt/content/js/lists/edit/items/form';
 import html from 'belt/content/js/lists/edit/items/edit/template.html';
 
@@ -6,17 +7,27 @@ export default {
     mixins: [list],
     components: {
         edit: {
+            mixins: [TranslationStore],
             data() {
                 return {
-                    list_id: this.$route.params.id,
                     reloading: false,
                     entity_type: 'list_items',
                     entity_id: this.$route.params.item_id,
                     form: new Form({list_id: this.$route.params.id}),
+                    list_id: this.$route.params.id,
                 }
             },
-            mounted() {
+            created() {
+                this.bootTranslationStore();
                 this.form.show(this.entity_id);
+            },
+            computed: {
+                translatable_type() {
+                    return this.entity_type;
+                },
+                translatable_id() {
+                    return this.entity_id;
+                },
             },
             methods: {
                 close() {

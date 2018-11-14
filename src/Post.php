@@ -15,6 +15,7 @@ class Post extends Model implements
     Belt\Core\Behaviors\ParamableInterface,
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Core\Behaviors\TypeInterface,
+    Belt\Core\Behaviors\TranslatableInterface,
     Belt\Content\Behaviors\HandleableInterface,
     Belt\Content\Behaviors\HasSectionsInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
@@ -34,6 +35,7 @@ class Post extends Model implements
     use Belt\Content\Behaviors\HasSections;
     use Belt\Core\Behaviors\IncludesSubtypes;
     use Belt\Content\Behaviors\Termable;
+    use Belt\Core\Behaviors\Translatable;
     use SoftDeletes;
 
     /**
