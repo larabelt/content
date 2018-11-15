@@ -2,7 +2,7 @@
 
 namespace Belt\Content;
 
-use Belt, UrlHelper;
+use Belt, Translate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -69,9 +69,26 @@ class Handle extends Model implements
         $this->attributes['url'] = $this->normalizeUrl($value);
     }
 
+    /**
+     * @return string
+     */
     public function getPrefixedUrlAttribute()
     {
         return Belt\Core\Helpers\UrlHelper::normalize($this->locale . $this->url);
+    }
+
+    /**
+     * @return string
+     */
+    public function getReplacedUrlAttribute()
+    {
+        $locale = $this->locale;
+
+        if (Translate::isEnabled()) {
+            $locale = Translate::getLocale();
+        }
+
+        return Belt\Core\Helpers\UrlHelper::normalize($locale . $this->url);
     }
 
     /**

@@ -52,11 +52,14 @@ trait Handleable
      */
     public function getDefaultUrlAttribute()
     {
+        $url = $this->handle->url;
+
         if ($this->handle->subtype == 'alias' && Translate::isEnabled()) {
-            return $this->handle->prefixed_url;
+            //$url = $this->handle->prefixed_url;
+            $url = $this->handle->replaced_url;
         }
 
-        return $this->handle->url;
+        return $url;
     }
 
 }
