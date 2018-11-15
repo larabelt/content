@@ -1,0 +1,15 @@
+<div>
+    <heading>
+        <span slot="title">TranslationString Editor</span>
+        <li><router-link :to="{ name: 'translatableStrings' }">TranslationString Manager</router-link></li>
+        <li>{{ translatableString.name }}</li>
+    </heading>
+    <section class="content">
+        <div class="nav-tabs-custom">
+            <tabs></tabs>
+            <div class="tab-content">
+                <edit :storeKey="storeKey"></edit>
+            </div>
+        </div>
+    </section>
+</div>

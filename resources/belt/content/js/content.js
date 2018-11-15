@@ -12,6 +12,7 @@ import pages from 'belt/content/js/pages/routes';
 import posts from 'belt/content/js/posts/routes';
 import store from 'belt/core/js/store/index';
 import terms from 'belt/content/js/terms/routes';
+import translatableStrings from 'belt/content/js/translatable-strings/routes';
 
 window.larabelt.content = _.get(window, 'larabelt.content', {});
 
@@ -34,6 +35,7 @@ export default class BeltContent {
             router.addRoutes(pages);
             router.addRoutes(posts);
             router.addRoutes(terms);
+            router.addRoutes(translatableStrings);
 
             new Vue({router, store}).$mount('#belt-content');
         }

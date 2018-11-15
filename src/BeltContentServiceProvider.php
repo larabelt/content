@@ -66,6 +66,7 @@ class BeltContentServiceProvider extends ServiceProvider
 
         // set backup translation paths
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'belt-content');
+        $this->loadJsonTranslationsFrom(storage_path('app/lang'), '');
 
         // policies
         $this->registerPolicies($gate);
@@ -83,6 +84,7 @@ class BeltContentServiceProvider extends ServiceProvider
             'posts' => Belt\Content\Post::class,
             'sections' => Belt\Content\Section::class,
             'terms' => Belt\Content\Term::class,
+            'translatable_strings' => Belt\Content\TranslatableString::class,
 
             /**
              * @todo find why to get this out of here
@@ -120,6 +122,7 @@ class BeltContentServiceProvider extends ServiceProvider
         $router->model('term', Belt\Content\Term::class, function ($value) {
             return Belt\Content\Term::sluggish($value)->firstOrFail();
         });
+        $router->model('translatableStrings', Belt\Content\TranslatableString::class);
 
         // validators
         Validator::extend('alt_url', Belt\Content\Validators\AltUrlValidator::class . '@altUrl');

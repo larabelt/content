@@ -137,6 +137,13 @@ Route::group([
             Route::post('', Api\TermablesController::class . '@store');
         });
 
+        # translatable-strings
+        Route::get('translatable-strings/{translatableStrings}', Api\TranslatableStringsController::class . '@show');
+        Route::put('translatable-strings/{translatableStrings}', Api\TranslatableStringsController::class . '@update');
+        Route::delete('translatable-strings/{translatableStrings}', Api\TranslatableStringsController::class . '@destroy');
+        Route::get('translatable-strings', Api\TranslatableStringsController::class . '@index');
+        Route::post('translatable-strings', Api\TranslatableStringsController::class . '@store');
+
         # tree
         Route::group([
             'prefix' => '{node_type}/{node_id}/tree',

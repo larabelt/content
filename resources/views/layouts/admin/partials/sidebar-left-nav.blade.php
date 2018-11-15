@@ -6,6 +6,7 @@
     $can['pages'] = $auth->can(['create','update','delete'], Belt\Content\Page::class);
     $can['posts'] = $auth->can(['create','update','delete'], Belt\Content\Post::class);
     $can['terms'] = $auth->can(['create','update','delete'], Belt\Content\Term::class);
+    $can['translation_strings'] = $auth->can(['create','update','delete'], Belt\Content\TranslatableString::class);
 @endphp
 
 @if($can['attachments'] || $can['blocks'] || $can['handles'] || $can['lists'] || $can['pages'] || $can['posts'] || $can['terms'])
@@ -34,6 +35,9 @@
             @endif
             @if($can['terms'])
                 <li id="content-admin-sidebar-left-terms"><a href="/admin/belt/content/terms"><i class="fa fa-sitemap"></i> <span>Terms</span></a></li>
+            @endif
+            @if($can['translation_strings'])
+                <li id="content-admin-sidebar-left-terms"><a href="/admin/belt/content/translation-strings"><i class="fa fa-sitemap"></i> <span>Strings</span></a></li>
             @endif
         </ul>
     </li>
