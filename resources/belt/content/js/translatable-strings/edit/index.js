@@ -7,6 +7,12 @@ export default {
     components: {
         edit: {
             mixins: [TranslationStore],
+            data() {
+                return {
+                    entity_type: 'translatable_strings',
+                    entity_id: this.$parent.entity_id,
+                }
+            },
             created() {
                 this.bootTranslationStore();
             },
@@ -14,6 +20,12 @@ export default {
                 form() {
                     return this.$parent.form;
                 },
+            },
+            methods: {
+                submit() {
+                    Events.$emit('translatable_strings:' + this.entity_id + ':updating', this.form);
+                    this.form.submit();
+                }
             },
             template: form_html,
         },

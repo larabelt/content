@@ -43,6 +43,7 @@ class TranslateStringService
 
         foreach ($translations as $translation) {
             $string = $translation->translatable;
+            $string->untranslate();
             $pairs[$string->value] = $translation->value;
         }
 
