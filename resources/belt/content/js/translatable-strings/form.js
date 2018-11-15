@@ -9,12 +9,9 @@ class TranslationStringForm extends BaseForm {
         this.routeEditName = 'translatableStrings.edit';
         this.setData({
             id: '',
-            name: '',
-            title: '',
-            level: '',
-            scope: '',
-            description: '',
+            value: '',
         })
+        _.set(this, 'config.translatable', ['value']);
     }
 
 }

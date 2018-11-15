@@ -37,7 +37,7 @@
                 <li id="content-admin-sidebar-left-terms"><a href="/admin/belt/content/terms"><i class="fa fa-sitemap"></i> <span>Terms</span></a></li>
             @endif
             @if($can['translation_strings'])
-                <li id="content-admin-sidebar-left-terms"><a href="/admin/belt/content/translation-strings"><i class="fa fa-sitemap"></i> <span>Strings</span></a></li>
+                <li id="content-admin-sidebar-left-terms"><a href="/admin/belt/content/translatable-strings"><i class="fa fa-keyboard-o"></i> <span>Strings</span></a></li>
             @endif
         </ul>
     </li>

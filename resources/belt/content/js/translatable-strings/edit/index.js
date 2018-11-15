@@ -1,14 +1,18 @@
 import mixin from 'belt/content/js/translatable-strings/edit/mixin';
-import storeMixin from 'belt/content/js/translatable-strings/edit/store/mixin';
+import TranslationStore from 'belt/core/js/translations/store/adapter';
 import form_html from 'belt/content/js/translatable-strings/edit/form.html';
 
 export default {
-    mixins: [storeMixin, mixin],
+    mixins: [mixin],
     components: {
         edit: {
+            mixins: [TranslationStore],
+            created() {
+                this.bootTranslationStore();
+            },
             computed: {
                 form() {
-                    return this.$parent.translatableString;
+                    return this.$parent.form;
                 },
             },
             template: form_html,

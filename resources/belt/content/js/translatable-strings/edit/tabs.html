@@ -2,7 +2,4 @@
     <li :class="{active: $router.currentRoute.name == 'translatableStrings.edit'}">
         <router-link :to="{ name: 'translatableStrings.edit', params: {id: $route.params.id}}"><span class="hidden-sm hidden-xs">Main</span> <i class="fa fa-home visible-sm visible-xs"></i></router-link>
     </li>
-    <li :class="{active: $router.currentRoute.name == 'translatableStrings.access'}">
-        <router-link :to="{ name: 'translatableStrings.access', params: {id: $route.params.id}}">Access</router-link>
-    </li>
 </ul>
