@@ -5,7 +5,7 @@ class TranslationStringForm extends BaseForm {
 
     constructor(options = {}) {
         super(options);
-        this.service = new BaseService({baseUrl: '/api/v1/translatable-strings/'});
+        this.service = new BaseService({baseUrl: '/api/v1/translatable_strings/'});
         this.routeEditName = 'translatableStrings.edit';
         this.setData({
             id: '',

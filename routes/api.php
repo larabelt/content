@@ -138,11 +138,11 @@ Route::group([
         });
 
         # translatable-strings
-        Route::get('translatable-strings/{translatableStrings}', Api\TranslatableStringsController::class . '@show');
-        Route::put('translatable-strings/{translatableStrings}', Api\TranslatableStringsController::class . '@update');
-        Route::delete('translatable-strings/{translatableStrings}', Api\TranslatableStringsController::class . '@destroy');
-        Route::get('translatable-strings', Api\TranslatableStringsController::class . '@index');
-        Route::post('translatable-strings', Api\TranslatableStringsController::class . '@store');
+        Route::get('translatable_strings/{translatableStrings}', Api\TranslatableStringsController::class . '@show');
+        Route::put('translatable_strings/{translatableStrings}', Api\TranslatableStringsController::class . '@update');
+        Route::delete('translatable_strings/{translatableStrings}', Api\TranslatableStringsController::class . '@destroy');
+        Route::get('translatable_strings', Api\TranslatableStringsController::class . '@index');
+        Route::post('translatable_strings', Api\TranslatableStringsController::class . '@store');
 
         # tree
         Route::group([

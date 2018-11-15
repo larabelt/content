@@ -1,17 +1,13 @@
 <form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
+
     <base-button-group>
-        <template slot="left">
-            <button-translate></button-translate>
-        </template>
         <button-save></button-save>
     </base-button-group>
 
     <input-text column="value" required="true">Value</input-text>
 
     <base-button-group>
-        <template slot="left">
-            <button-translate></button-translate>
-        </template>
         <button-save></button-save>
     </base-button-group>
+
 </form>

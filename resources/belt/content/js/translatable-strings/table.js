@@ -5,7 +5,7 @@ class TranslationStringTable extends BaseTable {
 
     constructor(options = {}) {
         super(options);
-        this.service = new BaseService({baseUrl: '/api/v1/translatable-strings/'});
+        this.service = new BaseService({baseUrl: '/api/v1/translatable_strings/'});
     }
 
 }

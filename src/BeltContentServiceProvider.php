@@ -66,7 +66,7 @@ class BeltContentServiceProvider extends ServiceProvider
 
         // set backup translation paths
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'belt-content');
-        $this->loadJsonTranslationsFrom(storage_path('app/lang'), '');
+        $this->loadJsonTranslationsFrom(storage_path('app/public/lang'), '');
 
         // policies
         $this->registerPolicies($gate);
