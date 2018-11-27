@@ -14,6 +14,7 @@ class Attachment extends Model implements
     Belt\Core\Behaviors\ParamableInterface,
     Belt\Core\Behaviors\TypeInterface,
     Belt\Core\Behaviors\TeamableInterface,
+    Belt\Core\Behaviors\TranslatableInterface,
     Belt\Core\Behaviors\IncludesSubtypesInterface,
     Belt\Content\Behaviors\SectionableInterface,
     Belt\Content\Behaviors\TermableInterface
@@ -22,6 +23,7 @@ class Attachment extends Model implements
     use Belt\Core\Behaviors\HasSortableTrait;
     use Belt\Core\Behaviors\TypeTrait;
     use Belt\Core\Behaviors\Teamable;
+    use Belt\Core\Behaviors\Translatable;
     use Belt\Core\Behaviors\IncludesSubtypes;
     use Belt\Content\Behaviors\Sectionable;
     use Belt\Content\Behaviors\Termable;

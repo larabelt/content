@@ -1,4 +1,4 @@
-<form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)">
+<form v-if="form.id" @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)">
 
     <p class="text-muted">{{ trans('belt-content::lists.editor.main') }}</p>
 
