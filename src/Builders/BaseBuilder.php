@@ -5,6 +5,7 @@ namespace Belt\Content\Builders;
 use Belt;
 use Belt\Core\Builders\BaseBuilder as CoreBaseBuilder;
 use Belt\Content\Section;
+use Kalnoy\Nestedset\QueryBuilder;
 
 /**
  * Class BaseBuilder
@@ -13,7 +14,7 @@ use Belt\Content\Section;
 abstract class BaseBuilder extends CoreBaseBuilder
 {
     /**
-     * @var Section
+     * @var QueryBuilder
      */
     public $sections;
 
