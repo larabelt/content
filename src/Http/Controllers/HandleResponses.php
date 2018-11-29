@@ -17,7 +17,10 @@ trait HandleResponses
      */
     public function getHandledResponse(Request $request)
     {
-        $url = Handle::normalizeUrl($request->path());
+        $uri = $request->getRequestUri();
+        //$uri = $request->server->get('REQUEST_URI');
+
+        $url = Handle::normalizeUrl($uri);
 
         $handle = Handle::firstOrCreate(['url' => $url]);
         $handle->hits++;
