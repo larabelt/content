@@ -1,4 +1,5 @@
 <?php
+
 namespace Belt\Content;
 
 use Belt;
@@ -15,16 +16,18 @@ class Block extends Model implements
     Belt\Content\Behaviors\IncludesContentInterface,
     Belt\Core\Behaviors\IncludesSubtypesInterface,
     Belt\Core\Behaviors\TranslatableInterface,
+    Belt\Core\Behaviors\TypeInterface,
     Belt\Content\Behaviors\SectionableInterface,
     Belt\Content\Behaviors\TermableInterface
 {
     use Belt\Core\Behaviors\HasSortableTrait;
-    use Belt\Core\Behaviors\Sluggable;
-    use Belt\Content\Behaviors\IncludesContent;
     use Belt\Core\Behaviors\IncludesSubtypes;
+    use Belt\Core\Behaviors\Sluggable;
+    use Belt\Core\Behaviors\Translatable;
+    use Belt\Core\Behaviors\TypeTrait;
+    use Belt\Content\Behaviors\IncludesContent;
     use Belt\Content\Behaviors\Sectionable;
     use Belt\Content\Behaviors\Termable;
-    use Belt\Core\Behaviors\Translatable;
     use SoftDeletes;
 
     /**
@@ -46,5 +49,10 @@ class Block extends Model implements
      * @var array
      */
     protected $fillable = ['name', 'body'];
+
+    /**
+     * @var array
+     */
+    protected $appends = ['morph_class'];
 
 }
