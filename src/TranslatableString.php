@@ -34,6 +34,11 @@ class TranslatableString extends Model implements
     /**
      * @var array
      */
+    protected $with = ['translations'];
+
+    /**
+     * @var array
+     */
     protected $appends = ['morph_class'];
 
 }

@@ -2,7 +2,7 @@
 
 namespace Belt\Content\Http\Controllers\Api;
 
-use Belt;
+use Belt, Translate;
 use Belt\Core\Http\Controllers\ApiController;
 use Belt\Content\Http\Requests;
 use Belt\Content\TranslatableString;
@@ -41,6 +41,20 @@ class TranslatableStringsController extends ApiController
         $request = Requests\PaginateTranslatableStrings::extend($request);
 
         $paginator = $this->paginator($this->translatableStrings->query(), $request);
+
+        if ($request->get('flatten')) {
+
+            $response = [];
+            $locale = $request->get('locale') ?: Translate::getLocale();
+
+            foreach ($paginator->paginator->items() as $string) {
+                $string->untranslate();
+                $translation = $string->translations->where('locale', $locale)->first();
+                $response[$string->value] = $translation ? $translation->value : $string->value;
+            }
+
+            return response()->json($response);
+        }
 
         return response()->json($paginator->toArray());
     }
