@@ -2,7 +2,7 @@
 
 namespace Belt\Content\Services;
 
-use Belt, Storage;
+use Belt, Storage, Translate;
 use Belt\Core\Behaviors\TmpFile;
 use Belt\Core\Behaviors\HasDisk;
 use Belt\Core\Behaviors\HasConsole;
@@ -35,6 +35,10 @@ class TranslateStringService
      */
     public function buildStorageFile($locale)
     {
+        if (!Translate::isAvailableLocale($locale)) {
+            return;
+        }
+
         $pairs = [];
 
         $translations = Translation::where('locale', $locale)
