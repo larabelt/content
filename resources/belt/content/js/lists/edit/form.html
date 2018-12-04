@@ -11,7 +11,7 @@
     </base-button-group>
 
     <input-subtype entity_type="lists" formKey="list"></input-subtype>
-    <input-checkbox column="is_active">Is Active</input-checkbox>
+    <input-psuedo-checkbox column="is_active">Is Active</input-psuedo-checkbox>
     <input-team :form="list">{{ trans('belt-core::teams.label') }}</input-team>
     <input-text column="name" required="true">Name</input-text>
     <input-text column="slug">Slug</input-text>

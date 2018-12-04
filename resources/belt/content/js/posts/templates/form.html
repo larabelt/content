@@ -6,7 +6,7 @@
         <button-save></button-save>
     </base-button-group>
     <input-subtype entity_type="posts" formKey="form" autoset="true"></input-subtype>
-    <input-checkbox column="is_active">Is Active</input-checkbox>
+    <input-psuedo-checkbox column="is_active">Is Active</input-psuedo-checkbox>
     <input-text column="name" required="true">Name</input-text>
     <input-text v-if="form.id" column="slug">Slug</input-text>
     <div class="row">
