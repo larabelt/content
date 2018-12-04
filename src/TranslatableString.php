@@ -41,4 +41,12 @@ class TranslatableString extends Model implements
      */
     protected $appends = ['morph_class'];
 
+    /**
+     * @return mixed
+     */
+    public function getTranslatableAttributes()
+    {
+        return ['value'];
+    }
+
 }
