@@ -17,6 +17,11 @@ export default {
     mounted() {
         this.table = new Table({entity_type: this.handleableType, entity_id: this.handleableID});
     },
+    watch: {
+        'handleable.id': function () {
+            this.loadHandles();
+        }
+    },
     computed: {
         handleable() {
             return this.form;
@@ -41,8 +46,6 @@ export default {
             _.remove(keep, function (handle) {
                 return handle.id == id;
             });
-            console.log(333, id);
-            console.log(keep);
             this.$store.dispatch(this.handleableStoreKey + '/setHandles', []);
             this.$store.dispatch(this.handleableStoreKey + '/setHandles', keep);
         },
