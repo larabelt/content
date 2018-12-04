@@ -21,7 +21,7 @@ class AliasHandleResponse extends BaseHandleResponse implements HandleResponseIn
         $macro = $this->handleable->getMorphClass();
         if (Response::hasMacro($macro)) {
             try {
-                $response = response()->$macro($this->handle->handleable);
+                $response = response()->$macro($this->handleable);
             } catch (\Exception $e) {
 
             }

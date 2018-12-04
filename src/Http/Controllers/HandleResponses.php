@@ -17,8 +17,9 @@ trait HandleResponses
      */
     public function getHandledResponse(Request $request)
     {
-        $uri = $request->getRequestUri();
         //$uri = $request->server->get('REQUEST_URI');
+        $uri = $request->getRequestUri();
+        $uri = array_get(parse_url($uri), 'path');
 
         $url = Handle::normalizeUrl($uri);
 
