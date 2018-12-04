@@ -2,7 +2,7 @@
 
 namespace Belt\Content\Observers;
 
-use DB;
+use DB, Translate;
 use Belt\Content\Handle;
 
 class HandleObserver
@@ -21,6 +21,10 @@ class HandleObserver
 
         if ($handle->subtype == 'alias') {
             $handle->target = null;
+        }
+
+        if (!$handle->locale || !Translate::isAvailableLocale($handle->locale)) {
+            $handle->locale = config('app.fallback_locale');
         }
     }
 

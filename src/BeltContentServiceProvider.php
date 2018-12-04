@@ -99,6 +99,7 @@ class BeltContentServiceProvider extends ServiceProvider
         $this->commands(Belt\Content\Commands\CompileCommand::class);
         $this->commands(Belt\Content\Commands\PublishCommand::class);
         $this->commands(Belt\Content\Commands\SubtypeCommand::class);
+        $this->commands(Belt\Content\Commands\TranslateCommand::class);
         $this->commands(Belt\Content\Commands\TranslatableStringCommand::class);
 
         // route model binding

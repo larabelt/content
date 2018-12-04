@@ -13,6 +13,7 @@
                     v-model="handle.url"
                     @change="update"
                     @keydown="handle.errors.clear('url')"
+                    style="width:95%"
             />
             <div class="form-group" :class="{ 'has-error': handle.error('url') }">
                 <span v-for="error in handle.error('url')" class="text-danger">{{ error }}</span>
