@@ -30,6 +30,7 @@ class BeltContentServiceProvider extends ServiceProvider
         Belt\Content\Post::class => Belt\Content\Policies\PostPolicy::class,
         Belt\Content\Section::class => Belt\Content\Policies\SectionPolicy::class,
         Belt\Content\Term::class => Belt\Content\Policies\TermPolicy::class,
+        Belt\Content\TranslatableString::class => Belt\Content\Policies\TranslatableStringPolicy::class,
     ];
 
     /**
