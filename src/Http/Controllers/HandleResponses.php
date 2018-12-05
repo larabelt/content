@@ -27,6 +27,7 @@ trait HandleResponses
 
         if (Translate::isEnabled()) {
             if (!$handle || $handle->subtype == 'not-found') {
+                $handle = null;
                 foreach (Translate::getAvailableLocales() as $locale) {
                     $prefix = sprintf('/%s', $locale['code']);
                     if (substr($url, 0, strlen($prefix)) == $prefix) {
