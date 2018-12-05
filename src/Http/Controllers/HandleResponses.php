@@ -2,7 +2,7 @@
 
 namespace Belt\Content\Http\Controllers;
 
-use Illuminate, Symfony;
+use Illuminate, Symfony, Translate;
 use Belt\Content\HandleResponses\NotFoundResponse;
 use Belt\Content\HandleResponses\HandleResponseInterface;
 use Belt\Content\Handle;
@@ -23,7 +23,19 @@ trait HandleResponses
 
         $url = Handle::normalizeUrl($uri);
 
-        $handle = Handle::firstOrCreate(['url' => $url]);
+        $handle = Handle::where(['url' => $url])->first();
+
+        if (!$handle && Translate::isEnabled()) {
+            foreach (Translate::getAvailableLocales() as $locale) {
+                $prefix = sprintf('/%s', $locale['code']);
+                if (substr($url, 0, strlen($prefix)) == $prefix) {
+                    $url = substr($uri, strlen($prefix));
+                    break;
+                }
+            }
+        }
+
+        $handle = $handle ?: Handle::firstOrCreate(['url' => $url]);
         $handle->hits++;
         $handle->save();
 

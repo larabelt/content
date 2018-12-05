@@ -63,16 +63,18 @@ class TranslateCommand extends BaseCommand
                 foreach ($this->locales() as $locale) {
                     $handle = $item->handles->where('locale', $locale)->first();
                     if (!$handle) {
-                        if ($newValue = Translate::translate($item->name, $locale)) {
-                            $handle = $item->handles()->create([
-                                'locale' => $locale,
-                                'subtype' => 'alias',
-                                'is_active' => true,
-                                'url' => str_slug($newValue),
-                            ]);
-                            if ($this->option('debug')) {
-                                $this->info("new handle: $handle->url");
-                            }
+                        $url = $item->slug;
+                        if (Translate::getAlternateLocale()) {
+                            $url = Translate::translate($item->name, $locale);
+                        }
+                        $handle = $item->handles()->create([
+                            'locale' => $locale,
+                            'subtype' => 'alias',
+                            'is_active' => true,
+                            'url' => str_slug($url),
+                        ]);
+                        if ($this->option('debug')) {
+                            $this->info("new handle: $handle->url");
                         }
                     }
                 }

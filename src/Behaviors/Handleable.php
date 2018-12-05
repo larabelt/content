@@ -34,7 +34,11 @@ trait Handleable
 
         $handle = $handle ?: $this->handles->where('is_default', true)->first();
 
+        Handle::unguard();
         return $handle ?: new Handle([
+            'subtype' => 'alias',
+            'handleable_type' => $this->getMorphClass(),
+            'handleable_id' => $this->id,
             'url' => sprintf('/%s/%s/%s', $this->getMorphClass(), $this->id, $this->slug),
         ]);
     }
