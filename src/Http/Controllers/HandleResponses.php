@@ -25,12 +25,15 @@ trait HandleResponses
 
         $handle = Handle::where(['url' => $url])->first();
 
-        if (!$handle && Translate::isEnabled()) {
-            foreach (Translate::getAvailableLocales() as $locale) {
-                $prefix = sprintf('/%s', $locale['code']);
-                if (substr($url, 0, strlen($prefix)) == $prefix) {
-                    $url = substr($uri, strlen($prefix));
-                    break;
+        if (Translate::isEnabled()) {
+            if (!$handle || $handle->subtype == 'not-found') {
+                foreach (Translate::getAvailableLocales() as $locale) {
+                    $prefix = sprintf('/%s', $locale['code']);
+                    if (substr($url, 0, strlen($prefix)) == $prefix) {
+                        $url = substr($uri, strlen($prefix));
+                        $url = Handle::normalizeUrl($url);
+                        break;
+                    }
                 }
             }
         }
