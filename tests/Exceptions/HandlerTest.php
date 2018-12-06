@@ -30,7 +30,7 @@ class HandlerTest extends BeltTestCase
         # 404 render
         $handle = Handle::first();
         $request = m::mock(Request::class);
-        $request->shouldReceive('path')->once()->andReturn($handle->url);
+        $request->shouldReceive('getRequestUri')->once()->andReturn($handle->url);
         $this->assertInstanceOf(Illuminate\Http\Response::class, $handler->render($request, new NotFoundHttpException()));
     }
 

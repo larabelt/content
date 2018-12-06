@@ -17,8 +17,6 @@ class IncludesSeoTest extends \PHPUnit\Framework\TestCase
         $seoStub = new IncludesSeoTestStub();
 
         # meta title
-        $seoStub->setAttribute('name', 'Test');
-        $this->assertEquals('Test', $seoStub->meta_title);
         $seoStub->meta_title = ' Meta Test ';
         $this->assertEquals('Meta Test', $seoStub->meta_title);
 

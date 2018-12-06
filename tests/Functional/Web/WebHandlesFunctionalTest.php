@@ -60,7 +60,7 @@ class WebHandlesFunctionalTest extends Testing\BeltTestCase
         $response->assertStatus(302);
         $response->assertRedirect($page->default_url);
 
-        // 404 - Alias - w/invliad handleable
+        // 404 - Alias - w/invalid handleable
         $handle->update(['subtype' => 'alias', 'handleable_id' => 99999999]);
         $response = $this->get('/functional-test');
         $response->assertStatus(404);
@@ -69,7 +69,12 @@ class WebHandlesFunctionalTest extends Testing\BeltTestCase
          * now w/o handleable
          */
         $target = '/posts/1';
-        $handle->update(['handleable_type' => null, 'handleable_id' => null, 'target' => $target]);
+        $handle->update([
+            'subtype' => 'permanent-redirect',
+            'handleable_type' => null,
+            'handleable_id' => null,
+            'target' => $target,
+        ]);
 
         // 301 - PermanentRedirect
         $handle->update(['subtype' => 'permanent-redirect']);

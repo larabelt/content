@@ -16,7 +16,7 @@ class IncludesContentTest extends \PHPUnit\Framework\TestCase
         $contentStub = new IncludesContentTestStub();
 
         # is active
-        $contentStub->is_active = ' true!!! ';
+        $contentStub->is_active = 'true';
         $this->assertEquals(true, $contentStub->is_active);
 
         # intro
