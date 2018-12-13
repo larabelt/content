@@ -6,28 +6,47 @@
             <slot>{{ label }}</slot>
         </label>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <p class="help-page"></p>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                        <input class="form-control" v-model.trim="pages.query.q" @keyup="pages.index()"
-                               placeholder="enter page name">
-                        <div v-if="pages.query.q" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>
+        <template v-if="!page.id">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <p class="help-page"></p>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input class="form-control" v-model.trim="pages.query.q" @keyup="pages.index()"
+                                   placeholder="enter page name">
+                            <div v-if="pages.query.q" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <p><img class="img-responsive" :src="page.src"/></p>
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well well-sm clearfix">
+                        <span class="pull-right">
+                            <button class="btn btn-default" @click.prevent="unlink"><i class="fa fa-unlink"></i></button>
+                        </span>
+                        <div class="row">
+                            <div v-if="attachment.id && attachment.is_image" class="col-md-3">
+                                <attachment-thumbnail :attachment="attachment" :open_btn="false"></attachment-thumbnail>
+                            </div>
+                            <div :class="attachment.id ? 'col-md-9' : 'col-md-12'">
+                                <p>{{ page.id }}. {{ page.name }}</p>
+                                <p v-html="page.meta_description"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <span class="help-page">{{ description }}</span>
             </div>
-            <div class="col-md-3">
-                <p><img class="img-responsive" :src="page.src"/></p>
-            </div>
-            <div class="col-md-5">
-                <template v-if="page.id">
-                    <p>{{ page.id }}. {{ page.name }}</p>
-                </template>
-            </div>
-        </div>
+        </template>
+
+        <span class="help-block" v-html="_description"></span>
 
         <template v-if="pages.query.q && pages.items.length">
             <h5><strong>Page Search Results</strong></h5>

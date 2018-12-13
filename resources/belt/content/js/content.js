@@ -1,6 +1,7 @@
 import 'belt/content/js/bootstrap/inputs';
 import 'belt/content/js/bootstrap/filters';
 import 'belt/content/js/bootstrap/functions';
+import 'belt/content/js/bootstrap/misc';
 import 'belt/content/js/bootstrap/mixins';
 import 'belt/content/js/bootstrap/tiles';
 

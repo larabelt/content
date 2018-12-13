@@ -23,9 +23,18 @@ export default {
             this.page.show(this.value);
         }
     },
+    computed: {
+        attachment() {
+            return _.get(this.page, 'attachments.0', {});
+        }
+    },
     methods: {
         clear() {
             this.pages.query.q = '';
+        },
+        unlink() {
+            this.form[this.column] = null;
+            this.page.reset();
         },
         update(id) {
             this.form[this.column] = id;
