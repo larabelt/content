@@ -23,9 +23,6 @@ class HandleObserver
             $handle->target = null;
         }
 
-        if (!$handle->locale || !Translate::isAvailableLocale($handle->locale)) {
-            $handle->locale = config('app.fallback_locale');
-        }
     }
 
     /**

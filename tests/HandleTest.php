@@ -4,6 +4,7 @@ use Mockery as m;
 use Belt\Core\Testing\BeltTestCase;
 use Belt\Content\Page;
 use Belt\Content\Handle;
+use Belt\Core\Facades\TranslateFacade as Translate;
 use Illuminate\Database\Eloquent\Builder;
 
 class HandleTest extends BeltTestCase
@@ -19,10 +20,12 @@ class HandleTest extends BeltTestCase
      * @covers \Belt\Content\Handle::handleable
      * @covers \Belt\Content\Handle::normalizeUrl
      * @covers \Belt\Content\Handle::scopeHandled
-     * @covers \Belt\Content\Handle::syncDefault
+     * @covers \Belt\Content\Handle::getPrefixedUrlAttribute
+     * @covers \Belt\Content\Handle::getReplacedUrlAttribute
      */
     public function test()
     {
+        $this->enableI18n();
 
         # normalizeUrl
         $this->assertEquals('/one', Handle::normalizeUrl('one'));
@@ -54,6 +57,14 @@ class HandleTest extends BeltTestCase
         $qb->shouldReceive('where')->with('handles.handleable_id', 1)->andReturnSelf();
         $handle->scopeHandled($qb, 'pages', 1);
 
+        # getPrefixedUrlAttribute
+        Translate::enable();
+        $this->assertEquals('/en_US/test/test-it-all', $handle->prefixed_url);
+
+        # getReplacedUrlAttribute
+        Translate::enable();
+        Translate::setLocale('es_ES');
+        $this->assertEquals('/es_ES/test/test-it-all', $handle->replaced_url);
 
     }
 
