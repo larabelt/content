@@ -2,7 +2,7 @@
 
 namespace Belt\Content\Services;
 
-use Belt, Storage, Translate;
+use Belt, Morph, Storage, Translate;
 use Belt\Core\Behaviors\TmpFile;
 use Belt\Core\Behaviors\HasDisk;
 use Belt\Core\Behaviors\HasConsole;
@@ -41,7 +41,9 @@ class TranslateStringService
 
         $pairs = [];
 
-        $translations = Translation::where('locale', $locale)
+        $qb = Morph::type2QB('translations');
+
+        $translations = $qb->where('locale', $locale)
             ->where('translatable_type', 'translatable_strings')
             ->get();
 

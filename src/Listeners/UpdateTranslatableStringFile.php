@@ -22,14 +22,6 @@ class UpdateTranslatableStringFile implements ShouldQueue
 
     public $service;
 
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function service()
     {
         return $this->service ?: $this->service = new TranslateStringService();
