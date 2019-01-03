@@ -18,7 +18,8 @@ class TemporaryRedirectResponse extends BaseHandleResponse implements HandleResp
 
         $target = $this->handleable->default_url ?? $this->handle->target;
 
-        if ($target && $target != $this->handle->url) {
+        if ($target) {
+            $target = $target != $this->handle->url ? $target : $this->handleable->simple_url;
             $response = Redirect::to($target, $this->getStatusCode());
         }
 

@@ -29,7 +29,8 @@ trait HandleResponses
             if (!$handle || $handle->subtype == 'not-found') {
                 $handle = null;
                 foreach (Translate::getAvailableLocales() as $locale) {
-                    $prefix = sprintf('/%s', $locale['code']);
+                    $prefix = Handle::normalizeUrl($locale['code']);
+                    //$prefix = sprintf('/%s', strtolower($locale['code']));
                     if (substr($url, 0, strlen($prefix)) == $prefix) {
                         $url = substr($uri, strlen($prefix));
                         $url = Handle::normalizeUrl($url);

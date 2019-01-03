@@ -17,23 +17,21 @@ class HandleableTest extends BeltTestCase
         m::close();
     }
 
+    public function setUp()
+    {
+        parent::setUp();
+        Handle::unguard();
+        Page::unguard();
+    }
+
     /**
-     * @covers \Belt\Content\Behaviors\Handleable::getHandleAttribute
      * @covers \Belt\Content\Behaviors\Handleable::handles
+     * @covers \Belt\Content\Behaviors\Handleable::getHandleAttribute
      * @covers \Belt\Content\Behaviors\Handleable::getDefaultUrlAttribute
+     * @covers \Belt\Content\Behaviors\Handleable::getSimpleUrlAttribute
      */
     public function test()
     {
-        Handle::unguard();
-        Page::unguard();
-
-//        # handle
-//        $morphOne = m::mock(Relation::class);
-//        $morphOne->shouldReceive('where')->withArgs(['is_default', true]);
-//        $pageMock = m::mock(HandleableTestStub::class . '[morphOne]');
-//        $pageMock->shouldReceive('morphOne')->withArgs([Handle::class, 'handleable'])->andReturn($morphOne);
-//        $pageMock->shouldReceive('handle');
-//        $pageMock->handle();
 
         # handles
         $morphMany = m::mock(Relation::class);
@@ -51,6 +49,35 @@ class HandleableTest extends BeltTestCase
         $handle = new Handle(['url' => '/test', 'is_default' => true]);
         $page->handles->push($handle);
         $this->assertEquals('/test', $page->getDefaultUrlAttribute());
+
+        # getSimpleUrlAttribute
+        $this->assertEquals('/pages/1/test', $page->getSimpleUrlAttribute());
+    }
+
+    /**
+     * @covers \Belt\Content\Behaviors\Handleable::getHandleAttribute
+     * @covers \Belt\Content\Behaviors\Handleable::getDefaultUrlAttribute
+     * @covers \Belt\Content\Behaviors\Handleable::getSimpleUrlAttribute
+     */
+    public function test2()
+    {
+        $this->enableI18n();
+
+        # getSimpleUrlAttribute
+        $page = new Page(['id' => 1, 'slug' => 'test']);
+        $this->assertEquals('/en_US/pages/1/test', $page->getSimpleUrlAttribute());
+
+        # getDefaultUrlAttribute
+        $page = new Page(['id' => 1, 'slug' => 'test']);
+        $page->handles = new Collection();
+        $handle = new Handle([
+            'subtype' => 'alias',
+            'locale' => 'en_US',
+            'url' => '/test',
+            'is_default' => true,
+        ]);
+        $page->handles->push($handle);
+        $this->assertEquals('/en_US/test', $page->getDefaultUrlAttribute());
     }
 
 }

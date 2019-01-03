@@ -3,6 +3,7 @@
 use Belt\Core\Testing;
 use Belt\Content\Handle;
 use Belt\Content\Page;
+use Belt\Core\Facades\TranslateFacade as Translate;
 
 /**
  * @group handle
@@ -10,6 +11,13 @@ use Belt\Content\Page;
  */
 class WebHandlesFunctionalTest extends Testing\BeltTestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->enableI18n();
+        $this->refreshDB();
+        $this->actAsSuper();
+    }
 
     /**
      * Use cases:
@@ -24,8 +32,9 @@ class WebHandlesFunctionalTest extends Testing\BeltTestCase
 
     public function test()
     {
-        $this->refreshDB();
-        $this->actAsSuper();
+
+        //$this->refreshDB();
+        //$this->actAsSuper();
 
         Handle::unguard();
         Page::unguard();
@@ -100,6 +109,20 @@ class WebHandlesFunctionalTest extends Testing\BeltTestCase
         $response = $this->get('/totally-new-url');
         $response->assertStatus(404);
         $this->assertNotNull(Handle::where('url', '/totally-new-url')->first());
+
+        /**
+         * internationalized url
+         */
+        Handle::firstOrCreate([
+            'url' => '/functional-test-translated',
+            'is_active' => 1,
+            'handleable_type' => 'pages',
+            'handleable_id' => 1,
+            'subtype' => 'alias',
+        ]);
+        // 200 - Alias - w/handleable
+        $response = $this->get('/es_ES/functional-test-translated');
+        $response->assertStatus(200);
 
     }
 

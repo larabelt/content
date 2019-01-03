@@ -23,6 +23,14 @@ trait Handleable
     /**
      * @return mixed
      */
+    public function handles()
+    {
+        return $this->morphMany(Handle::class, 'handleable')->orderBy('is_default', 'desc');
+    }
+
+    /**
+     * @return mixed
+     */
     public function getHandleAttribute()
     {
         $handle = null;
@@ -44,14 +52,6 @@ trait Handleable
     }
 
     /**
-     * @return mixed
-     */
-    public function handles()
-    {
-        return $this->morphMany(Handle::class, 'handleable')->orderBy('is_default', 'desc');
-    }
-
-    /**
      * @return string
      */
     public function getDefaultUrlAttribute()
@@ -61,6 +61,20 @@ trait Handleable
         if ($this->handle->subtype == 'alias' && Translate::isEnabled()) {
             //$url = $this->handle->prefixed_url;
             $url = $this->handle->replaced_url;
+        }
+
+        return $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSimpleUrlAttribute()
+    {
+        $url = sprintf('/%s/%s/%s', $this->getMorphClass(), $this->id, $this->slug);
+
+        if (Translate::isEnabled()) {
+            $url = Belt\Core\Helpers\UrlHelper::normalize(Translate::getLocale() . $url);
         }
 
         return $url;

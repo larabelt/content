@@ -64,7 +64,7 @@ class TranslateCommand extends BaseCommand
                     $handle = $item->handles->where('locale', $locale)->first();
                     if (!$handle) {
                         $url = $item->slug;
-                        if (Translate::getAlternateLocale()) {
+                        if (Translate::isAvailableLocale($locale)) {
                             $url = Translate::translate($item->name, $locale);
                         }
                         $handle = $item->handles()->create([

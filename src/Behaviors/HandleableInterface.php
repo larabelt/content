@@ -1,4 +1,5 @@
 <?php
+
 namespace Belt\Content\Behaviors;
 
 /**
@@ -7,11 +8,6 @@ namespace Belt\Content\Behaviors;
  */
 interface HandleableInterface
 {
-
-//    /**
-//     * @return mixed
-//     */
-//    public function handle();
 
     /**
      * @return mixed
@@ -22,5 +18,15 @@ interface HandleableInterface
      * @return mixed
      */
     public function handles();
+
+    /**
+     * @return string
+     */
+    public function getDefaultUrlAttribute();
+
+    /**
+     * @return string
+     */
+    public function getSimpleUrlAttribute();
 
 }
