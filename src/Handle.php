@@ -78,17 +78,22 @@ class Handle extends Model implements
     }
 
     /**
+     * @param null $locale
+     * @return string
+     */
+    public function getReplacedUrl($locale = null)
+    {
+        $locale = $locale ?: (Translate::isEnabled() ? Translate::getLocale() : $this->locale);
+
+        return Belt\Core\Helpers\UrlHelper::normalize($locale . $this->url);
+    }
+
+    /**
      * @return string
      */
     public function getReplacedUrlAttribute()
     {
-        $locale = $this->locale;
-
-        if (Translate::isEnabled()) {
-            $locale = Translate::getLocale();
-        }
-
-        return Belt\Core\Helpers\UrlHelper::normalize($locale . $this->url);
+        return $this->getReplacedUrl();
     }
 
     /**

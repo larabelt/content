@@ -29,26 +29,49 @@ trait Handleable
     }
 
     /**
-     * @return mixed
+     * @param bool $translate
+     * @param null $locale
+     * @return Handle
      */
-    public function getHandleAttribute()
+    public function getHandle($translate = true, $locale = null)
     {
         $handle = null;
 
-        if (Translate::isEnabled()) {
-            $handle = $this->handles->where('is_default', true)->where('locale', Translate::getLocale())->first();
-            $handle = $handle ?: $this->handles->where('locale', Translate::getLocale())->first();
+        if ($translate && Translate::isEnabled()) {
+            $locale = $locale ?: Translate::getLocale();
+            $handle = $this->handles->where('is_default', true)->where('locale', $locale)->first();
+            $handle = $handle ?: $this->handles->where('locale', $locale)->first();
         }
 
         $handle = $handle ?: $this->handles->where('is_default', true)->first();
 
-        Handle::unguard();
-        return $handle ?: new Handle([
-            'subtype' => 'alias',
-            'handleable_type' => $this->getMorphClass(),
-            'handleable_id' => $this->id,
-            'url' => sprintf('/%s/%s/%s', $this->getMorphClass(), $this->id, $this->slug),
-        ]);
+        if (!$handle) {
+            Handle::unguard();
+
+            $slug = $this->getOriginal('slug');
+            if ($translate && $this instanceof Belt\Core\Behaviors\TranslatableInterface) {
+                if ($translation = $this->translations->where('translatable_column', 'slug')->where('locale', $locale)->first()) {
+                    $slug = $translation->value;
+                }
+            }
+
+            $handle = new Handle([
+                'subtype' => 'alias',
+                'handleable_type' => $this->getMorphClass(),
+                'handleable_id' => $this->id,
+                'url' => sprintf('/%s/%s/%s', $this->getMorphClass(), $this->id, $slug),
+            ]);
+        }
+
+        return $handle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHandleAttribute()
+    {
+        return $this->getHandle();
     }
 
     /**
@@ -59,7 +82,6 @@ trait Handleable
         $url = $this->handle->url;
 
         if ($this->handle->subtype == 'alias' && Translate::isEnabled()) {
-            //$url = $this->handle->prefixed_url;
             $url = $this->handle->replaced_url;
         }
 
@@ -78,6 +100,20 @@ trait Handleable
         }
 
         return $url;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTranslatedLinks()
+    {
+        $links = [];
+        foreach (Translate::getAvailableLocales() as $locale) {
+            $handle = $this->getHandle(true, $locale['code']);
+            $links[$locale['code']] = Translate::prefixUrls() ? $handle->getReplacedUrl($locale['code']) : $handle->url;
+        }
+
+        return $links;
     }
 
 }
