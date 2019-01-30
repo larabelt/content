@@ -5,9 +5,9 @@
 @section('meta-keywords', $page->meta_keywords)
 
 @section('main')
+    @include($page->subtype_view)
+@endsection
 
-    <div class="container">
-        @include($page->subtype_view)
-    </div>
+@section('page-scripts')
 
 @endsection

@@ -12,6 +12,8 @@ use Belt\Content\Handle;
 trait Handleable
 {
 
+    private $translatedLinks;
+
     /**
      * Binds events to subclass
      */
@@ -107,13 +109,17 @@ trait Handleable
      */
     public function getTranslatedLinks()
     {
+        if (!is_null($this->translatedLinks)) {
+            return $this->translatedLinks;
+        }
+
         $links = [];
         foreach (Translate::getAvailableLocales() as $locale) {
             $handle = $this->getHandle(true, $locale['code']);
             $links[$locale['code']] = Translate::prefixUrls() ? $handle->getReplacedUrl($locale['code']) : $handle->url;
         }
 
-        return $links;
+        return $this->translatedLinks = $links;
     }
 
 }

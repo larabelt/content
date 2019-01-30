@@ -47,6 +47,7 @@ class PagesController extends BaseController
         return view($view, [
             'sectionable' => $page,
             'page' => $page,
+            'foo' => 'bar',
             //'compiled' => $compiled,
         ]);
     }

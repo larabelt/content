@@ -25,9 +25,14 @@
             </div>
         @endif
 
-        @foreach($page->sections as $section)
-            @include($section->subtype_view, ['section' => $section])
-        @endforeach
+        @if($formKey = $page->param('form_key'))
+            <div id="contact-form" class="well well-sm">
+                @if( $title = $page->param('form_title') )
+                    <h1>{{ $title }}</h1>
+                @endif
+                <{!! $formKey !!}>{!! $page->param('form_success', 'Success!!!') !!}</{!! $formKey !!}>
+            </div>
+        @endif
 
     </div>
 </div>
