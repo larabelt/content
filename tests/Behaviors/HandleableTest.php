@@ -105,6 +105,7 @@ class HandleableTest extends BeltTestCase
             'url' => '/pages/1/implied',
         ]);
         $page = new Page(['id' => 1, 'slug' => 'implied']);
+        $page->handles = new Collection();
         $this->assertEquals($impliedHandle, $page->getHandle(false));
     }
 
@@ -130,6 +131,7 @@ class HandleableTest extends BeltTestCase
         ]);
         $translation = new Translation(['locale' => 'es_ES', 'translatable_column' => 'slug', 'value' => 'implicado']);
         $page = new Page(['id' => 1, 'slug' => 'implied-i18n']);
+        $page->handles = new Collection();
         $page->translations = new Collection([$translation]);
         $this->assertEquals($impliedHandle, $page->getHandle(true, 'es_ES'));
     }
