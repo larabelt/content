@@ -50,7 +50,7 @@ trait Handleable
         if (!$handle) {
             Handle::unguard();
 
-            $slug = $this->getOriginal('slug');
+            $slug = $this->getOriginal('slug') ?: $this->slug;
             if ($translate && $this instanceof Belt\Core\Behaviors\TranslatableInterface) {
                 if ($translation = $this->translations->where('translatable_column', 'slug')->where('locale', $locale)->first()) {
                     $slug = $translation->value;
