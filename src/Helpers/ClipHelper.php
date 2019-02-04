@@ -26,7 +26,7 @@ class ClipHelper
      * ClipHelper constructor.
      * @param Attachment $attachment
      */
-    public function __construct(Attachment $attachment)
+    public function __construct(Attachment $attachment = null)
     {
         $this->setAttachment($attachment);
     }
@@ -34,9 +34,9 @@ class ClipHelper
     /**
      * @param Attachment $attachment
      */
-    public function setAttachment(Attachment $attachment)
+    public function setAttachment(Attachment $attachment = null)
     {
-        $this->attachment = $attachment;
+        $this->attachment = $attachment ?: new Attachment();
     }
 
     /**
