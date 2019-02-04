@@ -20,6 +20,7 @@ trait HandleResponses
         //$uri = $request->server->get('REQUEST_URI');
         $uri = $request->getRequestUri();
         $uri = array_get(parse_url($uri), 'path');
+        $uri = rtrim($uri, '/');
 
         $url = Handle::normalizeUrl($uri);
 
