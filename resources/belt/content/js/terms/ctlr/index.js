@@ -16,6 +16,7 @@ export default {
         <div>
             <heading v-if="full_admin">
                 <span slot="title">Term Manager</span>
+                <span slot="help"><link-help docKey="admin.content.terms.manager" /></span>
                 <li><router-link :to="{ name: 'terms' }">Term Manager</router-link></li>
             </heading>
             <section class="content">

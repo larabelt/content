@@ -50,6 +50,7 @@ export default {
         <div>
             <heading>
                 <span slot="title">Block Manager</span>
+                <span slot="help"><link-help docKey="admin.content.blocks.manager" /></span>
                 <li><router-link :to="{ name: 'blocks' }">Block Manager</router-link></li>
             </heading>
             <section class="content-subheader">

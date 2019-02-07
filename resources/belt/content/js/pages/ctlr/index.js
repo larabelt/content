@@ -54,6 +54,7 @@ export default {
         <div>
             <heading>
                 <span slot="title">Page Manager</span>
+                <span slot="help"><link-help docKey="admin.content.pages.manager"/></span>
                 <li><router-link :to="{ name: 'pages' }">Page Manager</router-link></li>
             </heading>
             <section class="content">

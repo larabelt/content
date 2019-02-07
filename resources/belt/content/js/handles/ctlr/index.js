@@ -38,6 +38,7 @@ export default {
         <div>
             <heading>
                 <span slot="title">Handle Manager</span>
+                <span slot="help"><link-help docKey="admin.content.handles.manager"/></span>
                 <li><router-link :to="{ name: 'handles' }">Handle Manager</router-link></li>
             </heading>
             <section class="content">

@@ -41,7 +41,7 @@ class Attachment extends Model implements
     /**
      * @var array
      */
-    protected $fillable = ['driver', 'name'];
+    protected $fillable = ['driver', 'name', 'src'];
 
     /**
      * @var array

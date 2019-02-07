@@ -50,6 +50,7 @@ export default {
         <div>
             <heading>
                 <span slot="title">Attachment Manager</span>
+                <span slot="help"><link-help docKey="admin.content.attachments.manager"/></span>
                 <li><router-link :to="{ name: 'attachments' }">Attachment Manager</router-link></li>
             </heading>
             <section class="content">

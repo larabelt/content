@@ -35,6 +35,7 @@ export default {
         <div>
             <heading>
                 <span slot="title">Translatable String Manager</span>
+                <span slot="help"><link-help docKey="admin.content.translatable_strings.manager" /></span>
                 <li><router-link :to="{ name: 'translatableStrings' }">Translatable String Manager</router-link></li>
             </heading>
             <section class="content">

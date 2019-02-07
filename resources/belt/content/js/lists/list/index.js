@@ -50,6 +50,7 @@ export default {
         <div>
             <heading>
                 <span slot="title">List Manager</span>
+                <span slot="help"><link-help docKey="admin.content.lists.manager"/></span>
                 <li><router-link :to="{ name: 'lists' }">List Manager</router-link></li>
             </heading>
             <section class="content-subheader">
