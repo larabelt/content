@@ -14,7 +14,10 @@ To create the Adventure, "X," start by going to Content → Lists and click on t
 * **Check** Is Active
 * **Name** Fill in name of your Adventure
 
-![picture alt]({{ $url_images }}/list-creator-adventure.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/list-creator-adventure.png',
+    'caption' => '',
+])
 
 At this point, save. Additional tabs and fields will become available
 
@@ -22,17 +25,26 @@ At this point, save. Additional tabs and fields will become available
 * **Heading** leave blank
 * **Hero Heading** fill in hero heading, shows up at top of page
 
-![picture alt]({{ $url_images }}/param-group-main-image.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/param-group-main-image.png',
+    'caption' => '',
+])
 
 * **Body text** Enter body text that shows after the hero or main image
 * **Background image** shows up under overlay, can be same as hero image
 
-![picture alt]({{ $url_images }}/param-group-body-background-image.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/param-group-body-background-image.png',
+    'caption' => '',
+])
 
 * **Search List Items** most Adventures leave this section blank but this heading and text would appear above your list of adventure POIs
 * **Big Image Link** shows up near bottom of page, points users to additional content. Used for most adventures
 
-![picture alt]({{ $url_images }}/param-big-image-link-adventure.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/param-big-image-link-adventure.png',
+    'caption' => '',
+])
 
 * **Candid Tag** set theme of Instagram photos
 * **Metadata** recommended for all pages, helps with SEO
@@ -44,13 +56,19 @@ At this point, save. Additional tabs and fields will become available
 * **Place** Link existing place to this item. Start searching by existing place name and link. Repeat
 this step for all items you wish to link this adventure.
 
-![picture alt]({{ $url_images }}/list-item-child-link.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/list-item-child-link.png',
+    'caption' => '',
+])
 
 #### Attachments tab:
 
 To include a carousel of images in your adventure page, upload images here.
 
-![picture alt]({{ $url_images }}/tab-attachments-adventure.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/tab-attachments-adventure.png',
+    'caption' => '',
+])
 
 #### Terms tab:
 

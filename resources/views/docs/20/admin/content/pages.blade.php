@@ -9,7 +9,7 @@ To create a Page, start by going to Content → Page and click on the "Add Page"
 * **Type** You can choose from the drop-down list of page types. For this example, we will use
         "default"
         
-![picture alt]({{ $url_images }}/page-subtype-dropdown.png "")
+@include('belt-docs::partials.image', ['src' => '20/admin/content/assets/page-subtype-dropdown.png'])
 
 * **Is active** ​​Check to make page active
 * **Name**​​ Fill in name of your Page
@@ -35,34 +35,55 @@ image to the attachments tab or section prior to uploading it in the Main Tab.
 * **Body** Body copy shows up over background image
 * **Background image**​​ Image that shows up under background image section of page
 
-![picture alt]({{ $url_images }}/param-background-image.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/param-background-image.png',
+    'caption' => '',
+])
 
 * **Search List Items General** this section will add a List of POIs to your page. You can "show" or "hide" this list.
 
-![picture alt]({{ $url_images }}/param-search-list-items.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/param-search-list-items.png',
+    'caption' => '',
+])
 
 * There are 11 criteria to choose from.
 
-![picture alt]({{ $url_images }}/param-search-list-criteria.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/param-search-list-criteria.png',
+    'caption' => '',
+])
 
 * **General Content1** ​​Area shows up under Search list items
 * **Company List**​​ You can include a list of companies. For example, the airline list.
 * **Gallery** To include a gallery of 4 images, first upload images under the attachments tab. Then fill 
 in "Gallery Heading" Your three images will automatically appear as a gallery on your page.
 
-![picture alt]({{ $url_images }}/param-gallery.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/param-gallery.png',
+    'caption' => '',
+])
 
 * **General Content2** ​​Additional content text shows up under the gallery
 * **Child Links** ​​Include touts or "child links" to direct user to other pages of the site.
 
-![picture alt]({{ $url_images }}/param-group-child-links.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/param-group-child-links.png',
+    'caption' => '',
+])
 
-![picture alt]({{ $url_images }}/child-links.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/child-links.png',
+    'caption' => '',
+])
 
 * **Candid Tag**​​ Choose theme for Instagram photos that show up on your Place page.
 * **Big Image Link**​​ Add a link to other sections of the site. Shows up at bottom of page.
 
-![picture alt]({{ $url_images }}/param-big-image-link.png "")
+@include('belt-docs::partials.image', [
+    'src' => '20/admin/content/assets/param-big-image-link.png',
+    'caption' => '',
+])
 
 #### Terms tab:
 
@@ -77,10 +98,3 @@ Customize a handle for your page.
 #### Attachments tab:
 
 Upload images you want to use for your hero image and gallery here.
-
-
-
-
-
-
-
