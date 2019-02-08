@@ -8,8 +8,8 @@
 - [Itineraries](#itineraries)
 - [Adventures](#adventures)
 
-@include('belt-docs::20.admin.content.pages')
-@include('belt-docs::20.admin.content.airlines')
-@include('belt-docs::20.admin.content.ferries')
-@include('belt-docs::20.admin.content.itineraries')
-@include('belt-docs::20.admin.content.adventures')
+@include('belt-docs::20.admin.content.pages.intro')
+@include('belt-docs::20.admin.content.pages.subtypes.airlines')
+@include('belt-docs::20.admin.content.pages.subtypes.ferries')
+@include('belt-docs::20.admin.content.lists.subtypes.itineraries')
+@include('belt-docs::20.admin.content.lists.subtypes.adventures')

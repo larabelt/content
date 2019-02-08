@@ -22,9 +22,9 @@ return [
         'editor' => '/tbd',
     ],
     'pages' => [
-        'manager' => '/docs/2.0/admin/content#section-1',
-        'creator' => '/docs/2.0/admin/content#section-2',
-        'editor' => '/docs/2.0/admin/content#section-3',
+        'manager' => '/docs/2.0/admin/content/overview#pages',
+        'creator' => '/docs/2.0/admin/content/overview#pages',
+        'editor' => '/docs/2.0/admin/content/overview#pages',
     ],
     'posts' => [
         'manager' => '/tbd',
