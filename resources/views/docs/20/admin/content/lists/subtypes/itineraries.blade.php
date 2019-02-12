@@ -8,15 +8,25 @@ To create the Itinerary "Advanced Diving Trips," start by going to Content → L
 
 #### Main tab:
 
-* In the list creator, under the Main tab, change "Type" to "Itinerary"
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Type', 'Set as _Itinerary_'],
+    ],
+])
 
 @include('belt-docs::partials.image', [
     'src' => '20/admin/content/assets/list-creator-itinerary-subtype.png',
     'caption' => '',
 ])
 
-* Check "Is active"
-* Assign your Itinerary a name, "Diving Trips" At this point, save.
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Is Active', 'Check this box to make the Itinerary page publicly available.'],
+        ['Name', 'Assign your Itinerary a name, e.g. "Diving Trips".'],
+    ],
+])
+
+Click "Save" to continue.
 
 @include('belt-docs::partials.image', [
     'src' => '20/admin/content/assets/list-creator-itinerary-name.png',
@@ -25,27 +35,40 @@ To create the Itinerary "Advanced Diving Trips," start by going to Content → L
 
 At this point you will have access to other fields and tabs. The slug will automatically populate from your Itinerary Name
 
-* **Hero Image**
-* Upload an image to the Attachment tab in the left navigation or the Attachment tab in the Itinerary interface. It is recommended to name your image something you can easily find later.
-* Return to your itinerary's main tab, search for, and link your image by clicking the link icon.
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Hero Image', 'Upload an image to the Attachment tab in the left navigation or the Attachment tab in the Itinerary interface. It is recommended to name your image something you can easily find later.'],
+    ],
+])
+
+Return to your itinerary's main tab, search for, and link your image by clicking the link icon.
 
 @include('belt-docs::partials.image', [
     'src' => '20/admin/content/assets/list-editor-itinerary-hero.png',
     'caption' => '',
 ])
 
-* **Hero Heading** add a Hero Heading to go over your hero image
-* **Hero Copy** Add text to go under your heading
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Hero Heading', 'Add a Hero Heading to go over your hero image.'],
+        ['Hero Copy', 'Add text to go under your heading.'],
+    ],
+])
 
 @include('belt-docs::partials.image', [
     'src' => '20/admin/content/assets/param-group-hero.png',
     'caption' => '',
 ])
 
-* Click "Save" to save your work so far.
-* **Intro Copy** leave blank
-* **Candid Tag** Select a theme for the images that will show up in the Instagram feed on your Itinerary page
-* **Metadata** Add Meta Description and Meta Keywords
+Click "Save" to save your work so far.
+
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Intro Copy', '_Leave Blank_'],
+        ['Candid Tag', 'Select a theme for the images that will show up in the Instagram feed on your Itinerary page.'],
+        ['Metadata', 'Add Meta Description and Meta Keywords'],
+    ],
+])
 
 #### Items tab:
 

@@ -10,9 +10,13 @@ To create the Adventure, "X," start by going to Content → Lists and click on t
 
 #### Main tab:
 
-* **Type** Adventure
-* **Check** Is Active
-* **Name** Fill in name of your Adventure
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Type', 'Set to _Adventure_'],
+        ['Is Active', 'Check this box to make the Adventure page publicly available.'],
+        ['Name', 'Fill in name of your Adventure.'],
+    ],
+])
 
 @include('belt-docs::partials.image', [
     'src' => '20/admin/content/assets/list-creator-adventure.png',
@@ -21,40 +25,67 @@ To create the Adventure, "X," start by going to Content → Lists and click on t
 
 At this point, save. Additional tabs and fields will become available
 
-* Set main image
-* **Heading** leave blank
-* **Hero Heading** fill in hero heading, shows up at top of page
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Main Image', 'Set main image.'],
+        ['Heading', '_Leave blank_'],
+        ['Hero Heading', 'Fill in hero heading, shows up at top of page.'],
+    ],
+])
 
 @include('belt-docs::partials.image', [
     'src' => '20/admin/content/assets/param-group-main-image.png',
     'caption' => '',
 ])
 
-* **Body text** Enter body text that shows after the hero or main image
-* **Background image** shows up under overlay, can be same as hero image
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Body Text', 'Enter body text that shows after the hero or main image'],
+        ['Background Image', 'Shows up under overlay, can be same as hero image.'],
+    ],
+])
 
 @include('belt-docs::partials.image', [
     'src' => '20/admin/content/assets/param-group-body-background-image.png',
     'caption' => '',
 ])
 
-* **Search List Items** most Adventures leave this section blank but this heading and text would appear above your list of adventure POIs
-* **Big Image Link** shows up near bottom of page, points users to additional content. Used for most adventures
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Search List Items', 'For most Adventures leave this section blank but this heading and text would appear above your list of adventure POIs'],
+        ['Big Image Link', 'Shows up near bottom of page, points users to additional content. Used for most adventures'],
+    ],
+])
 
 @include('belt-docs::partials.image', [
     'src' => '20/admin/content/assets/param-big-image-link-adventure.png',
     'caption' => '',
 ])
 
-* **Candid Tag** set theme of Instagram photos
-* **Metadata** recommended for all pages, helps with SEO
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Candid Tag', 'Set theme of Instagram photos.'],
+        ['Metadata', 'Recommended for all pages, helps with SEO.'],
+    ],
+])
 
 #### Items tab:
 
-* Type should be Place, then add list item
-* Under Add List Item, leave Heading and Body blank.
-* **Place** Link existing place to this item. Start searching by existing place name and link. Repeat
-this step for all items you wish to link this adventure.
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Type', 'Set as _Place_, then click add list item'],
+    ],
+])
+
+**Adding new list item:**
+
+@include('belt-docs::partials.table', [
+    'rows' => [
+        ['Heading', '_Leave Blank_'],
+        ['Body', '_Leave Blank_'],
+        ['Place', 'Link existing place to this item. Start searching by existing place name and link. Repeat this step for all items you wish to link this adventure.'],
+    ],
+])
 
 @include('belt-docs::partials.image', [
     'src' => '20/admin/content/assets/list-item-child-link.png',
