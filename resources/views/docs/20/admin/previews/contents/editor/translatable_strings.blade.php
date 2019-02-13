@@ -1,0 +1,14 @@
+<section>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="belt-app-pre-main"><div id="belt-work-requests-alerts"><!----></div></div>
+
+            <div id="belt-content"><div><div><section class="content-header"><ol class="breadcrumb"><li><a href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>  <li><a href="/admin/belt/content/translatable-strings" class="router-link-active">Translatable String Manager</a></li> <li>Adventure Seeker</li></ol> <h1><span>Translatable String Editor</span><small></small></h1></section></div> <section class="content"><div class="nav-tabs-custom"><ul class="nav nav-tabs"><li class="active"><a href="/admin/belt/content/translatable-strings/edit/50" class="router-link-exact-active router-link-active"><span class="hidden-sm hidden-xs">Main</span> <i class="fa fa-home visible-sm visible-xs"></i></a></li></ul> <div class="tab-content"><form><div class="clearfix" style="margin-bottom: 10px;"><div class="pull-left"><div class="btn-group"><div class="form-inline"><button class="btn btn-sm btn-warning">
+                                                        translate
+                                                    </button> <select title="select locale" class="form-control"><option value="de">de - Deutsch</option><option value="fr">fr - Francais</option></select></div></div></div> <div class="pull-right"><div class="btn-group"> <button class="btn btn-sm btn-primary"><span>save</span></button></div></div></div> <div class="form-group"><label for="value">Value <span>*</span></label> <input type="text" placeholder="" readonly="readonly" class="form-control"> <span class="help-block"></span>  <div class="box box-solid box-warning"><div class="box-header with-border"><span><code>de</code></span> <span class="pull-right"><button class="btn btn-default btn-xs">auto-translate</button></span></div> <div class="box-body"><input type="text" class="form-control"></div></div></div> <div class="clearfix" style="margin-bottom: 10px;"><div class="pull-left"><div class="btn-group"><div class="form-inline"><button class="btn btn-sm btn-warning">
+                                                        translate
+                                                    </button> <select title="select locale" class="form-control"><option value="de">de - Deutsch</option><option value="fr">fr - Francais</option></select></div></div></div> <div class="pull-right"><div class="btn-group"> <button class="btn btn-sm btn-primary"><span>save</span></button></div></div></div></form></div></div></section></div></div>
+
+        </div>
+    </div>
+</section>
