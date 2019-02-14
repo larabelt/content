@@ -1,4 +1,4 @@
-<a name="airlines"></a>
+<a name="pages-subtype-airlines"></a>
 
 ## How to add or update Airlines page
 

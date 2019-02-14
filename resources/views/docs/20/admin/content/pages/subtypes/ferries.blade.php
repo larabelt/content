@@ -1,4 +1,4 @@
-<a name="ferries"></a>
+<a name="pages-subtype-ferries"></a>
 
 ## How to add or update Island Hopping/Ferries Information page
 
