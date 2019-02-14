@@ -2,24 +2,23 @@
 
 return [
     'attachments' => [
-        'manager' => '/tbd',
-        //'creator' => '/tbd',
-        'editor' => '/tbd',
+        'manager' => '/docs/2.0/admin/content/overview#attachments',
+        'editor' => '/docs/2.0/admin/content/overview#attachments',
     ],
     'blocks' => [
-        'manager' => '/tbd',
-        'creator' => '/tbd',
-        'editor' => '/tbd',
+        'manager' => '/docs/2.0/admin/content/overview#blocks',
+        'creator' => '/docs/2.0/admin/content/overview#blocks',
+        'editor' => '/docs/2.0/admin/content/overview#blocks',
     ],
     'handles' => [
-        'manager' => '/tbd',
-        'creator' => '/tbd',
-        'editor' => '/tbd',
+        'manager' => '/docs/2.0/admin/content/overview#handles',
+        'creator' => '/docs/2.0/admin/content/overview#handles',
+        'editor' => '/docs/2.0/admin/content/overview#handles',
     ],
     'lists' => [
-        'manager' => '/tbd',
-        'creator' => '/tbd',
-        'editor' => '/tbd',
+        'manager' => '/docs/2.0/admin/content/overview#lists',
+        'creator' => '/docs/2.0/admin/content/overview#lists',
+        'editor' => '/docs/2.0/admin/content/overview#lists',
     ],
     'pages' => [
         'manager' => '/docs/2.0/admin/content/overview#pages',
@@ -27,18 +26,18 @@ return [
         'editor' => '/docs/2.0/admin/content/overview#pages',
     ],
     'posts' => [
-        'manager' => '/tbd',
-        'creator' => '/tbd',
-        'editor' => '/tbd',
+        'manager' => '/docs/2.0/admin/content/overview#posts',
+        'creator' => '/docs/2.0/admin/content/overview#posts',
+        'editor' => '/docs/2.0/admin/content/overview#posts',
     ],
     'terms' => [
-        'manager' => '/tbd',
-        'creator' => '/tbd',
-        'editor' => '/tbd',
+        'manager' => '/docs/2.0/admin/content/overview#terms',
+        'creator' => '/docs/2.0/admin/content/overview#terms',
+        'editor' => '/docs/2.0/admin/content/overview#terms',
     ],
     'translatable_strings' => [
-        'manager' => '/tbd',
-        'creator' => '/tbd',
-        'editor' => '/tbd',
+        'manager' => '/docs/2.0/admin/content/overview#translatable_strings',
+        'creator' => '/docs/2.0/admin/content/overview#translatable_strings',
+        'editor' => '/docs/2.0/admin/content/overview#translatable_strings',
     ],
 ];
