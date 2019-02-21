@@ -26,7 +26,8 @@
       "updates"
     ],
     "psr-4": {
-      "Belt\\Content\\": "src/"
+      "Belt\\Content\\": "src/",
+      "Tests\\Belt\\Content\\": "tests/"
     },
     "files": [
       "src/helpers.php"
