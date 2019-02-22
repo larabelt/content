@@ -4,7 +4,7 @@ use Belt\Core\Tests;
 use Belt\Core\User;
 use Belt\Content\Page;
 
-class CompilerFunctionalTest extends Tests\BeltTestCase
+class CompilerTest extends Tests\BeltTestCase
 {
     public function setUp()
     {

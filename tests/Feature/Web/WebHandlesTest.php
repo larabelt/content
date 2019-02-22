@@ -9,7 +9,7 @@ use Belt\Core\Facades\TranslateFacade as Translate;
  * @group handle
  * Class WebHandlesFunctionalTest
  */
-class WebHandlesFunctionalTest extends Tests\BeltTestCase
+class WebHandlesTest extends Tests\BeltTestCase
 {
     public function setUp()
     {

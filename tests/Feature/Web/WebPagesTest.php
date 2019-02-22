@@ -3,7 +3,7 @@
 use Belt\Core\Tests;
 use Belt\Content\Page;
 
-class WebPagesFunctionalTest extends Tests\BeltTestCase
+class WebPagesTest extends Tests\BeltTestCase
 {
 
     public function testAsSuper()

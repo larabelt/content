@@ -3,7 +3,7 @@
 use Belt\Core\Tests;
 use Belt\Content\Lyst;
 
-class WebListsFunctionalTest extends Tests\BeltTestCase
+class WebListsTest extends Tests\BeltTestCase
 {
 
     public function testAsSuper()

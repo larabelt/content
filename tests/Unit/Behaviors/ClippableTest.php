@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Behaviors;
 
 use Mockery as m;
-
+use Belt;
 use Belt\Core\Tests\BeltTestCase;
 use Belt\Content\Behaviors\Clippable;
 use Belt\Content\Lyst;

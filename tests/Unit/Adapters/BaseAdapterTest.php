@@ -44,7 +44,7 @@ class BaseAdapterTest extends BeltTestCase
         app()['config']->set('belt.content.drivers.BaseAdapterTest', [
             'disk' => 'public',
             'adapter' => LocalAdapter::class,
-            'prefix' => 'testing',
+            'prefix' => 'assets',
             'src' => [
                 'root' => 'http://localhost',
             ],
@@ -100,15 +100,15 @@ class BaseAdapterTest extends BeltTestCase
         $this->assertEquals('test/test', $adapter->normalizePath(['test', 'test']));
 
         # prefixedPath
-        $this->assertEquals('testing/test/test.jpg', $adapter->prefixedPath('/test/', $attachment->name));
+        $this->assertEquals('assets/test/test.jpg', $adapter->prefixedPath('/test/', $attachment->name));
 
         # __create
         $sizes = getimagesize($attachmentInfo->getRealPath());
-        $data = $adapter->__create('testing/test', $attachmentInfo, $attachment->name);
+        $data = $adapter->__create('assets/test', $attachmentInfo, $attachment->name);
         $this->assertEquals($adapter->driver, $data['driver']);
         $this->assertEquals($attachment->name, $data['name']);
         $this->assertEquals($attachmentInfo->getFilename(), $data['original_name']);
-        $this->assertEquals('testing/test', $data['path']);
+        $this->assertEquals('assets/test', $data['path']);
         $this->assertEquals($attachmentInfo->getSize(), $data['size']);
         $this->assertEquals($attachmentInfo->getMimeType(), $data['mimetype']);
         $this->assertEquals($sizes[0], $data['width']);
@@ -118,19 +118,19 @@ class BaseAdapterTest extends BeltTestCase
         $uploadedFile = m::mock(UploadedFile::class . '[getMimeType,getClientMimeType]', [__DIR__ . '/../../assets/test.jpg', 'test.jpg']);
         $uploadedFile->shouldReceive('getMimeType')->andReturn('application/octet-stream');
         $uploadedFile->shouldReceive('getClientMimeType')->andReturn('foo');
-        $data = $adapter->__create('testing/test', $uploadedFile);
+        $data = $adapter->__create('assets/test', $uploadedFile);
         $this->assertEquals('foo', $data['mimetype']);
 
         # tests moved from LocalAdapter
         app()['config']->set('filesystems.disks.LocalAdapterTest', [
             'driver' => 'local',
-            'root' => __DIR__ . '/../',
+            'root' => __DIR__ . '/../../',
         ]);
 
         app()['config']->set('belt.content.drivers.LocalAdapterTest', [
             'disk' => 'LocalAdapterTest',
             'adapter' => LocalAdapter::class,
-            'prefix' => 'testing',
+            'prefix' => 'assets',
             'src' => [
                 'root' => 'http://localhost/images',
             ],
@@ -141,7 +141,7 @@ class BaseAdapterTest extends BeltTestCase
 
         $attachment = factory(Attachment::class)->make();
         $attachment->name = 'test.jpg';
-        $attachment->path = 'testing';
+        $attachment->path = 'assets';
 
         $attachmentInfo = new UploadedFile(__DIR__ . '/../../assets/test.jpg', 'test.jpg');
 
@@ -152,29 +152,29 @@ class BaseAdapterTest extends BeltTestCase
         $this->assertNotEmpty($adapter->config);
 
         # src
-        $this->assertEquals('http://localhost/images/testing/test.jpg', $adapter->src($attachment));
+        $this->assertEquals('http://localhost/images/assets/test.jpg', $adapter->src($attachment));
 
         # secure
-        $this->assertEquals('https://localhost/images/testing/test.jpg', $adapter->secure($attachment));
+        $this->assertEquals('https://localhost/images/assets/test.jpg', $adapter->secure($attachment));
 
         # secure
         $this->assertNotEmpty($adapter->contents($attachment));
 
         # upload
         $disk = m::mock(FilesystemAdapter::class);
-        $disk->shouldReceive('putFileAs')->once()->with('testing/test', $attachmentInfo, 'test.jpg')->andReturn(true);
-        $disk->shouldReceive('putFileAs')->once()->with('testing/test', $attachmentInfo, 'invalid.jpg')->andReturn(false);
+        $disk->shouldReceive('putFileAs')->once()->with('assets/test', $attachmentInfo, 'test.jpg')->andReturn(true);
+        $disk->shouldReceive('putFileAs')->once()->with('assets/test', $attachmentInfo, 'invalid.jpg')->andReturn(false);
         $adapter->disk = $disk;
         $this->assertNotEmpty($adapter->upload('test', $attachmentInfo, 'test.jpg'));
         $this->assertNull($adapter->upload('test', $attachmentInfo, 'invalid.jpg'));
 
         # __create
         $sizes = getimagesize($attachmentInfo->getRealPath());
-        $data = $adapter->__create('testing/test', $attachmentInfo, $attachment->name);
+        $data = $adapter->__create('assets/test', $attachmentInfo, $attachment->name);
         $this->assertEquals('LocalAdapterTest', $data['driver']);
         $this->assertEquals($attachment->name, $data['name']);
         $this->assertEquals($attachmentInfo->getFilename(), $data['original_name']);
-        $this->assertEquals('testing/test', $data['path']);
+        $this->assertEquals('assets/test', $data['path']);
         $this->assertEquals($attachmentInfo->getSize(), $data['size']);
         $this->assertEquals($attachmentInfo->getMimeType(), $data['mimetype']);
         $this->assertEquals($sizes[0], $data['width']);
@@ -182,12 +182,12 @@ class BaseAdapterTest extends BeltTestCase
 
         # getFromPath
         $disk = m::mock(FilesystemAdapter::class);
-        $disk->shouldReceive('exists')->once()->with('testing/test.jpg')->andReturn(true);
-        $disk->shouldReceive('exists')->once()->with('testing/invalid.jpg')->andReturn(false);
+        $disk->shouldReceive('exists')->once()->with('assets/test.jpg')->andReturn(true);
+        $disk->shouldReceive('exists')->once()->with('assets/invalid.jpg')->andReturn(false);
         $adapter->disk = $disk;
-        $result = $adapter->getFromPath('testing', 'test.jpg');
+        $result = $adapter->getFromPath('assets', 'test.jpg');
         $this->assertNotEmpty($result);
-        $result = $adapter->getFromPath('testing', 'invalid.jpg');
+        $result = $adapter->getFromPath('assets', 'invalid.jpg');
         $this->assertEmpty($result);
 
     }
@@ -201,7 +201,7 @@ class BaseAdapterTest extends BeltTestCase
         app()['config']->set('belt.content.drivers.BaseAdapterTest', [
             'disk' => 'public',
             'adapter' => LocalAdapter::class,
-            'prefix' => 'testing',
+            'prefix' => 'assets',
             'src' => [
                 'root' => 'http://localhost',
             ],

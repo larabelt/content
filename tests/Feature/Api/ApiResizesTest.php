@@ -15,7 +15,7 @@ class ApiResizesTest extends Tests\BeltTestCase
         $response = $this->json('GET', '/api/v1/attachments/1/resizes');
         $response->assertStatus(200);
 
-        $upload = $this->getUploadFile(__DIR__ . '/../../../assets/test.jpg');
+        $upload = $this->getUploadFile(__DIR__ . '/../../assets/test.jpg');
 
         # store
         $response = $this->json('POST', '/api/v1/attachments/1/resizes', [

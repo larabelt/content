@@ -30,13 +30,13 @@ class CloudinaryAdapterTest extends BeltTestCase
     {
         app()['config']->set('filesystems.disks.CloudinaryAdapterTest', [
             'driver' => 'local',
-            'root' => __DIR__ . '/../',
+            'root' => __DIR__ . '/../../',
         ]);
 
         app()['config']->set('belt.content.drivers.CloudinaryAdapterTest', [
             'disk' => 'CloudinaryAdapterTest',
             'adapter' => CloudinaryAdapter::class,
-            'prefix' => 'testing',
+            'prefix' => 'assets',
             'src' => [
                 'root' => 'http://localhost/images',
             ],
@@ -47,17 +47,17 @@ class CloudinaryAdapterTest extends BeltTestCase
 
         $attachment = factory(Attachment::class)->make();
         $attachment->name = 'test.jpg';
-        $attachment->path = 'testing';
+        $attachment->path = 'assets';
 
         $attachmentInfo = new UploadedFile(__DIR__ . '/test.jpg', 'test.jpg');
 
         $adapter = new CloudinaryAdapter('CloudinaryAdapterTest');
 
         # src
-        $this->assertEquals('http://localhost/images/testing/test.jpg', $adapter->src($attachment));
+        $this->assertEquals('http://localhost/images/assets/test.jpg', $adapter->src($attachment));
 
         # secure
-        $this->assertEquals('https://localhost/images/testing/test.jpg', $adapter->secure($attachment));
+        $this->assertEquals('https://localhost/images/assets/test.jpg', $adapter->secure($attachment));
 
         # secure
         $this->assertNotEmpty($adapter->contents($attachment));
@@ -78,17 +78,17 @@ class CloudinaryAdapterTest extends BeltTestCase
         # __create
         $diskAdapter = m::mock(CloudinaryFlysystemAdapter::class);
         $diskAdapter->shouldReceive('getResponse')->andReturn([
-            'rel_path' => 'testing/test',
+            'rel_path' => 'assets/test',
             'basename' => 'test.jpg',
         ]);
         $adapter = new CloudinaryAdapter('CloudinaryAdapterTest');
         $adapter->diskAdapter = $diskAdapter;
         $sizes = getimagesize($attachmentInfo->getRealPath());
-        $data = $adapter->__create('testing/test', $attachmentInfo, $attachment->name);
+        $data = $adapter->__create('assets/test', $attachmentInfo, $attachment->name);
         $this->assertEquals('CloudinaryAdapterTest', $data['driver']);
         $this->assertEquals($attachment->name, $data['name']);
         $this->assertEquals($attachmentInfo->getFilename(), $data['original_name']);
-        $this->assertEquals('testing/test', $data['path']);
+        $this->assertEquals('assets/test', $data['path']);
         $this->assertEquals($attachmentInfo->getSize(), $data['size']);
         $this->assertEquals($attachmentInfo->getMimeType(), $data['mimetype']);
         $this->assertEquals($sizes[0], $data['width']);
@@ -96,12 +96,12 @@ class CloudinaryAdapterTest extends BeltTestCase
 
         # getFromPath
         $disk = m::mock(FilesystemAdapter::class);
-        $disk->shouldReceive('exists')->once()->with('testing/test.jpg')->andReturn(true);
-        $disk->shouldReceive('exists')->once()->with('testing/invalid.jpg')->andReturn(false);
+        $disk->shouldReceive('exists')->once()->with('assets/test.jpg')->andReturn(true);
+        $disk->shouldReceive('exists')->once()->with('assets/invalid.jpg')->andReturn(false);
         $adapter->disk = $disk;
-        $result = $adapter->getFromPath('testing', 'test.jpg');
+        $result = $adapter->getFromPath('assets', 'test.jpg');
         $this->assertNotEmpty($result);
-        $result = $adapter->getFromPath('testing', 'invalid.jpg');
+        $result = $adapter->getFromPath('assets', 'invalid.jpg');
         $this->assertEmpty($result);
 
         # contents

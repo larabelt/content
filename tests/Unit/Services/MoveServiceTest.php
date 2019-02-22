@@ -95,7 +95,7 @@ class MoveServiceTest extends BeltTestCase
         $service->run('local', 'foo', $options);
 
         # run w/queue
-        Queue::fake();
+        \Queue::fake();
         $options['queue'] = true;
         $service = m::mock(MoveService::class . '[move]');
         $service->run('local', 'foo', $options);

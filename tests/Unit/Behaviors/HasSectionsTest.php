@@ -24,7 +24,7 @@ class HasSectionsTest extends BeltTestCase
         DB::shouldReceive('connection')->once()->andReturnSelf();
         DB::shouldReceive('table')->once()->with('sections')->andReturnSelf();
         DB::shouldReceive('where')->once()->with('owner_id', 1)->andReturnSelf();
-        DB::shouldReceive('where')->once()->with('owner_type', 'HasSectionsTestStub')->andReturnSelf();
+        DB::shouldReceive('where')->once()->with('owner_type', HasSectionsTestStub::class)->andReturnSelf();
         DB::shouldReceive('delete')->once()->andReturnSelf();
         $stub->purgeSections();
     }

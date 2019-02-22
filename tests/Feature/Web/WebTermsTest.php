@@ -3,7 +3,7 @@
 use Belt\Core\Tests;
 use Belt\Content\Term;
 
-class WebTermsFunctionalTest extends Tests\BeltTestCase
+class WebTermsTest extends Tests\BeltTestCase
 {
 
     public function testAsSuper()

@@ -6,7 +6,7 @@ use Belt\Core\Tests;
 use Belt\Content\Attachment;
 use Belt\Content\Lyst;
 
-class WebClippablesFunctionalTest extends Tests\BeltTestCase
+class WebClippablesTest extends Tests\BeltTestCase
 {
     public function tearDown()
     {

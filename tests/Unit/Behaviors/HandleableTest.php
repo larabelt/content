@@ -1,6 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Behaviors;
 
 use Mockery as m;
+use Translate;
 use Belt\Core\Translation;
 use Belt\Core\Tests\BeltTestCase;
 use Belt\Content\Behaviors\Handleable;
@@ -35,6 +36,9 @@ class HandleableTest extends BeltTestCase
      */
     public function test()
     {
+        $this->disableI18n();
+        Translate::disable();
+
         # bootHandleable
         Page::bootHandleable();
 

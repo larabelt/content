@@ -2,7 +2,6 @@
 
 use Mockery as m;
 use Belt\Core\Tests\BeltTestCase;
-use Belt\Content\Behaviors\Clippable;
 use Belt\Content\Attachment;
 use Belt\Content\Resize;
 use Belt\Content\Page;
@@ -10,7 +9,6 @@ use Belt\Content\Adapters\BaseAdapter;
 use Belt\Content\Services\ResizeService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\ImageManager;
 
 class ResizeServiceTest extends BeltTestCase
@@ -138,7 +136,7 @@ class ResizeServiceTest extends BeltTestCase
             m::on(function (\Closure $closure) {
                 $sub1 = m::mock(Builder::class);
                 $sub1->shouldReceive('on')->with('clippables.attachment_id', '=', 'attachments.id');
-                $sub1->shouldReceive('where')->with('clippables.clippable_type', ResizeServiceTestStub1::class);
+                $sub1->shouldReceive('where')->with('clippables.clippable_type', 'ResizeServiceTestStub1');
                 $closure($sub1);
                 return is_callable($closure);
             })
@@ -217,11 +215,17 @@ class ResizeServiceTest extends BeltTestCase
 
 class ResizeServiceTestStub1 extends Page
 {
-
+    public function getMorphClass()
+    {
+        return 'ResizeServiceTestStub1';
+    }
 
 }
 
 class ResizeServiceTestStub2 extends Page
 {
-
+    public function getMorphClass()
+    {
+        return 'ResizeServiceTestStub2';
+    }
 }

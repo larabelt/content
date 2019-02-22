@@ -15,7 +15,7 @@ class ApiAttachmentsTest extends Tests\BeltTestCase
         $response = $this->json('GET', '/api/v1/attachments');
         $response->assertStatus(200);
 
-        $upload = $this->getUploadFile(__DIR__ . '/../../../assets/test.jpg');
+        $upload = $this->getUploadFile(__DIR__ . '/../../assets/test.jpg');
 
         # store
         $response = $this->json('POST', '/api/v1/attachments', [
@@ -35,7 +35,7 @@ class ApiAttachmentsTest extends Tests\BeltTestCase
         $response->assertJson(['note' => 'updated']);
 
         # update with new upload
-        $new_upload = $this->getUploadFile(__DIR__ . '/../../../assets/test.png', 'test.png', 'image/png');
+        $new_upload = $this->getUploadFile(__DIR__ . '/../../assets/test.png', 'test.png', 'image/png');
         $this->json('PUT', "/api/v1/attachments/$attachmentID", ['file' => $new_upload]);
         $response = $this->json('GET', "/api/v1/attachments/$attachmentID");
         $response->assertJson(['original_name' => 'test.png']);

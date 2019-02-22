@@ -44,7 +44,7 @@ class TermObserverTest extends BeltTestCase
         $observer->deleting($term);
 
         # saving, saved, readyDispatch, dispatch
-        Queue::fake();
+        \Queue::fake();
         $term = m::mock(Term::class);
         $term->shouldReceive('getDirty')->andReturn(['name' => 'new name']);
         $observer = new TermObserver();

@@ -1,6 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Exceptions;
 
 use Mockery as m;
+use Illuminate;
 use Belt\Core\Tests\BeltTestCase;
 use Belt\Content\Exceptions\Handler;
 use Belt\Content\Handle;

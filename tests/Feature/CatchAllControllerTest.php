@@ -1,16 +1,10 @@
 <?php namespace Tests\Belt\Content\Feature;
 
 use Belt\Core\Tests;
-use Belt\Core\User;
 use Belt\Content\Page;
 
-class CatchAllControllerFunctionalTest extends Tests\BeltTestCase
+class CatchAllControllerTest extends Tests\BeltTestCase
 {
-    public function tearDown()
-    {
-        //m::close();
-    }
-
     /**
      * @covers \Belt\Content\Http\Controllers\CatchAllController::web
      */

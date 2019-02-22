@@ -1,8 +1,9 @@
 <?php namespace Tests\Belt\Content\Feature\Web;
 
 use Belt\Core\Tests;
+use Belt\Content\Section;
 
-class WebSearchFunctionalTest extends Tests\BeltTestCase
+class WebSectionsTest extends Tests\BeltTestCase
 {
 
     public function test()
@@ -10,8 +11,10 @@ class WebSearchFunctionalTest extends Tests\BeltTestCase
         $this->refreshDB();
         $this->actAsSuper();
 
+        $section = Section::first();
+
         # index
-        $response = $this->json('GET', '/search?include=pages');
+        $response = $this->json('GET', "/sections/$section->id/preview");
         $response->assertStatus(200);
     }
 
