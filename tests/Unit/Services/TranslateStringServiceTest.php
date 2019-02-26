@@ -2,7 +2,7 @@
 
 use Mockery as m;
 use Belt\Core\Translation;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Core\Facades\TranslateFacade as Translate;
 use Belt\Core\Facades\MorphFacade as Morph;
 use Belt\Content\TranslatableString;

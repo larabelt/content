@@ -1,11 +1,11 @@
 <?php namespace Tests\Belt\Content\Unit\HandleResponses;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Handle;
 use Belt\Content\Page;
 use Belt\Content\HandleResponses\TemporaryRedirectResponse;
 
-class TemporaryRedirectResponseTest extends Tests\BeltTestCase
+class TemporaryRedirectResponseTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     /**

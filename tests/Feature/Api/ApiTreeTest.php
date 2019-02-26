@@ -1,12 +1,12 @@
 <?php namespace Tests\Belt\Content\Feature\Api;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Core\User;
 use Belt\Content\Page;
 use Belt\Content\Section;
 use Silber\Bouncer\BouncerFacade as Bouncer;
 
-class ApiTreeTest extends Tests\BeltTestCase
+class ApiTreeTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     public function test()

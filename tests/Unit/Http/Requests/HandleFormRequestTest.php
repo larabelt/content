@@ -1,12 +1,12 @@
 <?php namespace Tests\Belt\Content\Unit\Http\Requests;
 
 use Mockery as m;
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Handle;
 use Belt\Content\HandleResponses\PermanentRedirectResponse;
 use Belt\Content\Http\Requests\HandleFormRequest;
 
-class HandleFormRequestTest extends Tests\BeltTestCase
+class HandleFormRequestTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     public function tearDown()

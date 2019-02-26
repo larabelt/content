@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Page;
 use Belt\Content\Handle;
 use Belt\Core\Facades\TranslateFacade as Translate;

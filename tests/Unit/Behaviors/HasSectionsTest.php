@@ -1,6 +1,6 @@
 <?php namespace Tests\Belt\Content\Unit\Behaviors;
 
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Behaviors\HasSections;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;

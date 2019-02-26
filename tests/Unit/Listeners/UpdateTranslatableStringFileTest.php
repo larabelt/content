@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Listeners;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Core\Events\ItemSaved;
 use Belt\Core\Translation;
 use Belt\Content\TranslatableString;

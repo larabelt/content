@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Helpers;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Attachment;
 use Belt\Content\Resize;
 use Belt\Content\Adapters\LocalAdapter;

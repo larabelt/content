@@ -1,10 +1,10 @@
 <?php namespace Tests\Belt\Content\Feature\Api;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 
-class ApiResizesTest extends Tests\BeltTestCase
+class ApiResizesTest extends \Tests\Belt\Core\BeltTestCase
 {
-    use Tests\CommonMocks;
+    use \Tests\Belt\Core\Base\CommonMocks;
 
     public function test()
     {

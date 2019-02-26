@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Observers;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Handle;
 use Belt\Content\Observers\HandleObserver;
 use Illuminate\Support\Facades\DB;

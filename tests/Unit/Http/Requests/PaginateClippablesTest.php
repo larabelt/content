@@ -1,16 +1,16 @@
 <?php namespace Tests\Belt\Content\Unit\Http\Requests;
 use Mockery as m;
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 
 use Belt\Content\Attachment;
 use Belt\Content\Http\Requests\PaginateClippables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
-class PaginateClippablesTest extends Tests\BeltTestCase
+class PaginateClippablesTest extends \Tests\Belt\Core\BeltTestCase
 {
 
-    use Tests\CommonMocks;
+    use \Tests\Belt\Core\Base\CommonMocks;
 
     public function tearDown()
     {

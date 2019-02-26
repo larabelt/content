@@ -2,7 +2,7 @@
 
 use Mockery as m;
 use Illuminate;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Exceptions\Handler;
 use Belt\Content\Handle;
 use Illuminate\Http\Request;

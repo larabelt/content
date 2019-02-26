@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Behaviors;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Behaviors\Termable;
 use Belt\Content\Term;
 use Illuminate\Support\Facades\DB;

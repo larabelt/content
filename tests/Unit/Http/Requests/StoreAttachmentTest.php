@@ -1,9 +1,9 @@
 <?php namespace Tests\Belt\Content\Unit\Http\Requests;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Http\Requests\StoreAttachment;
 
-class StoreAttachmentTest extends Tests\BeltTestCase
+class StoreAttachmentTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     /**

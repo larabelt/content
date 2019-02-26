@@ -1,12 +1,12 @@
 <?php namespace Tests\Belt\Content\Feature\Api;
 
 use Silber\Bouncer\BouncerFacade as Bouncer;
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Core\User;
 use Belt\Content\Attachment;
 use Belt\Content\Lyst;
 
-class ApiClippablesTest extends Tests\BeltTestCase
+class ApiClippablesTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     public function test()

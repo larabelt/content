@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Validators;
 
 use Belt\Content\Validators\AltUrlValidator;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 
 class AltUrlValidatorTest extends BeltTestCase
 {

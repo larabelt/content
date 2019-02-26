@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Resources\Traits;
 
 use Belt\Core\Resources\BaseSubtype;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Resources\Traits\HasListItems;
 
 class ResourceTraitHasListItemTest extends BeltTestCase

@@ -1,6 +1,6 @@
 <?php namespace Tests\Belt\Content\Unit\Resources\Subtypes;
 
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Resources\Subtypes\BaseListItem;
 
 class SubtypesBaseListItemTest extends BeltTestCase

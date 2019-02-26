@@ -2,11 +2,11 @@
 
 use Mockery as m;
 use Illuminate\Support\Facades\Cache;
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Attachment;
 use Belt\Content\Lyst;
 
-class WebClippablesTest extends Tests\BeltTestCase
+class WebClippablesTest extends \Tests\Belt\Core\BeltTestCase
 {
     public function tearDown()
     {

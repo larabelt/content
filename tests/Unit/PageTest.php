@@ -1,6 +1,6 @@
 <?php namespace Tests\Belt\Content\Unit;
 
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Page;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 

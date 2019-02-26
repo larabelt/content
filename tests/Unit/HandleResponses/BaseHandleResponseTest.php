@@ -1,10 +1,10 @@
 <?php namespace Tests\Belt\Content\Unit\HandleResponses;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Handle;
 use Belt\Content\HandleResponses\BaseHandleResponse;
 
-class BaseHandleResponseTest extends Tests\BeltTestCase
+class BaseHandleResponseTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     /**

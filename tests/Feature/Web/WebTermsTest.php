@@ -1,9 +1,9 @@
 <?php namespace Tests\Belt\Content\Feature\Web;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Term;
 
-class WebTermsTest extends Tests\BeltTestCase
+class WebTermsTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     public function testAsSuper()

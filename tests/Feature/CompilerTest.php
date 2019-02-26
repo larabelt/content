@@ -1,10 +1,10 @@
 <?php namespace Tests\Belt\Content\Feature;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Core\User;
 use Belt\Content\Page;
 
-class CompilerTest extends Tests\BeltTestCase
+class CompilerTest extends \Tests\Belt\Core\BeltTestCase
 {
     public function setUp()
     {

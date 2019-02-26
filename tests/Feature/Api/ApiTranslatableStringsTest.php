@@ -1,10 +1,10 @@
 <?php namespace Tests\Belt\Content\Feature\Api;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Core\Facades\TranslateFacade as Translate;
 use Belt\Content\TranslatableString;
 
-class ApiTranslatableStringsTest extends Tests\BeltTestCase
+class ApiTranslatableStringsTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     public function test()

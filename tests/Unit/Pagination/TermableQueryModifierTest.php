@@ -1,16 +1,16 @@
 <?php namespace Tests\Belt\Content\Unit\Pagination;
 
 use Mockery as m;
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 
 use Belt\Core\Http\Requests\PaginateRequest;
 use Belt\Content\Pagination\TermableQueryModifier;
 use Illuminate\Database\Eloquent\Builder;
 
-class TermableQueryModifierTest extends Tests\BeltTestCase
+class TermableQueryModifierTest extends \Tests\Belt\Core\BeltTestCase
 {
 
-    use Tests\CommonMocks;
+    use \Tests\Belt\Core\Base\CommonMocks;
 
     public function tearDown()
     {

@@ -1,8 +1,8 @@
 <?php namespace Tests\Belt\Content\Feature\Web;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 
-class WebSearchTest extends Tests\BeltTestCase
+class WebSearchTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     public function test()

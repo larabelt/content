@@ -1,9 +1,9 @@
 <?php namespace Tests\Belt\Content\Feature\Web;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Section;
 
-class WebSectionsTest extends Tests\BeltTestCase
+class WebSectionsTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     public function test()

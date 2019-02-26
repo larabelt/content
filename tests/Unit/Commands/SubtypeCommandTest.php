@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Commands;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Core\Helpers\MorphHelper;
 use Belt\Core\Behaviors\IncludesSubtypesInterface;
 use Belt\Core\Behaviors\IncludesSubtypes;

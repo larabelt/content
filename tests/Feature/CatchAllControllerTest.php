@@ -1,9 +1,9 @@
 <?php namespace Tests\Belt\Content\Feature;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Page;
 
-class CatchAllControllerTest extends Tests\BeltTestCase
+class CatchAllControllerTest extends \Tests\Belt\Core\BeltTestCase
 {
     /**
      * @covers \Belt\Content\Http\Controllers\CatchAllController::web

@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Services\Cloudinary;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Services\Cloudinary\CloudinaryFlysystemAdapter;
 use League\Flysystem\Config;
 

@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Search;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Search\HasPaginator;
 use Belt\Content\Search\Local\LocalSearchPaginator;
 

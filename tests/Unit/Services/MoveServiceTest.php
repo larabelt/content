@@ -2,7 +2,7 @@
 
 use Mockery as m;
 use Belt\Core\Facades\MorphFacade as Morph;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Attachment;
 use Belt\Content\Adapters\AdapterFactory;
 use Belt\Content\Adapters\BaseAdapter;

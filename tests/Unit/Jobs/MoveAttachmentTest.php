@@ -2,11 +2,11 @@
 
 use Mockery as m;
 use Belt\Content\Jobs\MoveAttachment;
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Attachment;
 use Belt\Content\Services\MoveService;
 
-class MoveAttachmentTest extends Tests\BeltTestCase
+class MoveAttachmentTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     public function tearDown()

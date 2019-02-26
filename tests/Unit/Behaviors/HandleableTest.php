@@ -3,7 +3,7 @@
 use Mockery as m;
 use Translate;
 use Belt\Core\Translation;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Behaviors\Handleable;
 use Belt\Content\Handle;
 use Belt\Content\Page;

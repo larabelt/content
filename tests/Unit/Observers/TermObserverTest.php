@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Observers;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Section;
 use Belt\Content\Term;
 use Belt\Content\Jobs\UpdateTermData;

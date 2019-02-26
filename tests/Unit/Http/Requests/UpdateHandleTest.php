@@ -1,11 +1,11 @@
 <?php namespace Tests\Belt\Content\Unit\Http\Requests;
 
 use Mockery as m;
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Handle;
 use Belt\Content\Http\Requests\UpdateHandle;
 
-class UpdateHandleTest extends Tests\BeltTestCase
+class UpdateHandleTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     public function tearDown()

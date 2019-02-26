@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Jobs;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Term;
 use Belt\Content\Jobs\UpdateTermData;
 use Illuminate\Database\Eloquent\Collection;

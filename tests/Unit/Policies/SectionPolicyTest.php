@@ -2,15 +2,15 @@
 
 use Belt\Core\Behaviors\Teamable;
 use Belt\Core\Behaviors\TeamableInterface;
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Core\Team;
 use Belt\Content\Section;
 use Belt\Content\Policies\SectionPolicy;
 
-class SectionPolicyTest extends Tests\BeltTestCase
+class SectionPolicyTest extends \Tests\Belt\Core\BeltTestCase
 {
 
-    use Tests\CommonMocks;
+    use \Tests\Belt\Core\Base\CommonMocks;
 
     /**
      * @covers \Belt\Content\Policies\SectionPolicy::view
@@ -38,7 +38,7 @@ class SectionPolicyTest extends Tests\BeltTestCase
 
 }
 
-class SectionPolicyStub extends Tests\BaseModelStub implements
+class SectionPolicyStub extends \Tests\Belt\Core\Base\BaseModelStub implements
     TeamableInterface
 {
     use Teamable;

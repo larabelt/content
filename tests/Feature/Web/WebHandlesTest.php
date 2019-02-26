@@ -1,6 +1,6 @@
 <?php namespace Tests\Belt\Content\Feature\Web;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Handle;
 use Belt\Content\Page;
 use Belt\Core\Facades\TranslateFacade as Translate;
@@ -9,7 +9,7 @@ use Belt\Core\Facades\TranslateFacade as Translate;
  * @group handle
  * Class WebHandlesFunctionalTest
  */
-class WebHandlesTest extends Tests\BeltTestCase
+class WebHandlesTest extends \Tests\Belt\Core\BeltTestCase
 {
     public function setUp()
     {

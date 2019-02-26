@@ -1,13 +1,13 @@
 <?php namespace Tests\Belt\Content\Unit\Http\Requests;
 use Mockery as m;
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Http\Requests\PaginateListItems;
 use Illuminate\Database\Eloquent\Builder;
 
-class PaginateListItemsTest extends Tests\BeltTestCase
+class PaginateListItemsTest extends \Tests\Belt\Core\BeltTestCase
 {
 
-    use Tests\CommonMocks;
+    use \Tests\Belt\Core\Base\CommonMocks;
 
     public function tearDown()
     {

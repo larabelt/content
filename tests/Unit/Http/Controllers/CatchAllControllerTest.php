@@ -1,10 +1,10 @@
 <?php namespace Tests\Belt\Content\Unit\Http\Controllers;
 
 use Mockery as m;
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 use Belt\Content\Http\Controllers\CatchAllController;
 
-class CatchAllControllerTest extends Tests\BeltTestCase
+class CatchAllControllerTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     public function tearDown()

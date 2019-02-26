@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Commands;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Commands\MoveCommand;
 use Belt\Content\Services\MoveService;
 

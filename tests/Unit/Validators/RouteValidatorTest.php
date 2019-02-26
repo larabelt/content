@@ -2,7 +2,7 @@
 
 use Mockery as m;
 use Belt\Content\Validators\RouteValidator;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Illuminate\Routing\RouteCollection;
 use Illuminate\Support\Facades\Route as RouteFacade;
 use Illuminate\Routing\Route;

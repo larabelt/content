@@ -1,6 +1,6 @@
 <?php namespace Tests\Belt\Content\Unit\Adapters;
 
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Adapters\BaseAdapter;
 use Belt\Content\Adapters\AdapterFactory;
 use Belt\Content\Adapters\LocalAdapter;

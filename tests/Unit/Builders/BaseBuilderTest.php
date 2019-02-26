@@ -1,7 +1,7 @@
 <?php namespace Tests\Belt\Content\Unit\Builders;
 
 use Mockery as m;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Builders\BaseBuilder;
 use Belt\Content\Page;
 use Belt\Content\Section;

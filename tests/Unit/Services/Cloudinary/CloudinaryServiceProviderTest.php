@@ -2,7 +2,7 @@
 
 use Mockery as m;
 use Illuminate\Support\Facades\Storage;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Services\Cloudinary\CloudinaryServiceProvider;
 
 class CloudinaryServiceProviderTest extends BeltTestCase

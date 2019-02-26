@@ -1,8 +1,8 @@
 <?php namespace Tests\Belt\Content\Feature\Api;
 
-use Belt\Core\Tests;
+use Tests\Belt\Core;
 
-class ApiCatchAllTest extends Tests\BeltTestCase
+class ApiCatchAllTest extends \Tests\Belt\Core\BeltTestCase
 {
 
     /**

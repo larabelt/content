@@ -2,7 +2,7 @@
 
 use Mockery as m;
 use Belt;
-use Belt\Core\Tests\BeltTestCase;
+use Tests\Belt\Core\BeltTestCase;
 use Belt\Content\Behaviors\Clippable;
 use Belt\Content\Lyst;
 use Belt\Content\Attachment;
