@@ -1,14 +1,19 @@
-<form @submit.prevent="form.submit()" @keydown="form.errors.clear($event.target.name)">
-    <base-button-group>
+<form @submit.prevent="submit()" @keydown="form.errors.clear($event.target.name)" class="translatable">
+       <base-button-group>
         <template slot="left">
             <button-translate></button-translate>
         </template>
+        <button-preview></button-preview>
         <button-save></button-save>
     </base-button-group>
+
     <input-subtype entity_type="posts" formKey="form" autoset="true"></input-subtype>
     <input-psuedo-checkbox column="is_active">Is Active</input-psuedo-checkbox>
+
     <input-text column="name" required="true">Name</input-text>
     <input-text v-if="form.id" column="slug">Slug</input-text>
+    <input-params v-if="form.id" paramable_type="posts" :paramable_id="entity_id"></input-params>
+
     <div class="row">
         <div class="col-md-6">
             <div class="form-group" :class="{ 'has-error': form.error('source_name') }">
@@ -44,11 +49,14 @@
             </div>
         </div>
     </div>
+
     <input-seo></input-seo>
+
     <base-button-group>
         <template slot="left">
             <button-translate></button-translate>
         </template>
+        <button-preview></button-preview>
         <button-save></button-save>
     </base-button-group>
 </form>

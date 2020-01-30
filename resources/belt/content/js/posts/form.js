@@ -13,6 +13,7 @@ class PostForm extends BaseForm {
             is_active: 0,
             name: '',
             slug: '',
+            subtype: '',
             body: '',
             meta_title: '',
             meta_description: '',

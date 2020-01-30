@@ -151,4 +151,14 @@ class Handle extends Model implements
         return $clone;
     }
 
+    /**
+     * @param $handle string
+     * @return Object|null
+     */
+    public static function getHandleable($handle)
+    {
+        $handle = self::whereUrl($handle)->first();
+
+        return $handle ? $handle->handleable : null;
+    }
 }

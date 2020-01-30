@@ -6,6 +6,7 @@ class PostTable extends BaseTable {
     constructor(options = {}) {
         super(options);
         this.service = new BaseService({baseUrl: '/api/v1/posts/'});
+        this.name = 'admin.posts'
     }
 
 }

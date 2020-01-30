@@ -9,14 +9,13 @@
         <div class="nav-tabs-custom">
             <tabs></tabs>
             <div class="tab-content">
-                <div class="clearfix">
-                    <div class="pull-right">
-                        <div class="btn-group sub-tab-btn-group">
-                            <a class="btn btn-xs btn-default" target="_blank" :href="'/posts/' + form.id">preview</a>
-                        </div>
-                    </div>
-                </div>
-                <tab></tab>
+                <template v-if="form.id">
+                    <tab
+                            :morphable="form"
+                            :entity_id="form.id"
+                            entity_type="posts"
+                    ></tab>
+                </template>
             </div>
         </div>
     </section>
