@@ -1,8 +1,10 @@
 import Table from 'belt/content/js/terms/table';
 import parentTerms from 'belt/content/js/terms/ctlr/index-table';
+import TranslationStore from 'belt/core/js/translations/store/adapter';
 import form_html from 'belt/content/js/terms/templates/form.html';
 
 export default {
+    mixins: [TranslationStore],
     data() {
         return {
             form: this.$parent.form,
@@ -11,6 +13,12 @@ export default {
             search: false,
             table: new Table({router: this.$router}),
         }
+    },
+    created() {
+        this.bootTranslationStore();
+    },
+    destroyed() {
+        this.form.reset();
     },
     methods: {
         toggle() {

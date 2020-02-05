@@ -15,6 +15,7 @@ class Term extends Model implements
     Belt\Core\Behaviors\ParamableInterface,
     Belt\Core\Behaviors\SluggableInterface,
     Belt\Core\Behaviors\TypeInterface,
+    Belt\Core\Behaviors\TranslatableInterface,
     Belt\Content\Behaviors\ClippableInterface,
     Belt\Content\Behaviors\HasSectionsInterface,
     Belt\Content\Behaviors\IncludesContentInterface,
@@ -30,6 +31,7 @@ class Term extends Model implements
     use Belt\Content\Behaviors\HasSections;
     use Belt\Content\Behaviors\IncludesContent;
     use Belt\Core\Behaviors\IncludesSubtypes;
+    use Belt\Core\Behaviors\Translatable;
 
     /**
      * @var string

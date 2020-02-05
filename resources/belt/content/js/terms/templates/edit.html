@@ -9,7 +9,11 @@
         <div class="nav-tabs-custom">
             <tabs></tabs>
             <div class="tab-content">
-                <tab></tab>
+                <tab
+                    :morphable="form"
+                    :entity_id="form.id"
+                    entity_type="terms"
+                ></tab>
             </div>
         </div>
     </section>

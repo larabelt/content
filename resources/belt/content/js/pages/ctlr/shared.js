@@ -12,16 +12,6 @@ export default {
             entity_id: this.$route.params.id,
         }
     },
-    created() {
-        if (!this.$store.state[this.storeKey]) {
-            this.$store.registerModule(this.storeKey, store);
-            this.$store.dispatch(this.storeKey + '/construct', {id: this.entity_id});
-        }
-        this.form.show(this.entity_id)
-            .then(() => {
-                this.$store.dispatch(this.storeKey + '/load', this.form);
-            });
-    },
     computed: {
         config() {
             return this.form.config;
@@ -34,6 +24,17 @@ export default {
             return 'pages' + this.entity_id;
         },
     },
+    created() {
+        if (!this.$store.state[this.storeKey]) {
+            this.$store.registerModule(this.storeKey, store);
+            this.$store.dispatch(this.storeKey + '/construct', {id: this.entity_id});
+        }
+        this.form.show(this.entity_id)
+            .then(() => {
+                this.$store.dispatch(this.storeKey + '/load', this.form);
+            });
+    },
+
     components: {
         tabs: {template: tabs_html},
     },
