@@ -16,6 +16,12 @@ export default {
                     form: new Form({router: this.$router}),
                 }
             },
+            methods: {
+                submit() {
+                    Events.$emit('posts:' + this.entity_id + ':saving', this.form);
+                    this.form.submit();
+                }
+            },
             template: form_html,
         },
     },
