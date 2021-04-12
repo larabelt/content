@@ -1,0 +1,64 @@
+<div>
+
+    <div class="form-group" :class="{ 'has-error': form && form.error(column) }">
+
+        <label>
+            <slot>{{ label }}</slot>
+        </label>
+
+        <template v-if="!post.id">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <p class="help-page"></p>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input class="form-control" v-model.trim="posts.query.q" @keyup="posts.index()"
+                                   placeholder="enter post name">
+                            <div v-if="posts.query.q" class="input-group-addon" @click="clear()"><i class="fa fa-times-circle"></i></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <p><img class="img-responsive" :src="post.src"/></p>
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well well-sm clearfix">
+                        <span class="pull-right">
+                            <button class="btn btn-default" @click.prevent="unlink"><i class="fa fa-unlink"></i></button>
+                        </span>
+                        <div class="row">
+                            <div v-if="attachment.id && attachment.is_image" class="col-md-3">
+                                <attachment-thumbnail :attachment="attachment" :open_btn="false"></attachment-thumbnail>
+                            </div>
+                            <div :class="attachment.id ? 'col-md-9' : 'col-md-12'">
+                                <p>{{ post.id }}. {{ post.name }}</p>
+                                <p v-html="post.meta_description"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <span class="help-block" v-html="_description"></span>
+
+        <template v-if="pages.query.q && pages.items.length">
+            <h5><strong>Post Search Results</strong></h5>
+            <table class="table">
+                <tr v-for="post in posts.items">
+                    <td>{{ post.id }}. <strong>{{ post.name }}:</strong> {{ post.slug }}</td>
+                    <td class="text-right">
+                        <button class="btn btn-default" @click.prevent="update(post.id)"><i class="fa fa-link"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </template>
+
+    </div>
+</div>
