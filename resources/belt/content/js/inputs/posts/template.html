@@ -48,8 +48,10 @@
 
         <span class="help-block" v-html="_description"></span>
 
-        <template v-if="pages.query.q && pages.items.length">
+        <template v-if="posts.query.q && posts.items.length">
+
             <h5><strong>Post Search Results</strong></h5>
+            
             <table class="table">
                 <tr v-for="post in posts.items">
                     <td>{{ post.id }}. <strong>{{ post.name }}:</strong> {{ post.slug }}</td>
